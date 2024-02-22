@@ -22,11 +22,13 @@ const ReactQueryDevtools =
 
 function Root() {
    return (
-      <Suspense fallback={null}>
+      <>
          <Outlet />
-         <ReactQueryDevtools buttonPosition="top-right" />
-         <TanStackRouterDevtools position="bottom-right" />
-      </Suspense>
+         <Suspense fallback={null}>
+            <TanStackRouterDevtools />
+            <ReactQueryDevtools />
+         </Suspense>
+      </>
    );
 }
 

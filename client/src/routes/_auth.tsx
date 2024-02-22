@@ -1,11 +1,14 @@
+import { Layout } from '@/components/layouts/auth';
+import PageLoading from '@/components/page-loading';
 import { useUserStore } from '@/store/use-user';
-import { Outlet, createFileRoute, redirect } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
+import { Suspense } from 'react';
 
 export const Route = createFileRoute('/_auth')({
    component: () => (
-      <>
-         <Outlet />
-      </>
+      <Suspense fallback={<PageLoading />}>
+         <Layout />
+      </Suspense>
    ),
    beforeLoad: async ({ context: _context }) => {
       const user = {};

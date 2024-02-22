@@ -1,0 +1,9 @@
+{
+   "login": "Login",
+   "logout": "Logout",
+   "forgot_password_ask": "Forgot your password?",
+   "api_error": "An error occurred while processing your request. Please try again later.",
+   "term": "By continuing, you agree to our <term>Terms of Service</term> and <privacy>Privacy Policy</privacy>.",
+   "register": "Register",
+   "back_to_login": "Back to login"
+}
