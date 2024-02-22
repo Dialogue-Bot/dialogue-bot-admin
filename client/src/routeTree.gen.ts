@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
+import { Route as AuthSetPasswordImport } from './routes/_auth/set-password'
 import { Route as AuthRegisterImport } from './routes/_auth/register'
 import { Route as AuthLoginImport } from './routes/_auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
@@ -27,6 +28,11 @@ const AuthRoute = AuthImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthSetPasswordRoute = AuthSetPasswordImport.update({
+  path: '/set-password',
+  getParentRoute: () => AuthRoute,
 } as any)
 
 const AuthRegisterRoute = AuthRegisterImport.update({
@@ -68,6 +74,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRegisterImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/set-password': {
+      preLoaderRoute: typeof AuthSetPasswordImport
+      parentRoute: typeof AuthImport
+    }
   }
 }
 
@@ -79,6 +89,7 @@ export const routeTree = rootRoute.addChildren([
     AuthForgotPasswordRoute,
     AuthLoginRoute,
     AuthRegisterRoute,
+    AuthSetPasswordRoute,
   ]),
 ])
 

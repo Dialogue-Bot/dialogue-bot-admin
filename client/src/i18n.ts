@@ -1,7 +1,9 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
+import Backend from 'i18next-chained-backend';
+import HttpApi from 'i18next-http-backend';
+import LocalStorageBackend from 'i18next-localstorage-backend';
+import { initReactI18next } from 'react-i18next';
 import { ELang } from './types/share';
 
 export const lngs: Array<{
@@ -33,5 +35,16 @@ i18n
          caches: ['localStorage', 'cookie'],
       },
       ns: ['common', 'forms', 'register', 'login', 'layout'],
+      backend: {
+         backends: [
+            LocalStorageBackend, // primary backend
+            HttpApi, // fallback backend
+         ],
+         backendOptions: [
+            {
+               loadPath: '/locales/{{lng}}/{{ns}}.json',
+            },
+         ],
+      },
    });
 export default i18n;

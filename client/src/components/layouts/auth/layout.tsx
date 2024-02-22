@@ -1,16 +1,11 @@
-import { LogoText } from '@/components/ui';
-import { Bot } from 'lucide-react';
-import React from 'react';
-import { Link, Outlet } from '@tanstack/react-router';
 import banner from '@/assets/login-banner.png';
 import ButtonLang from '@/components/btn-lang';
+import { LogoText } from '@/components/ui';
+import { Link, Outlet } from '@tanstack/react-router';
+import { Bot } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-type Props = {
-   children: React.ReactNode;
-};
-
-export const Layout = ({ children }: Props) => {
+export const Layout = () => {
    const { t } = useTranslation('layout');
    return (
       <div className="lg:grid grid-cols-2  flex items-center justify-center lg:items-stretch min-h-svh lg:pt-0 pt-header">

@@ -1,4 +1,9 @@
-import React from 'react';
+import { useErrorsLngChange } from '@/hooks/use-errors-lng-change';
+import { TLogin, useLoginSchema } from '@/lib/schema/login';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Link } from '@tanstack/react-router';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import {
    Button,
    Form,
@@ -9,12 +14,6 @@ import {
    FormMessage,
    Input,
 } from '../ui';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { Link } from '@tanstack/react-router';
-import { TLogin, useLoginSchema } from '@/lib/schema/login';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useErrorsLngChange } from '@/hooks/use-errors-lng-change';
 
 type Props = {
    loading?: boolean;
@@ -22,7 +21,7 @@ type Props = {
 };
 
 export const LoginForm = ({ loading, onSubmit }: Props) => {
-   const { t } = useTranslation(['common', 'forms']);
+   const { t } = useTranslation(['login', 'forms']);
 
    const schema = useLoginSchema();
 
@@ -101,9 +100,9 @@ export const LoginForm = ({ loading, onSubmit }: Props) => {
                   </Link>
                </div>
             </div>
-            <Button className="w-full" type="submit">
-               {t('login', {
-                  ns: 'common',
+            <Button className="w-full" type="submit" loading={loading}>
+               {t('btn_submit', {
+                  ns: 'login',
                })}
             </Button>
          </form>

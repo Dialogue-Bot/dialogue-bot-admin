@@ -1,6 +1,4 @@
 import { LoginForm } from '@/components/forms';
-import { Layout } from '@/components/layouts/auth';
-import { Separator } from '@/components/ui';
 import { useLogin } from '@/hooks/auth';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
@@ -43,7 +41,4 @@ const Login = () => {
 
 export const Route = createFileRoute('/_auth/login')({
    component: Login,
-   beforeLoad: async ({ context: _context }) => {
-      console.log('beforeLoad');
-   },
 });

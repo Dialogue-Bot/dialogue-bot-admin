@@ -1,0 +1,33 @@
+{
+   "email": {
+      "label": "Email",
+      "placeholder": "example.work@gmail.com",
+      "errors": {
+         "required": "Vui lòng nhập email của bạn.",
+         "email": "Email không hợp lệ."
+      }
+   },
+   "password": {
+      "label": "Mật khẩu",
+      "placeholder": "Nhập mật khẩu của bạn",
+      "errors": {
+         "required": "Vui lòng nhập mật khẩu của bạn.",
+         "min": "Mật khẩu phải có ít nhất {{min}} ký tự."
+      }
+   },
+   "confirmPassword": {
+      "label": "Xác nhận mật khẩu",
+      "placeholder": "Nhập lại mật khẩu của bạn",
+      "errors": {
+         "required": "Vui lòng xác nhận mật khẩu của bạn.",
+         "match": "Mật khẩu không khớp."
+      }
+   },
+   "name": {
+      "label": "Tên",
+      "placeholder": "Dialogue Bot",
+      "errors": {
+         "required": "Vui lòng nhập tên của bạn."
+      }
+   }
+}

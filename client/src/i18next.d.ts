@@ -9,6 +9,7 @@ declare module 'i18next' {
          forms: typeof import('../public/locales/en/forms.json');
          register: typeof import('../public/locales/en/register.json');
          forgot_pass: typeof import('../public/locales/en/forgot_pass.json');
+         set_pass: typeof import('../public/locales/en/set_pass.json');
       };
    }
 }
