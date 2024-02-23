@@ -27,3 +27,5 @@ export const ENDPOINTS = {
    },
    CHANNEL: '/channel',
 };
+
+export const LOCALE_KEY = 'lang';
