@@ -25,4 +25,5 @@ export const ENDPOINTS = {
       SINGLE: '/upload/single',
       MULTIPLE: '/upload/multiple',
    },
+   CHANNEL: '/channel',
 };
