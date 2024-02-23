@@ -5,7 +5,7 @@ import { Link, createFileRoute } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 
 const ForgotPassword = () => {
-   const { t } = useTranslation(['common', 'forgot_pass']);
+   const { t } = useTranslation();
 
    const forgotPassMutation = useForgotPass();
 
