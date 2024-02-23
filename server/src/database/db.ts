@@ -12,7 +12,8 @@ class Logger implements LogWriter {
 }
 
 export const client = new Pool({
-   connectionString: 'postgres://postgres:postgres@localhost:5432/server_bot',
+   connectionString:
+      'postgres://postgres:postgres@localhost:5432/coffeenearyou',
 });
 
 export const db = drizzle(client, {

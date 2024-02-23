@@ -1,5 +1,4 @@
 import 'reflect-metadata';
-import path from 'node:path';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -13,6 +12,13 @@ import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
 import type { Routes } from '@interfaces/routes.interface';
 import { ErrorMiddleware } from '@middlewares/error.middleware';
 import { logger, stream } from '@utils/logger';
+import { loadAllLocales } from './i18n/i18n-util.sync';
+import { getPreferredLocale } from './i18n/get-preferred-locale';
+import Container from 'typedi';
+import { LOCALE_KEY } from './constants';
+import { LocaleService } from './i18n/ctx';
+
+Container.set(LOCALE_KEY, new LocaleService('en'));
 
 export class App {
    public app: express.Application;
@@ -27,6 +33,7 @@ export class App {
       this.initializeRoutes(routes);
       this.initializeSwagger();
       this.initializeErrorHandling();
+      this.initializeAllLocales();
    }
 
    public listen() {
@@ -60,13 +67,19 @@ export class App {
       this.app.use(express.json());
       this.app.use(express.urlencoded({ extended: true }));
       this.app.use(cookieParser());
+      this.app.use((req, res, next) => {
+         const locale = getPreferredLocale(req);
+
+         Container.get<LocaleService>(LOCALE_KEY).setLocale(locale);
+
+         next();
+      });
    }
 
    private initializeRoutes(routes: Routes[]) {
       routes.forEach((route) => {
          this.app.use('/api', route.router);
       });
-      
    }
 
    private initializeSwagger() {
@@ -87,5 +100,9 @@ export class App {
 
    private initializeErrorHandling() {
       this.app.use(ErrorMiddleware);
+   }
+
+   private initializeAllLocales() {
+      loadAllLocales();
    }
 }
