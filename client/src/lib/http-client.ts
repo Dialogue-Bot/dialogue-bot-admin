@@ -1,3 +1,4 @@
+import { ELang } from '@/types/share';
 import axios from 'axios';
 
 const http_client = axios.create({
@@ -10,6 +11,11 @@ const http_client = axios.create({
 
 http_client.interceptors.request.use(
    function (config) {
+      const lang = localStorage.getItem('lang') || ELang.EN;
+
+      config.headers['Accept-Language'] = lang;
+      config.headers['lang'] = lang;
+
       return config;
    },
    function (error) {
