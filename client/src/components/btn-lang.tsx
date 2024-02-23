@@ -1,7 +1,7 @@
-import { useTranslation } from 'react-i18next';
-import { Button } from './ui';
 import { lngs } from '@/i18n';
 import { ELang } from '@/types/share';
+import { useTranslation } from 'react-i18next';
+import { Button } from './ui';
 
 export const ButtonLang = () => {
    const { i18n } = useTranslation();
@@ -17,7 +17,7 @@ export const ButtonLang = () => {
          }}
          className="min-w-24"
       >
-         {lngs.find((lng) => lng.code === i18n.language)?.name}
+         {lngs[i18n.language as ELang]}
       </Button>
    );
 };
