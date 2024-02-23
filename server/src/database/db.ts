@@ -1,8 +1,9 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import { DATABASE_URL } from '@/config';
+import { logger } from '@/utils/logger';
 import type { LogWriter } from 'drizzle-orm/logger';
 import { DefaultLogger } from 'drizzle-orm/logger';
-import { logger } from '@/utils/logger';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
 import * as schema from './schema';
 
 class Logger implements LogWriter {
@@ -12,8 +13,7 @@ class Logger implements LogWriter {
 }
 
 export const client = new Pool({
-   connectionString:
-      'postgres://postgres:postgres@localhost:5432/coffeenearyou',
+   connectionString: DATABASE_URL,
 });
 
 export const db = drizzle(client, {

@@ -5,7 +5,6 @@ export default {
    out: './src/database/migrations',
    driver: 'pg',
    dbCredentials: {
-      connectionString:
-         'postgres://postgres:postgres@localhost:5432/server_bot',
+      connectionString: process.env.DATABASE_URL as string,
    },
 } satisfies Config;

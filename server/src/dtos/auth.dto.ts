@@ -1,3 +1,5 @@
+import { MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH } from '@/constants';
+import { getCurrentLocale } from '@/i18n/get-current';
 import {
    IsEmail,
    IsNotEmpty,
@@ -6,8 +8,6 @@ import {
    MaxLength,
    MinLength,
 } from 'class-validator';
-import { MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH } from '@/constants';
-import { getCurrentLocale } from '@/i18n/get-current';
 
 export class LoginDto {
    @IsEmail(
