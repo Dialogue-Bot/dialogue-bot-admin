@@ -1,15 +1,21 @@
+import { ELang } from '@/types/share';
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
+import { initReactI18next } from 'react-i18next';
+import resources from './resources';
+
+export const lngs: Record<ELang, string> = {
+   [ELang.EN]: 'English',
+   [ELang.VI]: 'Tiếng Việt',
+};
 
 i18n
-   .use(Backend)
+
    .use(LanguageDetector)
    .use(initReactI18next)
    .init({
       debug: process.env.NODE_ENV === 'development',
-      fallbackLng: 'vi',
+      fallbackLng: ELang.EN,
       detection: {
          order: ['queryString', 'cookie', 'localstorage'],
          lookupLocalStorage: 'lang',
@@ -17,8 +23,7 @@ i18n
          lookupQuerystring: 'lang',
          caches: ['localStorage', 'cookie'],
       },
-      interpolation: {
-         escapeValue: false,
-      },
+      ns: ['common', 'forms', 'register', 'login', 'layout'],
+      resources,
    });
 export default i18n;

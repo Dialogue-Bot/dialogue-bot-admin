@@ -1,0 +1,8 @@
+{
+   "login": "Đăng nhập",
+   "logout": "Đăng xuất",
+   "forgot_password_ask": "Quên mật khẩu?",
+   "api_error": "Đã xảy ra lỗi trong khi xử lý yêu cầu của bạn. Vui lòng thử lại sau.",
+   "register": "Đăng ký",
+   "back_to_login": "Quay lại đăng nhập"
+}

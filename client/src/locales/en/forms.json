@@ -1,0 +1,33 @@
+{
+   "email": {
+      "label": "Email",
+      "placeholder": "example.work@gmail.com",
+      "errors": {
+         "required": "Please enter your email address.",
+         "email": "Please enter a valid email address."
+      }
+   },
+   "password": {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "errors": {
+         "required": "Please enter your password.",
+         "min": "Password must be at least {{min}} characters long."
+      }
+   },
+   "confirmPassword": {
+      "label": "Confirm password",
+      "placeholder": "Re-enter your password",
+      "errors": {
+         "required": "Please confirm your password.",
+         "match": "Passwords do not match."
+      }
+   },
+   "name": {
+      "label": "Name",
+      "placeholder": "Dialogue Bot",
+      "errors": {
+         "required": "Please enter your name."
+      }
+   }
+}

@@ -42,3 +42,5 @@ export * from './tooltip';
 export * from './use-toast';
 export * from './data-table';
 export * from './confirm';
+export * from './logo-img';
+export * from './logo-text';
