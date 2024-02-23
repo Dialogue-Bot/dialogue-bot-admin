@@ -26,3 +26,5 @@ export const ENDPOINTS = {
       MULTIPLE: '/upload/multiple',
    },
 };
+
+export const LOCALE_KEY = 'lang';

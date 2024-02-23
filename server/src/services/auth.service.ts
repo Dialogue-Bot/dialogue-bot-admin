@@ -1,5 +1,5 @@
 import { sign, verify } from 'jsonwebtoken';
-import { Service } from 'typedi';
+import { Inject, Service } from 'typedi';
 import { StatusCodes } from 'http-status-codes';
 import * as bcrypt from 'bcrypt';
 import { omit } from 'lodash';
@@ -18,16 +18,21 @@ import type {
 import type { InferResultType } from '@/database/types';
 import { HttpException } from '@/exceptions/http-exception';
 import { redis } from '@/libs/redis';
-import { TIME_EXPIRED_REFRESH_TOKEN } from '@/constants';
+import { LOCALE_KEY, TIME_EXPIRED_REFRESH_TOKEN } from '@/constants';
 import { SendMailQueue } from '@/queues/mail.queue';
 import { logger } from '@/utils/logger';
 import { UserService } from './users.service';
+import L from '@/i18n/i18n-node';
+import { Locales } from '@/i18n/i18n-types';
+import { getCurrentLocale } from '@/i18n/get-current';
+import { LocaleService } from '@/i18n/ctx';
 
 @Service()
 export class AuthService {
    constructor(
       private readonly userService: UserService,
-      private readonly sendMailQueue: SendMailQueue
+      private readonly sendMailQueue: SendMailQueue,
+      @Inject(LOCALE_KEY) private readonly localeService: LocaleService
    ) {}
 
    public async login(fields: LoginDto): Promise<TTokenData> {
@@ -36,7 +41,7 @@ export class AuthService {
       if (!user) {
          throw new HttpException(
             StatusCodes.NOT_FOUND,
-            'Tài khoản không tồn tại'
+            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
          );
       }
 
@@ -48,7 +53,7 @@ export class AuthService {
       if (!isMatched) {
          throw new HttpException(
             StatusCodes.UNAUTHORIZED,
-            'Mật khẩu không chính xác'
+            this.localeService.i18n().AUTH.INCORRECT_PASSWORD()
          );
       }
 
@@ -70,7 +75,7 @@ export class AuthService {
       if (!user) {
          throw new HttpException(
             StatusCodes.NOT_FOUND,
-            'Tài khoản không tồn tại'
+            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
          );
       }
 
@@ -82,14 +87,14 @@ export class AuthService {
       if (!isMatched) {
          throw new HttpException(
             StatusCodes.UNAUTHORIZED,
-            'Mật khẩu không chính xác'
+            this.localeService.i18n().AUTH.INCORRECT_PASSWORD()
          );
       }
 
       if (!user.roles.includes('ADMIN')) {
          throw new HttpException(
             StatusCodes.UNAUTHORIZED,
-            'Bạn không có quyền truy cập'
+            this.localeService.i18n().AUTH.UNAUTHORIZED()
          );
       }
 
@@ -112,7 +117,10 @@ export class AuthService {
       const user = await this.userService.findOneByEmail(email);
 
       if (user) {
-         throw new HttpException(StatusCodes.CONFLICT, 'Email đã được sử dụng');
+         throw new HttpException(
+            StatusCodes.CONFLICT,
+            this.localeService.i18n().AUTH.ACCOUNT_EXISTS()
+         );
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -142,7 +150,7 @@ export class AuthService {
       if (!user) {
          throw new HttpException(
             StatusCodes.NOT_FOUND,
-            'Tài khoản không tồn tại'
+            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
          );
       }
 
@@ -175,7 +183,7 @@ export class AuthService {
       if (!token) {
          throw new HttpException(
             StatusCodes.BAD_REQUEST,
-            'Đường dẫn đã hết hạn hoặc không hợp lệ'
+            this.localeService.i18n().AUTH.URL_TOKEN_INVALID()
          );
       }
 
@@ -189,14 +197,14 @@ export class AuthService {
       if (!user) {
          throw new HttpException(
             StatusCodes.BAD_REQUEST,
-            'Đường dẫn đã hết hạn hoặc không hợp lệ'
+            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
          );
       }
 
       if (password !== passwordConfirm) {
          throw new HttpException(
             StatusCodes.BAD_REQUEST,
-            'Mật khẩu không khớp'
+            this.localeService.i18n().AUTH.PASSWORD_UNMATCH()
          );
       }
 
@@ -205,7 +213,7 @@ export class AuthService {
       if (token !== tokenInRedis) {
          throw new HttpException(
             StatusCodes.BAD_REQUEST,
-            'Đường dẫn đã hết hạn hoặc không hợp lệ'
+            this.localeService.i18n().AUTH.URL_TOKEN_INVALID()
          );
       }
 
@@ -229,7 +237,7 @@ export class AuthService {
       if (refreshToken !== tokenInRedis) {
          throw new HttpException(
             StatusCodes.UNAUTHORIZED,
-            'Phiên đăng nhập đã hết hạn'
+            this.localeService.i18n().AUTH.TOKEN_INVALID_OR_EXPIRED()
          );
       }
 
@@ -269,7 +277,7 @@ export class AuthService {
       if (!user) {
          throw new HttpException(
             StatusCodes.NOT_FOUND,
-            'Tài khoản không tồn tại'
+            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
          );
       }
 
@@ -325,7 +333,9 @@ export class AuthService {
                reject(
                   new HttpException(
                      StatusCodes.UNAUTHORIZED,
-                     'Token đã hết hạn hoặc không hợp lệ'
+                     L[
+                        this.localeService.getLocale()
+                     ].AUTH.TOKEN_INVALID_OR_EXPIRED()
                   )
                );
             }

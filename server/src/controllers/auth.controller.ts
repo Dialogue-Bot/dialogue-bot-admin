@@ -4,9 +4,13 @@ import type { Response } from 'express';
 import { AuthService } from '@services/auth.service';
 import { catchAsync } from '@/utils/catch-async';
 import type { RequestWithUser, TTokenData } from '@/interfaces/auth.interface';
+import { LOCALE_KEY } from '@/constants';
+import L from '@/i18n/i18n-node';
+import { LocaleService } from '@/i18n/ctx';
 
 export class AuthController {
    public authService = Container.get(AuthService);
+   public localeService = Container.get<LocaleService>(LOCALE_KEY);
 
    public login = catchAsync(async (req, res) => {
       const { accessToken, refreshToken } = await this.authService.login(
@@ -16,7 +20,7 @@ export class AuthController {
       this.setTokensCookie(res, { accessToken, refreshToken });
 
       res.status(StatusCodes.OK).json({
-         message: 'Đăng nhập thành công',
+         message: this.localeService.i18n().AUTH.LOGIN_SUCCESS(),
          data: { accessToken, refreshToken },
       });
    });
@@ -27,7 +31,7 @@ export class AuthController {
       this.setTokensCookie(res, data);
 
       res.status(StatusCodes.OK).json({
-         message: 'Đăng nhập thành công',
+         message: this.localeService.i18n().AUTH.LOGIN_SUCCESS(),
          data,
       });
    });
@@ -36,7 +40,7 @@ export class AuthController {
       const data = await this.authService.register(req.body);
 
       res.status(StatusCodes.CREATED).json({
-         message: 'Đăng ký tài khoản thành công',
+         message: this.localeService.i18n().AUTH.REGISTER_SUCCESS(),
          data,
       });
    });
@@ -46,7 +50,7 @@ export class AuthController {
       await this.authService.forgotPassword(req.body, clientUrl);
 
       res.status(StatusCodes.OK).json({
-         message: 'Vui lòng kiểm tra email để đặt lại mật khẩu',
+         message: this.localeService.i18n().AUTH.FORGOT_PASSWORD_SUCCESS(),
          data: null,
       });
    });
@@ -55,7 +59,7 @@ export class AuthController {
       await this.authService.resetPassword(req.body);
 
       res.status(StatusCodes.OK).json({
-         message: 'Đặt lại mật khẩu thành công',
+         message: this.localeService.i18n().AUTH.SET_PASSWORD_SUCCESS(),
          data: null,
       });
    });
@@ -68,7 +72,7 @@ export class AuthController {
       this.setTokensCookie(res, data);
 
       res.status(StatusCodes.OK).json({
-         message: 'Refresh token thành công',
+         message: this.localeService.i18n().AUTH.REFRESH_TOKEN_SUCCESS(),
          data,
       });
    });
@@ -79,7 +83,7 @@ export class AuthController {
       );
 
       res.status(StatusCodes.OK).json({
-         message: 'Lấy thông tin người dùng thành công',
+         message: this.localeService.i18n().USER.GET_USER_SUCCESS(),
          data,
       });
    });

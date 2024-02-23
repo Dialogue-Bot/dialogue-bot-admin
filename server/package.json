@@ -5,8 +5,8 @@
    "author": "",
    "license": "ISC",
    "scripts": {
-      "dev": "concurrently  \"npm run dev:worker\" \"npm run dev:api\"",
-      "start": "npm run build  && cross-env NODE_ENV=production concurrently \"npm run start:api\" \"npm run start:worker\"",
+      "dev": "concurrently  \"npm run dev:worker\" \"npm run dev:api\" \"npm run typesafe-i18n\"",
+      "start": "npm run build  && cross-env NODE_ENV=production concurrently \"npm run start:api\" \"npm run start:worker\" \"npm run typesafe-i18n\"",
       "start:api": "cross-env NODE_ENV=production node dist/server.js",
       "start:worker": "cross-env NODE_ENV=production node dist/worker.js",
       "dev:worker": "nodemon --watch src/worker.ts --exec \"ts-node -r tsconfig-paths/register --transpile-only src/worker.ts\"",
@@ -23,7 +23,8 @@
       "drop:migrate": "drizzle-kit drop",
       "check:migrate": "drizzle-kit check:pg",
       "db:studio": "drizzle-kit studio --port 5050",
-      "db:seed": "ts-node -r tsconfig-paths/register --transpile-only src/database/seed.ts"
+      "db:seed": "ts-node -r tsconfig-paths/register --transpile-only src/database/seed.ts",
+      "typesafe-i18n": "typesafe-i18n"
    },
    "dependencies": {
       "@paralleldrive/cuid2": "^2.2.2",
@@ -57,6 +58,7 @@
       "swagger-jsdoc": "^6.2.1",
       "swagger-ui-express": "^4.5.0",
       "typedi": "^0.10.0",
+      "typesafe-i18n": "^5.26.2",
       "winston": "^3.8.1",
       "winston-daily-rotate-file": "^4.7.1",
       "zod": "^3.22.4"
