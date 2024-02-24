@@ -1,10 +1,10 @@
 export interface ChannelExtend {
-    id: number;
+    id: string;
     contactId: string;
     contactName: string;
     channelType: string;
     credentials: string;
     active: boolean;
-    createdAt: string;
-    updateAt: string;
+    createdAt: Date;
+    updateAt: Date;
 }

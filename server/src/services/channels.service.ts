@@ -7,8 +7,7 @@ import { HttpException } from "@/exceptions/http-exception";
 import { LocaleService } from "@/i18n/ctx";
 import { ChannelExtend } from "@/interfaces/channels.interface";
 import { Paging } from "@/interfaces/paging.interface";
-import { Helper } from "@/utils/helper";
-import { asc, desc, eq, isNotNull, like } from "drizzle-orm";
+import { and, asc, desc, eq, like, sql } from "drizzle-orm";
 import { StatusCodes } from "http-status-codes";
 import { Inject, Service } from "typedi";
 
@@ -126,27 +125,67 @@ export class ChannelService {
         });
     }
 
-    public async getChannelsPaging(paging: PagingDTO): Promise<Paging<ChannelExtend>> {
-        const query = await db
-            .select()
+    public async getChannelsPaging(paging: PagingDTO): Promise<Paging<any>> {
+        const offset = paging.page && ((paging.page - 1) * paging.limit) || 0;
+        // const [query, count] =
+        //     await Promise.all([
+        //         db
+        //             .select({
+        //                 id: channels.id,
+        //                 contactId: channels.contactId,
+        //                 name: channels.contactName,
+        //                 channelType: channelTypes.description,
+        //                 credentials: channels.credentials,
+        //                 active: channels.active,
+        //                 createdAt: channels.createdAt,
+        //                 updateAt: channels.updatedAt,
+        //             })
+        //             .from(channels)
+        //             .where(
+        //                 and(
+        //                     like(channels.contactId, `%${paging.q}%`),
+        //                     eq(channels.deleted, false)
+        //                 )
+        //             )
+        //             .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
+        //             .orderBy(paging.sortType === 'asc' ? asc(channels[paging.orderBy]) : desc(channels[paging.orderBy]))
+        //             .offset(offset)
+        //             .limit(paging.limit),
+        //         db
+        //             .select({ count: sql<number>`cast(count(${channels.id}) as integer)` })
+        //             .from(channels)
+        //             .where(eq(channels.deleted, false)),
+        //     ]);
+
+        const result: ChannelExtend[] = await db
+            .select({
+                id: channels.id,
+                contactId: channels.contactId,
+                contactName: channels.contactName,
+                name: channels.contactName,
+                channelType: channelTypes.description,
+                credentials: channels.credentials,
+                active: channels.active,
+                createdAt: channels.createdAt,
+                updateAt: channels.updatedAt,
+            })
             .from(channels)
-            .where(paging.q ? like(channels.contactId, `%${paging.q}%`) : isNotNull(channels.contactId))
+            .where(
+                and(
+                    like(channels.contactId, `%${paging.q}%`),
+                    eq(channels.deleted, false)
+                )
+            )
             .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
             .orderBy(paging.sortType === 'asc' ? asc(channels[paging.orderBy]) : desc(channels[paging.orderBy]))
-            .offset(paging.page * paging.limit)
+            .offset(offset)
             .limit(paging.limit);
 
-        const data: ChannelExtend[] = query.map((rs: any) => ({
-            id: rs.channels?.id,
-            contactId: rs.channels?.contactId,
-            contactName: rs.channels?.contactName,
-            channelType: rs.channel_types?.description,
-            credentials: rs.channels?.credentials ?? null,
-            active: rs.channels?.active,
-            createdAt: Helper.formatDate(rs.channels?.createdAt),
-            updateAt: Helper.formatDate(rs.channels?.updateAt),
-        }));
+        const count = await db
+            .select({ count: sql<number>`cast(count(${channels.id}) as integer)` })
+            .from(channels)
+            .where(eq(channels.deleted, false));
 
-        return { items: data, totalItems: data.length };
+        return { items: result, totalItems: count[0].count };
     }
 }
