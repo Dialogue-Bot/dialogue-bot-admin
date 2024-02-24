@@ -1,8 +1,7 @@
-import { ForgotPassword } from '@repo/email';
-import type { ForgotPasswordProps } from '@repo/email';
 import { render } from '@react-email/render';
 import nodemailer from 'nodemailer';
-import { logger } from './logger';
+import { logger } from '../utils/logger';
+import { ForgotPassword, ForgotPasswordProps } from './templates';
 
 interface TemplateProps {
    'forgot-password': ForgotPasswordProps;

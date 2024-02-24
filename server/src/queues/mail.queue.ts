@@ -1,8 +1,8 @@
-import { Queue } from 'bullmq';
-import { Service } from 'typedi';
 import { QUEUE_KEYS } from '@/constants';
 import { redis } from '@/libs/redis';
-import type { sendMail } from 'utils/send-mail';
+import type { sendMail } from '@/mail/send-mail';
+import { Queue } from 'bullmq';
+import { Service } from 'typedi';
 
 @Service()
 export class SendMailQueue extends Queue {
