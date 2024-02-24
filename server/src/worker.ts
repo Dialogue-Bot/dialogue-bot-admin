@@ -1,8 +1,8 @@
 import { Worker } from 'bullmq';
 import { QUEUE_KEYS } from './constants';
 import { redis } from './libs/redis';
+import { sendMail } from './mail/send-mail';
 import { logger } from './utils/logger';
-import { sendMail } from './utils/send-mail';
 
 const runWorker = () => {
    try {
