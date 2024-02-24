@@ -2,11 +2,8 @@ import { createId } from '@paralleldrive/cuid2';
 import { relations } from 'drizzle-orm';
 import {
    boolean,
-   integer,
-   json,
    pgEnum,
    pgTable,
-   serial,
    text,
    timestamp,
    uniqueIndex,
@@ -39,24 +36,31 @@ export const users = pgTable(
    })
 );
 
-export const channelTypes = pgTable(
-   'channel_types', // cho nay minh theo conversation channel_types nha
-   {
-      id: serial('id').primaryKey(),
-      name: text('name').unique().notNull(),
-      description: text('description').unique().notNull(),
-   }
-);
+export const channelTypes = pgTable('channel_types', {
+   id: varchar('id', {
+      length: MAX_ID_LENGTH,
+   })
+      .primaryKey()
+      .$defaultFn(() => createId()),
+   name: text('name').unique().notNull(),
+   description: text('description').unique().notNull(),
+   deleted: boolean('deleted').default(false),
+});
 
 export const channels = pgTable('channels', {
-   id: serial('id').primaryKey(),
+   id: varchar('id', {
+      length: MAX_ID_LENGTH,
+   })
+      .primaryKey()
+      .$defaultFn(() => createId()),
    contactId: text('contact_id').unique().notNull(),
    contactName: text('contact_name').notNull(),
-   credentials: json('credentials'),
-   active: boolean('active').default(true),
-   channelTypeId: integer('channel_type_id').notNull(),
+   credentials: text('credentials'),
+   active: boolean('active'),
+   deleted: boolean('deleted').default(false),
+   channelTypeId: text('channel_type_id').notNull(),
    createdAt: timestamp('created_at').defaultNow(),
-   updatedAt: timestamp('update_at').defaultNow(),
+   updatedAt: timestamp('updated_at'),
 });
 
 export const channelTypesRelations = relations(channelTypes, ({ many }) => ({

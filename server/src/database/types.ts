@@ -40,3 +40,7 @@ export const ROLES = z.enum(schema.roles.enumValues);
 export type TNewUser = typeof schema.users.$inferInsert;
 
 export type TUpdateUser = Partial<TNewUser>;
+
+export type TNewChannel = typeof schema.channels.$inferInsert;
+
+export type TUpdateChannel = Partial<TNewChannel>;

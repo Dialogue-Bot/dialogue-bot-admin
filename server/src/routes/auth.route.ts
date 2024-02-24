@@ -58,7 +58,6 @@ export class AuthRoute implements Routes {
 
       this.router.get(
          ENDPOINTS.AUTH.CURRENT_USER,
-
          auth,
          this.controller.getCurrentUser
       );
