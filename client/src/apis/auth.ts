@@ -10,6 +10,7 @@ class Auth {
    login(data: TLogin): Promise<TBaseResponse<TToken>> {
       return http_client.post(ENDPOINTS.AUTH.LOGIN, data);
    }
+
    // TODO: SHOULD BE CHANGE TYPE ANY TO TYPE USER
    register(data: TRegister): Promise<TBaseResponse<any>> {
       return http_client.post(ENDPOINTS.AUTH.REGISTER, data);
@@ -30,6 +31,10 @@ class Auth {
 
    refreshToken(): Promise<TBaseResponse<TToken>> {
       return http_client.post(ENDPOINTS.AUTH.REFRESH_TOKEN);
+   }
+
+   loginWithIdToken(idToken: string): Promise<TBaseResponse<TToken>> {
+      return http_client.post(ENDPOINTS.AUTH.WITH_ID_TOKEN, { idToken });
    }
 }
 

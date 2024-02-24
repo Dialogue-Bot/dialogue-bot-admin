@@ -68,6 +68,10 @@ type RootTranslation = {
 		 * R​e​f​r​e​s​h​ ​t​o​k​e​n​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
 		 */
 		REFRESH_TOKEN_SUCCESS: string
+		/**
+		 * T​h​i​s​ ​e​m​a​i​l​ ​i​s​ ​a​l​r​e​a​d​y​ ​u​s​i​n​g​ ​b​y​ ​a​n​o​t​h​e​r​ ​p​r​o​v​i​d​e​r​!
+		 */
+		PROVIDER_EXIST: string
 	}
 	USER: {
 		/**
@@ -215,6 +219,10 @@ export type TranslationFunctions = {
 		 * Refresh token successfully!
 		 */
 		REFRESH_TOKEN_SUCCESS: () => LocalizedString
+		/**
+		 * This email is already using by another provider!
+		 */
+		PROVIDER_EXIST: () => LocalizedString
 	}
 	USER: {
 		/**

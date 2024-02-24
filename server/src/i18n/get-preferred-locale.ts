@@ -1,11 +1,9 @@
 import { Request } from 'express';
-import { Locales } from './i18n-types';
 import {
    initAcceptLanguageHeaderDetector,
-   initRequestParametersDetector,
    initRequestCookiesDetector,
-   initQueryStringDetector,
 } from 'typesafe-i18n/detectors';
+import { Locales } from './i18n-types';
 import { detectLocale } from './i18n-util';
 
 export const getPreferredLocale = (req: Request): Locales => {
@@ -16,6 +14,7 @@ export const getPreferredLocale = (req: Request): Locales => {
       { headers },
       'lang'
    );
+
    const requestCookiesDetector = initRequestCookiesDetector(req, 'lang');
 
    return detectLocale(acceptLanguageDetector, requestCookiesDetector);

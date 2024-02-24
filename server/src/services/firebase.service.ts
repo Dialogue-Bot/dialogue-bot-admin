@@ -1,13 +1,13 @@
-import fs from 'node:fs/promises';
-import cuid2 from '@paralleldrive/cuid2';
-import { Service } from 'typedi';
-import { lookup } from 'mime-types';
-import { getDownloadURL } from 'firebase-admin/storage';
+import { FIREBASE_PROJECT_ID } from '@/config';
 import { firebase } from '@/libs/firebase';
 import { logger } from '@/utils/logger';
+import cuid2 from '@paralleldrive/cuid2';
+import { getDownloadURL } from 'firebase-admin/storage';
+import { lookup } from 'mime-types';
+import fs from 'node:fs/promises';
+import { Service } from 'typedi';
 
-const storageUrl =
-   'https://firebasestorage.googleapis.com/v0/b/coffeenearyou-37ef4.appspot.com/o';
+const storageUrl = `https://firebasestorage.googleapis.com/v0/b/${FIREBASE_PROJECT_ID}.appspot.com/o`;
 
 @Service()
 export class FirebaseService {
@@ -88,5 +88,29 @@ export class FirebaseService {
       imagePath = imagePath.replace(/%20/g, ' ');
 
       return imagePath;
+   }
+
+   async verifyIdToken(token: string) {
+      logger.info(`[FIREBASE] Verify token ${token}`);
+      const decoded = await firebase.auth().verifyIdToken(token);
+
+      if (!decoded.uid) {
+         return null;
+      }
+
+      const user = await firebase.auth().getUser(decoded.uid);
+
+      if (!user) {
+         return null;
+      }
+
+      logger.info(`[FIREBASE] Verify token success`);
+      return {
+         email: user.providerData[0]?.email || user.email || null,
+         uid: user.uid,
+         name: user.providerData[0].displayName || user.displayName || null,
+         avatar: user.providerData[0].photoURL || user.photoURL || null,
+         provider: user.providerData[0].providerId,
+      };
    }
 }
