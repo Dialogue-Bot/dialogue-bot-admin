@@ -1,6 +1,7 @@
 import { ENDPOINTS } from '@/constants';
 import {
    ForgotPasswordDto,
+   IdTokenDto,
    LoginDto,
    RegisterDto,
    ResetPasswordDto,
@@ -59,6 +60,12 @@ export class AuthRoute implements Routes {
          ENDPOINTS.AUTH.CURRENT_USER,
          auth,
          this.controller.getCurrentUser
+      );
+
+      this.router.post(
+         ENDPOINTS.AUTH.WITH_ID_TOKEN,
+         validate(IdTokenDto),
+         this.controller.loginWithIdToken
       );
    }
 }

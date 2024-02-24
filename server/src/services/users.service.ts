@@ -1,8 +1,8 @@
-import { eq } from 'drizzle-orm';
-import { Service } from 'typedi';
 import { db } from '@/database/db';
 import { users } from '@/database/schema';
 import type { TNewUser, TUpdateUser } from '@/database/types';
+import { and, eq } from 'drizzle-orm';
+import { Service } from 'typedi';
 
 @Service()
 export class UserService {
@@ -36,5 +36,13 @@ export class UserService {
          .returning();
 
       return user[0];
+   }
+
+   public async findOneByEmailAndProvider(email: string, provider: string) {
+      const user = await db.query.users.findFirst({
+         where: and(eq(users.email, email), eq(users.provider, provider)),
+      });
+
+      return user;
    }
 }

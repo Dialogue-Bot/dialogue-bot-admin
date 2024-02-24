@@ -1,12 +1,11 @@
-import { Container } from 'typedi';
-import { StatusCodes } from 'http-status-codes';
-import type { Response } from 'express';
-import { AuthService } from '@services/auth.service';
-import { catchAsync } from '@/utils/catch-async';
-import type { RequestWithUser, TTokenData } from '@/interfaces/auth.interface';
 import { LOCALE_KEY } from '@/constants';
-import L from '@/i18n/i18n-node';
 import { LocaleService } from '@/i18n/ctx';
+import type { RequestWithUser, TTokenData } from '@/interfaces/auth.interface';
+import { catchAsync } from '@/utils/catch-async';
+import { AuthService } from '@services/auth.service';
+import type { Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+import { Container } from 'typedi';
 
 export class AuthController {
    public authService = Container.get(AuthService);
@@ -16,6 +15,18 @@ export class AuthController {
       const { accessToken, refreshToken } = await this.authService.login(
          req.body
       );
+
+      this.setTokensCookie(res, { accessToken, refreshToken });
+
+      res.status(StatusCodes.OK).json({
+         message: this.localeService.i18n().AUTH.LOGIN_SUCCESS(),
+         data: { accessToken, refreshToken },
+      });
+   });
+
+   public loginWithIdToken = catchAsync(async (req, res) => {
+      const { accessToken, refreshToken } =
+         await this.authService.loginWithIdToken(req.body);
 
       this.setTokensCookie(res, { accessToken, refreshToken });
 

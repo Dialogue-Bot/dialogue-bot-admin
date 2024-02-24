@@ -2,6 +2,7 @@ import { LOCALE_KEY, TIME_EXPIRED_REFRESH_TOKEN } from '@/constants';
 import type { InferResultType } from '@/database/types';
 import type {
    ForgotPasswordDto,
+   IdTokenDto,
    LoginDto,
    RegisterDto,
    ResetPasswordDto,
@@ -23,6 +24,7 @@ import { StatusCodes } from 'http-status-codes';
 import { sign, verify } from 'jsonwebtoken';
 import { omit } from 'lodash';
 import { Inject, Service } from 'typedi';
+import { FirebaseService } from './firebase.service';
 import { UserService } from './users.service';
 
 @Service()
@@ -30,8 +32,9 @@ export class AuthService {
    constructor(
       private readonly userService: UserService,
       private readonly sendMailQueue: SendMailQueue,
-      @Inject(LOCALE_KEY) private readonly localeService: LocaleService
-   ) { }
+      @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
+      private readonly firebaseService: FirebaseService
+   ) {}
 
    public async login(fields: LoginDto): Promise<TTokenData> {
       const user = await this.userService.findOneByEmail(fields.email);
@@ -59,6 +62,56 @@ export class AuthService {
 
       await redis.set(
          `refresh-token:${user.id}`,
+         tokenData.refreshToken,
+         'EX',
+         TIME_EXPIRED_REFRESH_TOKEN
+      );
+
+      return tokenData;
+   }
+
+   public async loginWithIdToken(fields: IdTokenDto) {
+      const { idToken } = fields;
+      const { email, provider, avatar, name } =
+         await this.firebaseService.verifyIdToken(idToken);
+
+      const user = await this.userService.findOneByEmail(email);
+
+      // If user exist and provider is not the same => throw error
+      if (user && user.provider !== provider) {
+         throw new HttpException(
+            StatusCodes.CONFLICT,
+            this.localeService.i18n().AUTH.PROVIDER_EXIST()
+         );
+      }
+
+      // If user exist and provider is the same => login success
+      if (user && user.provider === provider) {
+         const tokenData = this.genTokens(user);
+
+         await redis.set(
+            `refresh-token:${user.id}`,
+            tokenData.refreshToken,
+            'EX',
+            TIME_EXPIRED_REFRESH_TOKEN
+         );
+
+         return tokenData;
+      }
+
+      const createdUser = await this.userService.create({
+         avatar,
+         email,
+         name,
+         password: null,
+         provider,
+         roles: ['USER'],
+      });
+
+      const tokenData = this.genTokens(createdUser);
+
+      await redis.set(
+         `refresh-token:${createdUser.id}`,
          tokenData.refreshToken,
          'EX',
          TIME_EXPIRED_REFRESH_TOKEN
