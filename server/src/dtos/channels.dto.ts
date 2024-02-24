@@ -1,27 +1,37 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { getCurrentLocale } from '@/i18n/get-current';
+import { Transform } from "class-transformer";
+import { IsArray, IsBoolean, IsNotEmpty, IsString } from "class-validator";
 
-export class channelDTO {
+export class ChannelDTO {
     @IsString()
     @IsNotEmpty({
-        message: 'ContactID không được bỏ trống',
+        message: () => getCurrentLocale().VALIDATE.REQUIRED({ field: 'ContactId' }),
     })
+    @Transform(({ value }) => value.trim())
     contactId: string;
 
     @IsString()
     @IsNotEmpty({
-        message: 'Contact name không được bỏ trống',
+        message: () => getCurrentLocale().VALIDATE.REQUIRED({ field: 'Contact name' }),
     })
+    @Transform(({ value }) => value.trim())
     contactName: string;
 
-    @IsNumber()
+    @IsString()
     @IsNotEmpty({
-        message: 'Channel type không được bỏ trống',
+        message: () => getCurrentLocale().VALIDATE.REQUIRED({ field: 'Channel type' }),
     })
-    channelTypeId: number;
+    channelTypeId: string;
 
     @IsString()
     credentials: string;
 
     @IsBoolean()
     active: boolean | false;
+}
+
+export class DeleteChannelDTO {
+    @IsArray()
+    @Transform(({ value }) => value ?? [])
+    id: string[];
 }

@@ -125,6 +125,40 @@ type RootTranslation = {
 		 */
 		CONFIRM_PASSWORD: string
 	}
+	CHANNEL: {
+		/**
+		 * C​r​e​a​t​e​ ​c​h​a​n​n​e​l​ ​f​a​i​l​e​d​!
+		 */
+		CREATE_FAILED: string
+		/**
+		 * C​r​e​a​t​e​ ​c​h​a​n​n​e​l​ ​s​u​c​c​e​s​s​!
+		 */
+		CREATE_SUCCESS: string
+		/**
+		 * C​o​n​t​a​c​t​I​d​ ​e​x​i​s​t​e​d​!
+		 */
+		CONTACTID_EXISTED: string
+		/**
+		 * C​a​n​ ​n​o​t​ ​f​i​n​d​ ​c​h​a​n​n​e​l​!
+		 */
+		NOT_FOUND: string
+		/**
+		 * U​p​d​a​t​e​ ​c​h​a​n​n​e​l​ ​s​u​c​c​e​s​s​!
+		 */
+		UPDATE_SUCCESS: string
+		/**
+		 * U​p​d​a​t​e​ ​c​h​a​n​n​e​l​ ​f​a​i​l​e​d​!
+		 */
+		UPDATE_FAILED: string
+		/**
+		 * D​e​l​e​t​e​ ​c​h​a​n​n​e​l​ ​s​u​c​c​e​s​s​!
+		 */
+		DELETE_CHANNEL_SUCCESS: string
+		/**
+		 * D​e​l​e​t​e​ ​m​u​l​t​i​p​l​e​ ​c​h​a​n​n​e​l​s​ ​s​u​c​c​e​s​s​!
+		 */
+		DELETE_MULTIPLE_CHANNELS_SUCCESS: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -231,6 +265,40 @@ export type TranslationFunctions = {
 		 * Confirm password
 		 */
 		CONFIRM_PASSWORD: () => LocalizedString
+	}
+	CHANNEL: {
+		/**
+		 * Create channel failed!
+		 */
+		CREATE_FAILED: () => LocalizedString
+		/**
+		 * Create channel success!
+		 */
+		CREATE_SUCCESS: () => LocalizedString
+		/**
+		 * ContactId existed!
+		 */
+		CONTACTID_EXISTED: () => LocalizedString
+		/**
+		 * Can not find channel!
+		 */
+		NOT_FOUND: () => LocalizedString
+		/**
+		 * Update channel success!
+		 */
+		UPDATE_SUCCESS: () => LocalizedString
+		/**
+		 * Update channel failed!
+		 */
+		UPDATE_FAILED: () => LocalizedString
+		/**
+		 * Delete channel success!
+		 */
+		DELETE_CHANNEL_SUCCESS: () => LocalizedString
+		/**
+		 * Delete multiple channels success!
+		 */
+		DELETE_MULTIPLE_CHANNELS_SUCCESS: () => LocalizedString
 	}
 }
 

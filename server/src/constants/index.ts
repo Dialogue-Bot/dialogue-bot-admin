@@ -25,7 +25,11 @@ export const ENDPOINTS = {
       SINGLE: '/upload/single',
       MULTIPLE: '/upload/multiple',
    },
-   CHANNEL: '/channel',
+   CHANNEL: {
+      INDEX: '/channel',
+      DELETE: '/channel/delete',
+      DELETES: '/channel/deletes',
+   }
 };
 
 export const LOCALE_KEY = 'lang';

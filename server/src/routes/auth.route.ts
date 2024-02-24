@@ -1,6 +1,4 @@
-import { Router } from 'express';
-import { AuthController } from '@controllers/auth.controller';
-import type { Routes } from '@interfaces/routes.interface';
+import { ENDPOINTS } from '@/constants';
 import {
    ForgotPasswordDto,
    LoginDto,
@@ -8,8 +6,10 @@ import {
    ResetPasswordDto,
 } from '@/dtos/auth.dto';
 import { validate } from '@/middlewares/validation.middleware';
+import { AuthController } from '@controllers/auth.controller';
+import type { Routes } from '@interfaces/routes.interface';
+import { Router } from 'express';
 import { auth } from 'firebase-admin';
-import { ENDPOINTS } from '@/constants';
 
 export class AuthRoute implements Routes {
    public router: Router = Router();
@@ -57,7 +57,6 @@ export class AuthRoute implements Routes {
 
       this.router.get(
          ENDPOINTS.AUTH.CURRENT_USER,
-
          auth,
          this.controller.getCurrentUser
       );
