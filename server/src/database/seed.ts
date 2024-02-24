@@ -1,5 +1,6 @@
+import * as bcrypt from 'bcrypt';
 import { db } from "./db";
-import { channelTypes } from "./schema";
+import { channelTypes, users } from "./schema";
 
 async function seedChannelTypes() {
     try {
@@ -15,4 +16,14 @@ async function seedChannelTypes() {
     }
 }
 
+async function seedDefaultAccount() {
+    try {
+        const hashedPassword = await bcrypt.hash("Hello@123", 10);
+        await db.insert(users).values({email: "admin@gmail.com", password: hashedPassword, name: "admin",});
+    } catch (error) {
+        console.error(`Can't create default account`);
+    }
+}
+
 seedChannelTypes();
+seedDefaultAccount();

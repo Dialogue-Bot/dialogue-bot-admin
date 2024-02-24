@@ -1,31 +1,29 @@
-import { sign, verify } from 'jsonwebtoken';
-import { Inject, Service } from 'typedi';
-import { StatusCodes } from 'http-status-codes';
-import * as bcrypt from 'bcrypt';
-import { omit } from 'lodash';
-import {
-   ACCESS_TOKEN_SECRET,
-   REFRESH_TOKEN_SECRET,
-   RESET_PASS_TOKEN_SECRET,
-} from '@config';
-import type { TTokenData, TTokenStore } from '@interfaces/auth.interface';
+import { LOCALE_KEY, TIME_EXPIRED_REFRESH_TOKEN } from '@/constants';
+import type { InferResultType } from '@/database/types';
 import type {
    ForgotPasswordDto,
    LoginDto,
    RegisterDto,
    ResetPasswordDto,
 } from '@/dtos/auth.dto';
-import type { InferResultType } from '@/database/types';
 import { HttpException } from '@/exceptions/http-exception';
+import { LocaleService } from '@/i18n/ctx';
+import L from '@/i18n/i18n-node';
 import { redis } from '@/libs/redis';
-import { LOCALE_KEY, TIME_EXPIRED_REFRESH_TOKEN } from '@/constants';
 import { SendMailQueue } from '@/queues/mail.queue';
 import { logger } from '@/utils/logger';
+import {
+   ACCESS_TOKEN_SECRET,
+   REFRESH_TOKEN_SECRET,
+   RESET_PASS_TOKEN_SECRET,
+} from '@config';
+import type { TTokenData, TTokenStore } from '@interfaces/auth.interface';
+import * as bcrypt from 'bcrypt';
+import { StatusCodes } from 'http-status-codes';
+import { sign, verify } from 'jsonwebtoken';
+import { omit } from 'lodash';
+import { Inject, Service } from 'typedi';
 import { UserService } from './users.service';
-import L from '@/i18n/i18n-node';
-import { Locales } from '@/i18n/i18n-types';
-import { getCurrentLocale } from '@/i18n/get-current';
-import { LocaleService } from '@/i18n/ctx';
 
 @Service()
 export class AuthService {
@@ -33,7 +31,7 @@ export class AuthService {
       private readonly userService: UserService,
       private readonly sendMailQueue: SendMailQueue,
       @Inject(LOCALE_KEY) private readonly localeService: LocaleService
-   ) {}
+   ) { }
 
    public async login(fields: LoginDto): Promise<TTokenData> {
       const user = await this.userService.findOneByEmail(fields.email);
