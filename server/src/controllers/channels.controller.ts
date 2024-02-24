@@ -4,7 +4,6 @@ import { LocaleService } from "@/i18n/ctx";
 import { ChannelService } from "@/services/channels.service";
 import { catchAsync } from "@/utils/catch-async";
 import { plainToClass } from "class-transformer";
-import { validateOrReject } from "class-validator";
 import { StatusCodes } from "http-status-codes";
 import Container from "typedi";
 
@@ -42,9 +41,8 @@ export class ChannelController {
 
     public getChannelsPaging = catchAsync(async (req, res) => {
         const paging = plainToClass(PagingDTO, req.query);
-        await validateOrReject(paging);
 
-        const result = await this.channelService.getChannelsPaging(paging);
-        res.status(StatusCodes.OK).json({ result });
+        const data = await this.channelService.getChannelsPaging(paging);
+        res.status(StatusCodes.OK).json({ data });
     })
 }
