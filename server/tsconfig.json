@@ -25,6 +25,7 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "baseUrl": "src",
+    "jsx": "react",
     "paths": {
       "@/*": [
         "*"
