@@ -89,4 +89,28 @@ export class FirebaseService {
 
       return imagePath;
    }
+
+   async verifyIdToken(token: string) {
+      logger.info(`[FIREBASE] Verify token ${token}`);
+      const decoded = await firebase.auth().verifyIdToken(token);
+
+      if (!decoded.uid) {
+         return null;
+      }
+
+      const user = await firebase.auth().getUser(decoded.uid);
+
+      if (!user) {
+         return null;
+      }
+
+      logger.info(`[FIREBASE] Verify token success`);
+      return {
+         email: user.providerData[0]?.email || user.email || null,
+         uid: user.uid,
+         name: user.providerData[0].displayName || user.displayName || null,
+         avatar: user.providerData[0].photoURL || user.photoURL || null,
+         provider: user.providerData[0].providerId,
+      };
+   }
 }

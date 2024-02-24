@@ -1,5 +1,8 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
 import type { Config } from 'drizzle-kit';
+
+config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` });
+
 export default {
    schema: './src/database/schema.ts',
    out: './src/database/migrations',

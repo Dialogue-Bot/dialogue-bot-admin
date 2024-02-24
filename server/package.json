@@ -25,7 +25,7 @@
       "db:studio": "drizzle-kit studio --port 5050",
       "db:seed": "ts-node -r tsconfig-paths/register --transpile-only src/database/seed.ts",
       "typesafe-i18n": "typesafe-i18n",
-      "debug": "cross-env NODE_ENV=development DATABASE_URL=postgres://postgres:postgres@localhost:5432/dialoguebot REDIS_HOST=localhost nodemon --exec \"node --inspect=0.0.0.0:9229 --require ts-node/register -r tsconfig-paths/register src/server.ts\""
+      "debug": "concurrently cross-env nodemon --exec \"node --inspect=0.0.0.0:9229 --require ts-node/register -r tsconfig-paths/register src/server.ts\" "
    },
    "dependencies": {
       "@paralleldrive/cuid2": "^2.2.2",

@@ -1,21 +1,18 @@
+import { createId } from '@paralleldrive/cuid2';
+import { relations } from 'drizzle-orm';
 import {
+   boolean,
    integer,
+   json,
    pgEnum,
    pgTable,
+   serial,
    text,
    timestamp,
-   varchar,
-   doublePrecision,
-   index,
    uniqueIndex,
-   primaryKey,
-   json,
-   boolean,
-   serial,
+   varchar,
 } from 'drizzle-orm/pg-core';
-import { createId } from '@paralleldrive/cuid2';
 import { MAX_ID_LENGTH } from '../constants';
-import { relations } from 'drizzle-orm';
 
 export const roles = pgEnum('roles', ['ADMIN', 'USER']);
 
@@ -28,7 +25,7 @@ export const users = pgTable(
          .primaryKey()
          .$defaultFn(() => createId()),
       email: text('email').unique().notNull(),
-      password: text('password').notNull(),
+      password: text('password'),
       name: text('name').notNull(),
       avatar: text('avatar'),
       roles: roles('role')
@@ -43,29 +40,24 @@ export const users = pgTable(
 );
 
 export const channelTypes = pgTable(
-   'channel_types', // cho nay minh theo conversation channel_types nha 
+   'channel_types', // cho nay minh theo conversation channel_types nha
    {
-      id: serial('id')
-         .primaryKey(),
+      id: serial('id').primaryKey(),
       name: text('name').unique().notNull(),
       description: text('description').unique().notNull(),
    }
-)
+);
 
-export const channels = pgTable(
-   'channels',
-   {
-      id: serial('id')
-         .primaryKey(),
-      contactId: text('contact_id').unique().notNull(),
-      contactName: text('contact_name').notNull(),
-      credentials: json('credentials'),
-      active: boolean('active').default(true),
-      channelTypeId: integer('channel_type_id').notNull(),
-      createdAt: timestamp('created_at').defaultNow(),
-      updatedAt: timestamp('update_at').defaultNow(),
-   }
-)
+export const channels = pgTable('channels', {
+   id: serial('id').primaryKey(),
+   contactId: text('contact_id').unique().notNull(),
+   contactName: text('contact_name').notNull(),
+   credentials: json('credentials'),
+   active: boolean('active').default(true),
+   channelTypeId: integer('channel_type_id').notNull(),
+   createdAt: timestamp('created_at').defaultNow(),
+   updatedAt: timestamp('update_at').defaultNow(),
+});
 
 export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
    channels: many(channels),

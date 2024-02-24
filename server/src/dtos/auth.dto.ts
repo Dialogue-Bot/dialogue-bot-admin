@@ -146,3 +146,19 @@ export class ResetPasswordDto {
    @IsOptional()
    token: string;
 }
+
+export class IdTokenDto {
+   @IsString({
+      message: () =>
+         getCurrentLocale().VALIDATE.IS_STRING({
+            field: 'Id token',
+         }),
+   })
+   @IsNotEmpty({
+      message: () =>
+         getCurrentLocale().VALIDATE.REQUIRED({
+            field: 'Id token',
+         }),
+   })
+   idToken: string;
+}

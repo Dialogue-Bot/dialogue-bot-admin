@@ -20,6 +20,7 @@ export const ENDPOINTS = {
       REFRESH_TOKEN: '/auth/refresh-token',
       FORGOT_PASSWORD: '/auth/forgot-password',
       RESET_PASSWORD: '/auth/reset-password',
+      WITH_ID_TOKEN: '/auth/with-id-token',
    },
    UPLOAD: {
       SINGLE: '/upload/single',
