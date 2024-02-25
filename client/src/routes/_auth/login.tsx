@@ -90,4 +90,17 @@ const Login = () => {
 
 export const Route = createFileRoute('/_auth/login')({
    component: Login,
+   validateSearch: (
+      search: Record<string, any>
+   ): {
+      redirect?: string;
+   } => {
+      if (search.redirect) {
+         return {
+            redirect: search.redirect as string,
+         };
+      }
+
+      return {};
+   },
 });

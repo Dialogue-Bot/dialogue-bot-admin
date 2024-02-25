@@ -4,7 +4,7 @@ export const ENDPOINTS = {
       LOGIN: '/auth/login',
       LOGIN_ADMIN: '/auth/login-admin',
       REGISTER: '/auth/register',
-      CURRENT_USER: '/auth/current-user',
+      CURRENT_USER: '/auth/me',
       REFRESH_TOKEN: '/auth/refresh-token',
       FORGOT_PASSWORD: '/auth/forgot-password',
       RESET_PASSWORD: '/auth/reset-password',

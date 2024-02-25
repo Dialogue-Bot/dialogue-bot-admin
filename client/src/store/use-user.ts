@@ -1,9 +1,10 @@
+import { TUser } from '@/types/user';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 type TUserState = {
-   user: any | null;
-   setUser: (user: any) => void;
+   user: TUser | null;
+   setUser: (user: TUser) => void;
 };
 
 export const useUserStore = create<TUserState>()(
