@@ -30,6 +30,10 @@ export const ENDPOINTS = {
       INDEX: '/channel',
       DELETE: '/channel/delete',
       DELETES: '/channel/deletes',
+   },
+   WEBHOOK: {
+      INDEX: '/webhook',
+      VERIFY: '/webhook/:contactId',
    }
 };
 
