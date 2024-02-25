@@ -28,7 +28,7 @@ export const auth = async (
       const authService = Container.get(AuthService);
       const Authorization = getAuthorization(req);
 
-      console.log('Authorization', Authorization)
+
 
       if (Authorization) {
          const { id } = (await authService.verifyToken(

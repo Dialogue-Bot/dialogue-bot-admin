@@ -12,4 +12,5 @@ export const AUTH = {
    SET_PASSWORD_SUCCESS: 'Change password successfully!',
    REFRESH_TOKEN_SUCCESS: 'Refresh token successfully!',
    PROVIDER_EXIST: 'This email is already using by another provider!',
+   LOGOUT_SUCCESS: 'Logout successfully!',
 };

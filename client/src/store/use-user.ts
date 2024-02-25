@@ -4,7 +4,7 @@ import { devtools } from 'zustand/middleware';
 
 type TUserState = {
    user: TUser | null;
-   setUser: (user: TUser) => void;
+   setUser: (user: TUser | null) => void;
 };
 
 export const useUserStore = create<TUserState>()(

@@ -20,9 +20,7 @@ export const useLoginWithProvider = (provider: AuthProvider) => {
 
          return auth.loginWithIdToken(idToken);
       },
-      onSuccess(data) {
-         toast.success(data.message);
-
+      async onSuccess() {
          window.location.href = search.redirect || '/dashboard';
       },
       onError(err: any) {
