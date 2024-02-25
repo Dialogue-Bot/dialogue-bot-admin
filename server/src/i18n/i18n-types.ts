@@ -167,6 +167,12 @@ type RootTranslation = {
 		 */
 		DELETE_MULTIPLE_CHANNELS_SUCCESS: string
 	}
+	SETTING: {
+		/**
+		 * E​m​a​i​l​ ​u​p​d​a​t​e​d​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 */
+		UPDATE_EMAIL_SUCCESS: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -315,6 +321,12 @@ export type TranslationFunctions = {
 		 * Delete multiple channels success!
 		 */
 		DELETE_MULTIPLE_CHANNELS_SUCCESS: () => LocalizedString
+	}
+	SETTING: {
+		/**
+		 * Email updated successfully!
+		 */
+		UPDATE_EMAIL_SUCCESS: () => LocalizedString
 	}
 }
 
