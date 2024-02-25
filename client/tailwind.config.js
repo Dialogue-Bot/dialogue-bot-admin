@@ -74,6 +74,7 @@ module.exports = {
          spacing: {
             header: 'var(--header-height)',
             'screen-header': 'var(--screen-header)',
+            sidebar: '3.75rem',
          },
       },
    },

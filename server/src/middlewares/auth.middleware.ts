@@ -1,11 +1,11 @@
-import type { NextFunction, Request, Response } from 'express';
-import { Container } from 'typedi';
-import { StatusCodes } from 'http-status-codes';
-import { ACCESS_TOKEN_SECRET } from '@config';
 import { HttpException } from '@/exceptions/http-exception';
-import type { RequestWithUser, TTokenStore } from '@interfaces/auth.interface';
-import { UserService } from '@/services/users.service';
 import { AuthService } from '@/services/auth.service';
+import { UserService } from '@/services/users.service';
+import { ACCESS_TOKEN_SECRET } from '@config';
+import type { RequestWithUser, TTokenStore } from '@interfaces/auth.interface';
+import type { NextFunction, Request, Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+import { Container } from 'typedi';
 
 const getAuthorization = (req: Request): string | null => {
    const coockie = req.cookies.access_token as unknown;
@@ -27,6 +27,8 @@ export const auth = async (
       const userService = Container.get(UserService);
       const authService = Container.get(AuthService);
       const Authorization = getAuthorization(req);
+
+      console.log('Authorization', Authorization)
 
       if (Authorization) {
          const { id } = (await authService.verifyToken(

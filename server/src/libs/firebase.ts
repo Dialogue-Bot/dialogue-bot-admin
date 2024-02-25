@@ -1,11 +1,10 @@
-import fs from 'node:fs';
-import admin from 'firebase-admin';
 import {
    FIREBASE_CLIENT_EMAIL,
    FIREBASE_DATABASE_URL,
    FIREBASE_PRIVATE_KEY,
    FIREBASE_PROJECT_ID,
 } from '@/config';
+import admin from 'firebase-admin';
 
 
 export const firebase = admin.initializeApp({

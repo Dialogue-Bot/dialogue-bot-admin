@@ -1,4 +1,7 @@
-import 'reflect-metadata';
+import { CREDENTIALS, LOG_FORMAT, NODE_ENV, PORT } from '@config';
+import type { Routes } from '@interfaces/routes.interface';
+import { ErrorMiddleware } from '@middlewares/error.middleware';
+import { logger, stream } from '@utils/logger';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -6,17 +9,14 @@ import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import morgan from 'morgan';
+import 'reflect-metadata';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { NODE_ENV, PORT, LOG_FORMAT, ORIGIN, CREDENTIALS } from '@config';
-import type { Routes } from '@interfaces/routes.interface';
-import { ErrorMiddleware } from '@middlewares/error.middleware';
-import { logger, stream } from '@utils/logger';
-import { loadAllLocales } from './i18n/i18n-util.sync';
-import { getPreferredLocale } from './i18n/get-preferred-locale';
 import Container from 'typedi';
 import { LOCALE_KEY } from './constants';
 import { LocaleService } from './i18n/ctx';
+import { getPreferredLocale } from './i18n/get-preferred-locale';
+import { loadAllLocales } from './i18n/i18n-util.sync';
 
 Container.set(LOCALE_KEY, new LocaleService('en'));
 

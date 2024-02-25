@@ -6,11 +6,11 @@ import {
    RegisterDto,
    ResetPasswordDto,
 } from '@/dtos/auth.dto';
+import { auth } from '@/middlewares/auth.middleware';
 import { validate } from '@/middlewares/validation.middleware';
 import { AuthController } from '@controllers/auth.controller';
 import type { Routes } from '@interfaces/routes.interface';
 import { Router } from 'express';
-import { auth } from 'firebase-admin';
 
 export class AuthRoute implements Routes {
    public router: Router = Router();
@@ -56,16 +56,18 @@ export class AuthRoute implements Routes {
          this.controller.resetPassword
       );
 
+      this.router.post(
+         ENDPOINTS.AUTH.WITH_ID_TOKEN,
+         validate(IdTokenDto),
+         this.controller.loginWithIdToken
+      );
+
       this.router.get(
          ENDPOINTS.AUTH.CURRENT_USER,
          auth,
          this.controller.getCurrentUser
       );
 
-      this.router.post(
-         ENDPOINTS.AUTH.WITH_ID_TOKEN,
-         validate(IdTokenDto),
-         this.controller.loginWithIdToken
-      );
+
    }
 }

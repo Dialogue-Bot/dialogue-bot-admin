@@ -5,6 +5,7 @@ import { TLogin } from '@/lib/schema/login';
 import { TRegister } from '@/lib/schema/register';
 import { TSetPass } from '@/lib/schema/set-pass';
 import { TBaseResponse, TToken } from '@/types/share';
+import { TUser } from '@/types/user';
 
 class Auth {
    login(data: TLogin): Promise<TBaseResponse<TToken>> {
@@ -25,7 +26,7 @@ class Auth {
    }
 
    // TODO: SHOULD BE CHANGE TYPE ANY TO TYPE USER
-   getCurrentUser(): Promise<TBaseResponse<any>> {
+   getCurrentUser(): Promise<TBaseResponse<TUser>> {
       return http_client.get(ENDPOINTS.AUTH.CURRENT_USER);
    }
 
