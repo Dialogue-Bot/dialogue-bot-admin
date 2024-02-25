@@ -37,6 +37,10 @@ class Auth {
    loginWithIdToken(idToken: string): Promise<TBaseResponse<TToken>> {
       return http_client.post(ENDPOINTS.AUTH.WITH_ID_TOKEN, { idToken });
    }
+
+   logout(): Promise<TBaseResponse<null>> {
+      return http_client.post(ENDPOINTS.AUTH.LOGOUT);
+   }
 }
 
 export const auth = new Auth();

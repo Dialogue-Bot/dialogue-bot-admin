@@ -72,6 +72,10 @@ type RootTranslation = {
 		 * T​h​i​s​ ​e​m​a​i​l​ ​i​s​ ​a​l​r​e​a​d​y​ ​u​s​i​n​g​ ​b​y​ ​a​n​o​t​h​e​r​ ​p​r​o​v​i​d​e​r​!
 		 */
 		PROVIDER_EXIST: string
+		/**
+		 * L​o​g​o​u​t​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 */
+		LOGOUT_SUCCESS: string
 	}
 	USER: {
 		/**
@@ -223,6 +227,10 @@ export type TranslationFunctions = {
 		 * This email is already using by another provider!
 		 */
 		PROVIDER_EXIST: () => LocalizedString
+		/**
+		 * Logout successfully!
+		 */
+		LOGOUT_SUCCESS: () => LocalizedString
 	}
 	USER: {
 		/**

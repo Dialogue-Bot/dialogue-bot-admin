@@ -9,6 +9,7 @@ export const ENDPOINTS = {
       FORGOT_PASSWORD: '/auth/forgot-password',
       RESET_PASSWORD: '/auth/reset-password',
       WITH_ID_TOKEN: '/auth/with-id-token',
+      LOGOUT: '/auth/logout',
    },
    UPLOAD: {
       SINGLE: '/upload/single',

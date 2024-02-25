@@ -68,6 +68,12 @@ export class AuthRoute implements Routes {
          this.controller.getCurrentUser
       );
 
+      this.router.post(
+         ENDPOINTS.AUTH.LOGOUT,
+         auth,
+         this.controller.logout
+      );
+
 
    }
 }

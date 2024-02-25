@@ -15,4 +15,5 @@ export const AUTH = {
    SET_PASSWORD_SUCCESS: 'Đặt lại mật khẩu thành công!',
    REFRESH_TOKEN_SUCCESS: 'Làm mới token thành công!',
    PROVIDER_EXIST: 'Email này đã được sử dụng bởi một nhà cung cấp khác!',
+   LOGOUT_SUCCESS: 'Đăng xuất thành công!',
 };

@@ -99,6 +99,18 @@ export class AuthController {
       });
    });
 
+   public logout = catchAsync(async (req: RequestWithUser, res) => {
+
+      await this.authService.logout(req.user?.id as string)
+
+      this.clearTokensCookie(res);
+
+      res.status(StatusCodes.OK).json({
+         message: this.localeService.i18n().AUTH.LOGOUT_SUCCESS(),
+         data: null,
+      });
+   });
+
    private setTokensCookie = (res: Response, tokens: TTokenData) => {
       const { accessToken, refreshToken } = tokens;
       res.cookie('access_token', accessToken, {
@@ -114,5 +126,10 @@ export class AuthController {
          sameSite: 'lax',
          domain: 'localhost', //TODO: THIS WILL BE CHANGED IN PRODUCTION
       });
+   };
+
+   private clearTokensCookie = (res: Response) => {
+      res.clearCookie('access_token',);
+      res.clearCookie('refresh_token');
    };
 }

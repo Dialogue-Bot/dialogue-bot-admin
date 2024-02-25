@@ -34,7 +34,7 @@ export class AuthService {
       private readonly sendMailQueue: SendMailQueue,
       @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
       private readonly firebaseService: FirebaseService
-   ) {}
+   ) { }
 
    public async login(fields: LoginDto): Promise<TTokenData> {
       const user = await this.userService.findOneByEmail(fields.email);
@@ -394,5 +394,11 @@ export class AuthService {
             resolve(decoded);
          });
       });
+   }
+
+   public async logout(userId?: string) {
+      if (userId) {
+         await redis.del(`refresh-token:${userId}`);
+      }
    }
 }

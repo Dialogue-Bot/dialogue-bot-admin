@@ -15,9 +15,7 @@ export const useLogin = () => {
       mutationFn: (data: TLogin) => {
          return auth.login(data);
       },
-      onSuccess(data) {
-         toast.success(data.message);
-
+      async onSuccess() {
          window.location.href = search.redirect || '/dashboard';
       },
       onError(err: any) {
