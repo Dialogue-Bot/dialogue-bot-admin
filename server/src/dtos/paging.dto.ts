@@ -4,14 +4,14 @@ import { IsNumber, IsOptional, IsString } from "class-validator";
 export class PagingDTO {
     @IsNumber()
     @Type(() => Number)
-    @Transform(({ value }) => parseInt(value) ?? 1)
     @IsOptional()
-    page: number | 0;
+    @Transform(({ value }) => parseInt(value) ?? 1)
+    page: number | 1;
 
     @IsNumber()
     @Type(() => Number)
-    @Transform(({ value }) => parseInt(value) ?? 20)
     @IsOptional()
+    @Transform(({ value }) => parseInt(value) ?? 20)
     limit: number | 20;
 
     @IsString()
@@ -19,11 +19,11 @@ export class PagingDTO {
     orderBy: string;
 
     @IsString()
-    @Transform(({ value }) => value ?? 'asc')
     @IsOptional()
+    @Transform(({ value }) => value ?? 'asc')
     sortType: 'asc' | 'desc';
 
     @IsString()
     @IsOptional()
-    q: string;
+    q: string | '';
 }
