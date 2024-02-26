@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { BaseChannel } from "./base.channel";
 
 export class MessengerChannel extends BaseChannel {
-    channelType: string;
     pageToken: string;
     webhookSecret: string;
     messengerPostURL: string;
@@ -16,7 +15,7 @@ export class MessengerChannel extends BaseChannel {
 
         this.credentials = credentials;
 
-        if (typeof credentials == 'string') parseCredentials = JSON.parse(credentials);
+        if (credentials && typeof credentials == 'string') parseCredentials = JSON.parse(credentials);
 
         if (parseCredentials) {
             this.pageToken = parseCredentials.pageToken;

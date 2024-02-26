@@ -55,6 +55,7 @@ export class WebhookService {
         if (!verifyResult) {
             throw new HttpException(StatusCodes.FORBIDDEN, null);
         }
+
         return verifyResult;
     }
 }

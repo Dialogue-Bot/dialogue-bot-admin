@@ -26,7 +26,10 @@ export class ChannelService {
 
     public async create(fields: TNewChannel) {
         const channelExisted = await db.query.channels.findFirst({
-            where: eq(channels.contactId, fields.contactId),
+            where: and(
+                eq(channels.contactId, fields.contactId),
+                eq(channels.userId, fields.userId)
+            ),
         });
 
         if (channelExisted) {
@@ -37,23 +40,22 @@ export class ChannelService {
         }
         fields.credentials = fields.credentials && JSON.stringify(fields.credentials) || null;
 
-        const newChannel = await db.insert(channels).values(fields).returning();
+        const [newChannel] = await db.insert(channels).values(fields).returning();
 
-        if (!newChannel[0]) {
+        if (!newChannel) {
             throw new HttpException(
                 StatusCodes.BAD_REQUEST,
                 this.localeService.i18n().CHANNEL.CREATE_FAILED()
             );
         }
 
-        const { id, contactId, contactName, channelTypeId, credentials } = newChannel[0];
+        const { id, contactId, contactName, channelTypeId, credentials } = newChannel;
 
-        const channelType = this.channelTypes.find(ct => ct.id == channelTypeId)[0].name;
+        const channelType = this.channelTypes.find(ct => ct.id == channelTypeId).name;
 
         this.initChannel({ id, contactId, contactName, channelType, credentials })
 
-
-        return newChannel[0];
+        return newChannel;
     }
 
     public async findOneById(id: string) {
@@ -89,25 +91,34 @@ export class ChannelService {
 
         fields.updatedAt = new Date();
 
-        const channel = await db
+        const [updateChannel] = await db
             .update(channels)
             .set(fields)
             .where(eq(channels.id, id))
             .returning();
 
-        if (!channel[0]) {
+        if (!updateChannel) {
             throw new HttpException(
                 StatusCodes.BAD_REQUEST,
                 this.localeService.i18n().CHANNEL.UPDATE_FAILED()
             );
         }
 
-        return channel[0];
+        const { contactId, contactName, channelTypeId, credentials } = updateChannel;
+
+        const channelType = this.channelTypes.find(ct => ct.id == channelTypeId).name;
+
+        this.initChannel({ id, contactId, contactName, channelType, credentials })
+
+        return updateChannel;
     }
 
-    public async deleteById(id: string) {
+    public async deleteById(id: string, userId: string) {
         const channelExisted = await db.query.channels.findFirst({
-            where: eq(channels.id, id),
+            where: and(
+                eq(channels.id, id),
+                eq(channels.userId, userId)
+            ),
         })
 
         if (!channelExisted) {
@@ -125,10 +136,13 @@ export class ChannelService {
             .where(eq(channels.id, id));
     }
 
-    public async deleteByIds(ids: string[]) {
+    public async deleteByIds(ids: string[], userId: string) {
         ids.forEach(async (id) => {
             const channelExisted = await db.query.channels.findFirst({
-                where: eq(channels.id, id),
+                where: and(
+                    eq(channels.id, id),
+                    eq(channels.userId, userId)
+                ),
             })
 
             if (channelExisted) {
@@ -141,8 +155,10 @@ export class ChannelService {
         });
     }
 
-    public async getChannelsPaging(paging: PagingDTO): Promise<Paging<any>> {
+    public async getAllChannels(paging: PagingDTO, userId: string): Promise<Paging<ChannelExtend>> {
         const offset = paging.page && ((paging.page - 1) * paging.limit) || 0;
+        const orderBy = paging.orderBy ?? 'contactId';
+
         const result: ChannelExtend[] = await db
             .select({
                 id: channels.id,
@@ -159,23 +175,24 @@ export class ChannelService {
             .where(
                 and(
                     like(channels.contactId, `%${paging.q}%`),
-                    eq(channels.deleted, false)
+                    eq(channels.deleted, false),
+                    eq(channels.userId, userId)
                 )
             )
             .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
-            .orderBy(paging.sortType === 'asc' ? asc(channels[paging.orderBy]) : desc(channels[paging.orderBy]))
+            .orderBy(paging.sortType === 'asc' ? asc(channels[orderBy]) : desc(channels[orderBy]))
             .offset(offset)
             .limit(paging.limit);
 
-        const count = await db
+        const [count] = await db
             .select({ count: sql<number>`cast(count(${channels.id}) as integer)` })
             .from(channels)
             .where(eq(channels.deleted, false));
 
-        return { items: result, totalItems: count[0].count };
+        return { items: result, totalItems: count.count };
     }
 
-    public initChannel(channel: ChannelInfo) {
+    initChannel(channel: ChannelInfo) {
         switch (channel.channelType) {
             case 'MSG':
                 const { id, contactId, contactName, channelType, credentials } = channel;
@@ -184,10 +201,11 @@ export class ChannelService {
                 console.log(`Does not support channel type ${channel.channelType}`);
                 break;
         }
+
         return channel;
     }
 
-    public async initChannels() {
+    async initChannels() {
         let contacts: ChannelInfo[] = await db
             .select({
                 id: channels.id,
@@ -209,13 +227,5 @@ export class ChannelService {
     async getAllChannelTypes() {
         const getChannelTypes = await db.select().from(channelTypes).where(eq(channelTypes.deleted, false));
         if (channelTypes) this.channelTypes = getChannelTypes
-    }
-
-    async getChannelTypesById(id: string) {
-        const channelType = await db.query.channelTypes.findFirst({
-            where: and(eq(channelTypes.id, id), eq(channelTypes.deleted, false)),
-        });
-        if (!channelType) return null;
-        return channelType;
     }
 }

@@ -1,8 +1,6 @@
 import { BOT_URL } from "@/config";
 import axios from "axios";
-import { Service } from "typedi";
 
-@Service()
 export class BaseChannel {
     id: string;
     contactId: string;
