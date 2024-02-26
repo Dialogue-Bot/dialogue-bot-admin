@@ -75,6 +75,8 @@ module.exports = {
             header: 'var(--header-height)',
             'screen-header': 'var(--screen-header)',
             sidebar: '3.75rem',
+            'sidebar-setting': '16.875rem',
+            'sidebar-mini': '3.75rem',
          },
       },
    },

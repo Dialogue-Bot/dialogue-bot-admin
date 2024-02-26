@@ -49,4 +49,5 @@ export class SettingService {
 
         return emailSetting.email
     }
+
 }

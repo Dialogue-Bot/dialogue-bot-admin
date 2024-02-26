@@ -82,6 +82,26 @@ type RootTranslation = {
 		 * G​e​t​ ​u​s​e​r​ ​i​n​f​o​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
 		 */
 		GET_USER_SUCCESS: string
+		/**
+		 * U​p​d​a​t​e​d​ ​i​n​f​o​r​m​a​t​i​o​n​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 */
+		UPDATE_INFO_SUCCESS: string
+		/**
+		 * C​h​a​n​g​e​d​ ​p​a​s​s​w​o​r​d​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 */
+		CHANGE_PASSWORD_SUCCESS: string
+		/**
+		 * U​s​e​r​ ​n​o​t​ ​f​o​u​n​d​!
+		 */
+		USER_NOT_FOUND: string
+		/**
+		 * O​l​d​ ​p​a​s​s​w​o​r​d​ ​n​o​t​ ​m​a​t​c​h​!
+		 */
+		OLD_PASSWORD_NOT_MATCH: string
+		/**
+		 * Y​o​u​r​ ​a​c​c​o​u​n​t​ ​u​s​i​n​g​ ​s​o​c​i​a​l​ ​l​o​g​i​n​!​ ​S​o​ ​y​o​u​ ​c​a​n​ ​n​o​t​ ​c​h​a​n​g​e​ ​p​a​s​s​w​o​r​d​!
+		 */
+		USER_NOT_PROVIDER: string
 	}
 	VALIDATE: {
 		/**
@@ -132,6 +152,10 @@ type RootTranslation = {
 		 * C​o​n​f​i​r​m​ ​p​a​s​s​w​o​r​d
 		 */
 		CONFIRM_PASSWORD: string
+		/**
+		 * O​l​d​ ​p​a​s​s​w​o​r​d
+		 */
+		OLD_PASSWORD: string
 	}
 	CHANNEL: {
 		/**
@@ -243,6 +267,26 @@ export type TranslationFunctions = {
 		 * Get user info successfully!
 		 */
 		GET_USER_SUCCESS: () => LocalizedString
+		/**
+		 * Updated information successfully!
+		 */
+		UPDATE_INFO_SUCCESS: () => LocalizedString
+		/**
+		 * Changed password successfully!
+		 */
+		CHANGE_PASSWORD_SUCCESS: () => LocalizedString
+		/**
+		 * User not found!
+		 */
+		USER_NOT_FOUND: () => LocalizedString
+		/**
+		 * Old password not match!
+		 */
+		OLD_PASSWORD_NOT_MATCH: () => LocalizedString
+		/**
+		 * Your account using social login! So you can not change password!
+		 */
+		USER_NOT_PROVIDER: () => LocalizedString
 	}
 	VALIDATE: {
 		/**
@@ -287,6 +331,10 @@ export type TranslationFunctions = {
 		 * Confirm password
 		 */
 		CONFIRM_PASSWORD: () => LocalizedString
+		/**
+		 * Old password
+		 */
+		OLD_PASSWORD: () => LocalizedString
 	}
 	CHANNEL: {
 		/**

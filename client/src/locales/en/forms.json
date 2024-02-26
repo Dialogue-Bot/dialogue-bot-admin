@@ -29,5 +29,12 @@
       "errors": {
          "required": "Please enter your name."
       }
+   },
+   "oldPassword": {
+      "label": "Old password",
+      "placeholder": "Enter your old password",
+      "errors": {
+         "required": "Please enter your old password."
+      }
    }
 }

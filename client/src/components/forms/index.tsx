@@ -1,3 +1,4 @@
+export * from './change-pass';
 export * from './forgot-pass';
 export * from './login';
 export * from './register';

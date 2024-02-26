@@ -15,4 +15,9 @@ export const ENDPOINTS = {
       SINGLE: '/upload/single',
       MULTIPLE: '/upload/multiple',
    },
+   USER: {
+      INDEX: '/user',
+      UPDATE_INFO: '/user/update-info',
+      CHANGE_PASS: '/user/change-password',
+   },
 };

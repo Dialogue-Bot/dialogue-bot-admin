@@ -11,7 +11,7 @@ const storageUrl = `https://firebasestorage.googleapis.com/v0/b/${FIREBASE_PROJE
 
 @Service()
 export class FirebaseService {
-   async uploadFile(file: Express.Multer.File, destination: string) {
+   async uploadFile(file: Express.Multer.File,) {
       const token = cuid2.createId();
 
       await firebase
@@ -19,7 +19,7 @@ export class FirebaseService {
          .bucket()
          .upload(file.path, {
             public: true,
-            destination: `/${destination}/${file.filename}`,
+            destination: `/${file.filename}`,
             metadata: {
                firebaseStorageDownloadTokens: token,
             },
@@ -41,7 +41,7 @@ export class FirebaseService {
       const fileRef = firebase
          .storage()
          .bucket()
-         .file(`/${destination}/${file.filename}`);
+         .file(`/${file.filename}`);
 
       const url = await getDownloadURL(fileRef);
 
@@ -50,9 +50,9 @@ export class FirebaseService {
       return url;
    }
 
-   async uploadFiles(files: Express.Multer.File[], destination: string) {
+   async uploadFiles(files: Express.Multer.File[],) {
       const urls = await Promise.all(
-         files.map(async (file) => this.uploadFile(file, destination))
+         files.map(async (file) => this.uploadFile(file))
       );
 
       return urls;
