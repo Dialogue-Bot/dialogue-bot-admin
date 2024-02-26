@@ -14,5 +14,10 @@ export class WebhookRoute implements Routes {
             ENDPOINTS.WEBHOOK.VERIFY,
             this.controller.verifyWebhook
         );
+
+        this.router.post(
+            ENDPOINTS.WEBHOOK.INCOMING_MSG,
+            this.controller.handleIncomingMessage
+        );
     }
 }

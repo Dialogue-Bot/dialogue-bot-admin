@@ -1,35 +1,21 @@
 import { MessengerChannel } from "@/channels/messenger.channel";
 import { LOCALE_KEY } from "@/constants";
-import { db } from "@/database/db";
-import { channelTypes, channels } from "@/database/schema";
 import { HttpException } from "@/exceptions/http-exception";
 import { LocaleService } from "@/i18n/ctx";
-import { and, eq } from "drizzle-orm";
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { Inject, Service } from "typedi";
+import { ChannelService } from "./channels.service";
 
 @Service()
 export class WebhookService {
     constructor(
-        @Inject(LOCALE_KEY) private readonly localeService: LocaleService
+        @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
+        private readonly chanelService: ChannelService
     ) { }
 
     public async verifyWebhook(contactId: string, req: Request, res: Response) {
-        const expectedChannel = await db.select({
-            id: channels.id,
-            contactId: channels.contactId,
-            contactName: channels.contactName,
-            channelType: channelTypes.name,
-            credentials: channels.credentials,
-        })
-            .from(channels)
-            .where(
-                and(eq(channels.contactId, contactId),
-                    eq(channels.deleted, false)
-                )
-            )
-            .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id));
+        const expectedChannel = await this.chanelService.findOneByContactId(contactId);
 
         if (!expectedChannel) {
             throw new HttpException(
@@ -40,9 +26,9 @@ export class WebhookService {
 
         let verifyResult = null;
 
-        if (expectedChannel[0]) {
-            const { id, contactId, contactName, channelType, credentials } = expectedChannel[0];
-            switch (expectedChannel[0].channelType) {
+        if (expectedChannel) {
+            const { id, contactId, contactName, channelType, credentials } = expectedChannel;
+            switch (channelType) {
                 case 'MSG':
                     const messengerChannel = new MessengerChannel(id, contactId, contactName, channelType, credentials);
                     verifyResult = messengerChannel.verifyWebhook(req, res);
@@ -57,5 +43,30 @@ export class WebhookService {
         }
 
         return verifyResult;
+    }
+
+    public async handleIncomingMessage(contactId: string, req: Request, res: Response) {
+        const expectedChannel = await this.chanelService.findOneByContactId(contactId);
+
+        if (!expectedChannel) {
+            console.log('Incoming message: Can not find channel with id ', req.params.id);
+            return;
+        }
+
+        const { id, contactName, channelType, credentials } = expectedChannel;
+
+        let prepareMessage = null;
+
+        switch (channelType) {
+            case 'MSG':
+                const messengerChannel = new MessengerChannel(id, contactId, contactName, channelType, credentials);
+                prepareMessage = await messengerChannel.prepareMessage(req, res);
+                break;
+            default:
+                console.log(`Incoming message: Does not support channel type ${channelType}`);
+                break;
+        }
+
+        return prepareMessage;
     }
 }
