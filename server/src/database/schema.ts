@@ -59,6 +59,7 @@ export const channels = pgTable('channels', {
    active: boolean('active'),
    deleted: boolean('deleted').default(false),
    channelTypeId: text('channel_type_id').notNull(),
+   userId: text('user_id').notNull(),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at'),
 });
@@ -67,9 +68,19 @@ export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
    channels: many(channels),
 }));
 
+export const usersRelations = relations(users, ({ many }) => ({
+   channels: many(channels),
+}));
+
 export const channelsRelations = relations(channels, ({ one }) => ({
    channelType: one(channelTypes, {
       fields: [channels.channelTypeId],
       references: [channelTypes.id],
    }),
+   User: one(users, {
+      fields: [channels.userId],
+      references: [users.id]
+   }),
 }));
+
+
