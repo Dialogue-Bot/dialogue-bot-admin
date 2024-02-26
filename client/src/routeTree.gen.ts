@@ -11,14 +11,23 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PrivateImport } from './routes/_private'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
+import { Route as PrivateSettingsImport } from './routes/_private/settings'
+import { Route as PrivateDashboardImport } from './routes/_private/dashboard'
+import { Route as PrivateChatbotsImport } from './routes/_private/chatbots'
 import { Route as AuthSetPasswordImport } from './routes/_auth/set-password'
 import { Route as AuthRegisterImport } from './routes/_auth/register'
 import { Route as AuthLoginImport } from './routes/_auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
 
 // Create/Update Routes
+
+const PrivateRoute = PrivateImport.update({
+  id: '/_private',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRoute = AuthImport.update({
   id: '/_auth',
@@ -28,6 +37,21 @@ const AuthRoute = AuthImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const PrivateSettingsRoute = PrivateSettingsImport.update({
+  path: '/settings',
+  getParentRoute: () => PrivateRoute,
+} as any)
+
+const PrivateDashboardRoute = PrivateDashboardImport.update({
+  path: '/dashboard',
+  getParentRoute: () => PrivateRoute,
+} as any)
+
+const PrivateChatbotsRoute = PrivateChatbotsImport.update({
+  path: '/chatbots',
+  getParentRoute: () => PrivateRoute,
 } as any)
 
 const AuthSetPasswordRoute = AuthSetPasswordImport.update({
@@ -62,6 +86,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
+    '/_private': {
+      preLoaderRoute: typeof PrivateImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth/forgot-password': {
       preLoaderRoute: typeof AuthForgotPasswordImport
       parentRoute: typeof AuthImport
@@ -78,6 +106,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSetPasswordImport
       parentRoute: typeof AuthImport
     }
+    '/_private/chatbots': {
+      preLoaderRoute: typeof PrivateChatbotsImport
+      parentRoute: typeof PrivateImport
+    }
+    '/_private/dashboard': {
+      preLoaderRoute: typeof PrivateDashboardImport
+      parentRoute: typeof PrivateImport
+    }
+    '/_private/settings': {
+      preLoaderRoute: typeof PrivateSettingsImport
+      parentRoute: typeof PrivateImport
+    }
   }
 }
 
@@ -90,6 +130,11 @@ export const routeTree = rootRoute.addChildren([
     AuthLoginRoute,
     AuthRegisterRoute,
     AuthSetPasswordRoute,
+  ]),
+  PrivateRoute.addChildren([
+    PrivateChatbotsRoute,
+    PrivateDashboardRoute,
+    PrivateSettingsRoute,
   ]),
 ])
 

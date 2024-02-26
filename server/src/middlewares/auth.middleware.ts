@@ -1,6 +1,5 @@
 import { HttpException } from '@/exceptions/http-exception';
 import { AuthService } from '@/services/auth.service';
-import { ChannelService } from '@/services/channels.service';
 import { UserService } from '@/services/users.service';
 import { ACCESS_TOKEN_SECRET } from '@config';
 import type { RequestWithUser, TTokenStore } from '@interfaces/auth.interface';
@@ -27,8 +26,9 @@ export const auth = async (
    try {
       const userService = Container.get(UserService);
       const authService = Container.get(AuthService);
-      const channelService = Container.get(ChannelService)
       const Authorization = getAuthorization(req);
+
+
 
       if (Authorization) {
          const { id } = (await authService.verifyToken(

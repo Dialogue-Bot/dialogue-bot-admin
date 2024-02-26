@@ -1,10 +1,11 @@
-import { Layout } from '@/components/layouts/auth';
+import { Layout } from '@/components/layouts/app';
 import PageLoading from '@/components/page-loading';
 import { currentUserQueryOptions } from '@/lib/query-options/auth';
+import { useUserStore } from '@/store/use-user';
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { Suspense } from 'react';
 
-export const Route = createFileRoute('/_auth')({
+export const Route = createFileRoute('/_private')({
    component: () => (
       <Suspense fallback={<PageLoading />}>
          <Layout />
@@ -15,10 +16,15 @@ export const Route = createFileRoute('/_auth')({
          currentUserQueryOptions()
       );
 
-      if (user) {
+      if (!user) {
          throw redirect({
-            to: '/chatbots',
+            to: '/login',
+            search: {
+               redirect: location.href,
+            },
          });
       }
+
+      useUserStore.getState().setUser(user);
    },
 });
