@@ -1,4 +1,4 @@
-import { BOT_URL } from "@/config";
+import { BOT_ENDPOINT, PUBLIC_DOMAIN } from "@/config";
 import axios from "axios";
 
 export class BaseChannel {
@@ -14,15 +14,15 @@ export class BaseChannel {
         this.channelType = channelType;
     }
 
-    public async postMessageToBot({ userId, data }) {
+    public async postMessageToBot({ userId, message = '', data }) {
+        const uid = this.initConversationId(userId);
         try {
-            const uId = this.initConversationId(userId);
-            await axios({
+            const postMsg = await axios({
                 method: 'POST',
-                url: BOT_URL,
+                url: BOT_ENDPOINT,
                 data: {
                     conversation: {
-                        id: uId,
+                        id: uid,
                     },
                     from: {
                         id: userId,
@@ -30,24 +30,27 @@ export class BaseChannel {
                     recipient: {
                         id: this.contactId,
                     },
-                    type: 'event',
-                    name: 'payload',
-                    data,
-                    id: uId,
+                    data: data || false,
+                    text: message,
+                    type: 'message',
+                    id: uid,
                     channelId: this.channelType,
-                    serviceUrl: 'http://localhost:3000/api',
+                    serviceUrl: PUBLIC_DOMAIN,
                 },
             })
+            if (postMsg.data.success) {
+                console.log(
+                    `[${this.channelType} - ${this.contactName} ${this.contactId}] - [Conversation ID: ${uid}] - [Send message to bot - Message: ${message}] - [Data: ${data}]`
+                )
+            }
         } catch (error) {
-            console.log(`Can not send data to bot!`, userId);
-            console.log(error.message);
+            console.log(
+                `[${this.channelType} - ${this.contactName} ${this.contactId}] - [Conversation ID: ${uid}] - [Can not send message to bot - Message: ${message}] - [Error: ${error.message}]`
+            );
         }
     }
 
-    initConversationId(useId: string) {
-        return this.contactId + '-' + useId
+    initConversationId(userId: string) {
+        return this.contactId + '-' + userId
     }
-
-    // public async verifyWebhook(req: Request, res: Response) {
-    // };
 }

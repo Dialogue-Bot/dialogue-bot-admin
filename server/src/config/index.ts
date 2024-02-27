@@ -28,5 +28,5 @@ export const {
    FIREBASE_UNIVERSE_DOMAIN,
    FIREBASE_DATABASE_URL,
    PUBLIC_DOMAIN,
-   BOT_URL,
+   BOT_ENDPOINT,
 } = process.env;
