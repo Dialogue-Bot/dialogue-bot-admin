@@ -35,6 +35,7 @@ export const ENDPOINTS = {
    WEBHOOK: {
       INDEX: '/webhook',
       VERIFY: '/webhook/:contactId',
+      INCOMING_MSG: '/webhook/:contactId',
    }
 };
 

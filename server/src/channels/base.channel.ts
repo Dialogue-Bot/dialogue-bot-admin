@@ -7,15 +7,11 @@ export class BaseChannel {
     contactName: string;
     channelType: string;
 
-    constructor(id: string, contactId: string, contactName: string, channelType: string,) {
+    constructor(id: string, contactId: string, contactName: string, channelType: string) {
         this.id = id;
         this.contactId = contactId;
         this.contactName = contactName;
         this.channelType = channelType;
-
-        if (channelType && contactName && contactId) {
-            console.log(`Init channel ${channelType} - ${contactName} ${contactId}`);
-        }
     }
 
     public async postMessageToBot({ userId, data }) {

@@ -39,4 +39,8 @@ export class MessengerChannel extends BaseChannel {
             return null;
         }
     }
+
+    public async prepareMessage(req: Request, res: Response) {
+
+    }
 }

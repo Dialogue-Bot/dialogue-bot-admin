@@ -58,12 +58,25 @@ export class ChannelService {
         return newChannel;
     }
 
-    public async findOneById(id: string) {
-        const channel = await db.query.channels.findFirst({
-            where: eq(channels.id, id),
-        });
+    public async findOneByContactId(contactId: string) {
+        const expectedChannel = await db.select({
+            id: channels.id,
+            contactId: channels.contactId,
+            contactName: channels.contactName,
+            channelType: channelTypes.name,
+            credentials: channels.credentials,
+        })
+            .from(channels)
+            .where(
+                and(eq(channels.contactId, contactId),
+                    eq(channels.deleted, false)
+                )
+            )
+            .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id));
 
-        return channel;
+        if (!expectedChannel) return
+
+        return expectedChannel[0];
     }
 
     public async updateById(id: string, fields: TUpdateChannel) {
@@ -78,9 +91,7 @@ export class ChannelService {
             );
         }
 
-        const contactIdExisted = await db.query.channels.findFirst({
-            where: eq(channels.contactId, fields.contactId),
-        });
+        const contactIdExisted = this.channels.find(c => c.contactId == fields.contactId);
 
         if (contactIdExisted && fields.contactId !== channelExisted.contactId) {
             throw new HttpException(
@@ -193,12 +204,15 @@ export class ChannelService {
     }
 
     initChannel(channel: ChannelInfo) {
-        switch (channel.channelType) {
+        const { id, contactId, contactName, channelType, credentials } = channel;
+
+        console.log(`Init channel: ${channelType} - ${contactName} ${contactId}`);
+
+        switch (channelType) {
             case 'MSG':
-                const { id, contactId, contactName, channelType, credentials } = channel;
                 return new MessengerChannel(id, contactId, contactName, channelType, credentials);
             default:
-                console.log(`Does not support channel type ${channel.channelType}`);
+                console.log(`Init channel: Does not support channel type ${channel.channelType}`);
                 break;
         }
 
@@ -215,7 +229,12 @@ export class ChannelService {
                 credentials: channels.credentials,
             })
             .from(channels)
-            .where(eq(channels.deleted, false))
+            .where(
+                and(
+                    eq(channels.deleted, false),
+                    eq(channels.active, true)
+                )
+            )
             .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
 
         contacts.forEach((c) => {
