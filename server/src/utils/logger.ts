@@ -1,8 +1,8 @@
+import { LOG_DIR } from '@config';
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import winston from 'winston';
 import WinstonDaily from 'winston-daily-rotate-file';
-import { LOG_DIR } from '@config';
 
 const colorizer = winston.format.colorize({
    colors: {
@@ -67,6 +67,18 @@ logger.add(
       ),
    })
 );
+
+['log', 'error', 'warn', 'info'].forEach((method) => {
+   const originalMethod = console[method];
+   console[method] = function () {
+      const modifiedArgs = Array.from(arguments).map((arg) => (typeof arg === 'object' ? JSON.stringify(arg) : arg));
+      originalMethod.call(console, ...modifiedArgs);
+      console[method] = function () {
+         if (method === 'log') return logger.info.apply(logger, arguments);
+         return logger[method].apply(logger, arguments);
+      };
+   };
+});
 
 const stream = {
    write: (message: string) => {
