@@ -104,6 +104,10 @@ export const settings = pgTable('settings', {
 });
 
 export const usersRelations = relations(users, ({ one, many }) => ({
-   settings: one(settings),
+   settings: one(settings, {
+      relationName: 'userSettings',
+      fields: [users.id],
+      references: [settings.userId],
+   }),
    channels: many(channels),
 }));
