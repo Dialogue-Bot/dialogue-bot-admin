@@ -24,8 +24,9 @@ export const useLoginWithProvider = (provider: AuthProvider) => {
          window.location.href = search.redirect || '/dashboard';
       },
       onError(err: any) {
-         console.log(err);
          toast.error(err?.response?.data?.message || t('api_error'));
+
+         fAuth.signOut().catch(() => {});
       },
    });
 };

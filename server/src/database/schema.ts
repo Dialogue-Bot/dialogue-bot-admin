@@ -2,6 +2,7 @@ import { createId } from '@paralleldrive/cuid2';
 import { relations } from 'drizzle-orm';
 import {
    boolean,
+   json,
    pgEnum,
    pgTable,
    text,
@@ -68,10 +69,6 @@ export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
    channels: many(channels),
 }));
 
-export const usersRelations = relations(users, ({ many }) => ({
-   channels: many(channels),
-}));
-
 export const channelsRelations = relations(channels, ({ one }) => ({
    channelType: one(channelTypes, {
       fields: [channels.channelTypeId],
@@ -79,8 +76,34 @@ export const channelsRelations = relations(channels, ({ one }) => ({
    }),
    User: one(users, {
       fields: [channels.userId],
-      references: [users.id]
+      references: [users.id],
    }),
 }));
 
+export const settings = pgTable('settings', {
+   id: varchar('id', {
+      length: MAX_ID_LENGTH,
+   })
+      .primaryKey()
+      .$defaultFn(() => createId()),
+   email: json('email')
+      .notNull()
+      .default({
+         email: '',
+         password: '',
+      })
+      .$type<{
+         email: string;
+         password: string;
+      }>(),
+   userId: varchar('user_id', {
+      length: MAX_ID_LENGTH,
+   })
+      .notNull()
+      .references(() => users.id),
+});
 
+export const usersRelations = relations(users, ({ one, many }) => ({
+   settings: one(settings),
+   channels: many(channels),
+}));

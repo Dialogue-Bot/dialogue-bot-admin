@@ -16,26 +16,32 @@ const MAP_TEMPLATES: TMapTemplates = {
    'verify-email': () => '',
 };
 
-const transporter = nodemailer.createTransport({
-   service: 'gmail',
-   host: 'smtp.gmail.com',
-   port: 465,
-   secure: true,
-   auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-   },
-});
 
 export const sendMail = async <T extends keyof TemplateProps>(opts: {
    to: string;
    subject: string;
    template: T;
    props: TemplateProps[T];
+   user?: string
+   pass?: string
 }) => {
-   const { to, subject, template, props } = opts;
+   const { to, subject, template, props, pass
+      = process.env.MAIL_PASS, user = process.env.MAIL_USER
+   } = opts;
    try {
       const html = MAP_TEMPLATES[template](props);
+
+      const transporter = nodemailer.createTransport({
+         service: 'gmail',
+         host: 'smtp.gmail.com',
+         port: 465,
+         secure: true,
+         auth: {
+            user,
+            pass,
+         },
+      });
+
 
       await transporter.sendMail({
          from: process.env.MAIL_FROM,

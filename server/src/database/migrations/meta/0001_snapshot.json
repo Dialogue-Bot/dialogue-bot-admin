@@ -1,6 +1,6 @@
 {
-  "id": "60dd3aa6-20af-49e5-abd3-af199aaa5310",
-  "prevId": "7c12eaec-b7a1-4ca4-9255-28a150e82397",
+  "id": "c34fe41e-ca68-4197-a176-a16e17424b10",
+  "prevId": "60dd3aa6-20af-49e5-abd3-af199aaa5310",
   "version": "5",
   "dialect": "pg",
   "tables": {
@@ -127,6 +127,49 @@
           ]
         }
       }
+    },
+    "settings": {
+      "name": "settings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(36)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{\"email\":\"\",\"password\":\"\"}'::json"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "settings_user_id_users_id_fk": {
+          "name": "settings_user_id_users_id_fk",
+          "tableFrom": "settings",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
     "users": {
       "name": "users",

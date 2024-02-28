@@ -32,11 +32,19 @@ export const ENDPOINTS = {
       DELETE: '/channel/delete',
       DELETES: '/channel/deletes',
    },
+   SETTING: {
+      INDEX: '/setting',
+      MAIL: '/setting/email',
+   },
+   USER: {
+      UPDATE_INFO: '/user/update-info',
+      CHANGE_PASSWORD: '/user/change-password',
+   },
    WEBHOOK: {
       INDEX: '/webhook',
       VERIFY: '/webhook/:contactId',
       INCOMING_MSG: '/webhook/:contactId',
-   }
+   },
 };
 
 export const LOCALE_KEY = 'lang';

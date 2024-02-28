@@ -1,0 +1,23 @@
+{
+   "title": "Profile",
+   "sections": {
+      "avatar": {
+         "label": "Avatar",
+         "description": "Click on the avatar to upload a custom one from your files.",
+         "message": "An avatar is optional but strongly recommended."
+      },
+      "name": {
+         "label": "Name",
+         "description": "Please enter your full name, or a display name you are comfortable with."
+      },
+      "email": {
+         "label": "Email",
+         "description": "Please enter your email address to login system."
+      },
+      "password": {
+         "label": "Change password",
+         "description": "Please enter your new password to change it.",
+         "message": "Password must be at least 6 characters long."
+      }
+   }
+}

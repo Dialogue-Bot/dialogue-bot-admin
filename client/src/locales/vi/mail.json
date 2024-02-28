@@ -1,0 +1,10 @@
+{
+   "title": "Cài đặt mail",
+   "sections": {
+      "mail": {
+         "label": "Mail",
+         "description": "Vui lòng nhập thông tin mail của bạn.",
+         "message": "Để lấy mật khẩu mail. Làm theo hướng dẫn <a> ở đây </a>"
+      }
+   }
+}

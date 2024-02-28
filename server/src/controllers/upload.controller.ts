@@ -1,7 +1,7 @@
-import Container from 'typedi';
-import { StatusCodes } from 'http-status-codes';
 import { FirebaseService } from '@/services/firebase.service';
 import { catchAsync } from '@/utils/catch-async';
+import { StatusCodes } from 'http-status-codes';
+import Container from 'typedi';
 
 export class UploadController {
    firebaseService = Container.get(FirebaseService);
@@ -11,7 +11,6 @@ export class UploadController {
 
       const data = await this.firebaseService.uploadFile(
          file as any,
-         'shop-locations'
       );
 
       res.status(200).json({
@@ -25,7 +24,6 @@ export class UploadController {
 
       const data = await this.firebaseService.uploadFiles(
          files as any,
-         'shop-locations'
       );
 
       res.status(StatusCodes.OK).json({

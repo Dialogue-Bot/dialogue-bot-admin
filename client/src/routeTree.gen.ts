@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as PrivateImport } from './routes/_private'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
+import { Route as PublicHelpImport } from './routes/_public/help'
 import { Route as PrivateSettingsImport } from './routes/_private/settings'
 import { Route as PrivateDashboardImport } from './routes/_private/dashboard'
 import { Route as PrivateChatbotsImport } from './routes/_private/chatbots'
@@ -21,6 +22,12 @@ import { Route as AuthSetPasswordImport } from './routes/_auth/set-password'
 import { Route as AuthRegisterImport } from './routes/_auth/register'
 import { Route as AuthLoginImport } from './routes/_auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
+import { Route as PublicHelpIndexImport } from './routes/_public/help.index'
+import { Route as PrivateSettingsIndexImport } from './routes/_private/settings/index'
+import { Route as PublicHelpPostIdImport } from './routes/_public/help.$postId'
+import { Route as PrivateSettingsThemesImport } from './routes/_private/settings/themes'
+import { Route as PrivateSettingsProfilesImport } from './routes/_private/settings/profiles'
+import { Route as PrivateSettingsMailImport } from './routes/_private/settings/mail'
 
 // Create/Update Routes
 
@@ -36,6 +43,11 @@ const AuthRoute = AuthImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PublicHelpRoute = PublicHelpImport.update({
+  id: '/_public/help',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -72,6 +84,36 @@ const AuthLoginRoute = AuthLoginImport.update({
 const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   path: '/forgot-password',
   getParentRoute: () => AuthRoute,
+} as any)
+
+const PublicHelpIndexRoute = PublicHelpIndexImport.update({
+  path: '/',
+  getParentRoute: () => PublicHelpRoute,
+} as any)
+
+const PrivateSettingsIndexRoute = PrivateSettingsIndexImport.update({
+  path: '/',
+  getParentRoute: () => PrivateSettingsRoute,
+} as any)
+
+const PublicHelpPostIdRoute = PublicHelpPostIdImport.update({
+  path: '/$postId',
+  getParentRoute: () => PublicHelpRoute,
+} as any)
+
+const PrivateSettingsThemesRoute = PrivateSettingsThemesImport.update({
+  path: '/themes',
+  getParentRoute: () => PrivateSettingsRoute,
+} as any)
+
+const PrivateSettingsProfilesRoute = PrivateSettingsProfilesImport.update({
+  path: '/profiles',
+  getParentRoute: () => PrivateSettingsRoute,
+} as any)
+
+const PrivateSettingsMailRoute = PrivateSettingsMailImport.update({
+  path: '/mail',
+  getParentRoute: () => PrivateSettingsRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -118,6 +160,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivateSettingsImport
       parentRoute: typeof PrivateImport
     }
+    '/_public/help': {
+      preLoaderRoute: typeof PublicHelpImport
+      parentRoute: typeof rootRoute
+    }
+    '/_private/settings/mail': {
+      preLoaderRoute: typeof PrivateSettingsMailImport
+      parentRoute: typeof PrivateSettingsImport
+    }
+    '/_private/settings/profiles': {
+      preLoaderRoute: typeof PrivateSettingsProfilesImport
+      parentRoute: typeof PrivateSettingsImport
+    }
+    '/_private/settings/themes': {
+      preLoaderRoute: typeof PrivateSettingsThemesImport
+      parentRoute: typeof PrivateSettingsImport
+    }
+    '/_public/help/$postId': {
+      preLoaderRoute: typeof PublicHelpPostIdImport
+      parentRoute: typeof PublicHelpImport
+    }
+    '/_private/settings/': {
+      preLoaderRoute: typeof PrivateSettingsIndexImport
+      parentRoute: typeof PrivateSettingsImport
+    }
+    '/_public/help/': {
+      preLoaderRoute: typeof PublicHelpIndexImport
+      parentRoute: typeof PublicHelpImport
+    }
   }
 }
 
@@ -134,8 +204,14 @@ export const routeTree = rootRoute.addChildren([
   PrivateRoute.addChildren([
     PrivateChatbotsRoute,
     PrivateDashboardRoute,
-    PrivateSettingsRoute,
+    PrivateSettingsRoute.addChildren([
+      PrivateSettingsMailRoute,
+      PrivateSettingsProfilesRoute,
+      PrivateSettingsThemesRoute,
+      PrivateSettingsIndexRoute,
+    ]),
   ]),
+  PublicHelpRoute.addChildren([PublicHelpPostIdRoute, PublicHelpIndexRoute]),
 ])
 
 /* prettier-ignore-end */

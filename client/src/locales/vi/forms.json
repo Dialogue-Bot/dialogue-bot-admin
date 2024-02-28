@@ -29,5 +29,12 @@
       "errors": {
          "required": "Vui lòng nhập tên của bạn."
       }
+   },
+   "oldPassword": {
+      "label": "Mật khẩu cũ",
+      "placeholder": "Nhập mật khẩu cũ của bạn.",
+      "errors": {
+         "required": "Vui lòng nhập mật khẩu cũ của bạn."
+      }
    }
 }
