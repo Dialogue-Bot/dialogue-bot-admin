@@ -193,7 +193,7 @@ type RootTranslation = {
 	}
 	SETTING: {
 		/**
-		 * E​m​a​i​l​ ​u​p​d​a​t​e​d​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 * E​m​a​i​l​ ​a​n​d​ ​p​a​s​s​w​o​r​d​ ​u​p​d​a​t​e​d​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
 		 */
 		UPDATE_EMAIL_SUCCESS: string
 	}
@@ -372,7 +372,7 @@ export type TranslationFunctions = {
 	}
 	SETTING: {
 		/**
-		 * Email updated successfully!
+		 * Email and password updated successfully!
 		 */
 		UPDATE_EMAIL_SUCCESS: () => LocalizedString
 	}

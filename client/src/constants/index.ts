@@ -20,4 +20,8 @@ export const ENDPOINTS = {
       UPDATE_INFO: '/user/update-info',
       CHANGE_PASS: '/user/change-password',
    },
+   SETTING: {
+      INDEX: '/setting',
+      MAIL: '/setting/email',
+   },
 };

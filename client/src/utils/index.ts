@@ -1,3 +1,5 @@
+import crypto from 'crypto-js';
+
 const isObject = (obj: Record<any, any>) =>
    obj != null && obj.constructor.name === 'Object';
 
@@ -28,3 +30,26 @@ export function getKeys(
    }
    return keys;
 }
+
+/**
+ * Decrypt a string
+ * @param text  string to decrypt
+ * @returns decrypted string
+ */
+export const decrypt = (text: string) => {
+   return crypto.AES.decrypt(
+      text,
+      import.meta.env.VITE_SIGNATURE_SECRET
+   ).toString(crypto.enc.Utf8);
+};
+/**
+ * Encrypt a string
+ * @param text string to encrypt
+ * @returns encrypted string
+ */
+export const encrypt = (text: string) => {
+   return crypto.AES.encrypt(
+      text,
+      import.meta.env.VITE_SIGNATURE_SECRET
+   ).toString();
+};

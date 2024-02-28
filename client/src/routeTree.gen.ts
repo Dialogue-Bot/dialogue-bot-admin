@@ -22,7 +22,9 @@ import { Route as AuthSetPasswordImport } from './routes/_auth/set-password'
 import { Route as AuthRegisterImport } from './routes/_auth/register'
 import { Route as AuthLoginImport } from './routes/_auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
+import { Route as PublicHelpIndexImport } from './routes/_public/help.index'
 import { Route as PrivateSettingsIndexImport } from './routes/_private/settings/index'
+import { Route as PublicHelpPostIdImport } from './routes/_public/help.$postId'
 import { Route as PrivateSettingsThemesImport } from './routes/_private/settings/themes'
 import { Route as PrivateSettingsProfilesImport } from './routes/_private/settings/profiles'
 import { Route as PrivateSettingsMailImport } from './routes/_private/settings/mail'
@@ -84,9 +86,19 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const PublicHelpIndexRoute = PublicHelpIndexImport.update({
+  path: '/',
+  getParentRoute: () => PublicHelpRoute,
+} as any)
+
 const PrivateSettingsIndexRoute = PrivateSettingsIndexImport.update({
   path: '/',
   getParentRoute: () => PrivateSettingsRoute,
+} as any)
+
+const PublicHelpPostIdRoute = PublicHelpPostIdImport.update({
+  path: '/$postId',
+  getParentRoute: () => PublicHelpRoute,
 } as any)
 
 const PrivateSettingsThemesRoute = PrivateSettingsThemesImport.update({
@@ -164,9 +176,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivateSettingsThemesImport
       parentRoute: typeof PrivateSettingsImport
     }
+    '/_public/help/$postId': {
+      preLoaderRoute: typeof PublicHelpPostIdImport
+      parentRoute: typeof PublicHelpImport
+    }
     '/_private/settings/': {
       preLoaderRoute: typeof PrivateSettingsIndexImport
       parentRoute: typeof PrivateSettingsImport
+    }
+    '/_public/help/': {
+      preLoaderRoute: typeof PublicHelpIndexImport
+      parentRoute: typeof PublicHelpImport
     }
   }
 }
@@ -191,7 +211,7 @@ export const routeTree = rootRoute.addChildren([
       PrivateSettingsIndexRoute,
     ]),
   ]),
-  PublicHelpRoute,
+  PublicHelpRoute.addChildren([PublicHelpPostIdRoute, PublicHelpIndexRoute]),
 ])
 
 /* prettier-ignore-end */

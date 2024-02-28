@@ -9,11 +9,17 @@ import {
    SectionSettingTitle,
 } from '@/components/setting-section';
 import { Button } from '@/components/ui';
+import { useUpdateSettingMail } from '@/hooks/setting';
+import { useSettingStore } from '@/store/use-setting';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
 
 const Mail = () => {
    const { t } = useTranslation(['mail', 'common']);
+
+   const { setting } = useSettingStore();
+
+   const settingMailMutation = useUpdateSettingMail();
 
    return (
       <div>
@@ -29,7 +35,14 @@ const Mail = () => {
                         description={t('sections.mail.description')}
                      />
                      <div className="max-w-80 mt-3">
-                        <SettingMailForm />
+                        <SettingMailForm
+                           loading={settingMailMutation.isPending}
+                           onSubmit={settingMailMutation.mutate}
+                           defaultValues={{
+                              email: setting?.email.email,
+                              password: setting?.email.password,
+                           }}
+                        />
                      </div>
                   </SectionSettingBody>
                   <SectionSettingBottom>
@@ -48,7 +61,11 @@ const Mail = () => {
                            />
                         }
                      />
-                     <Button form="setting-mail-form">
+                     <Button
+                        form="setting-mail-form"
+                        type="submit"
+                        loading={settingMailMutation.isPending}
+                     >
                         {t('common:save')}
                      </Button>
                   </SectionSettingBottom>

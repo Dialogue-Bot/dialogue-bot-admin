@@ -18,9 +18,15 @@ type Props = {
    loading?: boolean;
    onSubmit?: (data: TSettingMail) => void;
    hasBtn?: boolean;
+   defaultValues?: Partial<TSettingMail>;
 };
 
-export const SettingMailForm = ({ loading, onSubmit, hasBtn }: Props) => {
+export const SettingMailForm = ({
+   loading,
+   onSubmit,
+   hasBtn,
+   defaultValues,
+}: Props) => {
    const { t } = useTranslation(['forms', 'common']);
 
    const schema = useSettingMailSchema();
@@ -28,6 +34,7 @@ export const SettingMailForm = ({ loading, onSubmit, hasBtn }: Props) => {
    const form = useForm<TSettingMail>({
       resolver: zodResolver(schema),
       mode: 'onChange',
+      defaultValues,
    });
 
    const handleSubmit = (data: TSettingMail) => {
@@ -38,7 +45,11 @@ export const SettingMailForm = ({ loading, onSubmit, hasBtn }: Props) => {
 
    return (
       <Form {...form}>
-         <form className="space-y-3" onSubmit={form.handleSubmit(handleSubmit)}>
+         <form
+            className="space-y-3"
+            onSubmit={form.handleSubmit(handleSubmit)}
+            id="setting-mail-form"
+         >
             <FormField
                control={form.control}
                name="email"

@@ -11,7 +11,7 @@ export const useUserStore = create<TUserState>()(
    devtools((set) => ({
       user: null,
       setUser: (user) => {
-         set((state) => {
+         return set((state) => {
             return { ...state, user };
          });
       },
