@@ -34,7 +34,7 @@ export class SettingService {
          .set({
             email: {
                email,
-               password: decrypt(password),
+               password,
             },
          })
          .where(eq(settings.userId, userId))
@@ -49,14 +49,14 @@ export class SettingService {
                userId,
                email: {
                   email,
-                  password: decrypt(password),
+                  password,
                },
             })
             .returning({
                email: settings.email,
             });
 
-         return settingInserted;
+         return encrypt(JSON.stringify(settingInserted));
       }
 
       return encrypt(JSON.stringify(emailSetting));

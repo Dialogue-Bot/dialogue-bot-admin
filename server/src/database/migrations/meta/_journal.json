@@ -15,6 +15,13 @@
       "when": 1708877973296,
       "tag": "0001_yielding_mad_thinker",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1709131241663,
+      "tag": "0002_faulty_iron_fist",
+      "breakpoints": true
     }
   ]
 }
