@@ -19,7 +19,7 @@ async function seedChannelTypes() {
 async function seedDefaultAccount() {
     try {
         const hashedPassword = await bcrypt.hash("Hello@123", 10);
-        await db.insert(users).values({email: "admin@gmail.com", password: hashedPassword, name: "admin",});
+        await db.insert(users).values({ email: "admin@gmail.com", password: hashedPassword, name: "admin", });
     } catch (error) {
         console.error(`Can't create default account`);
     }

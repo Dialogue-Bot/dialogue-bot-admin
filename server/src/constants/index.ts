@@ -39,7 +39,12 @@ export const ENDPOINTS = {
    USER: {
       UPDATE_INFO: '/user/update-info',
       CHANGE_PASSWORD: '/user/change-password',
-   }
+   },
+   WEBHOOK: {
+      INDEX: '/webhook',
+      VERIFY: '/webhook/:contactId',
+      INCOMING_MSG: '/webhook/:contactId',
+   },
 };
 
 export const LOCALE_KEY = 'lang';

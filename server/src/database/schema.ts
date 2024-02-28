@@ -60,6 +60,7 @@ export const channels = pgTable('channels', {
    active: boolean('active'),
    deleted: boolean('deleted').default(false),
    channelTypeId: text('channel_type_id').notNull(),
+   userId: text('user_id').notNull(),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at'),
 });
@@ -73,6 +74,10 @@ export const channelsRelations = relations(channels, ({ one }) => ({
       fields: [channels.channelTypeId],
       references: [channelTypes.id],
    }),
+   User: one(users, {
+      fields: [channels.userId],
+      references: [users.id],
+   }),
 }));
 
 export const settings = pgTable('settings', {
@@ -84,17 +89,21 @@ export const settings = pgTable('settings', {
    email: json('email')
       .notNull()
       .default({
-         'email': '',
-         'password': '',
-      }).$type<{
+         email: '',
+         password: '',
+      })
+      .$type<{
          email: string;
          password: string;
       }>(),
    userId: varchar('user_id', {
       length: MAX_ID_LENGTH,
-   }).notNull().references(() => users.id),
+   })
+      .notNull()
+      .references(() => users.id),
 });
 
-export const usersRelations = relations(users, ({ one }) => ({
+export const usersRelations = relations(users, ({ one, many }) => ({
    settings: one(settings),
+   channels: many(channels),
 }));
