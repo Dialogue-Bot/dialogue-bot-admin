@@ -1,7 +1,8 @@
 import PageTitle from '@/components/page-title';
-import { Link } from '@tanstack/react-router';
+import { cn } from '@/lib/utils';
 import { CircleUserRound, Mails } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link, NavLink } from 'react-router-dom';
 
 const SIDEBAR_ITEMS = [
    {
@@ -21,26 +22,24 @@ const SIDEBAR_ITEMS = [
 const Sidebar = () => {
    const { t } = useTranslation('common');
    return (
-      <div className="min-h-svh w-sidebar-setting flex-shrink-0 bg-primary-foreground fixed top-0 bottom-0 left-sidebar">
-         <div className="h-[3.75rem] flex items-center px-4">
-            <PageTitle>{t('settings')}</PageTitle>
-         </div>
-         <ul className="space-y-1">
+      <div className="min-h-svh w-sidebar-setting flex-shrink-0 bg-neutral-100 fixed bottom-0 left-sidebar top-header ">
+         <ul className="space-y-1 py-4">
             {SIDEBAR_ITEMS.map((item: any) => {
                const Icon = item.Icon;
                return (
                   <li key={item.i18n}>
-                     <Link
+                     <NavLink
                         to={item.to}
-                        search
-                        className="flex items-center px-4 py-2 gap-2 transition-all"
-                        activeProps={{
-                           className: 'text-primary',
-                        }}
+                        className={({ isActive }) =>
+                           cn(
+                              'flex items-center px-4 py-2 gap-2 transition-all hover:bg-primary/5 ',
+                              { 'bg-primary/5 font-medium': isActive }
+                           )
+                        }
                      >
                         <Icon className="w-5 h-5" />
                         <span>{t(item.i18n)}</span>
-                     </Link>
+                     </NavLink>
                   </li>
                );
             })}

@@ -12,10 +12,8 @@ export const useErrorsLngChange = (form: UseFormReturn<any>) => {
    useDidUpdate(() => {
       const fields = Object.keys(form.formState.errors);
 
-      console.log('fields', fields);
-
       if (fields.length) {
          form.trigger(fields);
       }
-   }, [i18n.language]);
+   }, [i18n.language, form]);
 };
