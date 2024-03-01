@@ -2,10 +2,10 @@ import { LoginForm } from '@/components/forms';
 import { Button } from '@/components/ui';
 import { useLogin, useLoginWithProvider } from '@/hooks/auth';
 import { GoogleProvider } from '@/lib/firebase';
-import { Link, createFileRoute } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+export const Login = () => {
    const { t } = useTranslation(['login', 'common']);
 
    const loginMutation = useLogin();
@@ -87,20 +87,3 @@ const Login = () => {
       </div>
    );
 };
-
-export const Route = createFileRoute('/_auth/login')({
-   component: Login,
-   validateSearch: (
-      search: Record<string, any>
-   ): {
-      redirect?: string;
-   } => {
-      if (search.redirect) {
-         return {
-            redirect: search.redirect as string,
-         };
-      }
-
-      return {};
-   },
-});

@@ -25,13 +25,12 @@ import { useChangePass, useUpdateInfor } from '@/hooks/user';
 import { TUpdateInfor, useUpdateInforSchema } from '@/lib/schema/update-infor';
 import { useUserStore } from '@/store/use-user';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createFileRoute } from '@tanstack/react-router';
 import { Loader2 } from 'lucide-react';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-const Profiles = () => {
+export const Profiles = () => {
    const { t } = useTranslation(['profile', 'common', 'forms']);
 
    const { user } = useUserStore();
@@ -255,7 +254,3 @@ const Profiles = () => {
       </div>
    );
 };
-
-export const Route = createFileRoute('/_private/settings/profiles')({
-   component: Profiles,
-});

@@ -8,7 +8,6 @@ import {
    TooltipTrigger,
 } from '@/components/ui';
 import { useUserStore } from '@/store/use-user';
-import { Link, LinkProps } from '@tanstack/react-router';
 import {
    Bot,
    BrainCircuit,
@@ -17,11 +16,12 @@ import {
    Settings,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const SIDEBAR_ITEMS: Array<{
    Icon: JSX.Element;
    i18n: string;
-   to: LinkProps['to'];
+   to: string;
 }> = [
    {
       Icon: (
@@ -41,8 +41,8 @@ const SIDEBAR_ITEMS: Array<{
       Icon: (
          <Cable className="w-5 h-5 text-white group-hover:opacity-85 transition-all" />
       ),
-      i18n: 'integrations',
-      to: '/chatbots',
+      i18n: 'channels',
+      to: '/channels',
    },
 ];
 
@@ -66,7 +66,6 @@ const Sidebar = () => {
                         <TooltipTrigger>
                            <li className="h-12 w-full flex items-center justify-center group">
                               <Link
-                                 search
                                  to={item.to}
                                  className="w-full h-full flex items-center justify-center"
                               >
@@ -87,7 +86,6 @@ const Sidebar = () => {
                   <Tooltip>
                      <TooltipTrigger className="h-12 w-full flex items-center justify-center group">
                         <Link
-                           search
                            to="/settings"
                            className="w-full h-full flex items-center justify-center"
                         >

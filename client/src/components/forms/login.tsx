@@ -1,7 +1,6 @@
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change';
 import { TLogin, useLoginSchema } from '@/lib/schema/login';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import {
@@ -14,6 +13,7 @@ import {
    FormMessage,
    Input,
 } from '../ui';
+import { Link } from 'react-router-dom';
 
 type Props = {
    loading?: boolean;

@@ -36,5 +36,40 @@
       "errors": {
          "required": "Please enter your old password."
       }
+   },
+   "contactId": {
+      "label": "Contact ID",
+      "placeholder": "Enter your contact ID",
+      "errors": {
+         "required": "Please enter your contact ID."
+      }
+   },
+   "contactName": {
+      "label": "Contact name",
+      "placeholder": "Enter your contact name",
+      "errors": {
+         "required": "Please enter your contact name."
+      }
+   },
+   "channelTypeId": {
+      "label": "Channel type",
+      "placeholder": "Select channel type",
+      "errors": {
+         "required": "Please select channel type."
+      }
+   },
+   "pageToken": {
+      "label": "Page token",
+      "placeholder": "Enter your page token",
+      "errors": {
+         "required": "Please enter your page token."
+      }
+   },
+   "webhookSecret": {
+      "label": "Webhook secret",
+      "placeholder": "Enter your webhook secret",
+      "errors": {
+         "required": "Please enter your webhook secret."
+      }
    }
 }

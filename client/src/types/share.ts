@@ -12,3 +12,21 @@ export type TToken = {
    accessToken: string;
    refreshToken: string;
 };
+
+export type Breadcrumb = {
+   title: string;
+   path: string;
+};
+
+export type TResPagination<T = unknown> = TBaseResponse<{
+   items: T[];
+   totalItems: number;
+}>;
+
+export type TBaseQuery = Partial<{
+   page: number;
+   limit: number;
+   orderBy: string;
+   sortType: 'asc' | 'desc';
+   q: string;
+}>;

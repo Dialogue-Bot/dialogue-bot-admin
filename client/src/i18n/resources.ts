@@ -17,6 +17,8 @@ import profileVI from '@/locales/vi/profile.json';
 import registerVI from '@/locales/vi/register.json';
 import setPassVI from '@/locales/vi/set_pass.json';
 import { ELang } from '@/types/share';
+import tableColEn from '@/locales/en/table-cols.json';
+import tableColVi from '@/locales/vi/table-cols.json';
 
 const resources = {
    [ELang.EN]: {
@@ -29,6 +31,7 @@ const resources = {
       set_pass: setPassEN,
       profile: profileEN,
       mail: mailEN,
+      tableCols: tableColEn,
    },
    [ELang.VI]: {
       common: commonVI,
@@ -40,6 +43,7 @@ const resources = {
       set_pass: setPassVI,
       profile: profileVI,
       mail: mailVI,
+      tableCols: tableColVi,
    },
 } as const;
 

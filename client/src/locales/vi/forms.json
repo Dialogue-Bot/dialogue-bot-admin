@@ -36,5 +36,40 @@
       "errors": {
          "required": "Vui lòng nhập mật khẩu cũ của bạn."
       }
+   },
+   "contactId": {
+      "label": "Mã liên hệ",
+      "placeholder": "Nhập mã liên hệ của bạn",
+      "errors": {
+         "required": "Vui lòng nhập mã liên hệ của bạn."
+      }
+   },
+   "contactName": {
+      "label": "Tên liên hệ",
+      "placeholder": "Nhập tên liên hệ của bạn",
+      "errors": {
+         "required": "Vui lòng nhập tên liên hệ của bạn."
+      }
+   },
+   "channelTypeId": {
+      "label": "Loại kênh",
+      "placeholder": "Chọn loại kênh",
+      "errors": {
+         "required": "Vui lòng chọn loại kênh."
+      }
+   },
+   "pageToken": {
+      "label": "Page token",
+      "placeholder": "Nhập page token",
+      "errors": {
+         "required": "Vui lòng nhập page token của bạn."
+      }
+   },
+   "webhookSecret": {
+      "label": "Webhook secret",
+      "placeholder": "Nhập webhook secret của bạn",
+      "errors": {
+         "required": "Vui lòng nhập webhook secret của bạn."
+      }
    }
 }

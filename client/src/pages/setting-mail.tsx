@@ -11,10 +11,10 @@ import {
 import { Button } from '@/components/ui';
 import { useUpdateSettingMail } from '@/hooks/setting';
 import { useSettingStore } from '@/store/use-setting';
-import { Link, createFileRoute } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-const Mail = () => {
+export const Mail = () => {
    const { t } = useTranslation(['mail', 'common']);
 
    const { setting } = useSettingStore();
@@ -23,7 +23,7 @@ const Mail = () => {
 
    return (
       <div>
-         <div className="h-[3.75rem] flex items-center px-4">
+         <div className="h-[3.75rem] flex items-center px-6">
             <PageTitle>{t('title')}</PageTitle>
          </div>
          <div className="p-6">
@@ -75,7 +75,3 @@ const Mail = () => {
       </div>
    );
 };
-
-export const Route = createFileRoute('/_private/settings/mail')({
-   component: Mail,
-});

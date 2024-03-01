@@ -53,3 +53,16 @@ export const encrypt = (text: string) => {
       import.meta.env.VITE_SIGNATURE_SECRET
    ).toString();
 };
+
+export const queryStringToObject = (url: string) =>
+   JSON.parse(JSON.stringify(Object.fromEntries(new URL(url).searchParams)));
+
+export const urlSearchParamsToObject = (url: URLSearchParams) => {
+   const obj: Record<string, any> = {};
+
+   url.forEach((value, key) => {
+      obj[key] = value;
+   });
+
+   return obj;
+};

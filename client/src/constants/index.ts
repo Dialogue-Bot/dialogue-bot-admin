@@ -24,4 +24,10 @@ export const ENDPOINTS = {
       INDEX: '/setting',
       MAIL: '/setting/email',
    },
+   CHANNEL: {
+      INDEX: '/channel',
+      DELETE: '/channel/delete',
+      DELETES: '/channel/deletes',
+      TYPES: '/channel/types',
+   },
 };

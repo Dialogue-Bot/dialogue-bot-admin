@@ -1,9 +1,9 @@
 import { RegisterForm } from '@/components/forms';
 import { useRegister } from '@/hooks/auth';
-import { Link, createFileRoute } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-const Register = () => {
+export const Register = () => {
    const { t } = useTranslation(['common', 'register']);
 
    const registerMutation = useRegister();
@@ -46,7 +46,3 @@ const Register = () => {
       </div>
    );
 };
-
-export const Route = createFileRoute('/_auth/register')({
-   component: Register,
-});

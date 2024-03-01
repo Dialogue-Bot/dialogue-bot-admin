@@ -1,31 +1,31 @@
-import ForgotPassForm from '@/components/forms/forgot-pass';
+import { SetPassForm } from '@/components/forms';
 import { buttonVariants } from '@/components/ui';
-import { useForgotPass } from '@/hooks/auth';
-import { Link, createFileRoute } from '@tanstack/react-router';
+import { useSetPass } from '@/hooks/auth';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-const ForgotPassword = () => {
-   const { t } = useTranslation();
+export const SetPassword = () => {
+   const { t } = useTranslation(['common', 'set_pass']);
 
-   const forgotPassMutation = useForgotPass();
+   const setPassMutation = useSetPass();
 
    return (
       <div className="w-full max-w-sm space-y-3">
          <div className="text-center">
             <h2 className="text-xl font-semibold">
                {t('title', {
-                  ns: 'forgot_pass',
+                  ns: 'set_pass',
                })}
             </h2>
             <p className="mt-1 text-muted-foreground">
                {t('subtitle', {
-                  ns: 'forgot_pass',
+                  ns: 'set_pass',
                })}
             </p>
          </div>
-         <ForgotPassForm
-            onSubmit={(data) => forgotPassMutation.mutate(data)}
-            loading={forgotPassMutation.isPending}
+         <SetPassForm
+            onSubmit={(data) => setPassMutation.mutate(data)}
+            loading={setPassMutation.isPending}
          />
          <Link
             className={buttonVariants({
@@ -41,7 +41,3 @@ const ForgotPassword = () => {
       </div>
    );
 };
-
-export const Route = createFileRoute('/_auth/forgot-password')({
-   component: ForgotPassword,
-});
