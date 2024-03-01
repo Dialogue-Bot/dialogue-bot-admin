@@ -45,6 +45,9 @@ export const ENDPOINTS = {
       VERIFY: '/webhook/:contactId',
       INCOMING_MSG: '/webhook/:contactId',
    },
+   CONVERSATION: {
+      INDEX: '/v3/conversations'
+   }
 };
 
 export const LOCALE_KEY = 'lang';

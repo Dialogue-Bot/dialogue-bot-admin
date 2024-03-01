@@ -175,7 +175,6 @@ export class ChannelService {
                 id: channels.id,
                 contactId: channels.contactId,
                 contactName: channels.contactName,
-                name: channels.contactName,
                 channelType: channelTypes.description,
                 credentials: channels.credentials,
                 active: channels.active,
@@ -185,7 +184,7 @@ export class ChannelService {
             .from(channels)
             .where(
                 and(
-                    like(channels.contactId, `%${paging.q}%`),
+                    like(channels.contactId, `%${paging.q || ''}%`),
                     eq(channels.deleted, false),
                     eq(channels.userId, userId)
                 )
