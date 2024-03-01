@@ -15,5 +15,12 @@
    "themes": "Themes",
    "profiles": "Profiles",
    "save": "Save",
-   "channels": "Channels"
+   "channels": "Channels",
+   "search": "Search",
+   "row_actions": {
+      "update": "Cập nhật",
+      "delete": "Xóa"
+   },
+   "remove": "Remove",
+   "cancel": "Cancel"
 }

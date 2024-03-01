@@ -12,7 +12,7 @@ import {
    ChannelType,
 } from '@/interfaces/channels.interface';
 import { Paging } from '@/interfaces/paging.interface';
-import { and, asc, desc, eq, like, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, like, sql, inArray } from 'drizzle-orm';
 import { StatusCodes } from 'http-status-codes';
 import { Inject, Service } from 'typedi';
 
@@ -165,19 +165,10 @@ export class ChannelService {
    }
 
    public async deleteByIds(ids: string[], userId: string) {
-      ids.forEach(async (id) => {
-         const channelExisted = await db.query.channels.findFirst({
-            where: and(eq(channels.id, id), eq(channels.userId, userId)),
-         });
-
-         if (channelExisted) {
-            channelExisted.deleted = true;
-            await db
-               .update(channels)
-               .set(channelExisted)
-               .where(eq(channels.id, id));
-         }
-      });
+      await db
+         .update(channels)
+         .set({ deleted: true })
+         .where(and(inArray(channels.id, ids), eq(channels.userId, userId)));
    }
 
    public async getAllChannels(
@@ -185,7 +176,6 @@ export class ChannelService {
       userId: string
    ): Promise<Paging<ChannelExtend>> {
       const offset = (paging.page && (paging.page - 1) * paging.limit) || 0;
-      const orderBy = paging.orderBy ?? 'contactId';
 
       const result: ChannelExtend[] = await db
          .select({
@@ -197,7 +187,8 @@ export class ChannelService {
             credentials: channels.credentials,
             active: channels.active,
             createdAt: channels.createdAt,
-            updateAt: channels.updatedAt,
+            updatedAt: channels.updatedAt,
+            channelTypeId: channels.channelTypeId,
          })
          .from(channels)
          .where(
@@ -209,9 +200,7 @@ export class ChannelService {
          )
          .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
          .orderBy(
-            paging.sortType === 'asc'
-               ? asc(channels[orderBy])
-               : desc(channels[orderBy])
+            this.makeOrderBy(paging.sortType, 'contactId', paging.orderBy)
          )
          .offset(offset)
          .limit(paging.limit);
@@ -228,6 +217,22 @@ export class ChannelService {
          );
 
       return { items: result, totalItems: count.count };
+   }
+
+   private makeOrderBy(sortType: string, defaultOrderBy: string, key?: string) {
+      let orderBy =
+         sortType === 'asc'
+            ? asc(channels[key || defaultOrderBy])
+            : desc(channels[key || defaultOrderBy]);
+
+      if (key === 'channelType') {
+         orderBy =
+            sortType === 'asc'
+               ? asc(channelTypes.description)
+               : desc(channelTypes.description);
+      }
+
+      return orderBy;
    }
 
    initChannel(channel: ChannelInfo) {

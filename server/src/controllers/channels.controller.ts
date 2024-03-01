@@ -41,7 +41,7 @@ export class ChannelController {
    public deleteMultipleChannel = catchAsync(
       async (req: RequestWithUser, res) => {
          await this.channelService.deleteByIds(
-            req.body.id,
+            req.body.ids,
             req.user?.id as string
          );
          res.status(StatusCodes.OK).json({

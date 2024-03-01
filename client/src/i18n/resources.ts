@@ -19,6 +19,8 @@ import setPassVI from '@/locales/vi/set_pass.json';
 import { ELang } from '@/types/share';
 import tableColEn from '@/locales/en/table-cols.json';
 import tableColVi from '@/locales/vi/table-cols.json';
+import channelEn from '@/locales/en/channel.json';
+import channelVi from '@/locales/vi/channel.json';
 
 const resources = {
    [ELang.EN]: {
@@ -32,6 +34,7 @@ const resources = {
       profile: profileEN,
       mail: mailEN,
       tableCols: tableColEn,
+      channel: channelEn,
    },
    [ELang.VI]: {
       common: commonVI,
@@ -44,6 +47,7 @@ const resources = {
       profile: profileVI,
       mail: mailVI,
       tableCols: tableColVi,
+      channel: channelVi,
    },
 } as const;
 

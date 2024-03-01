@@ -65,3 +65,8 @@
       @apply text-primary hover:underline underline-offset-2;
    }
 }
+
+body[data-overflow='true']#body-overflow {
+   overflow: hidden !important;
+   margin-right: var(--scrollbar-width) !important;
+}

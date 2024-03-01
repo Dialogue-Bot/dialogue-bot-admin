@@ -71,5 +71,19 @@
       "errors": {
          "required": "Vui lòng nhập webhook secret của bạn."
       }
+   },
+   "credentials": {
+      "label": "Thông tin xác thực",
+      "placeholder": "Nhập thông tin xác thực của bạn",
+      "errors": {
+         "required": "Vui lòng nhập thông tin xác thực của bạn."
+      }
+   },
+   "active": {
+      "label": "Kích hoạt",
+      "placeholder": "Chọn trạng thái kích hoạt",
+      "errors": {
+         "required": "Vui lòng chọn trạng thái kích hoạt."
+      }
    }
 }

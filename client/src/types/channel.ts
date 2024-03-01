@@ -2,7 +2,7 @@ import { TBaseQuery } from './share';
 
 export enum ChannelType {
    MESSENGER = 'MSG',
-   LINE = 'LINE',
+   LINE = 'LIN',
    WEB = 'WEB',
 }
 
@@ -18,10 +18,7 @@ export type TChannel = {
    contactId: string;
    contactName: string;
    channelTypeId: string;
-   credentials?: {
-      pageToken?: string;
-      webhookSecret?: string;
-   };
+   credentials?: string;
    active: boolean;
    deleted?: boolean;
    userId: string;

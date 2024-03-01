@@ -71,5 +71,19 @@
       "errors": {
          "required": "Please enter your webhook secret."
       }
+   },
+   "credentials": {
+      "label": "Credentials",
+      "placeholder": "Enter your credentials",
+      "errors": {
+         "required": "Please enter your credentials."
+      }
+   },
+   "active": {
+      "label": "Active",
+      "placeholder": "Select active status",
+      "errors": {
+         "required": "Please select active status."
+      }
    }
 }
