@@ -26,16 +26,14 @@ export class WebhookService {
 
         let verifyResult = null;
 
-        if (expectedChannel) {
-            const { id, contactId, contactName, channelType, credentials } = expectedChannel;
-            switch (channelType) {
-                case 'MSG':
-                    const messengerChannel = new MessengerChannel(id, contactId, contactName, channelType, credentials);
-                    verifyResult = messengerChannel.verifyWebhook(req, res);
-                    break;
-                default:
-                    break;
-            }
+        const { id, contactName, channelType, credentials } = expectedChannel;
+        switch (channelType) {
+            case 'MSG':
+                const messengerChannel = new MessengerChannel(id, contactId, contactName, channelType, credentials);
+                verifyResult = messengerChannel.verifyWebhook(req, res);
+                break;
+            default:
+                break;
         }
 
         if (!verifyResult) {

@@ -59,8 +59,8 @@ export const channels = pgTable('channels', {
    credentials: text('credentials'),
    active: boolean('active'),
    deleted: boolean('deleted').default(false),
-   channelTypeId: text('channel_type_id').notNull(),
-   userId: text('user_id').notNull(),
+   channelTypeId: text('channel_type_id').notNull().references(() => channelTypes.id),
+   userId: text('user_id').notNull().references(() => users.id),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at'),
 });
