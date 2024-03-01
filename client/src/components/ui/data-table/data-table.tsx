@@ -87,7 +87,7 @@ export function DataTable<TData, TValue>({
    });
 
    return (
-      <>
+      <div className="space-y-4">
          {renderToolbar ? renderToolbar(table) : null}
          <div className="rounded-md border">
             <Table>
@@ -153,6 +153,6 @@ export function DataTable<TData, TValue>({
             }
             table={table}
          />
-      </>
+      </div>
    );
 }

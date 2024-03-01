@@ -31,6 +31,7 @@ export const ENDPOINTS = {
       INDEX: '/channel',
       DELETE: '/channel/delete',
       DELETES: '/channel/deletes',
+      TYPES: '/channel/types',
    },
    SETTING: {
       INDEX: '/setting',

@@ -1,9 +1,9 @@
 import banner from '@/assets/login-banner.png';
 import ButtonLang from '@/components/btn-lang';
 import { LogoText } from '@/components/ui';
-import { Link, Outlet } from '@tanstack/react-router';
 import { Bot } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link, Outlet } from 'react-router-dom';
 
 export const Layout = () => {
    const { t } = useTranslation('layout');

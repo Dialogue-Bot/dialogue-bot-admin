@@ -13,5 +13,13 @@
    "mail": "Mail",
    "themes": "Themes",
    "profiles": "Thông tin tài khoản",
-   "save": "Lưu"
+   "save": "Lưu",
+   "channels": "Kênh",
+   "search": "Tìm kiếm",
+   "row_actions": {
+      "update": "Cập nhật",
+      "delete": "Xóa"
+   },
+   "remove": "Xóa",
+   "cancel": "Hủy"
 }

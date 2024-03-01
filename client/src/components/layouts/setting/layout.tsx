@@ -1,8 +1,8 @@
-import { Outlet } from '@tanstack/react-router';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './sidebar';
 export const Layout = () => {
    return (
-      <div className="flex min-h-svh ">
+      <div className="flex min-h-screen-header">
          <Sidebar />
          <div className="ml-sidebar-setting w-full">
             <Outlet />

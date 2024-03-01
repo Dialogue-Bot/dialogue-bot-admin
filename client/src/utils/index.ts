@@ -1,4 +1,5 @@
 import crypto from 'crypto-js';
+import dayjs from 'dayjs';
 
 const isObject = (obj: Record<any, any>) =>
    obj != null && obj.constructor.name === 'Object';
@@ -52,4 +53,52 @@ export const encrypt = (text: string) => {
       text,
       import.meta.env.VITE_SIGNATURE_SECRET
    ).toString();
+};
+
+/**
+ *
+ * @param url url to convert to object
+ * @returns object
+ */
+export const queryStringToObject = <T extends Record<any, any>>(
+   url: string
+): T =>
+   JSON.parse(JSON.stringify(Object.fromEntries(new URL(url).searchParams)));
+
+/**
+ *
+ * @param url URLSearchParams
+ * @returns object
+ */
+export const urlSearchParamsToObject = (url: URLSearchParams) => {
+   const obj: Record<any, any> = {};
+
+   url.forEach((value, key) => {
+      obj[key] = value;
+   });
+
+   return obj;
+};
+
+export const objectToUrlSearchParams = (obj: Record<any, any>) => {
+   const urlSearchParams = new URLSearchParams();
+
+   for (const key in obj) {
+      urlSearchParams.append(key, obj[key]);
+   }
+
+   return urlSearchParams;
+};
+
+/**
+ *
+ * @param date date to format
+ * @returns formatted date
+ */
+export const formatDate = (date: string): string => {
+   return dayjs(date).format('DD/MM/YYYY HH:mm:ss');
+};
+
+export const calcPageCount = (total: number, limit: number) => {
+   return Math.ceil(total / limit);
 };

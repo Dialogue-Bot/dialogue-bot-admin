@@ -44,7 +44,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                   <>
                      <Separator className="mx-2 h-4" orientation="vertical" />
                      <Badge
-                        className="rounded-sm px-1 font-normal lg:hidden"
+                        className="rounded-md px-1 font-normal lg:hidden"
                         variant="secondary"
                      >
                         {selectedValues.size}
@@ -52,7 +52,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                      <div className="hidden space-x-1 lg:flex">
                         {selectedValues.size > 2 ? (
                            <Badge
-                              className="rounded-sm px-1 font-normal"
+                              className="rounded-md px-1 font-normal"
                               variant="secondary"
                            >
                               {selectedValues.size} selected
@@ -64,7 +64,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                               )
                               .map((option) => (
                                  <Badge
-                                    className="rounded-sm px-1 font-normal"
+                                    className="rounded-md px-1 font-normal"
                                     key={option.value}
                                     variant="secondary"
                                  >
@@ -105,7 +105,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                            >
                               <div
                                  className={cn(
-                                    'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                                    'mr-2 flex h-4 w-4 items-center justify-center rounded-md border border-primary',
                                     isSelected
                                        ? 'bg-primary text-primary-foreground'
                                        : 'opacity-50 [&_svg]:invisible'
