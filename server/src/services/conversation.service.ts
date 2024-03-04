@@ -1,3 +1,4 @@
+import { LineChannel } from "@/channels/line.channel";
 import { MessengerChannel } from "@/channels/messenger.channel";
 import { Request } from "express-serve-static-core";
 import { Service } from "typedi";
@@ -27,8 +28,14 @@ export class ConversationService {
                 if (['typing', 'stop-typing'].includes(type)) return await messengerChannel.sendActionToUser({ userId: recipient.id, type });
 
                 break;
+            case 'LIN':
+                const lineChannel = new LineChannel(id, from.id, contactName, channelType, credentials);
+
+                if (type == 'message') return await lineChannel.sendMessageToUser({ userId: recipient.id, text })
+
+                break;
             default:
-                console.log(`Send message to Bot: Does not support channel type ${channelType}`);
+                console.log(`[Incoming message] Send message to Bot: Does not support channel type ${channelType}`);
                 break;
         }
     }

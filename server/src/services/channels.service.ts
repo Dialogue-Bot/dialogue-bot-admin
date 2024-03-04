@@ -1,3 +1,4 @@
+import { LineChannel } from '@/channels/line.channel';
 import { MessengerChannel } from '@/channels/messenger.channel';
 import { LOCALE_KEY } from '@/constants';
 import { db } from '@/database/db';
@@ -238,7 +239,7 @@ export class ChannelService {
     initChannel(channel: ChannelInfo) {
         const { id, contactId, contactName, channelType, credentials } = channel;
 
-        console.log(`Init channel: ${channelType} - ${contactName} ${contactId}`);
+        console.log(`[Init channel] ${channelType} - ${contactName} ${contactId}`);
 
         switch (channelType) {
             case 'MSG':
@@ -249,10 +250,20 @@ export class ChannelService {
                     channelType,
                     credentials
                 );
-            default:
-                console.log(
-                    `Init channel: Does not support channel type ${channel.channelType}`
+            case 'LIN':
+                const linChannel = new LineChannel(
+                    id,
+                    contactId,
+                    contactName,
+                    channelType,
+                    credentials
                 );
+
+                linChannel.registerWebhook();
+
+                return linChannel;
+            default:
+                console.log(`[Init channel] Does not support channel type ${channel.channelType}`);
                 break;
         }
 

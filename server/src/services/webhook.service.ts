@@ -1,3 +1,4 @@
+import { LineChannel } from "@/channels/line.channel";
 import { MessengerChannel } from "@/channels/messenger.channel";
 import { LOCALE_KEY } from "@/constants";
 import { HttpException } from "@/exceptions/http-exception";
@@ -47,7 +48,7 @@ export class WebhookService {
         const expectedChannel = await this.chanelService.findOneByContactId(contactId);
 
         if (!expectedChannel) {
-            console.log('Incoming message: Can not find channel with id ', req.params.id);
+            console.log('[Incoming message] Can not find channel with id ', req.params.id);
             return;
         }
 
@@ -60,8 +61,12 @@ export class WebhookService {
                 const messengerChannel = new MessengerChannel(id, contactId, contactName, channelType, credentials);
                 prepareMessage = await messengerChannel.prepareMessage(req, res);
                 break;
+            case 'LIN':
+                const lineChannel = new LineChannel(id, contactId, contactName, channelType, credentials);
+                prepareMessage = await lineChannel.prepareMessage(req, res);
+                break;
             default:
-                console.log(`Incoming message: Does not support channel type ${channelType}`);
+                console.log(`[Incoming message] Does not support channel type ${channelType}`);
                 break;
         }
 
