@@ -33,7 +33,7 @@ export class MessengerChannel extends BaseChannel {
         let challenge = req.query['hub.challenge'];
 
         if (mode === 'subscribe' && this.webhookSecret == token) {
-            console.log(`channel ${this.channelType} - ${this.contactName} ${this.contactId} webhook verified!`);
+            console.log(`[MSG] channel ${this.channelType} - ${this.contactName} ${this.contactId} webhook verified!`);
             return challenge;
         } else {
             console.error(`[MSG] Verification channel ${this.channelType} - ${this.contactName} ${this.contactId} failed!`);
@@ -89,9 +89,9 @@ export class MessengerChannel extends BaseChannel {
                     message: { text },
                 },
             });
-            console.log(`[MSG] Sent: ${text} to ${userId}`);
+            console.log(`[MSG] Sent message: ${text} from ${userId} to Bot`);
         } catch (e) {
-            console.log(`[MSG] ${this.contactId} Can not send message to messenger ${e.message}`);
+            console.log(`[MSG] ${this.contactId} Can not send message to Bot - ${e.message}`);
         }
     }
 
