@@ -21,6 +21,8 @@ import tableColEn from '@/locales/en/table-cols.json';
 import tableColVi from '@/locales/vi/table-cols.json';
 import channelEn from '@/locales/en/channel.json';
 import channelVi from '@/locales/vi/channel.json';
+import tableEn from '@/locales/en/table.json';
+import tableVi from '@/locales/vi/table.json';
 
 const resources = {
    [ELang.EN]: {
@@ -35,6 +37,7 @@ const resources = {
       mail: mailEN,
       tableCols: tableColEn,
       channel: channelEn,
+      dataTable: tableEn,
    },
    [ELang.VI]: {
       common: commonVI,
@@ -48,6 +51,7 @@ const resources = {
       mail: mailVI,
       tableCols: tableColVi,
       channel: channelVi,
+      dataTable: tableVi,
    },
 } as const;
 

@@ -14,6 +14,7 @@ import {
 } from '../select';
 import { Button } from '../button';
 import { Confirm } from '../confirm';
+import { useTranslation } from 'react-i18next';
 
 interface DataTablePaginationProps<TData> {
    table: Table<TData>;
@@ -26,29 +27,35 @@ export function DataTablePagination<TData>({
    onDelete,
    isLoadingDelete,
 }: DataTablePaginationProps<TData>) {
+   const { t } = useTranslation('dataTable');
    return (
       <div className="flex items-center justify-between px-2">
          <div className="flex items-center gap-2">
             <div className="flex-1 text-sm text-muted-foreground whitespace-nowrap">
-               {table.getFilteredSelectedRowModel().rows.length} trên{' '}
-               {table.getFilteredRowModel().rows.length} dòng được chọn.
+               {t('row_selected', {
+                  selected: table.getFilteredSelectedRowModel().rows.length,
+                  total: table.getFilteredRowModel().rows.length,
+               })}
             </div>
             {onDelete && table.getFilteredSelectedRowModel().rows.length ? (
                <Confirm
-                  description="Hành động này không thể hoàn tác. Bạn có chắc chắn muốn xoá?"
+                  description={t('remove_confirm_desc')}
                   isLoading={isLoadingDelete}
                   onConfirm={onDelete}
-                  title="Xoá những dòng đã chọn?"
+                  title={t('remove_confirm_title')}
                >
                   <span className=" text-sm text-red-500 cursor-pointer">
-                     Xoá {table.getFilteredSelectedRowModel().rows.length} dòng
+                     {t('remove_row', {
+                        selected:
+                           table.getFilteredSelectedRowModel().rows.length,
+                     })}
                   </span>
                </Confirm>
             ) : null}
          </div>
          <div className="flex items-center space-x-6 lg:space-x-8">
             <div className="flex items-center space-x-2">
-               <p className="text-sm font-medium">Dòng trên trang</p>
+               <p className="text-sm font-medium">{t('row_per_page')}:</p>
                <Select
                   onValueChange={(value) => {
                      table.setPageSize(Number(value));
@@ -70,8 +77,10 @@ export function DataTablePagination<TData>({
                </Select>
             </div>
             <div className="flex w-[100px] items-center justify-center text-sm font-medium whitespace-nowrap">
-               Trang {table.getState().pagination.pageIndex + 1} trên{' '}
-               {table.getPageCount()}
+               {t('page_of', {
+                  current: table.getState().pagination.pageIndex + 1,
+                  total: table.getPageCount(),
+               })}
             </div>
             <div className="flex items-center space-x-2">
                <Button

@@ -54,7 +54,7 @@ export const ROUTES = {
       },
       SETTING: {
          INDEX: '/settings',
-         MAIL: '/settings/email',
+         MAIL: '/settings/mail',
          PROFILES: '/settings/profiles',
       },
    },
