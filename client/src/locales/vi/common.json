@@ -21,5 +21,12 @@
       "delete": "Xóa"
    },
    "remove": "Xóa",
-   "cancel": "Hủy"
+   "cancel": "Hủy",
+   "submit": "Xác nhận",
+   "yes": "Có",
+   "no": "Không",
+   "ok": "OK",
+   "dialog_confirm_title": "Xác nhận",
+   "dialog_confirm_desc": "Bạn có chắc chắn không?",
+   "confirm": "Xác nhận"
 }

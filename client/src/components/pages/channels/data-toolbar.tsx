@@ -38,7 +38,7 @@ export const DataToolbar = () => {
                   <Trans
                      i18nKey="channel:add_channel_description"
                      components={{
-                        a: <Link to="/channels" />,
+                        a: <Link to="/channels" className="link" />,
                      }}
                   />
                </SheetDescription>

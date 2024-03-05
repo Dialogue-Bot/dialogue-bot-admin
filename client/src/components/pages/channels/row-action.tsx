@@ -18,9 +18,10 @@ import { useDeleteChannel, useUpdateChannel } from '@/hooks/channel';
 import { useBodyOverflow } from '@/hooks/use-body-overflow';
 import { TChannelWithChannelType } from '@/types/channel';
 import { Row } from '@tanstack/react-table';
-import { Link, MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal } from 'lucide-react';
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 type Props = {
    row: Row<TChannelWithChannelType>;
@@ -72,7 +73,7 @@ const RowActions = ({ row }: Props) => {
                      <Trans
                         i18nKey="channel:update_channel_description"
                         components={{
-                           a: <Link to="/channels" />,
+                           a: <Link to="/channels" className="link" />,
                         }}
                      />
                   </SheetDescription>

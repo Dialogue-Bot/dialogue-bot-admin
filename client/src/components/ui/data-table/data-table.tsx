@@ -28,6 +28,7 @@ import {
    TableRow,
 } from '../table';
 import { DataTablePagination } from './data-table-pagination';
+import { useTranslation } from 'react-i18next';
 
 interface DataTableProps<TData, TValue> {
    columns: ColumnDef<TData, TValue>[];
@@ -56,6 +57,7 @@ export function DataTable<TData, TValue>({
       []
    );
    const [sorting, setSorting] = React.useState<SortingState>([]);
+   const { t } = useTranslation(['dataTable']);
 
    const { state, ..._opts } = opts || {};
 
@@ -135,7 +137,7 @@ export function DataTable<TData, TValue>({
                            className="h-24 text-center"
                            colSpan={columns.length}
                         >
-                           Không có kết quả.
+                           {t('no_data')}
                         </TableCell>
                      </TableRow>
                   )}

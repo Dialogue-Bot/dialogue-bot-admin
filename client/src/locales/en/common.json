@@ -18,9 +18,16 @@
    "channels": "Channels",
    "search": "Search",
    "row_actions": {
-      "update": "Cập nhật",
-      "delete": "Xóa"
+      "update": "Update",
+      "delete": "Delete"
    },
    "remove": "Remove",
-   "cancel": "Cancel"
+   "cancel": "Cancel",
+   "submit": "Submit",
+   "yes": "Yes",
+   "no": "No",
+   "ok": "OK",
+   "dialog_confirm_title": "Confirm",
+   "dialog_confirm_desc": "Are you sure?",
+   "confirm": "Confirm"
 }
