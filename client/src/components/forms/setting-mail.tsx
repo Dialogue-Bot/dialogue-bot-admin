@@ -61,6 +61,7 @@ export const SettingMailForm = ({
                            <Input
                               {...field}
                               placeholder={t('email.placeholder')}
+                              autoComplete="one-time-code"
                            />
                         </FormControl>
                         <FormMessage />
@@ -80,6 +81,7 @@ export const SettingMailForm = ({
                               {...field}
                               placeholder={t('password.placeholder')}
                               type="password"
+                              autoComplete="one-time-code"
                            />
                         </FormControl>
                         <FormMessage />

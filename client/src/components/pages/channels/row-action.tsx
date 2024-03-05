@@ -19,7 +19,7 @@ import { useBodyOverflow } from '@/hooks/use-body-overflow';
 import { TChannelWithChannelType } from '@/types/channel';
 import { Row } from '@tanstack/react-table';
 import { Link, MoreHorizontal } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 type Props = {

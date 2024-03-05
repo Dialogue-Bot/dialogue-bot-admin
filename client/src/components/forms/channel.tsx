@@ -22,7 +22,7 @@ import { useQuery } from '@tanstack/react-query';
 import { queryChannelTypesOption } from '@/lib/query-options/channel';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChannelType } from '@/types/channel';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useDidUpdate } from '@/hooks/use-did-update';
 
 type Props = {
@@ -41,7 +41,10 @@ const ChannelForm = ({
    const form = useForm<TChannelInput>({
       resolver: zodResolver(schema),
       mode: 'onChange',
-      defaultValues,
+      defaultValues: {
+         active: true,
+         ...defaultValues,
+      },
    });
    const { data: types } = useQuery(queryChannelTypesOption);
 

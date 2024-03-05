@@ -100,8 +100,7 @@ export class AuthController {
    });
 
    public logout = catchAsync(async (req: RequestWithUser, res) => {
-
-      await this.authService.logout(req.user?.id as string)
+      await this.authService.logout(req.user?.id as string);
 
       this.clearTokensCookie(res);
 
@@ -129,7 +128,7 @@ export class AuthController {
    };
 
    private clearTokensCookie = (res: Response) => {
-      res.clearCookie('access_token',);
+      res.clearCookie('access_token');
       res.clearCookie('refresh_token');
    };
 }

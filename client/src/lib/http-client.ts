@@ -1,3 +1,5 @@
+import { auth } from '@/apis/auth';
+import { ROUTES } from '@/constants';
 import { ELang } from '@/types/share';
 import axios from 'axios';
 
@@ -27,7 +29,36 @@ http_client.interceptors.response.use(
    function (response) {
       return response.data;
    },
-   function (error) {
+   async function (error) {
+      const originalRequest = error.config;
+
+      if (
+         Object.values(ROUTES.AUTH).some((route) =>
+            window.location.pathname.includes(route)
+         )
+      ) {
+         return Promise.reject(error);
+      }
+
+      if (error.response?.status === 401 && !originalRequest._retry) {
+         try {
+            originalRequest._retry = true;
+
+            const tokens = await auth.refreshToken().then((r) => {
+               return r.data;
+            });
+
+            http_client.defaults.headers.common['Authorization'] =
+               `Bearer ${tokens?.accessToken}`;
+
+            return http_client(originalRequest);
+         } catch (error) {
+            const prevHref = window.location.href;
+            window.location.href = `/login?redirect=${prevHref}`;
+            return Promise.reject(error);
+         }
+      }
+
       return Promise.reject(error);
    }
 );

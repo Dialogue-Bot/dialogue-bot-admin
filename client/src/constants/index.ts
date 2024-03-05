@@ -31,3 +31,31 @@ export const ENDPOINTS = {
       TYPES: '/channel/types',
    },
 };
+
+export const ROUTES = {
+   AUTH: {
+      LOGIN: '/login',
+      REGISTER: '/register',
+      FORGOT_PASS: '/forgot-password',
+      RESET_PASS: '/set-password',
+   },
+   PUBLIC: {
+      LANDING_PAGE: '/',
+   },
+   PRIVATE: {
+      DASHBOARD: '/dashboard',
+      CHANNEL: {
+         INDEX: '/channels',
+         CREATE: '/channels/create',
+         EDIT: '/channels/edit',
+      },
+      CHAT_BOT: {
+         INDEX: '/chatbots',
+      },
+      SETTING: {
+         INDEX: '/settings',
+         MAIL: '/settings/email',
+         PROFILES: '/settings/profiles',
+      },
+   },
+};

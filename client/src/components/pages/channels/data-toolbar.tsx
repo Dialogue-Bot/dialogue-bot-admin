@@ -1,9 +1,7 @@
 import ChannelForm from '@/components/forms/channel';
 import {
    Button,
-   Input,
    Sheet,
-   SheetClose,
    SheetContent,
    SheetDescription,
    SheetFooter,
@@ -13,13 +11,9 @@ import {
 } from '@/components/ui';
 import { useCreateChannel } from '@/hooks/channel';
 import { useSearch } from '@/hooks/use-search';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-
-type Props = {
-   table: any;
-};
 
 export const DataToolbar = () => {
    const { renderInput } = useSearch();
