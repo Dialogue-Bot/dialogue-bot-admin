@@ -1,6 +1,6 @@
 import { ENDPOINTS } from '@/constants';
 import { ChangePasswordDto, UpdateInfoUserDto } from '@/dtos/users.dto';
-import { auth } from '@/middlewares/auth.middleware';
+import { authMiddleware } from '@/middlewares/auth.middleware';
 import { validate } from '@/middlewares/validation.middleware';
 import { UserController } from '@controllers/users.controller';
 import type { Routes } from '@interfaces/routes.interface';
@@ -15,16 +15,19 @@ export class UserRoute implements Routes {
    }
 
    initializeRoutes() {
-      this.router.patch(ENDPOINTS.USER.UPDATE_INFO,
+      this.router.patch(
+         ENDPOINTS.USER.UPDATE_INFO,
          validate(UpdateInfoUserDto),
-         auth,
+         authMiddleware,
          this.controller.updateInfo
-      )
+      );
 
-      this.router.post(ENDPOINTS.USER.CHANGE_PASSWORD,
+      this.router.post(
+         ENDPOINTS.USER.CHANGE_PASSWORD,
 
          validate(ChangePasswordDto),
-         auth,
-         this.controller.changePassword)
+         authMiddleware,
+         this.controller.changePassword
+      );
    }
 }

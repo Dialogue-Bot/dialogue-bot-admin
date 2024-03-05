@@ -19,6 +19,7 @@ import { AppLayout, AuthLayout, SettingLayout } from '@/components/layouts';
 import { TChannelQuery } from './types/channel';
 import { queryStringToObject } from './utils';
 import { queryChannelsOption } from './lib/query-options/channel';
+import { ROUTES } from './constants';
 
 export const router = createBrowserRouter([
    {
@@ -41,20 +42,20 @@ export const router = createBrowserRouter([
             Component: AuthLayout,
             children: [
                {
-                  path: '/login',
+                  path: ROUTES.AUTH.LOGIN,
                   Component: Login,
                   index: true,
                },
                {
-                  path: '/register',
+                  path: ROUTES.AUTH.REGISTER,
                   Component: Register,
                },
                {
-                  path: '/forgot-password',
+                  path: ROUTES.AUTH.FORGOT_PASS,
                   Component: ForgotPassword,
                },
                {
-                  path: '/set-password',
+                  path: ROUTES.AUTH.RESET_PASS,
                   Component: SetPassword,
                },
             ],
@@ -71,7 +72,7 @@ export const router = createBrowserRouter([
                });
 
                if (!user) {
-                  return redirect(`/login?${url.toString()}`);
+                  return redirect(`${ROUTES.AUTH.LOGIN}?${url.toString()}`);
                }
 
                useUserStore.getState().setUser(user);
@@ -80,14 +81,14 @@ export const router = createBrowserRouter([
             },
             children: [
                {
-                  path: '/dashboard',
+                  path: ROUTES.PRIVATE.DASHBOARD,
                   index: true,
                   loader: async () => {
-                     return redirect('/chatbots');
+                     return redirect(ROUTES.PRIVATE.CHAT_BOT.INDEX);
                   },
                },
                {
-                  path: '/chatbots',
+                  path: ROUTES.PRIVATE.CHAT_BOT.INDEX,
                   element: <div>a</div>,
                   loader: () => {
                      useAppLayoutStore
@@ -98,7 +99,7 @@ export const router = createBrowserRouter([
                   },
                },
                {
-                  path: '/channels',
+                  path: ROUTES.PRIVATE.CHANNEL.INDEX,
                   Component: Channels,
                   loader: async ({ request }) => {
                      const query: TChannelQuery = queryStringToObject(
@@ -117,7 +118,7 @@ export const router = createBrowserRouter([
                   },
                },
                {
-                  path: '/settings',
+                  path: ROUTES.PRIVATE.SETTING.INDEX,
                   Component: SettingLayout,
                   loader: async () => {
                      const data =
@@ -132,17 +133,17 @@ export const router = createBrowserRouter([
                   },
                   children: [
                      {
-                        path: 'mail',
+                        path: ROUTES.PRIVATE.SETTING.MAIL,
                         Component: Mail,
                      },
                      {
-                        path: 'profiles',
+                        path: ROUTES.PRIVATE.SETTING.PROFILES,
                         Component: Profiles,
                      },
                      {
                         index: true,
                         loader: async () => {
-                           return redirect('/settings/profiles');
+                           return redirect(ROUTES.PRIVATE.SETTING.PROFILES);
                         },
                      },
                   ],
@@ -150,7 +151,7 @@ export const router = createBrowserRouter([
             ],
          },
          {
-            path: '/',
+            path: ROUTES.PUBLIC.LANDING_PAGE,
             element: <div>Hi</div>,
          },
       ],

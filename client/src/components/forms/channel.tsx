@@ -41,7 +41,10 @@ const ChannelForm = ({
    const form = useForm<TChannelInput>({
       resolver: zodResolver(schema),
       mode: 'onChange',
-      defaultValues,
+      defaultValues: {
+         active: true,
+         ...defaultValues,
+      },
    });
    const { data: types } = useQuery(queryChannelTypesOption);
 

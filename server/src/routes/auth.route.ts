@@ -6,7 +6,7 @@ import {
    RegisterDto,
    ResetPasswordDto,
 } from '@/dtos/auth.dto';
-import { auth } from '@/middlewares/auth.middleware';
+import { authMiddleware } from '@/middlewares/auth.middleware';
 import { validate } from '@/middlewares/validation.middleware';
 import { AuthController } from '@controllers/auth.controller';
 import type { Routes } from '@interfaces/routes.interface';
@@ -64,16 +64,14 @@ export class AuthRoute implements Routes {
 
       this.router.get(
          ENDPOINTS.AUTH.CURRENT_USER,
-         auth,
+         authMiddleware,
          this.controller.getCurrentUser
       );
 
       this.router.post(
          ENDPOINTS.AUTH.LOGOUT,
-         auth,
+         authMiddleware,
          this.controller.logout
       );
-
-
    }
 }
