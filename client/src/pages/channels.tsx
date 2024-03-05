@@ -30,7 +30,7 @@ export const Channels = () => {
             <DataTable
                columns={cols}
                data={data.items || []}
-               renderToolbar={(table) => <DataToolbar />}
+               renderToolbar={() => <DataToolbar />}
                opts={{
                   state: {
                      sorting,
