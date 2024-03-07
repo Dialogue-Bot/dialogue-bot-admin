@@ -13,6 +13,7 @@ import {
     ChannelType,
 } from '@/interfaces/channels.interface';
 import { Paging } from '@/interfaces/paging.interface';
+import { logger } from '@/utils/logger';
 import { and, asc, desc, eq, inArray, like, sql } from 'drizzle-orm';
 import { StatusCodes } from 'http-status-codes';
 import { Inject, Service } from 'typedi';
@@ -239,7 +240,7 @@ export class ChannelService {
     initChannel(channel: ChannelInfo) {
         const { id, contactId, contactName, channelType, credentials } = channel;
 
-        console.log(`[Init channel] ${channelType} - ${contactName} ${contactId}`);
+        logger.info(`[Init channel] ${channelType} - ${contactName} ${contactId}`);
 
         switch (channelType) {
             case 'MSG':
@@ -263,7 +264,7 @@ export class ChannelService {
 
                 return linChannel;
             default:
-                console.log(`[Init channel] Does not support channel type ${channel.channelType}`);
+                logger.info(`[Init channel] Does not support channel type ${channel.channelType}`);
                 break;
         }
 

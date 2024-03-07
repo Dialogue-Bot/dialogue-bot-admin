@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
-import { Locales } from './i18n-types';
 import L from './i18n-node';
+import { Locales } from './i18n-types';
 
 @Service()
 export class LocaleService {

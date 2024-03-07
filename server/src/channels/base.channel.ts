@@ -1,4 +1,5 @@
 import { BOT_ENDPOINT, PUBLIC_DOMAIN } from "@/config";
+import { logger } from "@/utils/logger";
 import axios from "axios";
 
 export class BaseChannel {
@@ -39,14 +40,10 @@ export class BaseChannel {
                 },
             })
             if (postMsg.data.success) {
-                console.log(
-                    `[${this.channelType} - ${this.contactName} ${this.contactId}] - [Conversation ID: ${uid}] - [Send message to bot - Message: ${message}] - [Data: ${data}]`
-                )
+                logger.info(`[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`)
             }
         } catch (error) {
-            console.log(
-                `[${this.channelType} - ${this.contactName} ${this.contactId}] - [Conversation ID: ${uid}] - [Can not send message to bot - Message: ${message}] - [Error: ${error.message}]`
-            );
+            logger.info(`[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`);
         }
     }
 

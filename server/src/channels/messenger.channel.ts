@@ -1,4 +1,5 @@
 import { Helper } from "@/utils/helper";
+import { logger } from "@/utils/logger";
 import axios from "axios";
 import { Request, Response } from "express";
 import { BaseChannel } from "./base.channel";
@@ -33,7 +34,7 @@ export class MessengerChannel extends BaseChannel {
         let challenge = req.query['hub.challenge'];
 
         if (mode === 'subscribe' && this.webhookSecret == token) {
-            console.log(`[MSG] channel ${this.channelType} - ${this.contactName} ${this.contactId} webhook verified!`);
+            logger.info(`[MSG] channel ${this.channelType} - ${this.contactName} ${this.contactId} webhook verified!`);
             return challenge;
         } else {
             console.error(`[MSG] Verification channel ${this.channelType} - ${this.contactName} ${this.contactId} failed!`);
@@ -89,9 +90,10 @@ export class MessengerChannel extends BaseChannel {
                     message: { text },
                 },
             });
-            console.log(`[MSG] Sent message: ${text} from ${userId} to Bot`);
+
+            logger.info(`[MSG] Bot Sent message to User ${userId} - Message: ${text}`);
         } catch (e) {
-            console.log(`[MSG] ${this.contactId} Can not send message to Bot - ${e.message}`);
+            logger.info(`[MSG] Bot Sent message to User ${userId} failed - Error: ${e.message}`);
         }
     }
 
@@ -115,7 +117,7 @@ export class MessengerChannel extends BaseChannel {
                 },
             });
         } catch (e) {
-            console.log('[MSG] Messenger can not send action to user', e.message);
+            logger.info(`[MSG] Messenger can not send action to User - Error: ${e.message}`);
         }
     }
 }

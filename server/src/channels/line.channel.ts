@@ -1,4 +1,5 @@
 import { PUBLIC_DOMAIN } from "@/config";
+import { logger } from "@/utils/logger";
 import axios from "axios";
 import { Request, Response } from "express";
 import { BaseChannel } from "./base.channel";
@@ -36,9 +37,9 @@ export class LineChannel extends BaseChannel {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(`[LIN] Registered webhook for ${this.channelType} - ${this.contactName} ${this.contactId}`);
+            logger.info(`[LIN] Registered webhook for ${this.channelType} - ${this.contactName} ${this.contactId}`);
         } catch (e) {
-            console.log(`[LIN] Can not register webhook for ${this.channelType} - ${this.contactName} ${this.contactId}`);
+            logger.info(`[LIN] Can not register webhook for ${this.channelType} - ${this.contactName} ${this.contactId}`);
 
         }
     }
@@ -56,7 +57,7 @@ export class LineChannel extends BaseChannel {
 
             return data.userId;
         } catch (e) {
-            console.log(`[LIN] Can not get user ID for ${this.channelType} - ${this.contactName} ${this.contactId}`);
+            logger.info(`[LIN] Can not get user ID for ${this.channelType} - ${this.contactName} ${this.contactId}`);
         }
     }
 
@@ -72,12 +73,8 @@ export class LineChannel extends BaseChannel {
                 const { message, source } = events[0];
 
                 await this.postMessageToBot({ userId: source.userId, message: message.text, data: null });
-
-                console.log(`[LIN] Sent message: ${message.text} from ${lineUserId} to Bot`);
             }
-        } catch (e) {
-            console.log(`[LIN] ${this.contactId} Can not send message to Bot - ${e.message}`);
-        }
+        } catch (e) { }
     }
 
     public async sendMessageToUser({ userId, text }) {
@@ -96,8 +93,10 @@ export class LineChannel extends BaseChannel {
                     Authorization: 'Bearer ' + this.pageToken,
                 },
             })
+
+            logger.info(`[LIN] Bot send message to User ${lineUserId} - Message: ${text}`);
         } catch (e) {
-            console.log(`[LIN] Send message to User ${lineUserId} failed`);
+            logger.info(`[LIN] Bot send message to User ${lineUserId} failed - Error: ${e.message}`);
         }
     }
 }
