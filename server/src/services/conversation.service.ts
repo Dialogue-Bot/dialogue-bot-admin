@@ -1,5 +1,6 @@
 import { LineChannel } from "@/channels/line.channel";
 import { MessengerChannel } from "@/channels/messenger.channel";
+import { logger } from "@/utils/logger";
 import { Request } from "express-serve-static-core";
 import { Service } from "typedi";
 import { ChannelService } from "./channels.service";
@@ -15,7 +16,7 @@ export class ConversationService {
 
         const expectedChannel = await this.chanelService.findOneByContactId(from.id);
 
-        if (!expectedChannel) console.log('Can not find channel to send to user!');
+        if (!expectedChannel) logger.info('Can not find channel to send to user!');
 
         const { id, contactName, channelType, credentials } = expectedChannel;
 
@@ -35,7 +36,7 @@ export class ConversationService {
 
                 break;
             default:
-                console.log(`[Incoming message] Send message to Bot: Does not support channel type ${channelType}`);
+                logger.info(`[Incoming message] Send message to Bot: Does not support channel type ${channelType}`);
                 break;
         }
     }
