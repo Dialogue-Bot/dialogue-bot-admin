@@ -1,5 +1,5 @@
 import { Input } from '@/components/ui';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useDebounceValue } from 'usehooks-ts';
 import { useDidUpdate } from './use-did-update';

@@ -30,11 +30,14 @@
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "types": [
+      "mdx"
+    ]
   },
   "include": [
     "src",
     "@types",
-    "src/i18next.d.ts"
+    "src/i18next.d.ts",
   ],
   "references": [
     {

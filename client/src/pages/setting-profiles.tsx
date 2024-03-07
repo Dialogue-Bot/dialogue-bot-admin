@@ -30,7 +30,7 @@ import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-export const Profiles = () => {
+const Profiles = () => {
    const { t } = useTranslation(['profile', 'common', 'forms']);
 
    const { user } = useUserStore();
@@ -254,3 +254,5 @@ export const Profiles = () => {
       </div>
    );
 };
+
+export default Profiles;
