@@ -41,6 +41,7 @@ export const ROUTES = {
    },
    PUBLIC: {
       LANDING_PAGE: '/',
+      HELP: '/help',
    },
    PRIVATE: {
       DASHBOARD: '/dashboard',

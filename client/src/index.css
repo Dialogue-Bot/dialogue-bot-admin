@@ -70,3 +70,7 @@ body[data-overflow='true']#body-overflow {
    overflow: hidden !important;
    margin-right: var(--scrollbar-width) !important;
 }
+
+html {
+   scroll-behavior: smooth;
+}

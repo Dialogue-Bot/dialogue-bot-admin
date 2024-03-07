@@ -1,4 +1,3 @@
-import { channelApi } from '@/apis/channel';
 import { ChannelType } from '@/types/channel';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';

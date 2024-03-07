@@ -14,7 +14,7 @@ import { useSettingStore } from '@/store/use-setting';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-export const Mail = () => {
+const Mail = () => {
    const { t } = useTranslation(['mail', 'common']);
 
    const { setting } = useSettingStore();
@@ -75,3 +75,5 @@ export const Mail = () => {
       </div>
    );
 };
+
+export default Mail;

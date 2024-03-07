@@ -23,6 +23,10 @@ import channelEn from '@/locales/en/channel.json';
 import channelVi from '@/locales/vi/channel.json';
 import tableEn from '@/locales/en/table.json';
 import tableVi from '@/locales/vi/table.json';
+import landingPageEn from '@/locales/en/landing-page.json';
+import landingPageVi from '@/locales/vi/landing-page.json';
+import helpEn from '@/locales/en/help.json';
+import helpVi from '@/locales/vi/help.json';
 
 const resources = {
    [ELang.EN]: {
@@ -38,6 +42,8 @@ const resources = {
       tableCols: tableColEn,
       channel: channelEn,
       dataTable: tableEn,
+      landingPage: landingPageEn,
+      help: helpEn,
    },
    [ELang.VI]: {
       common: commonVI,
@@ -52,6 +58,8 @@ const resources = {
       tableCols: tableColVi,
       channel: channelVi,
       dataTable: tableVi,
+      landingPage: landingPageVi,
+      help: helpVi,
    },
 } as const;
 

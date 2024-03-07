@@ -11,9 +11,9 @@ module.exports = {
    theme: {
       container: {
          center: true,
-         padding: '2rem',
+         padding: '1rem',
          screens: {
-            '2xl': '1400px',
+            '2xl': '1232px',
          },
       },
       extend: {
@@ -80,5 +80,8 @@ module.exports = {
          },
       },
    },
-   plugins: [require('tailwindcss-animate')],
+   plugins: [
+      require('tailwindcss-animate'),
+      require('@tailwindcss/typography'),
+   ],
 };

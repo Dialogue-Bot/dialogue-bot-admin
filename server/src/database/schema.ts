@@ -103,6 +103,30 @@ export const settings = pgTable('settings', {
       .references(() => users.id),
 });
 
+export const botFlows = pgTable('bot_flows', {
+   id: varchar('id', {
+      length: MAX_ID_LENGTH,
+   })
+      .primaryKey()
+      .$defaultFn(() => createId()),
+   name: text('name').notNull(),
+   userId: varchar('user_id', {
+      length: MAX_ID_LENGTH,
+   })
+      .notNull()
+      .references(() => users.id),
+   deletedAt: timestamp('deleted_at'),
+   updatedAt: timestamp('updated_at').defaultNow(),
+   createdAt: timestamp('created_at').defaultNow(),
+   diagrams: json('diagrams').default([]).$type<any[]>(),
+   edges: json('edges').default([]).$type<any[]>(),
+   nodes: json('nodes').default([]).$type<any[]>(),
+   settings: json('settings').default([]).$type<any[]>(),
+   variables: json('variables').default({}).$type<any>(),
+   flows: json('flows').default([]).$type<any[]>(),
+   publishAt: timestamp('publish_at'),
+});
+
 export const usersRelations = relations(users, ({ one, many }) => ({
    settings: one(settings, {
       relationName: 'userSettings',
@@ -110,4 +134,5 @@ export const usersRelations = relations(users, ({ one, many }) => ({
       references: [settings.userId],
    }),
    channels: many(channels),
+   botFlows: many(botFlows),
 }));
