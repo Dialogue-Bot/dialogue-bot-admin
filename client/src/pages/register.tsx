@@ -3,7 +3,7 @@ import { useRegister } from '@/hooks/auth';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-export const Register = () => {
+const Register = () => {
    const { t } = useTranslation(['common', 'register']);
 
    const registerMutation = useRegister();
@@ -46,3 +46,5 @@ export const Register = () => {
       </div>
    );
 };
+
+export default Register;

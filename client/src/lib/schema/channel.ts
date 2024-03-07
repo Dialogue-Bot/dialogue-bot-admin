@@ -1,10 +1,12 @@
-import { channelApi } from '@/apis/channel';
 import { ChannelType } from '@/types/channel';
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import * as z from 'zod';
+import { queryChannelTypesOption } from '../query-options/channel';
 
 export const useChannelSchema = () => {
    const { t } = useTranslation('forms');
+   const { data: types } = useQuery(queryChannelTypesOption);
 
    return z
       .object({
@@ -33,9 +35,11 @@ export const useChannelSchema = () => {
       })
       .superRefine(async (data, ctx) => {
          if (data.credentials) {
-            const type = await channelApi
-               .getChannelType(data.channelTypeId)
-               .then((r) => r.data);
+            const type = types?.find((type) => type.id === data.channelTypeId);
+
+            if (!type) {
+               return;
+            }
 
             switch (type.name) {
                case ChannelType.MESSENGER:

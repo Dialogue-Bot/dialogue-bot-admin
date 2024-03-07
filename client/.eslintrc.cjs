@@ -24,5 +24,9 @@ module.exports = {
          },
       ],
       '@typescript-eslint/ban-ts-comment': 'off',
+      'react-refresh/only-export-components': [
+         'warn',
+         { allowExportNames: ['loader'] },
+      ],
    },
 };

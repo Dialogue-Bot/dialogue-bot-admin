@@ -2,6 +2,7 @@ import { render } from '@react-email/render';
 import nodemailer from 'nodemailer';
 import { logger } from '../utils/logger';
 import { ForgotPassword, ForgotPasswordProps } from './templates';
+import { MAIL_PASS, MAIL_USER } from '@/config';
 
 interface TemplateProps {
    'forgot-password': ForgotPasswordProps;
@@ -16,17 +17,25 @@ const MAP_TEMPLATES: TMapTemplates = {
    'verify-email': () => '',
 };
 
+export type TTemplate = keyof TemplateProps;
 
 export const sendMail = async <T extends keyof TemplateProps>(opts: {
    to: string;
    subject: string;
    template: T;
    props: TemplateProps[T];
-   user?: string
-   pass?: string
+   from?: string;
+   user?: string;
+   pass?: string;
 }) => {
-   const { to, subject, template, props, pass
-      = process.env.MAIL_PASS, user = process.env.MAIL_USER
+   const {
+      to,
+      subject,
+      template,
+      props,
+      pass = MAIL_PASS,
+      user = MAIL_USER,
+      from = MAIL_USER,
    } = opts;
    try {
       const html = MAP_TEMPLATES[template](props);
@@ -42,9 +51,8 @@ export const sendMail = async <T extends keyof TemplateProps>(opts: {
          },
       });
 
-
       await transporter.sendMail({
-         from: process.env.MAIL_FROM,
+         from,
          to,
          subject,
          html,

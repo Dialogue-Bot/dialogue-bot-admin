@@ -2,7 +2,7 @@ import { ENDPOINTS } from '@/constants';
 import { SettingController } from '@/controllers/setting.controller';
 import { UpdateEmailSettingDto } from '@/dtos/setting.dto';
 import { Routes } from '@/interfaces/routes.interface';
-import { auth } from '@/middlewares/auth.middleware';
+import { authMiddleware } from '@/middlewares/auth.middleware';
 import { decryptMiddleware } from '@/middlewares/decrypt.middleware';
 import { validate } from '@/middlewares/validation.middleware';
 import { Router } from 'express';
@@ -18,7 +18,7 @@ export class SettingRoute implements Routes {
    initializeRoutes() {
       this.router.get(
          ENDPOINTS.SETTING.INDEX,
-         auth,
+         authMiddleware,
          this.controller.getSetting
       );
 
@@ -26,7 +26,7 @@ export class SettingRoute implements Routes {
          ENDPOINTS.SETTING.MAIL,
          decryptMiddleware,
          validate(UpdateEmailSettingDto),
-         auth,
+         authMiddleware,
          this.controller.updateEmailSetting
       );
    }

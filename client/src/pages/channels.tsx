@@ -10,7 +10,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { getSortedRowModel } from '@tanstack/react-table';
 import { useSearchParams } from 'react-router-dom';
 
-export const Channels = () => {
+const Channels = () => {
    const [search] = useSearchParams();
 
    const { setSorting, sorting } = useSorting();
@@ -30,7 +30,7 @@ export const Channels = () => {
             <DataTable
                columns={cols}
                data={data.items || []}
-               renderToolbar={(table) => <DataToolbar />}
+               renderToolbar={() => <DataToolbar />}
                opts={{
                   state: {
                      sorting,

@@ -34,7 +34,7 @@ export class AuthService {
       private readonly sendMailQueue: SendMailQueue,
       @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
       private readonly firebaseService: FirebaseService
-   ) { }
+   ) {}
 
    public async login(fields: LoginDto): Promise<TTokenData> {
       const user = await this.userService.findOneByEmail(fields.email);
@@ -278,6 +278,7 @@ export class AuthService {
    }
 
    public async refreshToken(refreshToken: string): Promise<TTokenData> {
+      logger.info('[AUTH] Try to refresh token');
       const decoded = (await this.verifyToken(
          refreshToken,
          REFRESH_TOKEN_SECRET as string
@@ -286,8 +287,9 @@ export class AuthService {
       const tokenInRedis = await redis.get(`refresh-token:${decoded.id}`);
 
       if (refreshToken !== tokenInRedis) {
+         logger.error('[AUTH] Refresh token failed');
          throw new HttpException(
-            StatusCodes.UNAUTHORIZED,
+            StatusCodes.BAD_REQUEST,
             this.localeService.i18n().AUTH.TOKEN_INVALID_OR_EXPIRED()
          );
       }
@@ -295,9 +297,10 @@ export class AuthService {
       const user = await this.userService.findOneById(decoded.id);
 
       if (!user) {
+         logger.error('[AUTH] Refresh token failed');
          throw new HttpException(
             StatusCodes.NOT_FOUND,
-            'Tài khoản không tồn tại'
+            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
          );
       }
 
@@ -310,6 +313,7 @@ export class AuthService {
          TIME_EXPIRED_REFRESH_TOKEN
       );
 
+      logger.info('[AUTH] Refresh token success');
       return tokenData;
    }
 
@@ -350,7 +354,7 @@ export class AuthService {
          dataStoredInToken,
          ACCESS_TOKEN_SECRET as string,
          {
-            expiresIn: '1d',
+            expiresIn: '2h',
          }
       );
 
@@ -358,7 +362,7 @@ export class AuthService {
          dataStoredInToken,
          REFRESH_TOKEN_SECRET as string,
          {
-            expiresIn: '30d',
+            expiresIn: '7d',
          }
       );
 
@@ -383,7 +387,7 @@ export class AuthService {
             if (err) {
                reject(
                   new HttpException(
-                     StatusCodes.UNAUTHORIZED,
+                     StatusCodes.BAD_REQUEST,
                      L[
                         this.localeService.getLocale()
                      ].AUTH.TOKEN_INVALID_OR_EXPIRED()

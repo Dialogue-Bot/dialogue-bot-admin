@@ -5,7 +5,7 @@ import { GoogleProvider } from '@/lib/firebase';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-export const Login = () => {
+const Login = () => {
    const { t } = useTranslation(['login', 'common']);
 
    const loginMutation = useLogin();
@@ -87,3 +87,5 @@ export const Login = () => {
       </div>
    );
 };
+
+export default Login;

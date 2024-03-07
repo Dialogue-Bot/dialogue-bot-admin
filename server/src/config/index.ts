@@ -30,4 +30,6 @@ export const {
    SIGNATURE_SECRET,
    PUBLIC_DOMAIN,
    BOT_ENDPOINT,
+   MAIL_USER,
+   MAIL_PASS,
 } = process.env;

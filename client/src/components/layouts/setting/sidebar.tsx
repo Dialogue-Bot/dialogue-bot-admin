@@ -1,8 +1,7 @@
-import PageTitle from '@/components/page-title';
 import { cn } from '@/lib/utils';
 import { CircleUserRound, Mails } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const SIDEBAR_ITEMS = [
    {

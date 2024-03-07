@@ -18,7 +18,7 @@ const getAuthorization = (req: Request): string | null => {
    return null;
 };
 
-export const auth = async (
+export const authMiddleware = async (
    req: RequestWithUser,
    res: Response,
    next: NextFunction
@@ -27,8 +27,6 @@ export const auth = async (
       const userService = Container.get(UserService);
       const authService = Container.get(AuthService);
       const Authorization = getAuthorization(req);
-
-
 
       if (Authorization) {
          const { id } = (await authService.verifyToken(
@@ -52,7 +50,7 @@ export const auth = async (
       } else {
          next(
             new HttpException(
-               StatusCodes.BAD_REQUEST,
+               StatusCodes.UNAUTHORIZED,
                'Token đăng nhập không tồn tại'
             )
          );

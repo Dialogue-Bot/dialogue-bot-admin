@@ -6,7 +6,7 @@ import { Service } from 'typedi';
 import { decrypt, encrypt } from '@/utils/crypto';
 @Service()
 export class SettingService {
-   async findByUserId(userId: string) {
+   async findByUserId(userId: string): Promise<string> {
       const [setting] = await db
          .select()
          .from(settings)

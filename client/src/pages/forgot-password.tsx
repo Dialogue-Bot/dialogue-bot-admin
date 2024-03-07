@@ -4,7 +4,7 @@ import { useForgotPass } from '@/hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-export const ForgotPassword = () => {
+const ForgotPassword = () => {
    const { t } = useTranslation();
 
    const forgotPassMutation = useForgotPass();
@@ -41,3 +41,5 @@ export const ForgotPassword = () => {
       </div>
    );
 };
+
+export default ForgotPassword;
