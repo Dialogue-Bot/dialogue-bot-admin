@@ -323,4 +323,27 @@ export class ChannelService {
 
         return type;
     }
+
+    public async updateFlowId(ids: string[], flowId: string) {
+        for (const id in ids) {
+            const channelExisted = await db.query.channels.findFirst({
+                where: eq(channels.id, id),
+            });
+
+            if (!channelExisted) {
+                logger.info(`Channel ID ${id} does not exist to update flow!`);
+                continue;
+            }
+
+            channelExisted.flowId = flowId;
+
+            await db
+                .update(channels)
+                .set(channelExisted)
+                .where(eq(channels.id, id))
+                .returning();
+        }
+
+        return true;
+    }
 }
