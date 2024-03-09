@@ -14,7 +14,11 @@ export const authLoader = async ({ request }: any) => {
    const user = await queryClient.ensureQueryData(currentUserQueryOptions());
 
    if (user) {
-      return redirect(redirectUrl || '/chatbots');
+      return redirect(
+         redirectUrl
+            ? encodeURIComponent(redirectUrl)
+            : ROUTES.PRIVATE.CHAT_BOT.INDEX
+      );
    }
 
    return null;
@@ -28,7 +32,9 @@ export const appLoader = async () => {
    });
 
    if (!user) {
-      return redirect(`${ROUTES.AUTH.LOGIN}?${url.toString()}`);
+      return redirect(
+         `${ROUTES.AUTH.LOGIN}?${encodeURIComponent(url.toString())}`
+      );
    }
 
    useUserStore.getState().setUser(user);

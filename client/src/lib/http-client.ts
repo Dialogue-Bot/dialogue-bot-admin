@@ -2,6 +2,7 @@ import { auth } from '@/apis/auth';
 import { ROUTES } from '@/constants';
 import { ELang } from '@/types/share';
 import axios from 'axios';
+import { de } from 'date-fns/locale';
 
 const http_client = axios.create({
    baseURL: 'http://localhost:8080/api',
@@ -54,7 +55,9 @@ http_client.interceptors.response.use(
             return http_client(originalRequest);
          } catch (error) {
             const prevHref = window.location.href;
-            window.location.href = `/login?redirect=${prevHref}`;
+            window.location.href = `/login?redirect=${encodeURIComponent(
+               prevHref
+            )}`;
             return Promise.reject(error);
          }
       }
