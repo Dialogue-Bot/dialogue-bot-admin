@@ -7,7 +7,7 @@ import { HttpException } from '@/exceptions/http-exception';
 import { LocaleService } from '@/i18n/ctx';
 import { FlowExtend } from '@/interfaces/flows.interface';
 import { Paging } from '@/interfaces/paging.interface';
-import { and, asc, desc, eq, like, ne, notExists, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, isNotNull, like, ne, notExists, sql } from 'drizzle-orm';
 import { StatusCodes } from 'http-status-codes';
 import { Inject, Service } from 'typedi';
 import { ChannelService } from './channels.service';
@@ -152,10 +152,6 @@ export class FlowService {
         return flowExisted;
     }
 
-    public async getFlowByContactId(contactId: string) {
-
-    }
-
     public async getAllFlows(paging: PagingDTO,
         userId: string
     ): Promise<Paging<FlowExtend>> {
@@ -200,7 +196,6 @@ export class FlowService {
                 : desc(flows[key || defaultOrderBy]);
         return orderBy;
     }
-
 
     public async addMultipleChannels(channelIDs: string[], flowId: string, userId: string) {
         const flowExisted = await db.query.flows.findFirst({
@@ -250,5 +245,33 @@ export class FlowService {
             );
 
         return result;
+    }
+
+    public async getFlowByContactId(contactId: string) {
+        const flow = db.query.flows.findFirst({
+            where: and(
+                eq(flows.deleted, false),
+                isNotNull(flows.publishAt),
+                isNotNull(
+                    db.select({
+                        id: channels.id
+                    })
+                        .from(channels)
+                        .where(
+                            and(
+                                eq(channels.contactId, contactId),
+                            )
+                        )
+                )
+            )
+        });
+
+        if (!flow) {
+            throw new HttpException(
+                StatusCodes.BAD_REQUEST,
+                this.localeService.i18n().FLOW.NOT_FOUND()
+            );
+        }
+        return flow;
     }
 }

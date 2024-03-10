@@ -123,7 +123,6 @@ export const flows = pgTable('flows', {
    deleted: boolean('deleted').default(false),
    updatedAt: timestamp('updated_at'),
    createdAt: timestamp('created_at').defaultNow(),
-   diagrams: json('diagrams').default([]).$type<any[]>(),
    edges: json('edges').default([]).$type<any[]>(),
    nodes: json('nodes').default([]).$type<any[]>(),
    settings: json('settings').default([]).$type<any[]>(),

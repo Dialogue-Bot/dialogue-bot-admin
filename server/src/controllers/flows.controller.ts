@@ -83,4 +83,11 @@ export class FlowController {
         );
         res.status(StatusCodes.OK).json({ data });
     });
+
+    public getFlowByContactId = catchAsync(async (req: RequestWithUser, res) => {
+        const data = await this.flowService.getFlowByContactId(
+            req.params.contactId,
+        );
+        res.status(StatusCodes.OK).json({ data });
+    });
 }

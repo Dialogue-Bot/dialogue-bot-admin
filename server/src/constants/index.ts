@@ -54,7 +54,7 @@ export const ENDPOINTS = {
       GET_ONE: '/flow/get-one',
       PUBLISH: '/flow/publish-flow',
       ADD_CHANNELS: '/flow/add-channels',
-      SELECT_FLOWS_FOR_CHANNEL: '/flow/select'
+      SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
    }
 };
 
