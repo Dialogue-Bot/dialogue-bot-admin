@@ -2,7 +2,7 @@ import { LineChannel } from '@/channels/line.channel';
 import { MessengerChannel } from '@/channels/messenger.channel';
 import { LOCALE_KEY } from '@/constants';
 import { db } from '@/database/db';
-import { channelTypes, channels, flows } from '@/database/schema';
+import { channelTypes, channels } from '@/database/schema';
 import { TNewChannel, TUpdateChannel } from '@/database/types';
 import { PagingDTO } from '@/dtos/paging.dto';
 import { HttpException } from '@/exceptions/http-exception';
@@ -336,35 +336,16 @@ export class ChannelService {
                 continue;
             }
 
+            channelExisted.flowId = flowId;
+
             await db
                 .update(channels)
-                .set({
-                    flowId
-                })
+                .set(channelExisted)
                 .where(eq(channels.id, id))
                 .returning();
+
             result = true;
         }
-
-        return result;
-    }
-
-    public async selectFlowsForChannel(flowId: string, userId: string) {
-        const result = await db
-            .select({
-                label: flows.name,
-                value: flows.id,
-                isSelected: sql<boolean>`
-              case when ${channels.flowId} = ${flowId} then true else false end
-          `,
-            })
-            .from(flows)
-            .where(
-                and(
-                    eq(flows.deleted, false),
-                    eq(flows.userId, userId),
-                )
-            );
 
         return result;
     }

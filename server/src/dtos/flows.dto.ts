@@ -1,5 +1,4 @@
 import { getCurrentLocale } from '@/i18n/get-current';
-import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface';
 import { Transform } from 'class-transformer';
 import {
    IsArray,
@@ -20,6 +19,11 @@ export class FlowDTO {
    @IsArray()
    @IsOptional()
    @IsObject({ each: true })
+   diagrams: Array<Record<any, any>>;
+
+   @IsArray()
+   @IsOptional()
+   @IsObject({ each: true })
    edges: Array<Record<any, any>>;
 
    @IsArray()
@@ -30,22 +34,17 @@ export class FlowDTO {
    @IsArray()
    @IsOptional()
    @IsObject({ each: true })
-   settings: Array<IFlowSetting>;
+   settings: Array<Record<any, any>>;
 
    @IsArray()
    @IsOptional()
    @IsObject({ each: true })
-   variables: Array<IFlowVariable>;
+   variables: Array<Record<any, any>>;
 
    @IsArray()
    @IsOptional()
    @IsObject({ each: true })
    flows: Array<Record<any, any>>;
-
-   @IsArray()
-   @IsOptional()
-   @IsString({ each: true })
-   channelIds: string[];
 }
 
 export class SelectMultipleChannelDTO {

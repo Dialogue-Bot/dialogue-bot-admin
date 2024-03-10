@@ -1,6 +1,6 @@
 import { ENDPOINTS } from '@/constants';
 import { FlowController } from '@/controllers/flows.controller';
-import { FlowDTO } from '@/dtos/flows.dto';
+import { FlowDTO, SelectMultipleChannelDTO } from '@/dtos/flows.dto';
 import { PagingDTO } from '@/dtos/paging.dto';
 import { authMiddleware } from '@/middlewares/auth.middleware';
 import { validate } from '@/middlewares/validation.middleware';
@@ -31,7 +31,6 @@ export class FlowRoute implements Routes {
 
       this.router.post(
          `${ENDPOINTS.FLOW.PUBLISH}/:id`,
-         validate(FlowDTO, 'body'),
          authMiddleware,
          this.controller.publishFlow
       );
@@ -40,13 +39,6 @@ export class FlowRoute implements Routes {
          `${ENDPOINTS.FLOW.INDEX}/:id`,
          authMiddleware,
          this.controller.deleteFlow
-      );
-
-      // for bot get flow by contactId
-      this.router.get(
-         `${ENDPOINTS.FLOW.INDEX}/:contactId`,
-         authMiddleware,
-         this.controller.getFlowByContactId
       );
 
       this.router.get(
@@ -62,10 +54,23 @@ export class FlowRoute implements Routes {
          this.controller.getAllFlows
       );
 
+      this.router.post(
+         ENDPOINTS.FLOW.ADD_CHANNELS,
+         validate(SelectMultipleChannelDTO, 'body'),
+         authMiddleware,
+         this.controller.addMultipleChannels
+      );
+
       this.router.get(
-         `${ENDPOINTS.FLOW.SELECT_CHANNELS_FOR_FLOW}/:id`,
+         ENDPOINTS.FLOW.SELECT_FLOWS_FOR_CHANNEL,
          authMiddleware,
          this.controller.selectFlowsForChannel
+      );
+
+      this.router.get(
+         `${ENDPOINTS.FLOW.INDEX}/:contactId`,
+         authMiddleware,
+         this.controller.getFlowByContactId
       );
    }
 }

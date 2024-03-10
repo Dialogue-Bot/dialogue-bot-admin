@@ -1,4 +1,3 @@
-import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface';
 import { createId } from '@paralleldrive/cuid2';
 import { relations } from 'drizzle-orm';
 import {
@@ -128,15 +127,14 @@ export const flows = pgTable('flows', {
    deleted: boolean('deleted').default(false),
    updatedAt: timestamp('updated_at'),
    createdAt: timestamp('created_at').defaultNow(),
-   edges: json('edges').default([]).$type<
-      Array<Record<any, any>>
-   >(),
-   nodes: json('nodes').default([]).$type<
-      Array<Record<any, any>>
-   >(),
-   settings: json('settings').default([]).$type<Array<IFlowSetting>>(),
+   edges: json('edges').default([]).$type<any[]>(),
+   nodes: json('nodes').default([]).$type<any[]>(),
+   settings: json('settings').default([]).$type<any[]>(),
    variables: json('variables').default([]).$type<
-      Array<IFlowVariable>
+      Array<{
+         name: string;
+         value: string;
+      }>
    >(),
    flows: json('flows').default([]).$type<any[]>(),
    publishAt: timestamp('publish_at'),

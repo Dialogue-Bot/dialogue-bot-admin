@@ -53,7 +53,8 @@ export const ENDPOINTS = {
       INDEX: '/flow',
       GET_ONE: '/flow/get-one',
       PUBLISH: '/flow/publish-flow',
-      SELECT_CHANNELS_FOR_FLOW: '/flow/select-channels',
+      ADD_CHANNELS: '/flow/add-channels',
+      SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
    }
 };
 
