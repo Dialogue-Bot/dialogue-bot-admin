@@ -1,4 +1,6 @@
 import { Helper } from "@/utils/helper";
+import { logger } from "@/utils/logger";
+import axios from "axios";
 import { Request, Response } from "express";
 import { BaseChannel } from "./base.channel";
 
@@ -32,10 +34,10 @@ export class MessengerChannel extends BaseChannel {
         let challenge = req.query['hub.challenge'];
 
         if (mode === 'subscribe' && this.webhookSecret == token) {
-            console.log(`channel ${this.channelType} - ${this.contactName} ${this.contactId} webhook verified!`);
+            logger.info(`[MSG] channel ${this.channelType} - ${this.contactName} ${this.contactId} webhook verified!`);
             return challenge;
         } else {
-            console.error(`Verification channel ${this.channelType} - ${this.contactName} ${this.contactId} failed!`);
+            console.error(`[MSG] Verification channel ${this.channelType} - ${this.contactName} ${this.contactId} failed!`);
             return;
         }
     }
@@ -71,5 +73,51 @@ export class MessengerChannel extends BaseChannel {
 
     sendAddressToBot({ userId, address }) {
         return this.postMessageToBot({ userId, message: 'ADDRESS', data: { USER_INFORMATION: Helper.arrayToObj(address) } });
+    }
+
+    public async sendMessageToUser({ userId, text }) {
+        if (!text) return;
+
+        try {
+            await axios({
+                method: 'POST',
+                url: this.messengerPostURL + this.pageToken,
+                data: {
+                    messaging_type: 'RESPONSE',
+                    recipient: {
+                        id: userId,
+                    },
+                    message: { text },
+                },
+            });
+
+            logger.info(`[MSG] Bot Sent message to User ${userId} - Message: ${text}`);
+        } catch (e) {
+            logger.info(`[MSG] Bot Sent message to User ${userId} failed - Error: ${e.message}`);
+        }
+    }
+
+    public async sendActionToUser({ userId, type }) {
+        const types = {
+            typing: 'TYPING_ON',
+        };
+
+        if (!types[type]) return;
+
+        try {
+            await axios({
+                method: 'POST',
+                url: this.messengerPostURL + this.pageToken,
+                data: {
+                    messaging_type: 'RESPONSE',
+                    recipient: {
+                        id: userId,
+                    },
+                    sender_action: types[type],
+                },
+            });
+        } catch (e) {
+            logger.info(`[MSG] Messenger can not send action to User - Error: ${e.message}`);
+        }
     }
 }

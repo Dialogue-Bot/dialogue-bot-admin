@@ -68,18 +68,6 @@ logger.add(
    })
 );
 
-['log', 'error', 'warn', 'info'].forEach((method) => {
-   const originalMethod = console[method];
-   console[method] = function () {
-      const modifiedArgs = Array.from(arguments).map((arg) => (typeof arg === 'object' ? JSON.stringify(arg) : arg));
-      originalMethod.call(console, ...modifiedArgs);
-      console[method] = function () {
-         if (method === 'log') return logger.info.apply(logger, arguments);
-         return logger[method].apply(logger, arguments);
-      };
-   };
-});
-
 const stream = {
    write: (message: string) => {
       logger.info(message.substring(0, message.lastIndexOf('\n')));
@@ -87,3 +75,4 @@ const stream = {
 };
 
 export { logger, stream };
+

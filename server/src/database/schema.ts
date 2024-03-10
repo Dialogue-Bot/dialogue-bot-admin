@@ -59,10 +59,11 @@ export const channels = pgTable('channels', {
    credentials: text('credentials'),
    active: boolean('active'),
    deleted: boolean('deleted').default(false),
-   channelTypeId: text('channel_type_id').notNull(),
-   userId: text('user_id').notNull(),
+   channelTypeId: text('channel_type_id').notNull().references(() => channelTypes.id),
+   userId: text('user_id').notNull().references(() => users.id),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at'),
+   flowId: text('flow_id').references(() => flows.id)
 });
 
 export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
@@ -74,9 +75,13 @@ export const channelsRelations = relations(channels, ({ one }) => ({
       fields: [channels.channelTypeId],
       references: [channelTypes.id],
    }),
-   User: one(users, {
+   user: one(users, {
       fields: [channels.userId],
       references: [users.id],
+   }),
+   botFlow: one(flows, {
+      fields: [channels.flowId],
+      references: [flows.id],
    }),
 }));
 
@@ -103,7 +108,7 @@ export const settings = pgTable('settings', {
       .references(() => users.id),
 });
 
-export const botFlows = pgTable('bot_flows', {
+export const flows = pgTable('flows', {
    id: varchar('id', {
       length: MAX_ID_LENGTH,
    })
@@ -115,8 +120,8 @@ export const botFlows = pgTable('bot_flows', {
    })
       .notNull()
       .references(() => users.id),
-   deletedAt: timestamp('deleted_at'),
-   updatedAt: timestamp('updated_at').defaultNow(),
+   deleted: boolean('deleted').default(false),
+   updatedAt: timestamp('updated_at'),
    createdAt: timestamp('created_at').defaultNow(),
    diagrams: json('diagrams').default([]).$type<any[]>(),
    edges: json('edges').default([]).$type<any[]>(),
@@ -127,6 +132,15 @@ export const botFlows = pgTable('bot_flows', {
    publishAt: timestamp('publish_at'),
 });
 
+export const flowsRelations = relations(flows, ({ one, many }) => ({
+   channels: many(channels),
+   user: one(users, {
+      fields: [flows.userId],
+      references: [users.id],
+   }),
+}));
+
+
 export const usersRelations = relations(users, ({ one, many }) => ({
    settings: one(settings, {
       relationName: 'userSettings',
@@ -134,5 +148,5 @@ export const usersRelations = relations(users, ({ one, many }) => ({
       references: [settings.userId],
    }),
    channels: many(channels),
-   botFlows: many(botFlows),
+   botFlows: many(flows),
 }));

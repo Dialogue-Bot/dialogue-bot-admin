@@ -2,6 +2,7 @@ import type { BaseTranslation } from '../i18n-types';
 import { AUTH } from './auth';
 import { CHANNEL } from './channel';
 import { COMMON } from './common';
+import { FLOW } from './flow';
 import { SETTING } from './setting';
 import { USER } from './user';
 import { VALIDATE } from './validate';
@@ -14,7 +15,8 @@ const en = {
    VALIDATE,
    COMMON,
    CHANNEL,
-   SETTING
+   SETTING,
+   FLOW,
 } satisfies BaseTranslation;
 
 export default en;

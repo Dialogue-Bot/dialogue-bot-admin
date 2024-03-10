@@ -17,8 +17,8 @@ export class WebhookController {
     });
 
     public handleIncomingMessage = catchAsync(async (req, res) => {
-        res.status(StatusCodes.OK);
 
-        return await this.webhookService.handleIncomingMessage(req.params.contactId, req, res);
+        await this.webhookService.handleIncomingMessage(req.params.contactId, req, res);
+        res.status(StatusCodes.OK).end();
     });
 }

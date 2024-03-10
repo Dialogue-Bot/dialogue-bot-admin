@@ -46,6 +46,16 @@ export const ENDPOINTS = {
       VERIFY: '/webhook/:contactId',
       INCOMING_MSG: '/webhook/:contactId',
    },
+   CONVERSATION: {
+      INDEX: '/v3/conversations'
+   },
+   FLOW: {
+      INDEX: '/flow',
+      GET_ONE: '/flow/get-one',
+      PUBLISH: '/flow/publish-flow',
+      ADD_CHANNELS: '/flow/add-channels',
+      SELECT_FLOWS_FOR_CHANNEL: '/flow/select'
+   }
 };
 
 export const LOCALE_KEY = 'lang';
