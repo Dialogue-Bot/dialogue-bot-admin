@@ -14,35 +14,34 @@ export class FlowController {
 
     public createFlow = catchAsync(async (req: RequestWithUser, res) => {
         req.body.userId = req.user?.id;
-        await this.flowService.create(req.body);
+        const data = await this.flowService.create(req.body);
         res.status(StatusCodes.OK).json({
             message: this.localeService.i18n().FLOW.CREATE_SUCCESS(),
+            data,
         });
     });
 
     public updateFlow = catchAsync(async (req: RequestWithUser, res) => {
         req.body.userId = req.user?.id;
-        await this.flowService.updateFlowById(req.params.id, req.body);
+        const data = await this.flowService.updateFlowById(
+            req.params.id,
+            req.body
+        );
         res.status(StatusCodes.OK).json({
             message: this.localeService.i18n().FLOW.UPDATE_SUCCESS(),
+            data,
         });
     });
 
     public deleteFlow = catchAsync(async (req: RequestWithUser, res) => {
-        await this.flowService.deleteById(
-            req.params.id,
-            req.user?.id as string
-        );
+        await this.flowService.deleteById(req.params.id, req.user?.id as string);
         res.status(StatusCodes.OK).json({
             message: this.localeService.i18n().FLOW.DELETE_FLOW_SUCCESS(),
         });
     });
 
     public publishFlow = catchAsync(async (req: RequestWithUser, res) => {
-        await this.flowService.publishFlow(
-            req.params.id,
-            req.user?.id as string
-        )
+        await this.flowService.publishFlow(req.params.id, req.user?.id as string);
         res.status(StatusCodes.OK).json({
             message: this.localeService.i18n().FLOW.PUBLISH_FLOW_SUCCESS(),
         });
@@ -52,7 +51,7 @@ export class FlowController {
         const data = await this.flowService.getFlowById(
             req.params.id,
             req.user?.id as string
-        )
+        );
         res.status(StatusCodes.OK).json({ data });
     });
 
@@ -66,23 +65,28 @@ export class FlowController {
         res.status(StatusCodes.OK).json({ data });
     });
 
-    public addMultipleChannels = catchAsync(async (req: RequestWithUser, res) => {
-        await this.flowService.addMultipleChannels(
-            req.body.channelIds,
-            req.body.flowId,
-            req.user?.id as string
-        );
-        res.status(StatusCodes.OK).json({
-            message: this.localeService.i18n().FLOW.ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS(),
-        });
-    });
+    public addMultipleChannels = catchAsync(
+        async (req: RequestWithUser, res) => {
+            await this.flowService.addMultipleChannels(
+                req.body.channelIds,
+                req.body.flowId,
+                req.user?.id as string
+            );
+            res.status(StatusCodes.OK).json({
+                message: this.localeService
+                    .i18n()
+                    .FLOW.ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS(),
+            });
+        }
+    );
 
-    public selectFlowsForChannel = catchAsync(async (req: RequestWithUser, res) => {
-        const data = await this.flowService.selectFlowsForChannel(
-            req.user?.id as string
-        );
-        res.status(StatusCodes.OK).json({ data });
-    });
+    public selectFlowsForChannel = catchAsync(
+        async (req: RequestWithUser, res) => {
+            const data = await this.flowService.selectFlowsForChannel(
+                req.user?.id as string
+            );
+            res.status(StatusCodes.OK).json({ data });
+        });
 
     public getFlowByContactId = catchAsync(async (req: RequestWithUser, res) => {
         const data = await this.flowService.getFlowByContactId(

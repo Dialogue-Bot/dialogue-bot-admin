@@ -27,6 +27,8 @@ import landingPageEn from '@/locales/en/landing-page.json';
 import landingPageVi from '@/locales/vi/landing-page.json';
 import helpEn from '@/locales/en/help.json';
 import helpVi from '@/locales/vi/help.json';
+import chatbotsEn from '@/locales/en/chatbots.json';
+import chatbotsVi from '@/locales/vi/chatbots.json';
 
 const resources = {
    [ELang.EN]: {
@@ -44,6 +46,7 @@ const resources = {
       dataTable: tableEn,
       landingPage: landingPageEn,
       help: helpEn,
+      chatbots: chatbotsEn,
    },
    [ELang.VI]: {
       common: commonVI,
@@ -60,6 +63,7 @@ const resources = {
       dataTable: tableVi,
       landingPage: landingPageVi,
       help: helpVi,
+      chatbots: chatbotsVi,
    },
 } as const;
 

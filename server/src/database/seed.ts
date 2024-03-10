@@ -21,7 +21,7 @@ async function seedChannelTypes() {
 
 async function seedDefaultAccount() {
    try {
-      const hashedPassword = await bcrypt.hash('Hello@123', 10);
+      const hashedPassword = await bcrypt.hash('admin', 10);
       await db
          .insert(users)
          .values({

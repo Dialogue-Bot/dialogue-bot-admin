@@ -59,11 +59,15 @@ export const channels = pgTable('channels', {
    credentials: text('credentials'),
    active: boolean('active'),
    deleted: boolean('deleted').default(false),
-   channelTypeId: text('channel_type_id').notNull().references(() => channelTypes.id),
-   userId: text('user_id').notNull().references(() => users.id),
+   channelTypeId: text('channel_type_id')
+      .notNull()
+      .references(() => channelTypes.id),
+   userId: text('user_id')
+      .notNull()
+      .references(() => users.id),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at'),
-   flowId: text('flow_id').references(() => flows.id)
+   flowId: text('flow_id').references(() => flows.id),
 });
 
 export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
@@ -126,7 +130,12 @@ export const flows = pgTable('flows', {
    edges: json('edges').default([]).$type<any[]>(),
    nodes: json('nodes').default([]).$type<any[]>(),
    settings: json('settings').default([]).$type<any[]>(),
-   variables: json('variables').default({}).$type<any>(),
+   variables: json('variables').default([]).$type<
+      Array<{
+         name: string;
+         value: string;
+      }>
+   >(),
    flows: json('flows').default([]).$type<any[]>(),
    publishAt: timestamp('publish_at'),
 });
@@ -138,7 +147,6 @@ export const flowsRelations = relations(flows, ({ one, many }) => ({
       references: [users.id],
    }),
 }));
-
 
 export const usersRelations = relations(users, ({ one, many }) => ({
    settings: one(settings, {

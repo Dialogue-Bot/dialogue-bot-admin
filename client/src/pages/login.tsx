@@ -4,12 +4,15 @@ import { useLogin, useLoginWithProvider } from '@/hooks/auth';
 import { GoogleProvider } from '@/lib/firebase';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useDocumentTitle } from 'usehooks-ts';
 
 const Login = () => {
    const { t } = useTranslation(['login', 'common']);
 
    const loginMutation = useLogin();
    const withProviderMutation = useLoginWithProvider(GoogleProvider);
+
+   useDocumentTitle(t('page_title'));
 
    return (
       <div className="w-full max-w-sm space-y-3">

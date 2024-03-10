@@ -21,6 +21,7 @@ export type ConfirmProps = {
    description?: string;
    title?: string;
    isLoading?: boolean;
+   onClose?: () => void;
 };
 
 export function Confirm({
@@ -32,12 +33,21 @@ export function Confirm({
    description,
    title,
    isLoading,
+   onClose,
 }: ConfirmProps) {
    const [isOpen, setIsOpen] = useState(false);
    const { t } = useTranslation('common');
 
    return (
-      <AlertDialog onOpenChange={setIsOpen} open={isOpen}>
+      <AlertDialog
+         onOpenChange={(value) => {
+            setIsOpen(value);
+            if (!value) {
+               onClose?.();
+            }
+         }}
+         open={isOpen}
+      >
          <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
          <AlertDialogContent>
             <AlertDialogHeader>

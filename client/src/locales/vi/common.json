@@ -18,7 +18,10 @@
    "search": "Tìm kiếm",
    "row_actions": {
       "update": "Cập nhật",
-      "delete": "Xóa"
+      "delete": "Xóa",
+      "view": "Xem",
+      "add": "Thêm",
+      "rename": "Đổi tên"
    },
    "remove": "Xóa",
    "cancel": "Hủy",
