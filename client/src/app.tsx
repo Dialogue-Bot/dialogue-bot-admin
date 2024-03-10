@@ -29,6 +29,7 @@ import {
    articlesLoader,
    authLoader,
    channelsLoader,
+   flowsLoader,
    settingLoader,
 } from './lib/loader';
 import HelpDetail from './pages/help-detail';
@@ -81,13 +82,7 @@ export const router = createBrowserRouter([
                {
                   path: ROUTES.PRIVATE.CHAT_BOT.INDEX,
                   Component: Chatbots,
-                  loader: () => {
-                     useAppLayoutStore
-                        .getState()
-                        .setTitle(i18n.t('common:chatbots'));
-
-                     return null;
-                  },
+                  loader: flowsLoader,
                },
 
                {

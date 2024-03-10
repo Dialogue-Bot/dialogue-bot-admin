@@ -44,3 +44,4 @@ export * from './data-table';
 export * from './confirm';
 export * from './logo-img';
 export * from './logo-text';
+export * from './multiple-lelect';

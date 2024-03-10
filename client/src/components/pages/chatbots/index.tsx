@@ -1,2 +1,2 @@
 export * from './create-bot-btn';
-export * from './chatbot-item';
+export * from './flow-item';

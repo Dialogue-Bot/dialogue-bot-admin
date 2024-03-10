@@ -1,4 +1,4 @@
-import { TNodeTypes } from '@/types/chatbot';
+import { TNodeTypes } from '@/types/flow';
 import { MessageNode, StartNode } from './nodes';
 
 /**

@@ -1,6 +1,7 @@
 import { Controls, nodeTypes } from '@/components/pages/chatbot-detail';
 import { Edge } from '@/components/pages/chatbot-detail/edge';
-import { ENodeTypes } from '@/types/chatbot';
+import { Toolbar } from '@/components/pages/chatbot-detail/toolbar';
+import { ENodeTypes } from '@/types/flow';
 import { useCallback } from 'react';
 import ReactFlow, {
    Background,
@@ -77,6 +78,7 @@ const ChatBotDetail = () => {
                color={'hsl(var(--primary))'}
             />
             <Controls />
+            <Toolbar />
          </ReactFlow>
       </div>
    );

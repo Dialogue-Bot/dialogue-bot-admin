@@ -6,12 +6,7 @@ import { Panel, useViewport, useReactFlow } from 'reactflow';
 const MAX_ZOOM = 2;
 const MIN_ZOOM = 0.5;
 
-type Props = {
-   onShare?: () => void;
-   onPublish?: () => void;
-};
-
-export const Controls = ({ onPublish, onShare }: Props) => {
+export const Controls = () => {
    const { x, y, zoom } = useViewport();
    const { setViewport } = useReactFlow();
 
@@ -50,7 +45,7 @@ export const Controls = ({ onPublish, onShare }: Props) => {
    }, [setViewport]);
 
    return (
-      <Panel position="top-center">
+      <Panel position="bottom-left">
          <div className="flex h-12 items-center bg-card shadow px-2 select-none gap-2 rounded-md">
             <div className="flex items-center gap-2">
                <Button size="icon" variant="ghost" onClick={handleZoomIn}>
@@ -65,12 +60,6 @@ export const Controls = ({ onPublish, onShare }: Props) => {
             </div>
             <Button size="icon" variant="ghost" onClick={handleFitView}>
                <Maximize className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" onClick={onShare}>
-               Share
-            </Button>
-            <Button variant="default" onClick={onPublish}>
-               Publish
             </Button>
          </div>
       </Panel>

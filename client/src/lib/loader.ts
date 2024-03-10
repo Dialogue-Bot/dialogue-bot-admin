@@ -8,6 +8,8 @@ import { queryStringToObject } from '@/utils';
 import { queryChannelsOption } from './query-options/channel';
 import i18n from '@/i18n';
 import { getAllArticles, getArticle } from './content';
+import { TBaseQuery } from '@/types/share';
+import { queryFlowsOption } from './query-options/flow';
 
 export const authLoader = async ({ request }: any) => {
    const redirectUrl = new URL(request.url).searchParams.get('redirect');
@@ -82,4 +84,14 @@ export const articleLoader = async ({ params }: any) => {
       next,
       prev,
    };
+};
+
+export const flowsLoader = async ({ request }: any) => {
+   const query: TBaseQuery = queryStringToObject(request.url);
+
+   await queryClient.ensureQueryData(queryFlowsOption(query));
+
+   useAppLayoutStore.getState().setTitle(i18n.t('common:chatbots'));
+
+   return null;
 };
