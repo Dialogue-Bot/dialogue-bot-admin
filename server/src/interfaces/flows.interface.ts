@@ -3,3 +3,15 @@ export interface FlowExtend {
     name: string;
     publishAt: Date;
 }
+
+export interface IFlowSetting {
+    type: string;
+    label: string;
+    value: any
+    default: any
+}
+
+export interface IFlowVariable {
+    name: string;
+    value: any
+}

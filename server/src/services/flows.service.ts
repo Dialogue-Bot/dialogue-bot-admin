@@ -1,14 +1,16 @@
 import { LOCALE_KEY } from '@/constants';
 import { db } from '@/database/db';
-import { channels, flows } from '@/database/schema';
-import { TNewFlow, TUpdateFlow } from '@/database/types';
+import { channelTypes, channels, flows } from '@/database/schema';
+import { TNewFlow } from '@/database/types';
+import { FlowDTO } from '@/dtos/flows.dto';
 import { PagingDTO } from '@/dtos/paging.dto';
 import { HttpException } from '@/exceptions/http-exception';
 import { LocaleService } from '@/i18n/ctx';
 import { FlowExtend } from '@/interfaces/flows.interface';
 import { Paging } from '@/interfaces/paging.interface';
-import { and, asc, desc, eq, isNotNull, like, ne, notExists, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm';
 import { StatusCodes } from 'http-status-codes';
+import { omit } from 'lodash';
 import { Inject, Service } from 'typedi';
 import { ChannelService } from './channels.service';
 
@@ -47,7 +49,11 @@ export class FlowService {
       return newFlow;
    }
 
-   public async updateFlowById(id: string, fields: TUpdateFlow) {
+   public async updateFlowById({ fields, id, userId }: {
+      userId: string;
+      id: string;
+      fields: FlowDTO
+   }) {
       const flowExisted = await db.query.flows.findFirst({
          where: eq(flows.id, id),
       });
@@ -63,7 +69,7 @@ export class FlowService {
          where: and(
             ne(flows.id, id),
             eq(flows.name, fields.name),
-            eq(flows.userId, fields.userId),
+            eq(flows.userId, userId),
             eq(flows.deleted, false)
          ),
       });
@@ -75,11 +81,26 @@ export class FlowService {
          );
       }
 
-      fields.updatedAt = new Date();
+      // handle update flowId for channel
+      const addFlowIdForChannels = await this.chanelService.updateFlowId(
+         fields.channelIds,
+         flowExisted.id
+      );
+
+      if (!addFlowIdForChannels) {
+         throw new HttpException(
+            StatusCodes.BAD_REQUEST,
+            this.localeService.i18n().FLOW.ADD_MULTIPLE_CHANNELS_FLOW__FAILED()
+         );
+      }
 
       const [updateFlow] = await db
          .update(flows)
-         .set(fields)
+         .set({
+            ...omit(fields, ['channelIds']),
+            updatedAt: new Date()
+
+         })
          .where(eq(flows.id, id))
          .returning();
 
@@ -186,61 +207,6 @@ export class FlowService {
       return orderBy;
    }
 
-   public async addMultipleChannels(
-      channelIDs: string[],
-      flowId: string,
-      userId: string
-   ) {
-      const flowExisted = await db.query.flows.findFirst({
-         where: and(eq(flows.id, flowId), eq(flows.userId, userId)),
-      });
-
-      if (!flowExisted) {
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().FLOW.NOT_FOUND()
-         );
-      }
-
-      const result = await this.chanelService.updateFlowId(
-         channelIDs,
-         flowExisted.id
-      );
-
-      if (!result) {
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().FLOW.ADD_MULTIPLE_CHANNELS_FLOW__FAILED()
-         );
-      }
-
-      return result;
-   }
-
-   public async selectFlowsForChannel(userId: string) {
-      const result = await db
-         .select({
-            label: flows.name,
-            value: flows.id,
-         })
-         .from(flows)
-         .where(
-            and(
-               eq(flows.deleted, false),
-               eq(flows.userId, userId),
-               notExists(
-                  db
-                     .select({
-                        flowId: channels.flowId,
-                     })
-                     .from(channels)
-                     .where(eq(channels.flowId, flows.id))
-               )
-            )
-         );
-
-      return result;
-   }
 
    public async getFlowByContactId(contactId: string) {
       const flow = db.query.flows.findFirst({
@@ -270,4 +236,18 @@ export class FlowService {
       return flow;
    }
 
+   public async selectChannelsForFlow(flowId: string, userId: string) {
+      const result = await db
+         .select({
+            label: sql<string>`
+            SELECT CONCAT(${channelTypes.name}, '-', ${channels.contactName}, '-', ${channels.contactId})
+            FROM ${channels}
+            INNER JOIN ${channelTypes} ON ${channels.channelTypeId} = ${channelTypes.id}
+            WHERE ${channels.flowId} = ${flowId}
+        `,
+         })
+         .from(channels)
+         .where(and(eq(channels.userId, userId), eq(channels.deleted, false)));
+      return result;
+   }
 }
