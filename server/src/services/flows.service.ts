@@ -1,7 +1,8 @@
 import { LOCALE_KEY } from '@/constants';
 import { db } from '@/database/db';
 import { channels, flows } from '@/database/schema';
-import { TNewFlow, TUpdateFlow } from '@/database/types';
+import { TNewFlow } from '@/database/types';
+import { FlowDTO } from '@/dtos/flows.dto';
 import { PagingDTO } from '@/dtos/paging.dto';
 import { HttpException } from '@/exceptions/http-exception';
 import { LocaleService } from '@/i18n/ctx';
@@ -9,6 +10,7 @@ import { FlowExtend } from '@/interfaces/flows.interface';
 import { Paging } from '@/interfaces/paging.interface';
 import { and, asc, desc, eq, isNotNull, like, ne, notExists, sql } from 'drizzle-orm';
 import { StatusCodes } from 'http-status-codes';
+import { omit } from 'lodash';
 import { Inject, Service } from 'typedi';
 import { ChannelService } from './channels.service';
 
@@ -47,7 +49,12 @@ export class FlowService {
       return newFlow;
    }
 
-   public async updateFlowById(id: string, fields: TUpdateFlow) {
+   public async updateFlowById({ fields, id, userId }: {
+      userId: string;
+      id: string;
+      fields: FlowDTO
+   }) {
+
       const flowExisted = await db.query.flows.findFirst({
          where: eq(flows.id, id),
       });
@@ -63,7 +70,7 @@ export class FlowService {
          where: and(
             ne(flows.id, id),
             eq(flows.name, fields.name),
-            eq(flows.userId, fields.userId),
+            eq(flows.userId, userId),
             eq(flows.deleted, false)
          ),
       });
@@ -75,11 +82,27 @@ export class FlowService {
          );
       }
 
-      fields.updatedAt = new Date();
+      // handle update flowId for channel
+      const addFlowIdForChannels = await this.chanelService.updateFlowId(
+         fields.channelIds,
+         flowExisted.id
+      );
+
+      if (!addFlowIdForChannels) {
+         throw new HttpException(
+            StatusCodes.BAD_REQUEST,
+            this.localeService.i18n().FLOW.ADD_MULTIPLE_CHANNELS_FLOW__FAILED()
+         );
+      }
+
 
       const [updateFlow] = await db
          .update(flows)
-         .set(fields)
+         .set({
+            ...omit(fields, ['channelIds']),
+            updatedAt: new Date()
+
+         })
          .where(eq(flows.id, id))
          .returning();
 

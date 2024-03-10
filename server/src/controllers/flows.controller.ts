@@ -24,8 +24,11 @@ export class FlowController {
     public updateFlow = catchAsync(async (req: RequestWithUser, res) => {
         req.body.userId = req.user?.id;
         const data = await this.flowService.updateFlowById(
-            req.params.id,
-            req.body
+            {
+                fields: req.body,
+                id: req.params.id,
+                userId: req.user.id
+            }
         );
         res.status(StatusCodes.OK).json({
             message: this.localeService.i18n().FLOW.UPDATE_SUCCESS(),
@@ -64,21 +67,6 @@ export class FlowController {
         );
         res.status(StatusCodes.OK).json({ data });
     });
-
-    public addMultipleChannels = catchAsync(
-        async (req: RequestWithUser, res) => {
-            await this.flowService.addMultipleChannels(
-                req.body.channelIds,
-                req.body.flowId,
-                req.user?.id as string
-            );
-            res.status(StatusCodes.OK).json({
-                message: this.localeService
-                    .i18n()
-                    .FLOW.ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS(),
-            });
-        }
-    );
 
     public selectFlowsForChannel = catchAsync(
         async (req: RequestWithUser, res) => {
