@@ -24,6 +24,7 @@ export const useFlowInputSchema = () => {
          )
          .optional(),
       flows: z.array(z.record(z.any())).optional(),
+      channelIds: z.array(z.string()).optional(),
    });
 };
 

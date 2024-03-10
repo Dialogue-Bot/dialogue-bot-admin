@@ -71,4 +71,14 @@ export class ChannelController {
       const data = await this.channelService.getTypeById(req.params.id);
       res.status(StatusCodes.OK).json({ data });
    });
+
+   public getChannelsForSelect = catchAsync(
+      async (req: RequestWithUser, res) => {
+         const data = await this.channelService.getChannelsForSelect(
+            req.user?.id as string,
+            req.query.flowId as string
+         );
+         res.status(StatusCodes.OK).json({ data });
+      }
+   );
 }

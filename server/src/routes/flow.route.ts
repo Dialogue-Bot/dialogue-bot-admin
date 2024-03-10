@@ -66,5 +66,11 @@ export class FlowRoute implements Routes {
          authMiddleware,
          this.controller.selectFlowsForChannel
       );
+
+      this.router.get(
+         `${ENDPOINTS.FLOW.INDEX}/for-select`,
+         authMiddleware,
+         this.controller.getFlowsForSelect
+      );
    }
 }

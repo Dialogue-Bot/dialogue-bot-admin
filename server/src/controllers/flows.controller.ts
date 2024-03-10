@@ -88,4 +88,12 @@ export class FlowController {
          res.status(StatusCodes.OK).json({ data });
       }
    );
+
+   public getFlowsForSelect = catchAsync(async (req: RequestWithUser, res) => {
+      const data = await this.flowService.getFlowsForSelect(
+         req.user?.id as string,
+         req.query.channelId as string
+      );
+      res.status(StatusCodes.OK).json({ data });
+   });
 }

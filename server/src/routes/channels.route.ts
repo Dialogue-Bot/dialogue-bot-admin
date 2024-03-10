@@ -55,5 +55,11 @@ export class ChannelRoute implements Routes {
          `${ENDPOINTS.CHANNEL.TYPES}/:id`,
          this.controller.getChannelType
       );
+
+      this.router.get(
+         `${ENDPOINTS.CHANNEL.INDEX}/for-select`,
+         authMiddleware,
+         this.controller.getChannelsForSelect
+      );
    }
 }

@@ -7,7 +7,17 @@ import { HttpException } from '@/exceptions/http-exception';
 import { LocaleService } from '@/i18n/ctx';
 import { FlowExtend } from '@/interfaces/flows.interface';
 import { Paging } from '@/interfaces/paging.interface';
-import { and, asc, desc, eq, like, ne, notExists, sql } from 'drizzle-orm';
+import {
+   and,
+   asc,
+   desc,
+   eq,
+   exists,
+   like,
+   ne,
+   notExists,
+   sql,
+} from 'drizzle-orm';
 import { StatusCodes } from 'http-status-codes';
 import { Inject, Service } from 'typedi';
 import { ChannelService } from './channels.service';
@@ -240,6 +250,32 @@ export class FlowService {
                )
             )
          );
+
+      return result;
+   }
+
+   public async getFlowsForSelect(userId: string, channelId: string) {
+      const result = await db
+         .select({
+            label: flows.name,
+            value: flows.id,
+            isSelected: exists(
+               db
+                  .select({
+                     flowId: channels.flowId,
+                  })
+                  .from(channels)
+                  .where(
+                     and(
+                        eq(channels.flowId, flows.id),
+                        eq(channels.id, channelId)
+                     )
+                  )
+            ),
+         })
+         .from(flows)
+         .leftJoin(channels, eq(channels.flowId, flows.id))
+         .where(and(eq(flows.deleted, false), eq(flows.userId, userId)));
 
       return result;
    }

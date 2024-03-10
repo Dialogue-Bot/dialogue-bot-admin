@@ -14,11 +14,10 @@ import { FirebaseService } from './firebase.service';
 
 @Service()
 export class UserService {
-
    constructor(
       private readonly firebaseService: FirebaseService,
-      @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-   ) { }
+      @Inject(LOCALE_KEY) private readonly localeService: LocaleService
+   ) {}
 
    public async findOneById(id: string) {
       const user = await db.query.users.findFirst({
@@ -43,8 +42,6 @@ export class UserService {
    }
 
    public async updateOneById(id: string, fields: TUpdateUser) {
-
-
       const [user] = await db
          .update(users)
          .set(fields)
@@ -84,52 +81,50 @@ export class UserService {
 
          return userUpdated;
       } catch (error) {
-
          if (fields.avatar) {
             await this.firebaseService.deleteFile(fields.avatar);
          }
 
          throw error;
-
       }
    }
 
    public async changePassword(id: string, fields: ChangePasswordDto) {
       const { oldPassword, password } = fields;
 
-
       const user = await this.findOneById(id);
 
       if (user.provider !== 'local') {
-         throw new HttpException(StatusCodes.BAD_REQUEST,
+         throw new HttpException(
+            StatusCodes.BAD_REQUEST,
             this.localeService.i18n().USER.USER_NOT_PROVIDER()
-         )
+         );
       }
 
       if (!user) {
-         throw new HttpException(StatusCodes.NOT_FOUND,
+         throw new HttpException(
+            StatusCodes.NOT_FOUND,
             this.localeService.i18n().USER.USER_NOT_FOUND()
-         )
+         );
       }
 
       const isPasswordMatch = await bcrypt.compare(oldPassword, user.password);
 
       if (!isPasswordMatch) {
-         throw new HttpException(StatusCodes.BAD_REQUEST,
+         throw new HttpException(
+            StatusCodes.BAD_REQUEST,
             this.localeService.i18n().USER.OLD_PASSWORD_NOT_MATCH()
-         )
+         );
       }
 
       const [userUpdated] = await db
          .update(users)
          .set({
-            password: await bcrypt.hash(password, 10)
+            password: await bcrypt.hash(password, 10),
          })
          .where(eq(users.id, id))
          .returning();
 
       return userUpdated;
    }
-
-
 }

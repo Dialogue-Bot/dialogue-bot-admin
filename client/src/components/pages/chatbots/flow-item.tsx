@@ -129,7 +129,7 @@ export const FlowItem = ({ flow }: Props) => {
                      deleteFlowMutation.mutate(flow.id);
                      close();
                   }}
-                  isLoading={deleteFlowMutation.isLoading}
+                  isLoading={deleteFlowMutation.isPending}
                >
                   <DropdownMenuItem
                      onSelect={(e) => {
