@@ -3,5 +3,6 @@
    "subtitle": "Login to continue using our services.",
    "term": "By continuing, you agree to our <term>Terms of Service</term> and <privacy>Privacy Policy</privacy>.",
    "not_have_account": "Don't have an account? <a> Register </a>",
-   "btn_submit": "Login"
+   "btn_submit": "Login",
+   "page_title": "Login | DialogueBot"
 }

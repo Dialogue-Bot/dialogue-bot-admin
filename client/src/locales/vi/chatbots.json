@@ -1,0 +1,20 @@
+{
+   "page_title": "Chatbots | DialogueBot",
+   "create_btn": "Tạo mới",
+   "actions": {
+      "remove": "Xóa",
+      "rename": "Đổi tên"
+   },
+   "rename_dialog": {
+      "title": "Đổi tên kịch bản",
+      "description": "Nhập tên mới cho kịch bản này"
+   },
+   "create_dialog": {
+      "title": "Tạo kịch bản mới",
+      "description": "Nhập tên cho kịch bản mới"
+   },
+   "remove_dialog": {
+      "title": "Xoá kịch bản này?",
+      "description": "Bạn có chắc chắn muốn xoá kịch bản này không? Hành động này không thể hoàn tác."
+   }
+}

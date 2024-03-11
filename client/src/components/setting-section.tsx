@@ -69,7 +69,9 @@ export const SectionSettingBottom = ({
 };
 
 export const SectionSetting = ({ children }: Props) => {
-   return <div className="rounded border-border border bg-bg">{children}</div>;
+   return (
+      <div className="rounded-md border-border border bg-bg">{children}</div>
+   );
 };
 
 export const SectionSettingBody = ({ children }: Props) => {

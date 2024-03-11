@@ -2,7 +2,6 @@ import { Article as TArticle } from '@/lib/content';
 import { useLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { H1 } from '@/components/typography';
-import { Button, Input } from '@/components/ui';
 import { Article } from '@/components/pages/helps';
 
 const Help = () => {

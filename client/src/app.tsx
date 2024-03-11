@@ -2,6 +2,8 @@ import { createBrowserRouter, redirect } from 'react-router-dom';
 import i18n from './i18n';
 import {
    Channels,
+   ChatBotDetail,
+   Chatbots,
    ForgotPassword,
    Login,
    Mail,
@@ -27,6 +29,7 @@ import {
    articlesLoader,
    authLoader,
    channelsLoader,
+   flowsLoader,
    settingLoader,
 } from './lib/loader';
 import HelpDetail from './pages/help-detail';
@@ -78,15 +81,10 @@ export const router = createBrowserRouter([
                },
                {
                   path: ROUTES.PRIVATE.CHAT_BOT.INDEX,
-                  element: <div>a</div>,
-                  loader: () => {
-                     useAppLayoutStore
-                        .getState()
-                        .setTitle(i18n.t('common:chatbots'));
-
-                     return null;
-                  },
+                  Component: Chatbots,
+                  loader: flowsLoader,
                },
+
                {
                   path: ROUTES.PRIVATE.CHANNEL.INDEX,
                   Component: Channels,
@@ -131,6 +129,20 @@ export const router = createBrowserRouter([
                   loader: articleLoader,
                   path: `${ROUTES.PUBLIC.HELP}/:slug`,
                   element: <HelpDetail />,
+               },
+            ],
+         },
+         {
+            loader: appLoader,
+            element: (
+               <Suspense fallback={<PageLoading />}>
+                  <AppLayout showHeader={false} />
+               </Suspense>
+            ),
+            children: [
+               {
+                  path: `${ROUTES.PRIVATE.CHAT_BOT.INDEX}/:id`,
+                  Component: ChatBotDetail,
                },
             ],
          },

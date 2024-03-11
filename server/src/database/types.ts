@@ -3,9 +3,9 @@ import type {
    DBQueryConfig,
    ExtractTablesWithRelations,
 } from 'drizzle-orm';
-import * as z from 'zod';
 import type { NodePgQueryResultHKT } from 'drizzle-orm/node-postgres';
 import type { PgTransaction } from 'drizzle-orm/pg-core';
+import * as z from 'zod';
 import * as schema from './schema';
 
 type Schema = typeof schema;
@@ -44,3 +44,7 @@ export type TUpdateUser = Partial<TNewUser>;
 export type TNewChannel = typeof schema.channels.$inferInsert;
 
 export type TUpdateChannel = Partial<TNewChannel>;
+
+export type TNewFlow = typeof schema.flows.$inferInsert;
+
+export type TUpdateFlow = Partial<TNewFlow>;

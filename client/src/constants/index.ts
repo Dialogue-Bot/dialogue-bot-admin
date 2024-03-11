@@ -30,6 +30,13 @@ export const ENDPOINTS = {
       DELETES: '/channel/deletes',
       TYPES: '/channel/types',
    },
+   FLOW: {
+      INDEX: '/flow',
+      GET_ONE: '/flow/get-one',
+      PUBLISH: '/flow/publish-flow',
+      ADD_CHANNELS: '/flow/add-channels',
+      SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
+   },
 };
 
 export const ROUTES = {

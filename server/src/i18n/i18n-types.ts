@@ -197,6 +197,48 @@ type RootTranslation = {
 		 */
 		UPDATE_EMAIL_SUCCESS: string
 	}
+	FLOW: {
+		/**
+		 * C​r​e​a​t​e​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+		 */
+		CREATE_FAILED: string
+		/**
+		 * C​r​e​a​t​e​ ​f​l​o​w​ ​s​u​c​c​e​s​s​!
+		 */
+		CREATE_SUCCESS: string
+		/**
+		 * F​l​o​w​ ​n​a​m​e​ ​e​x​i​s​t​e​d​!
+		 */
+		FLOW_NAME_EXISTED: string
+		/**
+		 * C​a​n​ ​n​o​t​ ​f​i​n​d​ ​f​l​o​w​!
+		 */
+		NOT_FOUND: string
+		/**
+		 * U​p​d​a​t​e​ ​f​l​o​w​ ​s​u​c​c​e​s​s​!
+		 */
+		UPDATE_SUCCESS: string
+		/**
+		 * U​p​d​a​t​e​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+		 */
+		UPDATE_FAILED: string
+		/**
+		 * D​e​l​e​t​e​ ​f​l​o​w​ ​s​u​c​c​e​s​s​!
+		 */
+		DELETE_FLOW_SUCCESS: string
+		/**
+		 * P​u​b​l​i​s​h​ ​f​l​o​w​ ​s​u​c​c​e​s​s​!
+		 */
+		PUBLISH_FLOW_SUCCESS: string
+		/**
+		 * A​d​d​ ​m​u​l​t​i​p​l​e​ ​c​h​a​n​n​e​l​s​ ​f​o​r​ ​f​l​o​w​ ​s​u​c​c​e​s​s​!
+		 */
+		ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS: string
+		/**
+		 * A​d​d​ ​m​u​l​t​i​p​l​e​ ​c​h​a​n​n​e​l​s​ ​f​o​r​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+		 */
+		ADD_MULTIPLE_CHANNELS_FLOW__FAILED: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -375,6 +417,48 @@ export type TranslationFunctions = {
 		 * Email and password updated successfully!
 		 */
 		UPDATE_EMAIL_SUCCESS: () => LocalizedString
+	}
+	FLOW: {
+		/**
+		 * Create flow failed!
+		 */
+		CREATE_FAILED: () => LocalizedString
+		/**
+		 * Create flow success!
+		 */
+		CREATE_SUCCESS: () => LocalizedString
+		/**
+		 * Flow name existed!
+		 */
+		FLOW_NAME_EXISTED: () => LocalizedString
+		/**
+		 * Can not find flow!
+		 */
+		NOT_FOUND: () => LocalizedString
+		/**
+		 * Update flow success!
+		 */
+		UPDATE_SUCCESS: () => LocalizedString
+		/**
+		 * Update flow failed!
+		 */
+		UPDATE_FAILED: () => LocalizedString
+		/**
+		 * Delete flow success!
+		 */
+		DELETE_FLOW_SUCCESS: () => LocalizedString
+		/**
+		 * Publish flow success!
+		 */
+		PUBLISH_FLOW_SUCCESS: () => LocalizedString
+		/**
+		 * Add multiple channels for flow success!
+		 */
+		ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS: () => LocalizedString
+		/**
+		 * Add multiple channels for flow failed!
+		 */
+		ADD_MULTIPLE_CHANNELS_FLOW__FAILED: () => LocalizedString
 	}
 }
 

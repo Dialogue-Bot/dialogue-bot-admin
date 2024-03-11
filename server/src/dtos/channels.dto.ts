@@ -42,15 +42,14 @@ export class ChannelDTO {
 
    @IsBoolean()
    active: boolean | false;
+
+   @IsString()
+   @IsOptional()
+   flowId: string;
 }
 
 export class DeleteChannelDTO {
    @IsArray()
    @IsString({ each: true })
    ids: string[];
-}
-
-export class MessengerDTO {
-   pageToken: string;
-   webhookSecret: string;
 }
