@@ -19,7 +19,10 @@
    "search": "Search",
    "row_actions": {
       "update": "Update",
-      "delete": "Delete"
+      "delete": "Delete",
+      "view": "View",
+      "add": "Add",
+      "rename": "Rename"
    },
    "remove": "Remove",
    "cancel": "Cancel",

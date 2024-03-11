@@ -9,3 +9,5 @@ export const SetPassword = lazy(() => import('./set-password'));
 export const Profiles = lazy(() => import('./setting-profiles'));
 export const Mail = lazy(() => import('./setting-mail'));
 export const Help = lazy(() => import('./help'));
+export const Chatbots = lazy(() => import('./chatbots'));
+export const ChatBotDetail = lazy(() => import('./chatbot-detail'));

@@ -12,13 +12,9 @@ export const useLoginSchema = () => {
          .email({
             message: t('email.errors.email'),
          }),
-      password: z
-         .string({
-            required_error: t('password.errors.required'),
-         })
-         .min(6, {
-            message: t('password.errors.min', { min: 6 }),
-         }),
+      password: z.string({
+         required_error: t('password.errors.required'),
+      }),
    });
 };
 

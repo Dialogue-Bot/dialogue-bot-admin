@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useDidUpdate } from './use-did-update';
 
 /**
- * Triggers form validation when language changes
- * @param form - react-hook-form form
+ * Custom hook that triggers form validation when the language changes.
+ * @param form - The form object from react-hook-form.
  */
 export const useErrorsLngChange = (form: UseFormReturn<any>) => {
    const { i18n } = useTranslation();
