@@ -1,0 +1,7 @@
+dist
+bot_db
+redis
+pgadmin
+node_modules
+build
+coverage

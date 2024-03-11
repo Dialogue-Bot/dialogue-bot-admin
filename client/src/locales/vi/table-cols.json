@@ -1,11 +1,11 @@
 {
-   "contact_id": "Mã liên hệ",
-   "contact_name": "Tên liên hệ",
-   "contact_type": "Loại liên hệ",
-   "active": "Hoạt động",
-   "created_at": "Tạo vào lúc",
-   "updated_at": "Cập nhật vào lúc",
-   "channel_type": "Loại kênh",
-   "id": "ID",
-   "name": "Tên"
+  "contact_id": "Mã liên hệ",
+  "contact_name": "Tên liên hệ",
+  "contact_type": "Loại liên hệ",
+  "active": "Hoạt động",
+  "created_at": "Tạo vào lúc",
+  "updated_at": "Cập nhật vào lúc",
+  "channel_type": "Loại kênh",
+  "id": "ID",
+  "name": "Tên"
 }

@@ -1,6 +1,6 @@
-import { IsString } from "class-validator";
+import { IsString } from 'class-validator'
 
 export class VerifyWebhookDTO {
-    @IsString()
-    contactId: string
+  @IsString()
+  contactId: string
 }

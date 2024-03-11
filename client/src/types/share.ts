@@ -1,32 +1,32 @@
 export enum ELang {
-   EN = 'en',
-   VI = 'vi',
+  EN = 'en',
+  VI = 'vi',
 }
 
 export type TBaseResponse<T> = {
-   data: T;
-   message: string;
-};
+  data: T
+  message: string
+}
 
 export type TToken = {
-   accessToken: string;
-   refreshToken: string;
-};
+  accessToken: string
+  refreshToken: string
+}
 
 export type Breadcrumb = {
-   title: string;
-   path: string;
-};
+  title: string
+  path: string
+}
 
 export type TResPagination<T = unknown> = TBaseResponse<{
-   items: T[];
-   totalItems: number;
-}>;
+  items: T[]
+  totalItems: number
+}>
 
 export type TBaseQuery = Partial<{
-   page: number;
-   limit: number;
-   orderBy: string;
-   sortType: 'asc' | 'desc';
-   q: string;
-}>;
+  page: number
+  limit: number
+  orderBy: string
+  sortType: 'asc' | 'desc'
+  q: string
+}>

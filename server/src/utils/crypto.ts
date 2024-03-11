@@ -1,5 +1,5 @@
-import { SIGNATURE_SECRET } from '@/config';
-import crypto from 'crypto-js';
+import { SIGNATURE_SECRET } from '@/config'
+import crypto from 'crypto-js'
 
 /**
  * Decrypts the given text using the SIGNATURE_SECRET.
@@ -10,8 +10,8 @@ import crypto from 'crypto-js';
  * const decrypted = decrypt('encrypted text');
  */
 export const decrypt = (text: string) => {
-   return crypto.AES.decrypt(text, SIGNATURE_SECRET).toString(crypto.enc.Utf8);
-};
+  return crypto.AES.decrypt(text, SIGNATURE_SECRET).toString(crypto.enc.Utf8)
+}
 
 /**
  * Encrypts the given text using AES encryption algorithm.
@@ -21,5 +21,5 @@ export const decrypt = (text: string) => {
  * const encrypted = encrypt('text');
  */
 export const encrypt = (text: string) => {
-   return crypto.AES.encrypt(text, SIGNATURE_SECRET).toString();
-};
+  return crypto.AES.encrypt(text, SIGNATURE_SECRET).toString()
+}

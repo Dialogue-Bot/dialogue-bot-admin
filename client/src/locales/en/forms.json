@@ -1,89 +1,89 @@
 {
-   "email": {
-      "label": "Email",
-      "placeholder": "example.work@gmail.com",
-      "errors": {
-         "required": "Please enter your email address.",
-         "email": "Please enter a valid email address."
-      }
-   },
-   "password": {
-      "label": "Password",
-      "placeholder": "Enter your password",
-      "errors": {
-         "required": "Please enter your password.",
-         "min": "Password must be at least {{min}} characters long."
-      }
-   },
-   "confirmPassword": {
-      "label": "Confirm password",
-      "placeholder": "Re-enter your password",
-      "errors": {
-         "required": "Please confirm your password.",
-         "match": "Passwords do not match."
-      }
-   },
-   "name": {
-      "label": "Name",
-      "placeholder": "Dialogue Bot",
-      "errors": {
-         "required": "Please enter your name."
-      }
-   },
-   "oldPassword": {
-      "label": "Old password",
-      "placeholder": "Enter your old password",
-      "errors": {
-         "required": "Please enter your old password."
-      }
-   },
-   "contactId": {
-      "label": "Contact ID",
-      "placeholder": "Enter your contact ID",
-      "errors": {
-         "required": "Please enter your contact ID."
-      }
-   },
-   "contactName": {
-      "label": "Contact name",
-      "placeholder": "Enter your contact name",
-      "errors": {
-         "required": "Please enter your contact name."
-      }
-   },
-   "channelTypeId": {
-      "label": "Channel type",
-      "placeholder": "Select channel type",
-      "errors": {
-         "required": "Please select channel type."
-      }
-   },
-   "pageToken": {
-      "label": "Page token",
-      "placeholder": "Enter your page token",
-      "errors": {
-         "required": "Please enter your page token."
-      }
-   },
-   "webhookSecret": {
-      "label": "Webhook secret",
-      "placeholder": "Enter your webhook secret",
-      "errors": {
-         "required": "Please enter your webhook secret."
-      }
-   },
-   "credentials": {
-      "label": "Credentials",
-      "placeholder": "Enter your credentials",
-      "errors": {
-         "required": "Please enter your credentials."
-      }
-   },
-   "active": {
-      "label": "Active",
-      "placeholder": "Select active status",
-      "errors": {
-         "required": "Please select active status."
-      }
-   }
+  "email": {
+    "label": "Email",
+    "placeholder": "example.work@gmail.com",
+    "errors": {
+      "required": "Please enter your email address.",
+      "email": "Please enter a valid email address."
+    }
+  },
+  "password": {
+    "label": "Password",
+    "placeholder": "Enter your password",
+    "errors": {
+      "required": "Please enter your password.",
+      "min": "Password must be at least {{min}} characters long."
+    }
+  },
+  "confirmPassword": {
+    "label": "Confirm password",
+    "placeholder": "Re-enter your password",
+    "errors": {
+      "required": "Please confirm your password.",
+      "match": "Passwords do not match."
+    }
+  },
+  "name": {
+    "label": "Name",
+    "placeholder": "Dialogue Bot",
+    "errors": {
+      "required": "Please enter your name."
+    }
+  },
+  "oldPassword": {
+    "label": "Old password",
+    "placeholder": "Enter your old password",
+    "errors": {
+      "required": "Please enter your old password."
+    }
+  },
+  "contactId": {
+    "label": "Contact ID",
+    "placeholder": "Enter your contact ID",
+    "errors": {
+      "required": "Please enter your contact ID."
+    }
+  },
+  "contactName": {
+    "label": "Contact name",
+    "placeholder": "Enter your contact name",
+    "errors": {
+      "required": "Please enter your contact name."
+    }
+  },
+  "channelTypeId": {
+    "label": "Channel type",
+    "placeholder": "Select channel type",
+    "errors": {
+      "required": "Please select channel type."
+    }
+  },
+  "pageToken": {
+    "label": "Page token",
+    "placeholder": "Enter your page token",
+    "errors": {
+      "required": "Please enter your page token."
+    }
+  },
+  "webhookSecret": {
+    "label": "Webhook secret",
+    "placeholder": "Enter your webhook secret",
+    "errors": {
+      "required": "Please enter your webhook secret."
+    }
+  },
+  "credentials": {
+    "label": "Credentials",
+    "placeholder": "Enter your credentials",
+    "errors": {
+      "required": "Please enter your credentials."
+    }
+  },
+  "active": {
+    "label": "Active",
+    "placeholder": "Select active status",
+    "errors": {
+      "required": "Please select active status."
+    }
+  }
 }
