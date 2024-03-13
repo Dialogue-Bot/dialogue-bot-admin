@@ -239,6 +239,37 @@ type RootTranslation = {
 		 */
 		ADD_MULTIPLE_CHANNELS_FLOW__FAILED: string
 	}
+
+	INTENT: {
+		/**
+		 * C​r​e​a​t​e​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+		 */
+		CREATE_FAILED: string
+		/**
+		 * C​r​e​a​t​e​ ​f​l​o​w​ success!
+		 */
+		CREATE_SUCCESS: string
+		/**
+		 * Train name existed​!
+		 */
+		TRAIN_NAME_EXISTED: string
+		/**
+		 * Can not find train!
+		 */
+		NOT_FOUND: string
+		/**
+		 * Update train success​!
+		 */
+		UPDATE_SUCCESS: string
+		/**
+		 * Update train failed!
+		 */
+		UPDATE_FAILED: string
+		/**
+		 * Delete train success!
+		 */
+		DELETE_SUCCESS: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -459,6 +490,36 @@ export type TranslationFunctions = {
 		 * Add multiple channels for flow failed!
 		 */
 		ADD_MULTIPLE_CHANNELS_FLOW__FAILED: () => LocalizedString
+	}
+	INTENT: {
+		/**
+		 * C​r​e​a​t​e​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+		 */
+		CREATE_FAILED: () => LocalizedString
+		/**
+		 * C​r​e​a​t​e​ ​f​l​o​w​ success!
+		 */
+		CREATE_SUCCESS: () => LocalizedString
+		/**
+		 * Train name existed​!
+		 */
+		TRAIN_NAME_EXISTED: () => LocalizedString
+		/**
+		 * Can not find train!
+		 */
+		NOT_FOUND: () => LocalizedString
+		/**
+		 * Update train success​!
+		 */
+		UPDATE_SUCCESS: () => LocalizedString
+		/**
+		 * Update train failed!
+		 */
+		UPDATE_FAILED: () => LocalizedString
+		/**
+		 * Delete train success!
+		 */
+		DELETE_SUCCESS: () => LocalizedString
 	}
 }
 

@@ -48,3 +48,7 @@ export type TUpdateChannel = Partial<TNewChannel>;
 export type TNewFlow = typeof schema.flows.$inferInsert;
 
 export type TUpdateFlow = Partial<TNewFlow>;
+
+export type TNewIntent = typeof schema.intents.$inferInsert;
+
+export type TUpdateIntent = Partial<TNewIntent>;

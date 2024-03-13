@@ -155,14 +155,14 @@ export const intents = pgTable('intents', {
       .primaryKey()
       .$defaultFn(() => createId()),
    name: text('name').notNull(),
-   referenceId: text('reference_id').unique().notNull(),
-   intents: json('intents').notNull().default([]).$type<any[]>(),
+   intents: json('intents').default([]).$type<any[]>(),
    entities: json('entities').notNull().default([]).$type<any[]>(),
    userId: varchar('user_id', {
       length: MAX_ID_LENGTH,
    })
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: 'cascade' }),
+   deleted: boolean('deleted').default(false),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at').defaultNow(),
 });
