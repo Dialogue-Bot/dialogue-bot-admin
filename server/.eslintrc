@@ -24,7 +24,5 @@
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-unnecessary-condition": "off"
   },
-  "ignorePatterns": [
-    "drizzle.config.ts"
-  ]
+  "ignorePatterns": ["drizzle.config.ts"]
 }

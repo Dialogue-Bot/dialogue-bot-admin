@@ -1,20 +1,20 @@
 {
-   "page_title": "Chatbots | DialogueBot",
-   "create_btn": "Create new",
-   "actions": {
-      "remove": "Remove",
-      "rename": "Rename"
-   },
-   "rename_dialog": {
-      "title": "Rename flow",
-      "description": "Enter new name for the flow."
-   },
-   "create_dialog": {
-      "title": "Create new flow",
-      "description": "Enter name for the new flow."
-   },
-   "remove_dialog": {
-      "title": "Remove this flow?",
-      "description": "Are you sure you want to remove the flow? This action cannot be undone."
-   }
+  "page_title": "Chatbots | DialogueBot",
+  "create_btn": "Create new",
+  "actions": {
+    "remove": "Remove",
+    "rename": "Rename"
+  },
+  "rename_dialog": {
+    "title": "Rename flow",
+    "description": "Enter new name for the flow."
+  },
+  "create_dialog": {
+    "title": "Create new flow",
+    "description": "Enter name for the new flow."
+  },
+  "remove_dialog": {
+    "title": "Remove this flow?",
+    "description": "Are you sure you want to remove the flow? This action cannot be undone."
+  }
 }

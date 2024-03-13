@@ -1,22 +1,22 @@
 /* eslint-disable react-refresh/only-export-components */
-import { cn } from '@/lib/utils';
-import { HtmlHTMLAttributes } from 'react';
+import { cn } from '@/lib/utils'
+import { HtmlHTMLAttributes } from 'react'
 
-type Props = HtmlHTMLAttributes<HTMLQuoteElement>;
+type Props = HtmlHTMLAttributes<HTMLQuoteElement>
 
 export const TypographyBlockquote = ({
-   className,
-   children,
-   ...props
+  className,
+  children,
+  ...props
 }: Props) => {
-   return (
-      <blockquote
-         className={cn('mt-6 border-l-2 pl-6 italic', className)}
-         {...props}
-      >
-         {children}
-      </blockquote>
-   );
-};
+  return (
+    <blockquote
+      className={cn('mt-6 border-l-2 pl-6 italic', className)}
+      {...props}
+    >
+      {children}
+    </blockquote>
+  )
+}
 
-export default TypographyBlockquote;
+export default TypographyBlockquote

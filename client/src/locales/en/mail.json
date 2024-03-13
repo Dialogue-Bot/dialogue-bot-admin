@@ -1,10 +1,10 @@
 {
-   "title": "Config mail",
-   "sections": {
-      "mail": {
-         "label": "Mail settings",
-         "description": "Enter your mail and password here.",
-         "message": "To get the password, you follow this instruction <a> here </a>."
-      }
-   }
+  "title": "Config mail",
+  "sections": {
+    "mail": {
+      "label": "Mail settings",
+      "description": "Enter your mail and password here.",
+      "message": "To get the password, you follow this instruction <a> here </a>."
+    }
+  }
 }

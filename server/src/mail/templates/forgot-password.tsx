@@ -1,8 +1,8 @@
-import React from 'react';
-export type ForgotPasswordProps = {};
+import React from 'react'
+export type ForgotPasswordProps = {}
 
 export const ForgotPassword = (props: ForgotPasswordProps) => {
-   return <div></div>;
-};
+  return <div></div>
+}
 
-export default ForgotPassword;
+export default ForgotPassword

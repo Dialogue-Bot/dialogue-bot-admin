@@ -1,1 +1,1 @@
-export * from './use-update-mail';
+export * from './use-update-mail'

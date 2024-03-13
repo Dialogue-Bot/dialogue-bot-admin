@@ -1,49 +1,49 @@
-import { Input } from '@/components/ui';
-import { useCallback, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useDebounceValue } from 'usehooks-ts';
-import { useDidUpdate } from './use-did-update';
+import { Input } from '@/components/ui'
+import { useCallback, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useDebounceValue } from 'usehooks-ts'
+import { useDidUpdate } from './use-did-update'
 
 export const useSearch = (field = 'q') => {
-   const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
 
-   const [query, setQuery] = useState(searchParams.get(field) || '');
+  const [query, setQuery] = useState(searchParams.get(field) || '')
 
-   const [debounced] = useDebounceValue(query, 800);
+  const [debounced] = useDebounceValue(query, 800)
 
-   useDidUpdate(() => {
-      if (debounced) {
-         searchParams.set(field, debounced);
-         setSearchParams(searchParams);
-      } else {
-         searchParams.delete(field);
+  useDidUpdate(() => {
+    if (debounced) {
+      searchParams.set(field, debounced)
+      setSearchParams(searchParams)
+    } else {
+      searchParams.delete(field)
 
-         setSearchParams(searchParams);
-      }
-   }, [debounced, field, setSearchParams]);
+      setSearchParams(searchParams)
+    }
+  }, [debounced, field, setSearchParams])
 
-   const renderInput = useCallback(
-      (opts?: { placeholder?: string }) => {
-         const placeholder = opts?.placeholder || '';
-         return (
-            <div className="max-w-64 w-full">
-               <Input
-                  className="w-full"
-                  defaultValue={searchParams.get(field) || query}
-                  onChange={(e) => {
-                     setQuery(e.target.value);
-                  }}
-                  placeholder={placeholder}
-               />
-            </div>
-         );
-      },
-      [query, searchParams, field]
-   );
+  const renderInput = useCallback(
+    (opts?: { placeholder?: string }) => {
+      const placeholder = opts?.placeholder || ''
+      return (
+        <div className='max-w-64 w-full'>
+          <Input
+            className='w-full'
+            defaultValue={searchParams.get(field) || query}
+            onChange={(e) => {
+              setQuery(e.target.value)
+            }}
+            placeholder={placeholder}
+          />
+        </div>
+      )
+    },
+    [query, searchParams, field],
+  )
 
-   return {
-      query,
-      setQuery,
-      renderInput,
-   };
-};
+  return {
+    query,
+    setQuery,
+    renderInput,
+  }
+}

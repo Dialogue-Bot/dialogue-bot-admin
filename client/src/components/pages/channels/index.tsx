@@ -1,2 +1,2 @@
-export * from './cols';
-export * from './data-toolbar';
+export * from './cols'
+export * from './data-toolbar'

@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express'
 
 /**
  * Wraps an asynchronous function with error handling middleware.
@@ -8,9 +8,9 @@ import type { Request, Response, NextFunction } from 'express';
  * app.get('/user', catchAsync(async (req, res) => {}));
  */
 export const catchAsync = <U>(
-   fn: (req: Request, res: Response, next: NextFunction) => Promise<U>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<U>,
 ) => {
-   return (req: Request, res: Response, next: NextFunction) => {
-      fn(req, res, next).catch(next);
-   };
-};
+  return (req: Request, res: Response, next: NextFunction) => {
+    fn(req, res, next).catch(next)
+  }
+}

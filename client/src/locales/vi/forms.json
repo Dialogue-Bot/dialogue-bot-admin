@@ -1,89 +1,104 @@
 {
-   "email": {
-      "label": "Email",
-      "placeholder": "example.work@gmail.com",
-      "errors": {
-         "required": "Vui lòng nhập email của bạn.",
-         "email": "Email không hợp lệ."
-      }
-   },
-   "password": {
-      "label": "Mật khẩu",
-      "placeholder": "Nhập mật khẩu của bạn",
-      "errors": {
-         "required": "Vui lòng nhập mật khẩu của bạn.",
-         "min": "Mật khẩu phải có ít nhất {{min}} ký tự."
-      }
-   },
-   "confirmPassword": {
-      "label": "Xác nhận mật khẩu",
-      "placeholder": "Nhập lại mật khẩu của bạn",
-      "errors": {
-         "required": "Vui lòng xác nhận mật khẩu của bạn.",
-         "match": "Mật khẩu không khớp."
-      }
-   },
-   "name": {
-      "label": "Tên",
-      "placeholder": "Dialogue Bot",
-      "errors": {
-         "required": "Vui lòng nhập tên của bạn."
-      }
-   },
-   "oldPassword": {
-      "label": "Mật khẩu cũ",
-      "placeholder": "Nhập mật khẩu cũ của bạn.",
-      "errors": {
-         "required": "Vui lòng nhập mật khẩu cũ của bạn."
-      }
-   },
-   "contactId": {
-      "label": "Mã liên hệ",
-      "placeholder": "Nhập mã liên hệ của bạn",
-      "errors": {
-         "required": "Vui lòng nhập mã liên hệ của bạn."
-      }
-   },
-   "contactName": {
-      "label": "Tên liên hệ",
-      "placeholder": "Nhập tên liên hệ của bạn",
-      "errors": {
-         "required": "Vui lòng nhập tên liên hệ của bạn."
-      }
-   },
-   "channelTypeId": {
-      "label": "Loại kênh",
-      "placeholder": "Chọn loại kênh",
-      "errors": {
-         "required": "Vui lòng chọn loại kênh."
-      }
-   },
-   "pageToken": {
-      "label": "Page token",
-      "placeholder": "Nhập page token",
-      "errors": {
-         "required": "Vui lòng nhập page token của bạn."
-      }
-   },
-   "webhookSecret": {
-      "label": "Webhook secret",
-      "placeholder": "Nhập webhook secret của bạn",
-      "errors": {
-         "required": "Vui lòng nhập webhook secret của bạn."
-      }
-   },
-   "credentials": {
-      "label": "Thông tin xác thực",
-      "placeholder": "Nhập thông tin xác thực của bạn",
-      "errors": {
-         "required": "Vui lòng nhập thông tin xác thực của bạn."
-      }
-   },
-   "active": {
-      "label": "Kích hoạt",
-      "placeholder": "Chọn trạng thái kích hoạt",
-      "errors": {
-         "required": "Vui lòng chọn trạng thái kích hoạt."
-      }
-   }
+  "email": {
+    "label": "Email",
+    "placeholder": "example.work@gmail.com",
+    "errors": {
+      "required": "Vui lòng nhập email của bạn.",
+      "email": "Email không hợp lệ."
+    }
+  },
+  "password": {
+    "label": "Mật khẩu",
+    "placeholder": "Nhập mật khẩu của bạn",
+    "errors": {
+      "required": "Vui lòng nhập mật khẩu của bạn.",
+      "min": "Mật khẩu phải có ít nhất {{min}} ký tự."
+    }
+  },
+  "confirmPassword": {
+    "label": "Xác nhận mật khẩu",
+    "placeholder": "Nhập lại mật khẩu của bạn",
+    "errors": {
+      "required": "Vui lòng xác nhận mật khẩu của bạn.",
+      "match": "Mật khẩu không khớp."
+    }
+  },
+  "name": {
+    "label": "Tên",
+    "placeholder": "Dialogue Bot",
+    "errors": {
+      "required": "Vui lòng nhập tên của bạn."
+    }
+  },
+  "oldPassword": {
+    "label": "Mật khẩu cũ",
+    "placeholder": "Nhập mật khẩu cũ của bạn.",
+    "errors": {
+      "required": "Vui lòng nhập mật khẩu cũ của bạn."
+    }
+  },
+  "contactId": {
+    "label": "Mã liên hệ",
+    "placeholder": "Nhập mã liên hệ của bạn",
+    "errors": {
+      "required": "Vui lòng nhập mã liên hệ của bạn."
+    }
+  },
+  "contactName": {
+    "label": "Tên liên hệ",
+    "placeholder": "Nhập tên liên hệ của bạn",
+    "errors": {
+      "required": "Vui lòng nhập tên liên hệ của bạn."
+    }
+  },
+  "channelTypeId": {
+    "label": "Loại kênh",
+    "placeholder": "Chọn loại kênh",
+    "errors": {
+      "required": "Vui lòng chọn loại kênh."
+    }
+  },
+  "pageToken": {
+    "label": "Page token",
+    "placeholder": "Nhập page token",
+    "errors": {
+      "required": "Vui lòng nhập page token của bạn."
+    }
+  },
+  "webhookSecret": {
+    "label": "Webhook secret",
+    "placeholder": "Nhập webhook secret của bạn",
+    "errors": {
+      "required": "Vui lòng nhập webhook secret của bạn."
+    }
+  },
+  "credentials": {
+    "label": "Thông tin xác thực",
+    "placeholder": "Nhập thông tin xác thực của bạn",
+    "errors": {
+      "required": "Vui lòng nhập thông tin xác thực của bạn."
+    }
+  },
+  "active": {
+    "label": "Kích hoạt",
+    "placeholder": "Chọn trạng thái kích hoạt",
+    "errors": {
+      "required": "Vui lòng chọn trạng thái kích hoạt."
+    }
+  },
+  "channels": {
+    "label": "Kênh",
+    "placeholder": "Chọn kênh",
+    "errors": {
+      "required": "Vui lòng chọn kênh."
+    }
+  },
+  "bot_lang": {
+    "label": "Ngôn ngữ",
+    "placeholder": "Chọn ngôn ngữ",
+    "errors": {
+      "required": "Vui lòng chọn ngôn ngữ."
+    },
+    "description": "Chọn ngôn ngữ mà bạn muốn bot sử dụng."
+  }
 }
