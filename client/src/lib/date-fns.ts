@@ -1,16 +1,16 @@
-import * as dateFnsLocales from 'date-fns/locale';
-import { Locale } from 'date-fns';
-import i18n from '@/i18n';
+import * as dateFnsLocales from 'date-fns/locale'
+import { Locale } from 'date-fns'
+import i18n from '@/i18n'
 
 interface Locales {
-   [key: string]: Locale;
+  [key: string]: Locale
 }
 
 export const getDateFnsLocale = (): Locale => {
-   const locales: Locales = {
-      en: dateFnsLocales.enUS,
-      vi: dateFnsLocales.vi,
-   };
+  const locales: Locales = {
+    en: dateFnsLocales.enUS,
+    vi: dateFnsLocales.vi,
+  }
 
-   return locales[i18n.language];
-};
+  return locales[i18n.language]
+}

@@ -1,35 +1,36 @@
-import { TBaseQuery } from './share';
+import { TBaseQuery } from './share'
 
 export enum ChannelType {
-   MESSENGER = 'MSG',
-   LINE = 'LIN',
-   WEB = 'WEB',
+  MESSENGER = 'MSG',
+  LINE = 'LIN',
+  WEB = 'WEB',
 }
 
 export type TChannelType = {
-   name: ChannelType;
-   id: string;
-   description: string;
-   deleted?: boolean;
-};
+  name: ChannelType
+  id: string
+  description: string
+  deleted?: boolean
+}
 
 export type TChannel = {
-   id: string;
-   contactId: string;
-   contactName: string;
-   channelTypeId: string;
-   credentials?: string;
-   active: boolean;
-   deleted?: boolean;
-   userId: string;
-   createdAt: string;
-   updatedAt: string;
-};
+  id: string
+  contactId: string
+  contactName: string
+  channelTypeId: string
+  credentials?: string
+  active: boolean
+  deleted?: boolean
+  userId: string
+  createdAt: string
+  updatedAt: string
+  flowId?: string
+}
 
 export type TChannelWithChannelType = TChannel & {
-   channelType: string;
-};
+  channelType: string
+}
 
 export type TChannelQuery = TBaseQuery & {
-   orderBy: keyof TChannel;
-};
+  orderBy: keyof TChannel
+}

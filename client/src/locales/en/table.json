@@ -1,12 +1,12 @@
 {
-   "asc": "Asc",
-   "desc": "Desc",
-   "hide_column": "Hide column",
-   "row_selected": "{{selected}} of {{total}} row(s) selected",
-   "row_per_page": "Rows per page",
-   "page_of": "Page {{current}} of {{total}}",
-   "remove_row": "Remove {{selected}} row(s)",
-   "no_data": "No data available!",
-   "remove_confirm_title": "Remove selected rows?",
-   "remove_confirm_desc": "This action cannot be undone. Are you sure?"
+  "asc": "Asc",
+  "desc": "Desc",
+  "hide_column": "Hide column",
+  "row_selected": "{{selected}} of {{total}} row(s) selected",
+  "row_per_page": "Rows per page",
+  "page_of": "Page {{current}} of {{total}}",
+  "remove_row": "Remove {{selected}} row(s)",
+  "no_data": "No data available!",
+  "remove_confirm_title": "Remove selected rows?",
+  "remove_confirm_desc": "This action cannot be undone. Are you sure?"
 }

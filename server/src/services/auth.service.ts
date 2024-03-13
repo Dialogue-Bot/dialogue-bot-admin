@@ -1,408 +1,399 @@
-import { LOCALE_KEY, TIME_EXPIRED_REFRESH_TOKEN } from '@/constants';
-import type { InferResultType } from '@/database/types';
+import { LOCALE_KEY, TIME_EXPIRED_REFRESH_TOKEN } from '@/constants'
+import type { InferResultType } from '@/database/types'
 import type {
-   ForgotPasswordDto,
-   IdTokenDto,
-   LoginDto,
-   RegisterDto,
-   ResetPasswordDto,
-} from '@/dtos/auth.dto';
-import { HttpException } from '@/exceptions/http-exception';
-import { LocaleService } from '@/i18n/ctx';
-import L from '@/i18n/i18n-node';
-import { redis } from '@/libs/redis';
-import { SendMailQueue } from '@/queues/mail.queue';
-import { logger } from '@/utils/logger';
+  ForgotPasswordDto,
+  IdTokenDto,
+  LoginDto,
+  RegisterDto,
+  ResetPasswordDto,
+} from '@/dtos/auth.dto'
+import { HttpException } from '@/exceptions/http-exception'
+import { LocaleService } from '@/i18n/ctx'
+import L from '@/i18n/i18n-node'
+import { redis } from '@/libs/redis'
+import { SendMailQueue } from '@/queues/mail.queue'
+import { logger } from '@/utils/logger'
 import {
-   ACCESS_TOKEN_SECRET,
-   REFRESH_TOKEN_SECRET,
-   RESET_PASS_TOKEN_SECRET,
-} from '@config';
-import type { TTokenData, TTokenStore } from '@interfaces/auth.interface';
-import * as bcrypt from 'bcrypt';
-import { StatusCodes } from 'http-status-codes';
-import { sign, verify } from 'jsonwebtoken';
-import { omit } from 'lodash';
-import { Inject, Service } from 'typedi';
-import { FirebaseService } from './firebase.service';
-import { UserService } from './users.service';
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+  RESET_PASS_TOKEN_SECRET,
+} from '@config'
+import type { TTokenData, TTokenStore } from '@interfaces/auth.interface'
+import * as bcrypt from 'bcrypt'
+import { StatusCodes } from 'http-status-codes'
+import { sign, verify } from 'jsonwebtoken'
+import { omit } from 'lodash'
+import { Inject, Service } from 'typedi'
+import { FirebaseService } from './firebase.service'
+import { UserService } from './users.service'
 
 @Service()
 export class AuthService {
-   constructor(
-      private readonly userService: UserService,
-      private readonly sendMailQueue: SendMailQueue,
-      @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-      private readonly firebaseService: FirebaseService
-   ) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly sendMailQueue: SendMailQueue,
+    @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
+    private readonly firebaseService: FirebaseService,
+  ) {}
 
-   public async login(fields: LoginDto): Promise<TTokenData> {
-      const user = await this.userService.findOneByEmail(fields.email);
+  public async login(fields: LoginDto): Promise<TTokenData> {
+    const user = await this.userService.findOneByEmail(fields.email)
 
-      if (!user) {
-         throw new HttpException(
-            StatusCodes.NOT_FOUND,
-            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
-         );
-      }
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.NOT_FOUND,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
 
-      const isMatched = await this.validatePassword(
-         fields.password,
-         user.password
-      );
+    const isMatched = await this.validatePassword(
+      fields.password,
+      user.password,
+    )
 
-      if (!isMatched) {
-         throw new HttpException(
-            StatusCodes.UNAUTHORIZED,
-            this.localeService.i18n().AUTH.INCORRECT_PASSWORD()
-         );
-      }
+    if (!isMatched) {
+      throw new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        this.localeService.i18n().AUTH.INCORRECT_PASSWORD(),
+      )
+    }
 
-      const tokenData = this.genTokens(user);
+    const tokenData = this.genTokens(user)
 
-      await redis.set(
-         `refresh-token:${user.id}`,
-         tokenData.refreshToken,
-         'EX',
-         TIME_EXPIRED_REFRESH_TOKEN
-      );
+    await redis.set(
+      `refresh-token:${user.id}`,
+      tokenData.refreshToken,
+      'EX',
+      TIME_EXPIRED_REFRESH_TOKEN,
+    )
 
-      return tokenData;
-   }
+    return tokenData
+  }
 
-   public async loginWithIdToken(fields: IdTokenDto) {
-      const { idToken } = fields;
-      const { email, provider, avatar, name } =
-         await this.firebaseService.verifyIdToken(idToken);
+  public async loginWithIdToken(fields: IdTokenDto) {
+    const { idToken } = fields
+    const { email, provider, avatar, name } =
+      await this.firebaseService.verifyIdToken(idToken)
 
-      const user = await this.userService.findOneByEmail(email);
+    const user = await this.userService.findOneByEmail(email)
 
-      // If user exist and provider is not the same => throw error
-      if (user && user.provider !== provider) {
-         throw new HttpException(
-            StatusCodes.CONFLICT,
-            this.localeService.i18n().AUTH.PROVIDER_EXIST()
-         );
-      }
+    // If user exist and provider is not the same => throw error
+    if (user && user.provider !== provider) {
+      throw new HttpException(
+        StatusCodes.CONFLICT,
+        this.localeService.i18n().AUTH.PROVIDER_EXIST(),
+      )
+    }
 
-      // If user exist and provider is the same => login success
-      if (user && user.provider === provider) {
-         const tokenData = this.genTokens(user);
-
-         await redis.set(
-            `refresh-token:${user.id}`,
-            tokenData.refreshToken,
-            'EX',
-            TIME_EXPIRED_REFRESH_TOKEN
-         );
-
-         return tokenData;
-      }
-
-      const createdUser = await this.userService.create({
-         avatar,
-         email,
-         name,
-         password: null,
-         provider,
-         roles: ['USER'],
-      });
-
-      const tokenData = this.genTokens(createdUser);
+    // If user exist and provider is the same => login success
+    if (user && user.provider === provider) {
+      const tokenData = this.genTokens(user)
 
       await redis.set(
-         `refresh-token:${createdUser.id}`,
-         tokenData.refreshToken,
-         'EX',
-         TIME_EXPIRED_REFRESH_TOKEN
-      );
+        `refresh-token:${user.id}`,
+        tokenData.refreshToken,
+        'EX',
+        TIME_EXPIRED_REFRESH_TOKEN,
+      )
 
-      return tokenData;
-   }
+      return tokenData
+    }
 
-   public async loginAdmin(fields: LoginDto): Promise<TTokenData> {
-      const user = await this.userService.findOneByEmail(fields.email);
+    const createdUser = await this.userService.create({
+      avatar,
+      email,
+      name,
+      password: null,
+      provider,
+      roles: ['USER'],
+    })
 
-      if (!user) {
-         throw new HttpException(
-            StatusCodes.NOT_FOUND,
-            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
-         );
-      }
+    const tokenData = this.genTokens(createdUser)
 
-      const isMatched = await this.validatePassword(
-         fields.password,
-         user.password
-      );
+    await redis.set(
+      `refresh-token:${createdUser.id}`,
+      tokenData.refreshToken,
+      'EX',
+      TIME_EXPIRED_REFRESH_TOKEN,
+    )
 
-      if (!isMatched) {
-         throw new HttpException(
-            StatusCodes.UNAUTHORIZED,
-            this.localeService.i18n().AUTH.INCORRECT_PASSWORD()
-         );
-      }
+    return tokenData
+  }
 
-      if (!user.roles.includes('ADMIN')) {
-         throw new HttpException(
-            StatusCodes.UNAUTHORIZED,
-            this.localeService.i18n().AUTH.UNAUTHORIZED()
-         );
-      }
+  public async loginAdmin(fields: LoginDto): Promise<TTokenData> {
+    const user = await this.userService.findOneByEmail(fields.email)
 
-      const tokenData = this.genTokens(user);
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.NOT_FOUND,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
 
-      await redis.set(
-         `refresh-token:${user.id}`,
-         tokenData.refreshToken,
-         'EX',
-         TIME_EXPIRED_REFRESH_TOKEN
-      );
+    const isMatched = await this.validatePassword(
+      fields.password,
+      user.password,
+    )
 
-      return tokenData;
-   }
+    if (!isMatched) {
+      throw new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        this.localeService.i18n().AUTH.INCORRECT_PASSWORD(),
+      )
+    }
 
-   public async register(
-      fields: RegisterDto
-   ): Promise<Omit<InferResultType<'users'>, 'password'>> {
-      const { email, name, password } = fields;
-      const user = await this.userService.findOneByEmail(email);
+    if (!user.roles.includes('ADMIN')) {
+      throw new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        this.localeService.i18n().AUTH.UNAUTHORIZED(),
+      )
+    }
 
-      if (user) {
-         throw new HttpException(
-            StatusCodes.CONFLICT,
-            this.localeService.i18n().AUTH.ACCOUNT_EXISTS()
-         );
-      }
+    const tokenData = this.genTokens(user)
 
-      const hashedPassword = await bcrypt.hash(password, 10);
+    await redis.set(
+      `refresh-token:${user.id}`,
+      tokenData.refreshToken,
+      'EX',
+      TIME_EXPIRED_REFRESH_TOKEN,
+    )
 
-      const createdUser = await this.userService.create({
-         avatar: null,
-         email,
-         name,
-         password: hashedPassword,
-         provider: 'local',
-         roles: ['USER'],
-      });
+    return tokenData
+  }
 
-      this.genTokens(createdUser);
+  public async register(
+    fields: RegisterDto,
+  ): Promise<Omit<InferResultType<'users'>, 'password'>> {
+    const { email, name, password } = fields
+    const user = await this.userService.findOneByEmail(email)
 
-      return omit(createdUser, ['password']);
-   }
+    if (user) {
+      throw new HttpException(
+        StatusCodes.CONFLICT,
+        this.localeService.i18n().AUTH.ACCOUNT_EXISTS(),
+      )
+    }
 
-   public async forgotPassword(
-      fields: ForgotPasswordDto,
-      clientUrl = 'http://localhost:3000/'
-   ) {
-      const { email } = fields;
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-      const user = await this.userService.findOneByEmail(email);
+    const createdUser = await this.userService.create({
+      avatar: null,
+      email,
+      name,
+      password: hashedPassword,
+      provider: 'local',
+      roles: ['USER'],
+    })
 
-      if (!user) {
-         throw new HttpException(
-            StatusCodes.NOT_FOUND,
-            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
-         );
-      }
+    this.genTokens(createdUser)
 
-      const token = sign({ id: user.id }, RESET_PASS_TOKEN_SECRET as string, {
-         expiresIn: '10m',
-      });
+    return omit(createdUser, ['password'])
+  }
 
-      await redis.set(`reset-password:${user.id}`, token, 'EX', 10 * 60);
+  public async forgotPassword(
+    fields: ForgotPasswordDto,
+    clientUrl = 'http://localhost:3000/',
+  ) {
+    const { email } = fields
 
-      await this.sendMailQueue.addJob({
-         to: email,
-         subject: 'Reset password',
-         template: 'forgot-password',
-         props: {
-            // TODO: Change client url when deploy production
-            logoUrl: 'http://localhost:8080/public/images/logo.png',
-            url: `${clientUrl}/reset-password?token=${token}`,
-            username: user.name,
-         },
-      });
-   }
+    const user = await this.userService.findOneByEmail(email)
 
-   public async resetPassword(
-      fields: ResetPasswordDto & {
-         token: string;
-      }
-   ) {
-      const { token, password, passwordConfirm } = fields;
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.NOT_FOUND,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
 
-      if (!token) {
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().AUTH.URL_TOKEN_INVALID()
-         );
-      }
+    const token = sign({ id: user.id }, RESET_PASS_TOKEN_SECRET as string, {
+      expiresIn: '10m',
+    })
 
-      const decoded = (await this.verifyToken(
-         token,
-         RESET_PASS_TOKEN_SECRET as string
-      )) as { id: string };
+    await redis.set(`reset-password:${user.id}`, token, 'EX', 10 * 60)
 
-      const user = await this.userService.findOneById(decoded.id);
+    await this.sendMailQueue.addJob({
+      to: email,
+      subject: 'Reset password',
+      template: 'forgot-password',
+      props: {
+        // TODO: Change client url when deploy production
+        logoUrl: 'http://localhost:8080/public/images/logo.png',
+        url: `${clientUrl}/reset-password?token=${token}`,
+        username: user.name,
+      },
+    })
+  }
 
-      if (!user) {
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
-         );
-      }
+  public async resetPassword(
+    fields: ResetPasswordDto & {
+      token: string
+    },
+  ) {
+    const { token, password, passwordConfirm } = fields
 
-      if (password !== passwordConfirm) {
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().AUTH.PASSWORD_UNMATCH()
-         );
-      }
+    if (!token) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.URL_TOKEN_INVALID(),
+      )
+    }
 
-      const tokenInRedis = await redis.get(`reset-password:${user.id}`);
+    const decoded = (await this.verifyToken(
+      token,
+      RESET_PASS_TOKEN_SECRET as string,
+    )) as { id: string }
 
-      if (token !== tokenInRedis) {
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().AUTH.URL_TOKEN_INVALID()
-         );
-      }
+    const user = await this.userService.findOneById(decoded.id)
 
-      const hashedPassword = await bcrypt.hash(password, 10);
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
 
-      await this.userService.updateOneById(user.id, {
-         password: hashedPassword,
-      });
+    if (password !== passwordConfirm) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.PASSWORD_UNMATCH(),
+      )
+    }
 
-      await redis.del(`reset-password:${user.id}`);
-   }
+    const tokenInRedis = await redis.get(`reset-password:${user.id}`)
 
-   public async refreshToken(refreshToken: string): Promise<TTokenData> {
-      logger.info('[AUTH] Try to refresh token');
-      const decoded = (await this.verifyToken(
-         refreshToken,
-         REFRESH_TOKEN_SECRET as string
-      )) as { id: string };
+    if (token !== tokenInRedis) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.URL_TOKEN_INVALID(),
+      )
+    }
 
-      const tokenInRedis = await redis.get(`refresh-token:${decoded.id}`);
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-      if (refreshToken !== tokenInRedis) {
-         logger.error('[AUTH] Refresh token failed');
-         throw new HttpException(
-            StatusCodes.BAD_REQUEST,
-            this.localeService.i18n().AUTH.TOKEN_INVALID_OR_EXPIRED()
-         );
-      }
+    await this.userService.updateOneById(user.id, {
+      password: hashedPassword,
+    })
 
-      const user = await this.userService.findOneById(decoded.id);
+    await redis.del(`reset-password:${user.id}`)
+  }
 
-      if (!user) {
-         logger.error('[AUTH] Refresh token failed');
-         throw new HttpException(
-            StatusCodes.NOT_FOUND,
-            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
-         );
-      }
+  public async refreshToken(refreshToken: string): Promise<TTokenData> {
+    logger.info('[AUTH] Try to refresh token')
+    const decoded = (await this.verifyToken(
+      refreshToken,
+      REFRESH_TOKEN_SECRET as string,
+    )) as { id: string }
 
-      const tokenData = this.genTokens(user);
+    const tokenInRedis = await redis.get(`refresh-token:${decoded.id}`)
 
-      await redis.set(
-         `refresh-token:${user.id}`,
-         tokenData.refreshToken,
-         'EX',
-         TIME_EXPIRED_REFRESH_TOKEN
-      );
+    if (refreshToken !== tokenInRedis) {
+      logger.error('[AUTH] Refresh token failed')
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.TOKEN_INVALID_OR_EXPIRED(),
+      )
+    }
 
-      logger.info('[AUTH] Refresh token success');
-      return tokenData;
-   }
+    const user = await this.userService.findOneById(decoded.id)
 
-   public async findCurrentUser(userId: string) {
-      logger.info('[AUTH] Try to get current user');
-      const userInCache = await redis.get(`user:${userId}`);
+    if (!user) {
+      logger.error('[AUTH] Refresh token failed')
+      throw new HttpException(
+        StatusCodes.NOT_FOUND,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
 
-      if (userInCache) {
-         logger.info('[AUTH] Get current user in cache success');
+    const tokenData = this.genTokens(user)
 
-         return JSON.parse(userInCache);
-      }
+    await redis.set(
+      `refresh-token:${user.id}`,
+      tokenData.refreshToken,
+      'EX',
+      TIME_EXPIRED_REFRESH_TOKEN,
+    )
 
-      const user = await this.userService.findOneById(userId);
+    logger.info('[AUTH] Refresh token success')
+    return tokenData
+  }
 
-      if (!user) {
-         throw new HttpException(
-            StatusCodes.NOT_FOUND,
-            this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND()
-         );
-      }
+  public async findCurrentUser(userId: string) {
+    logger.info('[AUTH] Try to get current user')
+    const userInCache = await redis.get(`user:${userId}`)
 
-      await redis.set(
-         `user:${userId}`,
-         JSON.stringify(omit(user, ['password']))
-      );
-      logger.info('[AUTH] Get current user success');
-      return omit(user, ['password']);
-   }
+    if (userInCache) {
+      logger.info('[AUTH] Get current user in cache success')
 
-   private genTokens(user: InferResultType<'users'>): TTokenData {
-      const dataStoredInToken: TTokenStore = {
-         id: user.id,
-         roles: user.roles,
-      };
+      return JSON.parse(userInCache)
+    }
 
-      const accessToken = sign(
-         dataStoredInToken,
-         ACCESS_TOKEN_SECRET as string,
-         {
-            expiresIn: '2h',
-         }
-      );
+    const user = await this.userService.findOneById(userId)
 
-      const refreshToken = sign(
-         dataStoredInToken,
-         REFRESH_TOKEN_SECRET as string,
-         {
-            expiresIn: '7d',
-         }
-      );
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.NOT_FOUND,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
 
-      return {
-         accessToken,
-         refreshToken,
-      };
-   }
+    await redis.set(`user:${userId}`, JSON.stringify(omit(user, ['password'])))
+    logger.info('[AUTH] Get current user success')
+    return omit(user, ['password'])
+  }
 
-   private async validatePassword(
-      incomePassword: string,
-      hashedPassword: string
-   ) {
-      const isMatched = await bcrypt.compare(incomePassword, hashedPassword);
+  private genTokens(user: InferResultType<'users'>): TTokenData {
+    const dataStoredInToken: TTokenStore = {
+      id: user.id,
+      roles: user.roles,
+    }
 
-      return isMatched;
-   }
+    const accessToken = sign(dataStoredInToken, ACCESS_TOKEN_SECRET as string, {
+      expiresIn: '2h',
+    })
 
-   public async verifyToken(token: string, secret: string) {
-      return new Promise((resolve, reject) => {
-         verify(token, secret, (err, decoded) => {
-            if (err) {
-               reject(
-                  new HttpException(
-                     StatusCodes.BAD_REQUEST,
-                     L[
-                        this.localeService.getLocale()
-                     ].AUTH.TOKEN_INVALID_OR_EXPIRED()
-                  )
-               );
-            }
+    const refreshToken = sign(
+      dataStoredInToken,
+      REFRESH_TOKEN_SECRET as string,
+      {
+        expiresIn: '7d',
+      },
+    )
 
-            resolve(decoded);
-         });
-      });
-   }
+    return {
+      accessToken,
+      refreshToken,
+    }
+  }
 
-   public async logout(userId?: string) {
-      if (userId) {
-         await redis.del(`refresh-token:${userId}`);
-      }
-   }
+  private async validatePassword(
+    incomePassword: string,
+    hashedPassword: string,
+  ) {
+    const isMatched = await bcrypt.compare(incomePassword, hashedPassword)
+
+    return isMatched
+  }
+
+  public async verifyToken(token: string, secret: string) {
+    return new Promise((resolve, reject) => {
+      verify(token, secret, (err, decoded) => {
+        if (err) {
+          reject(
+            new HttpException(
+              StatusCodes.BAD_REQUEST,
+              L[this.localeService.getLocale()].AUTH.TOKEN_INVALID_OR_EXPIRED(),
+            ),
+          )
+        }
+
+        resolve(decoded)
+      })
+    })
+  }
+
+  public async logout(userId?: string) {
+    if (userId) {
+      await redis.del(`refresh-token:${userId}`)
+    }
+  }
 }

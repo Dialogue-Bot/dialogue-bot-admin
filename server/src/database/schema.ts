@@ -1,6 +1,6 @@
-import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface';
-import { createId } from '@paralleldrive/cuid2';
-import { relations } from 'drizzle-orm';
+import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface'
+import { createId } from '@paralleldrive/cuid2'
+import { relations } from 'drizzle-orm'
 import {
    boolean,
    json,
@@ -10,10 +10,10 @@ import {
    timestamp,
    uniqueIndex,
    varchar,
-} from 'drizzle-orm/pg-core';
-import { MAX_ID_LENGTH } from '../constants';
+} from 'drizzle-orm/pg-core'
+import { MAX_ID_LENGTH } from '../constants'
 
-export const roles = pgEnum('roles', ['ADMIN', 'USER']);
+export const roles = pgEnum('roles', ['ADMIN', 'USER'])
 
 export const users = pgTable(
    'users',
@@ -35,8 +35,8 @@ export const users = pgTable(
    },
    (table) => ({
       emailIdx: uniqueIndex('email_idx').on(table.email),
-   })
-);
+   }),
+)
 
 export const channelTypes = pgTable('channel_types', {
    id: varchar('id', {
@@ -47,7 +47,7 @@ export const channelTypes = pgTable('channel_types', {
    name: text('name').unique().notNull(),
    description: text('description').unique().notNull(),
    deleted: boolean('deleted').default(false),
-});
+})
 
 export const channels = pgTable('channels', {
    id: varchar('id', {
@@ -65,15 +65,19 @@ export const channels = pgTable('channels', {
       .references(() => channelTypes.id),
    userId: text('user_id')
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, {
+         onDelete: 'cascade',
+      }),
    createdAt: timestamp('created_at').defaultNow(),
    updatedAt: timestamp('updated_at'),
-   flowId: text('flow_id').references(() => flows.id),
-});
+   flowId: text('flow_id').references(() => flows.id, {
+      onDelete: 'set null',
+   }),
+})
 
 export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
    channels: many(channels),
-}));
+}))
 
 export const channelsRelations = relations(channels, ({ one }) => ({
    channelType: one(channelTypes, {
@@ -84,11 +88,11 @@ export const channelsRelations = relations(channels, ({ one }) => ({
       fields: [channels.userId],
       references: [users.id],
    }),
-   botFlow: one(flows, {
+   flow: one(flows, {
       fields: [channels.flowId],
       references: [flows.id],
    }),
-}));
+}))
 
 export const settings = pgTable('settings', {
    id: varchar('id', {
@@ -103,15 +107,17 @@ export const settings = pgTable('settings', {
          password: '',
       })
       .$type<{
-         email: string;
-         password: string;
+         email: string
+         password: string
       }>(),
    userId: varchar('user_id', {
       length: MAX_ID_LENGTH,
    })
       .notNull()
-      .references(() => users.id),
-});
+      .references(() => users.id, {
+         onDelete: 'cascade',
+      }),
+})
 
 export const flows = pgTable('flows', {
    id: varchar('id', {
@@ -128,17 +134,13 @@ export const flows = pgTable('flows', {
    deleted: boolean('deleted').default(false),
    updatedAt: timestamp('updated_at'),
    createdAt: timestamp('created_at').defaultNow(),
-   edges: json('edges').default([]).$type<
-      Array<Record<any, any>>
-   >(),
-   nodes: json('nodes').default([]).$type<
-      Array<Record<any, any>>
-   >(),
+   edges: json('edges').default([]).$type<Array<Record<any, any>>>(),
+   nodes: json('nodes').default([]).$type<Array<Record<any, any>>>(),
    settings: json('settings').default([]).$type<Array<IFlowSetting>>(),
    variables: json('variables').default([]).$type<Array<IFlowVariable>>(),
    flows: json('flows').default([]).$type<any[]>(),
    publishAt: timestamp('publish_at'),
-});
+})
 
 export const flowsRelations = relations(flows, ({ one, many }) => ({
    channels: many(channels),
@@ -146,7 +148,7 @@ export const flowsRelations = relations(flows, ({ one, many }) => ({
       fields: [flows.userId],
       references: [users.id],
    }),
-}));
+}))
 
 export const intents = pgTable('intents', {
    id: varchar('id', {

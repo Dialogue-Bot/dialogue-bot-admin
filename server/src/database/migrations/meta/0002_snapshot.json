@@ -41,16 +41,12 @@
         "channel_types_name_unique": {
           "name": "channel_types_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         },
         "channel_types_description_unique": {
           "name": "channel_types_description_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "description"
-          ]
+          "columns": ["description"]
         }
       }
     },
@@ -128,9 +124,7 @@
         "channels_contact_id_unique": {
           "name": "channels_contact_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "contact_id"
-          ]
+          "columns": ["contact_id"]
         }
       }
     },
@@ -164,12 +158,8 @@
           "name": "settings_user_id_users_id_fk",
           "tableFrom": "settings",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -228,9 +218,7 @@
       "indexes": {
         "email_idx": {
           "name": "email_idx",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },
@@ -240,9 +228,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       }
     }

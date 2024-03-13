@@ -1,11 +1,11 @@
 {
-   "contact_id": "Contact ID",
-   "contact_name": "Contact Name",
-   "contact_type": "Contact Type",
-   "active": "Active",
-   "created_at": "Created At",
-   "updated_at": "Updated At",
-   "channel_type": "Channel Type",
-   "id": "ID",
-   "name": "Name"
+  "contact_id": "Contact ID",
+  "contact_name": "Contact Name",
+  "contact_type": "Contact Type",
+  "active": "Active",
+  "created_at": "Created At",
+  "updated_at": "Updated At",
+  "channel_type": "Channel Type",
+  "id": "ID",
+  "name": "Name"
 }

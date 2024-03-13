@@ -1,10 +1,10 @@
 {
-   "add_channel": "Add new channel",
-   "add_channel_title": "Add new channel",
-   "add_channel_description": "Enter info below to add a new channel. You can follow the instructions <a>here</a>",
-   "update_channel": "Update channel",
-   "update_channel_title": "Update channel",
-   "update_channel_description": "Enter info below to update the channel. You can follow the instructions <a>here</a>",
-   "remove_channel_title": "Remove channel?",
-   "remove_channel_description": "Are you sure you want to remove this channel? This action cannot be undone."
+  "add_channel": "Add new channel",
+  "add_channel_title": "Add new channel",
+  "add_channel_description": "Enter info below to add a new channel. You can follow the instructions <a>here</a>",
+  "update_channel": "Update channel",
+  "update_channel_title": "Update channel",
+  "update_channel_description": "Enter info below to update the channel. You can follow the instructions <a>here</a>",
+  "remove_channel_title": "Remove channel?",
+  "remove_channel_description": "Are you sure you want to remove this channel? This action cannot be undone."
 }

@@ -1,12 +1,12 @@
 {
-   "asc": "Tăng dần",
-   "desc": "Giảm dần",
-   "hide_column": "Ẩn cột",
-   "row_selected": "{{selected}} trên {{total}} dòng được chọn",
-   "row_per_page": "Dòng mỗi trang",
-   "page_of": "Trang {{current}} trên {{total}}",
-   "remove_row": "Xoá {{selected}} dòng",
-   "no_data": "Không có dữ liệu!",
-   "remove_confirm_title": "Xoá những dòng đã chọn?",
-   "remove_confirm_desc": "Hành động này không thể hoàn tác. Bạn có chắc chắn muốn xoá?"
+  "asc": "Tăng dần",
+  "desc": "Giảm dần",
+  "hide_column": "Ẩn cột",
+  "row_selected": "{{selected}} trên {{total}} dòng được chọn",
+  "row_per_page": "Dòng mỗi trang",
+  "page_of": "Trang {{current}} trên {{total}}",
+  "remove_row": "Xoá {{selected}} dòng",
+  "no_data": "Không có dữ liệu!",
+  "remove_confirm_title": "Xoá những dòng đã chọn?",
+  "remove_confirm_desc": "Hành động này không thể hoàn tác. Bạn có chắc chắn muốn xoá?"
 }

@@ -1,2 +1,2 @@
-export * from './use-change-pass';
-export * from './use-update-infor';
+export * from './use-change-pass'
+export * from './use-update-infor'

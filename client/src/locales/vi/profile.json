@@ -1,23 +1,23 @@
 {
-   "title": "Thông tin tài khoản",
-   "sections": {
-      "avatar": {
-         "label": "Ảnh đại diện",
-         "description": "Nhấp vào hình đại diện để tải lên hình đại diện tùy chỉnh từ tệp của bạn.",
-         "message": "Hình đại diện là tùy chọn nhưng được khuyến khích sử dụng."
-      },
-      "name": {
-         "label": "Tên",
-         "description": "Vui lòng nhập tên đầy đủ của bạn hoặc tên hiển thị mà bạn cảm thấy phù hợp."
-      },
-      "email": {
-         "label": "Email",
-         "description": "Vui lòng nhập địa chỉ email bạn muốn sử dụng để đăng nhập vào hệ thống."
-      },
-      "password": {
-         "label": "Đổi mật khẩu",
-         "description": "Vui lòng nhập mật khẩu mới để thay thế mật khẩu hiện tại.",
-         "message": "Mật khẩu cần ít nhất 6 ký tự."
-      }
-   }
+  "title": "Thông tin tài khoản",
+  "sections": {
+    "avatar": {
+      "label": "Ảnh đại diện",
+      "description": "Nhấp vào hình đại diện để tải lên hình đại diện tùy chỉnh từ tệp của bạn.",
+      "message": "Hình đại diện là tùy chọn nhưng được khuyến khích sử dụng."
+    },
+    "name": {
+      "label": "Tên",
+      "description": "Vui lòng nhập tên đầy đủ của bạn hoặc tên hiển thị mà bạn cảm thấy phù hợp."
+    },
+    "email": {
+      "label": "Email",
+      "description": "Vui lòng nhập địa chỉ email bạn muốn sử dụng để đăng nhập vào hệ thống."
+    },
+    "password": {
+      "label": "Đổi mật khẩu",
+      "description": "Vui lòng nhập mật khẩu mới để thay thế mật khẩu hiện tại.",
+      "message": "Mật khẩu cần ít nhất 6 ký tự."
+    }
+  }
 }
