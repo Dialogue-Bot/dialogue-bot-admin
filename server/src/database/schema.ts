@@ -130,9 +130,7 @@ export const flows = pgTable('flows', {
     length: MAX_ID_LENGTH,
   })
     .notNull()
-    .references(() => users.id, {
-      onDelete: 'cascade',
-    }),
+    .references(() => users.id),
   deleted: boolean('deleted').default(false),
   updatedAt: timestamp('updated_at'),
   createdAt: timestamp('created_at').defaultNow(),
