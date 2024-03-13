@@ -32,5 +32,9 @@
   "ok": "OK",
   "dialog_confirm_title": "Confirm",
   "dialog_confirm_desc": "Are you sure?",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "langs": {
+    "vi": "Vietnamese",
+    "en": "English"
+  }
 }

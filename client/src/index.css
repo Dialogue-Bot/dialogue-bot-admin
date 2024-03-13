@@ -73,3 +73,7 @@ body[data-overflow='true']#body-overflow {
 html {
   scroll-behavior: smooth;
 }
+
+[hidden] {
+  display: none !important;
+}

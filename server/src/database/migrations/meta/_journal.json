@@ -29,6 +29,27 @@
       "when": 1709999335538,
       "tag": "0003_amused_rumiko_fujikawa",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1710261771053,
+      "tag": "0004_worthless_omega_red",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1710264016668,
+      "tag": "0005_futuristic_master_chief",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1710264188410,
+      "tag": "0006_exotic_fixer",
+      "breakpoints": true
     }
   ]
 }

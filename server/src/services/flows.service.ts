@@ -24,6 +24,7 @@ import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
+import { logger } from '@/utils/logger'
 
 @Service()
 export class FlowService {
@@ -48,7 +49,20 @@ export class FlowService {
       )
     }
 
-    const [newFlow] = await db.insert(flows).values(fields).returning()
+    const [newFlow] = await db
+      .insert(flows)
+      .values({
+        ...fields,
+        settings: [
+          {
+            type: 'language',
+            value: 'en',
+            default: true,
+            label: 'Language',
+          },
+        ],
+      })
+      .returning()
 
     if (!newFlow) {
       throw new HttpException(
@@ -96,18 +110,7 @@ export class FlowService {
       )
     }
 
-    // handle update flowId for channel
-    const addFlowIdForChannels = await this.chanelService.updateFlowId(
-      fields.channelIds,
-      flowExisted.id,
-    )
-
-    if (!addFlowIdForChannels) {
-      throw new HttpException(
-        StatusCodes.BAD_REQUEST,
-        this.localeService.i18n().FLOW.ADD_MULTIPLE_CHANNELS_FLOW__FAILED(),
-      )
-    }
+    await this.chanelService.updateFlowId(fields.channelIds, flowExisted.id)
 
     const [updateFlow] = await db
       .update(flows)
@@ -252,25 +255,19 @@ export class FlowService {
     return result
   }
 
-  public async getFlowsForSelect(userId: string, channelId: string) {
+  public async getFlowsForSelect(userId: string) {
+    logger.info('[FlowService] trying to get flows for select')
+
     const result = await db
       .select({
         label: flows.name,
         value: flows.id,
-        isSelected: exists(
-          db
-            .select({
-              flowId: channels.flowId,
-            })
-            .from(channels)
-            .where(
-              and(eq(channels.flowId, flows.id), eq(channels.id, channelId)),
-            ),
-        ),
       })
       .from(flows)
-      .leftJoin(channels, eq(channels.flowId, flows.id))
       .where(and(eq(flows.deleted, false), eq(flows.userId, userId)))
+      .orderBy(asc(flows.name))
+
+    logger.info(`[FlowService] result: ${JSON.stringify(result)}`)
 
     return result
   }

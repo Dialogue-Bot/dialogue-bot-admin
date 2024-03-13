@@ -85,5 +85,20 @@
     "errors": {
       "required": "Please select active status."
     }
+  },
+  "channels": {
+    "label": "Channels",
+    "placeholder": "Select channels",
+    "errors": {
+      "required": "Please select channels."
+    }
+  },
+  "bot_lang": {
+    "label": "Bot language",
+    "placeholder": "Select bot language",
+    "errors": {
+      "required": "Please select bot language."
+    },
+    "description": "Select the language to use for the bot."
   }
 }

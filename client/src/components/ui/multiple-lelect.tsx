@@ -82,7 +82,10 @@ export const MultipleSelect = memo(
                   <span>{item?.label}</span>
                   <X
                     className='w-3 h-3'
-                    onClick={() => handleToggle(item?.value as string)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleToggle(item?.value as string)
+                    }}
                   />
                 </Badge>
               ))
@@ -101,7 +104,7 @@ export const MultipleSelect = memo(
           {options.map((option) => {
             return (
               <div
-                className='relative flex w-full cursor-default select-none items-center rounded-md py-1.5 pl-2 pr-8 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50  justify-between'
+                className='relative flex w-full cursor-default select-none items-center rounded-md py-1.5 px-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50  justify-between'
                 onClick={() => handleToggle(option.value)}
               >
                 {option.label}

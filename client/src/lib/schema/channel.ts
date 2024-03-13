@@ -32,6 +32,7 @@ export const useChannelSchema = () => {
         })
         .optional(),
       active: z.boolean().default(true),
+      flowId: z.string().optional(),
     })
     .superRefine(async (data, ctx) => {
       if (data.credentials) {

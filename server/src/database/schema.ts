@@ -65,10 +65,14 @@ export const channels = pgTable('channels', {
     .references(() => channelTypes.id),
   userId: text('user_id')
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, {
+      onDelete: 'cascade',
+    }),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at'),
-  flowId: text('flow_id').references(() => flows.id),
+  flowId: text('flow_id').references(() => flows.id, {
+    onDelete: 'set null',
+  }),
 })
 
 export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
@@ -84,7 +88,7 @@ export const channelsRelations = relations(channels, ({ one }) => ({
     fields: [channels.userId],
     references: [users.id],
   }),
-  botFlow: one(flows, {
+  flow: one(flows, {
     fields: [channels.flowId],
     references: [flows.id],
   }),
@@ -110,7 +114,9 @@ export const settings = pgTable('settings', {
     length: MAX_ID_LENGTH,
   })
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, {
+      onDelete: 'cascade',
+    }),
 })
 
 export const flows = pgTable('flows', {
@@ -124,7 +130,9 @@ export const flows = pgTable('flows', {
     length: MAX_ID_LENGTH,
   })
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, {
+      onDelete: 'cascade',
+    }),
   deleted: boolean('deleted').default(false),
   updatedAt: timestamp('updated_at'),
   createdAt: timestamp('created_at').defaultNow(),
@@ -151,5 +159,5 @@ export const usersRelations = relations(users, ({ one, many }) => ({
     references: [settings.userId],
   }),
   channels: many(channels),
-  botFlows: many(flows),
+  flows: many(flows),
 }))

@@ -1,8 +1,15 @@
-import { Controls, nodeTypes } from '@/components/pages/chatbot-detail'
+import {
+  Controls,
+  FlowProvider,
+  nodeTypes,
+} from '@/components/pages/chatbot-detail'
 import { Edge } from '@/components/pages/chatbot-detail/edge'
 import { Toolbar } from '@/components/pages/chatbot-detail/toolbar'
+import { queryFlowDetailOption } from '@/lib/query-options/flow'
 import { ENodeTypes } from '@/types/flow'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useCallback } from 'react'
+import { useParams } from 'react-router-dom'
 import ReactFlow, {
   Background,
   BackgroundVariant,
@@ -15,6 +22,10 @@ import ReactFlow, {
 import 'reactflow/dist/style.css'
 
 const ChatBotDetail = () => {
+  const { id: flowId } = useParams()
+  const { data: flow } = useSuspenseQuery(
+    queryFlowDetailOption(flowId as string),
+  )
   const [nodes, _setNodes, onNodesChange] = useNodesState([
     {
       id: '1',
@@ -59,28 +70,30 @@ const ChatBotDetail = () => {
   )
 
   return (
-    <div className='h-svh select-none'>
-      <ReactFlow
-        nodeTypes={nodeTypes}
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        edgeTypes={{
-          smoothstep: Edge,
-        }}
-        connectionLineType={ConnectionLineType.SmoothStep}
-      >
-        <Background
-          gap={24}
-          variant={BackgroundVariant.Dots}
-          color={'hsl(var(--primary))'}
-        />
-        <Controls />
-        <Toolbar />
-      </ReactFlow>
-    </div>
+    <FlowProvider flow={flow}>
+      <div className='h-svh select-none'>
+        <ReactFlow
+          nodeTypes={nodeTypes}
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          edgeTypes={{
+            smoothstep: Edge,
+          }}
+          connectionLineType={ConnectionLineType.SmoothStep}
+        >
+          <Background
+            gap={24}
+            variant={BackgroundVariant.Dots}
+            color={'hsl(var(--primary))'}
+          />
+          <Controls />
+          <Toolbar />
+        </ReactFlow>
+      </div>
+    </FlowProvider>
   )
 }
 

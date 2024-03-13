@@ -9,6 +9,7 @@ export const queryChannelTypesOption = queryOptions({
 
     return res.data
   },
+  staleTime: Infinity,
 })
 
 export const queryChannelTypeOption = (id: string) => {
@@ -19,6 +20,7 @@ export const queryChannelTypeOption = (id: string) => {
 
       return res.data
     },
+    staleTime: Infinity,
   })
 }
 
@@ -31,5 +33,17 @@ export const queryChannelsOption = (query?: TChannelQuery) => {
       return res.data
     },
     placeholderData: keepPreviousData,
+  })
+}
+
+export const queryChannelsForSelectOption = (flowId: string) => {
+  return queryOptions({
+    queryKey: ['channels-for-select', flowId],
+    queryFn: async () => {
+      const res = await channelApi.getChannelsForSelect(flowId)
+
+      return res.data
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
   })
 }

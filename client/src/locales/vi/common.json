@@ -31,5 +31,9 @@
   "ok": "OK",
   "dialog_confirm_title": "Xác nhận",
   "dialog_confirm_desc": "Bạn có chắc chắn không?",
-  "confirm": "Xác nhận"
+  "confirm": "Xác nhận",
+  "langs": {
+    "vi": "Tiếng Việt",
+    "en": "Tiếng Anh"
+  }
 }

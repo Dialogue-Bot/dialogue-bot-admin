@@ -6,7 +6,7 @@ import {
   TChannelType,
   TChannelWithChannelType,
 } from '@/types/channel'
-import { TBaseResponse, TResPagination } from '@/types/share'
+import { TBaseResponse, TResPagination, TSelectResponse } from '@/types/share'
 
 class ChannelApi {
   getChannelType(id: string): Promise<TBaseResponse<TChannelType>> {
@@ -43,6 +43,14 @@ class ChannelApi {
   deleteMany(ids: string[]): Promise<TBaseResponse<null>> {
     return http_client.delete(ENDPOINTS.CHANNEL.DELETES, {
       data: { ids },
+    })
+  }
+
+  getChannelsForSelect(
+    flowId: string,
+  ): Promise<TBaseResponse<TSelectResponse<string, string>[]>> {
+    return http_client.get(`${ENDPOINTS.CHANNEL.INDEX}/for-select`, {
+      params: { flowId },
     })
   }
 }

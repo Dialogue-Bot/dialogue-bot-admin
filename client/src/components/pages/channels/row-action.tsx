@@ -84,6 +84,7 @@ const RowActions = ({ row }: Props) => {
                   : undefined,
                 active: row.original.active,
                 contactName: row.original.contactName,
+                flowId: row.original.flowId,
               }}
               onSubmit={async (data) => {
                 await updateChannelMutation.mutateAsync({

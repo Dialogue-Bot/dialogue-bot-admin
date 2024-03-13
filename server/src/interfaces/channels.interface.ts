@@ -7,6 +7,7 @@ export interface ChannelExtend {
   active: boolean
   createdAt: Date
   updatedAt: Date
+  flowId: string
 }
 
 export interface ChannelInfo {

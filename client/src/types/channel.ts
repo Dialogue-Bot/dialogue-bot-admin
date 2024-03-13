@@ -24,6 +24,7 @@ export type TChannel = {
   userId: string
   createdAt: string
   updatedAt: string
+  flowId?: string
 }
 
 export type TChannelWithChannelType = TChannel & {

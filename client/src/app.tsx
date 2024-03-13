@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from 'react-router-dom'
+import { Outlet, createBrowserRouter, redirect } from 'react-router-dom'
 import i18n from './i18n'
 import {
   Channels,
@@ -11,7 +11,6 @@ import {
   Register,
   SetPassword,
 } from '@/pages'
-import { useAppLayoutStore } from '@/store'
 
 import {
   AppLayout,
@@ -29,13 +28,25 @@ import {
   articlesLoader,
   authLoader,
   channelsLoader,
+  flowDetailLoader,
   flowsLoader,
   settingLoader,
 } from './lib/loader'
 import HelpDetail from './pages/help-detail'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+const App = () => {
+  return (
+    <div>
+      <ReactQueryDevtools />
+      <Outlet />
+    </div>
+  )
+}
 
 export const router = createBrowserRouter([
   {
+    Component: App,
     children: [
       {
         loader: authLoader,
@@ -143,6 +154,7 @@ export const router = createBrowserRouter([
           {
             path: `${ROUTES.PRIVATE.CHAT_BOT.INDEX}/:id`,
             Component: ChatBotDetail,
+            loader: flowDetailLoader,
           },
         ],
       },

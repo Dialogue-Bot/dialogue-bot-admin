@@ -41,6 +41,12 @@ export class FlowRoute implements Routes {
       this.controller.deleteFlow,
     )
 
+    this.router.get(
+      `${ENDPOINTS.FLOW.INDEX}/for-select`,
+      authMiddleware,
+      this.controller.getFlowsForSelect,
+    )
+
     //for bot get flow by contactId
     this.router.get(
       `${ENDPOINTS.FLOW.INDEX}/:contactId`,
@@ -59,18 +65,6 @@ export class FlowRoute implements Routes {
       validate(PagingDTO, 'query'),
       authMiddleware,
       this.controller.getAllFlows,
-    )
-
-    this.router.get(
-      ENDPOINTS.FLOW.SELECT_FLOWS_FOR_CHANNEL,
-      authMiddleware,
-      this.controller.selectFlowsForChannel,
-    )
-
-    this.router.get(
-      `${ENDPOINTS.FLOW.INDEX}/for-select`,
-      authMiddleware,
-      this.controller.getFlowsForSelect,
     )
   }
 }

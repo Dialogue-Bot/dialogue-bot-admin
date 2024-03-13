@@ -85,5 +85,20 @@
     "errors": {
       "required": "Vui lòng chọn trạng thái kích hoạt."
     }
+  },
+  "channels": {
+    "label": "Kênh",
+    "placeholder": "Chọn kênh",
+    "errors": {
+      "required": "Vui lòng chọn kênh."
+    }
+  },
+  "bot_lang": {
+    "label": "Ngôn ngữ",
+    "placeholder": "Chọn ngôn ngữ",
+    "errors": {
+      "required": "Vui lòng chọn ngôn ngữ."
+    },
+    "description": "Chọn ngôn ngữ mà bạn muốn bot sử dụng."
   }
 }

@@ -24,19 +24,25 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ChannelType } from '@/types/channel'
 import { useMemo } from 'react'
 import { useDidUpdate } from '@/hooks/use-did-update'
+import { queryFlowsForSelectOption } from '@/lib/query-options/flow'
 
 type Props = {
   id?: string
   onSubmit?: (data: TChannelInput) => void
   defaultValues?: TChannelInput
+  channelId?: string
 }
 
 const ChannelForm = ({
   id = 'channel-form',
   onSubmit,
   defaultValues,
+  channelId,
 }: Props) => {
   const { t } = useTranslation('forms')
+  const { data: flows } = useQuery(queryFlowsForSelectOption(channelId || ''))
+  const { data: types } = useQuery(queryChannelTypesOption)
+
   const schema = useChannelSchema()
   const form = useForm<TChannelInput>({
     resolver: zodResolver(schema),
@@ -46,7 +52,6 @@ const ChannelForm = ({
       ...defaultValues,
     },
   })
-  const { data: types } = useQuery(queryChannelTypesOption)
 
   const channelTypeId = form.watch('channelTypeId')
 
@@ -124,6 +129,34 @@ const ChannelForm = ({
                   onCheckedChange={field.onChange}
                 />
               </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='flowId'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>
+                <Label>{t('active.label')}</Label>
+              </FormLabel>
+
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select a verified email to display' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {flows?.map((flow) => {
+                    return (
+                      <SelectItem key={flow.value} value={flow.value}>
+                        {flow.label}
+                      </SelectItem>
+                    )
+                  })}
+                </SelectContent>
+              </Select>
             </FormItem>
           )}
         />

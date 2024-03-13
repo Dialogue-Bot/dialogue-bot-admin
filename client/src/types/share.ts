@@ -30,3 +30,9 @@ export type TBaseQuery = Partial<{
   sortType: 'asc' | 'desc'
   q: string
 }>
+
+export type TSelectResponse<L = string, V = unknown> = {
+  label: L
+  value: V
+  isSelected: boolean
+}

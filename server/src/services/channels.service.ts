@@ -94,6 +94,7 @@ export class ChannelService {
   }
 
   public async updateById(id: string, fields: TUpdateChannel) {
+    console.log('fields', fields)
     const channelExisted = await db.query.channels.findFirst({
       where: eq(channels.id, id),
     })
@@ -116,11 +117,12 @@ export class ChannelService {
       )
     }
 
-    fields.updatedAt = new Date()
-
     const [updateChannel] = await db
       .update(channels)
-      .set(fields)
+      .set({
+        ...fields,
+        updatedAt: new Date(),
+      })
       .where(eq(channels.id, id))
       .returning()
 
@@ -190,6 +192,7 @@ export class ChannelService {
         createdAt: channels.createdAt,
         updatedAt: channels.updatedAt,
         channelTypeId: channels.channelTypeId,
+        flowId: channels.flowId,
       })
       .from(channels)
       .where(
@@ -324,23 +327,35 @@ export class ChannelService {
   }
 
   public async updateFlowId(ids: string[], flowId: string) {
-    for (const id in ids) {
-      const channelExisted = await db.query.channels.findFirst({
-        where: eq(channels.id, id),
+    if (!ids.length) return true
+
+    const prevChannels = await db
+      .select({
+        id: channels.id,
       })
+      .from(channels)
+      .where(eq(channels.flowId, flowId))
 
-      if (!channelExisted) {
-        logger.info(`Channel ID ${id} does not exist to update flow!`)
-        continue
-      }
+    const prevChannelIds = prevChannels.map((c) => c.id)
 
-      channelExisted.flowId = flowId
-
+    if (prevChannelIds.length) {
       await db
         .update(channels)
-        .set(channelExisted)
-        .where(eq(channels.id, id))
-        .returning()
+        .set({
+          flowId: null,
+          updatedAt: new Date(),
+        })
+        .where(inArray(channels.id, prevChannelIds))
+    }
+
+    if (ids.length) {
+      await db
+        .update(channels)
+        .set({
+          flowId,
+          updatedAt: new Date(),
+        })
+        .where(inArray(channels.id, ids))
     }
 
     return true

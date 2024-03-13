@@ -5,11 +5,14 @@ import { ROUTES } from '@/constants'
 import { useAppLayoutStore, useSettingStore, useUserStore } from '@/store'
 import { TChannelQuery } from '@/types/channel'
 import { queryStringToObject } from '@/utils'
-import { queryChannelsOption } from './query-options/channel'
+import {
+  queryChannelsForSelectOption,
+  queryChannelsOption,
+} from './query-options/channel'
 import i18n from '@/i18n'
 import { getAllArticles, getArticle } from './content'
 import { TBaseQuery } from '@/types/share'
-import { queryFlowsOption } from './query-options/flow'
+import { queryFlowDetailOption, queryFlowsOption } from './query-options/flow'
 
 export const authLoader = async ({ request }: any) => {
   const redirectUrl = new URL(request.url).searchParams.get('redirect')
@@ -92,6 +95,15 @@ export const flowsLoader = async ({ request }: any) => {
   await queryClient.ensureQueryData(queryFlowsOption(query))
 
   useAppLayoutStore.getState().setTitle(i18n.t('common:chatbots'))
+
+  return null
+}
+
+export const flowDetailLoader = async ({ params }: any) => {
+  await Promise.all([
+    queryClient.ensureQueryData(queryChannelsForSelectOption(params.id)),
+    queryClient.ensureQueryData(queryFlowDetailOption(params.id)),
+  ])
 
   return null
 }
