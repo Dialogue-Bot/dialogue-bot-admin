@@ -66,14 +66,13 @@ export class FlowController {
     res.status(StatusCodes.OK).json({ data })
   })
 
-  public selectFlowsForChannel = catchAsync(
-    async (req: RequestWithUser, res) => {
-      const data = await this.flowService.selectFlowsForChannel(
-        req.user?.id as string,
-      )
-      res.status(StatusCodes.OK).json({ data })
-    },
-  )
+  public getFlowsForSelect = catchAsync(async (req: RequestWithUser, res) => {
+    console.log('req.query.channelId', req.query.channelId)
+    const data = await this.flowService.getFlowsForSelect(
+      req.user?.id as string,
+    )
+    res.status(StatusCodes.OK).json({ data })
+  })
 
   public getFlowByContactId = catchAsync(async (req: RequestWithUser, res) => {
     const data = await this.flowService.getFlowByContactId(req.params.contactId)

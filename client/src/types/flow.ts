@@ -1,16 +1,14 @@
-export enum ENodeTypes {
+export enum EActionTypes {
   START = 'start',
-  END = 'end',
-  ACTION = 'action',
-  CONDITION = 'condition',
   MESSAGE = 'message',
-  QUESTION = 'question',
-  ANSWER = 'answer',
-  OPTION = 'option',
-  FORM = 'form',
+  PROMPT_AND_COLLECT = 'prompt-and-collect',
+  CHECK_ATTRIBUTE = 'check-attribute',
+  SEND_MAIL = 'send-mail',
+  HTTP_REQUEST = 'http-request',
+  SUB_FLOW = 'sub-flow',
 }
 
-export type TNodeTypes = Partial<Record<ENodeTypes, () => JSX.Element>>
+export type TNodeTypes = Partial<Record<EActionTypes, () => JSX.Element>>
 
 export type TFLow = {
   id: string

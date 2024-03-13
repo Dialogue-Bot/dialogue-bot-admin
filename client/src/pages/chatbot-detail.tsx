@@ -6,7 +6,7 @@ import {
 import { Edge } from '@/components/pages/chatbot-detail/edge'
 import { Toolbar } from '@/components/pages/chatbot-detail/toolbar'
 import { queryFlowDetailOption } from '@/lib/query-options/flow'
-import { ENodeTypes } from '@/types/flow'
+import { EActionTypes } from '@/types/flow'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useCallback } from 'react'
 import { useParams } from 'react-router-dom'
@@ -29,19 +29,19 @@ const ChatBotDetail = () => {
   const [nodes, _setNodes, onNodesChange] = useNodesState([
     {
       id: '1',
-      type: ENodeTypes.START,
+      type: EActionTypes.START,
       position: { x: 100, y: 100 },
       data: { label: 'Start' },
     },
     {
       id: '2',
-      type: ENodeTypes.MESSAGE,
+      type: EActionTypes.MESSAGE,
       position: { x: 250, y: 100 },
       data: { label: 'Message' },
     },
     {
       id: '3',
-      type: ENodeTypes.MESSAGE,
+      type: EActionTypes.MESSAGE,
       position: { x: 250, y: 100 },
       data: { label: 'Message' },
     },
