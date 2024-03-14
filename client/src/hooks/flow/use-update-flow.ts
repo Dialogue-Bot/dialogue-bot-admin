@@ -19,6 +19,12 @@ export const useUpdateFlow = () => {
       queryClient.invalidateQueries({
         queryKey: ['flows'],
       })
+      queryClient.invalidateQueries({
+        queryKey: ['channels-for-select'],
+      })
+      queryClient.invalidateQueries({
+        queryKey: ['flow-detail', data.data.id],
+      })
 
       toast.success(data.message)
     },

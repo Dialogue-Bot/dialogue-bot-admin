@@ -3,7 +3,6 @@ import {
   FlowProvider,
   nodeTypes,
 } from '@/components/pages/chatbot-detail'
-import { Edge } from '@/components/pages/chatbot-detail/edge'
 import { Toolbar } from '@/components/pages/chatbot-detail/toolbar'
 import { queryFlowDetailOption } from '@/lib/query-options/flow'
 import { EActionTypes } from '@/types/flow'
@@ -13,13 +12,14 @@ import { useParams } from 'react-router-dom'
 import ReactFlow, {
   Background,
   BackgroundVariant,
-  ConnectionLineType,
   OnConnect,
   addEdge,
   useEdgesState,
   useNodesState,
 } from 'reactflow'
 import 'reactflow/dist/style.css'
+import '@/styles/react-flow.css'
+import { edgeTypes } from '@/components/pages/chatbot-detail/ede-types'
 
 const ChatBotDetail = () => {
   const { id: flowId } = useParams()
@@ -28,10 +28,16 @@ const ChatBotDetail = () => {
   )
   const [nodes, _setNodes, onNodesChange] = useNodesState([
     {
-      id: '1',
+      id: EActionTypes.START,
       type: EActionTypes.START,
       position: { x: 100, y: 100 },
-      data: { label: 'Start' },
+      data: {
+        label: 'Start',
+        type: EActionTypes.START,
+        id: EActionTypes.START,
+        name: 'Start',
+      },
+      deletable: false,
     },
     {
       id: '2',
@@ -46,26 +52,34 @@ const ChatBotDetail = () => {
       data: { label: 'Message' },
     },
   ])
-  const [edges, setEdges, onEdgesChange] = useEdgesState([
-    {
-      id: 'e1-2',
-      source: '1',
-      target: '2',
-      type: 'smoothstep',
-    },
-  ])
+  const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
   const onConnect: OnConnect = useCallback(
-    (params) =>
-      setEdges((eds) =>
-        addEdge(
+    (params) => {
+      setEdges((eds) => {
+        if (eds.length > 0) {
+          console.log({
+            params,
+            eds,
+          })
+
+          if (
+            params.source === EActionTypes.START &&
+            eds.some((edge) => edge.source === EActionTypes.START)
+          ) {
+            return eds
+          }
+        }
+
+        return addEdge(
           {
             ...params,
-            type: 'smoothstep',
+            type: 'custom',
           },
           eds,
-        ),
-      ),
+        )
+      })
+    },
     [setEdges],
   )
 
@@ -79,10 +93,7 @@ const ChatBotDetail = () => {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
-          edgeTypes={{
-            smoothstep: Edge,
-          }}
-          connectionLineType={ConnectionLineType.SmoothStep}
+          edgeTypes={edgeTypes}
         >
           <Background
             gap={24}

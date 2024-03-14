@@ -1,12 +1,8 @@
 import { Button } from '@/components/ui'
 import { X } from 'lucide-react'
-import {
-  BaseEdge,
-  EdgeLabelRenderer,
-  EdgeProps,
-  getSmoothStepPath,
-  useReactFlow,
-} from 'reactflow'
+import { BaseEdge, EdgeProps, useReactFlow, getBezierPath } from 'reactflow'
+
+const foreignObjectSize = 16
 
 export const Edge = ({
   id,
@@ -20,7 +16,7 @@ export const Edge = ({
   markerEnd,
 }: EdgeProps) => {
   const { setEdges } = useReactFlow()
-  const [edgePath, labelX, labelY] = getSmoothStepPath({
+  const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
     sourceY,
     sourcePosition,
@@ -36,21 +32,30 @@ export const Edge = ({
   return (
     <>
       <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
-      <EdgeLabelRenderer>
-        <div
-          style={{
-            position: 'absolute',
-            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-            fontSize: 12,
-            pointerEvents: 'all',
-          }}
-          className='nodrag nopan'
+      <path
+        id={id}
+        style={style}
+        className='react-flow__edge-path edge-outline opacity-0'
+        d={edgePath}
+        markerEnd={markerEnd}
+      />
+      <foreignObject
+        width={foreignObjectSize}
+        height={foreignObjectSize}
+        x={labelX - foreignObjectSize / 2}
+        y={labelY - foreignObjectSize / 2}
+        className='edgebutton flex items-center justify-center  '
+        requiredExtensions='http://www.w3.org/1999/xhtml'
+      >
+        <Button
+          size='icon'
+          className='w-4 h-4 opacity-0 scale-50 invisible btn'
+          variant='destructive'
+          onClick={onEdgeClick}
         >
-          <Button variant='outline' size='icon' className=' w-4 h-4 '>
-            <X className='h-3 w-3 text-destructive' />
-          </Button>
-        </div>
-      </EdgeLabelRenderer>
+          <X className='w-2 h-2' />
+        </Button>
+      </foreignObject>
     </>
   )
 }

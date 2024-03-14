@@ -2,7 +2,7 @@ export enum EActionTypes {
   START = 'start',
   MESSAGE = 'message',
   PROMPT_AND_COLLECT = 'prompt-and-collect',
-  CHECK_ATTRIBUTE = 'check-attribute',
+  CHECK_VARIABLES = 'check-variables',
   SEND_MAIL = 'send-mail',
   HTTP_REQUEST = 'http-request',
   SUB_FLOW = 'sub-flow',
