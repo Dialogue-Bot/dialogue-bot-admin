@@ -1,4 +1,5 @@
 import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface'
+import { IIntents } from '@/interfaces/intents.interface'
 import { createId } from '@paralleldrive/cuid2'
 import { relations } from 'drizzle-orm'
 import {
@@ -157,7 +158,8 @@ export const intents = pgTable('intents', {
     .primaryKey()
     .$defaultFn(() => createId()),
   name: text('name').notNull(),
-  intents: json('intents').default([]).$type<any[]>(),
+  referenceId: text('reference_id').notNull(),
+  intents: json('intents').default([]).$type<Array<IIntents>>(),
   entities: json('entities').notNull().default([]).$type<any[]>(),
   userId: varchar('user_id', {
     length: MAX_ID_LENGTH,

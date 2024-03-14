@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { ENDPOINTS } from '@/constants'
-import { FlowController } from '@/controllers/flows.controller'
-import { FlowDTO } from '@/dtos/flows.dto'
-import { PagingDTO } from '@/dtos/paging.dto'
-import { authMiddleware } from '@/middlewares/auth.middleware'
-import { validate } from '@/middlewares/validation.middleware'
-import type { Routes } from '@interfaces/routes.interface'
-import { Router } from 'express'
-=======
 import { ENDPOINTS } from '@/constants';
 import { FlowController } from '@/controllers/flows.controller';
 import { FlowDTO } from '@/dtos/flows.dto';
@@ -16,7 +6,6 @@ import { authMiddleware } from '@/middlewares/auth.middleware';
 import { validate } from '@/middlewares/validation.middleware';
 import type { Routes } from '@interfaces/routes.interface';
 import { Router } from 'express';
->>>>>>> origin/main
 
 export class FlowRoute implements Routes {
   public router: Router = Router()
@@ -55,7 +44,7 @@ export class FlowRoute implements Routes {
     this.router.get(
       `${ENDPOINTS.FLOW.INDEX}/for-select`,
       authMiddleware,
-      this.controller.getFlowsForSelect,
+      this.controller.selectFlowsForChannel,
     )
 
     //for bot get flow by contactId

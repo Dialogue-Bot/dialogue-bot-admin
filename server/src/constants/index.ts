@@ -56,6 +56,9 @@ export const ENDPOINTS = {
     ADD_CHANNELS: '/flow/add-channels',
     SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
   },
+  INTENT: {
+    INDEX: '/intent',
+  }
 }
 
 export const LOCALE_KEY = 'lang'
