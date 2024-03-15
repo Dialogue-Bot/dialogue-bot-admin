@@ -14,7 +14,12 @@ export const Edge = ({
   targetPosition,
   style = {},
   markerEnd,
-}: EdgeProps) => {
+  data = {
+    deletable: true,
+  },
+}: EdgeProps<{
+  deletable?: boolean
+}>) => {
   const { setEdges } = useReactFlow()
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
@@ -25,7 +30,9 @@ export const Edge = ({
     targetPosition,
   })
 
-  const onEdgeClick = () => {
+  const handleDelete = () => {
+    if (!data?.deletable) return
+
     setEdges((edges) => edges.filter((edge) => edge.id !== id))
   }
 
@@ -39,23 +46,25 @@ export const Edge = ({
         d={edgePath}
         markerEnd={markerEnd}
       />
-      <foreignObject
-        width={foreignObjectSize}
-        height={foreignObjectSize}
-        x={labelX - foreignObjectSize / 2}
-        y={labelY - foreignObjectSize / 2}
-        className='edgebutton flex items-center justify-center  '
-        requiredExtensions='http://www.w3.org/1999/xhtml'
-      >
-        <Button
-          size='icon'
-          className='w-4 h-4 opacity-0 scale-50 invisible btn'
-          variant='destructive'
-          onClick={onEdgeClick}
+      {data?.deletable && (
+        <foreignObject
+          width={foreignObjectSize}
+          height={foreignObjectSize}
+          x={labelX - foreignObjectSize / 2}
+          y={labelY - foreignObjectSize / 2}
+          className='edgebutton flex items-center justify-center  '
+          requiredExtensions='http://www.w3.org/1999/xhtml'
         >
-          <X className='w-2 h-2' />
-        </Button>
-      </foreignObject>
+          <Button
+            size='icon'
+            className='w-4 h-4 opacity-0 scale-50 invisible btn'
+            variant='destructive'
+            onClick={handleDelete}
+          >
+            <X className='w-2 h-2' />
+          </Button>
+        </foreignObject>
+      )}
     </>
   )
 }

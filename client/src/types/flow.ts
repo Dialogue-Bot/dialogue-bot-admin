@@ -6,6 +6,7 @@ export enum EActionTypes {
   SEND_MAIL = 'send-mail',
   HTTP_REQUEST = 'http-request',
   SUB_FLOW = 'sub-flow',
+  FALLBACK = 'fallback',
 }
 
 export type TNodeTypes = Partial<Record<EActionTypes, () => JSX.Element>>
