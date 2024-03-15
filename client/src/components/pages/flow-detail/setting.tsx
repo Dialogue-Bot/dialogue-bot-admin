@@ -13,8 +13,6 @@ import { Dialog } from '@radix-ui/react-dialog'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import GeneralSetting from './general-setting'
-import { TFlowInput } from '@/lib/schema/flow-input'
-import { useFlowCtx } from '.'
 
 const useSettingOptions = () => {
   const { t } = useTranslation()

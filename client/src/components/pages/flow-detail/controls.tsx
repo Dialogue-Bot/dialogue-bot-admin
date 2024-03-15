@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui'
 import { Maximize, Minus, Plus } from 'lucide-react'
 import { useLayoutEffect } from 'react'
-import { Panel, useViewport, useReactFlow } from 'reactflow'
+import { Panel, useReactFlow, useViewport } from 'reactflow'
 
 const MAX_ZOOM = 2
 const MIN_ZOOM = 0.5
@@ -38,7 +38,7 @@ export const Controls = () => {
 
   useLayoutEffect(() => {
     setViewport({
-      zoom: 1.5,
+      zoom: 1.25,
       x: 0,
       y: 0,
     })

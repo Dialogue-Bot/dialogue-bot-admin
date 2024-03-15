@@ -327,7 +327,7 @@ export class ChannelService {
   }
 
   public async updateFlowId(ids: string[], flowId: string) {
-    if (!ids.length) return true
+    if (!ids?.length) return true
 
     const prevChannels = await db
       .select({
