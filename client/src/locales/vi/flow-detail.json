@@ -1,0 +1,35 @@
+{
+  "actions": {
+    "title": "Actions",
+    "desc": "Kéo và thả các hành động vào khu vực làm việc để tạo luồng làm việc của bot.",
+    "items": {
+      "message": "Tin nhắn",
+      "prompt_and_collect": "Thu thập thông tin",
+      "check_variables": "Kiểm tra biến",
+      "http_request": "Yêu cầu HTTP",
+      "fallback": "Fallback",
+      "start": "Bắt đầu",
+      "sub_flow": "Luồng phụ",
+      "send_mail": "Gửi mail"
+    }
+  },
+  "toolbar": {
+    "actions": "Actions",
+    "settings": "Cài đặt",
+    "publish": "Xuất bản",
+    "test_your_bot": "Chạy thử bot"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "desc": "Cấu hình cài đặt của bot"
+  },
+  "settings_tabs": {
+    "bot": "Bot",
+    "channels": "Kênh",
+    "users": "Người dùng",
+    "variables": "Biến",
+    "analytics": "Phân tích",
+    "general": "Tổng quan"
+  },
+  "variables": "Biến"
+}

@@ -100,5 +100,33 @@
       "required": "Vui lòng chọn ngôn ngữ."
     },
     "description": "Chọn ngôn ngữ mà bạn muốn bot sử dụng."
+  },
+  "flow": {
+    "label": "Luồng",
+    "placeholder": "Chọn luồng",
+    "errors": {
+      "required": "Vui lòng chọn luồng."
+    }
+  },
+  "variable_name": {
+    "label": "Biến {{index}}",
+    "placeholder": "Nhập tên biến",
+    "errors": {
+      "required": "Vui lòng nhập tên biến."
+    }
+  },
+  "variable_value": {
+    "label": "Giá trị {{index}}",
+    "placeholder": "Nhập giá trị biến",
+    "errors": {
+      "required": "Vui lòng nhập giá trị biến."
+    }
+  },
+  "variable_type": {
+    "label": "Loại biến {{index}}",
+    "placeholder": "Chọn kiểu dữ liệu",
+    "errors": {
+      "required": "Vui lòng chọn kiểu dữ liệu."
+    }
   }
 }

@@ -77,3 +77,7 @@ html {
 [hidden] {
   display: none !important;
 }
+
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
+}

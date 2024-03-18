@@ -27,7 +27,6 @@ export const FlowInside = () => {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         edgeTypes={edgeTypes}
-        deleteKeyCode={[]}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         onInit={handleInit}

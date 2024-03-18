@@ -3,16 +3,18 @@ import { cn } from '@/lib/utils'
 import { EActionTypes } from '@/types/flow'
 import { X } from 'lucide-react'
 import { DragEvent, useCallback, useLayoutEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useFlowCtx } from '.'
-import { ACTIONS, MAP_ACTION_TO_LABEL } from './constant'
+import { ACTIONS, useMapActionToLabel } from './constant'
 
 export const Actions = () => {
+  const { t } = useTranslation('flowDetail')
   const { openActions, toggleActions } = useFlowCtx()
   const actionsRef = useRef<HTMLDivElement>(null)
+  const actionToLabel = useMapActionToLabel()
 
   const handleDragStart = useCallback(
     (e: DragEvent<HTMLDivElement>, type: EActionTypes) => {
-      console.log('drag start')
       e.dataTransfer.setData('application/reactflow', type)
       e.dataTransfer.effectAllowed = 'move'
     },
@@ -42,7 +44,7 @@ export const Actions = () => {
       <div>
         <div className='flex items-center justify-between'>
           <span className='text-lg font-semibold leading-none tracking-tight'>
-            Actions
+            {t('actions.title')}
           </span>
           <Button
             className='w-4 h-4 p-0 hover:bg-transparent'
@@ -52,16 +54,9 @@ export const Actions = () => {
             <X className='w-4 h-4' />
           </Button>
         </div>
-        <p className='text-sm text-muted-foreground'>
-          Drag and drop actions to create your node
-        </p>
+        <p className='text-sm text-muted-foreground'>{t('actions.desc')}</p>
       </div>
       <div className='grid gap-2'>
-        <div
-          onDragStart={(e) => handleDragStart(e, EActionTypes.CHECK_VARIABLES)}
-        >
-          hi
-        </div>
         {ACTIONS.map((action) => {
           return (
             <div
@@ -71,7 +66,7 @@ export const Actions = () => {
               draggable
             >
               {action.Icon()}
-              <span>{MAP_ACTION_TO_LABEL[action.type]}</span>
+              <span>{actionToLabel[action.type]}</span>
             </div>
           )
         })}

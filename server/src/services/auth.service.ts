@@ -324,7 +324,7 @@ export class AuthService {
     if (userInCache) {
       logger.info('[AUTH] Get current user in cache success')
 
-      return JSON.parse(userInCache)
+      return omit(JSON.parse(userInCache), ['password'])
     }
 
     const user = await this.userService.findOneById(userId)

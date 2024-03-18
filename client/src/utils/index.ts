@@ -102,3 +102,22 @@ export const formatDate = (date: string): string => {
 export const calcPageCount = (total: number, limit: number) => {
   return Math.ceil(total / limit)
 }
+
+export const isStringNumber = (value: string) => {
+  return /^\d+$/.test(value)
+}
+
+export const isStringBoolean = (value: string) => {
+  return value === 'true' || value === 'false'
+}
+
+export const toBoolean = (value: string | number) => {
+  if (typeof value === 'number') return Boolean(value)
+
+  if (typeof value === 'string') {
+    if (value === 'true') return true
+    if (value === 'false') return false
+  }
+
+  return Boolean(value)
+}

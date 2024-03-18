@@ -1,8 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import * as z from 'zod'
+import { useVariableInputSchema } from './variable-input'
 
 export const useFlowInputSchema = () => {
   const { t } = useTranslation('forms')
+
+  const variableSchema = useVariableInputSchema()
 
   return z.object({
     name: z
@@ -15,14 +18,7 @@ export const useFlowInputSchema = () => {
     edges: z.array(z.record(z.any())).optional(),
     nodes: z.array(z.record(z.any())).optional(),
     settings: z.array(z.record(z.any())).optional(),
-    variables: z
-      .array(
-        z.object({
-          name: z.string(),
-          value: z.string(),
-        }),
-      )
-      .optional(),
+    variables: z.array(variableSchema).optional(),
     flows: z.array(z.record(z.any())).optional(),
     channelIds: z.array(z.string()).optional(),
   })
