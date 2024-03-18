@@ -1,6 +1,13 @@
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
 import { TFlowInput, useFlowInputSchema } from '@/lib/schema/flow-input'
-import { isStringBoolean, isStringNumber, toBoolean } from '@/utils'
+import {
+  isStringArray,
+  isStringBoolean,
+  isStringNumber,
+  isStringObject,
+  toArray,
+  toBoolean,
+} from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toNumber } from 'lodash'
 import { X } from 'lucide-react'
@@ -21,7 +28,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Textarea,
 } from '../ui'
+
+const closeChars = new Map([
+  ['{', '}'],
+  ['[', ']'],
+  ['(', ')'],
+])
 
 type Props = {
   id?: string
@@ -29,10 +43,57 @@ type Props = {
   defaultValues?: TFlowInput
 }
 
-const parseVariableValue = (value: string) => {
-  if (isStringNumber(value)) return toNumber(value)
-  if (isStringBoolean(value)) return toBoolean(value)
+const parseVariableValue = (value: string, type: string) => {
+  if (isStringNumber(value) && type === 'number') return toNumber(value)
+  if (isStringBoolean(value) && type === 'boolean') return toBoolean(value)
+
+  if (isStringArray(value) && type === 'array') return toArray(value)
+
+  if (isStringObject(value) && type === 'object') return JSON.parse(value)
+
   return value
+}
+
+const handleJsonChange = (
+  e: React.ChangeEvent<HTMLTextAreaElement>,
+  onChange: (value: any) => void,
+) => {
+  const cursorPosition = e.target.selectionStart
+
+  const val = [...e.target.value]
+
+  const char = val.slice(cursorPosition - 1, cursorPosition)[0]
+
+  const closeChar = closeChars.get(char)
+
+  if (closeChar) {
+    val.splice(cursorPosition, 0, closeChar)
+    e.target.value = val.join('')
+    e.target.selectionEnd = cursorPosition
+  }
+
+  onChange(e.target.value)
+}
+
+const handleJsonKeyDown = (
+  e: React.KeyboardEvent<HTMLTextAreaElement>,
+  onChange: (value: any) => void,
+) => {
+  if (e.key === 'Tab') {
+    e.preventDefault()
+
+    const cursorPosition = e.currentTarget.selectionStart
+    const value = e.currentTarget.value
+    e.currentTarget.value =
+      value.substring(0, cursorPosition) +
+      '  ' +
+      value.substring(cursorPosition, value.length)
+
+    e.currentTarget.selectionStart = cursorPosition + 2
+    e.currentTarget.selectionEnd = cursorPosition + 2
+
+    onChange(e.currentTarget.value)
+  }
 }
 
 export const VariablesSettingForm = ({
@@ -47,19 +108,22 @@ export const VariablesSettingForm = ({
     mode: 'onChange',
     defaultValues: {
       ...defaultValues,
+      variables: defaultValues?.variables?.map((variable) => ({
+        ...variable,
+        value: JSON.stringify(variable.value),
+      })),
     },
   })
+
+  const variablesWatch = form.watch('variables')
+
   const {
     fields: variables,
     append,
-    prepend,
     remove,
-    swap,
-    move,
-    insert,
   } = useFieldArray({
     control: form.control,
-    name: 'variables', // unique name for your Field Array
+    name: 'variables',
   })
 
   useErrorsLngChange(form)
@@ -70,7 +134,7 @@ export const VariablesSettingForm = ({
         ...data,
         variables: data.variables?.map((variable) => ({
           ...variable,
-          value: parseVariableValue(variable.value),
+          value: parseVariableValue(variable.value, variable.type as string),
         })),
       })
     }
@@ -123,11 +187,27 @@ export const VariablesSettingForm = ({
                         return (
                           <FormItem className='w-full'>
                             <FormControl>
-                              <Input
-                                {...field}
-                                autoComplete='off'
-                                placeholder={t('variable_value.placeholder')}
-                              />
+                              {variablesWatch?.[index]?.type === 'object' ? (
+                                <Textarea
+                                  {...field}
+                                  onChange={(e) => {
+                                    handleJsonChange(e, field.onChange)
+                                  }}
+                                  onKeyDown={(e) =>
+                                    handleJsonKeyDown(e, field.onChange)
+                                  }
+                                  autoComplete='off'
+                                  placeholder={t('variable_value.placeholder')}
+                                  className='hidden-scroll resize-none'
+                                  rows={5}
+                                />
+                              ) : (
+                                <Input
+                                  {...field}
+                                  autoComplete='off'
+                                  placeholder={t('variable_value.placeholder')}
+                                />
+                              )}
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -152,7 +232,13 @@ export const VariablesSettingForm = ({
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {['string', 'number', 'boolean'].map((type) => (
+                                {[
+                                  'string',
+                                  'number',
+                                  'boolean',
+                                  'array',
+                                  'object',
+                                ].map((type) => (
                                   <SelectItem key={type} value={type}>
                                     {type}
                                   </SelectItem>

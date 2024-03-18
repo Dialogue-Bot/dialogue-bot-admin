@@ -119,7 +119,11 @@
     "label": "Giá trị {{index}}",
     "placeholder": "Nhập giá trị biến",
     "errors": {
-      "required": "Vui lòng nhập giá trị biến."
+      "required": "Vui lòng nhập giá trị biến.",
+      "number": "Vu lòng nhập một giá trị số.",
+      "boolean": "Vui lòng nhập một giá trị boolean.",
+      "array": "Vui lòng nhập một giá trị mảng. (e.g. a,b,c)",
+      "object": "Vui lòng nhập một giá trị object."
     }
   },
   "variable_type": {

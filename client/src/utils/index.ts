@@ -121,3 +121,26 @@ export const toBoolean = (value: string | number) => {
 
   return Boolean(value)
 }
+
+export const isStringArray = (value: string) => {
+  return /^[^,]+(,[^,]+)+$/g.test(value)
+}
+
+export const toArray = (value: string) => {
+  if (!isStringArray(value)) throw new Error('Invalid array')
+
+  return value.split(',').map((v) => {
+    if (isStringNumber(v)) return Number(v)
+    if (isStringBoolean(v)) return toBoolean(v)
+    return v
+  })
+}
+
+export const isStringObject = (value: string) => {
+  try {
+    JSON.parse(value)
+    return true
+  } catch (error) {
+    return false
+  }
+}

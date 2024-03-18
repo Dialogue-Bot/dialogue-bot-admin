@@ -121,7 +121,9 @@
     "errors": {
       "required": "Please enter variable value.",
       "number": "Please enter a valid number.",
-      "boolean": "Please enter a valid boolean value."
+      "boolean": "Please enter a valid boolean value.",
+      "array": "Please enter a valid array value. (e.g. a,b,c)",
+      "object": "Please enter a valid object value. (e.g. {\"key\": \"value\"})"
     }
   },
   "variable_type": {

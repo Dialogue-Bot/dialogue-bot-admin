@@ -1,4 +1,9 @@
-import { isStringBoolean, isStringNumber } from '@/utils'
+import {
+  isStringArray,
+  isStringBoolean,
+  isStringNumber,
+  isStringObject,
+} from '@/utils'
 import { useTranslation } from 'react-i18next'
 import * as z from 'zod'
 
@@ -16,7 +21,7 @@ export const useVariableInputSchema = () => {
         }),
       value: z.any().optional(),
       type: z
-        .enum(['string', 'number', 'boolean'])
+        .enum(['string', 'number', 'boolean', 'array', 'object'])
         .default('string')
         .optional(),
     })
@@ -35,6 +40,22 @@ export const useVariableInputSchema = () => {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: t('variable_value.errors.boolean'),
+          path: ['value'],
+        })
+      }
+
+      if (type === 'array' && !isStringArray(value)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('variable_value.errors.array'),
+          path: ['value'],
+        })
+      }
+
+      if (type === 'object' && !isStringObject(value)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('variable_value.errors.object'),
           path: ['value'],
         })
       }
