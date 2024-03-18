@@ -20,7 +20,7 @@ import {
   useNodesState,
 } from 'reactflow'
 import { useToggle } from 'usehooks-ts'
-import { MAP_ACTION_TO_LABEL } from './constant'
+import { useMapActionToLabel } from './constant'
 
 type FlowCtx = {
   flow: TFlowInput
@@ -45,7 +45,7 @@ type Props = {
 
 export const FlowProvider = ({ children, flow }: Props) => {
   const [open, toggle] = useToggle()
-
+  const actionToLabel = useMapActionToLabel()
   const [nodes, setNodes, onNodesChange] = useNodesState([
     {
       id: EActionTypes.START,
@@ -95,6 +95,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
       },
     },
   ])
+
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,
     any
@@ -128,13 +129,13 @@ export const FlowProvider = ({ children, flow }: Props) => {
         type,
         position,
         data: {
-          label: MAP_ACTION_TO_LABEL[type as EActionTypes],
+          label: actionToLabel[type as EActionTypes],
         },
       }
 
       setNodes((nds) => nds.concat(newNode))
     },
-    [reactFlowInstance, setNodes],
+    [reactFlowInstance, setNodes, actionToLabel],
   )
 
   const handleInit = useCallback((instance: ReactFlowInstance<any, any>) => {
@@ -159,6 +160,44 @@ export const FlowProvider = ({ children, flow }: Props) => {
     [setEdges],
   )
 
+  const getNode = useCallback(
+    (id: string) => nodes.find((node) => node.id === id),
+    [nodes],
+  )
+
+  const getEdge = useCallback(
+    (id: string) => edges.find((edge) => edge.id === id),
+    [edges],
+  )
+
+  const handleEdgesChange = useCallback(
+    (changes: EdgeChange[]) => {
+      console.log('change', changes)
+
+      const nextChanges = changes.reduce((acc, change) => {
+        // Remove the edge if it's a custom edge and the target is the fallback node
+
+        if (change.type === 'remove') {
+          const edge = getEdge(change.id)
+
+          if (
+            edge?.type === 'custom' &&
+            edge.target === EActionTypes.FALLBACK
+          ) {
+            return acc
+          }
+
+          return [...acc, change]
+        }
+
+        return [...acc, change]
+      }, [] as EdgeChange[])
+
+      onEdgesChange(nextChanges)
+    },
+    [getEdge, onEdgesChange],
+  )
+
   return (
     <FlowContext.Provider
       value={{
@@ -169,7 +208,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
         edges,
         onConnect,
         onNodesChange,
-        onEdgesChange,
+        onEdgesChange: handleEdgesChange,
         handleInit,
         handleDragOver,
         handleDrop,

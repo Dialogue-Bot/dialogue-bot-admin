@@ -1,0 +1,35 @@
+{
+  "actions": {
+    "title": "Actions",
+    "desc": "Drag and drop actions to create your own custom flow.",
+    "items": {
+      "message": "Message",
+      "prompt_and_collect": "Prompt & Collect",
+      "check_variables": "Check Variables",
+      "http_request": "HTTP Request",
+      "fallback": "Fallback",
+      "start": "Start",
+      "sub_flow": "Sub Flow",
+      "send_mail": "Send Mail"
+    }
+  },
+  "toolbar": {
+    "actions": "Actions",
+    "settings": "Settings",
+    "publish": "Publish",
+    "test_your_bot": "Test Your Bot"
+  },
+  "settings": {
+    "title": "Settings",
+    "desc": "Configure your bot settings."
+  },
+  "settings_tabs": {
+    "bot": "Bot",
+    "channels": "Channels",
+    "users": "Users",
+    "variables": "Variables",
+    "analytics": "Analytics",
+    "general": "General"
+  },
+  "variables": "Variables"
+}

@@ -100,5 +100,35 @@
       "required": "Please select bot language."
     },
     "description": "Select the language to use for the bot."
+  },
+  "flow": {
+    "label": "Flow",
+    "placeholder": "Select flow",
+    "errors": {
+      "required": "Please select flow."
+    }
+  },
+  "variable_name": {
+    "label": "Variable {{index}}",
+    "placeholder": "Enter variable name",
+    "errors": {
+      "required": "Please enter variable name."
+    }
+  },
+  "variable_value": {
+    "label": "Value of variable {{index}}",
+    "placeholder": "Enter variable value",
+    "errors": {
+      "required": "Please enter variable value.",
+      "number": "Please enter a valid number.",
+      "boolean": "Please enter a valid boolean value."
+    }
+  },
+  "variable_type": {
+    "label": "Type of variable {{index}}",
+    "placeholder": "Select variable type",
+    "errors": {
+      "required": "Please select variable type."
+    }
   }
 }
