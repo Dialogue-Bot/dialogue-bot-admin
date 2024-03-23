@@ -28,3 +28,27 @@ export type TFLow = {
   flows: Array<Record<any, any>>
   publishAt: string
 }
+
+export type TNode = {
+  id: string
+  label: string
+  action: EActionTypes
+  nextAction?: string
+  nextActions?: Array<{
+    condition: string
+    id: string
+  }>
+  name: string
+  contents?: {
+    vi: Record<string, any>
+    en: Record<string, any>
+  }
+  [key: string]: any
+}
+
+export enum EMessageTypes {
+  TEXT = 'text',
+  IMAGE = 'image',
+  LIST_BUTTON = 'list-button',
+  LIST_CARD = 'list-card',
+}

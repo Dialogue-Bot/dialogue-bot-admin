@@ -1,5 +1,6 @@
 import crypto from 'crypto-js'
 import dayjs from 'dayjs'
+import _ from 'lodash'
 
 const isObject = (obj: Record<any, any>) =>
   obj != null && obj.constructor.name === 'Object'
@@ -143,4 +144,23 @@ export const isStringObject = (value: string) => {
   } catch (error) {
     return false
   }
+}
+
+export const setValueObjectExcludeFields = <
+  T extends Record<any, any> = Record<any, any>,
+>(
+  obj: T,
+  fields: (keyof T)[],
+) => {
+  const newObj = _.cloneDeep(obj)
+
+  fields.forEach((field) => {
+    delete newObj[field]
+  })
+
+  return newObj
+}
+
+export const isEmptyObject = (obj: Record<any, any>) => {
+  return Object.keys(obj).length === 0
 }

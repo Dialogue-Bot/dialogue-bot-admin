@@ -54,54 +54,12 @@ const parseVariableValue = (value: string, type: string) => {
   return value
 }
 
-const handleJsonChange = (
-  e: React.ChangeEvent<HTMLTextAreaElement>,
-  onChange: (value: any) => void,
-) => {
-  const cursorPosition = e.target.selectionStart
-
-  const val = [...e.target.value]
-
-  const char = val.slice(cursorPosition - 1, cursorPosition)[0]
-
-  const closeChar = closeChars.get(char)
-
-  if (closeChar) {
-    val.splice(cursorPosition, 0, closeChar)
-    e.target.value = val.join('')
-    e.target.selectionEnd = cursorPosition
-  }
-
-  onChange(e.target.value)
-}
-
-const handleJsonKeyDown = (
-  e: React.KeyboardEvent<HTMLTextAreaElement>,
-  onChange: (value: any) => void,
-) => {
-  if (e.key === 'Tab') {
-    e.preventDefault()
-
-    const cursorPosition = e.currentTarget.selectionStart
-    const value = e.currentTarget.value
-    e.currentTarget.value =
-      value.substring(0, cursorPosition) +
-      '  ' +
-      value.substring(cursorPosition, value.length)
-
-    e.currentTarget.selectionStart = cursorPosition + 2
-    e.currentTarget.selectionEnd = cursorPosition + 2
-
-    onChange(e.currentTarget.value)
-  }
-}
-
 export const VariablesSettingForm = ({
   id = 'variables-setting-form',
   onSubmit,
   defaultValues,
 }: Props) => {
-  const { t } = useTranslation(['forms', 'common'])
+  const { t } = useTranslation(['forms', 'common', 'flowDetail'])
   const schema = useFlowInputSchema()
   const form = useForm<TFlowInput>({
     resolver: zodResolver(schema),
@@ -110,7 +68,7 @@ export const VariablesSettingForm = ({
       ...defaultValues,
       variables: defaultValues?.variables?.map((variable) => ({
         ...variable,
-        value: JSON.stringify(variable.value),
+        value: JSON.stringify(variable.value).replace(/"/g, ''),
       })),
     },
   })
@@ -145,6 +103,48 @@ export const VariablesSettingForm = ({
 
     append({ name: '', value: '', type: 'string' })
   }, [append, form])
+
+  const handleJsonChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    onChange: (value: any) => void,
+  ) => {
+    const cursorPosition = e.target.selectionStart
+
+    const val = [...e.target.value]
+
+    const char = val.slice(cursorPosition - 1, cursorPosition)[0]
+
+    const closeChar = closeChars.get(char)
+
+    if (closeChar) {
+      val.splice(cursorPosition, 0, closeChar)
+      e.target.value = val.join('')
+      e.target.selectionEnd = cursorPosition
+    }
+
+    onChange(e.target.value)
+  }
+
+  const handleJsonKeyDown = (
+    e: React.KeyboardEvent<HTMLTextAreaElement>,
+    onChange: (value: any) => void,
+  ) => {
+    if (e.key === 'Tab') {
+      e.preventDefault()
+
+      const cursorPosition = e.currentTarget.selectionStart
+      const value = e.currentTarget.value
+      e.currentTarget.value =
+        value.substring(0, cursorPosition) +
+        '  ' +
+        value.substring(cursorPosition, value.length)
+
+      e.currentTarget.selectionStart = cursorPosition + 2
+      e.currentTarget.selectionEnd = cursorPosition + 2
+
+      onChange(e.currentTarget.value)
+    }
+  }
 
   return (
     <div className='space-y-3'>
@@ -263,14 +263,14 @@ export const VariablesSettingForm = ({
               })
             ) : (
               <span className='text-sm text-muted-foreground block text-center py-2'>
-                Not have any variable, click button below to add new variable.
+                {t('flowDetail:variables.empty_list')}
               </span>
             )}
           </form>
         </Form>
       </div>
       <Button onClick={handleAddVariable} className='w-full'>
-        Add new variable
+        {t('flowDetail:variables.create_new')}
       </Button>
     </div>
   )

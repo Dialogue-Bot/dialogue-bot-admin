@@ -5,7 +5,7 @@ import { X } from 'lucide-react'
 import { DragEvent, useCallback, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useFlowCtx } from '.'
-import { ACTIONS, useMapActionToLabel } from './constant'
+import { MAP_ACTION, useMapActionToLabel } from './constant'
 
 export const Actions = () => {
   const { t } = useTranslation('flowDetail')
@@ -57,16 +57,19 @@ export const Actions = () => {
         <p className='text-sm text-muted-foreground'>{t('actions.desc')}</p>
       </div>
       <div className='grid gap-2'>
-        {ACTIONS.map((action) => {
+        {Object.values(EActionTypes).map((action) => {
+          if (action === EActionTypes.START || action === EActionTypes.FALLBACK)
+            return null
+
           return (
             <div
-              key={action.type}
+              key={action}
               className='flex items-center gap-2 relative  rounded-md px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground  cursor-grab'
-              onDragStart={(e) => handleDragStart(e, action.type)}
+              onDragStart={(e) => handleDragStart(e, action)}
               draggable
             >
-              {action.Icon()}
-              <span>{actionToLabel[action.type]}</span>
+              {MAP_ACTION[action]?.icon()}
+              <span>{actionToLabel[action]}</span>
             </div>
           )
         })}

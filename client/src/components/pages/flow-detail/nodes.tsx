@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { TNode } from '@/types/flow'
 import {
   Bolt,
   Check,
@@ -6,7 +7,6 @@ import {
   HelpCircle,
   Mail,
   MessageSquareMore,
-  Variable,
   Webhook,
   X,
 } from 'lucide-react'
@@ -14,23 +14,23 @@ import { useMemo } from 'react'
 import {
   Handle,
   HandleProps,
-  Node,
   NodeProps,
   Position,
   getConnectedEdges,
   useNodeId,
   useStore,
 } from 'reactflow'
+import { SOURCE_HANDLE_PROMPT_NO, SOURCE_HANDLE_PROMPT_YES } from './constant'
 
-type CustomNodeProps = NodeProps<{
-  label: string
-  [key: string]: any
-}>
+type CustomNodeProps = NodeProps<
+  TNode & {
+    [key: string]: any
+  }
+>
 
 const HandleCustom = ({
   className,
   children,
-  isConnectable,
   ...props
 }: Omit<HandleProps, 'isConnectable'> & {
   className?: string
@@ -46,33 +46,27 @@ const HandleCustom = ({
   const nodeId = useNodeId()
 
   const isHandleConnectable = useMemo(() => {
-    if (!nodeId) return false
+    if (typeof props.isConnectable === 'function') {
+      const node = nodeInternals.get(nodeId as string) as any
+      const connectedEdges = getConnectedEdges([node], edges)
 
-    if (typeof isConnectable === 'function') {
-      const node = nodeInternals.get(nodeId)
-      const connectedEdges = getConnectedEdges([node as Node], edges)
-
-      const isConnectable = isConnectable as any
-
-      return isConnectable({ node, connectedEdges })
+      return props.isConnectable({ node, connectedEdges })
     }
 
-    if (typeof isConnectable === 'number') {
-      const node = nodeInternals.get(nodeId)
-      const connectedEdges = getConnectedEdges([node as Node], edges)
+    if (typeof props.isConnectable === 'number') {
+      const node = nodeInternals.get(nodeId as string) as any
+      const connectedEdges = getConnectedEdges([node], edges)
 
-      console.log('connectedEdges', connectedEdges.length, isConnectable)
-
-      return connectedEdges.length < isConnectable
+      return connectedEdges.length <= props.isConnectable
     }
 
-    return isConnectable
-  }, [nodeId, isConnectable, nodeInternals, edges])
+    return props.isConnectable
+  }, [props, nodeInternals, nodeId, edges])
 
   return (
     <Handle
-      className={cn(' !bg-stone-600 !w-2 !h-2', className)}
       {...props}
+      className={cn(' !bg-stone-600 !w-2 !h-2', className)}
       isConnectable={isHandleConnectable}
     >
       {children ? children : null}
@@ -118,7 +112,7 @@ export const NodeWrapper = (props?: {
       <HandleCustom
         type='source'
         position={Position.Bottom}
-        isConnectable={2}
+        isConnectable={1}
       />
     </div>
   )
@@ -130,7 +124,7 @@ export const MessageNode = (props?: CustomNodeProps) => {
     <NodeWrapper>
       <div className='flex items-center gap-2'>
         <MessageSquareMore className='w-4 h-4' />
-        <span className='leading-none'>{data?.label}</span>
+        <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
     </NodeWrapper>
   )
@@ -142,14 +136,14 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
     <div className='bg-card shadow rounded-md p-2 border-card'>
       <div className='flex items-center gap-2'>
         <HelpCircle className='w-4 h-4' />
-        <span className='leading-none'>{data?.label}</span>
+        <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
       <HandleCustom type='target' position={Position.Top} isConnectable={1} />
       <HandleCustom
         type='source'
         position={Position.Bottom}
-        isConnectable={3}
-        id='prompt-and-collect-no'
+        isConnectable={2}
+        id={SOURCE_HANDLE_PROMPT_NO}
         className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
         style={{
           left: '80%',
@@ -160,8 +154,8 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
       <HandleCustom
         type='source'
         position={Position.Bottom}
-        isConnectable={3}
-        id='prompt-and-collect-yes'
+        isConnectable={2}
+        id={SOURCE_HANDLE_PROMPT_YES}
         style={{
           left: '20%',
         }}
@@ -176,12 +170,37 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
 export const CheckVariablesNode = (props?: CustomNodeProps) => {
   const { data } = props || {}
   return (
-    <NodeWrapper>
+    <div className='bg-card shadow rounded-md p-2 border-card'>
       <div className='flex items-center gap-2'>
-        <Variable className='w-4 h-4' />
-        <span className='leading-none'>{data?.label}</span>
+        <HelpCircle className='w-4 h-4' />
+        <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
-    </NodeWrapper>
+      <HandleCustom type='target' position={Position.Top} isConnectable={1} />
+      <HandleCustom
+        type='source'
+        position={Position.Bottom}
+        id={SOURCE_HANDLE_PROMPT_NO}
+        className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
+        style={{
+          left: '80%',
+        }}
+        isConnectable={2}
+      >
+        <X className='w-2 h-2 pointer-events-none' />
+      </HandleCustom>
+      <HandleCustom
+        type='source'
+        position={Position.Bottom}
+        id={SOURCE_HANDLE_PROMPT_YES}
+        style={{
+          left: '20%',
+        }}
+        className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
+        isConnectable={2}
+      >
+        <Check className='w-2 h-2 pointer-events-none' />
+      </HandleCustom>
+    </div>
   )
 }
 
@@ -191,7 +210,7 @@ export const HttpRequestNode = (props?: CustomNodeProps) => {
     <NodeWrapper>
       <div className='flex items-center gap-2'>
         <GitPullRequest className='w-4 h-4' />
-        <span className='leading-none'>{data?.label}</span>
+        <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
     </NodeWrapper>
   )
@@ -203,7 +222,7 @@ export const SendMailNode = (props?: CustomNodeProps) => {
     <NodeWrapper>
       <div className='flex items-center gap-2'>
         <Mail className='w-4 h-4' />
-        <span className='leading-none'>{data?.label}</span>
+        <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
     </NodeWrapper>
   )

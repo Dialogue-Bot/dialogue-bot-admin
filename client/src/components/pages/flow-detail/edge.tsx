@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui'
 import { X } from 'lucide-react'
-import { BaseEdge, EdgeProps, useReactFlow, getBezierPath } from 'reactflow'
+import { BaseEdge, EdgeProps, getBezierPath, useReactFlow } from 'reactflow'
 
 const foreignObjectSize = 16
 
+// million-ignore
 export const Edge = ({
   id,
   sourceX,

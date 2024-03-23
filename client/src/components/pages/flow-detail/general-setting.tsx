@@ -1,9 +1,9 @@
 import GeneralSettingForm from '@/components/forms/general-setting'
 import { Button } from '@/components/ui'
-import { useTranslation } from 'react-i18next'
-import { useFlowCtx } from './flow-provider'
 import { useUpdateFlow } from '@/hooks/flow'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
+import { useFlowCtx } from './flow-provider'
 
 type Props = {
   onClose: () => void

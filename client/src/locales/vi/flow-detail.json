@@ -31,5 +31,34 @@
     "analytics": "Phân tích",
     "general": "Tổng quan"
   },
-  "variables": "Biến"
+  "variables": {
+    "create_new": "Tạo biến mới",
+    "empty_list": "Không có biến nào, nhấp vào nút bên dưới để tạo biến mới."
+  },
+  "node_dialog": {
+    "desc": "Configure your action node."
+  },
+  "message_dialog": {
+    "message_types": {
+      "text": "Văn bản",
+      "image": "Hình ảnh",
+      "list_button": "Danh sách nút",
+      "list_card": "Danh sách thẻ"
+    },
+    "responses": "Phản hồi",
+    "forms": {
+      "bot_response": {
+        "label": "Phản hồi của bot",
+        "placeholder": "Nhập phản hồi của bot"
+      }
+    }
+  },
+  "card_dialog": {
+    "desc": "Nhập thông tin cho thẻ",
+    "title_add": "Thêm thẻ mới",
+    "title_update": "Cập nhật thẻ",
+    "save_btn": "Lưu"
+  },
+  "add_btn": "Thêm mới nút",
+  "empty_buttons": "Không có nút nào, nhấp vào nút bên trên để tạo nút mới."
 }

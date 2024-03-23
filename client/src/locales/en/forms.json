@@ -132,5 +132,49 @@
     "errors": {
       "required": "Please select variable type."
     }
+  },
+  "button_label": {
+    "label": "Button label",
+    "placeholder": "Enter button label",
+    "errors": {
+      "required": "Please enter button label."
+    }
+  },
+  "button_url": {
+    "label": "Button URL",
+    "placeholder": "Enter button URL",
+    "errors": {
+      "required": "Please enter button URL.",
+      "url": "Please enter a valid URL."
+    }
+  },
+  "button_value": {
+    "label": "Value",
+    "placeholder": "Enter button value",
+    "errors": {
+      "required": "Please enter button value.",
+      "url": "Please enter a valid URL."
+    }
+  },
+  "card_title": {
+    "label": "Title",
+    "placeholder": "T-shirt",
+    "errors": {
+      "required": "Please enter card title."
+    }
+  },
+  "card_subtitle": {
+    "label": "Subtitle",
+    "placeholder": "Size: M, Color: Red",
+    "errors": {
+      "required": "Please enter card subtitle."
+    }
+  },
+  "card_image_url": {
+    "label": "Image",
+    "placeholder": "Enter image URL",
+    "errors": {
+      "required": "Please enter image URL."
+    }
   }
 }
