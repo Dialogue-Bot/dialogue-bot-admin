@@ -112,7 +112,9 @@
     "label": "Biến {{index}}",
     "placeholder": "Nhập tên biến",
     "errors": {
-      "required": "Vui lòng nhập tên biến."
+      "required": "Vui lòng nhập tên biến.",
+      "invalid": "Tên biến không hợp lệ.",
+      "unique": "Tên biến đã tồn tại."
     }
   },
   "variable_value": {
@@ -168,6 +170,13 @@
     "placeholder": "Size: M, Màu: Đỏ",
     "errors": {
       "required": "Vui lòng nhập phụ đề."
+    }
+  },
+  "variable": {
+    "label": "Biến",
+    "placeholder": "Chọn biến",
+    "errors": {
+      "required": "Vui lòng chọn biến."
     }
   }
 }

@@ -18,6 +18,9 @@ export const useVariableInputSchema = () => {
         })
         .min(1, {
           message: t('variable_name.errors.required'),
+        })
+        .regex(/^[a-zA-Z][a-zA-Z\d_]*$/, {
+          message: t('variable_name.errors.invalid'),
         }),
       value: z.any().optional(),
       type: z

@@ -9,10 +9,10 @@ import {
   toBoolean,
 } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { toNumber } from 'lodash'
+import _, { toNumber } from 'lodash'
 import { X } from 'lucide-react'
 import { useCallback } from 'react'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
   Button,
@@ -73,8 +73,6 @@ export const VariablesSettingForm = ({
     },
   })
 
-  const variablesWatch = form.watch('variables')
-
   const {
     fields: variables,
     append,
@@ -98,11 +96,22 @@ export const VariablesSettingForm = ({
     }
   }
 
+  const variablesWatch = useWatch({
+    control: form.control,
+    name: 'variables',
+  })
+
   const handleAddVariable = useCallback(() => {
     form.trigger()
 
+    if (
+      !_.isEmpty(form.formState.errors.variables) ||
+      variablesWatch?.some((field) => !field.name || !field.value)
+    )
+      return
+
     append({ name: '', value: '', type: 'string' })
-  }, [append, form])
+  }, [append, form, variablesWatch])
 
   const handleJsonChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>,
@@ -146,12 +155,19 @@ export const VariablesSettingForm = ({
     }
   }
 
+  const variablesError = form.formState.errors.variables
+
   return (
     <div className='space-y-3'>
       <div className='space-y-2 max-h-[25rem] overflow-y-auto pb-1 overflow-x-auto hidden-scroll pl-[2px]'>
         <Label>
           <span>{t('common:variables')}</span>
         </Label>
+        {variablesError?.root?.message && (
+          <div className='text-center p-1 rounded-md border border-destructive text-sm text-destructive bg-red-50'>
+            {variablesError?.root?.message}
+          </div>
+        )}
         <Form {...form}>
           <form
             className='space-y-3 '

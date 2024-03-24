@@ -11,7 +11,7 @@ import {
   Workflow,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { MessageDialogContent } from './node-dialog'
+import { CheckVariablesContent, MessageDialogContent } from './node-dialog'
 
 export const MAP_ACTION_TO_LABEL: Record<EActionTypes, string> = {
   [EActionTypes.MESSAGE]: i18n.t('flowDetail:actions.items.message') as string,
@@ -70,12 +70,12 @@ export const MAP_ACTION: Record<
   [EActionTypes.PROMPT_AND_COLLECT]: {
     icon: () => <HelpCircle className='w-4 h-4' />,
     label: 'Prompt and collect',
-    dialogContent: () => <div>Prompt and collect</div>,
+    dialogContent: () => <MessageDialogContent />,
   },
   [EActionTypes.CHECK_VARIABLES]: {
     icon: () => <Variable className='w-4 h-4' />,
     label: 'Check variables',
-    dialogContent: () => <div>Check variables</div>,
+    dialogContent: () => <CheckVariablesContent />,
   },
   [EActionTypes.HTTP_REQUEST]: {
     icon: () => <GitPullRequest className='w-4 h-4' />,

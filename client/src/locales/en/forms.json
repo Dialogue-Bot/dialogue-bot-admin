@@ -112,7 +112,9 @@
     "label": "Variable {{index}}",
     "placeholder": "Enter variable name",
     "errors": {
-      "required": "Please enter variable name."
+      "required": "Please enter variable name.",
+      "invalid": "Please enter a valid variable name.",
+      "unique": "Variable name must be unique."
     }
   },
   "variable_value": {
@@ -175,6 +177,13 @@
     "placeholder": "Enter image URL",
     "errors": {
       "required": "Please enter image URL."
+    }
+  },
+  "variable": {
+    "label": "Variable",
+    "placeholder": "Select variable",
+    "errors": {
+      "required": "Please select variable."
     }
   }
 }

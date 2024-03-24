@@ -67,7 +67,7 @@ export const NodeDialog = () => {
       <DialogTrigger asChild>
         <div className='!hidden'></div>
       </DialogTrigger>
-      <DialogContent className='max-w-3xl'>
+      <DialogContent className='max-w-xl'>
         <DialogHeader>
           <DialogTitle>{selectedNode?.data.label}</DialogTitle>
           <DialogDescription>{t('node_dialog.desc')}</DialogDescription>
@@ -83,28 +83,30 @@ export const NodeDialog = () => {
               placeholder={t('forms:name.placeholder')}
             />
           </div>
-          <div className='space-y-2'>
-            <Label>{t('forms:bot_lang.label')}</Label>
-            <Select
-              onValueChange={(value) => {
-                handleChangeLang(value)
-              }}
-              value={currentLang}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={t('forms:bot_lang.placeholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.keys(LANGS).map((lang) => {
-                  return (
-                    <SelectItem key={lang} value={lang}>
-                      {LANGS[lang]}
-                    </SelectItem>
-                  )
-                })}
-              </SelectContent>
-            </Select>
-          </div>
+          {selectedNode.data.action !== EActionTypes.CHECK_VARIABLES && (
+            <div className='space-y-2'>
+              <Label>{t('forms:bot_lang.label')}</Label>
+              <Select
+                onValueChange={(value) => {
+                  handleChangeLang(value)
+                }}
+                value={currentLang}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={t('forms:bot_lang.placeholder')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.keys(LANGS).map((lang) => {
+                    return (
+                      <SelectItem key={lang} value={lang}>
+                        {LANGS[lang]}
+                      </SelectItem>
+                    )
+                  })}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
           {selectedNode &&
             MAP_ACTION[
               selectedNode.data.action as unknown as EActionTypes
