@@ -18,6 +18,7 @@ export const FlowInside = () => {
     handleDrop,
     handleInit,
     handleDoubleClickNode,
+    handleDoubleClickEdge,
   } = useFlowCtx()
 
   return (
@@ -34,6 +35,7 @@ export const FlowInside = () => {
         onDrop={handleDrop}
         onInit={handleInit}
         onNodeDoubleClick={handleDoubleClickNode}
+        onEdgeDoubleClick={handleDoubleClickEdge}
       >
         <Background
           gap={24}

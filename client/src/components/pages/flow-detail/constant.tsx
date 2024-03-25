@@ -123,3 +123,16 @@ export const MAP_MESSAGE_TYPE: Record<
     label: i18n.t('flowDetail:message_dialog.message_types.list_card'),
   },
 }
+
+export const CONDITIONAL_OPERATOR = [
+  '==',
+  '!=',
+  '>',
+  '>=',
+  '<',
+  '<=',
+  'contains',
+  'not_contains',
+  'in',
+  'not_in',
+]

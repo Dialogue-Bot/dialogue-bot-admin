@@ -14,6 +14,7 @@ import {
 import {
   Edge,
   EdgeChange,
+  EdgeMouseHandler,
   Node,
   NodeChange,
   NodeMouseHandler,
@@ -43,6 +44,9 @@ type FlowCtx = {
   handleDoubleClickNode: NodeMouseHandler
   handleChangeSelectedNode: (node: Node<any> | null) => void
   handleChangeLang: (lang: string) => void
+  handleDoubleClickEdge: EdgeMouseHandler
+  getNode: (id: string) => Node<any> | undefined
+  getEdge: (id: string) => Edge<any> | undefined
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -95,6 +99,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
     },
   ])
   const [selectedNode, setSelectedNode] = useState<Node<any> | null>(null)
+  const [selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
   const [currentLang, setCurrentLang] = useState(
     flow.settings?.find((setting) => setting.type === 'language')?.value ||
       'en',
@@ -312,6 +317,26 @@ export const FlowProvider = ({ children, flow }: Props) => {
     [],
   )
 
+  const handleDoubleClickEdge: EdgeMouseHandler = useCallback(
+    (_e, edge: Edge<any>) => {
+      const sourceNode = _getNode(edge.source)
+
+      if (!sourceNode) {
+        return
+      }
+
+      if (
+        sourceNode.data.action !== EActionTypes.PROMPT_AND_COLLECT &&
+        sourceNode.data.action !== EActionTypes.CHECK_VARIABLES
+      ) {
+        return
+      }
+
+      setSelectedEdge(edge)
+    },
+    [_getNode],
+  )
+
   /**
    * Handles the change of the selected node.
    *
@@ -385,6 +410,9 @@ export const FlowProvider = ({ children, flow }: Props) => {
         handleChangeSelectedNode,
         currentLang,
         handleChangeLang,
+        handleDoubleClickEdge,
+        getNode: _getNode,
+        getEdge,
       }}
     >
       {children}

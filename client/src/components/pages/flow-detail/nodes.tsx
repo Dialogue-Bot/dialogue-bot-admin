@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { TNode } from '@/types/flow'
+import { EActionTypes, TNode } from '@/types/flow'
 import {
   Bolt,
   Check,
@@ -10,16 +10,8 @@ import {
   Webhook,
   X,
 } from 'lucide-react'
-import { useMemo } from 'react'
-import {
-  Handle,
-  HandleProps,
-  NodeProps,
-  Position,
-  getConnectedEdges,
-  useNodeId,
-  useStore,
-} from 'reactflow'
+import { Handle, HandleProps, NodeProps, Position } from 'reactflow'
+import { useFlowCtx } from '.'
 import { SOURCE_HANDLE_PROMPT_NO, SOURCE_HANDLE_PROMPT_YES } from './constant'
 
 type CustomNodeProps = NodeProps<
@@ -38,36 +30,75 @@ const HandleCustom = ({
   style?: React.CSSProperties
   children?: React.ReactNode
 }) => {
-  const { nodeInternals, edges } = useStore((s) => ({
-    nodeInternals: s.nodeInternals,
-    edges: s.edges,
-  }))
-
-  const nodeId = useNodeId()
-
-  const isHandleConnectable = useMemo(() => {
-    if (typeof props.isConnectable === 'function') {
-      const node = nodeInternals.get(nodeId as string) as any
-      const connectedEdges = getConnectedEdges([node], edges)
-
-      return props.isConnectable({ node, connectedEdges })
-    }
-
-    if (typeof props.isConnectable === 'number') {
-      const node = nodeInternals.get(nodeId as string) as any
-      const connectedEdges = getConnectedEdges([node], edges)
-
-      return connectedEdges.length <= props.isConnectable
-    }
-
-    return props.isConnectable
-  }, [props, nodeInternals, nodeId, edges])
+  const { nodes, edges } = useFlowCtx()
 
   return (
     <Handle
       {...props}
       className={cn(' !bg-stone-600 !w-2 !h-2', className)}
-      isConnectable={isHandleConnectable}
+      isValidConnection={(connection) => {
+        const sourcesFromHandleInState = edges.filter(
+          (edge) => edge.source === connection.source,
+        ).length
+        const sourceNode = nodes.find((node) => node.id === connection.source)
+
+        const targetFromHandleInState = edges.filter(
+          (edge) => edge.target === connection.target,
+        ).length
+
+        if (
+          sourceNode?.data.action === EActionTypes.START &&
+          sourcesFromHandleInState < 2
+        )
+          return true
+
+        if (sourceNode?.data.action === EActionTypes.PROMPT_AND_COLLECT) {
+          const numberOfYes = edges.filter((edge) => {
+            return (
+              edge.source === connection.source &&
+              edge.sourceHandle === SOURCE_HANDLE_PROMPT_YES
+            )
+          }).length
+          const numberOfNo = edges.filter(
+            (edge) =>
+              edge.source === connection.source &&
+              edge.sourceHandle === SOURCE_HANDLE_PROMPT_NO,
+          ).length
+
+          if (
+            numberOfYes === 1 &&
+            connection.sourceHandle === SOURCE_HANDLE_PROMPT_YES
+          )
+            return false
+
+          if (
+            numberOfNo === 1 &&
+            connection.sourceHandle === SOURCE_HANDLE_PROMPT_NO
+          )
+            return false
+
+          const targetEdge = edges.find(
+            (edge) =>
+              edge.target === connection.target &&
+              edge.source === connection.source &&
+              edge.sourceHandle !== null,
+          )
+
+          if (targetEdge) return false
+
+          return true
+        }
+
+        if (
+          sourceNode?.data.action === EActionTypes.CHECK_VARIABLES &&
+          sourcesFromHandleInState < 2
+        )
+          return true
+
+        if (targetFromHandleInState === 1) return false
+        if (sourcesFromHandleInState < 1) return true
+        return false
+      }}
     >
       {children ? children : null}
     </Handle>
@@ -82,7 +113,7 @@ export const StartNode = (props?: CustomNodeProps) => {
         <Bolt className='w-4 h-4' />
         <span className='leading-none'>{data?.label}</span>
       </div>
-      <HandleCustom type='source' position={Position.Right} isConnectable={2} />
+      <HandleCustom type='source' position={Position.Right} />
     </div>
   )
 }
@@ -95,7 +126,7 @@ export const FallBackNode = (props?: CustomNodeProps) => {
         <Webhook className='w-4 h-4' />
         <span className='leading-none'>{data?.label}</span>
       </div>
-      <HandleCustom type='target' position={Position.Left} isConnectable={1} />
+      <HandleCustom type='target' position={Position.Left} />
     </div>
   )
 }
@@ -109,11 +140,7 @@ export const NodeWrapper = (props?: {
     <div className={cn('bg-card shadow rounded-md p-2 border-card', className)}>
       {children}
       <HandleCustom type='target' position={Position.Top} isConnectable={1} />
-      <HandleCustom
-        type='source'
-        position={Position.Bottom}
-        isConnectable={1}
-      />
+      <HandleCustom type='source' position={Position.Bottom} />
     </div>
   )
 }
@@ -138,11 +165,10 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
         <HelpCircle className='w-4 h-4' />
         <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
-      <HandleCustom type='target' position={Position.Top} isConnectable={1} />
+      <HandleCustom type='target' position={Position.Top} />
       <HandleCustom
         type='source'
         position={Position.Bottom}
-        isConnectable={2}
         id={SOURCE_HANDLE_PROMPT_NO}
         className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
         style={{
@@ -154,7 +180,6 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
       <HandleCustom
         type='source'
         position={Position.Bottom}
-        isConnectable={2}
         id={SOURCE_HANDLE_PROMPT_YES}
         style={{
           left: '20%',
@@ -184,7 +209,6 @@ export const CheckVariablesNode = (props?: CustomNodeProps) => {
         style={{
           left: '80%',
         }}
-        isConnectable={2}
       >
         <X className='w-2 h-2 pointer-events-none' />
       </HandleCustom>
@@ -196,7 +220,6 @@ export const CheckVariablesNode = (props?: CustomNodeProps) => {
           left: '20%',
         }}
         className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
-        isConnectable={2}
       >
         <Check className='w-2 h-2 pointer-events-none' />
       </HandleCustom>
