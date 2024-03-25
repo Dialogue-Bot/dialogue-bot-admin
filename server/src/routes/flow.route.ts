@@ -44,7 +44,7 @@ export class FlowRoute implements Routes {
     this.router.get(
       `${ENDPOINTS.FLOW.INDEX}/for-select`,
       authMiddleware,
-      this.controller.getFlowsForSelect,
+      this.controller.selectFlowsForChannel,
     )
 
     //for bot get flow by contactId

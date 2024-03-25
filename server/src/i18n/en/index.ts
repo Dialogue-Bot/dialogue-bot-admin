@@ -3,6 +3,7 @@ import { AUTH } from './auth'
 import { CHANNEL } from './channel'
 import { COMMON } from './common'
 import { FLOW } from './flow'
+import { INTENT } from './intent'
 import { SETTING } from './setting'
 import { USER } from './user'
 import { VALIDATE } from './validate'
@@ -17,6 +18,7 @@ const en = {
   CHANNEL,
   SETTING,
   FLOW,
+  INTENT,
 } satisfies BaseTranslation
 
 export default en

@@ -1,0 +1,276 @@
+{
+  "settings": {
+    "languages": ["en"],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": ["en"],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "meet,nice,to,you": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "hello": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "hi": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "are,how,you": {
+            "intent": "greeting",
+            "domain": "default"
+          },
+          "again,see,you": {
+            "intent": "goodbye",
+            "domain": "default"
+          },
+          "see,ya": {
+            "intent": "goodbye",
+            "domain": "default"
+          },
+          "later,see,you": {
+            "intent": "goodbye",
+            "domain": "default"
+          },
+          "bye": {
+            "intent": "goodbye",
+            "domain": "default"
+          },
+          "goodby": {
+            "intent": "goodbye",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greeting": "default",
+          "goodbye": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "nice to meet you",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "hello",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "hi",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "how are you",
+            "intent": "greeting"
+          },
+          {
+            "domain": "default",
+            "utterance": "see you again",
+            "intent": "goodbye"
+          },
+          {
+            "domain": "default",
+            "utterance": "see ya",
+            "intent": "goodbye"
+          },
+          {
+            "domain": "default",
+            "utterance": "see you later",
+            "intent": "goodbye"
+          },
+          {
+            "domain": "default",
+            "utterance": "bye",
+            "intent": "goodbye"
+          },
+          {
+            "domain": "default",
+            "utterance": "goodbye",
+            "intent": "goodbye"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "nice": 1,
+              "to": 1,
+              "meet": 1,
+              "you": 1,
+              "hello": 1,
+              "hi": 1,
+              "how": 1,
+              "are": 1,
+              "see": 1,
+              "again": 1,
+              "ya": 1,
+              "later": 1,
+              "bye": 1,
+              "goodby": 1
+            },
+            "intents": {
+              "greeting": 1,
+              "goodbye": 1
+            },
+            "intentFeatures": {
+              "greeting": {
+                "nice": 1,
+                "to": 1,
+                "meet": 1,
+                "you": 1,
+                "hello": 1,
+                "hi": 1,
+                "how": 1,
+                "are": 1
+              },
+              "goodbye": {
+                "see": 1,
+                "you": 1,
+                "again": 1,
+                "ya": 1,
+                "later": 1,
+                "bye": 1,
+                "goodby": 1
+              }
+            },
+            "featuresToIntent": {
+              "nice": ["greeting"],
+              "to": ["greeting"],
+              "meet": ["greeting"],
+              "you": ["greeting", "goodbye"],
+              "hello": ["greeting"],
+              "hi": ["greeting"],
+              "how": ["greeting"],
+              "are": ["greeting"],
+              "see": ["goodbye"],
+              "again": ["goodbye"],
+              "ya": ["goodbye"],
+              "later": ["goodbye"],
+              "bye": ["goodbye"],
+              "goodby": ["goodbye"]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "nice",
+                "to",
+                "meet",
+                "you",
+                "hello",
+                "hi",
+                "how",
+                "are",
+                "see",
+                "again",
+                "ya",
+                "later",
+                "bye",
+                "goodby"
+              ],
+              "intents": ["greeting", "goodbye"],
+              "perceptrons": [
+                [
+                  2.462721109390259, 2.462721109390259, 2.462721109390259,
+                  1.9370678663253784, 9.200018882751465, 9.17052173614502,
+                  3.6849207878112793, 3.6849207878112793, -4.902862071990967,
+                  -2.1647493839263916, -0.6346772313117981, -2.0334362983703613,
+                  -4.855294227600098, -4.832851409912109, 4.963890790483976
+                ],
+                [
+                  -1.7783807516098022, -1.7783807516098022, -1.7783807516098022,
+                  0.050939083099365234, -5.033719539642334, -5.010004997253418,
+                  -2.5959596633911133, -2.5959596633911133, 6.828719139099121,
+                  2.2451364994049072, 2.326434373855591, 2.2576451301574707,
+                  9.009735107421875, 8.979744911193848, 5.160933679306533
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      ["en", "nice to meet you"],
+      ["en", "hello"],
+      ["en", "hi"],
+      ["en", "how are you"],
+      ["en", "see you again"],
+      ["en", "see ya"],
+      ["en", "see you later"],
+      ["en", "bye"],
+      ["en", "goodbye"]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

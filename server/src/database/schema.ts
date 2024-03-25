@@ -1,4 +1,5 @@
 import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface'
+import { IIntents } from '@/interfaces/intents.interface'
 import { createId } from '@paralleldrive/cuid2'
 import { relations } from 'drizzle-orm'
 import {
@@ -150,6 +151,33 @@ export const flowsRelations = relations(flows, ({ one, many }) => ({
   }),
 }))
 
+export const intents = pgTable('intents', {
+  id: varchar('id', {
+    length: MAX_ID_LENGTH,
+  })
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  name: text('name').notNull(),
+  referenceId: text('reference_id').notNull(),
+  intents: json('intents').default([]).$type<Array<IIntents>>(),
+  entities: json('entities').notNull().default([]).$type<any[]>(),
+  userId: varchar('user_id', {
+    length: MAX_ID_LENGTH,
+  })
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  deleted: boolean('deleted').default(false),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+})
+
+export const intentsRelations = relations(intents, ({ one }) => ({
+  user: one(users, {
+    fields: [intents.userId],
+    references: [users.id],
+  }),
+}))
+
 export const usersRelations = relations(users, ({ one, many }) => ({
   settings: one(settings, {
     relationName: 'userSettings',
@@ -158,4 +186,5 @@ export const usersRelations = relations(users, ({ one, many }) => ({
   }),
   channels: many(channels),
   flows: many(flows),
+  intents: many(intents),
 }))

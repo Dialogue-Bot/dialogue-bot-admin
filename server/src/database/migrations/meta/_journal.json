@@ -50,6 +50,13 @@
       "when": 1710264188410,
       "tag": "0006_exotic_fixer",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1710429432143,
+      "tag": "0007_outstanding_nomad",
+      "breakpoints": true
     }
   ]
 }

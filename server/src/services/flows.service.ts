@@ -8,23 +8,12 @@ import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
-import {
-  and,
-  asc,
-  desc,
-  eq,
-  exists,
-  isNotNull,
-  like,
-  ne,
-  notExists,
-  sql,
-} from 'drizzle-orm'
+import { logger } from '@/utils/logger'
+import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
-import { logger } from '@/utils/logger'
 
 @Service()
 export class FlowService {
