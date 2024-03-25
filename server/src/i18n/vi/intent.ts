@@ -6,4 +6,5 @@ export const INTENT = {
   UPDATE_SUCCESS: 'Cập nhật huấn luyện thành công!',
   UPDATE_FAILED: 'Cập nhật huấn luyện thất bại!',
   DELETE_SUCCESS: 'Xóa huấn luyện thành công!',
+  PREDICT_SUCCESS: 'Dự đoán huấn luyện thành công!',
 }

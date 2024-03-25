@@ -1,0 +1,795 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "-,introduct,php,w3school": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "-,php,wikipedia": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "-,hosting,is,languag,php,script,the,understand,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "explain,is,languag,mean,php,program,the,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "&,-,code,global,institut,introduct,is,php,use,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "definit,hypertext,is,php,preprocessor,techtarget,what,–": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "hypertext,php,preprocessor": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "-,explain,is,php,what,youtub,|": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "-,geeksforgeek,introduct,php": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "exampl,languag,script": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "for,is,php,use,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "currenc,is,php,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "form,full,php": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "featur,of,php": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "javascript,php,vs": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "php,syntax": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "php,w3school": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "code,exampl,php": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "and,is,it,php,use,what,whi": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "a,for,is,php,stand,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "html,is,php,vs,what": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "beginn,easi,for,is,php": {
+            "intent": "php",
+            "domain": "default"
+          },
+          "-,is,manual,php,what": {
+            "intent": "php",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "php": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "PHP Introduction - W3Schools",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP - Wikipedia",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What Is PHP: Understanding the Scripting Language - Hostinger",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP? The PHP Programming Language Meaning Explained",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP? Uses & Introduction - Code Institute Global",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP (Hypertext Preprocessor)? – TechTarget Definition",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP: Hypertext Preprocessor",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP? | Explained - YouTube",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP Introduction - GeeksforGeeks",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "Scripting language examples",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP used for",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP Currency",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP Full form",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "Features of PHP",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP vs JavaScript",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP syntax",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP W3Schools",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "PHP code examples",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP and why it is used?",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is a PHP stand for?",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP vs HTML?",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "Is PHP easy for beginners?",
+            "intent": "php"
+          },
+          {
+            "domain": "default",
+            "utterance": "What is PHP? - Manual",
+            "intent": "php"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "php": 1,
+              "introduct": 1,
+              "-": 1,
+              "w3school": 1,
+              "wikipedia": 1,
+              "what": 1,
+              "is": 1,
+              "understand": 1,
+              "the": 1,
+              "script": 1,
+              "languag": 1,
+              "hosting": 1,
+              "program": 1,
+              "mean": 1,
+              "explain": 1,
+              "use": 1,
+              "&": 1,
+              "code": 1,
+              "institut": 1,
+              "global": 1,
+              "hypertext": 1,
+              "preprocessor": 1,
+              "–": 1,
+              "techtarget": 1,
+              "definit": 1,
+              "|": 1,
+              "youtub": 1,
+              "geeksforgeek": 1,
+              "exampl": 1,
+              "for": 1,
+              "currenc": 1,
+              "full": 1,
+              "form": 1,
+              "featur": 1,
+              "of": 1,
+              "vs": 1,
+              "javascript": 1,
+              "syntax": 1,
+              "and": 1,
+              "whi": 1,
+              "it": 1,
+              "a": 1,
+              "stand": 1,
+              "html": 1,
+              "easi": 1,
+              "beginn": 1,
+              "manual": 1
+            },
+            "intents": {
+              "php": 1
+            },
+            "intentFeatures": {
+              "php": {
+                "php": 1,
+                "introduct": 1,
+                "-": 1,
+                "w3school": 1,
+                "wikipedia": 1,
+                "what": 1,
+                "is": 1,
+                "understand": 1,
+                "the": 1,
+                "script": 1,
+                "languag": 1,
+                "hosting": 1,
+                "program": 1,
+                "mean": 1,
+                "explain": 1,
+                "use": 1,
+                "&": 1,
+                "code": 1,
+                "institut": 1,
+                "global": 1,
+                "hypertext": 1,
+                "preprocessor": 1,
+                "–": 1,
+                "techtarget": 1,
+                "definit": 1,
+                "|": 1,
+                "youtub": 1,
+                "geeksforgeek": 1,
+                "exampl": 1,
+                "for": 1,
+                "currenc": 1,
+                "full": 1,
+                "form": 1,
+                "featur": 1,
+                "of": 1,
+                "vs": 1,
+                "javascript": 1,
+                "syntax": 1,
+                "and": 1,
+                "whi": 1,
+                "it": 1,
+                "a": 1,
+                "stand": 1,
+                "html": 1,
+                "easi": 1,
+                "beginn": 1,
+                "manual": 1
+              }
+            },
+            "featuresToIntent": {
+              "php": [
+                "php"
+              ],
+              "introduct": [
+                "php"
+              ],
+              "-": [
+                "php"
+              ],
+              "w3school": [
+                "php"
+              ],
+              "wikipedia": [
+                "php"
+              ],
+              "what": [
+                "php"
+              ],
+              "is": [
+                "php"
+              ],
+              "understand": [
+                "php"
+              ],
+              "the": [
+                "php"
+              ],
+              "script": [
+                "php"
+              ],
+              "languag": [
+                "php"
+              ],
+              "hosting": [
+                "php"
+              ],
+              "program": [
+                "php"
+              ],
+              "mean": [
+                "php"
+              ],
+              "explain": [
+                "php"
+              ],
+              "use": [
+                "php"
+              ],
+              "&": [
+                "php"
+              ],
+              "code": [
+                "php"
+              ],
+              "institut": [
+                "php"
+              ],
+              "global": [
+                "php"
+              ],
+              "hypertext": [
+                "php"
+              ],
+              "preprocessor": [
+                "php"
+              ],
+              "–": [
+                "php"
+              ],
+              "techtarget": [
+                "php"
+              ],
+              "definit": [
+                "php"
+              ],
+              "|": [
+                "php"
+              ],
+              "youtub": [
+                "php"
+              ],
+              "geeksforgeek": [
+                "php"
+              ],
+              "exampl": [
+                "php"
+              ],
+              "for": [
+                "php"
+              ],
+              "currenc": [
+                "php"
+              ],
+              "full": [
+                "php"
+              ],
+              "form": [
+                "php"
+              ],
+              "featur": [
+                "php"
+              ],
+              "of": [
+                "php"
+              ],
+              "vs": [
+                "php"
+              ],
+              "javascript": [
+                "php"
+              ],
+              "syntax": [
+                "php"
+              ],
+              "and": [
+                "php"
+              ],
+              "whi": [
+                "php"
+              ],
+              "it": [
+                "php"
+              ],
+              "a": [
+                "php"
+              ],
+              "stand": [
+                "php"
+              ],
+              "html": [
+                "php"
+              ],
+              "easi": [
+                "php"
+              ],
+              "beginn": [
+                "php"
+              ],
+              "manual": [
+                "php"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "php",
+                "introduct",
+                "-",
+                "w3school",
+                "wikipedia",
+                "what",
+                "is",
+                "understand",
+                "the",
+                "script",
+                "languag",
+                "hosting",
+                "program",
+                "mean",
+                "explain",
+                "use",
+                "&",
+                "code",
+                "institut",
+                "global",
+                "hypertext",
+                "preprocessor",
+                "–",
+                "techtarget",
+                "definit",
+                "|",
+                "youtub",
+                "geeksforgeek",
+                "exampl",
+                "for",
+                "currenc",
+                "full",
+                "form",
+                "featur",
+                "of",
+                "vs",
+                "javascript",
+                "syntax",
+                "and",
+                "whi",
+                "it",
+                "a",
+                "stand",
+                "html",
+                "easi",
+                "beginn",
+                "manual"
+              ],
+              "intents": [
+                "php"
+              ],
+              "perceptrons": [
+                [
+                  7.0177741050720215,
+                  0.20072267949581146,
+                  0.35711124539375305,
+                  1.2254905700683594,
+                  1.161813735961914,
+                  0.19893863797187805,
+                  0.48710668087005615,
+                  -1.6470152139663696,
+                  -1.7533326148986816,
+                  2.8408451080322266,
+                  2.736043930053711,
+                  -1.6470152139663696,
+                  -0.10421121120452881,
+                  -0.10421121120452881,
+                  0.0938340425491333,
+                  0.45495080947875977,
+                  0.35138827562332153,
+                  -1.251881718635559,
+                  0.35138827562332153,
+                  0.35138827562332153,
+                  0.7742858529090881,
+                  0.7742858529090881,
+                  -0.23308289051055908,
+                  -0.23308289051055908,
+                  -0.23308289051055908,
+                  0.19843880832195282,
+                  0.19843880832195282,
+                  0.8926692008972168,
+                  2.884411096572876,
+                  0.44691020250320435,
+                  0.8628228306770325,
+                  0.7733677625656128,
+                  0.7733677625656128,
+                  0.7745065093040466,
+                  0.7745065093040466,
+                  0.794985830783844,
+                  0.7523137331008911,
+                  1.5408018827438354,
+                  0.1263618767261505,
+                  0.1263618767261505,
+                  0.1263618767261505,
+                  0.1866338700056076,
+                  0.1866338700056076,
+                  0.043582797050476074,
+                  0.2874927222728729,
+                  0.2874927222728729,
+                  0.43966570496559143,
+                  5.756822846625616
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "PHP Introduction - W3Schools"
+      ],
+      [
+        "en",
+        "PHP - Wikipedia"
+      ],
+      [
+        "en",
+        "What Is PHP: Understanding the Scripting Language - Hostinger"
+      ],
+      [
+        "en",
+        "What is PHP? The PHP Programming Language Meaning Explained"
+      ],
+      [
+        "en",
+        "What is PHP? Uses & Introduction - Code Institute Global"
+      ],
+      [
+        "en",
+        "What is PHP (Hypertext Preprocessor)? – TechTarget Definition"
+      ],
+      [
+        "en",
+        "PHP: Hypertext Preprocessor"
+      ],
+      [
+        "en",
+        "What is PHP? | Explained - YouTube"
+      ],
+      [
+        "en",
+        "PHP Introduction - GeeksforGeeks"
+      ],
+      [
+        "en",
+        "Scripting language examples"
+      ],
+      [
+        "en",
+        "What is PHP used for"
+      ],
+      [
+        "en",
+        "What is PHP Currency"
+      ],
+      [
+        "en",
+        "PHP Full form"
+      ],
+      [
+        "en",
+        "Features of PHP"
+      ],
+      [
+        "en",
+        "PHP vs JavaScript"
+      ],
+      [
+        "en",
+        "PHP syntax"
+      ],
+      [
+        "en",
+        "PHP W3Schools"
+      ],
+      [
+        "en",
+        "PHP code examples"
+      ],
+      [
+        "en",
+        "What is PHP and why it is used?"
+      ],
+      [
+        "en",
+        "What is a PHP stand for?"
+      ],
+      [
+        "en",
+        "What is PHP vs HTML?"
+      ],
+      [
+        "en",
+        "Is PHP easy for beginners?"
+      ],
+      [
+        "en",
+        "What is PHP? - Manual"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "php": [
+          {
+            "answer": "What is PHP? · PHP is an acronym for \"PHP: Hypertext Preprocessor\" · PHP is a widely-used, open source scripting language · PHP scripts are executed on the ..."
+          },
+          {
+            "answer": "PHP was originally an abbreviation of Personal Home Page, but it now stands for the recursive initialism PHP: Hypertext Preprocessor. PHP. Paradigm."
+          },
+          {
+            "answer": "Hypertext Preprocessor (PHP) is an open-source, free server-side scripting language widely used in web development. According to Web Technology Surveys, ..."
+          },
+          {
+            "answer": "PHP is an open-source server-side scripting language that many devs use for web development. It is also a general-purpose language that you ..."
+          },
+          {
+            "answer": "PHP is an open-source, server-side programming language that can be used to create websites, applications, customer relationship management systems and more. ..."
+          },
+          {
+            "answer": "PHP (Hypertext Processor) is a general-purpose scripting language and interpreter that is freely available and widely used for web development."
+          },
+          {
+            "answer": "PHP is a popular general-purpose scripting language that powers everything from your blog to the most popular websites in the world."
+          },
+          {
+            "answer": "Start your website with Hostinger web hosting https://bit.ly/3ECr5l3 Use discount code HA10 to ..."
+          },
+          {
+            "answer": "The term PHP is an acronym for – Hypertext Preprocessor. PHP is a server-side scripting language designed specifically for web development."
+          },
+          {
+            "answer": "PHP is a programming language used to script websites that are dynamic and interactive. You'll find it in various types of web applications, from e-commerce websites to CRM systems like HubSpot and Salesforce. The term PHP stands for PHP Hypertext Preprocessor."
+          },
+          {
+            "answer": "PHP is a self-referentially acronym for PHP: Hypertext Preprocessor. Original it supposedly meant personal home page. It is an open source, server-side, HTML embedded scripting language used to create dynamic Web pages."
+          },
+          {
+            "answer": "HTML is a markup language it is used by front-end developers to develop web applications or websites. PHP is a server-side scripting language used for the development of the dynamic application. The result of HTML code is static and remains constant, whereas the result of PHP is dynamic."
+          },
+          {
+            "answer": "In general, PHP is regarded as an easy programming language to master for people just starting to learn to program. As with any programming language, PHP has rules of coding, abbreviations, and algorithms. Learning PHP will be easy or challenging depending on how you approach learning the language itself."
+          },
+          {
+            "answer": "PHP (recursive acronym for PHP: Hypertext Preprocessor ) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML."
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

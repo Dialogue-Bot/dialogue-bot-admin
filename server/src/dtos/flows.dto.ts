@@ -1,13 +1,13 @@
-import { getCurrentLocale } from '@/i18n/get-current';
-import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface';
-import { Transform } from 'class-transformer';
+import { getCurrentLocale } from '@/i18n/get-current'
+import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface'
+import { Transform } from 'class-transformer'
 import {
   IsArray,
   IsNotEmpty,
   IsObject,
   IsOptional,
   IsString,
-} from 'class-validator';
+} from 'class-validator'
 
 export class FlowDTO {
   @IsString()

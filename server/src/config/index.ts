@@ -32,4 +32,5 @@ export const {
   BOT_ENDPOINT,
   MAIL_USER,
   MAIL_PASS,
+  API_KEY,
 } = process.env

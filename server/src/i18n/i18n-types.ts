@@ -241,36 +241,39 @@ type RootTranslation = {
      */
     ADD_MULTIPLE_CHANNELS_FLOW__FAILED: string
   }
-
   INTENT: {
     /**
-     * C​r​e​a​t​e​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+     * C​r​e​a​t​e​ ​t​r​a​i​n​ ​f​a​i​l​e​d​!
      */
     CREATE_FAILED: string
     /**
-     * C​r​e​a​t​e​ ​f​l​o​w​ success!
+     * C​r​e​a​t​e​ ​t​r​a​i​n​ ​s​u​c​c​e​s​s​!
      */
     CREATE_SUCCESS: string
     /**
-     * Train name existed​!
+     * T​r​a​i​n​ ​n​a​m​e​ ​e​x​i​s​t​e​d​!
      */
     TRAIN_NAME_EXISTED: string
     /**
-     * Can not find train!
+     * C​a​n​ ​n​o​t​ ​f​i​n​d​ ​t​r​a​i​n​!
      */
     NOT_FOUND: string
     /**
-     * Update train success​!
+     * U​p​d​a​t​e​ ​t​r​a​i​n​ ​s​u​c​c​e​s​s​!
      */
     UPDATE_SUCCESS: string
     /**
-     * Update train failed!
+     * U​p​d​a​t​e​ ​t​r​a​i​n​ ​f​a​i​l​e​d​!
      */
     UPDATE_FAILED: string
     /**
-     * Delete train success!
+     * D​e​l​e​t​e​ ​t​r​a​i​n​ ​s​u​c​c​e​s​s​!
      */
     DELETE_SUCCESS: string
+    /**
+     * P​r​e​d​i​c​t​ ​I​n​t​e​n​t​ ​s​u​c​c​e​s​s​!
+     */
+    PREDICT_SUCCESS: string
   }
 }
 
@@ -495,15 +498,15 @@ export type TranslationFunctions = {
   }
   INTENT: {
     /**
-     * C​r​e​a​t​e​ ​f​l​o​w​ ​f​a​i​l​e​d​!
+     * Create train failed!
      */
     CREATE_FAILED: () => LocalizedString
     /**
-     * C​r​e​a​t​e​ ​f​l​o​w​ success!
+     * Create train success!
      */
     CREATE_SUCCESS: () => LocalizedString
     /**
-     * Train name existed​!
+     * Train name existed!
      */
     TRAIN_NAME_EXISTED: () => LocalizedString
     /**
@@ -511,7 +514,7 @@ export type TranslationFunctions = {
      */
     NOT_FOUND: () => LocalizedString
     /**
-     * Update train success​!
+     * Update train success!
      */
     UPDATE_SUCCESS: () => LocalizedString
     /**
@@ -522,6 +525,10 @@ export type TranslationFunctions = {
      * Delete train success!
      */
     DELETE_SUCCESS: () => LocalizedString
+    /**
+     * Predict Intent success!
+     */
+    PREDICT_SUCCESS: () => LocalizedString
   }
 }
 

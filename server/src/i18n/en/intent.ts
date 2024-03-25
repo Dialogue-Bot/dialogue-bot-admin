@@ -6,4 +6,5 @@ export const INTENT = {
   UPDATE_SUCCESS: 'Update train success!',
   UPDATE_FAILED: 'Update train failed!',
   DELETE_SUCCESS: 'Delete train success!',
+  PREDICT_SUCCESS: 'Predict Intent success!',
 }

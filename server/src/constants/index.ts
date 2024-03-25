@@ -58,7 +58,8 @@ export const ENDPOINTS = {
   },
   INTENT: {
     INDEX: '/intent',
-  }
+    PREDICT: '/intent/predict',
+  },
 }
 
 export const LOCALE_KEY = 'lang'
