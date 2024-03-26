@@ -100,5 +100,90 @@
       "required": "Please select bot language."
     },
     "description": "Select the language to use for the bot."
+  },
+  "flow": {
+    "label": "Flow",
+    "placeholder": "Select flow",
+    "errors": {
+      "required": "Please select flow."
+    }
+  },
+  "variable_name": {
+    "label": "Variable {{index}}",
+    "placeholder": "Enter variable name",
+    "errors": {
+      "required": "Please enter variable name.",
+      "invalid": "Please enter a valid variable name.",
+      "unique": "Variable name must be unique."
+    }
+  },
+  "variable_value": {
+    "label": "Value of variable {{index}}",
+    "placeholder": "Enter variable value",
+    "errors": {
+      "required": "Please enter variable value.",
+      "number": "Please enter a valid number.",
+      "boolean": "Please enter a valid boolean value.",
+      "array": "Please enter a valid array value. (e.g. a,b,c)",
+      "object": "Please enter a valid object value. (e.g. {\"key\": \"value\"})"
+    }
+  },
+  "variable_type": {
+    "label": "Type of variable {{index}}",
+    "placeholder": "Select variable type",
+    "errors": {
+      "required": "Please select variable type."
+    }
+  },
+  "button_label": {
+    "label": "Button label",
+    "placeholder": "Enter button label",
+    "errors": {
+      "required": "Please enter button label."
+    }
+  },
+  "button_url": {
+    "label": "Button URL",
+    "placeholder": "Enter button URL",
+    "errors": {
+      "required": "Please enter button URL.",
+      "url": "Please enter a valid URL."
+    }
+  },
+  "button_value": {
+    "label": "Value",
+    "placeholder": "Enter button value",
+    "errors": {
+      "required": "Please enter button value.",
+      "url": "Please enter a valid URL."
+    }
+  },
+  "card_title": {
+    "label": "Title",
+    "placeholder": "T-shirt",
+    "errors": {
+      "required": "Please enter card title."
+    }
+  },
+  "card_subtitle": {
+    "label": "Subtitle",
+    "placeholder": "Size: M, Color: Red",
+    "errors": {
+      "required": "Please enter card subtitle."
+    }
+  },
+  "card_image_url": {
+    "label": "Image",
+    "placeholder": "Enter image URL",
+    "errors": {
+      "required": "Please enter image URL."
+    }
+  },
+  "variable": {
+    "label": "Variable",
+    "placeholder": "Select variable",
+    "errors": {
+      "required": "Please select variable."
+    }
   }
 }

@@ -100,5 +100,83 @@
       "required": "Vui lòng chọn ngôn ngữ."
     },
     "description": "Chọn ngôn ngữ mà bạn muốn bot sử dụng."
+  },
+  "flow": {
+    "label": "Luồng",
+    "placeholder": "Chọn luồng",
+    "errors": {
+      "required": "Vui lòng chọn luồng."
+    }
+  },
+  "variable_name": {
+    "label": "Biến {{index}}",
+    "placeholder": "Nhập tên biến",
+    "errors": {
+      "required": "Vui lòng nhập tên biến.",
+      "invalid": "Tên biến không hợp lệ.",
+      "unique": "Tên biến đã tồn tại."
+    }
+  },
+  "variable_value": {
+    "label": "Giá trị {{index}}",
+    "placeholder": "Nhập giá trị biến",
+    "errors": {
+      "required": "Vui lòng nhập giá trị biến.",
+      "number": "Vu lòng nhập một giá trị số.",
+      "boolean": "Vui lòng nhập một giá trị boolean.",
+      "array": "Vui lòng nhập một giá trị mảng. (e.g. a,b,c)",
+      "object": "Vui lòng nhập một giá trị object."
+    }
+  },
+  "variable_type": {
+    "label": "Loại biến {{index}}",
+    "placeholder": "Chọn kiểu dữ liệu",
+    "errors": {
+      "required": "Vui lòng chọn kiểu dữ liệu."
+    }
+  },
+  "button_label": {
+    "label": "Tên",
+    "placeholder": "Nhập tên nút",
+    "errors": {
+      "required": "Vui lòng nhập tên nút."
+    }
+  },
+  "button_url": {
+    "label": "URL",
+    "placeholder": "Nhập URL",
+    "errors": {
+      "required": "Vui lòng nhập URL.",
+      "url": "URL không hợp lệ."
+    }
+  },
+  "button_value": {
+    "label": "Giá trị",
+    "placeholder": "Nhập giá trị nút",
+    "errors": {
+      "required": "Vui lòng nhập giá trị nút.",
+      "url": "URL không hợp lệ."
+    }
+  },
+  "card_title": {
+    "label": "Tiêu đề",
+    "placeholder": "Áo thun nam",
+    "errors": {
+      "required": "Vui lòng nhập tiêu đề."
+    }
+  },
+  "card_subtitle": {
+    "label": "Phụ đề",
+    "placeholder": "Size: M, Màu: Đỏ",
+    "errors": {
+      "required": "Vui lòng nhập phụ đề."
+    }
+  },
+  "variable": {
+    "label": "Biến",
+    "placeholder": "Chọn biến",
+    "errors": {
+      "required": "Vui lòng chọn biến."
+    }
   }
 }

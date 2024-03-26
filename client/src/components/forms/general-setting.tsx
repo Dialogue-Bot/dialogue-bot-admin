@@ -1,4 +1,12 @@
+import { LANGS } from '@/constants'
+import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
+import { queryChannelsForSelectOption } from '@/lib/query-options/channel'
+import { TFlowInput, useFlowInputSchema } from '@/lib/schema/flow-input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router-dom'
 import {
   Form,
   FormControl,
@@ -7,7 +15,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  Input,
   Label,
   MultipleSelect,
   Select,
@@ -16,19 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui'
-import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
-import { useTranslation } from 'react-i18next'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { TFlowInput, useFlowInputSchema } from '@/lib/schema/flow-input'
-import { queryChannelsForSelectOption } from '@/lib/query-options/channel'
-import { useParams } from 'react-router-dom'
-import { useSuspenseQuery } from '@tanstack/react-query'
-import i18n from '@/i18n'
-
-const LANGS: Record<string, string> = {
-  vi: i18n.t('common:langs.vi'),
-  en: i18n.t('common:langs.en'),
-}
 
 type Props = {
   id?: string

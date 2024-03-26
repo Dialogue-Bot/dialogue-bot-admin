@@ -7,11 +7,13 @@ import {
   TooltipTrigger,
 } from '@/components/ui'
 import { Settings2, Zap } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useFlowCtx } from '.'
 import Setting from './setting'
 
 export const Toolbar = () => {
   const { toggleActions } = useFlowCtx()
+  const { t } = useTranslation('flowDetail')
   return (
     <div className='fixed top-4 right-4 z-50 w-80' id='flow-toolbar'>
       <div className='flex h-12 items-center bg-card shadow px-2 select-none gap-2 rounded-md w-full'>
@@ -29,7 +31,7 @@ export const Toolbar = () => {
                 </Button>
               </TooltipTrigger>
               <TooltipContent sideOffset={10}>
-                <p>Add to library</p>
+                <p>{t('toolbar.actions')}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -44,7 +46,7 @@ export const Toolbar = () => {
                 </TooltipTrigger>
               </Setting>
               <TooltipContent sideOffset={10}>
-                <p>Add to library</p>
+                <p>{t('toolbar.settings')}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
@@ -52,9 +54,9 @@ export const Toolbar = () => {
             orientation='vertical'
             className='self-stretch h-[unset]'
           />
-          <Button variant='ghost'>Test your bot</Button>
+          <Button variant='ghost'>{t('toolbar.test_your_bot')}</Button>
           <Button variant='default' className='w-full'>
-            Publish
+            {t('toolbar.publish')}
           </Button>
         </div>
       </div>

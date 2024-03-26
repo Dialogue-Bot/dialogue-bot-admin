@@ -1,4 +1,14 @@
+import { useDidUpdate } from '@/hooks/use-did-update'
+import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
+import { queryChannelTypesOption } from '@/lib/query-options/channel'
+import { queryFlowsForSelectOption } from '@/lib/query-options/flow'
+import { TChannelInput, useChannelSchema } from '@/lib/schema/channel'
+import { ChannelType } from '@/types/channel'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import {
   Form,
   FormControl,
@@ -15,16 +25,6 @@ import {
   SelectValue,
   Switch,
 } from '../ui'
-import { TChannelInput, useChannelSchema } from '@/lib/schema/channel'
-import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
-import { useTranslation } from 'react-i18next'
-import { useQuery } from '@tanstack/react-query'
-import { queryChannelTypesOption } from '@/lib/query-options/channel'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ChannelType } from '@/types/channel'
-import { useMemo } from 'react'
-import { useDidUpdate } from '@/hooks/use-did-update'
-import { queryFlowsForSelectOption } from '@/lib/query-options/flow'
 
 type Props = {
   id?: string
@@ -138,13 +138,12 @@ const ChannelForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                <Label>{t('active.label')}</Label>
+                <Label>{t('flow.label')}</Label>
               </FormLabel>
-
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder='Select a verified email to display' />
+                    <SelectValue placeholder={t('flow.placeholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

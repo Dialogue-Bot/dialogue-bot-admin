@@ -3,6 +3,7 @@ import { Actions } from './actions'
 import { Controls } from './controls'
 import { edgeTypes } from './edge-types'
 import { useFlowCtx } from './flow-provider'
+import { NodeDialog } from './node-dialog'
 import { nodeTypes } from './node-types'
 import { Toolbar } from './toolbar'
 
@@ -16,7 +17,10 @@ export const FlowInside = () => {
     handleDragOver,
     handleDrop,
     handleInit,
+    handleDoubleClickNode,
+    handleDoubleClickEdge,
   } = useFlowCtx()
+
   return (
     <div className='h-svh select-none'>
       <ReactFlow
@@ -27,10 +31,11 @@ export const FlowInside = () => {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         edgeTypes={edgeTypes}
-        deleteKeyCode={[]}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         onInit={handleInit}
+        onNodeDoubleClick={handleDoubleClickNode}
+        onEdgeDoubleClick={handleDoubleClickEdge}
       >
         <Background
           gap={24}
@@ -41,6 +46,7 @@ export const FlowInside = () => {
       </ReactFlow>
       <Toolbar />
       <Actions />
+      <NodeDialog />
     </div>
   )
 }

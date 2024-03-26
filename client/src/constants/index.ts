@@ -1,3 +1,5 @@
+import i18n from '@/i18n'
+
 export const ENDPOINTS = {
   AUTH: {
     INDEX: '/auth',
@@ -66,4 +68,9 @@ export const ROUTES = {
       PROFILES: '/settings/profiles',
     },
   },
+}
+
+export const LANGS: Record<string, string> = {
+  vi: i18n.t('common:langs.vi'),
+  en: i18n.t('common:langs.en'),
 }

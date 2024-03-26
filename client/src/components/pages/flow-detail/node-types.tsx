@@ -1,5 +1,13 @@
 import { TNodeTypes } from '@/types/flow'
-import { FallBackNode, MessageNode, StartNode } from './nodes'
+import {
+  CheckVariablesNode,
+  FallBackNode,
+  HttpRequestNode,
+  MessageNode,
+  PromptAndCollectNode,
+  SendMailNode,
+  StartNode,
+} from './nodes'
 
 /**
  * Represents the available node types.
@@ -12,4 +20,8 @@ export const nodeTypes: TNodeTypes = {
   start: StartNode,
   message: MessageNode,
   fallback: FallBackNode,
+  'prompt-and-collect': PromptAndCollectNode,
+  'check-variables': CheckVariablesNode,
+  'http-request': HttpRequestNode,
+  'send-mail': SendMailNode,
 }

@@ -1,4 +1,4 @@
-import GeneralSettingForm from '@/components/forms/general-setting'
+import { VariablesSettingForm } from '@/components/forms'
 import { Button } from '@/components/ui'
 import { useUpdateFlow } from '@/hooks/flow'
 import { useTranslation } from 'react-i18next'
@@ -9,7 +9,7 @@ type Props = {
   onClose: () => void
 }
 
-const GeneralSetting = ({ onClose }: Props) => {
+const VariablesSetting = ({ onClose }: Props) => {
   const { t } = useTranslation(['common'])
   const { id: flowId } = useParams()
 
@@ -19,7 +19,7 @@ const GeneralSetting = ({ onClose }: Props) => {
 
   return (
     <div className='flex flex-col gap-4 flex-1'>
-      <GeneralSettingForm
+      <VariablesSettingForm
         defaultValues={{
           ...flow,
         }}
@@ -35,7 +35,7 @@ const GeneralSetting = ({ onClose }: Props) => {
           {t('common:cancel')}
         </Button>
         <Button
-          form='general-setting-form'
+          form='variables-setting-form'
           type='submit'
           loading={updateFlowMutation.isPending}
         >
@@ -46,4 +46,4 @@ const GeneralSetting = ({ onClose }: Props) => {
   )
 }
 
-export default GeneralSetting
+export default VariablesSetting

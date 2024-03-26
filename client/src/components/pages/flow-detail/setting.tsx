@@ -13,20 +13,21 @@ import { Dialog } from '@radix-ui/react-dialog'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import GeneralSetting from './general-setting'
+import VariablesSetting from './variables-setting'
 
 const useSettingOptions = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('flowDetail')
 
   return [
     {
-      label: 'General',
+      label: t('settings_tabs.general'),
       value: 'general',
       Content: GeneralSetting,
     },
     {
-      label: 'Variables',
+      label: t('settings_tabs.variables'),
       value: 'variables',
-      Content: null,
+      Content: VariablesSetting,
     },
   ]
 }
@@ -38,14 +39,15 @@ type Props = {
 const Setting = ({ children }: Props) => {
   const settingOptions = useSettingOptions()
   const [open, setOpen] = useState(false)
+  const { t } = useTranslation('flowDetail')
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className='max-w-xl min-h-[40rem] max-h-[40rem] flex flex-col'>
+      <DialogContent className='max-w-xl min-h-[40rem]  flex flex-col'>
         <DialogHeader>
-          <DialogTitle>Settings</DialogTitle>
-          <DialogDescription>Configure your chatbot below.</DialogDescription>
+          <DialogTitle>{t('settings.title')}</DialogTitle>
+          <DialogDescription>{t('settings.desc')}</DialogDescription>
         </DialogHeader>
         <Tabs
           defaultValue={settingOptions[0].value}

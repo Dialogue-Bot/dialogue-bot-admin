@@ -1,34 +1,36 @@
+import channelEn from '@/locales/en/channel.json'
+import chatbotsEn from '@/locales/en/chatbots.json'
 import commonEN from '@/locales/en/common.json'
+import flowDetailEn from '@/locales/en/flow-detail.json'
 import forgotPassEN from '@/locales/en/forgot_pass.json'
 import formsEN from '@/locales/en/forms.json'
+import helpEn from '@/locales/en/help.json'
+import landingPageEn from '@/locales/en/landing-page.json'
 import layoutEN from '@/locales/en/layout.json'
 import loginEN from '@/locales/en/login.json'
 import mailEN from '@/locales/en/mail.json'
 import profileEN from '@/locales/en/profile.json'
 import registerEN from '@/locales/en/register.json'
 import setPassEN from '@/locales/en/set_pass.json'
+import tableColEn from '@/locales/en/table-cols.json'
+import tableEn from '@/locales/en/table.json'
+import channelVi from '@/locales/vi/channel.json'
+import chatbotsVi from '@/locales/vi/chatbots.json'
 import commonVI from '@/locales/vi/common.json'
+import flowDetailVi from '@/locales/vi/flow-detail.json'
 import forgotPassVI from '@/locales/vi/forgot_pass.json'
 import formsVI from '@/locales/vi/forms.json'
+import helpVi from '@/locales/vi/help.json'
+import landingPageVi from '@/locales/vi/landing-page.json'
 import layoutVI from '@/locales/vi/layout.json'
 import loginVI from '@/locales/vi/login.json'
 import mailVI from '@/locales/vi/mail.json'
 import profileVI from '@/locales/vi/profile.json'
 import registerVI from '@/locales/vi/register.json'
 import setPassVI from '@/locales/vi/set_pass.json'
-import { ELang } from '@/types/share'
-import tableColEn from '@/locales/en/table-cols.json'
 import tableColVi from '@/locales/vi/table-cols.json'
-import channelEn from '@/locales/en/channel.json'
-import channelVi from '@/locales/vi/channel.json'
-import tableEn from '@/locales/en/table.json'
 import tableVi from '@/locales/vi/table.json'
-import landingPageEn from '@/locales/en/landing-page.json'
-import landingPageVi from '@/locales/vi/landing-page.json'
-import helpEn from '@/locales/en/help.json'
-import helpVi from '@/locales/vi/help.json'
-import chatbotsEn from '@/locales/en/chatbots.json'
-import chatbotsVi from '@/locales/vi/chatbots.json'
+import { ELang } from '@/types/share'
 
 const resources = {
   [ELang.EN]: {
@@ -47,6 +49,7 @@ const resources = {
     landingPage: landingPageEn,
     help: helpEn,
     chatbots: chatbotsEn,
+    flowDetail: flowDetailEn,
   },
   [ELang.VI]: {
     common: commonVI,
@@ -64,6 +67,7 @@ const resources = {
     landingPage: landingPageVi,
     help: helpVi,
     chatbots: chatbotsVi,
+    flowDetail: flowDetailVi,
   },
 } as const
 
