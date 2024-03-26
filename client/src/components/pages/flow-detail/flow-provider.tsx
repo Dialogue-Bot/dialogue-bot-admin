@@ -1,5 +1,4 @@
 import { useDidUpdate } from '@/hooks/use-did-update'
-import { usePrevious } from '@/hooks/use-prev'
 import { TFlowInput } from '@/lib/schema/flow-input'
 import { EActionTypes, EMessageTypes, TNode } from '@/types/flow'
 import { createId } from '@paralleldrive/cuid2'
@@ -99,12 +98,11 @@ export const FlowProvider = ({ children, flow }: Props) => {
     },
   ])
   const [selectedNode, setSelectedNode] = useState<Node<any> | null>(null)
-  const [selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
+  const [_selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
   const [currentLang, setCurrentLang] = useState(
     flow.settings?.find((setting) => setting.type === 'language')?.value ||
       'en',
   )
-  const prevLang = usePrevious<string>(currentLang)
 
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,

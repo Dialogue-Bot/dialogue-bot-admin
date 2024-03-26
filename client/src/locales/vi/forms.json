@@ -178,5 +178,69 @@
     "errors": {
       "required": "Vui lòng chọn biến."
     }
+  },
+  "grammar_type": {
+    "label": "Kiểm tra đầu vào",
+    "placeholder": "Chọn kiểu kiểm tra đầu vào",
+    "errors": {
+      "required": "Vui lòng chọn kiểu kiểm tra đầu vào."
+    }
+  },
+  "trained_data": {
+    "label": "Dữ liệu đã train",
+    "placeholder": "Nhập dữ liệu đã train",
+    "errors": {
+      "required": "Vui lòng chọn dữ liệu đã train."
+    }
+  },
+  "assign_user_response": {
+    "label": "Gán giá trị cho biến",
+    "placeholder": "Chọn biến để gán giá trị",
+    "errors": {
+      "required": "Vui lòng chọn biến để gán giá trị cho câu trả lời của người dùng."
+    }
+  },
+  "repeat": {
+    "label": "Lặp lại",
+    "placeholder": "Chọn số lần lặp lại",
+    "errors": {
+      "required": "Vui lòng chọn số lần lặp lại."
+    }
+  },
+  "http_url": {
+    "label": "URL",
+    "placeholder": "Nhập url",
+    "errors": {
+      "required": "Vui lòng nhập URL.",
+      "url": "URL không hợp lệ."
+    }
+  },
+  "http_method": {
+    "label": "Phương thức",
+    "placeholder": "Chọn phương thức",
+    "errors": {
+      "required": "Vui lòng chọn phương thức."
+    }
+  },
+  "key": {
+    "label": "Key",
+    "placeholder": "Nhập key",
+    "errors": {
+      "required": "Vui lòng nhập key."
+    }
+  },
+  "value": {
+    "label": "Giá trị",
+    "placeholder": "Nhập giá trị",
+    "errors": {
+      "required": "Vui lòng nhập giá trị."
+    }
+  },
+  "sub_flow": {
+    "label": "Luồng con",
+    "placeholder": "Chọn luồng con",
+    "errors": {
+      "required": "Vui lòng chọn luồng con."
+    }
   }
 }

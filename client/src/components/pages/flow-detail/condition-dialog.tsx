@@ -1,6 +1,6 @@
 type Props = {}
 
-const ConditionDialog = (props: Props) => {
+const ConditionDialog = (_props: Props) => {
   return <div>ConditionDialog</div>
 }
 

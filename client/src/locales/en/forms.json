@@ -185,5 +185,69 @@
     "errors": {
       "required": "Please select variable."
     }
+  },
+  "grammar_type": {
+    "label": "Grammar type",
+    "placeholder": "Select grammar type",
+    "errors": {
+      "required": "Please select grammar type."
+    }
+  },
+  "trained_data": {
+    "label": "Trained data",
+    "placeholder": "Enter trained data",
+    "errors": {
+      "required": "Please enter trained data."
+    }
+  },
+  "assign_user_response": {
+    "label": "Assign user response",
+    "placeholder": "Select variable",
+    "errors": {
+      "required": "Please select variable to assign user response."
+    }
+  },
+  "repeat": {
+    "label": "Repeat",
+    "placeholder": "Select repeat",
+    "errors": {
+      "required": "Please select repeat."
+    }
+  },
+  "http_url": {
+    "label": "URL",
+    "placeholder": "Enter URL",
+    "errors": {
+      "required": "Please enter URL.",
+      "url": "Please enter a valid URL."
+    }
+  },
+  "http_method": {
+    "label": "Method",
+    "placeholder": "Select method",
+    "errors": {
+      "required": "Please select method."
+    }
+  },
+  "key": {
+    "label": "Key",
+    "placeholder": "Enter key",
+    "errors": {
+      "required": "Please enter key."
+    }
+  },
+  "value": {
+    "label": "Value",
+    "placeholder": "Enter value",
+    "errors": {
+      "required": "Please enter value."
+    }
+  },
+  "sub_flow": {
+    "label": "Sub flow",
+    "placeholder": "Select sub flow",
+    "errors": {
+      "required": "Please select sub flow."
+    }
   }
 }

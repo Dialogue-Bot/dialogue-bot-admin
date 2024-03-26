@@ -54,6 +54,17 @@ const parseVariableValue = (value: string, type: string) => {
   return value
 }
 
+const stringifyVariableValue = (value: any, type: string) => {
+  if (type === 'array')
+    return JSON.stringify(value)
+      .replace('[', '')
+      .replace(']', '')
+      .replace(/"/g, '')
+
+  if (type === 'object') return JSON.stringify(value, null, 2)
+  return JSON.stringify(value)
+}
+
 export const VariablesSettingForm = ({
   id = 'variables-setting-form',
   onSubmit,
@@ -68,7 +79,7 @@ export const VariablesSettingForm = ({
       ...defaultValues,
       variables: defaultValues?.variables?.map((variable) => ({
         ...variable,
-        value: JSON.stringify(variable.value).replace(/"/g, ''),
+        value: stringifyVariableValue(variable.value, variable.type as string),
       })),
     },
   })
