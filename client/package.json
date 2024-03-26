@@ -59,7 +59,7 @@
     "dayjs": "^1.11.10",
     "embla-carousel-react": "^8.0.0-rc23",
     "fast-glob": "^3.3.2",
-    "firebase": "^10.8.0",
+    "firebase": "^10.9.0",
     "i18next": "^23.9.0",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-chained-backend": "^4.6.2",
