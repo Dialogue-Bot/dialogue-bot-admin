@@ -70,7 +70,7 @@ export const InputButtons = ({ onChange, defaultValue }: Props) => {
             e.preventDefault()
           }}
           className={cn(
-            'space-y-3 max-h-[180px] overflow-y-auto hidden-scroll',
+            'space-y-3 max-h-[148px] overflow-y-auto hidden-scroll',
             {
               'py-2 px-[2px]': fields.length > 0,
             },

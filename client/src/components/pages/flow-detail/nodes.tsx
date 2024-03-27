@@ -3,6 +3,7 @@ import { EActionTypes, TNode } from '@/types/flow'
 import {
   Bolt,
   Check,
+  CornerDownRight,
   GitPullRequest,
   HelpCircle,
   Mail,
@@ -245,6 +246,18 @@ export const SendMailNode = (props?: CustomNodeProps) => {
     <NodeWrapper>
       <div className='flex items-center gap-2'>
         <Mail className='w-4 h-4' />
+        <span className='leading-none'>{data?.name || data?.label}</span>
+      </div>
+    </NodeWrapper>
+  )
+}
+
+export const SubFlowNode = (props?: CustomNodeProps) => {
+  const { data } = props || {}
+  return (
+    <NodeWrapper>
+      <div className='flex items-center gap-2'>
+        <CornerDownRight className='w-4 h-4' />
         <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
     </NodeWrapper>

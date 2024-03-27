@@ -17,7 +17,8 @@
     "actions": "Actions",
     "settings": "Settings",
     "publish": "Publish",
-    "test_your_bot": "Test Your Bot"
+    "test_your_bot": "Test Your Bot",
+    "save": "Save"
   },
   "settings": {
     "title": "Settings",
@@ -60,5 +61,15 @@
     "save_btn": "Save card"
   },
   "add_btn": "Add new button",
-  "empty_buttons": "No buttons yet, add one by clicking the button above."
+  "empty_buttons": "No buttons yet, add one by clicking the button above.",
+  "grammars_type": {
+    "yes_no": "Yes/No",
+    "number": "Number",
+    "date": "Date",
+    "time": "Time",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "intent": "Intent",
+    "text": "Text"
+  }
 }

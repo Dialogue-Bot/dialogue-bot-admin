@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,7 +11,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from './alert-dialog'
-import { useTranslation } from 'react-i18next'
 
 export type ConfirmProps = {
   onConfirm?: (close: () => void) => void

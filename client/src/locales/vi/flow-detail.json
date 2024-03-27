@@ -17,7 +17,8 @@
     "actions": "Actions",
     "settings": "Cài đặt",
     "publish": "Xuất bản",
-    "test_your_bot": "Chạy thử bot"
+    "test_your_bot": "Chạy thử bot",
+    "save": "Lưu"
   },
   "settings": {
     "title": "Cài đặt",
@@ -60,5 +61,15 @@
     "save_btn": "Lưu"
   },
   "add_btn": "Thêm mới nút",
-  "empty_buttons": "Không có nút nào, nhấp vào nút bên trên để tạo nút mới."
+  "empty_buttons": "Không có nút nào, nhấp vào nút bên trên để tạo nút mới.",
+  "grammars_type": {
+    "yes_no": "Yes/No",
+    "number": "Number",
+    "date": "Date",
+    "time": "Time",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "intent": "Intent",
+    "text": "Text"
+  }
 }

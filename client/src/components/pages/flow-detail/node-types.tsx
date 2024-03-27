@@ -7,6 +7,7 @@ import {
   PromptAndCollectNode,
   SendMailNode,
   StartNode,
+  SubFlowNode,
 } from './nodes'
 
 /**
@@ -24,4 +25,5 @@ export const nodeTypes: TNodeTypes = {
   'check-variables': CheckVariablesNode,
   'http-request': HttpRequestNode,
   'send-mail': SendMailNode,
+  'sub-flow': SubFlowNode,
 }

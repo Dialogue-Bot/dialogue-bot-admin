@@ -52,3 +52,12 @@ export enum EMessageTypes {
   LIST_BUTTON = 'list-button',
   LIST_CARD = 'list-card',
 }
+
+export enum EGrammarTypes {
+  INTENT = 'intent',
+  NUMBER = 'number',
+  EMAIL = 'email',
+  PHONE_NUMBER = 'phone-number',
+  YES_NO = 'yes-no',
+  TEXT = 'text',
+}

@@ -1,0 +1,7 @@
+.tiptap:focus-visible {
+  outline: none;
+}
+
+.tiptap {
+  @apply p-2 px-4;
+}

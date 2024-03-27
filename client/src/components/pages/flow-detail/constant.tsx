@@ -1,5 +1,5 @@
 import i18n from '@/i18n'
-import { EActionTypes, EMessageTypes } from '@/types/flow'
+import { EActionTypes, EGrammarTypes, EMessageTypes } from '@/types/flow'
 import {
   Bolt,
   GitPullRequest,
@@ -11,7 +11,14 @@ import {
   Workflow,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { CheckVariablesContent, MessageDialogContent } from './node-dialog'
+import {
+  CheckVariablesContent,
+  HttpRequestDialogContent,
+  MessageDialogContent,
+  PromptAndCollectDialogContent,
+  SendMailContent,
+  SubFlowContent,
+} from './node-dialog'
 
 export const MAP_ACTION_TO_LABEL: Record<EActionTypes, string> = {
   [EActionTypes.MESSAGE]: i18n.t('flowDetail:actions.items.message') as string,
@@ -35,6 +42,11 @@ export const MAP_ACTION_TO_LABEL: Record<EActionTypes, string> = {
     'flowDetail:actions.items.send_mail',
   ) as string,
 }
+
+export const ACTIONS_TO_RENDER_LANG = [
+  EActionTypes.MESSAGE,
+  EActionTypes.PROMPT_AND_COLLECT,
+]
 
 export const useMapActionToLabel = () => {
   const { t } = useTranslation('flowDetail')
@@ -70,7 +82,7 @@ export const MAP_ACTION: Record<
   [EActionTypes.PROMPT_AND_COLLECT]: {
     icon: () => <HelpCircle className='w-4 h-4' />,
     label: 'Prompt and collect',
-    dialogContent: () => <MessageDialogContent />,
+    dialogContent: () => <PromptAndCollectDialogContent />,
   },
   [EActionTypes.CHECK_VARIABLES]: {
     icon: () => <Variable className='w-4 h-4' />,
@@ -80,12 +92,12 @@ export const MAP_ACTION: Record<
   [EActionTypes.HTTP_REQUEST]: {
     icon: () => <GitPullRequest className='w-4 h-4' />,
     label: 'Http request',
-    dialogContent: () => <div>Http request</div>,
+    dialogContent: () => <HttpRequestDialogContent />,
   },
   [EActionTypes.SEND_MAIL]: {
     icon: () => <Mail className='w-4 h-4' />,
     label: 'Send mail',
-    dialogContent: () => <div>Send mail</div>,
+    dialogContent: () => <SendMailContent />,
   },
   [EActionTypes.FALLBACK]: {
     icon: () => <Webhook className='w-4 h-4' />,
@@ -100,7 +112,7 @@ export const MAP_ACTION: Record<
   [EActionTypes.SUB_FLOW]: {
     icon: () => <Workflow className='w-4 h-4' />,
     label: 'Sub flow',
-    dialogContent: () => <div>Sub flow</div>,
+    dialogContent: () => <SubFlowContent />,
   },
 }
 
@@ -136,3 +148,12 @@ export const CONDITIONAL_OPERATOR = [
   'in',
   'not_in',
 ]
+
+export const MAP_GRAMMAR_TYPE: Record<EGrammarTypes, string> = {
+  [EGrammarTypes.INTENT]: i18n.t('flowDetail:grammars_type.intent'),
+  [EGrammarTypes.NUMBER]: i18n.t('flowDetail:grammars_type.number'),
+  [EGrammarTypes.EMAIL]: i18n.t('flowDetail:grammars_type.email'),
+  [EGrammarTypes.PHONE_NUMBER]: i18n.t('flowDetail:grammars_type.phone_number'),
+  [EGrammarTypes.TEXT]: i18n.t('flowDetail:grammars_type.text'),
+  [EGrammarTypes.YES_NO]: i18n.t('flowDetail:grammars_type.yes_no'),
+}

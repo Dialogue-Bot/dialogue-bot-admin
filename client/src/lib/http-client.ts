@@ -2,7 +2,6 @@ import { auth } from '@/apis/auth'
 import { ROUTES } from '@/constants'
 import { ELang } from '@/types/share'
 import axios from 'axios'
-import { de } from 'date-fns/locale'
 
 const http_client = axios.create({
   baseURL: 'http://localhost:8080/api',

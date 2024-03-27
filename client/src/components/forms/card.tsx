@@ -28,7 +28,11 @@ type Props = {
   defaultValue?: TCardInput
 }
 
-export const CardForm = ({ defaultValue, id, onSubmit }: Props) => {
+export const CardForm = ({
+  defaultValue,
+  id = 'card-form',
+  onSubmit,
+}: Props) => {
   const schema = useCardInputSchema()
   const { t } = useTranslation(['forms', 'flowDetail'])
   const form = useForm<TCardInput>({
@@ -71,7 +75,7 @@ export const CardForm = ({ defaultValue, id, onSubmit }: Props) => {
     <Form {...form}>
       <form
         className='space-y-3'
-        id='card-form'
+        id={id}
         onSubmit={form.handleSubmit(handleSubmit)}
       >
         <FormField

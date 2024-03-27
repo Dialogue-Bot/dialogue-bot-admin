@@ -22,7 +22,6 @@ import { MAP_MESSAGE_TYPE } from '../constant'
 import InputButtons from '../input-buttons'
 
 export const MessageDialogContent = () => {
-  const [openCardDialog, setOpenCardDialog] = useState(false)
   const { selectedNode, handleChangeSelectedNode, currentLang } = useFlowCtx()
   const { t } = useTranslation(['flowDetail', 'forms', 'common'])
   const [messageType, setMessageType] = useState<EMessageTypes>(
@@ -136,6 +135,7 @@ export const MessageDialogContent = () => {
                 handleChangeSelectedNode(clonedNode)
               }}
               toServer
+              size={120}
             />
           )}
         </div>
