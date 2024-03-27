@@ -1,3 +1,16 @@
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui'
+import { useTranslation } from 'react-i18next'
+import { useBlocker } from 'react-router-dom'
 import ReactFlow, { Background, BackgroundVariant } from 'reactflow'
 import { Actions } from './actions'
 import { Controls } from './controls'
@@ -19,10 +32,49 @@ export const FlowInside = () => {
     handleInit,
     handleDoubleClickNode,
     handleDoubleClickEdge,
+    flow,
   } = useFlowCtx()
+  const { t } = useTranslation('common')
+
+  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
+    return (
+      (JSON.stringify(nodes) !== JSON.stringify(flow.nodes) ||
+        JSON.stringify(edges) !== JSON.stringify(flow.edges)) &&
+      currentLocation.pathname !== nextLocation.pathname
+    )
+  })
 
   return (
     <div className='h-svh select-none'>
+      <AlertDialog open={blocker.state === 'blocked'}>
+        <AlertDialogTrigger asChild>
+          <div className='hidden'></div>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t('leave_page_unsaved.title')}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t('leave_page_unsaved.desc')}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel
+              onClick={() => {
+                blocker.reset?.()
+              }}
+            >
+              {t('cancel')}
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                blocker.proceed?.()
+              }}
+            >
+              {t('confirm')}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <ReactFlow
         nodeTypes={nodeTypes}
         nodes={nodes}

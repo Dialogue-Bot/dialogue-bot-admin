@@ -58,45 +58,53 @@ type Props = {
 export const FlowProvider = ({ children, flow }: Props) => {
   const [open, toggle] = useToggle()
   const actionToLabel = useMapActionToLabel()
-  const [nodes, setNodes, onNodesChange] = useNodesState<any>([
-    {
-      id: EActionTypes.START,
-      type: EActionTypes.START,
-      position: { x: 100, y: 100 },
-      data: {
-        label: 'Start',
-        action: EActionTypes.START,
-        id: EActionTypes.START,
-        name: 'Start',
-      },
-      deletable: false,
-      draggable: false,
-    },
-    {
-      id: EActionTypes.FALLBACK,
-      type: EActionTypes.FALLBACK,
-      position: { x: 190, y: 280 },
-      data: {
-        label: 'Fallback',
-        id: EActionTypes.FALLBACK,
-        action: EActionTypes.FALLBACK,
-        name: 'Fallback',
-      },
-      deletable: false,
-      draggable: false,
-    },
-  ])
-  const [edges, setEdges, onEdgesChange] = useEdgesState([
-    {
-      id: 'start-fallback',
-      source: EActionTypes.START,
-      target: EActionTypes.FALLBACK,
-      type: 'custom',
-      data: {
-        deletable: false,
-      },
-    },
-  ])
+  const [nodes, setNodes, onNodesChange] = useNodesState<any>(
+    flow.nodes?.length
+      ? (flow.nodes as Node<any>[])
+      : [
+          {
+            id: EActionTypes.START,
+            type: EActionTypes.START,
+            position: { x: 100, y: 100 },
+            data: {
+              label: 'Start',
+              action: EActionTypes.START,
+              id: EActionTypes.START,
+              name: 'Start',
+            },
+            deletable: false,
+            draggable: false,
+          },
+          {
+            id: EActionTypes.FALLBACK,
+            type: EActionTypes.FALLBACK,
+            position: { x: 190, y: 280 },
+            data: {
+              label: 'Fallback',
+              id: EActionTypes.FALLBACK,
+              action: EActionTypes.FALLBACK,
+              name: 'Fallback',
+            },
+            deletable: false,
+            draggable: false,
+          },
+        ],
+  )
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    flow.edges?.length
+      ? (flow.edges as Edge<any>[])
+      : [
+          {
+            id: 'start-fallback',
+            source: EActionTypes.START,
+            target: EActionTypes.FALLBACK,
+            type: 'custom',
+            data: {
+              deletable: false,
+            },
+          },
+        ],
+  )
   const [selectedNode, setSelectedNode] = useState<Node<any> | null>(null)
   const [_selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
   const [currentLang, setCurrentLang] = useState(

@@ -38,5 +38,9 @@
     "en": "English"
   },
   "variables": "Variables",
-  "add": "Add"
+  "add": "Add",
+  "leave_page_unsaved": {
+    "title": "Unsaved changes",
+    "desc": "You have unsaved changes. Are you sure you want to leave this page?"
+  }
 }

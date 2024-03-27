@@ -17,7 +17,8 @@
     "actions": "Actions",
     "settings": "Settings",
     "publish": "Publish",
-    "test_your_bot": "Test Your Bot"
+    "test_your_bot": "Test Your Bot",
+    "save": "Save"
   },
   "settings": {
     "title": "Settings",

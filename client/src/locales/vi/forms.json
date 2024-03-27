@@ -242,5 +242,28 @@
     "errors": {
       "required": "Vui lòng chọn luồng con."
     }
+  },
+  "subject": {
+    "label": "Tiêu đề",
+    "placeholder": "Nhập tiêu đề",
+    "errors": {
+      "required": "Vui lòng nhập tiêu đề."
+    }
+  },
+  "mail_body": {
+    "label": "Nội dung",
+    "placeholder": "Nhập nội dung",
+    "errors": {
+      "required": "Vui lòng nhập nội dung."
+    }
+  },
+  "mail_to": {
+    "label": "Gửi đến",
+    "placeholder": "Nhập email hoặc biến (e.g. {email})",
+    "errors": {
+      "required": "Vui lòng nhập email hoặc biến",
+      "email": "Email không hợp lệ.",
+      "invalid": "Vui lòng nhập email hoặc biên hợp lệ."
+    }
   }
 }

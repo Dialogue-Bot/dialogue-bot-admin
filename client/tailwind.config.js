@@ -1,3 +1,5 @@
+const { default: typographyStyles } = require('./typography')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],

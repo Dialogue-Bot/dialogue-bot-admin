@@ -16,6 +16,7 @@ import {
   HttpRequestDialogContent,
   MessageDialogContent,
   PromptAndCollectDialogContent,
+  SendMailContent,
   SubFlowContent,
 } from './node-dialog'
 
@@ -41,6 +42,11 @@ export const MAP_ACTION_TO_LABEL: Record<EActionTypes, string> = {
     'flowDetail:actions.items.send_mail',
   ) as string,
 }
+
+export const ACTIONS_TO_RENDER_LANG = [
+  EActionTypes.MESSAGE,
+  EActionTypes.PROMPT_AND_COLLECT,
+]
 
 export const useMapActionToLabel = () => {
   const { t } = useTranslation('flowDetail')
@@ -91,7 +97,7 @@ export const MAP_ACTION: Record<
   [EActionTypes.SEND_MAIL]: {
     icon: () => <Mail className='w-4 h-4' />,
     label: 'Send mail',
-    dialogContent: () => <div>Send mail</div>,
+    dialogContent: () => <SendMailContent />,
   },
   [EActionTypes.FALLBACK]: {
     icon: () => <Webhook className='w-4 h-4' />,

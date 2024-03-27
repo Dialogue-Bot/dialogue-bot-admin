@@ -249,5 +249,28 @@
     "errors": {
       "required": "Please select sub flow."
     }
+  },
+  "subject": {
+    "label": "Subject",
+    "placeholder": "Enter subject",
+    "errors": {
+      "required": "Please enter subject."
+    }
+  },
+  "mail_body": {
+    "label": "Content",
+    "placeholder": "Enter content",
+    "errors": {
+      "required": "Please enter content."
+    }
+  },
+  "mail_to": {
+    "label": "To",
+    "placeholder": "Enter email address or variable (e.g. {email})",
+    "errors": {
+      "required": "Please enter email address or variable.",
+      "email": "Please enter a valid email address.",
+      "invalid": "Please enter a valid email or variable."
+    }
   }
 }
