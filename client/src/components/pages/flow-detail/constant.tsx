@@ -65,6 +65,8 @@ export const useMapActionToLabel = () => {
 
 export const SOURCE_HANDLE_PROMPT_YES = 'prompt-and-collect-yes'
 export const SOURCE_HANDLE_PROMPT_NO = 'prompt-and-collect-no'
+export const SOURCE_HANDLE_VARIABLES_YES = 'check-variables-yes'
+export const SOURCE_HANDLE_VARIABLES_NO = 'check-variables-no'
 
 export const MAP_ACTION: Record<
   EActionTypes,

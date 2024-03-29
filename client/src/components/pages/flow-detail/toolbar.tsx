@@ -16,7 +16,7 @@ import Setting from './setting'
 export const Toolbar = () => {
   const { toggleActions } = useFlowCtx()
   const { t } = useTranslation('flowDetail')
-  const { flow, edges, nodes } = useFlowCtx()
+  const { flow, edges, nodes, getCompleteFlows } = useFlowCtx()
   const { id } = useParams()
 
   const updateFlowMutation = useUpdateFlow()
@@ -27,7 +27,7 @@ export const Toolbar = () => {
       data: {
         edges,
         nodes,
-        flows: nodes.map((node) => node.data),
+        flows: getCompleteFlows(),
         name: flow.name,
       },
     })
