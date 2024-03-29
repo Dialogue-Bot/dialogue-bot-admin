@@ -11,6 +11,7 @@ import {
   useState,
 } from 'react'
 import {
+  Connection,
   Edge,
   EdgeChange,
   EdgeMouseHandler,
@@ -24,7 +25,13 @@ import {
   useNodesState,
 } from 'reactflow'
 import { useToggle } from 'usehooks-ts'
-import { SOURCE_HANDLE_PROMPT_YES, useMapActionToLabel } from './constant'
+import {
+  SOURCE_HANDLE_PROMPT_NO,
+  SOURCE_HANDLE_PROMPT_YES,
+  SOURCE_HANDLE_VARIABLES_NO,
+  SOURCE_HANDLE_VARIABLES_YES,
+  useMapActionToLabel,
+} from './constant'
 
 type FlowCtx = {
   flow: TFlowInput
@@ -46,6 +53,8 @@ type FlowCtx = {
   handleDoubleClickEdge: EdgeMouseHandler
   getNode: (id: string) => Node<any> | undefined
   getEdge: (id: string) => Edge<any> | undefined
+  handleValidateConnection: (connection: Connection) => boolean
+  getCompleteFlows: () => any[]
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -344,6 +353,120 @@ export const FlowProvider = ({ children, flow }: Props) => {
   )
 
   /**
+   * Checks the condition node to determine if it is valid.
+   *
+   * @param connection - The connection object.
+   * @param sourceHandleNo - The source handle for the "No" path.
+   * @param sourceHandleYes - The source handle for the "Yes" path.
+   * @returns True if the condition node is valid, false otherwise.
+   */
+  const handleCheckConditionNode = useCallback(
+    ({
+      connection,
+      sourceHandleNo,
+      sourceHandleYes,
+    }: {
+      connection: Connection
+      sourceHandleYes: string
+      sourceHandleNo: string
+    }) => {
+      const numberOfYes = edges.filter((edge) => {
+        return (
+          edge.source === connection.source &&
+          edge.sourceHandle === sourceHandleYes
+        )
+      })
+
+      const numberOfNo = edges.filter((edge) => {
+        return (
+          edge.source === connection.source &&
+          edge.sourceHandle === sourceHandleNo
+        )
+      })
+
+      if (
+        numberOfYes.length === 1 &&
+        connection.sourceHandle === sourceHandleYes
+      ) {
+        return false
+      }
+
+      if (
+        numberOfNo.length === 1 &&
+        connection.sourceHandle === sourceHandleNo
+      ) {
+        return false
+      }
+
+      const targetEdge = edges.find(
+        (edge) =>
+          edge.target === connection.target &&
+          edge.source === connection.source &&
+          edge.sourceHandle !== null,
+      )
+
+      if (targetEdge) {
+        return false
+      }
+
+      return true
+    },
+    [edges],
+  )
+
+  /**
+   * Handles the validation of a connection.
+   *
+   * @param connection - The connection to validate.
+   * @returns A boolean indicating whether the connection is valid or not.
+   */
+  const handleValidateConnection = useCallback(
+    (connection: Connection) => {
+      const sourcesFromHandleInState = edges.filter(
+        (edge) => edge.source === connection.source,
+      ).length
+      const sourceNode = nodes.find((node) => node.id === connection.source)
+
+      const targetFromHandleInState = edges.filter(
+        (edge) => edge.target === connection.target,
+      ).length
+
+      if (connection.source === connection.target) return false
+
+      if (
+        sourceNode?.data.action === EActionTypes.START &&
+        sourcesFromHandleInState < 2
+      )
+        return true
+
+      if (sourceNode?.data.action === EActionTypes.PROMPT_AND_COLLECT) {
+        return handleCheckConditionNode({
+          connection,
+          sourceHandleNo: SOURCE_HANDLE_PROMPT_NO,
+          sourceHandleYes: SOURCE_HANDLE_PROMPT_YES,
+        })
+      }
+
+      if (
+        sourceNode?.data.action === EActionTypes.CHECK_VARIABLES &&
+        sourcesFromHandleInState < 2
+      ) {
+        return handleCheckConditionNode({
+          connection,
+          sourceHandleNo: SOURCE_HANDLE_VARIABLES_NO,
+          sourceHandleYes: SOURCE_HANDLE_VARIABLES_YES,
+        })
+      }
+
+      if (targetFromHandleInState === 1) return false
+      if (sourcesFromHandleInState < 1) return true
+
+      return false
+    },
+    [edges, nodes, handleCheckConditionNode],
+  )
+
+  /**
    * Handles the change of the selected node.
    *
    * @param {Node<any> | null} node - The selected node.
@@ -389,6 +512,58 @@ export const FlowProvider = ({ children, flow }: Props) => {
     })
   }, [])
 
+  /**
+   * Retrieves the complete flows from the given nodes.
+   * A complete flow is a sequence of nodes where each node has a next action or is a final node.
+   * Nodes that do not have a next action and are not final nodes are removed from the result.
+   *
+   * @returns An array of data objects representing the complete flows.
+   */
+  const getCompleteFlows = useCallback(() => {
+    let clonedNodes = _.cloneDeep(nodes)
+
+    const nodeIsNextAction = (node: Node<any>) => {
+      return clonedNodes.some((nd) => {
+        return (
+          nd.data?.nextAction === node.id ||
+          nd.data?.nextActions?.some((na: any) => na.id === node.id)
+        )
+      })
+    }
+
+    const nodeIsToBeRemoved = (node: Node<any>) => {
+      if (
+        node.data.action === EActionTypes.START ||
+        node.data.action === EActionTypes.FALLBACK
+      ) {
+        return false
+      }
+
+      if (
+        !nodeIsNextAction(node) &&
+        (!node.data?.nextAction || !node.data?.nextActions)
+      ) {
+        console.log(node.id)
+        return true
+      }
+
+      return false
+    }
+
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const nodeToBeRemoved = clonedNodes.find(nodeIsToBeRemoved)
+
+      if (!nodeToBeRemoved) {
+        break
+      }
+
+      clonedNodes = clonedNodes.filter((node) => node.id !== nodeToBeRemoved.id)
+    }
+
+    return clonedNodes.map((node) => node.data)
+  }, [nodes])
+
   useDidUpdate(() => {
     setNodes((nds) => {
       return nds.map((node) =>
@@ -419,6 +594,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
         handleDoubleClickEdge,
         getNode: _getNode,
         getEdge,
+        handleValidateConnection,
+        getCompleteFlows,
       }}
     >
       {children}
