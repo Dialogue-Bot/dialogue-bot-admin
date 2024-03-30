@@ -71,5 +71,21 @@
     "phone_number": "Phone Number",
     "intent": "Intent",
     "text": "Text"
+  },
+  "compare_types": {
+    "equal": "Bằng",
+    "not_equal": "Không bằng",
+    "greater_than": "Lớn hơn",
+    "greater_than_or_equal": "Lớn hơn hoặc bằng",
+    "less_than": "Nhỏ hơn",
+    "less_than_or_equal": "Nhỏ hơn hoặc bằng",
+    "contains": "Bao gồm",
+    "not_contains": "Không bao gồm",
+    "match": "Khớp",
+    "not_match": "Không khớp"
+  },
+  "condition_dialog": {
+    "title": "Điều kiện",
+    "desc": "Chọn một toán tử để so sánh biến với giá trị."
   }
 }

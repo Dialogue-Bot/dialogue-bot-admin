@@ -139,16 +139,16 @@ export const MAP_MESSAGE_TYPE: Record<
 }
 
 export const CONDITIONAL_OPERATOR = [
-  '==',
-  '!=',
-  '>',
-  '>=',
-  '<',
-  '<=',
+  'equal',
+  'not_equal',
+  'greater_than',
+  'greater_than_or_equal',
+  'less_than',
+  'less_than_or_equal',
   'contains',
   'not_contains',
-  'in',
-  'not_in',
+  'match',
+  'not_match',
 ]
 
 export const MAP_GRAMMAR_TYPE: Record<EGrammarTypes, string> = {

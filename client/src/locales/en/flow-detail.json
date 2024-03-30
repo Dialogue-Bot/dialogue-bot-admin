@@ -71,5 +71,21 @@
     "phone_number": "Phone Number",
     "intent": "Intent",
     "text": "Text"
+  },
+  "compare_types": {
+    "equal": "Equal",
+    "not_equal": "Not Equal",
+    "greater_than": "Greater Than",
+    "greater_than_or_equal": "Greater Than or Equal",
+    "less_than": "Less Than",
+    "less_than_or_equal": "Less Than or Equal",
+    "contains": "Contains",
+    "not_contains": "Not Contains",
+    "match": "Match",
+    "not_match": "Not Match"
+  },
+  "condition_dialog": {
+    "title": "Condition",
+    "desc": "Choose a operator to compare the variable with the value."
   }
 }

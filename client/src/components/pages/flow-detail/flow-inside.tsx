@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { useBlocker } from 'react-router-dom'
 import ReactFlow, { Background, BackgroundVariant } from 'reactflow'
 import { Actions } from './actions'
+import ConditionDialog from './condition-dialog'
 import { Controls } from './controls'
 import { edgeTypes } from './edge-types'
 import { useFlowCtx } from './flow-provider'
@@ -99,6 +100,7 @@ export const FlowInside = () => {
       <Toolbar />
       <Actions />
       <NodeDialog />
+      <ConditionDialog />
     </div>
   )
 }

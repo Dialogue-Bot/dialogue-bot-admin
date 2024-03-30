@@ -17,6 +17,7 @@ import {
   SOURCE_HANDLE_PROMPT_NO,
   SOURCE_HANDLE_PROMPT_YES,
   SOURCE_HANDLE_VARIABLES_NO,
+  SOURCE_HANDLE_VARIABLES_YES,
 } from './constant'
 
 type CustomNodeProps = NodeProps<
@@ -158,7 +159,7 @@ export const CheckVariablesNode = (props?: CustomNodeProps) => {
       <HandleCustom
         type='source'
         position={Position.Bottom}
-        id={SOURCE_HANDLE_PROMPT_YES}
+        id={SOURCE_HANDLE_VARIABLES_YES}
         style={{
           left: '20%',
         }}
