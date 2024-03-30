@@ -1,5 +1,3 @@
-import { Outlet, createBrowserRouter, redirect } from 'react-router-dom'
-import i18n from './i18n'
 import {
   Channels,
   ChatBotDetail,
@@ -11,6 +9,7 @@ import {
   Register,
   SetPassword,
 } from '@/pages'
+import { Outlet, createBrowserRouter, redirect } from 'react-router-dom'
 
 import {
   AppLayout,
@@ -18,10 +17,10 @@ import {
   PublishLayout,
   SettingLayout,
 } from '@/components/layouts'
-import { ROUTES } from './constants'
-import Help from './pages/help'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Suspense } from 'react'
 import PageLoading from './components/page-loading'
+import { ROUTES } from './constants'
 import {
   appLoader,
   articleLoader,
@@ -32,8 +31,8 @@ import {
   flowsLoader,
   settingLoader,
 } from './lib/loader'
+import Help from './pages/help'
 import HelpDetail from './pages/help-detail'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const App = () => {
   return (

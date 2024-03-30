@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "title": "Actions",
+    "desc": "Drag and drop actions to create your own custom flow.",
+    "items": {
+      "message": "Message",
+      "prompt_and_collect": "Prompt & Collect",
+      "check_variables": "Check Variables",
+      "http_request": "HTTP Request",
+      "fallback": "Fallback",
+      "start": "Start",
+      "sub_flow": "Sub Flow",
+      "send_mail": "Send Mail"
+    }
+  },
+  "toolbar": {
+    "actions": "Actions",
+    "settings": "Settings",
+    "publish": "Publish",
+    "test_your_bot": "Test Your Bot",
+    "save": "Save"
+  },
+  "settings": {
+    "title": "Settings",
+    "desc": "Configure your bot settings."
+  },
+  "settings_tabs": {
+    "bot": "Bot",
+    "channels": "Channels",
+    "users": "Users",
+    "variables": "Variables",
+    "analytics": "Analytics",
+    "general": "General"
+  },
+  "variables": {
+    "create_new": "Create new variable",
+    "empty_list": "Not have any variables yet, create one by clicking the button below."
+  },
+  "node_dialog": {
+    "desc": "Configure your action node."
+  },
+  "message_dialog": {
+    "message_types": {
+      "text": "Text",
+      "image": "Image",
+      "list_button": "List button",
+      "list_card": "List card"
+    },
+    "responses": "Responses",
+    "forms": {
+      "bot_response": {
+        "label": "Bot Response",
+        "placeholder": "Type your bot response here"
+      }
+    }
+  },
+  "card_dialog": {
+    "desc": "Enter the details of the card.",
+    "title_add": "Add new card",
+    "title_update": "Update card",
+    "save_btn": "Save card"
+  },
+  "add_btn": "Add new button",
+  "empty_buttons": "No buttons yet, add one by clicking the button above.",
+  "grammars_type": {
+    "yes_no": "Yes/No",
+    "number": "Number",
+    "date": "Date",
+    "time": "Time",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "intent": "Intent",
+    "text": "Text"
+  },
+  "compare_types": {
+    "equal": "Equal",
+    "not_equal": "Not Equal",
+    "greater_than": "Greater Than",
+    "greater_than_or_equal": "Greater Than or Equal",
+    "less_than": "Less Than",
+    "less_than_or_equal": "Less Than or Equal",
+    "contains": "Contains",
+    "not_contains": "Not Contains",
+    "match": "Match",
+    "not_match": "Not Match"
+  },
+  "condition_dialog": {
+    "title": "Condition",
+    "desc": "Choose a operator to compare the variable with the value."
+  }
+}

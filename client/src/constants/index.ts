@@ -1,3 +1,5 @@
+import i18n from '@/i18n'
+
 export const ENDPOINTS = {
   AUTH: {
     INDEX: '/auth',
@@ -67,3 +69,21 @@ export const ROUTES = {
     },
   },
 }
+
+export const LANGS: Record<string, string> = {
+  vi: i18n.t('common:langs.vi'),
+  en: i18n.t('common:langs.en'),
+}
+
+export const CONDITIONAL_OPERATOR = [
+  'equal',
+  'not_equal',
+  'greater_than',
+  'greater_than_or_equal',
+  'less_than',
+  'less_than_or_equal',
+  'contains',
+  'not_contains',
+  'match',
+  'not_match',
+]

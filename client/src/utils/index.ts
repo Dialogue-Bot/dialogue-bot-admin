@@ -1,5 +1,6 @@
 import crypto from 'crypto-js'
 import dayjs from 'dayjs'
+import _ from 'lodash'
 
 const isObject = (obj: Record<any, any>) =>
   obj != null && obj.constructor.name === 'Object'
@@ -101,4 +102,65 @@ export const formatDate = (date: string): string => {
 
 export const calcPageCount = (total: number, limit: number) => {
   return Math.ceil(total / limit)
+}
+
+export const isStringNumber = (value: string) => {
+  return /^\d+$/.test(value)
+}
+
+export const isStringBoolean = (value: string) => {
+  return value === 'true' || value === 'false'
+}
+
+export const toBoolean = (value: string | number) => {
+  if (typeof value === 'number') return Boolean(value)
+
+  if (typeof value === 'string') {
+    if (value === 'true') return true
+    if (value === 'false') return false
+  }
+
+  return Boolean(value)
+}
+
+export const isStringArray = (value: string) => {
+  return /^[^,]+(,[^,]+)+$/g.test(value)
+}
+
+export const toArray = (value: string) => {
+  if (!isStringArray(value)) throw new Error('Invalid array')
+
+  return value.split(',').map((v) => {
+    if (isStringNumber(v)) return Number(v)
+    if (isStringBoolean(v)) return toBoolean(v)
+    return v
+  })
+}
+
+export const isStringObject = (value: string) => {
+  try {
+    JSON.parse(value)
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
+export const setValueObjectExcludeFields = <
+  T extends Record<any, any> = Record<any, any>,
+>(
+  obj: T,
+  fields: (keyof T)[],
+) => {
+  const newObj = _.cloneDeep(obj)
+
+  fields.forEach((field) => {
+    delete newObj[field]
+  })
+
+  return newObj
+}
+
+export const isEmptyObject = (obj: Record<any, any>) => {
+  return Object.keys(obj).length === 0
 }

@@ -1,8 +1,8 @@
 import react from '@vitejs/plugin-react-swc'
+import million from 'million/compiler'
+import remarkMdx from 'remark-mdx'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import remarkMdx from 'remark-mdx'
-
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
   const mdx = await import('@mdx-js/rollup').then((m) => m.default)
@@ -13,6 +13,9 @@ export default defineConfig(async () => {
       }),
       react(),
       tsconfigPaths(),
+      million.vite({
+        auto: true,
+      }),
     ],
   }
 })

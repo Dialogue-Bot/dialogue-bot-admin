@@ -100,5 +100,177 @@
       "required": "Vui lòng chọn ngôn ngữ."
     },
     "description": "Chọn ngôn ngữ mà bạn muốn bot sử dụng."
+  },
+  "flow": {
+    "label": "Luồng",
+    "placeholder": "Chọn luồng",
+    "errors": {
+      "required": "Vui lòng chọn luồng."
+    }
+  },
+  "variable_name": {
+    "label": "Biến {{index}}",
+    "placeholder": "Nhập tên biến",
+    "errors": {
+      "required": "Vui lòng nhập tên biến.",
+      "invalid": "Tên biến không hợp lệ.",
+      "unique": "Tên biến đã tồn tại."
+    }
+  },
+  "variable_value": {
+    "label": "Giá trị {{index}}",
+    "placeholder": "Nhập giá trị biến",
+    "errors": {
+      "required": "Vui lòng nhập giá trị biến.",
+      "number": "Vu lòng nhập một giá trị số.",
+      "boolean": "Vui lòng nhập một giá trị boolean.",
+      "array": "Vui lòng nhập một giá trị mảng. (e.g. a,b,c)",
+      "object": "Vui lòng nhập một giá trị object."
+    }
+  },
+  "variable_type": {
+    "label": "Loại biến {{index}}",
+    "placeholder": "Chọn kiểu dữ liệu",
+    "errors": {
+      "required": "Vui lòng chọn kiểu dữ liệu."
+    }
+  },
+  "button_label": {
+    "label": "Tên",
+    "placeholder": "Nhập tên nút",
+    "errors": {
+      "required": "Vui lòng nhập tên nút."
+    }
+  },
+  "button_url": {
+    "label": "URL",
+    "placeholder": "Nhập URL",
+    "errors": {
+      "required": "Vui lòng nhập URL.",
+      "url": "URL không hợp lệ."
+    }
+  },
+  "button_value": {
+    "label": "Giá trị",
+    "placeholder": "Nhập giá trị nút",
+    "errors": {
+      "required": "Vui lòng nhập giá trị nút.",
+      "url": "URL không hợp lệ."
+    }
+  },
+  "card_title": {
+    "label": "Tiêu đề",
+    "placeholder": "Áo thun nam",
+    "errors": {
+      "required": "Vui lòng nhập tiêu đề."
+    }
+  },
+  "card_subtitle": {
+    "label": "Phụ đề",
+    "placeholder": "Size: M, Màu: Đỏ",
+    "errors": {
+      "required": "Vui lòng nhập phụ đề."
+    }
+  },
+  "variable": {
+    "label": "Biến",
+    "placeholder": "Chọn biến",
+    "errors": {
+      "required": "Vui lòng chọn biến."
+    }
+  },
+  "grammar_type": {
+    "label": "Kiểm tra đầu vào",
+    "placeholder": "Chọn kiểu kiểm tra đầu vào",
+    "errors": {
+      "required": "Vui lòng chọn kiểu kiểm tra đầu vào."
+    }
+  },
+  "trained_data": {
+    "label": "Dữ liệu đã train",
+    "placeholder": "Nhập dữ liệu đã train",
+    "errors": {
+      "required": "Vui lòng chọn dữ liệu đã train."
+    }
+  },
+  "assign_user_response": {
+    "label": "Gán giá trị cho biến",
+    "placeholder": "Chọn biến để gán giá trị",
+    "errors": {
+      "required": "Vui lòng chọn biến để gán giá trị cho câu trả lời của người dùng."
+    }
+  },
+  "repeat": {
+    "label": "Lặp lại",
+    "placeholder": "Chọn số lần lặp lại",
+    "errors": {
+      "required": "Vui lòng chọn số lần lặp lại."
+    }
+  },
+  "http_url": {
+    "label": "URL",
+    "placeholder": "Nhập url",
+    "errors": {
+      "required": "Vui lòng nhập URL.",
+      "url": "URL không hợp lệ."
+    }
+  },
+  "http_method": {
+    "label": "Phương thức",
+    "placeholder": "Chọn phương thức",
+    "errors": {
+      "required": "Vui lòng chọn phương thức."
+    }
+  },
+  "key": {
+    "label": "Key",
+    "placeholder": "Nhập key",
+    "errors": {
+      "required": "Vui lòng nhập key."
+    }
+  },
+  "value": {
+    "label": "Giá trị",
+    "placeholder": "Nhập giá trị",
+    "errors": {
+      "required": "Vui lòng nhập giá trị."
+    }
+  },
+  "sub_flow": {
+    "label": "Luồng con",
+    "placeholder": "Chọn luồng con",
+    "errors": {
+      "required": "Vui lòng chọn luồng con."
+    }
+  },
+  "subject": {
+    "label": "Tiêu đề",
+    "placeholder": "Nhập tiêu đề",
+    "errors": {
+      "required": "Vui lòng nhập tiêu đề."
+    }
+  },
+  "mail_body": {
+    "label": "Nội dung",
+    "placeholder": "Nhập nội dung",
+    "errors": {
+      "required": "Vui lòng nhập nội dung."
+    }
+  },
+  "mail_to": {
+    "label": "Gửi đến",
+    "placeholder": "Nhập email hoặc biến (e.g. {email})",
+    "errors": {
+      "required": "Vui lòng nhập email hoặc biến",
+      "email": "Email không hợp lệ.",
+      "invalid": "Vui lòng nhập email hoặc biên hợp lệ."
+    }
+  },
+  "operator": {
+    "label": "Toán tử",
+    "placeholder": "Chọn toán tử",
+    "errors": {
+      "required": "Vui lòng chọn toán tử."
+    }
   }
 }

@@ -43,7 +43,7 @@ const RowActions = ({ row }: Props) => {
           <MoreHorizontal className='w-4 h-4' />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='start'>
+      <DropdownMenuContent align='start' className='max-h-svh scroll-auto'>
         <Sheet
           open={open}
           onOpenChange={(value) => {
@@ -53,6 +53,7 @@ const RowActions = ({ row }: Props) => {
               setOpenDropdown(false)
             }
           }}
+          modal
         >
           <SheetTrigger asChild>
             <DropdownMenuItem
@@ -84,7 +85,7 @@ const RowActions = ({ row }: Props) => {
                   : undefined,
                 active: row.original.active,
                 contactName: row.original.contactName,
-                flowId: row.original.flowId,
+                flowId: row.original.flowId || undefined,
               }}
               onSubmit={async (data) => {
                 await updateChannelMutation.mutateAsync({

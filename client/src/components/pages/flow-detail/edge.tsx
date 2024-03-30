@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui'
 import { X } from 'lucide-react'
-import { BaseEdge, EdgeProps, useReactFlow, getBezierPath } from 'reactflow'
+import { BaseEdge, EdgeProps, getSmoothStepPath } from 'reactflow'
+import { useUnmount } from 'usehooks-ts'
+import { useFlowCtx } from '.'
 
 const foreignObjectSize = 16
 
+// million-ignore
 export const Edge = ({
   id,
   sourceX,
@@ -20,8 +23,7 @@ export const Edge = ({
 }: EdgeProps<{
   deletable?: boolean
 }>) => {
-  const { setEdges } = useReactFlow()
-  const [edgePath, labelX, labelY] = getBezierPath({
+  const [edgePath, labelX, labelY] = getSmoothStepPath({
     sourceX,
     sourceY,
     sourcePosition,
@@ -29,12 +31,11 @@ export const Edge = ({
     targetY,
     targetPosition,
   })
+  const { handleDeleteEdgeById } = useFlowCtx()
 
-  const handleDelete = () => {
-    if (!data?.deletable) return
-
-    setEdges((edges) => edges.filter((edge) => edge.id !== id))
-  }
+  useUnmount(() => {
+    handleDeleteEdgeById(id)
+  })
 
   return (
     <>
@@ -59,7 +60,7 @@ export const Edge = ({
             size='icon'
             className='w-4 h-4 opacity-0 scale-50 invisible btn'
             variant='destructive'
-            onClick={handleDelete}
+            onClick={() => handleDeleteEdgeById(id)}
           >
             <X className='w-2 h-2' />
           </Button>

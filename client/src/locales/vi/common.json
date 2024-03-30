@@ -35,5 +35,11 @@
   "langs": {
     "vi": "Tiếng Việt",
     "en": "Tiếng Anh"
+  },
+  "variables": "Biến",
+  "add": "Thêm",
+  "leave_page_unsaved": {
+    "title": "Chưa lưu thay đổi",
+    "desc": "Bạn có chắc chắn muốn rời khỏi trang này không? Mọi thay đổi chưa lưu sẽ bị mất."
   }
 }

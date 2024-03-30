@@ -1,0 +1,91 @@
+{
+  "actions": {
+    "title": "Actions",
+    "desc": "Kéo và thả các hành động vào khu vực làm việc để tạo luồng làm việc của bot.",
+    "items": {
+      "message": "Tin nhắn",
+      "prompt_and_collect": "Thu thập thông tin",
+      "check_variables": "Kiểm tra biến",
+      "http_request": "Yêu cầu HTTP",
+      "fallback": "Fallback",
+      "start": "Bắt đầu",
+      "sub_flow": "Luồng phụ",
+      "send_mail": "Gửi mail"
+    }
+  },
+  "toolbar": {
+    "actions": "Actions",
+    "settings": "Cài đặt",
+    "publish": "Xuất bản",
+    "test_your_bot": "Chạy thử bot",
+    "save": "Lưu"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "desc": "Cấu hình cài đặt của bot"
+  },
+  "settings_tabs": {
+    "bot": "Bot",
+    "channels": "Kênh",
+    "users": "Người dùng",
+    "variables": "Biến",
+    "analytics": "Phân tích",
+    "general": "Tổng quan"
+  },
+  "variables": {
+    "create_new": "Tạo biến mới",
+    "empty_list": "Không có biến nào, nhấp vào nút bên dưới để tạo biến mới."
+  },
+  "node_dialog": {
+    "desc": "Configure your action node."
+  },
+  "message_dialog": {
+    "message_types": {
+      "text": "Văn bản",
+      "image": "Hình ảnh",
+      "list_button": "Danh sách nút",
+      "list_card": "Danh sách thẻ"
+    },
+    "responses": "Phản hồi",
+    "forms": {
+      "bot_response": {
+        "label": "Phản hồi của bot",
+        "placeholder": "Nhập phản hồi của bot"
+      }
+    }
+  },
+  "card_dialog": {
+    "desc": "Nhập thông tin cho thẻ",
+    "title_add": "Thêm thẻ mới",
+    "title_update": "Cập nhật thẻ",
+    "save_btn": "Lưu"
+  },
+  "add_btn": "Thêm mới nút",
+  "empty_buttons": "Không có nút nào, nhấp vào nút bên trên để tạo nút mới.",
+  "grammars_type": {
+    "yes_no": "Yes/No",
+    "number": "Number",
+    "date": "Date",
+    "time": "Time",
+    "email": "Email",
+    "phone_number": "Phone Number",
+    "intent": "Intent",
+    "text": "Text"
+  },
+  "compare_types": {
+    "equal": "Bằng",
+    "not_equal": "Không bằng",
+    "greater_than": "Lớn hơn",
+    "greater_than_or_equal": "Lớn hơn hoặc bằng",
+    "less_than": "Nhỏ hơn",
+    "less_than_or_equal": "Nhỏ hơn hoặc bằng",
+    "contains": "Bao gồm",
+    "not_contains": "Không bao gồm",
+    "match": "Khớp",
+    "not_match": "Không khớp"
+  },
+  "condition_dialog": {
+    "title": "Điều kiện",
+    "desc": "Chọn một toán tử để so sánh biến với giá trị."
+  }
+}
