@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui'
-import _ from 'lodash'
 import { X } from 'lucide-react'
-import { BaseEdge, EdgeProps, getSmoothStepPath, useReactFlow } from 'reactflow'
+import { BaseEdge, EdgeProps, getSmoothStepPath } from 'reactflow'
 import { useUnmount } from 'usehooks-ts'
+import { useFlowCtx } from '.'
 
 const foreignObjectSize = 16
 
@@ -20,12 +20,9 @@ export const Edge = ({
   data = {
     deletable: true,
   },
-  source,
-  target,
 }: EdgeProps<{
   deletable?: boolean
 }>) => {
-  const { setEdges, getNode, setNodes } = useReactFlow()
   const [edgePath, labelX, labelY] = getSmoothStepPath({
     sourceX,
     sourceY,
@@ -34,52 +31,10 @@ export const Edge = ({
     targetY,
     targetPosition,
   })
-
-  /**
-   * Handles the delete action for an edge.
-   * If the edge is not deletable or the source node does not exist, the function returns early.
-   * If the source node exists, it creates a deep clone of the node and modifies its data accordingly.
-   * Finally, it updates the nodes and edges state to reflect the changes.
-   */
-  const handleDelete = () => {
-    if (!data?.deletable) return
-
-    const sourceNode = getNode(source)
-
-    if (sourceNode) {
-      const cloned = _.cloneDeep(sourceNode)
-
-      if (cloned.data?.nextAction) {
-        delete cloned.data.nextAction
-      }
-
-      if (cloned.data?.nextActions) {
-        cloned.data.nextActions = cloned.data.nextActions.filter(
-          (nextAction: any) => nextAction.id !== target,
-        )
-
-        if (cloned.data.nextActions.length === 0) {
-          delete cloned.data.nextActions
-        }
-      }
-
-      setNodes((nodes) =>
-        nodes.map((node) => {
-          if (node.id === source) {
-            return cloned
-          }
-
-          return node
-        }),
-      )
-    }
-
-    setEdges((edges) => edges.filter((edge) => edge.id !== id))
-  }
+  const { handleDeleteEdgeById } = useFlowCtx()
 
   useUnmount(() => {
-    console.log('edge unmount')
-    handleDelete()
+    handleDeleteEdgeById(id)
   })
 
   return (
@@ -105,7 +60,7 @@ export const Edge = ({
             size='icon'
             className='w-4 h-4 opacity-0 scale-50 invisible btn'
             variant='destructive'
-            onClick={handleDelete}
+            onClick={() => handleDeleteEdgeById(id)}
           >
             <X className='w-2 h-2' />
           </Button>

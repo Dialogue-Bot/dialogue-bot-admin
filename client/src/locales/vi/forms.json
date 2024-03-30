@@ -265,5 +265,12 @@
       "email": "Email không hợp lệ.",
       "invalid": "Vui lòng nhập email hoặc biên hợp lệ."
     }
+  },
+  "operator": {
+    "label": "Toán tử",
+    "placeholder": "Chọn toán tử",
+    "errors": {
+      "required": "Vui lòng chọn toán tử."
+    }
   }
 }

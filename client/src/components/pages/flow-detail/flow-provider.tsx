@@ -41,6 +41,7 @@ type FlowCtx = {
   edges: Edge<any>[]
   onConnect: OnConnect
   selectedNode: Node<any> | null
+  selectedEdge: Edge<any> | null
   currentLang: string
   onNodesChange: (changes: NodeChange[]) => void
   onEdgesChange: (changes: EdgeChange[]) => void
@@ -55,6 +56,10 @@ type FlowCtx = {
   getEdge: (id: string) => Edge<any> | undefined
   handleValidateConnection: (connection: Connection) => boolean
   getCompleteFlows: () => any[]
+  handleChangeSelectedEdge: (edge: Edge<any> | null) => void
+  setNodes: React.Dispatch<React.SetStateAction<Node<any>[]>>
+  setEdges: React.Dispatch<React.SetStateAction<Edge<any>[]>>
+  handleDeleteEdgeById: (id: string) => void
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -64,69 +69,79 @@ type Props = {
   children: React.ReactNode
 }
 
+const INIT_NODES = [
+  {
+    id: EActionTypes.START,
+    type: EActionTypes.START,
+    position: { x: 100, y: 100 },
+    data: {
+      label: 'Start',
+      action: EActionTypes.START,
+      id: EActionTypes.START,
+      name: 'Start',
+    },
+    deletable: false,
+    draggable: false,
+  },
+  {
+    id: EActionTypes.FALLBACK,
+    type: EActionTypes.FALLBACK,
+    position: { x: 190, y: 280 },
+    data: {
+      label: 'Fallback',
+      id: EActionTypes.FALLBACK,
+      action: EActionTypes.FALLBACK,
+      name: 'Fallback',
+    },
+    deletable: false,
+    draggable: false,
+  },
+]
+
+const INIT_EDGES = [
+  {
+    id: 'start-fallback',
+    source: EActionTypes.START,
+    target: EActionTypes.FALLBACK,
+    type: 'custom',
+    data: {
+      deletable: false,
+    },
+  },
+]
+
+/**
+ * Provides the context for the flow editor.
+ *
+ * @param {Props} props - The component properties.
+ * @returns The FlowProvider component.
+ */
 export const FlowProvider = ({ children, flow }: Props) => {
   const [open, toggle] = useToggle()
   const actionToLabel = useMapActionToLabel()
   const [nodes, setNodes, onNodesChange] = useNodesState<any>(
-    flow.nodes?.length
-      ? (flow.nodes as Node<any>[])
-      : [
-          {
-            id: EActionTypes.START,
-            type: EActionTypes.START,
-            position: { x: 100, y: 100 },
-            data: {
-              label: 'Start',
-              action: EActionTypes.START,
-              id: EActionTypes.START,
-              name: 'Start',
-            },
-            deletable: false,
-            draggable: false,
-          },
-          {
-            id: EActionTypes.FALLBACK,
-            type: EActionTypes.FALLBACK,
-            position: { x: 190, y: 280 },
-            data: {
-              label: 'Fallback',
-              id: EActionTypes.FALLBACK,
-              action: EActionTypes.FALLBACK,
-              name: 'Fallback',
-            },
-            deletable: false,
-            draggable: false,
-          },
-        ],
+    flow.nodes?.length ? (flow.nodes as Node<any>[]) : INIT_NODES,
   )
   const [edges, setEdges, onEdgesChange] = useEdgesState(
-    flow.edges?.length
-      ? (flow.edges as Edge<any>[])
-      : [
-          {
-            id: 'start-fallback',
-            source: EActionTypes.START,
-            target: EActionTypes.FALLBACK,
-            type: 'custom',
-            data: {
-              deletable: false,
-            },
-          },
-        ],
+    flow.edges?.length ? (flow.edges as Edge<any>[]) : INIT_EDGES,
   )
   const [selectedNode, setSelectedNode] = useState<Node<any> | null>(null)
-  const [_selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
+  const [selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
   const [currentLang, setCurrentLang] = useState(
     flow.settings?.find((setting) => setting.type === 'language')?.value ||
       'en',
   )
 
+  console.log({
+    selectedEdge,
+    selectedNode,
+    flows: nodes.map((node) => node.data),
+  })
+
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,
     any
   > | null>(null)
-
-  console.log(nodes.map((node) => node.data))
 
   /**
    * Handles the drag over event for the HTMLDivElement.
@@ -193,6 +208,26 @@ export const FlowProvider = ({ children, flow }: Props) => {
   }, [])
 
   /**
+   * Retrieves a node from the list of nodes based on its ID.
+   * @param id - The ID of the node to retrieve.
+   * @returns The node with the specified ID, or undefined if not found.
+   */
+  const getNode = useCallback(
+    (id: string) => nodes.find((node) => node.id === id),
+    [nodes],
+  )
+
+  /**
+   * Retrieves an edge object from the `edges` array based on the provided ID.
+   * @param id - The ID of the edge to retrieve.
+   * @returns The edge object with the matching ID, or `undefined` if no match is found.
+   */
+  const getEdge = useCallback(
+    (id: string) => edges.find((edge) => edge.id === id),
+    [edges],
+  )
+
+  /**
    * Handles the connection between nodes in the flow.
    *
    * @param params - The connection parameters.
@@ -218,8 +253,31 @@ export const FlowProvider = ({ children, flow }: Props) => {
                       {
                         condition:
                           params.sourceHandle === SOURCE_HANDLE_PROMPT_YES
-                            ? 'yes'
-                            : 'no',
+                            ? ''
+                            : 'otherwise',
+                        id: targetNode?.id as string,
+                      },
+                    ],
+                  },
+                }
+              }
+
+              return node
+            })
+          case EActionTypes.CHECK_VARIABLES:
+            return nds.map((node) => {
+              if (node.id === params.source) {
+                return {
+                  ...node,
+                  data: {
+                    ...node.data,
+                    nextActions: [
+                      ...(node.data.nextActions || []),
+                      {
+                        condition:
+                          params.sourceHandle === SOURCE_HANDLE_VARIABLES_YES
+                            ? ''
+                            : 'otherwise',
                         id: targetNode?.id as string,
                       },
                     ],
@@ -248,7 +306,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
       })
 
       return setEdges((eds) => {
-        return addEdge(
+        const newEdgs = addEdge(
           {
             ...params,
             type: 'custom',
@@ -258,30 +316,33 @@ export const FlowProvider = ({ children, flow }: Props) => {
           },
           eds,
         )
+
+        const edge = newEdgs.find(
+          (edge) =>
+            edge.source === params.source &&
+            edge.target === params.target &&
+            (edge.sourceHandle === SOURCE_HANDLE_PROMPT_YES ||
+              edge.sourceHandle === SOURCE_HANDLE_VARIABLES_YES),
+        )
+
+        const sourceNode = getNode(params.source as string)
+
+        if (
+          edge &&
+          sourceNode &&
+          (sourceNode?.data.action === EActionTypes.PROMPT_AND_COLLECT ||
+            sourceNode?.data.action === EActionTypes.CHECK_VARIABLES)
+        ) {
+          setSelectedEdge(edge)
+        }
+
+        return newEdgs
       })
     },
-    [setEdges, setNodes],
+    [setEdges, setNodes, getNode],
   )
 
-  /**
-   * Retrieves a node from the list of nodes based on its ID.
-   * @param id - The ID of the node to retrieve.
-   * @returns The node with the specified ID, or undefined if not found.
-   */
-  const _getNode = useCallback(
-    (id: string) => nodes.find((node) => node.id === id),
-    [nodes],
-  )
-
-  /**
-   * Retrieves an edge object from the `edges` array based on the provided ID.
-   * @param id - The ID of the edge to retrieve.
-   * @returns The edge object with the matching ID, or `undefined` if no match is found.
-   */
-  const getEdge = useCallback(
-    (id: string) => edges.find((edge) => edge.id === id),
-    [edges],
-  )
+  console.log()
 
   /**
    * Handles the change of edges.
@@ -334,7 +395,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
 
   const handleDoubleClickEdge: EdgeMouseHandler = useCallback(
     (_e, edge: Edge<any>) => {
-      const sourceNode = _getNode(edge.source)
+      const sourceNode = getNode(edge.source)
 
       if (!sourceNode) {
         return
@@ -347,9 +408,17 @@ export const FlowProvider = ({ children, flow }: Props) => {
         return
       }
 
+      if (
+        ![SOURCE_HANDLE_PROMPT_YES, SOURCE_HANDLE_VARIABLES_YES].includes(
+          edge.sourceHandle as string,
+        )
+      ) {
+        return
+      }
+
       setSelectedEdge(edge)
     },
-    [_getNode],
+    [getNode],
   )
 
   /**
@@ -475,6 +544,10 @@ export const FlowProvider = ({ children, flow }: Props) => {
     setSelectedNode(node)
   }, [])
 
+  const handleChangeSelectedEdge = useCallback((edge: Edge<any> | null) => {
+    setSelectedEdge(edge)
+  }, [])
+
   const handleChangeLang = useCallback((lang: string) => {
     setCurrentLang(lang)
 
@@ -522,6 +595,11 @@ export const FlowProvider = ({ children, flow }: Props) => {
   const getCompleteFlows = useCallback(() => {
     let clonedNodes = _.cloneDeep(nodes)
 
+    /**
+     * Checks if a given node is the next action of any of the cloned nodes.
+     * @param node - The node to check.
+     * @returns True if the node is the next action of any cloned node, false otherwise.
+     */
     const nodeIsNextAction = (node: Node<any>) => {
       return clonedNodes.some((nd) => {
         return (
@@ -531,6 +609,11 @@ export const FlowProvider = ({ children, flow }: Props) => {
       })
     }
 
+    /**
+     * Checks if a node is to be removed.
+     * @param node - The node to check.
+     * @returns True if the node is to be removed, false otherwise.
+     */
     const nodeIsToBeRemoved = (node: Node<any>) => {
       if (
         node.data.action === EActionTypes.START ||
@@ -543,7 +626,6 @@ export const FlowProvider = ({ children, flow }: Props) => {
         !nodeIsNextAction(node) &&
         (!node.data?.nextAction || !node.data?.nextActions)
       ) {
-        console.log(node.id)
         return true
       }
 
@@ -564,6 +646,51 @@ export const FlowProvider = ({ children, flow }: Props) => {
     return clonedNodes.map((node) => node.data)
   }, [nodes])
 
+  const handleDeleteEdgeById = useCallback(
+    (id: string) => {
+      const edge = getEdge(id)
+
+      if (!edge) {
+        return
+      }
+
+      if (!edge.data?.deletable) return
+
+      const sourceNode = getNode(edge.source)
+
+      if (sourceNode) {
+        const cloned = _.cloneDeep(sourceNode)
+
+        if (cloned.data?.nextAction) {
+          delete cloned.data.nextAction
+        }
+
+        if (cloned.data?.nextActions) {
+          cloned.data.nextActions = cloned.data.nextActions.filter(
+            (nextAction: any) => nextAction.id !== edge.target,
+          )
+
+          if (cloned.data.nextActions.length === 0) {
+            delete cloned.data.nextActions
+          }
+        }
+
+        setNodes((nodes) =>
+          nodes.map((node) => {
+            if (node.id === edge.source) {
+              return cloned
+            }
+
+            return node
+          }),
+        )
+      }
+
+      setEdges((edges) => edges.filter((edge) => edge.id !== id))
+    },
+    [getEdge, getNode, setEdges, setNodes],
+  )
+
   useDidUpdate(() => {
     setNodes((nds) => {
       return nds.map((node) =>
@@ -581,6 +708,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
         nodes,
         edges,
         selectedNode,
+        selectedEdge,
         onConnect,
         onNodesChange,
         onEdgesChange: handleEdgesChange,
@@ -592,10 +720,14 @@ export const FlowProvider = ({ children, flow }: Props) => {
         currentLang,
         handleChangeLang,
         handleDoubleClickEdge,
-        getNode: _getNode,
+        getNode,
         getEdge,
         handleValidateConnection,
         getCompleteFlows,
+        handleChangeSelectedEdge,
+        setNodes,
+        setEdges,
+        handleDeleteEdgeById,
       }}
     >
       {children}

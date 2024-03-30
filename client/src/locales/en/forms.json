@@ -272,5 +272,12 @@
       "email": "Please enter a valid email address.",
       "invalid": "Please enter a valid email or variable."
     }
+  },
+  "operator": {
+    "label": "Operator",
+    "placeholder": "Select operator",
+    "errors": {
+      "required": "Please select operator."
+    }
   }
 }
