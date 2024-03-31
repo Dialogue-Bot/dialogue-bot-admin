@@ -44,4 +44,11 @@ export class SocketService {
             await webChannel.postMessageToBot({ userId, message, data: '' })
         }
     }
+
+    public handleJoinRoom(socket: Socket) {
+        const query = socket.handshake.query;
+        const userId = query.userId;
+        socket.join(userId);
+        return socket;
+    }
 }

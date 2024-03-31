@@ -50,9 +50,7 @@ export class App {
       App.io = new Server(server);
 
       App.io.on('connection', (socket) => {
-        const query = socket.handshake.query;
-        const userId = query.userId;
-        socket.join(userId);
+        socketController.handleJoinRoom(socket);
         socketController.handleSocketEvents(socket);
       });
 

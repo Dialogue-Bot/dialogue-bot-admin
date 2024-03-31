@@ -11,4 +11,8 @@ export class SocketController {
     public handleSocketEvents(socket: Socket) {
         this.socketService.handleSocketEvents(socket);
     }
+
+    public handleJoinRoom(socket: Socket) {
+        this.socketService.handleJoinRoom(socket);
+    }
 }
