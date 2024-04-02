@@ -339,5 +339,12 @@
     "errors": {
       "required": "Vui lòng chọn loại huấn luyện."
     }
+  },
+  "repeat_message": {
+    "label": "Lặp lại tin nhắn",
+    "placeholder": "Nhập tin nhắn lặp lại",
+    "errors": {
+      "required": "Vui lòng nhập tin nhắn lặp lại."
+    }
   }
 }

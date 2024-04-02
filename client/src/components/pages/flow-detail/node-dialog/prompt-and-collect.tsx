@@ -1,4 +1,5 @@
 import {
+  Input,
   Label,
   Select,
   SelectContent,
@@ -15,12 +16,13 @@ import { MAP_GRAMMAR_TYPE } from '../constant'
 
 export const PromptAndCollectDialogContent = () => {
   const { t } = useTranslation('forms')
-  const { flow, selectedNode, handleChangeSelectedNode } = useFlowCtx()
+  const { flow, selectedNode, handleChangeSelectedNode, currentLang } =
+    useFlowCtx()
 
   return (
     <>
       <div className='space-y-3'>
-        <div className='flex gap-3'>
+        <div className='grid-cols-4 grid gap-3'>
           <div className='space-y-2 w-full'>
             <Label>{t('grammar_type.label')}</Label>
             <Select
@@ -82,8 +84,6 @@ export const PromptAndCollectDialogContent = () => {
               </SelectContent>
             </Select>
           </div>
-        </div>
-        <div className='flex gap-3'>
           <div className='space-y-2 w-full'>
             <Label>{t('trained_data.label')}</Label>
             <Select
@@ -141,6 +141,29 @@ export const PromptAndCollectDialogContent = () => {
             </Select>
           </div>
         </div>
+        {selectedNode?.data?.repeat > 0 && (
+          <div className='space-y-2'>
+            <Label required>{t('repeat_message.label')}</Label>
+            <Input
+              placeholder={t('repeat_message.placeholder')}
+              value={
+                selectedNode?.data?.contents?.[currentLang]?.repeatMessage || ''
+              }
+              onChange={(e) => {
+                if (!selectedNode) return
+
+                const clonedNode = _.cloneDeep(selectedNode)
+
+                clonedNode.data.contents[currentLang] = {
+                  ...clonedNode.data.contents[currentLang],
+                  repeatMessage: e.target.value,
+                }
+
+                handleChangeSelectedNode(clonedNode)
+              }}
+            />
+          </div>
+        )}
         <MessageDialogContent />
       </div>
     </>

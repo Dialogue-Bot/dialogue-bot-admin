@@ -12,13 +12,9 @@ export const useCompareValueSchema = () => {
       .min(1, {
         message: t('operator.errors.required'),
       }),
-    value: z
-      .string({
-        required_error: t('value.errors.required'),
-      })
-      .min(1, {
-        message: t('value.errors.required'),
-      }),
+    value: z.any({
+      required_error: t('value.errors.required'),
+    }),
   })
 }
 

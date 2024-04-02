@@ -80,7 +80,7 @@ export const MessageDialogContent = () => {
   return (
     <div className='space-y-3'>
       <div className='space-y-2'>
-        <Label>{t('message_dialog.responses')}</Label>
+        <Label required>{t('message_dialog.responses')}</Label>
         <Select value={messageType} onValueChange={handleSelectChange}>
           <SelectTrigger>
             <SelectValue placeholder='Select a fruit' />
@@ -98,7 +98,7 @@ export const MessageDialogContent = () => {
       </div>
       {messageType !== EMessageTypes.LIST_BUTTON && (
         <div className='space-y-2'>
-          <Label>{t('message_dialog.forms.bot_response.label')}</Label>
+          <Label required>{t('message_dialog.forms.bot_response.label')}</Label>
           {messageType === EMessageTypes.TEXT && (
             <Input
               placeholder={t('message_dialog.forms.bot_response.placeholder')}

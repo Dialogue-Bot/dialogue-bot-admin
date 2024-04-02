@@ -346,5 +346,12 @@
     "errors": {
       "required": "Please select training type."
     }
+  },
+  "repeat_message": {
+    "label": "Repeat message",
+    "placeholder": "Enter repeat message",
+    "errors": {
+      "required": "Please enter repeat message."
+    }
   }
 }

@@ -503,6 +503,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
         (edge) => edge.target === connection.target,
       ).length
 
+      const targetNode = nodes.find((node) => node.id === connection.target)
+
       if (connection.source === connection.target) return false
 
       if (
@@ -528,6 +530,14 @@ export const FlowProvider = ({ children, flow }: Props) => {
           sourceHandleNo: SOURCE_HANDLE_VARIABLES_NO,
           sourceHandleYes: SOURCE_HANDLE_VARIABLES_YES,
         })
+      }
+
+      if (
+        (targetNode?.data.action === EActionTypes.CHECK_VARIABLES ||
+          targetNode?.data.action === EActionTypes.PROMPT_AND_COLLECT) &&
+        sourcesFromHandleInState < 1
+      ) {
+        return true
       }
 
       if (targetFromHandleInState === 1) return false

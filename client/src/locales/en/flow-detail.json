@@ -82,7 +82,8 @@
     "contains": "Contains",
     "not_contains": "Not Contains",
     "match": "Match",
-    "not_match": "Not Match"
+    "not_match": "Not Match",
+    "exist": "Exist"
   },
   "condition_dialog": {
     "title": "Condition",
