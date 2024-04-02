@@ -83,7 +83,7 @@ export const NodeWrapper = (props?: {
   return (
     <div className={cn('bg-card shadow rounded-md p-2 border-card', className)}>
       {children}
-      <HandleCustom type='target' position={Position.Top} isConnectable={1} />
+      <HandleCustom type='target' position={Position.Top} />
       <HandleCustom type='source' position={Position.Bottom} />
     </div>
   )

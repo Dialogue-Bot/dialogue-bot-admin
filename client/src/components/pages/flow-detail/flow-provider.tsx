@@ -18,6 +18,7 @@ import {
   NodeChange,
   NodeMouseHandler,
   OnConnect,
+  OnNodesDelete,
   ReactFlowInstance,
   addEdge,
   useEdgesState,
@@ -59,6 +60,7 @@ type FlowCtx = {
   setNodes: React.Dispatch<React.SetStateAction<Node<any>[]>>
   setEdges: React.Dispatch<React.SetStateAction<Edge<any>[]>>
   handleDeleteEdgeById: (id: string) => void
+  handleNodesDelete: OnNodesDelete
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -135,6 +137,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
     selectedEdge,
     selectedNode,
     flows: nodes.map((node) => node.data),
+    nodes,
+    edges,
   })
 
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
@@ -585,6 +589,33 @@ export const FlowProvider = ({ children, flow }: Props) => {
   }, [])
 
   /**
+   * Finds a node in the given array of nodes that has the specified node as its next action.
+   * @param nodes - The array of nodes to search in.
+   * @param node - The node to find the next action for.
+   * @returns The node that has the specified node as its next action, or undefined if not found.
+   */
+  const findNodeIsNextAction = useCallback((nodes: Node[], node: Node<any>) => {
+    return nodes.find((nd) => {
+      return (
+        nd.data?.nextAction === node.id ||
+        nd.data?.nextActions?.some((na: any) => na.id === node.id)
+      )
+    })
+  }, [])
+
+  const findNodeContainNextAction = useCallback(
+    (nodes: Node[], node: Node<any>) => {
+      return nodes.find((nd) => {
+        return (
+          nd.data?.nextAction === node.id ||
+          nd.data?.nextActions?.some((na: any) => na.id === node.id)
+        )
+      })
+    },
+    [],
+  )
+
+  /**
    * Retrieves the complete flows from the given nodes.
    * A complete flow is a sequence of nodes where each node has a next action or is a final node.
    * Nodes that do not have a next action and are not final nodes are removed from the result.
@@ -593,20 +624,6 @@ export const FlowProvider = ({ children, flow }: Props) => {
    */
   const getCompleteFlows = useCallback(() => {
     let clonedNodes = _.cloneDeep(nodes)
-
-    /**
-     * Checks if a given node is the next action of any of the cloned nodes.
-     * @param node - The node to check.
-     * @returns True if the node is the next action of any cloned node, false otherwise.
-     */
-    const nodeIsNextAction = (node: Node<any>) => {
-      return clonedNodes.some((nd) => {
-        return (
-          nd.data?.nextAction === node.id ||
-          nd.data?.nextActions?.some((na: any) => na.id === node.id)
-        )
-      })
-    }
 
     /**
      * Checks if a node is to be removed.
@@ -622,7 +639,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
       }
 
       if (
-        !nodeIsNextAction(node) &&
+        !findNodeIsNextAction(clonedNodes, node) &&
         (!node.data?.nextAction || !node.data?.nextActions)
       ) {
         return true
@@ -643,8 +660,59 @@ export const FlowProvider = ({ children, flow }: Props) => {
     }
 
     return clonedNodes.map((node) => node.data)
-  }, [nodes])
+  }, [findNodeIsNextAction, nodes])
 
+  /**
+   * Handles the deletion of nodes.
+   * @param nodeDels - The nodes to be deleted.
+   */
+  const handleNodesDelete: OnNodesDelete = useCallback(
+    (nodeDels) => {
+      const nodeToDelete = nodeDels[0]
+
+      // get node is have next action to remove this next action
+      const nodeIsHaveNextAction = findNodeIsNextAction(nodes, nodeToDelete)
+
+      if (!nodeIsHaveNextAction) {
+        return
+      }
+
+      // remove next action from node is have next action
+      if (nodeIsHaveNextAction?.data.nextAction) {
+        delete nodeIsHaveNextAction.data.nextAction
+      }
+
+      // remove next actions from node is have next action
+      if (nodeIsHaveNextAction?.data.nextActions) {
+        // remove next action from next actions
+        nodeIsHaveNextAction.data.nextActions =
+          nodeIsHaveNextAction.data.nextActions.filter(
+            (na: any) => na.id !== nodeToDelete.id,
+          )
+
+        // remove next actions if it empty
+        if (nodeIsHaveNextAction.data.nextActions.length === 0) {
+          delete nodeIsHaveNextAction.data.nextActions
+        }
+      }
+
+      setNodes((nodes) => {
+        return nodes.map((node) => {
+          if (node.id === nodeIsHaveNextAction.id) {
+            return nodeIsHaveNextAction
+          }
+
+          return node
+        })
+      })
+    },
+    [findNodeIsNextAction, nodes, setNodes],
+  )
+
+  /**
+   * Deletes an edge by its ID.
+   * @param id - The ID of the edge to delete.
+   */
   const handleDeleteEdgeById = useCallback(
     (id: string) => {
       const edge = getEdge(id)
@@ -727,6 +795,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
         setNodes,
         setEdges,
         handleDeleteEdgeById,
+        handleNodesDelete,
       }}
     >
       {children}
