@@ -124,7 +124,7 @@ export const toBoolean = (value: string | number) => {
 }
 
 export const isStringArray = (value: string) => {
-  return /^[^,]+(,[^,]+)+$/g.test(value)
+  return /^[^\n\r]*([^,\s\n\r]+(\s*,\s*[^,\s\n\r]+)+)[^\n\r]*$/g.test(value)
 }
 
 export const toArray = (value: string) => {

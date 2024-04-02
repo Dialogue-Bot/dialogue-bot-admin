@@ -33,15 +33,15 @@ export const DataToolbar = () => {
         <SheetContent className='flex flex-col'>
           <SheetHeader>
             <SheetTitle>{t('channel:add_channel')}</SheetTitle>
+            <SheetDescription>
+              <Trans
+                i18nKey='channel:add_channel_description'
+                components={{
+                  a: <Link to='/channels' className='link' />,
+                }}
+              />
+            </SheetDescription>
           </SheetHeader>
-          <SheetDescription>
-            <Trans
-              i18nKey='channel:add_channel_description'
-              components={{
-                a: <Link to='/channels' className='link' />,
-              }}
-            />
-          </SheetDescription>
           <ChannelForm
             onSubmit={async (data) => {
               await createChannelMutation.mutateAsync(data)

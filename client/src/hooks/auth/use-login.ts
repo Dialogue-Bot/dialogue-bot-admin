@@ -13,7 +13,7 @@ export const useLogin = () => {
       return auth.login(data)
     },
     async onSuccess() {
-      window.location.href = search.get('redirect') || '/chatbots'
+      window.location.href = search.get('redirect') || '/flows'
     },
     onError(err: any) {
       console.log(err)

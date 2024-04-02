@@ -1,12 +1,12 @@
 import { SToaster } from '@/components/ui'
+import '@/styles/index.css'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { createRoot } from 'react-dom/client'
-import i18n from './i18n'
-import '@/styles/index.css'
-import { queryClient } from './lib/query-client'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './app'
 import { I18nextProvider } from 'react-i18next'
+import { RouterProvider } from 'react-router-dom'
+import i18n from './i18n'
+import { queryClient } from './lib/query-client'
+import { router } from './router'
 
 const rootElement = document.getElementById('root')!
 

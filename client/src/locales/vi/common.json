@@ -7,6 +7,7 @@
   "back_to_login": "Quay lại đăng nhập",
   "login_with": "Đăng nhập với {{provider}}",
   "chatbots": "Chatbots",
+  "flows": "Luồng",
   "training": "Đào tạo",
   "integrations": "Tích hợp",
   "settings": "Cài đặt",
@@ -16,6 +17,9 @@
   "save": "Lưu",
   "channels": "Kênh",
   "search": "Tìm kiếm",
+  "add_intent": "Thêm ý định",
+  "trained": "Đã đào tạo",
+  "not_trained": "Chưa đào tạo",
   "row_actions": {
     "update": "Cập nhật",
     "delete": "Xóa",

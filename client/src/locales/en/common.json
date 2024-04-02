@@ -8,6 +8,7 @@
   "back_to_login": "Back to login",
   "login_with": "Login with {{provider}}",
   "chatbots": "Chatbots",
+  "flows": "Flows",
   "training": "Training",
   "integrations": "Integrations",
   "settings": "Settings",
@@ -17,6 +18,9 @@
   "save": "Save",
   "channels": "Channels",
   "search": "Search",
+  "add_intent": "Add intent",
+  "trained": "Trained",
+  "not_trained": "Not trained",
   "row_actions": {
     "update": "Update",
     "delete": "Delete",
