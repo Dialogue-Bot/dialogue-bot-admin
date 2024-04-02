@@ -97,4 +97,5 @@ export const CONDITIONAL_OPERATOR = [
   'not_contains',
   'match',
   'not_match',
+  'exist',
 ]
