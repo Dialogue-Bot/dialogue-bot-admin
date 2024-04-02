@@ -7,6 +7,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui'
+import { ROUTES } from '@/constants'
 import { useUserStore } from '@/store/use-user'
 import {
   Bot,
@@ -27,22 +28,22 @@ const SIDEBAR_ITEMS: Array<{
     Icon: (
       <MessageSquareCode className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
     ),
-    i18n: 'chatbots',
-    to: '/chatbots',
+    i18n: 'flows',
+    to: ROUTES.PRIVATE.FLOW.INDEX,
   },
   {
     Icon: (
       <BrainCircuit className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
     ),
     i18n: 'training',
-    to: '/chatbots',
+    to: ROUTES.PRIVATE.TRAINING.INDEX,
   },
   {
     Icon: (
       <Cable className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
     ),
     i18n: 'channels',
-    to: '/channels',
+    to: ROUTES.PRIVATE.CHANNEL.INDEX,
   },
 ]
 
@@ -51,10 +52,10 @@ const Sidebar = () => {
   const { user } = useUserStore()
 
   return (
-    <aside className='w-sidebar bg-stone-800 min-h-svh flex flex-col fixed left-0 top-0 bottom-0'>
+    <aside className='w-sidebar bg-stone-800 min-h-svh flex flex-col fixed left-0 top-0 bottom-0 z-50'>
       <Link
         className='bg-primary w-sidebar h-sidebar flex items-center justify-center'
-        to='/dashboard'
+        to={ROUTES.PRIVATE.DASHBOARD}
       >
         <Bot size={32} className='text-white' />
       </Link>
@@ -86,7 +87,7 @@ const Sidebar = () => {
             <Tooltip>
               <TooltipTrigger className='h-12 w-full flex items-center justify-center group'>
                 <Link
-                  to='/settings'
+                  to={ROUTES.PRIVATE.SETTING.INDEX}
                   className='w-full h-full flex items-center justify-center'
                 >
                   <Settings className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />

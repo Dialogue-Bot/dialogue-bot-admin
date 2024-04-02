@@ -1,18 +1,22 @@
-import { redirect } from 'react-router-dom'
-import { queryClient } from './query-client'
-import { currentUserQueryOptions, settingQueryOption } from './query-options'
 import { ROUTES } from '@/constants'
+import i18n from '@/i18n'
 import { useAppLayoutStore, useSettingStore, useUserStore } from '@/store'
 import { TChannelQuery } from '@/types/channel'
+import { TBaseQuery } from '@/types/share'
 import { queryStringToObject } from '@/utils'
+import { redirect } from 'react-router-dom'
+import { getAllArticles, getArticle } from './content'
+import { queryClient } from './query-client'
 import {
+  currentUserQueryOptions,
   queryChannelsForSelectOption,
   queryChannelsOption,
-} from './query-options/channel'
-import i18n from '@/i18n'
-import { getAllArticles, getArticle } from './content'
-import { TBaseQuery } from '@/types/share'
-import { queryFlowDetailOption, queryFlowsOption } from './query-options/flow'
+  queryFlowDetailOption,
+  queryFlowsOption,
+  queryIntentOption,
+  queryIntentsOption,
+  settingQueryOption,
+} from './query-options'
 
 export const authLoader = async ({ request }: any) => {
   const redirectUrl = new URL(request.url).searchParams.get('redirect')
@@ -20,9 +24,7 @@ export const authLoader = async ({ request }: any) => {
 
   if (user) {
     return redirect(
-      redirectUrl
-        ? encodeURIComponent(redirectUrl)
-        : ROUTES.PRIVATE.CHAT_BOT.INDEX,
+      redirectUrl ? encodeURIComponent(redirectUrl) : ROUTES.PRIVATE.FLOW.INDEX,
     )
   }
 
@@ -106,4 +108,19 @@ export const flowDetailLoader = async ({ params }: any) => {
   ])
 
   return null
+}
+
+export const intentsLoader = async ({ request }: any) => {
+  const query: TBaseQuery = queryStringToObject(request.url)
+
+  await queryClient.ensureQueryData(queryIntentsOption(query))
+
+  useAppLayoutStore.getState().setTitle(i18n.t('common:training'))
+
+  return null
+}
+
+export const intentLoader = async ({ params }: any) => {
+  const intent = await queryClient.ensureQueryData(queryIntentOption(params.id))
+  return intent
 }

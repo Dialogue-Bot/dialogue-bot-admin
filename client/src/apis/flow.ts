@@ -22,7 +22,7 @@ export class FlowApi {
     return http_client.delete(`${ENDPOINTS.FLOW.INDEX}/${id}`)
   }
 
-  publish(id: string) {
+  publish(id: string): Promise<TBaseResponse<TFLow>> {
     return http_client.post(`${ENDPOINTS.FLOW.PUBLISH}/${id}`)
   }
 

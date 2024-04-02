@@ -14,6 +14,7 @@ import registerEN from '@/locales/en/register.json'
 import setPassEN from '@/locales/en/set_pass.json'
 import tableColEn from '@/locales/en/table-cols.json'
 import tableEn from '@/locales/en/table.json'
+import trainingEn from '@/locales/en/training.json'
 import channelVi from '@/locales/vi/channel.json'
 import chatbotsVi from '@/locales/vi/chatbots.json'
 import commonVI from '@/locales/vi/common.json'
@@ -30,6 +31,7 @@ import registerVI from '@/locales/vi/register.json'
 import setPassVI from '@/locales/vi/set_pass.json'
 import tableColVi from '@/locales/vi/table-cols.json'
 import tableVi from '@/locales/vi/table.json'
+import trainingVi from '@/locales/vi/training.json'
 import { ELang } from '@/types/share'
 
 const resources = {
@@ -48,8 +50,9 @@ const resources = {
     dataTable: tableEn,
     landingPage: landingPageEn,
     help: helpEn,
-    chatbots: chatbotsEn,
+    flows: chatbotsEn,
     flowDetail: flowDetailEn,
+    training: trainingEn,
   },
   [ELang.VI]: {
     common: commonVI,
@@ -66,8 +69,9 @@ const resources = {
     dataTable: tableVi,
     landingPage: landingPageVi,
     help: helpVi,
-    chatbots: chatbotsVi,
+    flows: chatbotsVi,
     flowDetail: flowDetailVi,
+    training: trainingVi,
   },
 } as const
 

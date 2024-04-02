@@ -7,5 +7,6 @@
   "updated_at": "Cập nhật vào lúc",
   "channel_type": "Loại kênh",
   "id": "ID",
-  "name": "Tên"
+  "name": "Tên",
+  "trained": "Đã đào tạo"
 }

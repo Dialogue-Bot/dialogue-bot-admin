@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
  * @returns {JSX.Element} The rendered button component.
  */
 export const CreateFlowBtn = () => {
-  const { t } = useTranslation(['chatbots', 'common'])
+  const { t } = useTranslation(['flows', 'common'])
   const [open, setOpen] = useState(false)
   const createFlowMutation = useCreateFlow()
   return (

@@ -7,5 +7,6 @@
   "updated_at": "Updated At",
   "channel_type": "Channel Type",
   "id": "ID",
-  "name": "Name"
+  "name": "Name",
+  "trained": "Trained"
 }

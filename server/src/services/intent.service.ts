@@ -54,7 +54,8 @@ export class IntentService {
         let prompts = []
         let answers = []
 
-        const { answerBox, relatedSearches, organic, peopleAlsoAsk } = dataTrain
+        const { answerBox, relatedSearches, organic, peopleAlsoAsk } =
+          dataTrain || {}
 
         organic?.forEach((o) => {
           const { title, snippet } = o
@@ -235,6 +236,13 @@ export class IntentService {
     userId: string,
   ): Promise<Paging<IIntentExtend>> {
     const offset = (paging.page && (paging.page - 1) * paging.limit) || 0
+
+    const where = and(
+      like(intents.name, `%${paging.q || ''}%`),
+      eq(intents.deleted, false),
+      eq(intents.userId, userId),
+    )
+
     const result: IIntentExtend[] = await db
       .select({
         id: intents.id,
@@ -244,26 +252,14 @@ export class IntentService {
     `,
       })
       .from(intents)
-      .where(
-        and(
-          like(intents.name, `%${paging.q || ''}%`),
-          eq(intents.deleted, false),
-          eq(intents.userId, userId),
-        ),
-      )
+      .where(where)
       .orderBy(this.makeOrderBy(paging.sortType, 'name', paging.orderBy))
       .offset(offset)
       .limit(paging.limit)
     const [{ count }] = await db
       .select({ count: sql<number>`cast(count(${intents.id}) as integer)` })
       .from(intents)
-      .where(
-        and(
-          like(intents.name, `%${paging.q || ''}%`),
-          eq(intents.deleted, false),
-          eq(intents.userId, userId),
-        ),
-      )
+      .where(where)
 
     return { items: result, totalItems: count }
   }
