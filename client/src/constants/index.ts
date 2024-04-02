@@ -39,6 +39,10 @@ export const ENDPOINTS = {
     ADD_CHANNELS: '/flow/add-channels',
     SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
   },
+  INTENT: {
+    INDEX: '/intent',
+    DELETE: '/intent/delete',
+  },
 }
 
 export const ROUTES = {
@@ -62,10 +66,17 @@ export const ROUTES = {
     CHAT_BOT: {
       INDEX: '/chatbots',
     },
+    FLOW: {
+      INDEX: '/flows',
+    },
     SETTING: {
       INDEX: '/settings',
       MAIL: '/settings/mail',
       PROFILES: '/settings/profiles',
+    },
+    TRAINING: {
+      INDEX: '/training',
+      ADD_INTENT: '/training/add-intent',
     },
   },
 }

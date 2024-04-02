@@ -15,19 +15,6 @@ services:
     networks:
       - backend
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    ports:
-      - '5050:80'
-    environment:
-      PGADMIN_DEFAULT_EMAIL: 'bot@gmail.com'
-      PGADMIN_DEFAULT_PASSWORD: 'admin'
-    restart: 'unless-stopped'
-    networks:
-      - backend
-    volumes: [{ type: 'volume', source: 'pgadmin', target: '/var/lib/pgadmin' }]
-
   redis:
     container_name: redis
     image: redis:alpine

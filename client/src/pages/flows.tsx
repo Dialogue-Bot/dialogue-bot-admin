@@ -1,19 +1,19 @@
-import { CreateFlowBtn, FlowItem } from '@/components/pages/chatbots'
-import { useSearchParams } from 'react-router-dom'
-import { useDocumentTitle } from 'usehooks-ts'
-import { useTranslation } from 'react-i18next'
-import { useSuspenseQuery } from '@tanstack/react-query'
-import { urlSearchParamsToObject } from '@/utils'
-import { queryFlowsOption } from '@/lib/query-options/flow'
-import { TBaseQuery } from '@/types/share'
-import { usePagination } from '@/hooks/use-pagination'
+import { CreateFlowBtn, FlowItem } from '@/components/pages/flows'
 import { Button } from '@/components/ui'
 import { useDidUpdate } from '@/hooks/use-did-update'
+import { usePagination } from '@/hooks/use-pagination'
+import { queryFlowsOption } from '@/lib/query-options/flow'
+import { TBaseQuery } from '@/types/share'
+import { urlSearchParamsToObject } from '@/utils'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const LIMIT = 20
 
-const Chatbots = () => {
-  const { t } = useTranslation('chatbots')
+const Flows = () => {
+  const { t } = useTranslation('flows')
   const [search, setSearch] = useSearchParams()
 
   const { data } = useSuspenseQuery(
@@ -67,4 +67,4 @@ const Chatbots = () => {
   )
 }
 
-export default Chatbots
+export default Flows

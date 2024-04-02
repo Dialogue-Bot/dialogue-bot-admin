@@ -1,6 +1,5 @@
 import { useDidUpdate } from '@/hooks/use-did-update'
-import { TFlowInput } from '@/lib/schema/flow-input'
-import { EActionTypes, EMessageTypes, TNode } from '@/types/flow'
+import { EActionTypes, EMessageTypes, TFLow, TNode } from '@/types/flow'
 import { createId } from '@paralleldrive/cuid2'
 import _ from 'lodash'
 import {
@@ -34,7 +33,7 @@ import {
 } from './constant'
 
 type FlowCtx = {
-  flow: TFlowInput
+  flow: TFLow
   openActions: boolean
   toggleActions: () => void
   nodes: Node<any>[]
@@ -65,7 +64,7 @@ type FlowCtx = {
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
 
 type Props = {
-  flow: TFlowInput
+  flow: TFLow
   children: React.ReactNode
 }
 

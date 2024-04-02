@@ -1,10 +1,8 @@
-import { DataToolbar, useCols } from '@/components/pages/channels'
+import { DataToolbar, useCols } from '@/components/pages/training'
 import { DataTable } from '@/components/ui'
-import { useDeleteManyChannel } from '@/hooks/channel'
 import { usePaginate } from '@/hooks/use-pagniate'
 import { useSorting } from '@/hooks/use-sorting'
-import { queryChannelsOption } from '@/lib/query-options/channel'
-import { TChannelQuery } from '@/types/channel'
+import { queryIntentsOption } from '@/lib/query-options'
 import { calcPageCount, urlSearchParamsToObject } from '@/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { getSortedRowModel } from '@tanstack/react-table'
@@ -12,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { useDocumentTitle } from 'usehooks-ts'
 
-const Channels = () => {
+const Training = () => {
   const { t } = useTranslation('channel')
   const [search] = useSearchParams()
 
@@ -22,10 +20,8 @@ const Channels = () => {
   const cols = useCols()
 
   const { data } = useSuspenseQuery(
-    queryChannelsOption(urlSearchParamsToObject(search) as TChannelQuery),
+    queryIntentsOption(urlSearchParamsToObject(search)),
   )
-
-  const deleteManyChannelMutation = useDeleteManyChannel()
 
   useDocumentTitle(t('page_title'))
 
@@ -49,15 +45,10 @@ const Channels = () => {
             getSortedRowModel: getSortedRowModel(),
             pageCount: calcPageCount(data.totalItems || 0, pagination.pageSize),
           }}
-          isLoadingDelete={deleteManyChannelMutation.isPending}
-          onDeleteRowSelected={async (rows, close) => {
-            await deleteManyChannelMutation.mutateAsync(rows)
-            close?.()
-          }}
         />
       </div>
     </div>
   )
 }
 
-export default Channels
+export default Training

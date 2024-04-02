@@ -279,5 +279,72 @@
     "errors": {
       "required": "Please select operator."
     }
+  },
+  "referenceId": {
+    "label": "Reference",
+    "placeholder": "Enter reference",
+    "errors": {
+      "required": "Please enter reference."
+    }
+  },
+  "train_description": {
+    "label": "Description",
+    "placeholder": "Enter description",
+    "errors": {
+      "required": "Train description must be at least 1 item."
+    }
+  },
+  "intents": {
+    "label": "Intents",
+    "placeholder": "Enter intents",
+    "errors": {
+      "required": "Intents must be at least 1 item."
+    }
+  },
+  "intent": {
+    "label": "Intent",
+    "placeholder": "Enter intent",
+    "errors": {
+      "required": "Please enter intent."
+    }
+  },
+  "description": {
+    "label": "Description",
+    "placeholder": "Enter description",
+    "errors": {
+      "required": "Please enter description."
+    }
+  },
+  "prompt": {
+    "label": "Prompt",
+    "placeholder": "Enter prompt",
+    "errors": {
+      "required": "Please enter prompt.",
+      "array": "Please enter a valid array value. (e.g. a,b,c)"
+    },
+    "description": "Enter the prompt list separated by commas. (e.g. a,b,c)"
+  },
+  "answer": {
+    "label": "Answer",
+    "placeholder": "Enter answer",
+    "errors": {
+      "required": "Please enter answer.",
+      "array": "Please enter a valid array value. (e.g. a,b,c)"
+    },
+    "description": "Enter the answer list separated by commas. (e.g. a,b,c)"
+  },
+  "intent_name": {
+    "label": "Intent name",
+    "placeholder": "Enter intent name",
+    "errors": {
+      "required": "Please enter intent name."
+    }
+  },
+  "training_type": {
+    "label": "Training type",
+    "placeholder": "Select training type",
+    "errors": {
+      "required": "Please select training type."
+    }
   }
 }

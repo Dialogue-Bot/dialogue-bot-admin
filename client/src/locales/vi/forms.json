@@ -272,5 +272,72 @@
     "errors": {
       "required": "Vui lòng chọn toán tử."
     }
+  },
+  "referenceId": {
+    "label": "Tham chiếu",
+    "placeholder": "Nhập tham chiếu",
+    "errors": {
+      "required": "Vui lòng nhập tham chiếu."
+    }
+  },
+  "train_description": {
+    "label": "Mô tả huấn luyện",
+    "placeholder": "Nhập mô tả huấn luyện",
+    "errors": {
+      "required": "Mô tả huấn luyện phai có ít nhất 1 phần tử."
+    }
+  },
+  "intents": {
+    "label": "Ý định",
+    "placeholder": "Nhập ý định",
+    "errors": {
+      "required": "Ý định phải có ít nhất 1 phần tử."
+    }
+  },
+  "intent": {
+    "label": "Ý định",
+    "placeholder": "Nhập ý định",
+    "errors": {
+      "required": "Vui lòng nhập ý định."
+    }
+  },
+  "description": {
+    "label": "Mô tả",
+    "placeholder": "Nhập mô tả",
+    "errors": {
+      "required": "Vui lòng nhập mô tả."
+    }
+  },
+  "prompt": {
+    "label": "Lệnh",
+    "placeholder": "Nhập lệnh",
+    "errors": {
+      "required": "Vui lòng nhập lệnh.",
+      "array": "Vui lòng nhập một giá trị mảng. (e.g. a,b,c)"
+    },
+    "description": "Nhập danh sách lệnh cách nhau bởi dấu phẩy. (e.g. a,b,c)"
+  },
+  "answer": {
+    "label": "Câu trả lời",
+    "placeholder": "Nhập câu trả lời",
+    "errors": {
+      "required": "Vui lòng nhập câu trả lời.",
+      "array": "Vui lòng nhập một giá trị mảng. (e.g. a,b,c)"
+    },
+    "description": "Nhập danh sách câu trả lời cách nhau bởi dấu phẩy. (e.g. a,b,c)"
+  },
+  "intent_name": {
+    "label": "Tên",
+    "placeholder": "Nhập tên",
+    "errors": {
+      "required": "Vui lòng nhập tên."
+    }
+  },
+  "training_type": {
+    "label": "Loại huấn luyện",
+    "placeholder": "Chọn loại huấn luyện",
+    "errors": {
+      "required": "Vui lòng chọn loại huấn luyện."
+    }
   }
 }

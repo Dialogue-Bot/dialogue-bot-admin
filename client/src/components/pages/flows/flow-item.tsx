@@ -28,7 +28,7 @@ type Props = {
 }
 
 export const FlowItem = ({ flow }: Props) => {
-  const { t } = useTranslation(['chatbots', 'common'])
+  const { t } = useTranslation(['flows', 'common'])
   const [open, setOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(false)
 
@@ -38,7 +38,7 @@ export const FlowItem = ({ flow }: Props) => {
   return (
     <div className='relative w-full h-full flex min-h-48'>
       <Link
-        to={`${ROUTES.PRIVATE.CHAT_BOT.INDEX}/${flow.id}`}
+        to={`${ROUTES.PRIVATE.FLOW.INDEX}/${flow.id}`}
         className={buttonVariants({
           variant: 'outline',
           className:

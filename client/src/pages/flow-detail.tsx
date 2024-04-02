@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import '@/styles/react-flow.css'
 
-const ChatBotDetail = () => {
+const FlowDetail = () => {
   const { id: flowId } = useParams()
   const { data: flow } = useSuspenseQuery(
     queryFlowDetailOption(flowId as string),
@@ -18,4 +18,4 @@ const ChatBotDetail = () => {
   )
 }
 
-export default ChatBotDetail
+export default FlowDetail

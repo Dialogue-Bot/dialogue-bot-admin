@@ -7,6 +7,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui'
 import { useUpdateFlow } from '@/hooks/flow'
+import { usePublishFlow } from '@/hooks/flow/use-publish-flow'
 import { Settings2, Zap } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
@@ -20,6 +21,7 @@ export const Toolbar = () => {
   const { id } = useParams()
 
   const updateFlowMutation = useUpdateFlow()
+  const publishFlowMutation = usePublishFlow()
 
   const handleSave = async () => {
     await updateFlowMutation.mutateAsync({
@@ -81,7 +83,13 @@ export const Toolbar = () => {
           >
             {t('toolbar.save')}
           </Button>
-          <Button variant='default' className='w-full'>
+          <Button
+            variant='default'
+            className='w-full'
+            onClick={() => publishFlowMutation.mutate({ id: id as string })}
+            loading={publishFlowMutation.isPending}
+            disabled={Boolean(flow.publishAt)}
+          >
             {t('toolbar.publish')}
           </Button>
         </div>

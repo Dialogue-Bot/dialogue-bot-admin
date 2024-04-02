@@ -1,0 +1,11 @@
+{
+  "add_intent": "Thêm mục đích",
+  "add_intent_title": "Thêm mới mục đích",
+  "add_intent_description": "Nhập thông tin bên dưới để thêm mục đích mới.",
+  "update_intent": "Cập nhật mục đích",
+  "update_intent_title": "Cập nhật mục đích",
+  "update_intent_description": "Cập nhật thông tin bên dưới để cập nhật mục đích.",
+  "remove_intent_title": "Xóa mục đích",
+  "remove_intent_description": "Bạn có chắc chắn muốn xóa mục đích này không? Hành động này không thể hoàn tác.",
+  "page_title": "Training | DialogueBot"
+}
