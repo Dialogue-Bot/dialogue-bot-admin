@@ -33,4 +33,5 @@ export const {
   MAIL_USER,
   MAIL_PASS,
   API_KEY,
+  AUTO_REGISTER_WEBHOOK
 } = process.env
