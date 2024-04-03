@@ -8,13 +8,14 @@ import {
   TooltipTrigger,
 } from '@/components/ui'
 import { ROUTES } from '@/constants'
+import { useLogout } from '@/hooks/auth'
 import { useUserStore } from '@/store/use-user'
 import {
   Bot,
   BrainCircuit,
   Cable,
+  LogOut,
   MessageSquareCode,
-  Settings,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -51,6 +52,8 @@ const Sidebar = () => {
   const { t } = useTranslation('common')
   const { user } = useUserStore()
 
+  const logoutMutation = useLogout()
+
   return (
     <aside className='w-sidebar bg-stone-800 min-h-svh flex flex-col fixed left-0 top-0 bottom-0 z-50'>
       <Link
@@ -83,29 +86,34 @@ const Sidebar = () => {
         </ul>
 
         <div className='mt-auto'>
+          <div className='flex items-center justify-center  cursor-pointer w-sidebar h-sidebar'>
+            <Link
+              to={ROUTES.PRIVATE.SETTING.PROFILES}
+              className='flex items-center justify-center'
+            >
+              <Avatar className='w-9 h-9 '>
+                <AvatarImage src={user?.avatar as string} alt={user?.name} />
+                <AvatarFallback>
+                  <span>{user?.name?.[0]}</span>
+                </AvatarFallback>
+              </Avatar>
+            </Link>
+          </div>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger className='h-12 w-full flex items-center justify-center group'>
-                <Link
-                  to={ROUTES.PRIVATE.SETTING.INDEX}
+                <div
                   className='w-full h-full flex items-center justify-center'
+                  onClick={() => logoutMutation.mutate()}
                 >
-                  <Settings className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
-                </Link>
+                  <LogOut className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
+                </div>
               </TooltipTrigger>
               <TooltipContent side='right'>
-                <p>{t('settings')}</p>
+                <p>{t('logout')}</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <div className='flex items-center justify-center  cursor-pointer w-sidebar h-sidebar'>
-            <Avatar className='w-9 h-9'>
-              <AvatarImage src={user?.avatar as string} alt={user?.name} />
-              <AvatarFallback>
-                <span>{user?.name?.[0]}</span>
-              </AvatarFallback>
-            </Avatar>
-          </div>
         </div>
       </nav>
     </aside>

@@ -27,7 +27,11 @@ class Auth {
 
   // TODO: SHOULD BE CHANGE TYPE ANY TO TYPE USER
   getCurrentUser(): Promise<TBaseResponse<TUser>> {
-    return http_client.get(ENDPOINTS.AUTH.CURRENT_USER)
+    return http_client.get(ENDPOINTS.AUTH.CURRENT_USER, {
+      params: {
+        cb: Date.now(), // cache buster to prevent caching
+      },
+    })
   }
 
   refreshToken(): Promise<TBaseResponse<TToken>> {

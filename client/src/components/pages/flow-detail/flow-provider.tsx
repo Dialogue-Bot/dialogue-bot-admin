@@ -613,18 +613,6 @@ export const FlowProvider = ({ children, flow }: Props) => {
     })
   }, [])
 
-  const findNodeContainNextAction = useCallback(
-    (nodes: Node[], node: Node<any>) => {
-      return nodes.find((nd) => {
-        return (
-          nd.data?.nextAction === node.id ||
-          nd.data?.nextActions?.some((na: any) => na.id === node.id)
-        )
-      })
-    },
-    [],
-  )
-
   /**
    * Retrieves the complete flows from the given nodes.
    * A complete flow is a sequence of nodes where each node has a next action or is a final node.
