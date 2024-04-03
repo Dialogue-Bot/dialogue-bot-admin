@@ -1,5 +1,4 @@
-import { LineChannel } from '@/channels/line.channel'
-import { MessengerChannel } from '@/channels/messenger.channel'
+import { Creator } from '@/channels/creator.channel'
 import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
 import { channelTypes, channels } from '@/database/schema'
@@ -238,39 +237,12 @@ export class ChannelService {
   }
 
   initChannel(channel: ChannelInfo) {
-    const { id, contactId, contactName, channelType, credentials } = channel
-
-    logger.info(`[Init channel] ${channelType} - ${contactName} ${contactId}`)
-
-    switch (channelType) {
-      case 'MSG':
-        return new MessengerChannel(
-          id,
-          contactId,
-          contactName,
-          channelType,
-          credentials,
-        )
-      case 'LIN':
-        const linChannel = new LineChannel(
-          id,
-          contactId,
-          contactName,
-          channelType,
-          credentials,
-        )
-
-        linChannel.registerWebhook()
-
-        return linChannel
-      default:
-        logger.info(
-          `[Init channel] Does not support channel type ${channel.channelType}`,
-        )
-        break
+    try {
+      logger.info(`[Init channel] ${channel.channelType} - ${channel.contactName} ${channel.contactId}`)
+      return Creator.createChannel(channel);
+    } catch (err) {
+      logger.info(`[Init channel] ${err.message}`);
     }
-
-    return channel
   }
 
   async initChannels() {

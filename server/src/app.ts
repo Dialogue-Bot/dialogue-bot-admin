@@ -18,12 +18,19 @@ import { LocaleService } from './i18n/ctx'
 import { getPreferredLocale } from './i18n/get-preferred-locale'
 import { loadAllLocales } from './i18n/i18n-util.sync'
 
+// socket.io
+import { createServer } from 'http'
+import { Server } from 'socket.io'
+import { SocketController } from './controllers/socket.controller'
+
 Container.set(LOCALE_KEY, new LocaleService('en'))
 
 export class App {
   public app: express.Application
   public env: string
   public port: string | number
+  public static io: Server
+
 
   constructor(routes: Routes[]) {
     this.app = express()
@@ -37,12 +44,26 @@ export class App {
   }
 
   public listen() {
-    this.app.listen(this.port, () => {
-      logger.info(`=================================`)
-      logger.info(`======= ENV: ${this.env} =======`)
-      logger.info(`🚀 App listening on the port ${this.port}`)
-      logger.info(`=================================`)
-    })
+    try {
+      const socketController = new SocketController();
+      const server = createServer(this.app);
+      App.io = new Server(server);
+
+      App.io.on('connection', (socket) => {
+        socketController.handleJoinRoom(socket);
+        socketController.handleSocketEvents(socket);
+      });
+
+      server.listen(this.port, () => {
+        logger.info(`=================================`)
+        logger.info(`======= ENV: ${this.env} =======`)
+        logger.info(`🚀 App listening on the port ${this.port}`)
+        logger.info(`=================================`)
+      })
+
+    } catch (error) {
+      console.error('Error initializing server:', error);
+    }
   }
 
   public getServer() {

@@ -50,7 +50,6 @@ export class FlowRoute implements Routes {
     //for bot get flow by contactId
     this.router.get(
       `${ENDPOINTS.FLOW.INDEX}/:contactId`,
-      authMiddleware,
       this.controller.getFlowByContactId,
     )
 

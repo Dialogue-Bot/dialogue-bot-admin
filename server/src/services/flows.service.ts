@@ -20,7 +20,7 @@ export class FlowService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly chanelService: ChannelService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     const flowExisted = await db.query.flows.findFirst({
@@ -264,7 +264,7 @@ export class FlowService {
     const flow = db.query.flows.findFirst({
       where: and(
         eq(flows.deleted, false),
-        isNotNull(flows.publishAt),
+        // isNotNull(flows.publishAt),
         isNotNull(
           db
             .select({
@@ -282,6 +282,7 @@ export class FlowService {
         this.localeService.i18n().FLOW.NOT_FOUND(),
       )
     }
+    console.log(flow);
     return flow
   }
 }

@@ -77,6 +77,6 @@ export class FlowController {
 
   public getFlowByContactId = catchAsync(async (req: RequestWithUser, res) => {
     const data = await this.flowService.getFlowByContactId(req.params.contactId)
-    res.status(StatusCodes.OK).json({ data })
+    res.status(StatusCodes.OK).send(data);
   })
 }

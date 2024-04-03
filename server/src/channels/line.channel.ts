@@ -90,7 +90,7 @@ export class LineChannel extends BaseChannel {
           data: null,
         })
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   public async sendMessageToUser({ userId, text }) {

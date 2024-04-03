@@ -1,5 +1,6 @@
 import { LineChannel } from '@/channels/line.channel'
 import { MessengerChannel } from '@/channels/messenger.channel'
+import { WebChannel } from '@/channels/web.channel'
 import { logger } from '@/utils/logger'
 import { Request } from 'express-serve-static-core'
 import { Service } from 'typedi'
@@ -7,7 +8,7 @@ import { ChannelService } from './channels.service'
 
 @Service()
 export class ConversationService {
-  constructor(private readonly chanelService: ChannelService) {}
+  constructor(private readonly chanelService: ChannelService) { }
 
   public async handleIncomingMessage(req: Request) {
     const { from, recipient, text, type, channelData } = req.body
@@ -57,9 +58,22 @@ export class ConversationService {
           })
 
         break
+      case 'WEB':
+        const webChannel = new WebChannel(
+          id,
+          from.id,
+          contactName,
+          channelType,
+          credentials,
+        )
+
+        return await webChannel.sendMessageToUser({
+          userId: recipient.id,
+          text,
+        })
       default:
         logger.info(
-          `[Incoming message] Send message to Bot: Does not support channel type ${channelType}`,
+          `[Incoming message] Send message to Bot - Does not support channel type ${channelType}`,
         )
         break
     }
