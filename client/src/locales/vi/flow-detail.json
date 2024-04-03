@@ -82,7 +82,8 @@
     "contains": "Bao gồm",
     "not_contains": "Không bao gồm",
     "match": "Khớp",
-    "not_match": "Không khớp"
+    "not_match": "Không khớp",
+    "exist": "Tồn tại"
   },
   "condition_dialog": {
     "title": "Điều kiện",

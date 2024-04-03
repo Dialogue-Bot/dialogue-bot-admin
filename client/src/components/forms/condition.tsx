@@ -3,7 +3,9 @@ import {
   TCompareValue,
   useCompareValueSchema,
 } from '@/lib/schema/compare-value'
+import { isStringBoolean } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
@@ -16,6 +18,7 @@ import {
   Input,
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -34,14 +37,30 @@ const ConditionForm = ({
 }: Props) => {
   const schema = useCompareValueSchema()
   const form = useForm<TCompareValue>({
-    defaultValues,
+    defaultValues: {
+      operator: defaultValues?.operator || '',
+      value: defaultValues?.value
+        ? JSON.stringify(defaultValues.value).replace(/"/g, '')
+        : '',
+    },
     resolver: zodResolver(schema),
   })
   const { t } = useTranslation(['forms', 'flowDetail'])
 
+  const watchOperator = form.watch('operator')
+
   const handleSubmit = form.handleSubmit((data) => {
-    onSubmit?.(data)
+    onSubmit?.({
+      ...data,
+      value: isStringBoolean(data.value) ? JSON.parse(data.value) : data.value,
+    })
   })
+
+  useEffect(() => {
+    if (watchOperator === 'exist' && !form.getValues('value')) {
+      form.reset({ value: 'true' })
+    }
+  }, [watchOperator, form])
 
   return (
     <Form {...form}>
@@ -56,44 +75,79 @@ const ConditionForm = ({
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={t('operator.placeholder')} />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    {CONDITIONAL_OPERATOR.map((c) => {
-                      return (
-                        <SelectItem key={c} value={c}>
-                          {
-                            // @ts-ignore
-                            t(`flowDetail:compare_types.${c}`)
-                          }
-                        </SelectItem>
-                      )
-                    })}
+                  <SelectContent className='max-h-72'>
+                    <SelectGroup>
+                      {CONDITIONAL_OPERATOR.map((c) => {
+                        return (
+                          <SelectItem key={c} value={c}>
+                            {
+                              // @ts-ignore
+                              t(`flowDetail:compare_types.${c}`)
+                            }
+                          </SelectItem>
+                        )
+                      })}
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <FormField
-            name='value'
-            control={form.control}
-            render={({ field }) => {
-              return (
+          {watchOperator === 'exist' ? (
+            <FormField
+              name='value'
+              control={form.control}
+              render={({ field }) => (
                 <FormItem className='w-full'>
                   <FormLabel>{t('value.label')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder={t('value.placeholder')} />
-                  </FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className='capitalize'>
+                        <SelectValue placeholder={t('value.placeholder')} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {['true', 'false'].map((c) => {
+                        return (
+                          <SelectItem key={c} value={c} className='capitalize'>
+                            {c}
+                          </SelectItem>
+                        )
+                      })}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
-              )
-            }}
-          />
+              )}
+            />
+          ) : (
+            <FormField
+              name='value'
+              control={form.control}
+              render={({ field }) => {
+                return (
+                  <FormItem className='w-full'>
+                    <FormLabel>{t('value.label')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder={t('value.placeholder')} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )
+              }}
+            />
+          )}
         </div>
       </form>
     </Form>
