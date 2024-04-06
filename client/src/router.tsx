@@ -20,6 +20,7 @@ import {
   PublishLayout,
   SettingLayout,
 } from '@/components/layouts'
+import { ChatBox } from 'dialogue-chatbox'
 import { Suspense } from 'react'
 import App from './app'
 import PageLoading from './components/page-loading'
@@ -149,7 +150,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: ROUTES.PUBLIC.LANDING_PAGE,
-            element: <div>Hi</div>,
+            element: <ChatBox />,
           },
           {
             path: ROUTES.PUBLIC.HELP,

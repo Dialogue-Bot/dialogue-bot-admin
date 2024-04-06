@@ -171,6 +171,61 @@ export const intents = pgTable('intents', {
   updatedAt: timestamp('updated_at').defaultNow(),
 })
 
+export const conversations = pgTable('conversations', {
+  userId: varchar('user_id', {}).notNull().unique('user_id'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+})
+
+export const messages = pgTable('messages', {
+  id: varchar('id', {
+    length: MAX_ID_LENGTH,
+  })
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  conversationId: varchar('conversation_id', {
+    length: MAX_ID_LENGTH,
+  })
+    .notNull()
+    .references(() => conversations.userId, { onDelete: 'cascade' }),
+  createdAt: timestamp('created_at').defaultNow(),
+  from: text('from').notNull(),
+  to: text('to').notNull(),
+  type: text('type').notNull().default('text'),
+  data: json('data').default({
+    text: '',
+  }).$type<{
+    text?: string
+    buttons?: Array<{
+      label: string
+      url: string
+    }>
+    cards?: Array<{
+      title: string
+      subtitle: string
+      imageUrl: string
+      buttons?: Array<{
+        label: string
+        type: string
+        value: string
+      }>
+    }>
+    url?: string
+  }>(),
+})
+
+export const messagesRelations = relations(messages, ({ one }) => ({
+  conversation: one(conversations, {
+    fields: [messages.conversationId],
+    references: [conversations.userId],
+  }),
+
+}))
+
+export const conversationsRelations = relations(conversations, ({ many }) => ({
+  messages: many(messages),
+}))
+
 export const intentsRelations = relations(intents, ({ one }) => ({
   user: one(users, {
     fields: [intents.userId],

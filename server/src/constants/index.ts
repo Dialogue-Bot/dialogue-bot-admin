@@ -63,3 +63,10 @@ export const ENDPOINTS = {
 }
 
 export const LOCALE_KEY = 'lang'
+
+export const SOCKET_EVENTS = {
+  MESSAGE: 'message',
+  RECEIVED: 'received',
+  DISCONNECT: 'disconnect',
+  DISABLED_BOT: 'disabled-bot',
+}
