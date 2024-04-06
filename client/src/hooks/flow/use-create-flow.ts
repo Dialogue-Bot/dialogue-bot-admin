@@ -25,9 +25,7 @@ export const useCreateFlow = () => {
 
       toast.success(data.message)
 
-      console.log(data)
-
-      navigate(`${ROUTES.PRIVATE.CHAT_BOT.INDEX}/${data.data.id}`)
+      navigate(`${ROUTES.PRIVATE.FLOW.INDEX}/${data.data.id}`)
     },
 
     onError(err: any) {

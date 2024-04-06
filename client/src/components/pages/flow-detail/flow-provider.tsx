@@ -1,3 +1,4 @@
+import { useUpdateFlow } from '@/hooks/flow'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { EActionTypes, EMessageTypes, TFLow, TNode } from '@/types/flow'
 import { createId } from '@paralleldrive/cuid2'
@@ -132,6 +133,9 @@ export const FlowProvider = ({ children, flow }: Props) => {
     flow.settings?.find((setting) => setting.type === 'language')?.value ||
       'en',
   )
+  const updateFlowMutation = useUpdateFlow({
+    isShowToastSuccess: false,
+  })
 
   console.log({
     selectedEdge,
@@ -189,10 +193,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
           action: type as EActionTypes,
           id,
           name: actionToLabel[type as EActionTypes],
-          contents: {
-            vi: {},
-            en: {},
-          },
+          contents: {},
         } as TNode,
       }
 
@@ -344,8 +345,6 @@ export const FlowProvider = ({ children, flow }: Props) => {
     },
     [setEdges, setNodes, getNode],
   )
-
-  console.log()
 
   /**
    * Handles the change of edges.
@@ -578,21 +577,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
 
       const clonedNode = _.cloneDeep(prev)
 
-      if (_.isEmpty(clonedNode.data.contents['vi'])) {
-        _.set(
-          clonedNode,
-          'data.contents.vi',
-          _.get(clonedNode, `data.contents.en`),
-        )
-      }
-
-      if (_.isEmpty(clonedNode.data.contents['en'])) {
-        _.set(
-          clonedNode,
-          'data.contents.en',
-          _.get(clonedNode, `data.contents.vi`),
-        )
-      }
+      clonedNode.data.contents = {}
 
       return clonedNode
     })
@@ -763,6 +748,25 @@ export const FlowProvider = ({ children, flow }: Props) => {
       )
     })
   }, [selectedNode])
+
+  useDidUpdate(() => {
+    updateFlowMutation.mutate({
+      id: flow.id,
+      data: {
+        settings: flow.settings.map((setting) => {
+          if (setting.type === 'language') {
+            return {
+              ...setting,
+              value: currentLang,
+            }
+          }
+
+          return setting
+        }),
+        name: flow.name,
+      },
+    })
+  }, [currentLang])
 
   return (
     <FlowContext.Provider

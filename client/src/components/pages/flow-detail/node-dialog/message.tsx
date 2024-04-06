@@ -11,10 +11,12 @@ import {
   SelectValue,
 } from '@/components/ui'
 import InputImage from '@/components/ui/input-image'
+import { useDidUpdate } from '@/hooks/use-did-update'
 import { EMessageTypes } from '@/types/flow'
 import _, { omit } from 'lodash'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDebounceValue } from 'usehooks-ts'
 import { useFlowCtx } from '..'
 import BtnAddCard from '../btn-add-card'
 import Card from '../card'
@@ -27,6 +29,11 @@ export const MessageDialogContent = () => {
   const [messageType, setMessageType] = useState<EMessageTypes>(
     selectedNode?.data.contents[currentLang]?.type || EMessageTypes.TEXT,
   )
+  const [botResponse, setBotResponse] = useState(
+    selectedNode?.data.contents[currentLang]?.message || '',
+  )
+
+  const [debounce] = useDebounceValue(botResponse, 800)
 
   const handleSelectChange = (value: EMessageTypes) => {
     setMessageType(value)
@@ -75,6 +82,23 @@ export const MessageDialogContent = () => {
     handleChangeSelectedNode(clonedNode)
   }
 
+  useDidUpdate(() => {
+    if (!selectedNode) return
+    handleChangeSelectedNode({
+      ...selectedNode,
+      data: {
+        ...selectedNode?.data,
+        contents: {
+          ...selectedNode?.data.contents,
+          [currentLang]: {
+            ...selectedNode?.data.contents[currentLang],
+            message: debounce,
+          },
+        },
+      },
+    })
+  }, [debounce, currentLang])
+
   if (!selectedNode) return null
 
   return (
@@ -102,19 +126,9 @@ export const MessageDialogContent = () => {
           {messageType === EMessageTypes.TEXT && (
             <Input
               placeholder={t('message_dialog.forms.bot_response.placeholder')}
-              value={selectedNode?.data?.contents?.[currentLang]?.message || ''}
+              value={botResponse}
               onChange={(e) => {
-                if (!selectedNode) return
-
-                const clonedNode = _.cloneDeep(selectedNode)
-
-                clonedNode.data.contents[currentLang] = {
-                  ...clonedNode.data.contents[currentLang],
-                  message: e.target.value,
-                  type: EMessageTypes.TEXT,
-                }
-
-                handleChangeSelectedNode(clonedNode)
+                setBotResponse(e.target.value)
               }}
             />
           )}

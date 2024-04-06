@@ -5,14 +5,14 @@ import { Socket } from 'socket.io'
 import Container from 'typedi'
 
 export class SocketController {
-    public socketService = Container.get(SocketService)
-    public localeService = Container.get<LocaleService>(LOCALE_KEY)
+  public socketService = Container.get(SocketService)
+  public localeService = Container.get<LocaleService>(LOCALE_KEY)
 
-    public handleSocketEvents(socket: Socket) {
-        this.socketService.handleSocketEvents(socket);
-    }
+  public handleSocketEvents(socket: Socket) {
+    this.socketService.handleSocketEvents(socket)
+  }
 
-    public handleJoinRoom(socket: Socket) {
-        this.socketService.handleJoinRoom(socket);
-    }
+  public handleJoinRoom(socket: Socket) {
+    this.socketService.handleJoinRoom(socket)
+  }
 }

@@ -8,7 +8,13 @@ import { toast } from 'sonner'
  * Custom hook for updating a flow.
  * @returns A mutation function for updating a flow.
  */
-export const useUpdateFlow = () => {
+
+type TOpts = {
+  isShowToastSuccess?: boolean
+}
+
+export const useUpdateFlow = (opts?: TOpts) => {
+  const { isShowToastSuccess = true } = opts || {}
   const { t } = useTranslation('common')
   const queryClient = useQueryClient()
   return useMutation({
@@ -26,7 +32,9 @@ export const useUpdateFlow = () => {
         queryKey: ['flow-detail', data.data.id],
       })
 
-      toast.success(data.message)
+      if (isShowToastSuccess) {
+        toast.success(data.message)
+      }
     },
 
     onError(err: any) {
