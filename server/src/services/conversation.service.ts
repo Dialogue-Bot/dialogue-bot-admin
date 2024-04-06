@@ -13,6 +13,8 @@ export class ConversationService {
   public async handleIncomingMessage(req: Request) {
     const { from, recipient, text, type, channelData } = req.body
 
+    console.log('Incoming message:', req.body)
+
     const expectedChannel = await this.chanelService.findOneByContactId(from.id)
 
     if (!expectedChannel) logger.info('Can not find channel to send to user!')
@@ -70,6 +72,7 @@ export class ConversationService {
         return await webChannel.sendMessageToUser({
           userId: recipient.id,
           text,
+          type
         })
       default:
         logger.info(

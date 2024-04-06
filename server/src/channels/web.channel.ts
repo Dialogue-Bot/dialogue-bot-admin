@@ -1,3 +1,4 @@
+import { SOCKET_EVENTS } from '@/constants'
 import { logger } from '@/utils/logger'
 import { Request, Response } from 'express'
 import { App } from '../app'
@@ -20,10 +21,17 @@ export class WebChannel extends BaseChannel {
 
     async prepareMessage(req: Request, res: Response) { }
 
-    public async sendMessageToUser({ userId, text }) {
+    public async sendMessageToUser({ userId, text, type }: {
+        type?: string;
+        userId: string;
+        text: string;
+    }) {
         try {
             if (App.io) {
-                App.io.to(userId).emit('message', { userId, message: text });
+
+                App.io.to(userId).emit(
+                    type || SOCKET_EVENTS.MESSAGE,
+                    { userId, message: text });
             }
         } catch (e) {
             logger.info(
