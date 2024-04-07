@@ -49,7 +49,6 @@ export type TNode = {
 export enum EMessageTypes {
   TEXT = 'text',
   IMAGE = 'image',
-  LIST_BUTTON = 'list-button',
   LIST_CARD = 'list-card',
 }
 

@@ -130,9 +130,7 @@ export const MAP_MESSAGE_TYPE: Record<
   [EMessageTypes.IMAGE]: {
     label: i18n.t('flowDetail:message_dialog.message_types.image'),
   },
-  [EMessageTypes.LIST_BUTTON]: {
-    label: i18n.t('flowDetail:message_dialog.message_types.list_button'),
-  },
+
   [EMessageTypes.LIST_CARD]: {
     label: i18n.t('flowDetail:message_dialog.message_types.list_card'),
   },

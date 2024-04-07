@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui'
 import { cn } from '@/lib/utils'
 import { TNode } from '@/types/flow'
 import {
@@ -25,6 +26,20 @@ type CustomNodeProps = NodeProps<
     [key: string]: any
   }
 >
+
+const DeleteNodeBtn = ({ id }: { id: string }) => {
+  const { handleDeleteNodeById } = useFlowCtx()
+  return (
+    <Button
+      className='w-4 h-4 p-0 absolute -top-2 z-10 -right-2 pointer-events-none opacity-0 scale-0 transition-all invisible'
+      id='delete-node-btn'
+      variant='destructive'
+      onClick={() => handleDeleteNodeById(id)}
+    >
+      <X className='h-3 w-3' />
+    </Button>
+  )
+}
 
 const HandleCustom = ({
   className,
@@ -78,21 +93,30 @@ export const FallBackNode = (props?: CustomNodeProps) => {
 export const NodeWrapper = (props?: {
   children: React.ReactNode
   className?: string
+  id: string | undefined
 }) => {
-  const { children, className } = props || {}
+  const { children, className, id } = props || {}
   return (
-    <div className={cn('bg-card shadow rounded-md p-2 border-card', className)}>
-      {children}
-      <HandleCustom type='target' position={Position.Top} />
-      <HandleCustom type='source' position={Position.Bottom} />
-    </div>
+    <>
+      {id && <DeleteNodeBtn id={id} />}
+      <div
+        className={cn(
+          'bg-card shadow rounded-md p-2 border-card relative',
+          className,
+        )}
+      >
+        {children}
+        <HandleCustom type='target' position={Position.Top} />
+        <HandleCustom type='source' position={Position.Bottom} />
+      </div>
+    </>
   )
 }
 
 export const MessageNode = (props?: CustomNodeProps) => {
-  const { data } = props || {}
+  const { data, id } = props || {}
   return (
-    <NodeWrapper>
+    <NodeWrapper id={id}>
       <div className='flex items-center gap-2'>
         <MessageSquareMore className='w-4 h-4' />
         <span className='leading-none'>{data?.name || data?.label}</span>
@@ -102,79 +126,85 @@ export const MessageNode = (props?: CustomNodeProps) => {
 }
 
 export const PromptAndCollectNode = (props?: CustomNodeProps) => {
-  const { data } = props || {}
+  const { data, id } = props || {}
   return (
-    <div className='bg-card shadow rounded-md p-2 border-card'>
-      <div className='flex items-center gap-2'>
-        <HelpCircle className='w-4 h-4' />
-        <span className='leading-none'>{data?.name || data?.label}</span>
+    <>
+      {id && <DeleteNodeBtn id={id} />}
+      <div className='bg-card shadow rounded-md p-2 border-card'>
+        <div className='flex items-center gap-2'>
+          <HelpCircle className='w-4 h-4' />
+          <span className='leading-none'>{data?.name || data?.label}</span>
+        </div>
+        <HandleCustom type='target' position={Position.Top} />
+        <HandleCustom
+          type='source'
+          position={Position.Bottom}
+          id={SOURCE_HANDLE_PROMPT_NO}
+          className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
+          style={{
+            left: '80%',
+          }}
+        >
+          <X className='w-2 h-2 pointer-events-none' />
+        </HandleCustom>
+        <HandleCustom
+          type='source'
+          position={Position.Bottom}
+          id={SOURCE_HANDLE_PROMPT_YES}
+          style={{
+            left: '20%',
+          }}
+          className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
+        >
+          <Check className='w-2 h-2 pointer-events-none' />
+        </HandleCustom>
       </div>
-      <HandleCustom type='target' position={Position.Top} />
-      <HandleCustom
-        type='source'
-        position={Position.Bottom}
-        id={SOURCE_HANDLE_PROMPT_NO}
-        className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
-        style={{
-          left: '80%',
-        }}
-      >
-        <X className='w-2 h-2 pointer-events-none' />
-      </HandleCustom>
-      <HandleCustom
-        type='source'
-        position={Position.Bottom}
-        id={SOURCE_HANDLE_PROMPT_YES}
-        style={{
-          left: '20%',
-        }}
-        className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
-      >
-        <Check className='w-2 h-2 pointer-events-none' />
-      </HandleCustom>
-    </div>
+    </>
   )
 }
 
 export const CheckVariablesNode = (props?: CustomNodeProps) => {
-  const { data } = props || {}
+  const { data, id } = props || {}
   return (
-    <div className='bg-card shadow rounded-md p-2 border-card'>
-      <div className='flex items-center gap-2'>
-        <HelpCircle className='w-4 h-4' />
-        <span className='leading-none'>{data?.name || data?.label}</span>
+    <>
+      {id && <DeleteNodeBtn id={id} />}
+      <div className='bg-card shadow rounded-md p-2 border-card'>
+        <div className='flex items-center gap-2'>
+          <HelpCircle className='w-4 h-4' />
+          <span className='leading-none'>{data?.name || data?.label}</span>
+        </div>
+        <HandleCustom type='target' position={Position.Top} isConnectable={1} />
+        <HandleCustom
+          type='source'
+          position={Position.Bottom}
+          id={SOURCE_HANDLE_VARIABLES_NO}
+          className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
+          style={{
+            left: '80%',
+          }}
+        >
+          <X className='w-2 h-2 pointer-events-none' />
+        </HandleCustom>
+        <HandleCustom
+          type='source'
+          position={Position.Bottom}
+          id={SOURCE_HANDLE_VARIABLES_YES}
+          style={{
+            left: '20%',
+          }}
+          className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
+        >
+          <Check className='w-2 h-2 pointer-events-none' />
+        </HandleCustom>
       </div>
-      <HandleCustom type='target' position={Position.Top} isConnectable={1} />
-      <HandleCustom
-        type='source'
-        position={Position.Bottom}
-        id={SOURCE_HANDLE_VARIABLES_NO}
-        className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
-        style={{
-          left: '80%',
-        }}
-      >
-        <X className='w-2 h-2 pointer-events-none' />
-      </HandleCustom>
-      <HandleCustom
-        type='source'
-        position={Position.Bottom}
-        id={SOURCE_HANDLE_VARIABLES_YES}
-        style={{
-          left: '20%',
-        }}
-        className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
-      >
-        <Check className='w-2 h-2 pointer-events-none' />
-      </HandleCustom>
-    </div>
+    </>
   )
 }
 
 export const HttpRequestNode = (props?: CustomNodeProps) => {
-  const { data } = props || {}
+  const { data, id } = props || {}
   return (
-    <NodeWrapper>
+    <NodeWrapper id={id}>
       <div className='flex items-center gap-2'>
         <GitPullRequest className='w-4 h-4' />
         <span className='leading-none'>{data?.name || data?.label}</span>
@@ -184,9 +214,9 @@ export const HttpRequestNode = (props?: CustomNodeProps) => {
 }
 
 export const SendMailNode = (props?: CustomNodeProps) => {
-  const { data } = props || {}
+  const { data, id } = props || {}
   return (
-    <NodeWrapper>
+    <NodeWrapper id={id}>
       <div className='flex items-center gap-2'>
         <Mail className='w-4 h-4' />
         <span className='leading-none'>{data?.name || data?.label}</span>
@@ -196,9 +226,9 @@ export const SendMailNode = (props?: CustomNodeProps) => {
 }
 
 export const SubFlowNode = (props?: CustomNodeProps) => {
-  const { data } = props || {}
+  const { data, id } = props || {}
   return (
-    <NodeWrapper>
+    <NodeWrapper id={id}>
       <div className='flex items-center gap-2'>
         <CornerDownRight className='w-4 h-4' />
         <span className='leading-none'>{data?.name || data?.label}</span>

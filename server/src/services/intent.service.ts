@@ -271,4 +271,17 @@ export class IntentService {
         : desc(intents[key || defaultOrderBy])
     return orderBy
   }
+
+  public async getIntentsForSelect(userId: string) {
+    const rows = await db
+      .select({
+        label: intents.name,
+        value: intents.id,
+      })
+      .from(intents)
+      .where(and(eq(intents.deleted, false), eq(intents.userId, userId)))
+      .orderBy(asc(intents.name))
+
+    return rows
+  }
 }

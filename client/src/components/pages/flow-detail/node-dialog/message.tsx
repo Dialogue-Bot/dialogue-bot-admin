@@ -3,6 +3,7 @@ import {
   CarouselContent,
   CarouselItem,
   Input,
+  InputButtons,
   Label,
   Select,
   SelectContent,
@@ -21,7 +22,6 @@ import { useFlowCtx } from '..'
 import BtnAddCard from '../btn-add-card'
 import Card from '../card'
 import { MAP_MESSAGE_TYPE } from '../constant'
-import InputButtons from '../input-buttons'
 
 export const MessageDialogContent = () => {
   const { selectedNode, handleChangeSelectedNode, currentLang } = useFlowCtx()
@@ -56,15 +56,6 @@ export const MessageDialogContent = () => {
       langs.forEach((lang) => {
         clonedNode.data.contents[lang] = omit(clonedNode.data.contents[lang], [
           'url',
-          'type',
-        ])
-      })
-    }
-
-    if (value !== EMessageTypes.LIST_BUTTON) {
-      langs.forEach((lang) => {
-        clonedNode.data.contents[lang] = omit(clonedNode.data.contents[lang], [
-          'buttons',
           'type',
         ])
       })
@@ -120,57 +111,54 @@ export const MessageDialogContent = () => {
           </SelectContent>
         </Select>
       </div>
-      {messageType !== EMessageTypes.LIST_BUTTON && (
-        <div className='space-y-2'>
-          <Label required>{t('message_dialog.forms.bot_response.label')}</Label>
-          {messageType === EMessageTypes.TEXT && (
-            <Input
-              placeholder={t('message_dialog.forms.bot_response.placeholder')}
-              value={botResponse}
-              onChange={(e) => {
-                setBotResponse(e.target.value)
-              }}
-            />
-          )}
-          {messageType === EMessageTypes.IMAGE && (
-            <InputImage
-              value={selectedNode?.data?.contents?.[currentLang]?.url || ''}
-              onChange={(url) => {
-                if (!selectedNode) return
+      <div className='space-y-2'>
+        <Label required>{t('message_dialog.forms.bot_response.label')}</Label>
+        {messageType === EMessageTypes.TEXT && (
+          <Input
+            placeholder={t('message_dialog.forms.bot_response.placeholder')}
+            value={botResponse}
+            onChange={(e) => {
+              setBotResponse(e.target.value)
+            }}
+          />
+        )}
+        {messageType === EMessageTypes.IMAGE && (
+          <InputImage
+            value={selectedNode?.data?.contents?.[currentLang]?.url || ''}
+            onChange={(url) => {
+              if (!selectedNode) return
 
-                const clonedNode = _.cloneDeep(selectedNode)
+              const clonedNode = _.cloneDeep(selectedNode)
 
-                clonedNode.data.contents[currentLang] = {
-                  ...clonedNode.data.contents[currentLang],
-                  url,
-                  type: EMessageTypes.IMAGE,
-                }
+              clonedNode.data.contents[currentLang] = {
+                ...clonedNode.data.contents[currentLang],
+                url,
+                type: EMessageTypes.IMAGE,
+              }
 
-                handleChangeSelectedNode(clonedNode)
-              }}
-              toServer
-              size={120}
-            />
-          )}
-        </div>
-      )}
-      {messageType === EMessageTypes.LIST_BUTTON && (
+              handleChangeSelectedNode(clonedNode)
+            }}
+            toServer
+            size={120}
+          />
+        )}
+      </div>
+      {messageType !== EMessageTypes.LIST_CARD && (
         <InputButtons
-          onChange={({ buttons }) => {
+          defaultValue={
+            selectedNode?.data?.contents?.[currentLang]?.buttons || []
+          }
+          onChange={(value) => {
             if (!selectedNode) return
 
             const clonedNode = _.cloneDeep(selectedNode)
 
             clonedNode.data.contents[currentLang] = {
               ...clonedNode.data.contents[currentLang],
-              buttons,
-              type: EMessageTypes.LIST_BUTTON,
+              buttons: value,
             }
 
             handleChangeSelectedNode(clonedNode)
-          }}
-          defaultValue={{
-            buttons: selectedNode?.data?.contents?.[currentLang]?.buttons,
           }}
         />
       )}
