@@ -99,8 +99,11 @@ export class MessengerChannel extends BaseChannel {
     })
   }
 
-  public async sendMessageToUser({ userId, text }) {
-    if (!text) return
+  public async sendMessageToUser({ userId, text, channelData }) {
+    if (channelData && channelData.extendData.length) {
+      return this.detectTemple({ userId, type: channelData.type, extendData: channelData.extendData, text });
+    }
+    if (!text) return;
 
     try {
       await axios({
@@ -146,6 +149,73 @@ export class MessengerChannel extends BaseChannel {
       logger.info(
         `[MSG] Messenger can not send action to User - Error: ${e.message}`,
       )
+    }
+  }
+
+  async sendButtons({ userId, buttons, text }) {
+    try {
+      await axios({
+        method: 'POST',
+        url: `https://graph.facebook.com/v17.0/me/messages?access_token=${this.pageToken}`,
+        data: {
+          recipient: {
+            id: userId,
+          },
+          message: {
+            attachment: {
+              type: 'template',
+              payload: {
+                template_type: 'button',
+                text: text || 'Do you want redirect to my shop?',
+                buttons: buttons,
+              },
+            },
+          },
+        },
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async sendGenericTemplate({ userId, extendData }) {
+    try {
+      await axios({
+        method: 'POST',
+        url: `https://graph.facebook.com/v17.0/me/messages?access_token=${this.pageToken}`,
+        data: {
+          recipient: {
+            id: userId,
+          },
+          message: {
+            attachment: {
+              type: 'template',
+              payload: {
+                template_type: 'generic',
+                elements: extendData,
+              },
+            },
+          },
+        },
+      });
+    } catch (error) {
+      console.error('sendGenericTemplate error: ' + error.message);
+      console.error(error);
+    }
+  }
+
+  async detectTemple({ userId, type, extendData, text }) {
+    switch (type) {
+      case 'list-card':
+        return await this.sendGenericTemplate({ userId, extendData });
+        break;
+      case 'list-button':
+        return await this.sendButtons({ userId, buttons: extendData, text });
+      default:
+        logger.info(
+          `[MSG] Messenger does not support template type ${type}`
+        );
+        break;
     }
   }
 }
