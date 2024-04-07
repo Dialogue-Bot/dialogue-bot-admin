@@ -1,7 +1,6 @@
 import { TCardInput, useCardInputSchema } from '@/lib/schema/card-input'
 import { zodResolver } from '@hookform/resolvers/zod'
-import _ from 'lodash'
-import { useFieldArray, useForm, useWatch } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
   Form,
@@ -34,32 +33,6 @@ export const CardForm = ({
     mode: 'onChange',
     defaultValues: defaultValue,
   })
-
-  const { fields, append, remove } = useFieldArray({
-    name: 'buttons',
-    control: form.control,
-  })
-
-  const buttonsWatch = useWatch({
-    control: form.control,
-    name: 'buttons',
-  })
-
-  const handleAddButton = () => {
-    form.trigger('buttons')
-
-    if (
-      !_.isEmpty(form.formState.errors.buttons) ||
-      buttonsWatch?.some((field) => !field.label || !field.value)
-    )
-      return
-
-    append({
-      label: '',
-      value: '',
-      type: 'url',
-    })
-  }
 
   const handleSubmit = (data: TCardInput) => {
     onSubmit?.(data)
