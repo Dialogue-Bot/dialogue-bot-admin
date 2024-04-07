@@ -164,21 +164,22 @@ export const MessageDialogContent = () => {
       )}
       {messageType === EMessageTypes.LIST_CARD && (
         <div className='flex gap-3'>
-          {selectedNode?.data?.contents?.[currentLang]?.cards && (
-            <Carousel className='max-w-72 w-full'>
-              <CarouselContent>
-                {(selectedNode?.data?.contents?.[currentLang]?.cards || []).map(
-                  (card: any, index: number) => {
+          {selectedNode?.data?.contents?.[currentLang]?.cards &&
+            selectedNode?.data?.contents?.[currentLang]?.cards.length > 0 && (
+              <Carousel className='max-w-72 w-full'>
+                <CarouselContent>
+                  {(
+                    selectedNode?.data?.contents?.[currentLang]?.cards || []
+                  ).map((card: any, index: number) => {
                     return (
                       <CarouselItem key={index}>
-                        <Card card={card} />
+                        <Card card={card} index={index} />
                       </CarouselItem>
                     )
-                  },
-                )}
-              </CarouselContent>
-            </Carousel>
-          )}
+                  })}
+                </CarouselContent>
+              </Carousel>
+            )}
           <BtnAddCard />
         </div>
       )}
