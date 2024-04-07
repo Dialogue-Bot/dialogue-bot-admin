@@ -166,7 +166,7 @@ export class MessengerChannel extends BaseChannel {
               type: 'template',
               payload: {
                 template_type: 'button',
-                text: text || 'Do you want redirect to my shop?',
+                text: text,
                 buttons: buttons,
               },
             },
