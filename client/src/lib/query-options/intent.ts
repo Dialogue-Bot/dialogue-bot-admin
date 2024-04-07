@@ -24,3 +24,12 @@ export const queryIntentOption = (id: string) => {
     },
   })
 }
+
+export const queryIntentsForSelect = queryOptions({
+  queryKey: ['intents-for-select'],
+  queryFn: async () => {
+    const res = await intentApi.getForSelect()
+    return res.data
+  },
+  initialData: [],
+})

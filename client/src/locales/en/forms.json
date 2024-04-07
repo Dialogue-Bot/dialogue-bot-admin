@@ -158,6 +158,20 @@
       "url": "Please enter a valid URL."
     }
   },
+  "option_label": {
+    "label": "Label",
+    "placeholder": "Enter option label",
+    "errors": {
+      "required": "Please enter option label."
+    }
+  },
+  "option_value": {
+    "label": "Value",
+    "placeholder": "Enter option value",
+    "errors": {
+      "required": "Please enter option value."
+    }
+  },
   "card_title": {
     "label": "Title",
     "placeholder": "T-shirt",

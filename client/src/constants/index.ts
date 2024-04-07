@@ -42,6 +42,7 @@ export const ENDPOINTS = {
   INTENT: {
     INDEX: '/intent',
     DELETE: '/intent/delete',
+    FOR_SELECT: '/intent/for-select',
   },
 }
 
@@ -99,3 +100,5 @@ export const CONDITIONAL_OPERATOR = [
   'not_match',
   'exist',
 ]
+
+export const NOT_CHOOSE = 'NOT_CHOOSE'

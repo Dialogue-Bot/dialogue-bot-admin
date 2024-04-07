@@ -21,7 +21,7 @@
   "add_intent": "Add intent",
   "trained": "Trained",
   "not_trained": "Not trained",
-
+  "empty_buttons": "Empty buttons",
   "row_actions": {
     "update": "Update",
     "delete": "Delete",

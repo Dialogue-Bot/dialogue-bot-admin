@@ -59,6 +59,7 @@ export const ENDPOINTS = {
   INTENT: {
     INDEX: '/intent',
     PREDICT: '/intent/predict',
+    FOR_SELECT: '/intent/for-select',
   },
 }
 
