@@ -148,14 +148,14 @@ export const MessageDialogContent = () => {
           defaultValue={
             selectedNode?.data?.contents?.[currentLang]?.buttons || []
           }
-          onChange={(value) => {
+          onChange={({ buttons }) => {
             if (!selectedNode) return
 
             const clonedNode = _.cloneDeep(selectedNode)
 
             clonedNode.data.contents[currentLang] = {
               ...clonedNode.data.contents[currentLang],
-              buttons: value,
+              buttons,
             }
 
             handleChangeSelectedNode(clonedNode)
