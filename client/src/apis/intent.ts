@@ -1,7 +1,12 @@
 import { ENDPOINTS } from '@/constants'
 import http_client from '@/lib/http-client'
 import { TIntent, TIntentInput } from '@/types/intent'
-import { TBaseQuery, TBaseResponse, TResPagination } from '@/types/share'
+import {
+  TBaseQuery,
+  TBaseResponse,
+  TResPagination,
+  TSelectResponse,
+} from '@/types/share'
 
 class IntentApi {
   create(data: TIntentInput): Promise<TBaseResponse<TIntent>> {
@@ -22,6 +27,10 @@ class IntentApi {
 
   getAll(q?: TBaseQuery): Promise<TResPagination<TIntent>> {
     return http_client.get(ENDPOINTS.INTENT.INDEX, { params: q })
+  }
+
+  getForSelect(): Promise<TBaseResponse<TSelectResponse<string, string>[]>> {
+    return http_client.get(ENDPOINTS.INTENT.FOR_SELECT)
   }
 }
 

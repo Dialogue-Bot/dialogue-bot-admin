@@ -43,6 +43,12 @@ export class IntentRoute implements Routes {
     )
 
     this.router.get(
+      ENDPOINTS.INTENT.FOR_SELECT,
+      authMiddleware,
+      this.controller.getForSelect,
+    )
+
+    this.router.get(
       `${ENDPOINTS.INTENT.INDEX}/:id`,
       authMiddleware,
       this.controller.getById,

@@ -20,3 +20,7 @@
 .react-flow__edge:hover .edgebutton .btn {
   @apply opacity-100 scale-100 visible transition-all;
 }
+
+.react-flow__node.selected #delete-node-btn {
+  @apply opacity-100 scale-100 visible transition-all pointer-events-auto;
+}

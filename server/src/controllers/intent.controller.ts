@@ -67,4 +67,11 @@ export class IntentController {
       data,
     })
   })
+
+  public getForSelect = catchAsync(async (req: RequestWithUser, res) => {
+    const data = await this.intentService.getIntentsForSelect(
+      req.user?.id as string,
+    )
+    res.status(StatusCodes.OK).json({ data })
+  })
 }

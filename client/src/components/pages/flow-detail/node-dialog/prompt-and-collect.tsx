@@ -7,7 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui'
+import { NOT_CHOOSE } from '@/constants'
+import { queryIntentsForSelect } from '@/lib/query-options'
 import { EGrammarTypes } from '@/types/flow'
+import { useQuery } from '@tanstack/react-query'
 import _ from 'lodash'
 import { useTranslation } from 'react-i18next'
 import { MessageDialogContent } from '.'
@@ -18,6 +21,8 @@ export const PromptAndCollectDialogContent = () => {
   const { t } = useTranslation('forms')
   const { flow, selectedNode, handleChangeSelectedNode, currentLang } =
     useFlowCtx()
+
+  const { data: intents } = useQuery(queryIntentsForSelect)
 
   return (
     <>
@@ -54,13 +59,17 @@ export const PromptAndCollectDialogContent = () => {
           <div className='space-y-2 w-full'>
             <Label>{t('assign_user_response.label')}</Label>
             <Select
-              value={selectedNode?.data?.assignUserResponse}
+              value={selectedNode?.data?.assignUserResponse || NOT_CHOOSE}
               onValueChange={(value) => {
                 if (!selectedNode) return
 
                 const cloneSelectedNode = _.cloneDeep(selectedNode)
 
-                cloneSelectedNode.data.assignUserResponse = value
+                if (value === NOT_CHOOSE) {
+                  delete cloneSelectedNode.data.assignUserResponse
+                } else {
+                  cloneSelectedNode.data.assignUserResponse = value
+                }
 
                 handleChangeSelectedNode(cloneSelectedNode)
               }}
@@ -71,6 +80,9 @@ export const PromptAndCollectDialogContent = () => {
                 />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value={NOT_CHOOSE}>
+                  {t('assign_user_response.placeholder')}
+                </SelectItem>
                 {flow.variables?.map((variable, index) => {
                   return (
                     <SelectItem
@@ -87,13 +99,17 @@ export const PromptAndCollectDialogContent = () => {
           <div className='space-y-2 w-full'>
             <Label>{t('trained_data.label')}</Label>
             <Select
-              value={selectedNode?.data?.trainedData}
+              value={selectedNode?.data?.trainedData || NOT_CHOOSE}
               onValueChange={(value) => {
                 if (!selectedNode) return
 
                 const cloneSelectedNode = _.cloneDeep(selectedNode)
 
-                cloneSelectedNode.data.trainedData = value
+                if (value === NOT_CHOOSE) {
+                  delete cloneSelectedNode.data.trainedData
+                } else {
+                  cloneSelectedNode.data.trainedData = value
+                }
 
                 handleChangeSelectedNode(cloneSelectedNode)
               }}
@@ -102,10 +118,14 @@ export const PromptAndCollectDialogContent = () => {
                 <SelectValue placeholder={t('trained_data.placeholder')} />
               </SelectTrigger>
               <SelectContent>
-                {Object.values(EGrammarTypes).map((type) => {
+                <SelectItem value={NOT_CHOOSE}>
+                  {' '}
+                  {t('trained_data.placeholder')}
+                </SelectItem>
+                {intents.map(({label,value}) => {
                   return (
-                    <SelectItem key={type} value={type}>
-                      {MAP_GRAMMAR_TYPE[type]}
+                    <SelectItem key={value} value={value}>
+                      {label}
                     </SelectItem>
                   )
                 })}
@@ -115,13 +135,17 @@ export const PromptAndCollectDialogContent = () => {
           <div className='space-y-2 w-full'>
             <Label>{t('repeat.label')}</Label>
             <Select
-              value={selectedNode?.data?.repeat?.toString()}
+              value={selectedNode?.data?.repeat?.toString() || NOT_CHOOSE}
               onValueChange={(value) => {
                 if (!selectedNode) return
 
                 const cloneSelectedNode = _.cloneDeep(selectedNode)
 
-                cloneSelectedNode.data.repeat = Number(value)
+                if (value === NOT_CHOOSE) {
+                  delete cloneSelectedNode.data.repeat
+                } else {
+                  cloneSelectedNode.data.repeat = parseInt(value)
+                }
 
                 handleChangeSelectedNode(cloneSelectedNode)
               }}
@@ -130,7 +154,10 @@ export const PromptAndCollectDialogContent = () => {
                 <SelectValue placeholder={t('repeat.placeholder')} />
               </SelectTrigger>
               <SelectContent>
-                {[0, 1, 2, 3, 4, 5].map((value) => {
+                <SelectItem value={NOT_CHOOSE}>
+                  {t('repeat.placeholder')}
+                </SelectItem>
+                {[1, 2, 3, 4, 5].map((value) => {
                   return (
                     <SelectItem key={value} value={value.toString()}>
                       {value}

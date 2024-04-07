@@ -62,6 +62,7 @@ type FlowCtx = {
   setEdges: React.Dispatch<React.SetStateAction<Edge<any>[]>>
   handleDeleteEdgeById: (id: string) => void
   handleNodesDelete: OnNodesDelete
+  handleDeleteNodeById: (id: string) => void
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -568,10 +569,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
         return prev
       }
 
-      if (
-        prev.data.contents[lang]?.type === EMessageTypes.LIST_BUTTON ||
-        prev.data.contents[lang]?.type === EMessageTypes.LIST_CARD
-      ) {
+      if (prev.data.contents[lang]?.type === EMessageTypes.LIST_CARD) {
         return prev
       }
 
@@ -646,6 +644,39 @@ export const FlowProvider = ({ children, flow }: Props) => {
   }, [findNodeIsNextAction, nodes])
 
   /**
+   * Deletes the specified next action from the given node.
+   * If the next action is set as the node's nextAction, it will be removed.
+   * If the node has nextActions, the specified next action will be removed from the list.
+   * If the node has no more nextActions after removal, the nextActions property will be deleted.
+   *
+   * @param node - The node from which to delete the next action.
+   * @param nextActionId - The ID of the next action to delete.
+   * @returns A cloned copy of the node with the specified next action deleted.
+   */
+  const handleDeleteNextAction = useCallback(
+    (node: Node<any>, nextActionId: string) => {
+      const clonedNode = _.cloneDeep(node)
+
+      if (clonedNode.data.nextAction === nextActionId) {
+        delete node.data.nextAction
+      }
+
+      if (clonedNode.data.nextActions) {
+        clonedNode.data.nextActions = node.data.nextActions.filter(
+          (na: any) => na.id !== nextActionId,
+        )
+
+        if (clonedNode.data.nextActions.length === 0) {
+          delete clonedNode.data.nextActions
+        }
+      }
+
+      return clonedNode
+    },
+    [],
+  )
+
+  /**
    * Handles the deletion of nodes.
    * @param nodeDels - The nodes to be deleted.
    */
@@ -660,36 +691,58 @@ export const FlowProvider = ({ children, flow }: Props) => {
         return
       }
 
-      // remove next action from node is have next action
-      if (nodeIsHaveNextAction?.data.nextAction) {
-        delete nodeIsHaveNextAction.data.nextAction
-      }
-
-      // remove next actions from node is have next action
-      if (nodeIsHaveNextAction?.data.nextActions) {
-        // remove next action from next actions
-        nodeIsHaveNextAction.data.nextActions =
-          nodeIsHaveNextAction.data.nextActions.filter(
-            (na: any) => na.id !== nodeToDelete.id,
-          )
-
-        // remove next actions if it empty
-        if (nodeIsHaveNextAction.data.nextActions.length === 0) {
-          delete nodeIsHaveNextAction.data.nextActions
-        }
-      }
+      const nodeDeletedNextAction = handleDeleteNextAction(
+        nodeIsHaveNextAction,
+        nodeToDelete.id,
+      )
 
       setNodes((nodes) => {
         return nodes.map((node) => {
-          if (node.id === nodeIsHaveNextAction.id) {
-            return nodeIsHaveNextAction
+          if (node.id === nodeDeletedNextAction.id) {
+            return nodeDeletedNextAction
           }
 
           return node
         })
       })
     },
-    [findNodeIsNextAction, nodes, setNodes],
+    [findNodeIsNextAction, handleDeleteNextAction, nodes, setNodes],
+  )
+
+  /**
+   * Deletes a node by its ID.
+   * @param id - The ID of the node to delete.
+   */
+  const handleDeleteNodeById = useCallback(
+    (id: string) => {
+      const node = getNode(id)
+
+      let clonedNodes = _.cloneDeep(nodes)
+
+      if (!node) {
+        return
+      }
+
+      const nodeIsHaveNextAction = findNodeIsNextAction(nodes, node)
+
+      if (nodeIsHaveNextAction) {
+        const nodeDeletedNextAction = handleDeleteNextAction(
+          nodeIsHaveNextAction,
+          node.id,
+        )
+
+        clonedNodes = clonedNodes.map((node) => {
+          if (node.id === nodeDeletedNextAction.id) {
+            return nodeDeletedNextAction
+          }
+
+          return node
+        })
+      }
+
+      setNodes(clonedNodes.filter((node) => node.id !== id))
+    },
+    [findNodeIsNextAction, getNode, handleDeleteNextAction, nodes, setNodes],
   )
 
   /**
@@ -798,6 +851,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
         setEdges,
         handleDeleteEdgeById,
         handleNodesDelete,
+        handleDeleteNodeById,
       }}
     >
       {children}
