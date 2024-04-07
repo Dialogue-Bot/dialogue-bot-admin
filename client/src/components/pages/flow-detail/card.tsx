@@ -31,7 +31,7 @@ const Card = ({ card, index }: Props) => {
   const { selectedNode, currentLang, handleChangeSelectedNode } = useFlowCtx()
   const { t } = useTranslation(['flowDetail', 'common'])
   return (
-    <UCard className='overflow-hidden min-h-60 flex flex-col max-w-72 w-full flex-shrink-0'>
+    <UCard className='overflow-hidden min-h-60 flex flex-col max-w-72 w-full flex-shrink-0 relative flex-1 h-full'>
       <div className='flex items-center gap-3 absolute top-4 z-10 right-4'>
         <Dialog open={openCardDialog} onOpenChange={setOpenCardDialog}>
           <DialogTrigger asChild>
