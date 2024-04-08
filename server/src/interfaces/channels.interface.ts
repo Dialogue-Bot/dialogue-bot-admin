@@ -29,3 +29,9 @@ export interface ChannelType {
   description: string
   deleted: boolean
 }
+
+export interface MessengerButton {
+  type: string;
+  url: string;
+  title: string;
+}
