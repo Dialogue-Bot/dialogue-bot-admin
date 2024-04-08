@@ -31,6 +31,7 @@ export const ENDPOINTS = {
     DELETE: '/channel/delete',
     DELETES: '/channel/deletes',
     TYPES: '/channel/types',
+    FOR_TEST: '/channel/for-test',
   },
   FLOW: {
     INDEX: '/flow',

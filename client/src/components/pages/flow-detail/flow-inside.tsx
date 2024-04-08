@@ -19,6 +19,7 @@ import { edgeTypes } from './edge-types'
 import { useFlowCtx } from './flow-provider'
 import { NodeDialog } from './node-dialog'
 import { nodeTypes } from './node-types'
+import TestYourBot from './test-your-bot'
 import { Toolbar } from './toolbar'
 
 export const FlowInside = () => {
@@ -103,6 +104,7 @@ export const FlowInside = () => {
       <Actions />
       <NodeDialog />
       <ConditionDialog />
+      <TestYourBot />
     </div>
   )
 }

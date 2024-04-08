@@ -44,6 +44,17 @@ export const queryChannelsForSelectOption = (flowId: string) => {
 
       return res.data
     },
-    staleTime: 1000 * 60 * 60, // 1 hour
+    staleTime: 1000 * 60 * 60,
   })
 }
+
+export const queryChannelForTestOption = (flowId: string) =>
+  queryOptions({
+    queryKey: ['channel-for-test', flowId],
+    queryFn: async () => {
+      const res = await channelApi.getChannelForTest()
+
+      return res.data
+    },
+    staleTime: Infinity,
+  })
