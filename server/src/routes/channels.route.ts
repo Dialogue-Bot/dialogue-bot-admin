@@ -1,6 +1,10 @@
 import { ENDPOINTS } from '@/constants'
 import { ChannelController } from '@/controllers/channels.controller'
-import { ChannelDTO, DeleteChannelDTO } from '@/dtos/channels.dto'
+import {
+  ChannelDTO,
+  DeleteChannelDTO,
+  UpdateChannelForTestDto,
+} from '@/dtos/channels.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { authMiddleware } from '@/middlewares/auth.middleware'
 import { validate } from '@/middlewares/validation.middleware'
@@ -23,6 +27,13 @@ export class ChannelRoute implements Routes {
     )
 
     this.router.put(
+      ENDPOINTS.CHANNEL.FOR_TEST,
+      validate(UpdateChannelForTestDto),
+      authMiddleware,
+      this.controller.updateChannelForTest,
+    )
+
+    this.router.put(
       `${ENDPOINTS.CHANNEL.INDEX}/:id`,
       validate(ChannelDTO, 'body'),
       authMiddleware,
@@ -40,6 +51,12 @@ export class ChannelRoute implements Routes {
       validate(DeleteChannelDTO, 'body'),
       authMiddleware,
       this.controller.deleteMultipleChannel,
+    )
+
+    this.router.get(
+      ENDPOINTS.CHANNEL.FOR_TEST,
+      authMiddleware,
+      this.controller.getChannelForTest,
     )
 
     this.router.get(

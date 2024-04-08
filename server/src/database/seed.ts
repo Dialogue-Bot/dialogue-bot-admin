@@ -1,6 +1,7 @@
-import * as bcrypt from 'bcrypt'
+import { AuthService } from '@/services/auth.service'
+import Container from 'typedi'
 import { db } from './db'
-import { channelTypes, users } from './schema'
+import { channelTypes } from './schema'
 
 async function seedChannelTypes() {
   try {
@@ -21,15 +22,16 @@ async function seedChannelTypes() {
 
 async function seedDefaultAccount() {
   try {
-    const hashedPassword = await bcrypt.hash('admin', 10)
-    await db
-      .insert(users)
-      .values({
-        email: 'admin@gmail.com',
-        password: hashedPassword,
-        name: 'admin',
-      })
-      .onConflictDoNothing()
+    const authService = Container.get(AuthService)
+
+    await authService.register({
+      email: 'admin@gmail.com',
+      name: 'Admin',
+      password: 'admin',
+      passwordConfirm: 'admin',
+    })
+
+    console.log('Default account created')
   } catch (error) {
     console.error(`Can't create default account`)
   }

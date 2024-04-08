@@ -1,8 +1,9 @@
 import { Creator } from '@/channels/creator.channel'
-import { LOCALE_KEY } from '@/constants'
+import { LOCALE_KEY, TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { db } from '@/database/db'
 import { channelTypes, channels } from '@/database/schema'
 import { TNewChannel, TUpdateChannel } from '@/database/types'
+import { UpdateChannelForTestDto } from '@/dtos/channels.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
@@ -13,7 +14,7 @@ import {
 } from '@/interfaces/channels.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { logger } from '@/utils/logger'
-import { and, asc, desc, eq, inArray, like, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, inArray, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
 
@@ -72,6 +73,18 @@ export class ChannelService {
     return newChannel
   }
 
+  public async createDefaultChannel(userId: string) {
+    const webChannelType = this.channelTypes.find((ct) => ct.name === 'WEB')
+
+    return this.create({
+      userId,
+      contactId: `${TEST_YOUR_BOT_CHANNEL}${userId}`,
+      contactName: TEST_YOUR_BOT_CHANNEL,
+      channelTypeId: webChannelType.id,
+      active: true,
+    })
+  }
+
   public async findOneByContactId(contactId: string) {
     const expectedChannel = await db
       .select({
@@ -80,6 +93,7 @@ export class ChannelService {
         contactName: channels.contactName,
         channelType: channelTypes.name,
         credentials: channels.credentials,
+        flowId: channels.flowId,
       })
       .from(channels)
       .where(
@@ -87,7 +101,7 @@ export class ChannelService {
       )
       .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
 
-    if (!expectedChannel) return
+    if (!expectedChannel) return null
 
     return expectedChannel[0]
   }
@@ -199,6 +213,7 @@ export class ChannelService {
           like(channels.contactId, `%${paging.q || ''}%`),
           eq(channels.deleted, false),
           eq(channels.userId, userId),
+          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}-${userId}`),
         ),
       )
       .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
@@ -238,10 +253,12 @@ export class ChannelService {
 
   initChannel(channel: ChannelInfo) {
     try {
-      logger.info(`[Init channel] ${channel.channelType} - ${channel.contactName} ${channel.contactId}`)
-      return Creator.createChannel(channel);
+      logger.info(
+        `[Init channel] ${channel.channelType} - ${channel.contactName} ${channel.contactId}`,
+      )
+      return Creator.createChannel(channel)
     } catch (err) {
-      logger.info(`[Init channel] ${err.message}`);
+      logger.info(`[Init channel] ${err.message}`)
     }
   }
 
@@ -347,5 +364,41 @@ export class ChannelService {
       .where(and(eq(channels.userId, userId), eq(channels.deleted, false)))
 
     return _channels
+  }
+
+  public async updateChannelForTest(
+    userId: string,
+    { flowId }: UpdateChannelForTestDto,
+  ) {
+    let channel = await this.getChannelForTest(userId)
+
+    if (channel && channel.flowId === flowId) return channel
+
+    if (!channel) {
+      channel = await this.createDefaultChannel(userId)
+    }
+
+    const [updated] = await db
+      .update(channels)
+      .set({
+        flowId,
+        updatedAt: new Date(),
+      })
+      .where(eq(channels.id, channel.id))
+      .returning()
+
+    return updated
+  }
+
+  public async getChannelForTest(userId: string) {
+    const _channel = await db.query.channels.findFirst({
+      where: and(
+        eq(channels.userId, userId),
+        eq(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+        eq(channels.deleted, false),
+      ),
+    })
+
+    return _channel
   }
 }

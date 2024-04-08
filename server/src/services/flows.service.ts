@@ -1,6 +1,6 @@
 import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
-import { channels, flows } from '@/database/schema'
+import { flows } from '@/database/schema'
 import { TNewFlow } from '@/database/types'
 import { FlowDTO } from '@/dtos/flows.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
@@ -9,7 +9,7 @@ import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { logger } from '@/utils/logger'
-import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
@@ -261,19 +261,11 @@ export class FlowService {
     return result
   }
   public async getFlowByContactId(contactId: string) {
-    const flow = db.query.flows.findFirst({
-      where: and(
-        eq(flows.deleted, false),
-        // isNotNull(flows.publishAt),
-        isNotNull(
-          db
-            .select({
-              id: channels.id,
-            })
-            .from(channels)
-            .where(and(eq(channels.contactId, contactId))),
-        ),
-      ),
+
+    const channel = await this.chanelService.findOneByContactId(contactId)
+
+    const flow = await db.query.flows.findFirst({
+      where: eq(flows.id, channel?.flowId),
     })
 
     if (!flow) {
@@ -282,7 +274,7 @@ export class FlowService {
         this.localeService.i18n().FLOW.NOT_FOUND(),
       )
     }
-    console.log(flow);
+
     return flow
   }
 }

@@ -57,6 +57,13 @@
       "when": 1710429432143,
       "tag": "0007_outstanding_nomad",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1712512610041,
+      "tag": "0008_equal_banshee",
+      "breakpoints": true
     }
   ]
 }

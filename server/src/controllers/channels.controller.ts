@@ -78,4 +78,18 @@ export class ChannelController {
       res.status(StatusCodes.OK).json({ data })
     },
   )
+
+  public getChannelForTest = catchAsync(async (req: RequestWithUser, res) => {
+    const data = await this.channelService.getChannelForTest(req.user.id)
+    res.status(StatusCodes.OK).json({ data })
+  })
+
+  public updateChannelForTest = catchAsync(
+    async (req: RequestWithUser, res) => {
+      await this.channelService.updateChannelForTest(req.user.id, req.body)
+      res.status(StatusCodes.OK).json({
+        message: this.localeService.i18n().CHANNEL.UPDATE_SUCCESS(),
+      })
+    },
+  )
 }

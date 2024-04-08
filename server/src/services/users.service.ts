@@ -10,6 +10,7 @@ import * as bcrypt from 'bcrypt'
 import { and, eq } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
+import { ChannelService } from './channels.service'
 import { FirebaseService } from './firebase.service'
 
 @Service()
@@ -17,6 +18,8 @@ export class UserService {
   constructor(
     private readonly firebaseService: FirebaseService,
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
+
+    private readonly channelService: ChannelService,
   ) {}
 
   public async findOneById(id: string) {
@@ -37,6 +40,8 @@ export class UserService {
 
   public async create(fields: TNewUser) {
     const [user] = await db.insert(users).values(fields).returning()
+
+    await this.channelService.createDefaultChannel(user.id)
 
     return user
   }
