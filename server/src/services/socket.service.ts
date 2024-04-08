@@ -11,16 +11,13 @@ const USERS: Record<string, any> = {}
 export class SocketService {
   constructor(private readonly chanelService: ChannelService) { }
   public handleSocketEvents(socket: Socket) {
-    socket.on(
-      SOCKET_EVENTS.MESSAGE, (data) => {
-        this.handleIncomingMessage(socket, data)
-      })
+    socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
+      this.handleIncomingMessage(socket, data)
+    })
 
-    socket.on(
-      SOCKET_EVENTS.DISCONNECT, () => {
-        this.handleLeaveRoom(socket)
-      })
-
+    socket.on(SOCKET_EVENTS.DISCONNECT, () => {
+      this.handleLeaveRoom(socket)
+    })
   }
 
   private async handleIncomingMessage(io: Socket, data: any) {
@@ -40,7 +37,7 @@ export class SocketService {
       logger.info(`[Socket Service] Can not find channel!`)
     }
 
-    if (expectedChannel.channelType === 'WEB') {
+    if (expectedChannel?.channelType === 'WEB') {
       const { id, contactName, channelType, credentials } = expectedChannel
       const webChannel = new WebChannel(
         id,
@@ -57,6 +54,7 @@ export class SocketService {
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
     const userId = query.userId
+    console.log('userId', userId);
     socket.join(userId)
 
     USERS[userId as string] = socket
@@ -65,7 +63,6 @@ export class SocketService {
     logger.info(`[Socket Service] Total users: ${Object.keys(USERS).length}`)
 
     logger.info(`[Socket Service] Users: ${Object.keys(USERS).join(', ')}`)
-
 
     return socket
   }

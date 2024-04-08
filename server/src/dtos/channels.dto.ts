@@ -52,3 +52,9 @@ export class DeleteChannelDTO {
   @IsString({ each: true })
   ids: string[]
 }
+
+export class UpdateChannelForTestDto {
+  @IsString()
+  @IsNotEmpty()
+  flowId: string
+}
