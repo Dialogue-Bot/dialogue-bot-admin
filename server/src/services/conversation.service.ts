@@ -11,9 +11,9 @@ export class ConversationService {
   constructor(private readonly chanelService: ChannelService) { }
 
   public async handleIncomingMessage(req: Request) {
-    const { from, recipient, text, type, channelData } = req.body
+    const { from, recipient, text, type, channelData } = req.body;
 
-    console.log('Incoming message:', req.body)
+    console.log('[ConversationService] Incoming message:', req.body);
 
     const expectedChannel = await this.chanelService.findOneByContactId(from.id)
 
@@ -35,6 +35,7 @@ export class ConversationService {
           return await messengerChannel.sendMessageToUser({
             userId: recipient.id,
             text,
+            channelData,
           })
 
         if (['typing', 'stop-typing'].includes(type))
