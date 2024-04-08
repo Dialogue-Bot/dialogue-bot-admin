@@ -156,7 +156,7 @@ export class MessengerChannel extends BaseChannel {
     try {
       await axios({
         method: 'POST',
-        url: `https://graph.facebook.com/v17.0/me/messages?access_token=${this.pageToken}`,
+        url: this.messengerPostURL + this.pageToken,
         data: {
           recipient: {
             id: userId,
@@ -182,7 +182,7 @@ export class MessengerChannel extends BaseChannel {
     try {
       await axios({
         method: 'POST',
-        url: `https://graph.facebook.com/v17.0/me/messages?access_token=${this.pageToken}`,
+        url: this.messengerPostURL + this.pageToken,
         data: {
           recipient: {
             id: userId,
