@@ -21,7 +21,8 @@ export class SocketService {
   }
 
   private async handleIncomingMessage(io: Socket, data: any) {
-    const { address, message } = data
+    const { address, message, isTest } = data
+    console.log('socket data:' + JSON.stringify(data));
 
     if (!address || !message) return
 
@@ -47,7 +48,7 @@ export class SocketService {
         credentials,
       )
 
-      await webChannel.postMessageToBot({ userId, message, data: '' })
+      await webChannel.postMessageToBot({ userId, message, data: '', isTest })
     }
   }
 

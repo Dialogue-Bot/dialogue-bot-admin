@@ -9,7 +9,7 @@ import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { logger } from '@/utils/logger'
-import { and, asc, desc, eq, like, ne, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
@@ -265,13 +265,25 @@ export class FlowService {
 
     return result
   }
-  public async getFlowByContactId(contactId: string) {
+  public async getFlowByContactId(contactId: string, isTest: boolean) {
 
-    const channel = await this.chanelService.findOneByContactId(contactId)
+    const channel = await this.chanelService.findOneByContactId(contactId);
+    let flow = null;
 
-    const flow = await db.query.flows.findFirst({
-      where: eq(flows.id, channel?.flowId),
-    })
+    if (isTest) {
+      flow = await db.query.flows.findFirst({
+        where: eq(flows.id, channel?.flowId),
+      });
+
+    }
+    else {
+      flow = await db.query.flows.findFirst({
+        where: and(
+          eq(flows.id, channel?.flowId),
+          isNotNull(flows.publishAt)
+        ),
+      });
+    }
 
     if (!flow) {
       throw new HttpException(

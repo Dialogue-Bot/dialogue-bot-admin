@@ -20,7 +20,7 @@ export class BaseChannel {
     this.channelType = channelType
   }
 
-  public async postMessageToBot({ userId, message = '', data }) {
+  public async postMessageToBot({ userId, message = '', data, isTest }) {
     const uid = this.initConversationId(userId)
     try {
       const postMsg = await axios({
@@ -36,6 +36,7 @@ export class BaseChannel {
           recipient: {
             id: this.contactId,
           },
+          testBot: isTest || false,
           data: data || false,
           text: message,
           type: 'message',
