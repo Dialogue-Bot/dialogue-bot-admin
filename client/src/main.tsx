@@ -1,7 +1,6 @@
 import { SToaster } from '@/components/ui'
 import '@/styles/index.css'
 import { QueryClientProvider } from '@tanstack/react-query'
-import 'dialogue-chatbox/dist-components/style.css'
 import { createRoot } from 'react-dom/client'
 import { I18nextProvider } from 'react-i18next'
 import { RouterProvider } from 'react-router-dom'

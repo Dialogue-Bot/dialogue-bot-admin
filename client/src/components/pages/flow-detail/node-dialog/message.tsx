@@ -145,9 +145,9 @@ export const MessageDialogContent = () => {
       </div>
       {messageType !== EMessageTypes.LIST_CARD && (
         <InputButtons
-          defaultValue={
-            selectedNode?.data?.contents?.[currentLang]?.buttons || []
-          }
+          defaultValue={{
+            buttons: selectedNode?.data?.contents?.[currentLang]?.buttons || [],
+          }}
           onChange={({ buttons }) => {
             if (!selectedNode) return
 
