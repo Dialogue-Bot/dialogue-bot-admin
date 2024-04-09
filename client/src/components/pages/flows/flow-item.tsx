@@ -42,7 +42,7 @@ export const FlowItem = ({ flow }: Props) => {
         className={buttonVariants({
           variant: 'outline',
           className:
-            '!p-4 h-[unset] hover:border-primary hover:ring-primary hover:ring-1 flex-1',
+            '!p-4 !h-[unset] hover:border-primary hover:ring-primary hover:ring-1 flex-1',
         })}
       >
         <h3>{flow.name}</h3>

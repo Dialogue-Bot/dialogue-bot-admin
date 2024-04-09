@@ -1,3 +1,5 @@
+@import 'dialogue-chatbox/dist-components/style.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

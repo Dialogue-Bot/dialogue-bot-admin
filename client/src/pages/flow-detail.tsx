@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import { useUpdateChannelForTest } from '@/hooks/channel'
 import '@/styles/react-flow.css'
+
 import { useEffect } from 'react'
 
 const FlowDetail = () => {

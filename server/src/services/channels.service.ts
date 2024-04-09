@@ -213,7 +213,7 @@ export class ChannelService {
           like(channels.contactId, `%${paging.q || ''}%`),
           eq(channels.deleted, false),
           eq(channels.userId, userId),
-          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}-${userId}`),
+          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
         ),
       )
       .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
