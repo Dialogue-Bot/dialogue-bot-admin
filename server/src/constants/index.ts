@@ -32,6 +32,7 @@ export const ENDPOINTS = {
     DELETE: '/channel/delete',
     DELETES: '/channel/deletes',
     TYPES: '/channel/types',
+    FOR_TEST: '/channel/for-test',
   },
   SETTING: {
     INDEX: '/setting',
@@ -71,3 +72,5 @@ export const SOCKET_EVENTS = {
   DISCONNECT: 'disconnect',
   DISABLED_BOT: 'disabled-bot',
 }
+
+export const TEST_YOUR_BOT_CHANNEL = 'TESTYOURBOT'

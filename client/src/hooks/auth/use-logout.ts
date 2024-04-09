@@ -18,11 +18,13 @@ export const useLogout = () => {
       window.location.href = '/login'
       setUser(null)
       queryClient.clear()
+      localStorage.removeItem('user-bot-id')
     },
     onError() {
       window.location.href = '/login'
       setUser(null)
       queryClient.clear()
+      localStorage.removeItem('user-bot-id')
     },
   })
 }

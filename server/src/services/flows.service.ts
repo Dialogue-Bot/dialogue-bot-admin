@@ -50,6 +50,11 @@ export class FlowService {
             label: 'Language',
           },
         ],
+        variables: [{
+          name: 'lang',
+          value: 'en',
+          type: 'string',
+        }]
       })
       .returning()
 

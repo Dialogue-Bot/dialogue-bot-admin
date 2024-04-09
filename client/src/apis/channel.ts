@@ -53,6 +53,16 @@ class ChannelApi {
       params: { flowId },
     })
   }
+
+  getChannelForTest(): Promise<TBaseResponse<TChannelWithChannelType>> {
+    return http_client.get(ENDPOINTS.CHANNEL.FOR_TEST)
+  }
+
+  updateChannelForTest(
+    flowId: string,
+  ): Promise<TBaseResponse<TChannelWithChannelType>> {
+    return http_client.put(ENDPOINTS.CHANNEL.FOR_TEST, { flowId })
+  }
 }
 
 export const channelApi = new ChannelApi()

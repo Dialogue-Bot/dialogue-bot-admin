@@ -4,7 +4,9 @@ import { EActionTypes, EMessageTypes, TFLow, TNode } from '@/types/flow'
 import { createId } from '@paralleldrive/cuid2'
 import _ from 'lodash'
 import {
+  Dispatch,
   DragEvent,
+  SetStateAction,
   createContext,
   useCallback,
   useContext,
@@ -63,6 +65,8 @@ type FlowCtx = {
   handleDeleteEdgeById: (id: string) => void
   handleNodesDelete: OnNodesDelete
   handleDeleteNodeById: (id: string) => void
+  showTestBot: boolean
+  setShowTestBot: Dispatch<SetStateAction<boolean>>
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -134,6 +138,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
     flow.settings?.find((setting) => setting.type === 'language')?.value ||
       'en',
   )
+  const [showTestBot, setShowTestBot] = useState(false)
+
   const updateFlowMutation = useUpdateFlow({
     isShowToastSuccess: false,
   })
@@ -852,6 +858,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
         handleDeleteEdgeById,
         handleNodesDelete,
         handleDeleteNodeById,
+        showTestBot,
+        setShowTestBot,
       }}
     >
       {children}

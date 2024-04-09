@@ -15,7 +15,8 @@ import { useFlowCtx } from '.'
 import Setting from './setting'
 
 export const Toolbar = () => {
-  const { toggleActions } = useFlowCtx()
+  const { toggleActions, openActions, setShowTestBot, showTestBot } =
+    useFlowCtx()
   const { t } = useTranslation('flowDetail')
   const { flow, edges, nodes, getCompleteFlows } = useFlowCtx()
   const { id } = useParams()
@@ -45,7 +46,10 @@ export const Toolbar = () => {
                 <Button
                   size='icon'
                   variant='ghost'
-                  onClick={toggleActions}
+                  onClick={() => {
+                    toggleActions()
+                    setShowTestBot(false)
+                  }}
                   className='flex-shrink-0'
                 >
                   <Zap className='w-4 h-4' />
@@ -75,7 +79,18 @@ export const Toolbar = () => {
             orientation='vertical'
             className='self-stretch h-[unset]'
           />
-          <Button variant='ghost'>{t('toolbar.test_your_bot')}</Button>
+          <Button
+            variant='ghost'
+            onClick={() => {
+              setShowTestBot((prev) => !prev)
+
+              if (openActions) {
+                toggleActions()
+              }
+            }}
+          >
+            {t(!showTestBot ? 'toolbar.test_your_bot' : 'toolbar.close_test')}
+          </Button>
           <Button
             variant='secondary'
             onClick={handleSave}

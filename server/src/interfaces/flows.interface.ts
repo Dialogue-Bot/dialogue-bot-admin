@@ -14,4 +14,5 @@ export interface IFlowSetting {
 export interface IFlowVariable {
   name: string
   value: any
+  type: string
 }
