@@ -28,7 +28,7 @@ export class WebChannel extends BaseChannel {
         channelData: any;
     }) {
         try {
-            let result = { userId, messages: text || '', template: {} };
+            let result = { userId, message: text || '', template: {} };
 
             if (channelData) {
                 result.template = {
