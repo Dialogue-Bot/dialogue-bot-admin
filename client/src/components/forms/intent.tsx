@@ -4,6 +4,7 @@ import {
 } from '@/lib/schema/intent-input'
 import { TIntentInput } from '@/types/intent'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { createId } from '@paralleldrive/cuid2'
 import _ from 'lodash'
 import { Minus, Plus } from 'lucide-react'
 import { useCallback } from 'react'
@@ -38,13 +39,12 @@ const IntentForm = ({ defaultValues, id = 'intent-form', onSubmit }: Props) => {
   const form = useForm<TIntentInputForm>({
     defaultValues: {
       trainType: 'manual',
+      referenceId: createId(),
       ...defaultValues,
     },
     resolver: zodResolver(schema),
     mode: 'onChange',
   })
-
-  console.log(form.formState.errors)
 
   const watchTrainType = form.watch('trainType')
   const trainDescriptionWatch = useWatch({
@@ -369,6 +369,7 @@ const IntentForm = ({ defaultValues, id = 'intent-form', onSubmit }: Props) => {
                     <Input
                       {...field}
                       placeholder={t('referenceId.placeholder')}
+                      disabled
                     />
                   </FormControl>
                   <FormMessage />
