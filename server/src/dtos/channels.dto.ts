@@ -55,6 +55,5 @@ export class DeleteChannelDTO {
 
 export class UpdateChannelForTestDto {
   @IsString()
-  @IsNotEmpty()
   flowId: string
 }
