@@ -88,6 +88,7 @@ export class LineChannel extends BaseChannel {
           userId: source.userId,
           message: message.text,
           data: null,
+          isTest: false,
         })
       }
     } catch (e) { }

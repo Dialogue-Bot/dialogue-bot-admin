@@ -86,6 +86,7 @@ export class MessengerChannel extends BaseChannel {
           userId: senderId,
           message: messageText || payload,
           data: null,
+          isTest: false,
         })
       })
     })
@@ -96,6 +97,7 @@ export class MessengerChannel extends BaseChannel {
       userId,
       message: 'ADDRESS',
       data: { USER_INFORMATION: Helper.arrayToObj(address) },
+      isTest: false,
     })
   }
 

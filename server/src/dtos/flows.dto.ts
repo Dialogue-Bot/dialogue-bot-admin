@@ -3,6 +3,7 @@ import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface'
 import { Transform } from 'class-transformer'
 import {
   IsArray,
+  IsBoolean,
   IsNotEmpty,
   IsObject,
   IsOptional,
@@ -64,4 +65,12 @@ export class DeleteFlowDTO {
   @IsArray()
   @IsString({ each: true })
   ids: string[]
+}
+
+export class TestYourBotDTO {
+  @IsBoolean()
+  @IsNotEmpty({
+    message: () => getCurrentLocale().VALIDATE.REQUIRED({ field: 'Is Test' }),
+  })
+  isTest: boolean
 }
