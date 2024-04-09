@@ -28,7 +28,7 @@ export class WebChannel extends BaseChannel {
         channelData: any;
     }) {
         try {
-            let result = { userId, message: text || '', template: {} };
+            let result = { userId, message: text || '', template: {}, isBot: true };
 
             if (channelData) {
                 result.template = {
@@ -46,30 +46,4 @@ export class WebChannel extends BaseChannel {
             )
         }
     }
-
-    // async detectTemplate(channelData: any) {
-    //     let result = null;
-    //     if (!channelData) return result;
-
-    //     switch (channelData.type) {
-    //         case 'list-button':
-    //             result = {
-    //                 data: channelData.extendData,
-    //                 type: channelData.type,
-    //             }
-    //             break;
-    //         case 'list-card':
-    //             result = {
-    //                 data: channelData.extendData,
-    //                 type: channelData.type,
-    //             }
-    //             break;
-    //         default:
-    //             logger.info(
-    //                 `[WEB] channel web does not support type ${channelData.type}`,
-    //             )
-    //             break;
-    //     }
-    //     return result;
-    // }
 }
