@@ -36,12 +36,12 @@ export class BaseChannel {
           recipient: {
             id: this.contactId,
           },
+          testBot: isTest || false,
           data: data || false,
           text: message,
           type: 'message',
           id: uid,
           channelId: this.channelType,
-          isTest,
           serviceUrl: PUBLIC_DOMAIN,
         },
       })

@@ -280,7 +280,7 @@ export class FlowService {
       flow = await db.query.flows.findFirst({
         where: and(
           eq(flows.id, channel?.flowId),
-          isNotNull(flow.publishAt)
+          isNotNull(flows.publishAt)
         ),
       });
     }
