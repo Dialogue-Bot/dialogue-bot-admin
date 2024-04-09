@@ -84,6 +84,7 @@ export const MessageDialogContent = () => {
           [currentLang]: {
             ...selectedNode?.data.contents[currentLang],
             message: debounce,
+            type: EMessageTypes.TEXT,
           },
         },
       },
@@ -156,6 +157,7 @@ export const MessageDialogContent = () => {
             clonedNode.data.contents[currentLang] = {
               ...clonedNode.data.contents[currentLang],
               buttons,
+              type: EMessageTypes.BUTTONS,
             }
 
             handleChangeSelectedNode(clonedNode)
