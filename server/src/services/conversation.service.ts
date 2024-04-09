@@ -73,7 +73,8 @@ export class ConversationService {
         return await webChannel.sendMessageToUser({
           userId: recipient.id,
           text,
-          type
+          type,
+          channelData,
         })
       default:
         logger.info(

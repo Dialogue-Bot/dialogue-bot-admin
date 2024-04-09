@@ -21,17 +21,24 @@ export class WebChannel extends BaseChannel {
 
     async prepareMessage(req: Request, res: Response) { }
 
-    public async sendMessageToUser({ userId, text, type }: {
+    public async sendMessageToUser({ userId, text, type, channelData }: {
         type?: string;
         userId: string;
         text: string;
+        channelData: any;
     }) {
         try {
-            if (App.io) {
+            let result = { userId, messages: text || '', template: {} };
 
-                App.io.to(userId).emit(
-                    type || SOCKET_EVENTS.MESSAGE,
-                    { userId, message: text });
+            if (channelData) {
+                result.template = {
+                    data: channelData.extendData,
+                    type: channelData.type,
+                }
+            }
+            console.log('result: ' + JSON.stringify(result));
+            if (App.io) {
+                App.io.to(userId).emit(type || SOCKET_EVENTS.MESSAGE, result);
             }
         } catch (e) {
             logger.info(
@@ -39,4 +46,30 @@ export class WebChannel extends BaseChannel {
             )
         }
     }
+
+    // async detectTemplate(channelData: any) {
+    //     let result = null;
+    //     if (!channelData) return result;
+
+    //     switch (channelData.type) {
+    //         case 'list-button':
+    //             result = {
+    //                 data: channelData.extendData,
+    //                 type: channelData.type,
+    //             }
+    //             break;
+    //         case 'list-card':
+    //             result = {
+    //                 data: channelData.extendData,
+    //                 type: channelData.type,
+    //             }
+    //             break;
+    //         default:
+    //             logger.info(
+    //                 `[WEB] channel web does not support type ${channelData.type}`,
+    //             )
+    //             break;
+    //     }
+    //     return result;
+    // }
 }
