@@ -8,9 +8,11 @@ import {
 } from '@/components/ui'
 import { useUpdateFlow } from '@/hooks/flow'
 import { usePublishFlow } from '@/hooks/flow/use-publish-flow'
+import { useDidUpdate } from '@/hooks/use-did-update'
 import { Settings2, Zap } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
+import { useDebounceValue } from 'usehooks-ts'
 import { useFlowCtx } from '.'
 import Setting from './setting'
 
@@ -21,8 +23,11 @@ export const Toolbar = () => {
   const { flow, edges, nodes, getCompleteFlows } = useFlowCtx()
   const { id } = useParams()
 
+  const [value] = useDebounceValue(nodes, 5000)
+
   const updateFlowMutation = useUpdateFlow()
   const publishFlowMutation = usePublishFlow()
+  const autoSaveFlowMutation = useUpdateFlow({ isShowToastSuccess: false })
 
   const handleSave = async () => {
     await updateFlowMutation.mutateAsync({
@@ -35,6 +40,18 @@ export const Toolbar = () => {
       },
     })
   }
+
+  useDidUpdate(() => {
+    autoSaveFlowMutation.mutate({
+      id: id as string,
+      data: {
+        edges,
+        nodes,
+        flows: getCompleteFlows(),
+        name: flow.name,
+      },
+    })
+  }, [value])
 
   return (
     <div className='fixed top-4 right-4 z-50' id='flow-toolbar'>
@@ -94,7 +111,9 @@ export const Toolbar = () => {
           <Button
             variant='secondary'
             onClick={handleSave}
-            loading={updateFlowMutation.isPending}
+            loading={
+              updateFlowMutation.isPending || autoSaveFlowMutation.isPending
+            }
           >
             {t('toolbar.save')}
           </Button>
