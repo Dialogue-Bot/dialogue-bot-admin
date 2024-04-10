@@ -1,4 +1,5 @@
-import { AuthService } from '@/services/auth.service'
+import { UserService } from '@/services/users.service'
+import * as bcrypt from 'bcrypt'
 import Container from 'typedi'
 import { db } from './db'
 import { channelTypes } from './schema'
@@ -22,13 +23,16 @@ async function seedChannelTypes() {
 
 async function seedDefaultAccount() {
   try {
-    const authService = Container.get(AuthService)
+    const userService = Container.get(UserService)
 
-    await authService.register({
+    const hashedPassword = await bcrypt.hash('admin', 10)
+
+    await userService.create({
       email: 'admin@gmail.com',
       name: 'Admin',
-      password: 'admin',
-      passwordConfirm: 'admin',
+      isVerified: true,
+      password: hashedPassword,
+      roles: ['ADMIN', 'USER'],
     })
 
     console.log('Default account created')
