@@ -14,3 +14,7 @@ export const FlowDetail = lazy(() => import('./flow-detail'))
 export const Training = lazy(() => import('./training'))
 export const AddIntent = lazy(() => import('./add-intent'))
 export const UpdateIntent = lazy(() => import('./update-intent'))
+export const RequestVerifyAccount = lazy(
+  () => import('./request-verify-account'),
+)
+export const VerifyAccount = lazy(() => import('./verify-account'))

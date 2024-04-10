@@ -108,6 +108,7 @@ export class FirebaseService {
       name: user.providerData[0].displayName || user.displayName || null,
       avatar: user.providerData[0].photoURL || user.photoURL || null,
       provider: user.providerData[0].providerId,
+      isVerified: user.emailVerified,
     }
   }
 }

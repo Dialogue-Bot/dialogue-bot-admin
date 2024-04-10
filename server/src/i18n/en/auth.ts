@@ -13,4 +13,14 @@ export const AUTH = {
   REFRESH_TOKEN_SUCCESS: 'Refresh token successfully!',
   PROVIDER_EXIST: 'This email is already using by another provider!',
   LOGOUT_SUCCESS: 'Logout successfully!',
+  EMAIL_NOT_VERIFIED: 'Your email is not verified!',
+  EMAIL_VERIFIED: 'Your email has been verified! Login to continue!',
+  EMAIL_VERIFY_SUCCESS: 'Verify email successfully!',
+  EMAIL_VERIFY_FAILED: 'Verify email failed!',
+  EMAIL_VERIFY_EXPIRED:
+    'Email verification code has been expired! Please try again!',
+  EMAIL_VERIFY_INVALID: 'Email verification code is invalid! Please try again!',
+  INCORRECT_PROVIDER: 'Your account already using another provider!',
+  REQUEST_VERIFY_ACCOUNT_SUCCESS:
+    'Verify account request has been sent! Please check your email!',
 }

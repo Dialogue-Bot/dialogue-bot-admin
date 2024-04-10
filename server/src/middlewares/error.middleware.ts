@@ -1,6 +1,6 @@
-import type { NextFunction, Request, Response } from 'express'
 import type { HttpException } from '@/exceptions/http-exception'
 import { logger } from '@utils/logger'
+import type { NextFunction, Request, Response } from 'express'
 
 export const ErrorMiddleware = (
   error: HttpException,
@@ -16,7 +16,10 @@ export const ErrorMiddleware = (
       `[${req.method}] ${req.path} >> StatusCode:: ${status}, Message:: ${message} >> Details:: ${error.stack}`,
     )
 
-    res.status(status).json({ message })
+    res.status(status).json({
+      message,
+      errorKey: error?.errorKey,
+    })
   } catch (err) {
     logger.error(err)
     next(err)

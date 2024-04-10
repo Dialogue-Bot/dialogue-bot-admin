@@ -33,6 +33,7 @@ export const users = pgTable(
       .$defaultFn(() => ['USER'])
       .notNull(),
     provider: text('provider').notNull().default('local'),
+    isVerified: boolean('is_verified').default(false),
   },
   (table) => ({
     emailIdx: uniqueIndex('email_idx').on(table.email),
@@ -192,26 +193,28 @@ export const messages = pgTable('messages', {
   from: text('from').notNull(),
   to: text('to').notNull(),
   type: text('type').notNull().default('text'),
-  data: json('data').default({
-    text: '',
-  }).$type<{
-    text?: string
-    buttons?: Array<{
-      label: string
-      url: string
-    }>
-    cards?: Array<{
-      title: string
-      subtitle: string
-      imageUrl: string
+  data: json('data')
+    .default({
+      text: '',
+    })
+    .$type<{
+      text?: string
       buttons?: Array<{
         label: string
-        type: string
-        value: string
+        url: string
       }>
-    }>
-    url?: string
-  }>(),
+      cards?: Array<{
+        title: string
+        subtitle: string
+        imageUrl: string
+        buttons?: Array<{
+          label: string
+          type: string
+          value: string
+        }>
+      }>
+      url?: string
+    }>(),
 })
 
 export const messagesRelations = relations(messages, ({ one }) => ({
@@ -219,7 +222,6 @@ export const messagesRelations = relations(messages, ({ one }) => ({
     fields: [messages.conversationId],
     references: [conversations.userId],
   }),
-
 }))
 
 export const conversationsRelations = relations(conversations, ({ many }) => ({

@@ -4,6 +4,7 @@ import {
   IdTokenDto,
   LoginDto,
   RegisterDto,
+  RequestVerifyAccountDto,
   ResetPasswordDto,
 } from '@/dtos/auth.dto'
 import { authMiddleware } from '@/middlewares/auth.middleware'
@@ -57,6 +58,17 @@ export class AuthRoute implements Routes {
       ENDPOINTS.AUTH.WITH_ID_TOKEN,
       validate(IdTokenDto),
       this.controller.loginWithIdToken,
+    )
+
+    this.router.post(
+      ENDPOINTS.AUTH.VERIFY_ACCOUNT,
+      this.controller.verifyAccount,
+    )
+
+    this.router.post(
+      ENDPOINTS.AUTH.REQUEST_VERIFY_ACCOUNT,
+      validate(RequestVerifyAccountDto),
+      this.controller.requestVerifyAccount,
     )
 
     this.router.get(

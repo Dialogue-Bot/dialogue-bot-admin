@@ -47,5 +47,6 @@
   "leave_page_unsaved": {
     "title": "Unsaved changes",
     "desc": "You have unsaved changes. Are you sure you want to leave this page?"
-  }
+  },
+  "send_mail_after_time": "Resend after {{time}}s"
 }

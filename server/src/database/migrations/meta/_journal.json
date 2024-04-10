@@ -64,6 +64,13 @@
       "when": 1712512610041,
       "tag": "0008_equal_banshee",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1712692225498,
+      "tag": "0009_wild_hellcat",
+      "breakpoints": true
     }
   ]
 }

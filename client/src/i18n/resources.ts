@@ -11,10 +11,12 @@ import loginEN from '@/locales/en/login.json'
 import mailEN from '@/locales/en/mail.json'
 import profileEN from '@/locales/en/profile.json'
 import registerEN from '@/locales/en/register.json'
+import requestVerifyAccountEn from '@/locales/en/request-verify-account.json'
 import setPassEN from '@/locales/en/set_pass.json'
 import tableColEn from '@/locales/en/table-cols.json'
 import tableEn from '@/locales/en/table.json'
 import trainingEn from '@/locales/en/training.json'
+import verifyAccountEn from '@/locales/en/verify-account.json'
 import channelVi from '@/locales/vi/channel.json'
 import chatbotsVi from '@/locales/vi/chatbots.json'
 import commonVI from '@/locales/vi/common.json'
@@ -28,10 +30,12 @@ import loginVI from '@/locales/vi/login.json'
 import mailVI from '@/locales/vi/mail.json'
 import profileVI from '@/locales/vi/profile.json'
 import registerVI from '@/locales/vi/register.json'
+import requestVerifyAccountVi from '@/locales/vi/request-verify-account.json'
 import setPassVI from '@/locales/vi/set_pass.json'
 import tableColVi from '@/locales/vi/table-cols.json'
 import tableVi from '@/locales/vi/table.json'
 import trainingVi from '@/locales/vi/training.json'
+import verifyAccountVi from '@/locales/vi/verify-account.json'
 import { ELang } from '@/types/share'
 
 const resources = {
@@ -53,6 +57,8 @@ const resources = {
     flows: chatbotsEn,
     flowDetail: flowDetailEn,
     training: trainingEn,
+    requestVerifyAccount: requestVerifyAccountEn,
+    verifyAccount: verifyAccountEn,
   },
   [ELang.VI]: {
     common: commonVI,
@@ -72,6 +78,8 @@ const resources = {
     flows: chatbotsVi,
     flowDetail: flowDetailVi,
     training: trainingVi,
+    requestVerifyAccount: requestVerifyAccountVi,
+    verifyAccount: verifyAccountVi,
   },
 } as const
 

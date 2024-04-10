@@ -1,10 +1,9 @@
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
-import { TForgotPass, useForgotPassSchema } from '@/lib/schema/forgot-pass'
+import { TEmail, useMailSchema } from '@/lib/schema/mail'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
   Form,
   FormControl,
   FormField,
@@ -15,21 +14,27 @@ import {
 } from '../ui'
 
 type Props = {
-  loading?: boolean
-  onSubmit?: (data: TForgotPass) => void
+  onSubmit?: (data: TEmail) => void
+  id?: string
+  defaultValues?: TEmail
 }
 
-export const ForgotPassForm = ({ loading, onSubmit }: Props) => {
+export const MailForm = ({
+  onSubmit,
+  id = 'mail-form',
+  defaultValues,
+}: Props) => {
   const { t } = useTranslation(['set_pass', 'forms'])
 
-  const schema = useForgotPassSchema()
+  const schema = useMailSchema()
 
-  const form = useForm<TForgotPass>({
+  const form = useForm<TEmail>({
     resolver: zodResolver(schema),
     mode: 'onChange',
+    defaultValues,
   })
 
-  const handleSubmit = (data: TForgotPass) => {
+  const handleSubmit = (data: TEmail) => {
     onSubmit?.(data)
   }
 
@@ -37,7 +42,11 @@ export const ForgotPassForm = ({ loading, onSubmit }: Props) => {
 
   return (
     <Form {...form}>
-      <form className='space-y-3' onSubmit={form.handleSubmit(handleSubmit)}>
+      <form
+        className='space-y-3'
+        onSubmit={form.handleSubmit(handleSubmit)}
+        id={id}
+      >
         <FormField
           control={form.control}
           name='email'
@@ -62,14 +71,9 @@ export const ForgotPassForm = ({ loading, onSubmit }: Props) => {
             )
           }}
         />
-        <Button className='w-full' type='submit' loading={loading}>
-          {t('btn_submit', {
-            ns: 'set_pass',
-          })}
-        </Button>
       </form>
     </Form>
   )
 }
 
-export default ForgotPassForm
+export default MailForm
