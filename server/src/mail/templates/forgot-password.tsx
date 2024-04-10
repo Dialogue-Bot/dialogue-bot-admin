@@ -37,7 +37,7 @@ export const ForgotPassword = ({
           <Section>
             <Text style={text}>Hi {username},</Text>
             <Text style={text}>
-              Someone recently requested a password change for your Dropbox
+              Someone recently requested a password change for your Dialoguebot
               account. If this was you, you can set a new password here:
             </Text>
             <Button style={button} href={url}>
