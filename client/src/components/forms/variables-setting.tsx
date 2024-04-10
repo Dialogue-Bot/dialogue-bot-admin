@@ -62,6 +62,9 @@ const stringifyVariableValue = (value: any, type: string) => {
       .replace(/"/g, '')
 
   if (type === 'object') return JSON.stringify(value, null, 2)
+
+  if (type === 'string') return JSON.stringify(value).replace(/"/g, '')
+
   return JSON.stringify(value)
 }
 

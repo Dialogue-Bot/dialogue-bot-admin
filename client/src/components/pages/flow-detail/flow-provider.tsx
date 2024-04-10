@@ -462,12 +462,13 @@ export const FlowProvider = ({ children, flow }: Props) => {
         )
       })
 
-      if (
-        numberOfYes.length === 1 &&
-        connection.sourceHandle === sourceHandleYes
-      ) {
-        return false
-      }
+      // if (
+      //   numberOfYes.length === 1 &&
+      //   connection.sourceHandle === sourceHandleYes
+      // ) {
+      //   console.log('yes')
+      //   return false
+      // }
 
       if (
         numberOfNo.length === 1 &&
