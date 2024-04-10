@@ -361,7 +361,13 @@ export class ChannelService {
       })
       .from(channels)
       .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
-      .where(and(eq(channels.userId, userId), eq(channels.deleted, false)))
+      .where(
+        and(
+          eq(channels.userId, userId),
+          eq(channels.deleted, false),
+          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+        ),
+      )
 
     return _channels
   }
@@ -381,7 +387,7 @@ export class ChannelService {
     const [updated] = await db
       .update(channels)
       .set({
-        flowId,
+        flowId: flowId ? flowId : null,
         updatedAt: new Date(),
       })
       .where(eq(channels.id, channel.id))

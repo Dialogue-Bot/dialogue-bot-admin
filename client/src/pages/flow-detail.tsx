@@ -7,6 +7,7 @@ import { useUpdateChannelForTest } from '@/hooks/channel'
 import '@/styles/react-flow.css'
 
 import { useEffect } from 'react'
+import { useUnmount } from 'usehooks-ts'
 
 const FlowDetail = () => {
   const { id: flowId } = useParams()
@@ -19,6 +20,10 @@ const FlowDetail = () => {
     updateChannelForTest.mutate(flowId as string)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flowId])
+
+  useUnmount(() => {
+    updateChannelForTest.mutate('')
+  })
 
   return (
     <FlowProvider flow={flow}>

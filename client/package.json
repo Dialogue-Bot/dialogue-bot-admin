@@ -65,7 +65,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
-    "dialogue-chatbox": "^1.0.8",
+    "dialogue-chatbox": "^1.0.10",
     "embla-carousel-react": "^8.0.0-rc23",
     "fast-glob": "^3.3.2",
     "firebase": "^10.8.0",
