@@ -1,9 +1,9 @@
-import { CaretSortIcon } from '@radix-ui/react-icons'
-import { memo, useCallback, useMemo, useState } from 'react'
-import { Popover, PopoverContent, PopoverTrigger } from './popover'
 import { cn } from '@/lib/utils'
-import { Badge } from './badge'
+import { CaretSortIcon } from '@radix-ui/react-icons'
 import { CheckIcon, X } from 'lucide-react'
+import { memo, useCallback, useMemo, useState } from 'react'
+import { Badge } from './badge'
+import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
 export type TOption = {
   label: string
@@ -72,7 +72,7 @@ export const MultipleSelect = memo(
     return (
       <Popover>
         <PopoverTrigger asChild>
-          <div className='flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 cursor-pointer focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none select-none gap-1'>
+          <div className='flex min-h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 cursor-pointer focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-none select-none gap-1 flex-wrap'>
             {selectedWithLabel && selectedWithLabel.length ? (
               selectedWithLabel?.map((item) => (
                 <Badge

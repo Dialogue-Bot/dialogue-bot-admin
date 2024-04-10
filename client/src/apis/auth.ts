@@ -1,7 +1,7 @@
 import { ENDPOINTS } from '@/constants'
 import http_client from '@/lib/http-client'
-import { TForgotPass } from '@/lib/schema/forgot-pass'
 import { TLogin } from '@/lib/schema/login'
+import { TForgotPass } from '@/lib/schema/mail'
 import { TRegister } from '@/lib/schema/register'
 import { TSetPass } from '@/lib/schema/set-pass'
 import { TBaseResponse, TToken } from '@/types/share'
@@ -44,6 +44,13 @@ class Auth {
 
   logout(): Promise<TBaseResponse<null>> {
     return http_client.post(ENDPOINTS.AUTH.LOGOUT)
+  }
+
+  requestVerifyAccount(email: string): Promise<TBaseResponse<null>> {
+    return http_client.post(ENDPOINTS.AUTH.REQUEST_VERIFY_ACCOUNT, { email })
+  }
+  verifyAccount(token: string): Promise<TBaseResponse<null>> {
+    return http_client.post(ENDPOINTS.AUTH.VERIFY_ACCOUNT, { token })
   }
 }
 

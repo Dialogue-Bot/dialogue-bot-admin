@@ -5,11 +5,11 @@ import type {
   IdTokenDto,
   LoginDto,
   RegisterDto,
+  RequestVerifyAccountDto,
   ResetPasswordDto,
 } from '@/dtos/auth.dto'
 import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
-import L from '@/i18n/i18n-node'
 import { redis } from '@/libs/redis'
 import { SendMailQueue } from '@/queues/mail.queue'
 import { logger } from '@/utils/logger'
@@ -17,6 +17,7 @@ import {
   ACCESS_TOKEN_SECRET,
   REFRESH_TOKEN_SECRET,
   RESET_PASS_TOKEN_SECRET,
+  VERIFY_EMAIL_TOKEN_SECRET,
 } from '@config'
 import type { TTokenData, TTokenStore } from '@interfaces/auth.interface'
 import * as bcrypt from 'bcrypt'
@@ -58,6 +59,21 @@ export class AuthService {
       )
     }
 
+    if (user.provider !== 'local') {
+      throw new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        this.localeService.i18n().AUTH.INCORRECT_PROVIDER(),
+      )
+    }
+
+    if (!user.isVerified) {
+      throw new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        this.localeService.i18n().AUTH.EMAIL_NOT_VERIFIED(),
+        'EMAIL_NOT_VERIFIED',
+      )
+    }
+
     const tokenData = this.genTokens(user)
 
     await redis.set(
@@ -72,7 +88,7 @@ export class AuthService {
 
   public async loginWithIdToken(fields: IdTokenDto) {
     const { idToken } = fields
-    const { email, provider, avatar, name } =
+    const { email, provider, avatar, name, isVerified } =
       await this.firebaseService.verifyIdToken(idToken)
 
     const user = await this.userService.findOneByEmail(email)
@@ -97,6 +113,13 @@ export class AuthService {
       )
 
       return tokenData
+    }
+
+    if (!isVerified) {
+      throw new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        this.localeService.i18n().AUTH.EMAIL_NOT_VERIFIED(),
+      )
     }
 
     const createdUser = await this.userService.create({
@@ -163,7 +186,8 @@ export class AuthService {
 
   public async register(
     fields: RegisterDto,
-  ): Promise<Omit<InferResultType<'users'>, 'password'>> {
+    clientUrl = 'http://localhost:3000/',
+  ) {
     const { email, name, password } = fields
     const user = await this.userService.findOneByEmail(email)
 
@@ -187,7 +211,7 @@ export class AuthService {
 
     this.genTokens(createdUser)
 
-    return omit(createdUser, ['password'])
+    return this.requestVerifyAccount({ email }, clientUrl)
   }
 
   public async forgotPassword(
@@ -212,15 +236,14 @@ export class AuthService {
     await redis.set(`reset-password:${user.id}`, token, 'EX', 10 * 60)
 
     await this.sendMailQueue.addJob({
-      to: email,
-      subject: 'Reset password',
       template: 'forgot-password',
       props: {
-        // TODO: Change client url when deploy production
-        logoUrl: 'http://localhost:8080/public/images/logo.png',
-        url: `${clientUrl}/reset-password?token=${token}`,
+        baseUrl: 'http://localhost:8080',
         username: user.name,
+        url: `${clientUrl}set-password?token=${token}`,
       },
+      subject: 'Reset password',
+      to: email,
     })
   }
 
@@ -374,16 +397,15 @@ export class AuthService {
     return isMatched
   }
 
-  public async verifyToken(token: string, secret: string) {
+  public async verifyToken(
+    token: string,
+    secret: string,
+    errMsg = this.localeService.i18n().AUTH.TOKEN_INVALID_OR_EXPIRED(),
+  ) {
     return new Promise((resolve, reject) => {
       verify(token, secret, (err, decoded) => {
         if (err) {
-          reject(
-            new HttpException(
-              StatusCodes.BAD_REQUEST,
-              L[this.localeService.getLocale()].AUTH.TOKEN_INVALID_OR_EXPIRED(),
-            ),
-          )
+          reject(new HttpException(StatusCodes.BAD_REQUEST, errMsg))
         }
 
         resolve(decoded)
@@ -395,5 +417,74 @@ export class AuthService {
     if (userId) {
       await redis.del(`refresh-token:${userId}`)
     }
+  }
+
+  public async requestVerifyAccount(
+    fields: RequestVerifyAccountDto,
+    clientUrl = 'http://localhost:3000/',
+  ) {
+    const { email } = fields
+
+    const user = await this.userService.findOneByEmail(email)
+
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.NOT_FOUND,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
+
+    if (user.isVerified) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.EMAIL_VERIFIED(),
+      )
+    }
+
+    const token = sign({ id: user.id }, VERIFY_EMAIL_TOKEN_SECRET as string, {
+      expiresIn: '15m',
+    })
+
+    await redis.set(`verify-account:${user.id}`, token, 'EX', 15 * 60)
+
+    await this.sendMailQueue.addJob({
+      template: 'verify-account',
+      props: {
+        baseUrl: 'http://localhost:8080',
+        username: user.name,
+        url: `${clientUrl}verify-account?token=${token}`,
+      },
+      subject: 'Verify account',
+      to: email,
+    })
+  }
+
+  public async verifyAccount(token: string) {
+    const decoded = (await this.verifyToken(
+      token,
+      VERIFY_EMAIL_TOKEN_SECRET as string,
+      this.localeService.i18n().AUTH.EMAIL_VERIFY_INVALID(),
+    )) as { id: string }
+
+    const user = await this.userService.findOneById(decoded.id)
+
+    if (!user) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.ACCOUNT_NOT_FOUND(),
+      )
+    }
+
+    if (user.isVerified) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.EMAIL_VERIFIED(),
+        'EMAIL_VERIFIED',
+      )
+    }
+
+    await this.userService.updateOneById(user.id, {
+      isVerified: true,
+    })
   }
 }

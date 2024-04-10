@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import * as z from 'zod'
 
-export const useForgotPassSchema = () => {
+export const useMailSchema = () => {
   const { t } = useTranslation('forms')
 
   return z.object({
@@ -15,4 +15,4 @@ export const useForgotPassSchema = () => {
   })
 }
 
-export type TForgotPass = z.infer<ReturnType<typeof useForgotPassSchema>>
+export type TEmail = z.infer<ReturnType<typeof useMailSchema>>

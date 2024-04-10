@@ -10,8 +10,6 @@ import helmet from 'helmet'
 import hpp from 'hpp'
 import morgan from 'morgan'
 import 'reflect-metadata'
-import swaggerJSDoc from 'swagger-jsdoc'
-import swaggerUi from 'swagger-ui-express'
 import Container from 'typedi'
 import { LOCALE_KEY } from './constants'
 import { LocaleService } from './i18n/ctx'
@@ -20,6 +18,7 @@ import { loadAllLocales } from './i18n/i18n-util.sync'
 
 // socket.io
 import { createServer } from 'http'
+import path from 'path'
 import { Server } from 'socket.io'
 import { SocketController } from './controllers/socket.controller'
 
@@ -31,28 +30,26 @@ export class App {
   public port: string | number
   public static io: Server
 
-
   constructor(routes: Routes[]) {
     this.app = express()
     this.env = NODE_ENV || 'development'
     this.port = PORT || 3000
     this.initializeMiddlewares()
     this.initializeRoutes(routes)
-    this.initializeSwagger()
     this.initializeErrorHandling()
     this.initializeAllLocales()
   }
 
   public listen() {
     try {
-      const socketController = new SocketController();
-      const server = createServer(this.app);
-      App.io = new Server(server);
+      const socketController = new SocketController()
+      const server = createServer(this.app)
+      App.io = new Server(server)
 
       App.io.on('connection', (socket) => {
-        socketController.handleJoinRoom(socket);
-        socketController.handleSocketEvents(socket);
-      });
+        socketController.handleJoinRoom(socket)
+        socketController.handleSocketEvents(socket)
+      })
 
       server.listen(this.port, () => {
         logger.info(`=================================`)
@@ -60,9 +57,8 @@ export class App {
         logger.info(`🚀 App listening on the port ${this.port}`)
         logger.info(`=================================`)
       })
-
     } catch (error) {
-      console.error('Error initializing server:', error);
+      console.error('Error initializing server:', error)
     }
   }
 
@@ -85,7 +81,11 @@ export class App {
       }),
     )
     this.app.use(hpp())
-    this.app.use(helmet())
+    this.app.use(
+      helmet({
+        crossOriginResourcePolicy: false,
+      }),
+    )
     this.app.use(compression())
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
@@ -103,22 +103,8 @@ export class App {
     routes.forEach((route) => {
       this.app.use('/api', route.router)
     })
-  }
-
-  private initializeSwagger() {
-    const options = {
-      swaggerDefinition: {
-        info: {
-          title: 'REST API',
-          version: '1.0.0',
-          description: 'Example docs',
-        },
-      },
-      apis: ['swagger.yaml'],
-    }
-
-    const specs = swaggerJSDoc(options)
-    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+    console.log(path.join(process.cwd(), 'public'))
+    this.app.use('/public', express.static(path.join(process.cwd(), 'public')))
   }
 
   private initializeErrorHandling() {

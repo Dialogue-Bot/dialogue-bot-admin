@@ -46,10 +46,11 @@ export class AuthController {
   })
 
   public register = catchAsync(async (req, res) => {
-    const data = await this.authService.register(req.body)
+    const clientUrl = req.header('Referer')
+    const data = await this.authService.register(req.body, clientUrl)
 
     res.status(StatusCodes.CREATED).json({
-      message: this.localeService.i18n().AUTH.REGISTER_SUCCESS(),
+      message: this.localeService.i18n().AUTH.REQUEST_VERIFY_ACCOUNT_SUCCESS(),
       data,
     })
   })
@@ -127,4 +128,23 @@ export class AuthController {
     res.clearCookie('access_token')
     res.clearCookie('refresh_token')
   }
+
+  public verifyAccount = catchAsync(async (req, res) => {
+    await this.authService.verifyAccount(req.body.token)
+
+    res.status(StatusCodes.OK).json({
+      message: this.localeService.i18n().AUTH.EMAIL_VERIFY_SUCCESS(),
+      data: null,
+    })
+  })
+
+  public requestVerifyAccount = catchAsync(async (req, res) => {
+    const clientUrl = req.header('Referer')
+    await this.authService.requestVerifyAccount(req.body, clientUrl)
+
+    res.status(StatusCodes.OK).json({
+      message: this.localeService.i18n().AUTH.REQUEST_VERIFY_ACCOUNT_SUCCESS(),
+      data: null,
+    })
+  })
 }

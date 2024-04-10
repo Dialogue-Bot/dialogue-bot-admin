@@ -1,12 +1,17 @@
+import { MAIL_PASS, MAIL_USER } from '@/config'
 import { render } from '@react-email/render'
 import nodemailer from 'nodemailer'
 import { logger } from '../utils/logger'
-import { ForgotPassword, ForgotPasswordProps } from './templates'
-import { MAIL_PASS, MAIL_USER } from '@/config'
+import {
+  ForgotPassword,
+  ForgotPasswordProps,
+  VerifyAccount,
+  VerifyAccountProps,
+} from './templates'
 
 interface TemplateProps {
   'forgot-password': ForgotPasswordProps
-  'verify-email': {}
+  'verify-account': VerifyAccountProps
 }
 type TMapTemplates = {
   [T in keyof TemplateProps]: (props: TemplateProps[T]) => string
@@ -14,7 +19,7 @@ type TMapTemplates = {
 
 const MAP_TEMPLATES: TMapTemplates = {
   'forgot-password': (props) => render(ForgotPassword(props)),
-  'verify-email': () => '',
+  'verify-account': (props) => render(VerifyAccount(props)),
 }
 
 export type TTemplate = keyof TemplateProps

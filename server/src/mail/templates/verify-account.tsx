@@ -11,21 +11,21 @@ import {
 } from '@react-email/components'
 import * as React from 'react'
 
-export interface ForgotPasswordProps {
+export interface VerifyAccountProps {
   username: string
   url: string
   baseUrl: string
 }
 
-export const ForgotPassword = ({
+export const VerifyAccount = ({
   username,
   url,
   baseUrl,
-}: ForgotPasswordProps) => {
+}: VerifyAccountProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Dialoguebot - Reset Password</Preview>
+      <Preview>Dialoguebot - Verify Account</Preview>
       <Body style={main}>
         <Container style={container}>
           <Img
@@ -37,15 +37,15 @@ export const ForgotPassword = ({
           <Section>
             <Text style={text}>Hi {username},</Text>
             <Text style={text}>
-              Someone recently requested a password change for your Dialoguebot
-              account. If this was you, you can set a new password here:
+              Welcome to Dialoguebot! To get started, please verify your account
+              by clicking the button below:
             </Text>
             <Button style={button} href={url}>
-              Reset password
+              Verify account
             </Button>
             <Text style={text}>
-              If you don&apos;t want to change your password or didn&apos;t
-              request this, just ignore and delete this message.
+              If you didn&apos;t create an account with Dialoguebot, you can
+              safely ignore and delete this message.
             </Text>
             <Text style={text}>Have a great day!</Text>
           </Section>

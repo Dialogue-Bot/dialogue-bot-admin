@@ -1,4 +1,5 @@
 import { auth } from '@/apis/auth'
+import { ROUTES } from '@/constants'
 import { TRegister } from '@/lib/schema/register'
 import { useMutation } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
@@ -12,9 +13,11 @@ export const useRegister = () => {
     mutationFn: (data: TRegister) => {
       return auth.register(data)
     },
-    onSuccess(data) {
+    onSuccess(data, variables) {
       toast.success(data.message)
-      navigate('/login')
+      navigate(
+        `${ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT}?send=true&email=${variables.email}`,
+      )
     },
     onError(err: any) {
       toast.error(err?.response?.data?.message || t('api_error'))

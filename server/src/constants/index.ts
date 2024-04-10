@@ -22,6 +22,8 @@ export const ENDPOINTS = {
     RESET_PASSWORD: '/auth/reset-password',
     WITH_ID_TOKEN: '/auth/with-id-token',
     LOGOUT: '/auth/logout',
+    VERIFY_ACCOUNT: '/auth/verify-account',
+    REQUEST_VERIFY_ACCOUNT: '/auth/request-verify-account',
   },
   UPLOAD: {
     SINGLE: '/upload/single',

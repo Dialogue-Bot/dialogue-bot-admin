@@ -16,4 +16,13 @@ export const AUTH = {
   REFRESH_TOKEN_SUCCESS: 'Làm mới token thành công!',
   PROVIDER_EXIST: 'Email này đã được sử dụng bởi một nhà cung cấp khác!',
   LOGOUT_SUCCESS: 'Đăng xuất thành công!',
+  EMAIL_NOT_VERIFIED: 'Email của bạn chưa được xác minh!',
+  EMAIL_VERIFIED: 'Email của bạn đã được xác minh! Đăng nhập để tiếp tục!',
+  EMAIL_VERIFY_SUCCESS: 'Xác minh email thành công!',
+  EMAIL_VERIFY_FAILED: 'Xác minh email thất bại!',
+  EMAIL_VERIFY_EXPIRED: 'Mã xác minh email đã hết hạn! Vui lòng thử lại!',
+  EMAIL_VERIFY_INVALID: 'Mã xác minh email không hợp lệ! Vui lòng thử lại!',
+  INCORRECT_PROVIDER: 'Tài khoản của bạn đã sử dụng một nhà cung cấp khác!',
+  REQUEST_VERIFY_ACCOUNT_SUCCESS:
+    'Yêu cầu xác minh tài khoản đã được gửi đến email của bạn!',
 }

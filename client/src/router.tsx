@@ -8,9 +8,11 @@ import {
   Mail,
   Profiles,
   Register,
+  RequestVerifyAccount,
   SetPassword,
   Training,
   UpdateIntent,
+  VerifyAccount,
 } from '@/pages'
 import { createBrowserRouter, redirect } from 'react-router-dom'
 
@@ -36,6 +38,7 @@ import {
   flowsLoader,
   intentLoader,
   settingLoader,
+  verifyAccountLoader,
 } from './lib/loader'
 import Help from './pages/help'
 import HelpDetail from './pages/help-detail'
@@ -69,6 +72,15 @@ export const router = createBrowserRouter([
           {
             path: ROUTES.AUTH.RESET_PASS,
             Component: SetPassword,
+          },
+          {
+            path: ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT,
+            Component: RequestVerifyAccount,
+          },
+          {
+            path: ROUTES.AUTH.VERIFY_ACCOUNT,
+            Component: VerifyAccount,
+            loader: verifyAccountLoader,
           },
         ],
       },

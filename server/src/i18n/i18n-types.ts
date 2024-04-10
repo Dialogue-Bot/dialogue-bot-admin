@@ -76,6 +76,38 @@ type RootTranslation = {
 		 * L​o​g​o​u​t​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
 		 */
 		LOGOUT_SUCCESS: string
+		/**
+		 * Y​o​u​r​ ​e​m​a​i​l​ ​i​s​ ​n​o​t​ ​v​e​r​i​f​i​e​d​!
+		 */
+		EMAIL_NOT_VERIFIED: string
+		/**
+		 * Y​o​u​r​ ​e​m​a​i​l​ ​h​a​s​ ​b​e​e​n​ ​v​e​r​i​f​i​e​d​!​ ​L​o​g​i​n​ ​t​o​ ​c​o​n​t​i​n​u​e​!
+		 */
+		EMAIL_VERIFIED: string
+		/**
+		 * V​e​r​i​f​y​ ​e​m​a​i​l​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 */
+		EMAIL_VERIFY_SUCCESS: string
+		/**
+		 * V​e​r​i​f​y​ ​e​m​a​i​l​ ​f​a​i​l​e​d​!
+		 */
+		EMAIL_VERIFY_FAILED: string
+		/**
+		 * E​m​a​i​l​ ​v​e​r​i​f​i​c​a​t​i​o​n​ ​c​o​d​e​ ​h​a​s​ ​b​e​e​n​ ​e​x​p​i​r​e​d​!​ ​P​l​e​a​s​e​ ​t​r​y​ ​a​g​a​i​n​!
+		 */
+		EMAIL_VERIFY_EXPIRED: string
+		/**
+		 * E​m​a​i​l​ ​v​e​r​i​f​i​c​a​t​i​o​n​ ​c​o​d​e​ ​i​s​ ​i​n​v​a​l​i​d​!​ ​P​l​e​a​s​e​ ​t​r​y​ ​a​g​a​i​n​!
+		 */
+		EMAIL_VERIFY_INVALID: string
+		/**
+		 * Y​o​u​r​ ​a​c​c​o​u​n​t​ ​a​l​r​e​a​d​y​ ​u​s​i​n​g​ ​a​n​o​t​h​e​r​ ​p​r​o​v​i​d​e​r​!
+		 */
+		INCORRECT_PROVIDER: string
+		/**
+		 * V​e​r​i​f​y​ ​a​c​c​o​u​n​t​ ​r​e​q​u​e​s​t​ ​h​a​s​ ​b​e​e​n​ ​s​e​n​t​!​ ​P​l​e​a​s​e​ ​c​h​e​c​k​ ​y​o​u​r​ ​e​m​a​i​l​!
+		 */
+		REQUEST_VERIFY_ACCOUNT_SUCCESS: string
 	}
 	USER: {
 		/**
@@ -337,6 +369,38 @@ export type TranslationFunctions = {
 		 * Logout successfully!
 		 */
 		LOGOUT_SUCCESS: () => LocalizedString
+		/**
+		 * Your email is not verified!
+		 */
+		EMAIL_NOT_VERIFIED: () => LocalizedString
+		/**
+		 * Your email has been verified! Login to continue!
+		 */
+		EMAIL_VERIFIED: () => LocalizedString
+		/**
+		 * Verify email successfully!
+		 */
+		EMAIL_VERIFY_SUCCESS: () => LocalizedString
+		/**
+		 * Verify email failed!
+		 */
+		EMAIL_VERIFY_FAILED: () => LocalizedString
+		/**
+		 * Email verification code has been expired! Please try again!
+		 */
+		EMAIL_VERIFY_EXPIRED: () => LocalizedString
+		/**
+		 * Email verification code is invalid! Please try again!
+		 */
+		EMAIL_VERIFY_INVALID: () => LocalizedString
+		/**
+		 * Your account already using another provider!
+		 */
+		INCORRECT_PROVIDER: () => LocalizedString
+		/**
+		 * Verify account request has been sent! Please check your email!
+		 */
+		REQUEST_VERIFY_ACCOUNT_SUCCESS: () => LocalizedString
 	}
 	USER: {
 		/**

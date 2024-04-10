@@ -1,3 +1,4 @@
+import { auth } from '@/apis/auth'
 import { ROUTES } from '@/constants'
 import i18n from '@/i18n'
 import { useAppLayoutStore, useSettingStore, useUserStore } from '@/store'
@@ -6,6 +7,7 @@ import { TBaseQuery } from '@/types/share'
 import { queryStringToObject } from '@/utils'
 import { createId } from '@paralleldrive/cuid2'
 import { redirect } from 'react-router-dom'
+import { toast } from 'sonner'
 import { getAllArticles, getArticle } from './content'
 import { queryClient } from './query-client'
 import {
@@ -128,4 +130,28 @@ export const intentsLoader = async ({ request }: any) => {
 export const intentLoader = async ({ params }: any) => {
   const intent = await queryClient.ensureQueryData(queryIntentOption(params.id))
   return intent
+}
+
+export const verifyAccountLoader = async ({ request }: any) => {
+  const token = queryStringToObject(request.url).token
+
+  if (!token) return redirect(ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT)
+
+  try {
+    const res = await queryClient.fetchQuery({
+      queryKey: ['verify-account', token, new Date().getTime()],
+      queryFn: () => {
+        return auth.verifyAccount(token)
+      },
+    })
+  } catch (error: any) {
+    if (error?.response?.data.errorKey === 'EMAIL_VERIFIED') {
+      toast.error(error?.response?.data.message || i18n.t('common:api_error'))
+      return redirect(ROUTES.AUTH.LOGIN)
+    }
+
+    return redirect(ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT)
+  }
+
+  return null
 }

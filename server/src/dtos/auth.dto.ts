@@ -162,3 +162,25 @@ export class IdTokenDto {
   })
   idToken: string
 }
+
+export class RequestVerifyAccountDto {
+  @IsEmail(
+    {},
+    {
+      message: () => getCurrentLocale().VALIDATE.INVALID_EMAIL(),
+    },
+  )
+  @IsNotEmpty({
+    message: () =>
+      getCurrentLocale().VALIDATE.REQUIRED({
+        field: 'Email',
+      }),
+  })
+  @IsString({
+    message: () =>
+      getCurrentLocale().VALIDATE.IS_STRING({
+        field: 'Email',
+      }),
+  })
+  email: string
+}

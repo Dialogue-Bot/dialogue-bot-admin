@@ -1,9 +1,9 @@
-import { BotMailDto } from '@/dtos/bot-mail.dto'
-import { SendMailQueue } from '@/queues/mail.queue'
-import { Service } from 'typedi'
 import { db } from '@/database/db'
 import { settings } from '@/database/schema'
+import { BotMailDto } from '@/dtos/bot-mail.dto'
+import { SendMailQueue } from '@/queues/mail.queue'
 import { eq } from 'drizzle-orm'
+import { Service } from 'typedi'
 
 @Service()
 export class BotMailService {
@@ -28,7 +28,7 @@ export class BotMailService {
     await this.sendMailQueue.addJob({
       from,
       to,
-      props: variables,
+      props: variables as any,
       subject,
       template,
       pass: password,
