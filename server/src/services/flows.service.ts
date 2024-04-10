@@ -20,7 +20,7 @@ export class FlowService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly chanelService: ChannelService,
-  ) { }
+  ) {}
 
   public async create(fields: TNewFlow) {
     const flowExisted = await db.query.flows.findFirst({
@@ -50,11 +50,13 @@ export class FlowService {
             label: 'Language',
           },
         ],
-        variables: [{
-          name: 'lang',
-          value: 'en',
-          type: 'string',
-        }]
+        variables: [
+          {
+            name: 'language',
+            value: 'en',
+            type: 'string',
+          },
+        ],
       })
       .returning()
 
@@ -266,23 +268,17 @@ export class FlowService {
     return result
   }
   public async getFlowByContactId(contactId: string, isTest: boolean) {
-
-    const channel = await this.chanelService.findOneByContactId(contactId);
-    let flow = null;
+    const channel = await this.chanelService.findOneByContactId(contactId)
+    let flow = null
 
     if (isTest) {
       flow = await db.query.flows.findFirst({
         where: eq(flows.id, channel?.flowId),
-      });
-
-    }
-    else {
+      })
+    } else {
       flow = await db.query.flows.findFirst({
-        where: and(
-          eq(flows.id, channel?.flowId),
-          isNotNull(flows.publishAt)
-        ),
-      });
+        where: and(eq(flows.id, channel?.flowId), isNotNull(flows.publishAt)),
+      })
     }
 
     if (!flow) {
