@@ -58,6 +58,7 @@ export class ConversationService {
           return await lineChannel.sendMessageToUser({
             userId: recipient.id,
             text,
+            channelData,
           })
 
         break
