@@ -18,3 +18,4 @@ export const RequestVerifyAccount = lazy(
   () => import('./request-verify-account'),
 )
 export const VerifyAccount = lazy(() => import('./verify-account'))
+export { default as LandingPage } from './landing-page'

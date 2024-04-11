@@ -1,7 +1,7 @@
 import { ENDPOINTS } from '@/constants'
 import http_client from '@/lib/http-client'
 import { TLogin } from '@/lib/schema/login'
-import { TForgotPass } from '@/lib/schema/mail'
+import { TEmail } from '@/lib/schema/mail'
 import { TRegister } from '@/lib/schema/register'
 import { TSetPass } from '@/lib/schema/set-pass'
 import { TBaseResponse, TToken } from '@/types/share'
@@ -17,7 +17,7 @@ class Auth {
     return http_client.post(ENDPOINTS.AUTH.REGISTER, data)
   }
 
-  forgotPassword(data: TForgotPass): Promise<TBaseResponse<null>> {
+  forgotPassword(data: TEmail): Promise<TBaseResponse<null>> {
     return http_client.post(ENDPOINTS.AUTH.FORGOT_PASSWORD, data)
   }
 

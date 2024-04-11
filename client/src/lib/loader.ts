@@ -138,7 +138,7 @@ export const verifyAccountLoader = async ({ request }: any) => {
   if (!token) return redirect(ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT)
 
   try {
-    const res = await queryClient.fetchQuery({
+    await queryClient.fetchQuery({
       queryKey: ['verify-account', token, new Date().getTime()],
       queryFn: () => {
         return auth.verifyAccount(token)

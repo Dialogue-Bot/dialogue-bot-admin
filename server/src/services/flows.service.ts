@@ -106,7 +106,11 @@ export class FlowService {
       )
     }
 
-    await this.chanelService.updateFlowId(fields.channelIds, flowExisted.id)
+    await this.chanelService.updateFlowId({
+      flowId: id,
+      ids: fields.channelIds,
+      userId,
+    })
 
     const [updateFlow] = await db
       .update(flows)
@@ -236,10 +240,11 @@ export class FlowService {
       )
     }
 
-    const result = await this.chanelService.updateFlowId(
-      channelIDs,
-      flowExisted.id,
-    )
+    const result = await this.chanelService.updateFlowId({
+      flowId,
+      ids: channelIDs,
+      userId,
+    })
 
     if (!result) {
       throw new HttpException(

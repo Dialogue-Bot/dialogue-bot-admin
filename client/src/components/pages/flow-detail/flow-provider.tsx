@@ -67,6 +67,8 @@ type FlowCtx = {
   handleDeleteNodeById: (id: string) => void
   showTestBot: boolean
   setShowTestBot: Dispatch<SetStateAction<boolean>>
+  handleEdgeMouseEnter: EdgeMouseHandler
+  handleEdgeMouseLeave: EdgeMouseHandler
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -442,18 +444,17 @@ export const FlowProvider = ({ children, flow }: Props) => {
     ({
       connection,
       sourceHandleNo,
-      sourceHandleYes,
     }: {
       connection: Connection
       sourceHandleYes: string
       sourceHandleNo: string
     }) => {
-      const numberOfYes = edges.filter((edge) => {
-        return (
-          edge.source === connection.source &&
-          edge.sourceHandle === sourceHandleYes
-        )
-      })
+      // const _numberOfYes = edges.filter((edge) => {
+      //   return (
+      //     edge.source === connection.source &&
+      //     edge.sourceHandle === sourceHandleYes
+      //   )
+      // })
 
       const numberOfNo = edges.filter((edge) => {
         return (
@@ -801,6 +802,48 @@ export const FlowProvider = ({ children, flow }: Props) => {
     [getEdge, getNode, setEdges, setNodes],
   )
 
+  const handleEdgeMouseEnter: EdgeMouseHandler = useCallback(
+    (_e, edge) => {
+      setEdges((edges) => {
+        return edges.map((edg) => {
+          if (edg.id === edge.id) {
+            return {
+              ...edg,
+              data: {
+                ...edg.data,
+                hover: true,
+              },
+            }
+          }
+
+          return edg
+        })
+      })
+    },
+    [setEdges],
+  )
+
+  const handleEdgeMouseLeave: EdgeMouseHandler = useCallback(
+    (_e, edge) => {
+      setEdges((edges) => {
+        return edges.map((edg) => {
+          if (edg.id === edge.id) {
+            return {
+              ...edg,
+              data: {
+                ...edg.data,
+                hover: false,
+              },
+            }
+          }
+
+          return edg
+        })
+      })
+    },
+    [setEdges],
+  )
+
   useDidUpdate(() => {
     setNodes((nds) => {
       return nds.map((node) =>
@@ -861,6 +904,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
         handleDeleteNodeById,
         showTestBot,
         setShowTestBot,
+        handleEdgeMouseEnter,
+        handleEdgeMouseLeave,
       }}
     >
       {children}

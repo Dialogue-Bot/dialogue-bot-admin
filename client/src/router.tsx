@@ -4,6 +4,7 @@ import {
   FlowDetail,
   Flows,
   ForgotPassword,
+  LandingPage,
   Login,
   Mail,
   Profiles,
@@ -22,7 +23,6 @@ import {
   PublishLayout,
   SettingLayout,
 } from '@/components/layouts'
-import { ChatBox } from 'dialogue-chatbox'
 import { Suspense } from 'react'
 import App from './app'
 import PageLoading from './components/page-loading'
@@ -162,7 +162,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: ROUTES.PUBLIC.LANDING_PAGE,
-            element: <ChatBox />,
+            Component: LandingPage,
           },
           {
             path: ROUTES.PUBLIC.HELP,

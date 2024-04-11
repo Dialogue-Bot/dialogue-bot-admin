@@ -1,6 +1,14 @@
 import { Button } from '@/components/ui'
+import { EActionTypes } from '@/types/flow'
+import _ from 'lodash'
 import { X } from 'lucide-react'
-import { BaseEdge, EdgeProps, getSmoothStepPath } from 'reactflow'
+import { useMemo } from 'react'
+import {
+  BaseEdge,
+  EdgeLabelRenderer,
+  EdgeProps,
+  getSmoothStepPath,
+} from 'reactflow'
 import { useUnmount } from 'usehooks-ts'
 import { useFlowCtx } from '.'
 
@@ -19,9 +27,14 @@ export const Edge = ({
   markerEnd,
   data = {
     deletable: true,
+    hover: false,
   },
+  source,
+  target,
+  selected,
 }: EdgeProps<{
   deletable?: boolean
+  hover?: boolean
 }>) => {
   const [edgePath, labelX, labelY] = getSmoothStepPath({
     sourceX,
@@ -31,7 +44,12 @@ export const Edge = ({
     targetY,
     targetPosition,
   })
-  const { handleDeleteEdgeById } = useFlowCtx()
+  const { handleDeleteEdgeById, getNode } = useFlowCtx()
+  const node = useMemo(() => getNode(source), [getNode, source])
+
+  const action = node?.data?.nextActions
+    ? node.data.nextActions.find((a: any) => a.id === target)
+    : null
 
   useUnmount(() => {
     handleDeleteEdgeById(id)
@@ -40,6 +58,23 @@ export const Edge = ({
   return (
     <>
       <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
+      {(node?.data.action === EActionTypes.PROMPT_AND_COLLECT ||
+        node?.data.action === EActionTypes.CHECK_VARIABLES) &&
+      !selected &&
+      !data.hover &&
+      action ? (
+        <EdgeLabelRenderer>
+          <span
+            style={{
+              transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px`,
+            }}
+            className='edge-label nodrap nopan absolute bg-white text-sm font-medium'
+          >
+            {_.capitalize(action.condition).replace(/_/g, ' ')}
+            {action.value ? ` : ${action.value}` : ''}
+          </span>
+        </EdgeLabelRenderer>
+      ) : null}
       <path
         id={id}
         style={style}
