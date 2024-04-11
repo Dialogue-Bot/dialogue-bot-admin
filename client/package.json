@@ -69,7 +69,7 @@
     "dialogue-chatbox": "^1.0.10",
     "embla-carousel-react": "^8.0.0-rc23",
     "fast-glob": "^3.3.2",
-    "firebase": "^10.8.0",
+    "firebase": "^10.11.0",
     "gsap": "^3.12.5",
     "i18next": "^23.9.0",
     "i18next-browser-languagedetector": "^7.2.0",
