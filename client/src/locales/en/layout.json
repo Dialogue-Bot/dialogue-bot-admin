@@ -5,6 +5,8 @@
   },
   "public_layout": {
     "footer_subtitle": "DialogBot is a platform that allows you to create and publish chatbots for your website.",
-    "footer_built_by": "Built with ❤️ by Hoang Huy, Van Khanh"
+    "footer_built_by": "Built with ❤️ by Hoang Huy, Van Khanh",
+    "start_now": "Start now",
+    "help": "Help"
   }
 }

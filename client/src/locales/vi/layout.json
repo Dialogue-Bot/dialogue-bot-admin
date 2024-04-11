@@ -5,6 +5,8 @@
   },
   "public_layout": {
     "footer_subtitle": "DialogBot là một nền tảng cho phép bạn tạo và xuất bản chatbot cho trang web của mình.",
-    "footer_built_by": "Xây dựng bởi Hoang Huy, Van Khanh"
+    "footer_built_by": "Xây dựng bởi Hoang Huy, Van Khanh",
+    "start_now": "Bắt đầu ngay",
+    "help": "Trợ giúp"
   }
 }
