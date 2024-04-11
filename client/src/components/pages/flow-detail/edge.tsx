@@ -68,7 +68,7 @@ export const Edge = ({
             style={{
               transform: `translate(-50%, -50%) translate(${labelX}px, ${labelY}px`,
             }}
-            className='edge-label nodrap nopan absolute bg-white text-sm font-medium'
+            className='edge-label nodrap nopan absolute bg-white text-xs'
           >
             {_.capitalize(action.condition).replace(/_/g, ' ')}
             {action.value ? ` : ${action.value}` : ''}
