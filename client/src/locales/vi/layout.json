@@ -2,5 +2,9 @@
   "auth_layout": {
     "title": "Câu trả lời chính xác",
     "subtitle": "Nhanh hơn nhiều so với các giải pháp tương đương, trả lời ngay lập tức và tổ chức các cuộc trò chuyện giống như con người."
+  },
+  "public_layout": {
+    "footer_subtitle": "DialogBot là một nền tảng cho phép bạn tạo và xuất bản chatbot cho trang web của mình.",
+    "footer_built_by": "Xây dựng bởi Hoang Huy, Van Khanh"
   }
 }

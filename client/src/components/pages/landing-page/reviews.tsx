@@ -3,6 +3,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 gsap.registerPlugin(ScrollTrigger)
 
 const REVIEWS = [
@@ -45,6 +46,7 @@ export const Reviews = () => {
   const reviewsRef = useRef<HTMLDivElement>(null)
   const reviewItemsRef = useRef<HTMLDivElement[]>([])
   const pinRef = useRef<HTMLDivElement>(null)
+  const { t } = useTranslation('landingPage')
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -53,7 +55,6 @@ export const Reviews = () => {
         start: '-10% center',
         end: 'bottom bottom',
         scrub: 1,
-        markers: true,
       },
     })
 
@@ -95,11 +96,13 @@ export const Reviews = () => {
               className='text-3xl md:text-5xl font-bold text-center max-w-2xl mx-auto'
               ref={h2Ref}
             >
-              What our customers are saying
+              {t('what_people_say_title')}
             </h2>
-            <p ref={pRef} className='text-center font-medium text-lg'>
-              Discover how our customers are using our chatbot builder to grow
-              their businesses.
+            <p
+              ref={pRef}
+              className='text-center font-medium text-sm md:text-lg text-muted-foreground'
+            >
+              {t('what_people_say_subtitle')}
             </p>
           </div>
 

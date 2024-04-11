@@ -2,5 +2,9 @@
   "auth_layout": {
     "title": "Right answers in a flash",
     "subtitle": "Much faster than comparable solutions, replies immediately, and hosts human-like conversations."
+  },
+  "public_layout": {
+    "footer_subtitle": "DialogBot is a platform that allows you to create and publish chatbots for your website.",
+    "footer_built_by": "Built with ❤️ by Hoang Huy, Van Khanh"
   }
 }
