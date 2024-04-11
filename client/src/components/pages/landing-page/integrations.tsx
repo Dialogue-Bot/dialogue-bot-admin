@@ -8,6 +8,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 gsap.registerPlugin(ScrollTrigger)
 
 const IMAGES = [google, gmail, line, messenger, earth]
@@ -17,6 +18,7 @@ export const Integrations = () => {
   const badgeRef = useRef<HTMLDivElement | null>(null)
   const h2Ref = useRef<HTMLHeadingElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const { t } = useTranslation('landingPage')
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -63,8 +65,7 @@ export const Integrations = () => {
               className='text-3xl md:text-5xl font-bold text-center max-w-2xl'
               ref={h2Ref}
             >
-              Integrate with your existing tech stack{' '}
-              <span className='text-primary'>in second</span>
+              {t('integrations_title')}
             </h2>
           </div>
           <div className='relative rounded-full grid items-center justify-center gap-10 py-0 grid-cols-2 md:grid-cols-5'>

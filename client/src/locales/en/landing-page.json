@@ -1,5 +1,13 @@
 {
   "start_now": "Start now",
   "hero_title": "Build <AIChatbots/> that actually work 🚀",
-  "hero_subtitle": "Create meaningful conversations with your customers while delivering a personalized experience."
+  "hero_subtitle": "Create meaningful conversations with your customers while delivering a personalized experience.",
+  "integrations_title": "Integrate with your existing tech stack in second",
+  "what_people_say_title": "What our customers are saying",
+  "what_people_say_subtitle": "Discover how our customers are using our chatbot builder to grow their businesses.",
+  "join_out_newsletter": "Join our newsletter",
+  "join_out_newsletter_subtitle": "Discover how our customers are using our chatbot builder to grow their businesses.",
+  "footer_subtitle": "DialogBot is a platform that allows you to create and publish chatbots for your website.",
+  "footer_built_by": "Built with ❤️ by Hoang Huy, Van Khanh",
+  "join_out_newsletter_button": "Subscribe"
 }

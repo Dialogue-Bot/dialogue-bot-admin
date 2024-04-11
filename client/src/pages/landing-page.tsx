@@ -1,4 +1,9 @@
-import { Hero, Integrations, Reviews } from '@/components/pages/landing-page'
+import {
+  Hero,
+  Integrations,
+  JoinNewsletter,
+  Reviews,
+} from '@/components/pages/landing-page'
 
 const LandingPage = () => {
   return (
@@ -12,6 +17,7 @@ const LandingPage = () => {
       <Hero />
       <Integrations />
       <Reviews />
+      <JoinNewsletter />
     </div>
   )
 }
