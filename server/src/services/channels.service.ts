@@ -1,7 +1,7 @@
 import { Creator } from '@/channels/creator.channel'
 import { LOCALE_KEY, TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { db } from '@/database/db'
-import { channelTypes, channels } from '@/database/schema'
+import { channelTypes, channels, flows } from '@/database/schema'
 import { TNewChannel, TUpdateChannel } from '@/database/types'
 import { UpdateChannelForTestDto } from '@/dtos/channels.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
@@ -107,7 +107,6 @@ export class ChannelService {
   }
 
   public async updateById(id: string, fields: TUpdateChannel) {
-    console.log('fields', fields)
     const channelExisted = await db.query.channels.findFirst({
       where: eq(channels.id, id),
     })
@@ -315,7 +314,15 @@ export class ChannelService {
     return type
   }
 
-  public async updateFlowId(ids: string[], flowId: string) {
+  public async updateFlowId({
+    flowId,
+    ids,
+    userId,
+  }: {
+    ids: string[]
+    flowId: string
+    userId: string
+  }) {
     if (ids === undefined) return true
 
     const prevChannels = await db
@@ -323,7 +330,13 @@ export class ChannelService {
         id: channels.id,
       })
       .from(channels)
-      .where(eq(channels.flowId, flowId))
+      .where(
+        and(
+          eq(channels.flowId, flowId),
+          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+        ),
+      )
+      .leftJoin(flows, eq(channels.flowId, flows.id))
 
     const prevChannelIds = prevChannels.map((c) => c.id)
 

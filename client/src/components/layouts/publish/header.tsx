@@ -8,7 +8,7 @@ const Header = () => {
   const { t } = useTranslation('landingPage')
 
   return (
-    <header className='h-header flex items-center sticky top-0 left-0 right-0 bg-background'>
+    <header className='h-header flex items-center fixed top-0 left-0 right-0 bg-background z-50'>
       <div className='container flex items-center justify-between'>
         <Link
           className='flex items-center gap-1'

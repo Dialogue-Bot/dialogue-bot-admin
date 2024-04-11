@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router-dom'
 
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
 const App = () => {
   return (
     <div>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools buttonPosition='top-right' /> */}
       <Outlet />
     </div>
   )

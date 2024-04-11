@@ -39,7 +39,15 @@ export class UserService {
   }
 
   public async create(fields: TNewUser) {
-    const [user] = await db.insert(users).values(fields).returning()
+    const [user] = await db
+      .insert(users)
+      .values({
+        ...fields,
+        avatar: `https://ui-avatars.com/api/?background=random&name=${
+          fields.name || fields.email || 'User'
+        }`,
+      })
+      .returning()
 
     await this.channelService.createDefaultChannel(user.id)
 

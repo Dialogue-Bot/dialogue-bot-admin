@@ -21,6 +21,13 @@
   @apply opacity-100 scale-100 visible transition-all;
 }
 
+.react-flow__edge.selected .edge-label,
+.react-flow__edge:focus .edge-label,
+.react-flow__edge:focus-visible .edge-label,
+.react-flow__edge:hover .edge-label {
+  @apply hidden;
+}
+
 .react-flow__node.selected #delete-node-btn {
   @apply opacity-100 scale-100 visible transition-all pointer-events-auto;
 }

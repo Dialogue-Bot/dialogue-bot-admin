@@ -36,6 +36,8 @@ export const FlowInside = () => {
     handleDoubleClickEdge,
     flow,
     handleNodesDelete,
+    handleEdgeMouseEnter,
+    handleEdgeMouseLeave,
   } = useFlowCtx()
   const { t } = useTranslation('common')
 
@@ -92,6 +94,8 @@ export const FlowInside = () => {
         onNodeDoubleClick={handleDoubleClickNode}
         onEdgeDoubleClick={handleDoubleClickEdge}
         onNodesDelete={handleNodesDelete}
+        onEdgeMouseEnter={handleEdgeMouseEnter}
+        onEdgeMouseLeave={handleEdgeMouseLeave}
       >
         <Background
           gap={24}
