@@ -16,7 +16,7 @@ export const JoinNewsletter = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: '-20% center',
+        start: '-10% center',
         end: 'bottom bottom',
         scrub: 1,
       },
@@ -45,8 +45,8 @@ export const JoinNewsletter = () => {
   return (
     <div className='py-10 md:py-20 bg-white' ref={containerRef}>
       <div className='container'>
-        <div className='flex items-center flex-col gap-10'>
-          <div className='flex items-center justify-center flex-col gap-4'>
+        <div className='flex items-center flex-col gap-5 md:gap-10'>
+          <div className='flex items-center justify-center flex-col gap-4 md:gap-5'>
             <h2
               className='text-3xl md:text-5xl font-bold text-center max-w-2xl'
               ref={h2Ref}
@@ -61,15 +61,17 @@ export const JoinNewsletter = () => {
             </p>
           </div>
           <div
-            className='flex items-center justify-center gap-3'
+            className='flex items-center justify-center gap-3 max-w-2xl w-full md:flex-row flex-col'
             ref={inputRef}
           >
             <Input
               placeholder={t('forms:email.placeholder')}
-              className='w-96'
+              className='max-w-96 w-full flex-1 h-9'
               type='email'
             />
-            <Button>{t('join_out_newsletter_button')}</Button>
+            <Button className='w-full md:w-auto'>
+              {t('join_out_newsletter_button')}
+            </Button>
           </div>
         </div>
       </div>

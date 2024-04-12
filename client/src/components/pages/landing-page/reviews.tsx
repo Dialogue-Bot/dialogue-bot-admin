@@ -82,7 +82,8 @@ export const Reviews = () => {
         pin: reviewsRef.current,
         scrub: 1,
         snap: 1 / (reviews.length - 1),
-        end: () => `+=${reviewsRef.current?.offsetWidth}`,
+        end: () => `+=${reviewsRef.current?.scrollWidth}`,
+        pinSpacer: pinRef.current,
       },
     })
   }, [])
@@ -91,7 +92,7 @@ export const Reviews = () => {
     <div>
       <div className='py-10 md:py-20 overflow-x-hidden' ref={containerRef}>
         <div className='container'>
-          <div className='space-y-10'>
+          <div className='space-y-4 md:space-y-5'>
             <h2
               className='text-3xl md:text-5xl font-bold text-center max-w-2xl mx-auto'
               ref={h2Ref}
@@ -111,7 +112,7 @@ export const Reviews = () => {
               {REVIEWS.map((review, index) => (
                 <div
                   key={index}
-                  className='bg-white shadow-md p-4 rounded-lg mt-5 w-1/3 flex-shrink-0 border-input border flex-col flex gap-4'
+                  className='bg-white shadow-md p-4 rounded-lg mt-5 flex-shrink-0 border-input border flex-col flex gap-4 min-w-[400px] max-w-[400px]'
                   //@ts-ignore
                   ref={(el) => (reviewItemsRef.current[index] = el)}
                 >
