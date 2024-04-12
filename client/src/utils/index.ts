@@ -127,6 +127,13 @@ export const isStringArray = (value: string) => {
   return /^[^\n\r]*([^,\s\n\r]+(\s*,\s*[^,\s\n\r]+)+)[^\n\r]*$/g.test(value)
 }
 
+/**
+ * Converts a comma-separated string into an array of values.
+ * If the string contains numeric or boolean values, they will be converted accordingly.
+ * @param value - The string to convert into an array.
+ * @returns An array of values.
+ * @throws {Error} If the input string is not a valid array.
+ */
 export const toArray = (value: string) => {
   if (!isStringArray(value)) throw new Error('Invalid array')
 
@@ -137,6 +144,12 @@ export const toArray = (value: string) => {
   })
 }
 
+/**
+ * Checks if a given value is a valid JSON string.
+ *
+ * @param value - The value to check.
+ * @returns `true` if the value is a valid JSON string, `false` otherwise.
+ */
 export const isStringObject = (value: string) => {
   try {
     JSON.parse(value)
@@ -146,6 +159,14 @@ export const isStringObject = (value: string) => {
   }
 }
 
+/**
+ * Removes specified fields from an object and returns a new object.
+ *
+ * @template T - The type of the object.
+ * @param obj - The object from which to remove fields.
+ * @param fields - An array of field names to be excluded from the object.
+ * @returns A new object with the specified fields removed.
+ */
 export const setValueObjectExcludeFields = <
   T extends Record<any, any> = Record<any, any>,
 >(
@@ -161,6 +182,15 @@ export const setValueObjectExcludeFields = <
   return newObj
 }
 
+/**
+ * Checks if an object is empty.
+ * @param obj - The object to check.
+ * @returns True if the object is empty, false otherwise.
+ */
 export const isEmptyObject = (obj: Record<any, any>) => {
   return Object.keys(obj).length === 0
+}
+
+export const genScript = (channelId: string) => {
+  return `<script src="http://localhost:8080/public/script/chatbot.js" channelId="${channelId}"></script>`
 }

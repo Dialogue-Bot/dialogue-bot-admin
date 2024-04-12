@@ -24,8 +24,8 @@ export const Integrations = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 30%',
-        end: 'bottom bottom',
+        start: '-10% 70%',
+        end: 'bottom center',
         scrub: 1,
       },
     })
@@ -46,8 +46,8 @@ export const Integrations = () => {
       tl.from(image, {
         opacity: 0,
         y: 50,
-        duration: 1,
-        stagger: 0.1,
+        duration: 2,
+        stagger: 0.5,
         ease: 'power3.out',
       })
     })
