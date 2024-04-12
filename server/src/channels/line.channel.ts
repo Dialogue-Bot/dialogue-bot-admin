@@ -94,9 +94,12 @@ export class LineChannel extends BaseChannel {
     } catch (e) { }
   }
 
-  public async sendMessageToUser({ userId, text }) {
-    const lineUserId = await this.getLineUserID()
+  public async sendMessageToUser({ userId, text, channelData }) {
+    const lineUserId = await this.getLineUserID();
     try {
+      if (channelData && channelData.extendData.length) {
+        return this.detectTemple({ userId, type: channelData.type, extendData: channelData.extendData, text });
+      }
       if (!text) return
 
       await axios({
@@ -118,6 +121,80 @@ export class LineChannel extends BaseChannel {
       logger.info(
         `[LIN] Bot send message to User ${lineUserId} failed - Error: ${e.message}`,
       )
+    }
+  }
+
+  async detectTemple({ userId, type, extendData, text }) {
+    switch (type) {
+      case 'list-card':
+        return await this.sendGenericTemplate({ userId, extendData });
+        break;
+      case 'list-button':
+        return await this.sendButtons({ userId, buttons: extendData, text });
+      default:
+        logger.info(
+          `[LIN] Line does not support template type ${type}`
+        );
+        break;
+    }
+  }
+
+  async sendButtons({ userId, buttons, text }) {
+    try {
+      const option = {
+        method: 'POST',
+        url: this.linePostURL + '/message/push',
+        data: {
+          to: userId,
+          messages: [
+            {
+              type: "template",
+              altText: "buttons template",
+              template: {
+                type: "confirm",
+                text: text,
+                actions: buttons,
+              }
+            }
+          ],
+        },
+        headers: {
+          Authorization: 'Bearer ' + this.pageToken,
+        },
+      };
+
+      await axios(option);
+    } catch (e) {
+      console.log('[LIN] send message to User failed: ' + e.message);
+    }
+  }
+
+  async sendGenericTemplate({ userId, extendData }) {
+    try {
+      const option = {
+        method: 'POST',
+        url: this.linePostURL + '/message/push',
+        data: {
+          to: userId,
+          messages: [
+            {
+              type: "template",
+              altText: "generic template",
+              template: {
+                type: "carousel",
+                columns: extendData,
+              }
+            }
+          ],
+        },
+        headers: {
+          Authorization: 'Bearer ' + this.pageToken,
+        },
+      };
+
+      await axios(option);
+    } catch (e) {
+      console.log('LNE send message to User failed');
     }
   }
 }
