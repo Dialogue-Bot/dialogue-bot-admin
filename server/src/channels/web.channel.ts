@@ -28,7 +28,7 @@ export class WebChannel extends BaseChannel {
         channelData: any;
     }) {
         try {
-            let result = { userId, message: text || '', template: {}, isBot: true };
+            let result = { userId, message: text || '', template: {}, isBot: true, createdAt: new Date() };
 
             if (channelData) {
                 result.template = {
