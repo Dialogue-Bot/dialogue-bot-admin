@@ -47,6 +47,10 @@ export const ENDPOINTS = {
     DELETE: '/intent/delete',
     FOR_SELECT: '/intent/for-select',
   },
+  CONVERSATION_LIVE_CHAT: {
+    INDEX: '/conversation-live-chat',
+    GET_MESSAGES: '/conversation-live-chat/:id',
+  },
 }
 
 export const ROUTES = {
@@ -83,6 +87,9 @@ export const ROUTES = {
     TRAINING: {
       INDEX: '/training',
       ADD_INTENT: '/training/add-intent',
+    },
+    CONVERSATION: {
+      INDEX: '/conversations',
     },
   },
 }

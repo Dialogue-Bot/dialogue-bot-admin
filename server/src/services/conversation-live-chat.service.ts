@@ -1,5 +1,5 @@
 import { db } from '@/database/db'
-import { jsonBuildObject, nullIsNull } from '@/database/helper'
+import { jsonBuildObject, nullIsNull, selectAllFields } from '@/database/helper'
 import { channels, conversations, messages } from '@/database/schema'
 import {
   ConversationLiveChatCreateDto,
@@ -17,16 +17,23 @@ export class ConversationLiveChatService {
     channelId,
     userId,
   }: ConversationLiveChatCreateDto) {
-    const conversation = await db.query.conversations.findFirst({
+    const conversation = await this.getConversation(userId, channelId)
+
+    if (conversation) return conversation
+
+    await db.insert(conversations).values({ userId, channelId }).returning()
+
+    return this.getConversation(userId, channelId)
+  }
+
+  public getConversation(userId: string, channelId: string) {
+    return db.query.conversations.findFirst({
       where: and(
         eq(conversations.userId, userId),
         eq(conversations.channelId, channelId),
       ),
+      with: { channel: true },
     })
-
-    if (conversation) return conversation
-
-    return db.insert(conversations).values({ userId, channelId }).returning()
   }
 
   public async getConversations(
@@ -56,8 +63,7 @@ export class ConversationLiveChatService {
     )
 
     const rows = await db
-      .selectDistinctOn([conversations.id], {
-        id: conversations.id,
+      .selectDistinctOn([conversations.userId], {
         userId: conversations.userId,
         channelId: conversations.channelId,
         createdAt: conversations.createdAt,
@@ -71,26 +77,27 @@ export class ConversationLiveChatService {
           createdAt: lastMessage.createdAt,
           conversationId: lastMessage.conversationId,
         }),
+        channel: jsonBuildObject(selectAllFields(channels)),
       })
       .from(conversations)
       .innerJoin(channels, eq(conversations.channelId, channels.id))
 
-      .leftJoin(messages, eq(messages.conversationId, conversations.id))
+      .leftJoin(messages, eq(messages.conversationId, conversations.userId))
       .leftJoin(
         lastMessage,
         and(
-          eq(messages.conversationId, conversations.id),
+          eq(messages.conversationId, conversations.userId),
           eq(messages.createdAt, lastMessage.maxCreatedAt),
         ),
       )
       .where(where)
-      .orderBy(conversations.id, desc(lastMessage.maxCreatedAt))
+      .orderBy(conversations.userId, desc(lastMessage.maxCreatedAt))
       .limit(limit)
       .offset((page - 1) * limit)
 
     const [{ count }] = await db
       .select({
-        count: sql<number>`cast(count(${conversations.id}) as integer)`,
+        count: sql<number>`cast(count(${conversations.userId}) as integer)`,
       })
       .from(conversations)
       .where(and(where))

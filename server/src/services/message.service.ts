@@ -1,7 +1,8 @@
 import { db } from '@/database/db'
-import { messages } from '@/database/schema'
+import { selectAllFields } from '@/database/helper'
+import { conversations, messages } from '@/database/schema'
 import { TNewMessage } from '@/database/types'
-import { desc, eq } from 'drizzle-orm'
+import { and, desc, eq } from 'drizzle-orm'
 import { Service } from 'typedi'
 
 @Service()
@@ -10,11 +11,26 @@ export class MessageService {
     return db.insert(messages).values(data)
   }
 
-  async getMessagesByConversationId(conversationId: string) {
+  async getMessages({
+    channelId,
+    userId,
+  }: {
+    channelId: string
+    userId: string
+  }) {
     return db
-      .select()
+      .select(selectAllFields(messages))
       .from(messages)
-      .where(eq(messages.conversationId, conversationId))
+      .innerJoin(
+        conversations,
+        eq(messages.conversationId, conversations.userId),
+      )
+      .where(
+        and(
+          eq(messages.conversationId, userId),
+          eq(conversations.channelId, channelId),
+        ),
+      )
       .orderBy(desc(messages.createdAt))
   }
 }

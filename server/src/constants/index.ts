@@ -66,7 +66,7 @@ export const ENDPOINTS = {
   },
   CONVERSATION_LIVE_CHAT: {
     INDEX: '/conversation-live-chat',
-    GET_MESSAGES: '/conversation-live-chat/:id',
+    GET_MESSAGES: '/conversation-live-chat/:userId/:channelId',
   },
 }
 

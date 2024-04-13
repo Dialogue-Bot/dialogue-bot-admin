@@ -39,9 +39,10 @@ export class ConversationLiveChatController {
   })
 
   public getMessages = catchAsync(async (req: RequestWithUser, res) => {
-    const data = await this.messageService.getMessagesByConversationId(
-      req.params.id as string,
-    )
+    const data = await this.messageService.getMessages({
+      channelId: req.params.channelId,
+      userId: req.params.userId,
+    })
 
     res.status(StatusCodes.OK).json({ data })
   })
