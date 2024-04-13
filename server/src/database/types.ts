@@ -52,3 +52,5 @@ export type TUpdateFlow = Partial<TNewFlow>
 export type TNewIntent = typeof schema.intents.$inferInsert
 
 export type TUpdateIntent = Partial<TNewIntent>
+
+export type TNewMessage = typeof schema.messages.$inferInsert

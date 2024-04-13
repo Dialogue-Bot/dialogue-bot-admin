@@ -81,7 +81,7 @@ export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
   channels: many(channels),
 }))
 
-export const channelsRelations = relations(channels, ({ one }) => ({
+export const channelsRelations = relations(channels, ({ one, many }) => ({
   channelType: one(channelTypes, {
     fields: [channels.channelTypeId],
     references: [channelTypes.id],
@@ -94,6 +94,7 @@ export const channelsRelations = relations(channels, ({ one }) => ({
     fields: [channels.flowId],
     references: [flows.id],
   }),
+  conversations: many(conversations),
 }))
 
 export const settings = pgTable('settings', {
@@ -176,6 +177,14 @@ export const conversations = pgTable('conversations', {
   userId: varchar('user_id', {}).notNull().unique('user_id'),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
+  channelId: text('channel_id').references(() => channels.id, {
+    onDelete: 'set null',
+  }),
+  id: varchar('id', {
+    length: MAX_ID_LENGTH,
+  })
+    .primaryKey()
+    .default(createId()),
 })
 
 export const messages = pgTable('messages', {
@@ -188,7 +197,7 @@ export const messages = pgTable('messages', {
     length: MAX_ID_LENGTH,
   })
     .notNull()
-    .references(() => conversations.userId, { onDelete: 'cascade' }),
+    .references(() => conversations.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow(),
   from: text('from').notNull(),
   to: text('to').notNull(),
@@ -200,17 +209,20 @@ export const messages = pgTable('messages', {
     .$type<{
       text?: string
       buttons?: Array<{
-        label: string
-        url: string
+        type: 'postback' | 'web_url'
+        title: string
+        payload?: string
+        url?: string
       }>
       cards?: Array<{
         title: string
         subtitle: string
-        imageUrl: string
-        buttons?: Array<{
-          label: string
-          type: string
-          value: string
+        image_url: string
+        buttons: Array<{
+          type: 'postback' | 'web_url'
+          title: string
+          payload?: string
+          url?: string
         }>
       }>
       url?: string
@@ -220,13 +232,20 @@ export const messages = pgTable('messages', {
 export const messagesRelations = relations(messages, ({ one }) => ({
   conversation: one(conversations, {
     fields: [messages.conversationId],
-    references: [conversations.userId],
+    references: [conversations.id],
   }),
 }))
 
-export const conversationsRelations = relations(conversations, ({ many }) => ({
-  messages: many(messages),
-}))
+export const conversationsRelations = relations(
+  conversations,
+  ({ many, one }) => ({
+    messages: many(messages),
+    user: one(channels, {
+      fields: [conversations.channelId],
+      references: [channels.id],
+    }),
+  }),
+)
 
 export const intentsRelations = relations(intents, ({ one }) => ({
   user: one(users, {
