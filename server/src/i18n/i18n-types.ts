@@ -305,6 +305,12 @@ type RootTranslation = {
 		 */
 		PREDICT_SUCCESS: string
 	}
+	CONVERSATION_LIVE_CHAT: {
+		/**
+		 * C​r​e​a​t​e​ ​c​o​n​v​e​r​s​a​t​i​o​n​ ​s​u​c​c​e​s​s​!
+		 */
+		CREATE_SUCCESS: string
+	}
 }
 
 export type TranslationFunctions = {
@@ -591,6 +597,12 @@ export type TranslationFunctions = {
 		 * Predict Intent success!
 		 */
 		PREDICT_SUCCESS: () => LocalizedString
+	}
+	CONVERSATION_LIVE_CHAT: {
+		/**
+		 * Create conversation success!
+		 */
+		CREATE_SUCCESS: () => LocalizedString
 	}
 }
 

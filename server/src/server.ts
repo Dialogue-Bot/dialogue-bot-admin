@@ -2,6 +2,7 @@ import { App } from '@/app'
 import { ValidateEnv } from '@/utils/validate-env'
 import { AuthRoute } from '@routes/auth.route'
 import { ChannelRoute } from './routes/channels.route'
+import { ConversationLiveChatRoute } from './routes/conversation-live-chat.route'
 import { ConversationRoute } from './routes/conversation.route'
 import { FlowRoute } from './routes/flow.route'
 import { IntentRoute } from './routes/intent.route'
@@ -22,6 +23,7 @@ const app = new App([
   new ConversationRoute(),
   new FlowRoute(),
   new IntentRoute(),
+  new ConversationLiveChatRoute(),
 ])
 
 app.listen()

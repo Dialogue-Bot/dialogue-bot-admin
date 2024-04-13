@@ -64,6 +64,10 @@ export const ENDPOINTS = {
     PREDICT: '/intent/predict',
     FOR_SELECT: '/intent/for-select',
   },
+  CONVERSATION_LIVE_CHAT: {
+    INDEX: '/conversation-live-chat',
+    GET_MESSAGES: '/conversation-live-chat/:id',
+  },
 }
 
 export const LOCALE_KEY = 'lang'
