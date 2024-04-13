@@ -81,7 +81,7 @@ export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
   channels: many(channels),
 }))
 
-export const channelsRelations = relations(channels, ({ one }) => ({
+export const channelsRelations = relations(channels, ({ one, many }) => ({
   channelType: one(channelTypes, {
     fields: [channels.channelTypeId],
     references: [channelTypes.id],
@@ -94,6 +94,7 @@ export const channelsRelations = relations(channels, ({ one }) => ({
     fields: [channels.flowId],
     references: [flows.id],
   }),
+  conversations: many(conversations),
 }))
 
 export const settings = pgTable('settings', {
@@ -176,6 +177,9 @@ export const conversations = pgTable('conversations', {
   userId: varchar('user_id', {}).notNull().unique('user_id'),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
+  channelId: text('channel_id').references(() => channels.id, {
+    onDelete: 'set null',
+  }),
 })
 
 export const messages = pgTable('messages', {
@@ -200,17 +204,20 @@ export const messages = pgTable('messages', {
     .$type<{
       text?: string
       buttons?: Array<{
-        label: string
-        url: string
+        type: 'postback' | 'web_url'
+        title: string
+        payload?: string
+        url?: string
       }>
       cards?: Array<{
         title: string
         subtitle: string
-        imageUrl: string
-        buttons?: Array<{
-          label: string
-          type: string
-          value: string
+        image_url: string
+        buttons: Array<{
+          type: 'postback' | 'web_url'
+          title: string
+          payload?: string
+          url?: string
         }>
       }>
       url?: string
@@ -224,9 +231,20 @@ export const messagesRelations = relations(messages, ({ one }) => ({
   }),
 }))
 
-export const conversationsRelations = relations(conversations, ({ many }) => ({
-  messages: many(messages),
-}))
+export const conversationsRelations = relations(
+  conversations,
+  ({ many, one }) => ({
+    messages: many(messages),
+    user: one(channels, {
+      fields: [conversations.channelId],
+      references: [channels.id],
+    }),
+    channel: one(channels, {
+      fields: [conversations.channelId],
+      references: [channels.id],
+    }),
+  }),
+)
 
 export const intentsRelations = relations(intents, ({ one }) => ({
   user: one(users, {

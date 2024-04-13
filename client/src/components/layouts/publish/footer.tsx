@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className='bg-blue-500 py-10 md:py-20 text-white'>
       <div className='container'>
-        <div className='flex justify-between'>
+        <div className='flex justify-between sm:flex-row flex-col sm:gap-[unset] gap-5'>
           <div className='space-y-4 max-w-96'>
             <div className='flex items-center gap-1'>
               <Bot size={32} className='text-white' />

@@ -95,6 +95,7 @@ const RowActions = ({ row }: Props) => {
                 setOpen(false)
                 setOpenDropdown(false)
               }}
+              channelId={row.original.id}
             />
             <SheetFooter className='mt-auto'>
               <Button type='submit' form='channel-form'>

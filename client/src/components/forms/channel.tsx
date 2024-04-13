@@ -4,12 +4,16 @@ import { queryChannelTypesOption } from '@/lib/query-options/channel'
 import { queryFlowsForSelectOption } from '@/lib/query-options/flow'
 import { TChannelInput, useChannelSchema } from '@/lib/schema/channel'
 import { ChannelType } from '@/types/channel'
+import { genScript } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
+import { useCopyToClipboard } from 'usehooks-ts'
 import {
+  Button,
   Form,
   FormControl,
   FormField,
@@ -39,8 +43,9 @@ const ChannelForm = ({
   defaultValues,
   channelId,
 }: Props) => {
-  const { t } = useTranslation('forms')
+  const { t } = useTranslation(['forms', 'common'])
   const { data: flows } = useQuery(queryFlowsForSelectOption(channelId || ''))
+
   const { data: types } = useQuery(queryChannelTypesOption)
 
   const schema = useChannelSchema()
@@ -52,6 +57,7 @@ const ChannelForm = ({
       ...defaultValues,
     },
   })
+  const [, copyToClipboard] = useCopyToClipboard()
 
   const channelTypeId = form.watch('channelTypeId')
 
@@ -73,162 +79,192 @@ const ChannelForm = ({
   }, [currentType, form])
 
   return (
-    <Form {...form}>
-      <form
-        className='space-y-3'
-        id={id}
-        onSubmit={form.handleSubmit(handleSubmit)}
-      >
-        <FormField
-          name='contactId'
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('contactId.label')}</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder={t('contactId.placeholder')}
-                  autoComplete='off'
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          name='contactName'
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('contactName.label')}</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder={t('contactName.placeholder')}
-                  autoComplete='off'
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='active'
-          render={({ field }) => (
-            <FormItem className='flex flex-row items-center justify-between'>
-              <div className='space-y-0.5'>
+    <>
+      <Form {...form}>
+        <form
+          className='space-y-3'
+          id={id}
+          onSubmit={form.handleSubmit(handleSubmit)}
+        >
+          <FormField
+            name='contactId'
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('contactId.label')}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder={t('contactId.placeholder')}
+                    autoComplete='off'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            name='contactName'
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('contactName.label')}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder={t('contactName.placeholder')}
+                    autoComplete='off'
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='active'
+            render={({ field }) => (
+              <FormItem className='flex flex-row items-center justify-between'>
+                <div className='space-y-0.5'>
+                  <FormLabel>
+                    <Label>{t('active.label')}</Label>
+                  </FormLabel>
+                </div>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='flowId'
+            render={({ field }) => (
+              <FormItem>
                 <FormLabel>
-                  <Label>{t('active.label')}</Label>
+                  <Label>{t('flow.label')}</Label>
                 </FormLabel>
-              </div>
-              <FormControl>
-                <Switch
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='flowId'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                <Label>{t('flow.label')}</Label>
-              </FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder={t('flow.placeholder')} />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {flows?.map((flow) => {
-                    return (
-                      <SelectItem key={flow.value} value={flow.value}>
-                        {flow.label}
-                      </SelectItem>
-                    )
-                  })}
-                </SelectContent>
-              </Select>
-            </FormItem>
-          )}
-        />
-        <FormField
-          name='channelTypeId'
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('channelTypeId.label')}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder={t('channelTypeId.placeholder')} />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {types?.map((type) => (
-                    <SelectItem key={type.id} value={type.id}>
-                      {type.description}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {currentType &&
-          (currentType.name === ChannelType.MESSENGER ||
-            currentType.name === ChannelType.LINE) && (
-            <>
-              <FormField
-                name='credentials.pageToken'
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('pageToken.label')}</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder={t('pageToken.placeholder')}
-                        autoComplete='off'
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t('flow.placeholder')} />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {flows?.map((flow) => {
+                      return (
+                        <SelectItem key={flow.value} value={flow.value}>
+                          {flow.label}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+              </FormItem>
+            )}
+          />
+          <FormField
+            name='channelTypeId'
+            control={form.control}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('channelTypeId.label')}</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder={t('channelTypeId.placeholder')}
                       />
-                    </FormControl>
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {types?.map((type) => (
+                      <SelectItem key={type.id} value={type.id}>
+                        {type.description}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {currentType.name === ChannelType.MESSENGER && (
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {currentType &&
+            (currentType.name === ChannelType.MESSENGER ||
+              currentType.name === ChannelType.LINE) && (
+              <>
                 <FormField
-                  name='credentials.webhookSecret'
+                  name='credentials.pageToken'
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t('webhookSecret.label')}</FormLabel>
+                      <FormLabel>{t('pageToken.label')}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder={t('webhookSecret.placeholder')}
+                          placeholder={t('pageToken.placeholder')}
                           autoComplete='off'
                         />
                       </FormControl>
+
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              )}
-            </>
+                {currentType.name === ChannelType.MESSENGER && (
+                  <FormField
+                    name='credentials.webhookSecret'
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('webhookSecret.label')}</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder={t('webhookSecret.placeholder')}
+                            autoComplete='off'
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+              </>
+            )}
+          {currentType?.name === ChannelType.WEB && channelId && (
+            <div className='space-y-2'>
+              <Label>Script</Label>
+              <Input value={genScript(channelId)} readOnly disabled />
+              <div className='flex items-center justify-end'>
+                <Button
+                  type='button'
+                  onClick={() =>
+                    copyToClipboard(genScript(channelId)).then((success) => {
+                      if (success) {
+                        return toast.success(t('common:copy_success'))
+                      }
+                    })
+                  }
+                >
+                  Copy
+                </Button>
+              </div>
+            </div>
           )}
-      </form>
-    </Form>
+        </form>
+      </Form>
+    </>
   )
 }
 

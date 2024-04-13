@@ -46,5 +46,6 @@
     "title": "Chưa lưu thay đổi",
     "desc": "Bạn có chắc chắn muốn rời khỏi trang này không? Mọi thay đổi chưa lưu sẽ bị mất."
   },
-  "send_mail_after_time": "Gởi lại sau {{time}}s"
+  "send_mail_after_time": "Gởi lại sau {{time}}s",
+  "copy_success": "Đã sao chép vào clipboard"
 }

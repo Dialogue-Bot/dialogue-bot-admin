@@ -43,7 +43,7 @@ const Flows = () => {
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
           <CreateFlowBtn />
           {data.items.map((item) => {
-            return <FlowItem flow={item} />
+            return <FlowItem flow={item} key={item.id} />
           })}
         </div>
         <div className='flex items-center justify-center gap-4 select-none'>

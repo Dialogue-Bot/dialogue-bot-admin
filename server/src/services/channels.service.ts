@@ -420,4 +420,10 @@ export class ChannelService {
 
     return _channel
   }
+
+  public async getAll(userId: string) {
+    return db.query.channels.findMany({
+      where: and(eq(channels.userId, userId), eq(channels.deleted, false)),
+    })
+  }
 }

@@ -48,5 +48,6 @@
     "title": "Unsaved changes",
     "desc": "You have unsaved changes. Are you sure you want to leave this page?"
   },
-  "send_mail_after_time": "Resend after {{time}}s"
+  "send_mail_after_time": "Resend after {{time}}s",
+  "copy_success": "Copied to clipboard"
 }
