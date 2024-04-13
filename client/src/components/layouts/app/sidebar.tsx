@@ -15,6 +15,7 @@ import {
   BrainCircuit,
   Cable,
   LogOut,
+  MessageCircle,
   MessageSquareCode,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -45,6 +46,13 @@ const SIDEBAR_ITEMS: Array<{
     ),
     i18n: 'channels',
     to: ROUTES.PRIVATE.CHANNEL.INDEX,
+  },
+  {
+    Icon: (
+      <MessageCircle className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
+    ),
+    i18n: 'conversations',
+    to: ROUTES.PRIVATE.CONVERSATION.INDEX,
   },
 ]
 

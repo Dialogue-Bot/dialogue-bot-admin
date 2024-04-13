@@ -180,11 +180,6 @@ export const conversations = pgTable('conversations', {
   channelId: text('channel_id').references(() => channels.id, {
     onDelete: 'set null',
   }),
-  id: varchar('id', {
-    length: MAX_ID_LENGTH,
-  })
-    .primaryKey()
-    .default(createId()),
 })
 
 export const messages = pgTable('messages', {
@@ -197,7 +192,7 @@ export const messages = pgTable('messages', {
     length: MAX_ID_LENGTH,
   })
     .notNull()
-    .references(() => conversations.id, { onDelete: 'cascade' }),
+    .references(() => conversations.userId, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow(),
   from: text('from').notNull(),
   to: text('to').notNull(),
@@ -232,7 +227,7 @@ export const messages = pgTable('messages', {
 export const messagesRelations = relations(messages, ({ one }) => ({
   conversation: one(conversations, {
     fields: [messages.conversationId],
-    references: [conversations.id],
+    references: [conversations.userId],
   }),
 }))
 
@@ -241,6 +236,10 @@ export const conversationsRelations = relations(
   ({ many, one }) => ({
     messages: many(messages),
     user: one(channels, {
+      fields: [conversations.channelId],
+      references: [channels.id],
+    }),
+    channel: one(channels, {
       fields: [conversations.channelId],
       references: [channels.id],
     }),
