@@ -20,6 +20,8 @@
   "add_intent": "Thêm ý định",
   "trained": "Đã đào tạo",
   "not_trained": "Chưa đào tạo",
+  "conversations": "Cuộc trò chuyện",
+  "users": "Người dùng",
   "row_actions": {
     "update": "Cập nhật",
     "delete": "Xóa",

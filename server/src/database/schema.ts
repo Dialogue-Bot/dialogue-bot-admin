@@ -1,3 +1,4 @@
+import { IButton, ICard } from '@/interfaces/conversation.interface'
 import { IFlowSetting, IFlowVariable } from '@/interfaces/flows.interface'
 import { IIntents } from '@/interfaces/intents.interface'
 import { createId } from '@paralleldrive/cuid2'
@@ -94,7 +95,9 @@ export const channelsRelations = relations(channels, ({ one, many }) => ({
     fields: [channels.flowId],
     references: [flows.id],
   }),
-  conversations: many(conversations),
+  conversations: many(conversations, {
+    relationName: 'channelConversations',
+  }),
 }))
 
 export const settings = pgTable('settings', {
@@ -197,31 +200,13 @@ export const messages = pgTable('messages', {
   from: text('from').notNull(),
   to: text('to').notNull(),
   type: text('type').notNull().default('text'),
-  data: json('data')
-    .default({
-      text: '',
-    })
+  message: text('message').default(''),
+  template: json('template')
     .$type<{
-      text?: string
-      buttons?: Array<{
-        type: 'postback' | 'web_url'
-        title: string
-        payload?: string
-        url?: string
-      }>
-      cards?: Array<{
-        title: string
-        subtitle: string
-        image_url: string
-        buttons: Array<{
-          type: 'postback' | 'web_url'
-          title: string
-          payload?: string
-          url?: string
-        }>
-      }>
-      url?: string
-    }>(),
+      data?: Array<IButton | ICard>
+      type?: string
+    }>()
+    .default({}),
 })
 
 export const messagesRelations = relations(messages, ({ one }) => ({
@@ -242,6 +227,7 @@ export const conversationsRelations = relations(
     channel: one(channels, {
       fields: [conversations.channelId],
       references: [channels.id],
+      relationName: 'channelConversations',
     }),
   }),
 )

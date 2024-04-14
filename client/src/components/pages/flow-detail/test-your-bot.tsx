@@ -17,11 +17,14 @@ const TestYourBot = () => {
     showTestBot && (
       <div
         className={cn(
-          'fixed right-4 z-10 rounded-md shadow w-80 transition-transform duration-300 bottom-4 flex flex-col gap-4 bg-white h-[500px]',
+          'fixed right-4 z-10 rounded-md shadow w-80 transition-transform duration-300 bottom-4 flex flex-col gap-4 bg-white h-[500px] overflow-hidden',
         )}
       >
-        <ChatBox channelId={channel.contactId} className='h-full w-full' 
+        <ChatBox
+          channelId={channel.contactId}
+          className='h-full w-full'
           isTest
+          isShowClose={false}
         />
       </div>
     )

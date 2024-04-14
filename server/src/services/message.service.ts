@@ -1,7 +1,7 @@
 import { db } from '@/database/db'
 import { selectAllFields } from '@/database/helper'
 import { conversations, messages } from '@/database/schema'
-import { TNewMessage } from '@/database/types'
+import { TMessage, TNewMessage } from '@/database/types'
 import { and, desc, eq } from 'drizzle-orm'
 import { Service } from 'typedi'
 
@@ -18,7 +18,7 @@ export class MessageService {
     channelId: string
     userId: string
   }) {
-    return db
+    const rows = (await db
       .select(selectAllFields(messages))
       .from(messages)
       .innerJoin(
@@ -31,6 +31,16 @@ export class MessageService {
           eq(conversations.channelId, channelId),
         ),
       )
-      .orderBy(desc(messages.createdAt))
+      .orderBy(desc(messages.createdAt))) as unknown as Array<TMessage>
+
+    return rows.map((row) => {
+      return {
+        template: row.template,
+        message: row.message,
+        createdAt: row.createdAt,
+        isBot: row.from === 'bot',
+        userId: row.to === userId ? row.from : row.to,
+      }
+    })
   }
 }

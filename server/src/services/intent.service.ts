@@ -276,7 +276,7 @@ export class IntentService {
     const rows = await db
       .select({
         label: intents.name,
-        value: intents.id,
+        value: intents.referenceId,
       })
       .from(intents)
       .where(and(eq(intents.deleted, false), eq(intents.userId, userId)))

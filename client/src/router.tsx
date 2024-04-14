@@ -1,6 +1,8 @@
 import {
   AddIntent,
   Channels,
+  ConversationDetail,
+  Conversations,
   FlowDetail,
   Flows,
   ForgotPassword,
@@ -20,6 +22,7 @@ import { createBrowserRouter, redirect } from 'react-router-dom'
 import {
   AppLayout,
   AuthLayout,
+  LiveChatLayout,
   PublishLayout,
   SettingLayout,
 } from '@/components/layouts'
@@ -34,6 +37,7 @@ import {
   articlesLoader,
   authLoader,
   channelsLoader,
+  conversationsLoader,
   flowDetailLoader,
   flowsLoader,
   intentLoader,
@@ -152,6 +156,21 @@ export const router = createBrowserRouter([
                 loader: async () => {
                   return redirect(ROUTES.PRIVATE.SETTING.PROFILES)
                 },
+              },
+            ],
+          },
+          {
+            path: ROUTES.PRIVATE.CONVERSATION.INDEX,
+            Component: LiveChatLayout,
+            children: [
+              {
+                index: true,
+                Component: Conversations,
+                loader: conversationsLoader,
+              },
+              {
+                path: `${ROUTES.PRIVATE.CONVERSATION.INDEX}/:userId/:channelId`,
+                Component: ConversationDetail,
               },
             ],
           },

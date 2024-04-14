@@ -1,3 +1,4 @@
+import { TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { db } from '@/database/db'
 import { jsonBuildObject, nullIsNull, selectAllFields } from '@/database/helper'
 import { channels, conversations, messages } from '@/database/schema'
@@ -5,7 +6,7 @@ import {
   ConversationLiveChatCreateDto,
   ConversationLiveChatQueryDto,
 } from '@/dtos/conversation-live-chat.dto'
-import { and, desc, eq, sql } from 'drizzle-orm'
+import { and, desc, eq, ne, sql } from 'drizzle-orm'
 import { Service } from 'typedi'
 import { ChannelService } from './channels.service'
 
@@ -50,7 +51,7 @@ export class ConversationLiveChatService {
         from: messages.from,
         to: messages.to,
         type: messages.type,
-        data: messages.data,
+        template: messages.template,
         createdAt: messages.createdAt,
       })
       .from(messages)
@@ -60,6 +61,7 @@ export class ConversationLiveChatService {
     const where = and(
       eq(channels.userId, ownerId),
       channelId ? eq(conversations.channelId, channelId) : nullIsNull,
+      ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${ownerId}`),
     )
 
     const rows = await db
@@ -73,7 +75,7 @@ export class ConversationLiveChatService {
           from: lastMessage.from,
           to: lastMessage.to,
           type: lastMessage.type,
-          data: lastMessage.data,
+          template: messages.template,
           createdAt: lastMessage.createdAt,
           conversationId: lastMessage.conversationId,
         }),
