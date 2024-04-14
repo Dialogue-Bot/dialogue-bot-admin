@@ -17,6 +17,8 @@
   "profiles": "Profiles",
   "save": "Save",
   "channels": "Channels",
+  "conversations": "Conversations",
+  "users": "Users",
   "search": "Search",
   "add_intent": "Add intent",
   "trained": "Trained",

@@ -21,6 +21,10 @@ import {
   queryIntentsOption,
   settingQueryOption,
 } from './query-options'
+import {
+  queryConversationOption,
+  queryConversationsOptions,
+} from './query-options/live-chat'
 
 export const authLoader = async ({ request }: any) => {
   const redirectUrl = new URL(request.url).searchParams.get('redirect')
@@ -152,6 +156,23 @@ export const verifyAccountLoader = async ({ request }: any) => {
 
     return redirect(ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT)
   }
+
+  return null
+}
+
+export const conversationsLoader = async ({ request }: any) => {
+  const query = queryStringToObject(request.url)
+  useAppLayoutStore.getState().setTitle(i18n.t('common:conversations'))
+
+  await queryClient.ensureQueryData(queryConversationsOptions(query))
+
+  return null
+}
+
+export const conversationLoader = async ({ params }: any) => {
+  await queryClient.ensureQueryData(
+    queryConversationOption(params.channelId, params.userId),
+  )
 
   return null
 }
