@@ -1,6 +1,7 @@
 import channelEn from '@/locales/en/channel.json'
 import chatbotsEn from '@/locales/en/chatbots.json'
 import commonEN from '@/locales/en/common.json'
+import conversationsEn from '@/locales/en/conversations.json'
 import flowDetailEn from '@/locales/en/flow-detail.json'
 import forgotPassEN from '@/locales/en/forgot_pass.json'
 import formsEN from '@/locales/en/forms.json'
@@ -20,6 +21,7 @@ import verifyAccountEn from '@/locales/en/verify-account.json'
 import channelVi from '@/locales/vi/channel.json'
 import chatbotsVi from '@/locales/vi/chatbots.json'
 import commonVI from '@/locales/vi/common.json'
+import conversationsVi from '@/locales/vi/conversations.json'
 import flowDetailVi from '@/locales/vi/flow-detail.json'
 import forgotPassVI from '@/locales/vi/forgot_pass.json'
 import formsVI from '@/locales/vi/forms.json'
@@ -59,6 +61,7 @@ const resources = {
     training: trainingEn,
     requestVerifyAccount: requestVerifyAccountEn,
     verifyAccount: verifyAccountEn,
+    conversations: conversationsEn,
   },
   [ELang.VI]: {
     common: commonVI,
@@ -80,6 +83,7 @@ const resources = {
     training: trainingVi,
     requestVerifyAccount: requestVerifyAccountVi,
     verifyAccount: verifyAccountVi,
+    conversations: conversationsVi,
   },
 } as const
 

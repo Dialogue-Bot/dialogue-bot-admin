@@ -1,3 +1,6 @@
+import { TChannel } from './channel'
+import { TBaseQuery } from './share'
+
 export type TConversation = {
   id: string
   userId: string
@@ -5,6 +8,7 @@ export type TConversation = {
   createdAt: string
   updatedAt: string
   lastMessage: TMessage
+  channel: TChannel
 }
 
 export type TMessage = {
@@ -36,3 +40,7 @@ export type TMessage = {
     url?: string
   }
 }
+
+export type TConversationLiveChatQuery = {
+  channelId?: string
+} & TBaseQuery
