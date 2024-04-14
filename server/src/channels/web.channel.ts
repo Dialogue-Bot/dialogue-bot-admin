@@ -1,11 +1,16 @@
 import { SOCKET_EVENTS } from '@/constants'
+import { ConversationLiveChatService } from '@/services/conversation-live-chat.service'
+import { MessageService } from '@/services/message.service'
 import { logger } from '@/utils/logger'
 import { Request, Response } from 'express'
+import Container from 'typedi'
 import { App } from '../app'
 import { BaseChannel } from './base.channel'
 
 export class WebChannel extends BaseChannel {
     credentials: string
+    public messageService = Container.get(MessageService)
+    public conversationLiveChatService = Container.get(ConversationLiveChatService)
 
     constructor(
         id: string,
@@ -36,6 +41,20 @@ export class WebChannel extends BaseChannel {
                     type: channelData.type,
                 }
             }
+
+            let convExisted = await this.conversationLiveChatService.getConversation(userId, this.id);
+            if (convExisted && type === 'message') {
+
+                await this.messageService.createMessage({
+                    conversationId: convExisted.userId,
+                    from: 'bot',
+                    to: result.userId,
+                    message: result.message,
+                    type: (channelData && channelData.type === 'list-card') ? 'template' : 'text',
+                    template: result.template
+                })
+            }
+
             console.log('result: ' + JSON.stringify(result));
             if (App.io) {
                 App.io.to(userId).emit(type || SOCKET_EVENTS.MESSAGE, result);
