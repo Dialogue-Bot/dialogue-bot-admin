@@ -25,7 +25,6 @@ export class IntentRoute implements Routes {
     this.router.post(
       ENDPOINTS.INTENT.PREDICT,
       validate(PredictIntentDTO, 'body'),
-      authMiddleware,
       this.controller.predictIntent,
     )
 
