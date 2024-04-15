@@ -9,7 +9,7 @@ const USERS: Record<string, any> = {}
 
 @Service()
 export class SocketService {
-  constructor(private readonly chanelService: ChannelService) { }
+  constructor(private readonly chanelService: ChannelService) {}
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
       this.handleIncomingMessage(socket, data)
@@ -21,14 +21,16 @@ export class SocketService {
   }
 
   private async handleIncomingMessage(io: Socket, data: any) {
+    await this.forwardMessageToBot(io, data)
+  }
+
+  private async forwardMessageToBot(io: Socket, data: any) {
     const { address, message, isTest } = data
-    console.log('socket data:' + JSON.stringify(data));
+    console.log('socket data:' + JSON.stringify(data))
 
     if (!address || !message) return
 
     const [contactId, userId] = address.split('_')
-
-    // io.to(userId).emit(SOCKET_EVENTS.RECEIVED, data)
 
     const expectedChannel = await this.chanelService.findOneByContactId(
       contactId,
@@ -55,7 +57,6 @@ export class SocketService {
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
     const userId = query.userId
-    console.log('userId', userId);
     socket.join(userId)
 
     USERS[userId as string] = socket

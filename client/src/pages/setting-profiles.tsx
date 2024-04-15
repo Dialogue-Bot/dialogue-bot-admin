@@ -1,3 +1,4 @@
+import ButtonLang from '@/components/btn-lang'
 import { ChangePassForm } from '@/components/forms'
 import PageTitle from '@/components/page-title'
 import {
@@ -66,6 +67,26 @@ const Profiles = () => {
       </div>
       <div className='p-6'>
         <div className='max-w-4xl  space-y-4'>
+          <SectionSetting>
+            <SectionSettingBody>
+              <div className='flex items-start justify-between'>
+                <div>
+                  <SectionSettingTitle title={t('sections.language.label')} />
+                  <SectionSettingDescription
+                    description={t('sections.language.description')}
+                  />
+                </div>
+                <div>
+                  <ButtonLang />
+                </div>
+              </div>
+            </SectionSettingBody>
+            <SectionSettingBottom>
+              <SectionSettingTextRequired
+                text={t('sections.language.message')}
+              />
+            </SectionSettingBottom>
+          </SectionSetting>
           <SectionSetting>
             <SectionSettingBody>
               <div className='flex items-start justify-between'>

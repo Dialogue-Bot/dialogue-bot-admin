@@ -1,3 +1,4 @@
+import PageTitle from '@/components/page-title'
 import { DataToolbar, useCols } from '@/components/pages/channels'
 import { DataTable } from '@/components/ui'
 import { useDeleteManyChannel } from '@/hooks/channel'
@@ -30,7 +31,8 @@ const Channels = () => {
   useDocumentTitle(t('page_title'))
 
   return (
-    <div className='p-6'>
+    <div className='p-6 space-y-4'>
+      <PageTitle>{t('title')}</PageTitle>
       <div>
         <DataTable
           columns={cols}

@@ -1,3 +1,4 @@
+import PageTitle from '@/components/page-title'
 import { DataToolbar, useCols } from '@/components/pages/training'
 import { DataTable } from '@/components/ui'
 import { usePaginate } from '@/hooks/use-pagniate'
@@ -11,7 +12,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useDocumentTitle } from 'usehooks-ts'
 
 const Training = () => {
-  const { t } = useTranslation('channel')
+  const { t } = useTranslation('training')
   const [search] = useSearchParams()
 
   const { setSorting, sorting } = useSorting()
@@ -26,7 +27,8 @@ const Training = () => {
   useDocumentTitle(t('page_title'))
 
   return (
-    <div className='p-6'>
+    <div className='p-6 space-y-4'>
+      <PageTitle>{t('title')}</PageTitle>
       <div>
         <DataTable
           columns={cols}

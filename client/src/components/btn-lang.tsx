@@ -1,9 +1,14 @@
 import { lngs } from '@/i18n'
+import { cn } from '@/lib/utils'
 import { ELang } from '@/types/share'
 import { useTranslation } from 'react-i18next'
 import { Button } from './ui'
 
-export const ButtonLang = () => {
+type Props = {
+  className?: string
+}
+
+export const ButtonLang = ({ className }: Props) => {
   const { i18n } = useTranslation()
 
   return (
@@ -13,7 +18,7 @@ export const ButtonLang = () => {
       onClick={() => {
         i18n.changeLanguage(i18n.language === ELang.EN ? ELang.VI : ELang.EN)
       }}
-      className='min-w-24'
+      className={cn('min-w-24', className)}
     >
       {lngs[i18n.language as ELang]}
     </Button>

@@ -1,3 +1,4 @@
+import PageTitle from '@/components/page-title'
 import { CreateFlowBtn, FlowItem } from '@/components/pages/flows'
 import { Button } from '@/components/ui'
 import { useDidUpdate } from '@/hooks/use-did-update'
@@ -38,7 +39,8 @@ const Flows = () => {
   }, [page])
 
   return (
-    <div className='p-6'>
+    <div className='p-6 space-y-4'>
+      <PageTitle>{t('title')}</PageTitle>
       <div className='space-y-4'>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
           <CreateFlowBtn />

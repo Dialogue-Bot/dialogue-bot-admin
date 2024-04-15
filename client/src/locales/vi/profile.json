@@ -18,6 +18,11 @@
       "label": "Đổi mật khẩu",
       "description": "Vui lòng nhập mật khẩu mới để thay thế mật khẩu hiện tại.",
       "message": "Mật khẩu cần ít nhất 6 ký tự."
+    },
+    "language": {
+      "label": "Ngôn ngữ",
+      "description": "Vui lòng chọn ngôn ngữ bạn muốn sử dụng cho hệ thống.",
+      "message": "Ngôn ngữ sẽ được sử dụng cho giao diện người dùng của bạn."
     }
   }
 }

@@ -7,5 +7,6 @@
   "update_intent_description": "Enter info below to update the intent.",
   "remove_intent_title": "Remove intent?",
   "remove_intent_description": "Are you sure you want to remove this intent? This action cannot be undone.",
-  "page_title": "Training | DialogueBot"
+  "page_title": "Training | DialogueBot",
+  "title": "Intents"
 }
