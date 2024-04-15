@@ -14,5 +14,5 @@ export class ConversationLiveChatCreateDto {
 
   @IsString()
   @IsNotEmpty()
-  channelId: string
+  contactId: string
 }

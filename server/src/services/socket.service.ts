@@ -53,7 +53,7 @@ export class SocketService {
       if (!type) {
         const convExisted = await this.conversationLiveChatService.createConversation({
           userId,
-          channelId: id
+          contactId: id
         });
         await this.messageService.createMessage({
           conversationId: convExisted.userId,
