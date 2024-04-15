@@ -2,7 +2,7 @@ import { db } from '@/database/db'
 import { selectAllFields } from '@/database/helper'
 import { conversations, messages } from '@/database/schema'
 import { TMessage, TNewMessage } from '@/database/types'
-import { and, desc, eq, gte } from 'drizzle-orm'
+import { and, asc, eq, gte } from 'drizzle-orm'
 import { Service } from 'typedi'
 import { ChannelService } from './channels.service'
 
@@ -37,7 +37,7 @@ export class MessageService {
           gte(messages.createdAt, conversations.endedAt),
         ),
       )
-      .orderBy(desc(messages.createdAt))) as unknown as Array<TMessage>
+      .orderBy(asc(messages.createdAt))) as unknown as Array<TMessage>
 
     return rows.map((row) => {
       return {
@@ -45,7 +45,7 @@ export class MessageService {
         message: row.message,
         createdAt: row.createdAt,
         isBot: row.from === 'bot',
-        userId: row.to === userId ? row.from : row.to,
+        userId: row.to === userId ? row.to : row.from,
       }
     })
   }
