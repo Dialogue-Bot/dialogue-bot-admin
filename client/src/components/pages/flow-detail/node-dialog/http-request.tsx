@@ -17,6 +17,7 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui'
+import { NOT_CHOOSE } from '@/constants'
 import {
   TRequestOptions,
   useRequestOptionsSchema,
@@ -31,7 +32,7 @@ import { useFlowCtx } from '..'
 
 export const HttpRequestDialogContent = () => {
   const { t } = useTranslation(['forms', 'common'])
-  const { selectedNode, handleChangeSelectedNode } = useFlowCtx()
+  const { selectedNode, handleChangeSelectedNode, flow } = useFlowCtx()
   const schema = useRequestOptionsSchema()
   const form = useForm<TRequestOptions>({
     resolver: zodResolver(schema),
@@ -43,6 +44,7 @@ export const HttpRequestDialogContent = () => {
       headers: selectedNode?.data?.httpRequest?.headers || [],
       query: selectedNode?.data?.httpRequest?.query || [],
       body: selectedNode?.data?.httpRequest?.body || [],
+      assignUserResponse: selectedNode?.data?.assignUserResponse || NOT_CHOOSE,
     },
   })
 
@@ -88,7 +90,15 @@ export const HttpRequestDialogContent = () => {
 
     const clonedNode = _.cloneDeep(selectedNode)
 
-    clonedNode.data.httpRequest = data
+    const { assignUserResponse, ...httpRequest } = data
+
+    clonedNode.data.httpRequest = httpRequest
+
+    if (assignUserResponse !== NOT_CHOOSE) {
+      clonedNode.data.assignUserResponse = assignUserResponse
+    } else {
+      delete clonedNode.data.assignUserResponse
+    }
 
     handleChangeSelectedNode(clonedNode)
   }
@@ -106,6 +116,47 @@ export const HttpRequestDialogContent = () => {
                 <FormControl>
                   <Input {...field} placeholder={t('http_url.placeholder')} />
                 </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='assignUserResponse'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel required>
+                  {t('assign_user_response.label')}
+                </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={NOT_CHOOSE}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder={t('assign_user_response.placeholder')}
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value={NOT_CHOOSE}>
+                      {t('assign_user_response.placeholder')}
+                    </SelectItem>
+                    {flow.variables?.map((variable, index) => {
+                      return (
+                        <SelectItem
+                          key={`${variable.name}-${index}`}
+                          value={variable.name}
+                        >
+                          {variable.name}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+
                 <FormMessage />
               </FormItem>
             )}
