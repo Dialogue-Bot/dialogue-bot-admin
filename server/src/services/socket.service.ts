@@ -4,12 +4,18 @@ import { logger } from '@/utils/logger'
 import { Socket } from 'socket.io'
 import { Service } from 'typedi'
 import { ChannelService } from './channels.service'
+import { ConversationLiveChatService } from './conversation-live-chat.service'
+import { MessageService } from './message.service'
 
 const USERS: Record<string, any> = {}
 
 @Service()
 export class SocketService {
-  constructor(private readonly chanelService: ChannelService) {}
+  constructor(
+    private readonly chanelService: ChannelService,
+    private readonly conversationLiveChatService: ConversationLiveChatService,
+    private readonly messageService: MessageService,
+  ) {}
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
       this.handleIncomingMessage(socket, data)
@@ -42,6 +48,29 @@ export class SocketService {
 
     if (expectedChannel?.channelType === 'WEB') {
       const { id, contactName, channelType, credentials } = expectedChannel
+
+      // save conversation and conversation message
+      let convExisted = await this.conversationLiveChatService.getConversation(
+        userId,
+        expectedChannel.id,
+      )
+      if (!convExisted) {
+        convExisted = await this.conversationLiveChatService.createConversation(
+          {
+            userId,
+            channelId: id,
+          },
+        )
+      }
+
+      await this.messageService.createMessage({
+        conversationId: convExisted.userId,
+        from: userId,
+        to: 'bot',
+        message,
+        type: 'text',
+      })
+
       const webChannel = new WebChannel(
         id,
         contactId,

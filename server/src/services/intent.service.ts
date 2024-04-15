@@ -21,7 +21,7 @@ export class IntentService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly nlpService: NlpService,
-  ) {}
+  ) { }
 
   public async create({
     fields,
@@ -60,24 +60,34 @@ export class IntentService {
         organic?.forEach((o) => {
           const { title, snippet } = o
           prompts.push(title)
-          answers.push(snippet)
+
         })
+
+        for (const o of organic) {
+          const { snippet } = o;
+          if (snippet.includes('...')) continue;
+          else {
+            answers.push(snippet);
+            break;
+          }
+        }
 
         relatedSearches?.forEach((r) => {
           prompts.push(r.query)
         })
 
-        peopleAlsoAsk?.forEach((p) => {
-          const { question, snippet } = p
-          prompts.push(question)
-          answers.push(snippet)
-        })
 
-        if (answerBox) {
-          const { title, snippet } = answerBox
-          prompts.push(title)
-          answers.push(snippet)
-        }
+        // peopleAlsoAsk?.forEach((p) => {
+        //   const { question, snippet } = p
+        //   prompts.push(question)
+        //   // answers.push(snippet)
+        // })
+
+        // if (answerBox) {
+        //   const { title, snippet } = answerBox
+        //   prompts.push(title)
+        //   answers.push(snippet)
+        // }
 
         let intent: IIntents = {
           intent: td.intent,
