@@ -8,6 +8,7 @@ import {
   json,
   pgEnum,
   pgTable,
+  primaryKey,
   text,
   timestamp,
   uniqueIndex,
@@ -176,14 +177,24 @@ export const intents = pgTable('intents', {
   updatedAt: timestamp('updated_at').defaultNow(),
 })
 
-export const conversations = pgTable('conversations', {
-  userId: varchar('user_id', {}).notNull().unique('user_id'),
-  createdAt: timestamp('created_at').defaultNow(),
-  updatedAt: timestamp('updated_at').defaultNow(),
-  channelId: text('channel_id').references(() => channels.id, {
-    onDelete: 'set null',
+export const conversations = pgTable(
+  'conversations',
+  {
+    userId: varchar('user_id', {}).notNull().unique('user_id'),
+    createdAt: timestamp('created_at').defaultNow(),
+    updatedAt: timestamp('updated_at').defaultNow(),
+    channelId: text('channel_id')
+      .notNull()
+      .references(() => channels.id),
+    endedAt: timestamp('ended_at').defaultNow(),
+  },
+  ({ channelId, userId }) => ({
+    primaryKey: primaryKey({
+      columns: [channelId, userId],
+      name: 'conversations_pkey',
+    }),
   }),
-})
+)
 
 export const messages = pgTable('messages', {
   id: varchar('id', {
@@ -221,7 +232,7 @@ export const conversationsRelations = relations(
   ({ many, one }) => ({
     messages: many(messages),
     user: one(channels, {
-      fields: [conversations.channelId],
+      fields: [conversations.userId],
       references: [channels.id],
     }),
     channel: one(channels, {

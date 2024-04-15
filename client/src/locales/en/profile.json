@@ -18,6 +18,11 @@
       "label": "Change password",
       "description": "Please enter your new password to change it.",
       "message": "Password must be at least 6 characters long."
+    },
+    "language": {
+      "label": "Language",
+      "description": "Please select your preferred language.",
+      "message": "It will be used for the language of the system."
     }
   }
 }

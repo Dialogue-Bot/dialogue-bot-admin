@@ -1,6 +1,6 @@
 import { TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { db } from '@/database/db'
-import { jsonBuildObject, nullIsNull, selectAllFields } from '@/database/helper'
+import { jsonBuildObject, selectAllFields } from '@/database/helper'
 import { channels, conversations, messages } from '@/database/schema'
 import {
   ConversationLiveChatCreateDto,
@@ -12,7 +12,7 @@ import { ChannelService } from './channels.service'
 
 @Service()
 export class ConversationLiveChatService {
-  constructor(private readonly chanelService: ChannelService) {}
+  constructor(private readonly channelService: ChannelService) {}
 
   public async createConversation({
     channelId,
@@ -27,11 +27,13 @@ export class ConversationLiveChatService {
     return this.getConversation(userId, channelId)
   }
 
-  public getConversation(userId: string, channelId: string) {
+  public async getConversation(userId: string, contactId: string) {
+    const channel = await this.channelService.findOneByContactId(contactId)
+
     return db.query.conversations.findFirst({
       where: and(
         eq(conversations.userId, userId),
-        eq(conversations.channelId, channelId),
+        eq(conversations.channelId, channel.id),
       ),
       with: { channel: true },
     })
@@ -60,7 +62,7 @@ export class ConversationLiveChatService {
 
     const where = and(
       eq(channels.userId, ownerId),
-      channelId ? eq(conversations.channelId, channelId) : nullIsNull,
+      channelId ? eq(conversations.channelId, channelId) : undefined,
       ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${ownerId}`),
     )
 
@@ -80,6 +82,7 @@ export class ConversationLiveChatService {
           conversationId: lastMessage.conversationId,
         }),
         channel: jsonBuildObject(selectAllFields(channels)),
+        endedAt: conversations.endedAt,
       })
       .from(conversations)
       .innerJoin(channels, eq(conversations.channelId, channels.id))

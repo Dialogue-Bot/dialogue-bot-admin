@@ -40,7 +40,7 @@ export class ConversationLiveChatController {
 
   public getMessages = catchAsync(async (req: RequestWithUser, res) => {
     const data = await this.messageService.getMessages({
-      channelId: req.params.channelId,
+      contactId: req.params.contactId,
       userId: req.params.userId,
     })
 
