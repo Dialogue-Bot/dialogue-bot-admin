@@ -51,10 +51,18 @@ export class SocketService {
 
       // save conversation and conversation message
       if (!type) {
-        const convExisted = await this.conversationLiveChatService.createConversation({
+        let convExisted = await this.conversationLiveChatService.getConversation(
           userId,
-          contactId: id
-        });
+          contactId,
+        )
+        if (!convExisted) {
+          convExisted = await this.conversationLiveChatService.createConversation(
+            {
+              userId,
+              contactId,
+            },
+          )
+        }
         await this.messageService.createMessage({
           conversationId: convExisted.userId,
           from: userId,
@@ -72,7 +80,7 @@ export class SocketService {
         credentials,
       )
 
-      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: 'event', typeName: 'endConversation' })
+      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: type ?? 'message', typeName: '' })
     }
   }
 
