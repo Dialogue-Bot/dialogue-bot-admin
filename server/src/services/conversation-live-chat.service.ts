@@ -15,16 +15,23 @@ export class ConversationLiveChatService {
   constructor(private readonly channelService: ChannelService) {}
 
   public async createConversation({
-    channelId,
+    contactId,
     userId,
   }: ConversationLiveChatCreateDto) {
-    const conversation = await this.getConversation(userId, channelId)
+    const channel = await this.channelService.findOneByContactId(contactId)
+
+    const conversation = await this.getConversation(userId, channel?.contactId)
+
+    console.log('conversation:', conversation)
 
     if (conversation) return conversation
 
-    await db.insert(conversations).values({ userId, channelId }).returning()
+    await db
+      .insert(conversations)
+      .values({ userId, channelId: channel?.id })
+      .returning()
 
-    return this.getConversation(userId, channelId)
+    return this.getConversation(userId, channel?.contactId)
   }
 
   public async getConversation(userId: string, contactId: string) {
@@ -33,7 +40,7 @@ export class ConversationLiveChatService {
     return db.query.conversations.findFirst({
       where: and(
         eq(conversations.userId, userId),
-        eq(conversations.channelId, channel.id),
+        eq(conversations.channelId, channel?.id),
       ),
       with: { channel: true },
     })

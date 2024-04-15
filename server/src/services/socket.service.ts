@@ -52,19 +52,19 @@ export class SocketService {
       // save conversation and conversation message
       let convExisted = await this.conversationLiveChatService.getConversation(
         userId,
-        expectedChannel.id,
+        contactId,
       )
       if (!convExisted) {
         convExisted = await this.conversationLiveChatService.createConversation(
           {
             userId,
-            channelId: id,
+            contactId,
           },
         )
       }
 
       await this.messageService.createMessage({
-        conversationId: convExisted.userId,
+        conversationId: convExisted?.userId,
         from: userId,
         to: 'bot',
         message,
