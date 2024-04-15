@@ -28,7 +28,7 @@ export class SocketService {
   }
 
   private async handleIncomingMessage(io: Socket, data: any) {
-    const { address, message, isTest } = data
+    const { address, message, isTest, type, typeName } = data
     console.log('socket data:' + JSON.stringify(data));
 
     if (!address || !message) return
@@ -49,22 +49,20 @@ export class SocketService {
       const { id, contactName, channelType, credentials } = expectedChannel
 
       // save conversation and conversation message
-      let convExisted = await this.conversationLiveChatService.getConversation(userId, expectedChannel.id);
-      if (!convExisted) {
-        convExisted = await this.conversationLiveChatService.createConversation({
+      if (!type) {
+
+        const convExisted = await this.conversationLiveChatService.createConversation({
           userId,
           channelId: id
         });
+        await this.messageService.createMessage({
+          conversationId: convExisted.userId,
+          from: userId,
+          to: 'bot',
+          message,
+          type: 'text'
+        })
       }
-
-
-      await this.messageService.createMessage({
-        conversationId: convExisted.userId,
-        from: userId,
-        to: 'bot',
-        message,
-        type: 'text'
-      })
 
       const webChannel = new WebChannel(
         id,
@@ -74,7 +72,7 @@ export class SocketService {
         credentials,
       )
 
-      await webChannel.postMessageToBot({ userId, message, data: '', isTest })
+      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: 'message', typeName: '' })
     }
   }
 

@@ -20,7 +20,7 @@ export class FlowService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly chanelService: ChannelService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     const flowExisted = await db.query.flows.findFirst({
