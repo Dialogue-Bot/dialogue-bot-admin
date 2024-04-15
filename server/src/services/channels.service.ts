@@ -368,9 +368,11 @@ export class ChannelService {
       .select({
         label: sql<string>`concat(${channelTypes.name}, ' - ', ${channels.contactName}, ' - ', ${channels.contactId})`,
         value: channels.id,
-        isSelected: sql<boolean>`
+        isSelected: flowId
+          ? sql<boolean>`
                 case when ${channels.flowId} = ${flowId} then true else false end
-            `,
+            `
+          : sql<boolean>`false`,
       })
       .from(channels)
       .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))

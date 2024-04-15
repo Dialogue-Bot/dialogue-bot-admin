@@ -47,7 +47,7 @@ class ChannelApi {
   }
 
   getChannelsForSelect(
-    flowId: string,
+    flowId?: string,
   ): Promise<TBaseResponse<TSelectResponse<string, string>[]>> {
     return http_client.get(`${ENDPOINTS.CHANNEL.INDEX}/for-select`, {
       params: { flowId },
