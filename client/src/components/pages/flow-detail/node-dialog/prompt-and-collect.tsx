@@ -122,7 +122,7 @@ export const PromptAndCollectDialogContent = () => {
                   {' '}
                   {t('trained_data.placeholder')}
                 </SelectItem>
-                {intents.map(({label,value}) => {
+                {intents.map(({ label, value }) => {
                   return (
                     <SelectItem key={value} value={value}>
                       {label}
