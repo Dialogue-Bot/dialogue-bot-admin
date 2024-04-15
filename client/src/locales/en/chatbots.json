@@ -16,5 +16,6 @@
   "remove_dialog": {
     "title": "Remove this flow?",
     "description": "Are you sure you want to remove the flow? This action cannot be undone."
-  }
+  },
+  "title": "Flows"
 }

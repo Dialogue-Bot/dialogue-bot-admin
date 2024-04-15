@@ -21,7 +21,7 @@ const SIDEBAR_ITEMS = [
 const Sidebar = () => {
   const { t } = useTranslation('common')
   return (
-    <div className='min-h-svh w-sidebar-setting flex-shrink-0 bg-neutral-100 fixed bottom-0 left-sidebar top-header '>
+    <div className='min-h-svh w-sidebar-setting flex-shrink-0 bg-neutral-100 fixed bottom-0 left-sidebar'>
       <ul className='space-y-1 py-4'>
         {SIDEBAR_ITEMS.map((item: any) => {
           const Icon = item.Icon

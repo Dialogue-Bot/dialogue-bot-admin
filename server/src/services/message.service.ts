@@ -2,22 +2,27 @@ import { db } from '@/database/db'
 import { selectAllFields } from '@/database/helper'
 import { conversations, messages } from '@/database/schema'
 import { TMessage, TNewMessage } from '@/database/types'
-import { and, desc, eq } from 'drizzle-orm'
+import { and, desc, eq, gte } from 'drizzle-orm'
 import { Service } from 'typedi'
+import { ChannelService } from './channels.service'
 
 @Service()
 export class MessageService {
+  constructor(private readonly channelService: ChannelService) {}
+
   async createMessage(data: TNewMessage) {
     return db.insert(messages).values(data)
   }
 
   async getMessages({
-    channelId,
     userId,
+    contactId,
   }: {
-    channelId: string
     userId: string
+    contactId: string
   }) {
+    const channel = await this.channelService.findOneByContactId(contactId)
+
     const rows = (await db
       .select(selectAllFields(messages))
       .from(messages)
@@ -28,7 +33,8 @@ export class MessageService {
       .where(
         and(
           eq(messages.conversationId, userId),
-          eq(conversations.channelId, channelId),
+          eq(conversations.channelId, channel?.id),
+          gte(messages.createdAt, conversations.endedAt),
         ),
       )
       .orderBy(desc(messages.createdAt))) as unknown as Array<TMessage>

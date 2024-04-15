@@ -16,5 +16,6 @@
   "remove_dialog": {
     "title": "Xoá kịch bản này?",
     "description": "Bạn có chắc chắn muốn xoá kịch bản này không? Hành động này không thể hoàn tác."
-  }
+  },
+  "title": "Kịch bản"
 }

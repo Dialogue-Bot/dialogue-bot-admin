@@ -11,11 +11,10 @@ const USERS: Record<string, any> = {}
 
 @Service()
 export class SocketService {
-  private arrUser = [];
   constructor(
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
   ) { }
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
@@ -28,14 +27,16 @@ export class SocketService {
   }
 
   private async handleIncomingMessage(io: Socket, data: any) {
+    await this.forwardMessageToBot(io, data)
+  }
+
+  private async forwardMessageToBot(io: Socket, data: any) {
     const { address, message, isTest, type, typeName } = data
-    console.log('socket data:' + JSON.stringify(data));
+    console.log('socket data:' + JSON.stringify(data))
 
     if (!address || !message) return
 
     const [contactId, userId] = address.split('_')
-
-    // io.to(userId).emit(SOCKET_EVENTS.RECEIVED, data)
 
     const expectedChannel = await this.chanelService.findOneByContactId(
       contactId,
@@ -50,7 +51,6 @@ export class SocketService {
 
       // save conversation and conversation message
       if (!type) {
-
         const convExisted = await this.conversationLiveChatService.createConversation({
           userId,
           channelId: id
@@ -72,14 +72,13 @@ export class SocketService {
         credentials,
       )
 
-      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: 'message', typeName: '' })
+      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: 'event', typeName: 'endConversation' })
     }
   }
 
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
     const userId = query.userId
-    console.log('userId', userId);
     socket.join(userId)
 
     USERS[userId as string] = socket

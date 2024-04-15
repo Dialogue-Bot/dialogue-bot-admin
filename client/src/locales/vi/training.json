@@ -7,5 +7,6 @@
   "update_intent_description": "Cập nhật thông tin bên dưới để cập nhật mục đích.",
   "remove_intent_title": "Xóa mục đích",
   "remove_intent_description": "Bạn có chắc chắn muốn xóa mục đích này không? Hành động này không thể hoàn tác.",
-  "page_title": "Training | DialogueBot"
+  "page_title": "Training | DialogueBot",
+  "title": "Intents"
 }

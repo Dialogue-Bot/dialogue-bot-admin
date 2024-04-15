@@ -92,7 +92,6 @@ const Sidebar = () => {
             </TooltipProvider>
           ))}
         </ul>
-
         <div className='mt-auto'>
           <div className='flex items-center justify-center  cursor-pointer w-sidebar h-sidebar'>
             <Link

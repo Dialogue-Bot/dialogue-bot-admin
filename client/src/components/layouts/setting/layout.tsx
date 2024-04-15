@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from './sidebar'
 export const Layout = () => {
   return (
-    <div className='flex min-h-screen-header'>
+    <div className='flex min-h-screen'>
       <Sidebar />
       <div className='ml-sidebar-setting w-full'>
         <Outlet />

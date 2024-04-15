@@ -5,7 +5,6 @@ import { useAppLayoutStore, useSettingStore, useUserStore } from '@/store'
 import { TChannelQuery } from '@/types/channel'
 import { TBaseQuery } from '@/types/share'
 import { queryStringToObject } from '@/utils'
-import { createId } from '@paralleldrive/cuid2'
 import { redirect } from 'react-router-dom'
 import { toast } from 'sonner'
 import { getAllArticles, getArticle } from './content'
@@ -115,8 +114,6 @@ export const flowDetailLoader = async ({ params }: any) => {
     queryClient.ensureQueryData(queryFlowDetailOption(params.id)),
     queryClient.ensureQueryData(queryChannelForTestOption(params.id)),
   ])
-
-  localStorage.setItem('user-bot-id', createId())
 
   return null
 }

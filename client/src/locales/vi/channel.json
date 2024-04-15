@@ -7,5 +7,6 @@
   "update_channel_description": "Nhập thông tin bên dưới để cập nhật kênh. Bạn có thể xem hướng dẫn chi tiết <a> tại đây</a>.",
   "remove_channel_title": "Xoá kênh này?",
   "remove_channel_description": "Bạn có chắc chắn muốn xoá kênh này không? Hành động này không thể hoàn tác.",
-  "page_title": "Channels | DialogueBot"
+  "page_title": "Channels | DialogueBot",
+  "title": "Kênh"
 }
