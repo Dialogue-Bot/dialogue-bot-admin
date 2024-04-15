@@ -36,7 +36,7 @@ export const queryChannelsOption = (query?: TChannelQuery) => {
   })
 }
 
-export const queryChannelsForSelectOption = (flowId: string) => {
+export const queryChannelsForSelectOption = (flowId?: string) => {
   return queryOptions({
     queryKey: ['channels-for-select', flowId],
     queryFn: async () => {
