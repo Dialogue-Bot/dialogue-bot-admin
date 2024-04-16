@@ -1,4 +1,5 @@
 import { getCurrentLocale } from '@/i18n/get-current'
+import { toBoolean } from '@/utils/to-boolean'
 import { Transform } from 'class-transformer'
 import {
   IsArray,
@@ -56,4 +57,15 @@ export class DeleteChannelDTO {
 export class UpdateChannelForTestDto {
   @IsString()
   flowId: string
+}
+
+export class QueryChannelForSelectDto {
+  @IsString()
+  @IsOptional()
+  flowId: string
+
+  @IsBoolean()
+  @IsOptional()
+  @Transform(({ value }) => toBoolean(value))
+  isForConversation: boolean
 }

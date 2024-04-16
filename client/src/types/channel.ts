@@ -34,3 +34,8 @@ export type TChannelWithChannelType = TChannel & {
 export type TChannelQuery = TBaseQuery & {
   orderBy: keyof TChannel
 }
+
+export type TChannelQueryForSelect = {
+  flowId?: string
+  isForConversation?: boolean
+}

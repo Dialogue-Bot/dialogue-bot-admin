@@ -41,14 +41,18 @@ const Sidebar = () => {
       initTotalItems: data.totalItems || 0,
     })
 
-  const { data: channels } = useSuspenseQuery(queryChannelsForSelectOption())
+  const { data: channels } = useSuspenseQuery(
+    queryChannelsForSelectOption({
+      isForConversation: true,
+    }),
+  )
 
   return (
     <aside className='max-w-80 w-full border-r border-input'>
       <div className='h-header flex items-center px-4 border-b border-input'>
         <PageTitle>{t('title')}</PageTitle>
       </div>
-      <div className='p-4 pb-0'>
+      <div className='p-4'>
         <Select
           value={search.get('channelId') || NOT_CHOOSE}
           onValueChange={(value) => {

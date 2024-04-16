@@ -192,5 +192,5 @@ export const isEmptyObject = (obj: Record<any, any>) => {
 }
 
 export const genScript = (contactId: string) => {
-  return `<script src="http://localhost:8080/public/script/chatbox.js" channelId="${contactId}"></script>`
+  return `<script src="http://localhost:8080/public/script/chatbox.js" channelId="${contactId}" id="${contactId}" async type="text/javascript"></script>`
 }

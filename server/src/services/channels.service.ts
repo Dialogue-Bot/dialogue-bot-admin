@@ -3,7 +3,10 @@ import { LOCALE_KEY, TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { db } from '@/database/db'
 import { channelTypes, channels, flows } from '@/database/schema'
 import { TNewChannel, TUpdateChannel } from '@/database/types'
-import { UpdateChannelForTestDto } from '@/dtos/channels.dto'
+import {
+  QueryChannelForSelectDto,
+  UpdateChannelForTestDto,
+} from '@/dtos/channels.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
@@ -363,7 +366,10 @@ export class ChannelService {
     return true
   }
 
-  public async getChannelsForSelect(userId: string, flowId: string) {
+  public async getChannelsForSelect(
+    userId: string,
+    { flowId, isForConversation }: QueryChannelForSelectDto,
+  ) {
     const _channels = await db
       .select({
         label: sql<string>`concat(${channelTypes.name}, ' - ', ${channels.contactName}, ' - ', ${channels.contactId})`,
@@ -381,6 +387,7 @@ export class ChannelService {
           eq(channels.userId, userId),
           eq(channels.deleted, false),
           ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+          isForConversation ? eq(channelTypes.name, 'WEB') : undefined,
         ),
       )
 

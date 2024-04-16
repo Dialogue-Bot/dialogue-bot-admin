@@ -3,6 +3,7 @@ import http_client from '@/lib/http-client'
 import { TChannelInput } from '@/lib/schema/channel'
 import {
   TChannelQuery,
+  TChannelQueryForSelect,
   TChannelType,
   TChannelWithChannelType,
 } from '@/types/channel'
@@ -47,10 +48,10 @@ class ChannelApi {
   }
 
   getChannelsForSelect(
-    flowId?: string,
+    query: TChannelQueryForSelect,
   ): Promise<TBaseResponse<TSelectResponse<string, string>[]>> {
     return http_client.get(`${ENDPOINTS.CHANNEL.INDEX}/for-select`, {
-      params: { flowId },
+      params: query,
     })
   }
 

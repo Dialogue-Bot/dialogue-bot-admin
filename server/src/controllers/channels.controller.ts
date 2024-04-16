@@ -72,8 +72,10 @@ export class ChannelController {
   public getChannelsForSelect = catchAsync(
     async (req: RequestWithUser, res) => {
       const data = await this.channelService.getChannelsForSelect(
-        req.user?.id as string,
-        req.query.flowId as string,
+        req.user.id as string,
+        {
+          ...(req.query as any),
+        },
       )
       res.status(StatusCodes.OK).json({ data })
     },
