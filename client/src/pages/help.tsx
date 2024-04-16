@@ -11,8 +11,8 @@ const Help = () => {
   const { t } = useTranslation('help')
 
   return (
-    <div className='pt-header'>
-      <div className='container pt-header py-10 md:py-20'>
+    <div className='min-h-screen pt-header'>
+      <div className='container  py-10 md:py-20'>
         <div className='mb-10'>
           <h1 className='text-3xl md:text-5xl font-bold text-center max-w-2xl mx-auto'>
             {t('title')}
