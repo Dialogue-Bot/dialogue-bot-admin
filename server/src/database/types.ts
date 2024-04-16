@@ -55,3 +55,7 @@ export type TUpdateIntent = Partial<TNewIntent>
 
 export type TNewMessage = typeof schema.messages.$inferInsert
 export type TMessage = typeof schema.messages.$inferSelect
+
+export type TUpdateLiveChatConversation = Partial<
+  typeof schema.conversations.$inferInsert
+>

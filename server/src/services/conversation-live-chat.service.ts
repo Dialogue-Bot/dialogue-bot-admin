@@ -2,6 +2,7 @@ import { TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { db } from '@/database/db'
 import { jsonBuildObject, selectAllFields } from '@/database/helper'
 import { channels, conversations, messages } from '@/database/schema'
+import { TUpdateLiveChatConversation } from '@/database/types'
 import {
   ConversationLiveChatCreateDto,
   ConversationLiveChatQueryDto,
@@ -119,5 +120,31 @@ export class ConversationLiveChatService {
       items: rows,
       totalItems: count,
     }
+  }
+
+  public async updateConversation({
+    contactId,
+    data,
+    userId,
+  }: {
+    userId: string
+    contactId: string
+    data: TUpdateLiveChatConversation
+  }) {
+    const channel = await this.channelService.findOneByContactId(contactId)
+    const [updated] = await db
+      .update(conversations)
+      .set(data)
+      .where(
+        and(
+          eq(conversations.userId, userId),
+          eq(conversations.channelId, channel?.id),
+        ),
+      )
+      .returning()
+
+    console.log('updated:', updated)
+
+    return updated
   }
 }
