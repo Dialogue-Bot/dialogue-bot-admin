@@ -50,7 +50,7 @@ export class SocketService {
       const { id, contactName, channelType, credentials } = expectedChannel
 
       // save conversation and conversation message
-      if (!message || !type || !isTest) {
+      if (message || !type || !isTest) {
         let convExisted =
           await this.conversationLiveChatService.getConversation(
             userId,
