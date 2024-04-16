@@ -15,7 +15,7 @@ export class SocketService {
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
     private readonly messageService: MessageService,
-  ) {}
+  ) { }
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
       this.handleIncomingMessage(socket, data)
@@ -50,7 +50,7 @@ export class SocketService {
       const { id, contactName, channelType, credentials } = expectedChannel
 
       // save conversation and conversation message
-      if (!type || isTest) {
+      if (message || !type || !isTest) {
         let convExisted =
           await this.conversationLiveChatService.getConversation(
             userId,

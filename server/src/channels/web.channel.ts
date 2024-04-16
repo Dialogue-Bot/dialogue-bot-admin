@@ -1,4 +1,4 @@
-import { SOCKET_EVENTS } from '@/constants'
+import { SOCKET_EVENTS, TEST_YOUR_BOT_CHANNEL } from '@/constants'
 import { ConversationLiveChatService } from '@/services/conversation-live-chat.service'
 import { MessageService } from '@/services/message.service'
 import { logger } from '@/utils/logger'
@@ -26,7 +26,7 @@ export class WebChannel extends BaseChannel {
     this.credentials = credentials
   }
 
-  async prepareMessage(req: Request, res: Response) {}
+  async prepareMessage(req: Request, res: Response) { }
 
   public async sendMessageToUser({
     userId,
@@ -59,7 +59,7 @@ export class WebChannel extends BaseChannel {
         userId,
         this.contactId,
       )
-      if (convExisted && type === 'message') {
+      if (convExisted && type === 'message' && !this.contactId.includes(TEST_YOUR_BOT_CHANNEL)) {
         await this.messageService.createMessage({
           conversationId: convExisted.userId,
           from: 'bot',
