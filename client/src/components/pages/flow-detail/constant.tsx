@@ -67,6 +67,8 @@ export const SOURCE_HANDLE_PROMPT_YES = 'prompt-and-collect-yes'
 export const SOURCE_HANDLE_PROMPT_NO = 'prompt-and-collect-no'
 export const SOURCE_HANDLE_VARIABLES_YES = 'check-variables-yes'
 export const SOURCE_HANDLE_VARIABLES_NO = 'check-variables-no'
+export const SOURCE_HANDLE_HTTP_REQUEST_SUCCESS = 'http-request-success'
+export const SOURCE_HANDLE_HTTP_REQUEST_ERROR = 'http-request-error'
 
 export const MAP_ACTION: Record<
   EActionTypes,
