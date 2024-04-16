@@ -74,7 +74,7 @@ export const HttpRequestDialogContent = () => {
 
   const handleAddKeyVal = (
     fieldArray: any,
-    key: 'params' | 'headers' | 'query' | 'body',
+    key: 'params' | 'headers' | 'body',
   ) => {
     form.trigger(key)
     if (
@@ -193,10 +193,9 @@ export const HttpRequestDialogContent = () => {
             )}
           />
           <Tabs defaultValue='params'>
-            <TabsList className='grid w-full grid-cols-4'>
+            <TabsList className='grid w-full grid-cols-3'>
               <TabsTrigger value='params'>Params</TabsTrigger>
               <TabsTrigger value='headers'>Headers</TabsTrigger>
-              <TabsTrigger value='query'>Query</TabsTrigger>
               <TabsTrigger value='body'>Body</TabsTrigger>
             </TabsList>
             <TabsContent value='params'>
@@ -343,80 +342,6 @@ export const HttpRequestDialogContent = () => {
                   }}
                   className='w-full'
                   variant='outline'
-                >
-                  {t('common:add')}
-                </Button>
-              </div>
-            </TabsContent>
-            <TabsContent value='query'>
-              <div className='space-y-3'>
-                <div
-                  className={cn(
-                    'max-h-[128px] overflow-y-auto hidden-scroll px-[2px] space-y-3',
-                    {
-                      'py-1': queryFieldArray.fields.length,
-                    },
-                  )}
-                >
-                  {queryFieldArray.fields.map((field, index) => {
-                    return (
-                      <div key={field.id} className='flex gap-3'>
-                        <FormField
-                          control={form.control}
-                          name={`query.${index}.key`}
-                          render={({ field }) => {
-                            return (
-                              <FormItem className='w-full'>
-                                <FormControl>
-                                  <Input
-                                    {...field}
-                                    placeholder={t('key.placeholder')}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )
-                          }}
-                        />
-                        <FormField
-                          control={form.control}
-                          name={`query.${index}.value`}
-                          render={({ field }) => {
-                            return (
-                              <FormItem className='w-full'>
-                                <FormControl>
-                                  <Input
-                                    {...field}
-                                    placeholder={t('value.placeholder')}
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )
-                          }}
-                        />
-                        <Button
-                          variant='destructive'
-                          size='icon'
-                          className='flex-shrink-0'
-                          type='button'
-                          onClick={() => {
-                            queryFieldArray.remove(index)
-                          }}
-                        >
-                          <X />
-                        </Button>
-                      </div>
-                    )
-                  })}
-                </div>
-                <Button
-                  type='button'
-                  onClick={() => {
-                    handleAddKeyVal(queryFieldArray, 'query')
-                  }}
-                  variant='outline'
-                  className='w-full'
                 >
                   {t('common:add')}
                 </Button>

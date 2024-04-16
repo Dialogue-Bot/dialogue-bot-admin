@@ -1,4 +1,5 @@
 import {
+  Button,
   Label,
   Select,
   SelectContent,
@@ -13,6 +14,7 @@ import {
 } from '@/lib/query-options/flow'
 import { useQuery } from '@tanstack/react-query'
 import _ from 'lodash'
+import { X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { useFlowCtx } from '..'
@@ -59,83 +61,138 @@ export const SubFlowContent = () => {
           </SelectContent>
         </Select>
       </div>
-      <div className='flex gap-3'>
-        <div className='space-y-2 w-full'>
-          <Label>{t('assign_var.label')}</Label>
-          <Select
-            value={selectedNode?.data?.assignTo || NOT_CHOOSE}
-            onValueChange={(value) => {
-              if (!selectedNode) return
-
-              const cloneSelectedNode = _.cloneDeep(selectedNode)
-
-              if (value === NOT_CHOOSE) {
-                delete cloneSelectedNode.data.assignTo
-              } else {
-                cloneSelectedNode.data.assignTo = value
-              }
-
-              handleChangeSelectedNode(cloneSelectedNode)
-            }}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder={t('assign_var.placeholder')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value={NOT_CHOOSE}>
-                {t('assign_var.placeholder')}
-              </SelectItem>
-              {flow.variables?.map((variable, index) => {
-                return (
-                  <SelectItem
-                    key={`${variable.name}-${index}`}
-                    value={variable.name}
-                  >
-                    {variable.name}
-                  </SelectItem>
-                )
-              })}
-            </SelectContent>
-          </Select>
+      <div className='flex gap-3 flex-col'>
+        <div className='flex gap-3 w-full'>
+          <Label className='w-full'>{t('output_var.label')}</Label>
+          <Label className='w-full'>{t('assign_var.label')}</Label>
         </div>
-        <div className='space-y-2 w-full'>
-          <Label>{t('output_var.label')}</Label>
-          <Select
-            value={selectedNode?.data?.outputVar || NOT_CHOOSE}
-            onValueChange={(value) => {
-              if (!selectedNode) return
+        {selectedNode?.data?.assignVars?.map((_item: any, index: number) => {
+          return (
+            <div key={index} className='flex gap-3'>
+              <div className='space-y-2 w-full'>
+                <Select
+                  value={
+                    selectedNode?.data?.assignVars[index]?.assignTo ||
+                    NOT_CHOOSE
+                  }
+                  onValueChange={(value) => {
+                    if (!selectedNode) return
 
-              const cloneSelectedNode = _.cloneDeep(selectedNode)
+                    const cloneSelectedNode = _.cloneDeep(selectedNode)
 
-              if (value === NOT_CHOOSE) {
-                delete cloneSelectedNode.data.outputVar
-              } else {
-                cloneSelectedNode.data.outputVar = value
-              }
+                    cloneSelectedNode.data.assignVars[index].assignTo =
+                      value === NOT_CHOOSE ? undefined : value
 
-              handleChangeSelectedNode(cloneSelectedNode)
-            }}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder={t('output_var.placeholder')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value={NOT_CHOOSE}>
-                {t('output_var.placeholder')}
-              </SelectItem>
-              {subflow?.variables?.map((variable, index) => {
-                return (
-                  <SelectItem
-                    key={`${variable.name}-${index}`}
-                    value={variable.name}
-                  >
-                    {variable.name}
-                  </SelectItem>
-                )
-              })}
-            </SelectContent>
-          </Select>
-        </div>
+                    handleChangeSelectedNode(cloneSelectedNode)
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('assign_var.placeholder')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={NOT_CHOOSE}>
+                      {t('assign_var.placeholder')}
+                    </SelectItem>
+                    {flow.variables?.map((variable, index) => {
+                      return (
+                        <SelectItem
+                          key={`${variable.name}-${index}`}
+                          value={variable.name}
+                        >
+                          {variable.name}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className='space-y-2 w-full'>
+                <Select
+                  value={
+                    selectedNode?.data?.assignVars[index]?.outputVar ||
+                    NOT_CHOOSE
+                  }
+                  onValueChange={(value) => {
+                    if (!selectedNode) return
+
+                    const cloneSelectedNode = _.cloneDeep(selectedNode)
+
+                    cloneSelectedNode.data.assignVars[index].outputVar =
+                      value === NOT_CHOOSE ? undefined : value
+
+                    handleChangeSelectedNode(cloneSelectedNode)
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('output_var.placeholder')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={NOT_CHOOSE}>
+                      {t('output_var.placeholder')}
+                    </SelectItem>
+                    {subflow?.variables?.map((variable, index) => {
+                      return (
+                        <SelectItem
+                          key={`${variable.name}-${index}`}
+                          value={variable.name}
+                        >
+                          {variable.name}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button
+                variant='destructive'
+                size='icon'
+                className='flex-shrink-0'
+                onClick={() => {
+                  if (!selectedNode) return
+
+                  const cloneSelectedNode = _.cloneDeep(selectedNode)
+
+                  cloneSelectedNode.data.assignVars.splice(index, 1)
+
+                  handleChangeSelectedNode(cloneSelectedNode)
+                }}
+              >
+                <X />
+              </Button>
+            </div>
+          )
+        })}
+        <Button
+          variant='outline'
+          onClick={() => {
+            if (!selectedNode) return
+
+            const cloneSelectedNode = _.cloneDeep(selectedNode)
+
+            if (!cloneSelectedNode.data.assignVars) {
+              cloneSelectedNode.data.assignVars = []
+            }
+
+            if (
+              cloneSelectedNode.data.assignVars.length > 0 &&
+              cloneSelectedNode.data.assignVars.some(
+                (item: any) =>
+                  item.assignTo === NOT_CHOOSE || item.outputVar === NOT_CHOOSE,
+              )
+            ) {
+              return
+            }
+
+            cloneSelectedNode.data.assignVars.push({
+              assignTo: undefined,
+              outputVar: undefined,
+            })
+
+            handleChangeSelectedNode(cloneSelectedNode)
+          }}
+        >
+          Add
+        </Button>
       </div>
     </div>
   )

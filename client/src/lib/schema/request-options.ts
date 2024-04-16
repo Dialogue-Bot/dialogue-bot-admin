@@ -34,7 +34,6 @@ export const useRequestOptionsSchema = () => {
       }),
     headers: z.array(keyValSchema).optional(),
     params: z.array(keyValSchema).optional(),
-    query: z.array(keyValSchema).optional(),
     body: z.array(keyValSchema).optional(),
     assignUserResponse: z.string().optional(),
   })
