@@ -15,7 +15,7 @@ export class SocketService {
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
     private readonly messageService: MessageService,
-  ) {}
+  ) { }
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
       this.handleIncomingMessage(socket, data)
@@ -31,7 +31,7 @@ export class SocketService {
   }
 
   private async forwardMessageToBot(io: Socket, data: any) {
-    const { address, message, isTest } = data
+    const { address, message, isTest, type, typeName } = data
     console.log('socket data:' + JSON.stringify(data))
 
     if (!address || !message) return
@@ -50,26 +50,27 @@ export class SocketService {
       const { id, contactName, channelType, credentials } = expectedChannel
 
       // save conversation and conversation message
-      let convExisted = await this.conversationLiveChatService.getConversation(
-        userId,
-        contactId,
-      )
-      if (!convExisted) {
-        convExisted = await this.conversationLiveChatService.createConversation(
-          {
-            userId,
-            contactId,
-          },
+      if (!type) {
+        let convExisted = await this.conversationLiveChatService.getConversation(
+          userId,
+          contactId,
         )
+        if (!convExisted) {
+          convExisted = await this.conversationLiveChatService.createConversation(
+            {
+              userId,
+              contactId,
+            },
+          )
+        }
+        await this.messageService.createMessage({
+          conversationId: convExisted.userId,
+          from: userId,
+          to: 'bot',
+          message,
+          type: 'text'
+        })
       }
-
-      await this.messageService.createMessage({
-        conversationId: convExisted?.userId,
-        from: userId,
-        to: 'bot',
-        message,
-        type: 'text',
-      })
 
       const webChannel = new WebChannel(
         id,
@@ -79,7 +80,7 @@ export class SocketService {
         credentials,
       )
 
-      await webChannel.postMessageToBot({ userId, message, data: '', isTest })
+      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: type ?? 'message', typeName: typeName ?? '' })
     }
   }
 

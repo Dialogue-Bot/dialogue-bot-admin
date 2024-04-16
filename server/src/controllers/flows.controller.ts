@@ -79,4 +79,9 @@ export class FlowController {
     const data = await this.flowService.getFlowByContactId(req.params.contactId, req.body.isTest)
     res.status(StatusCodes.OK).send(data);
   })
+
+  public getFlowByIdForBot = catchAsync(async (req: RequestWithUser, res) => {
+    const data = await this.flowService.getFlowByIdForBot(req.params.id, req.body.isTest)
+    res.status(StatusCodes.OK).send(data);
+  })
 }

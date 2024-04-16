@@ -20,7 +20,7 @@ export class FlowService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly chanelService: ChannelService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     const flowExisted = await db.query.flows.findFirst({
@@ -283,6 +283,28 @@ export class FlowService {
     } else {
       flow = await db.query.flows.findFirst({
         where: and(eq(flows.id, channel?.flowId), isNotNull(flows.publishAt)),
+      })
+    }
+
+    if (!flow) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.NOT_FOUND(),
+      )
+    }
+
+    return flow
+  }
+  public async getFlowByIdForBot(id: string, isTest: boolean) {
+    let flow = null
+
+    if (isTest) {
+      flow = await db.query.flows.findFirst({
+        where: eq(flows.id, id),
+      })
+    } else {
+      flow = await db.query.flows.findFirst({
+        where: and(eq(flows.id, id), isNotNull(flows.publishAt)),
       })
     }
 
