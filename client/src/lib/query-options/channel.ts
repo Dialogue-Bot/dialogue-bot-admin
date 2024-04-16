@@ -1,5 +1,5 @@
 import { channelApi } from '@/apis/channel'
-import { TChannelQuery } from '@/types/channel'
+import { TChannelQuery, TChannelQueryForSelect } from '@/types/channel'
 import { keepPreviousData, queryOptions } from '@tanstack/react-query'
 
 export const queryChannelTypesOption = queryOptions({
@@ -36,11 +36,17 @@ export const queryChannelsOption = (query?: TChannelQuery) => {
   })
 }
 
-export const queryChannelsForSelectOption = (flowId?: string) => {
+export const queryChannelsForSelectOption = ({
+  flowId,
+  isForConversation,
+}: TChannelQueryForSelect) => {
   return queryOptions({
-    queryKey: ['channels-for-select', flowId],
+    queryKey: ['channels-for-select', flowId, isForConversation],
     queryFn: async () => {
-      const res = await channelApi.getChannelsForSelect(flowId)
+      const res = await channelApi.getChannelsForSelect({
+        flowId,
+        isForConversation,
+      })
 
       return res.data
     },

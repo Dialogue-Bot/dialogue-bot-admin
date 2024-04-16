@@ -3,6 +3,7 @@ import { ChannelController } from '@/controllers/channels.controller'
 import {
   ChannelDTO,
   DeleteChannelDTO,
+  QueryChannelForSelectDto,
   UpdateChannelForTestDto,
 } from '@/dtos/channels.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
@@ -75,6 +76,7 @@ export class ChannelRoute implements Routes {
 
     this.router.get(
       `${ENDPOINTS.CHANNEL.INDEX}/for-select`,
+      validate(QueryChannelForSelectDto, 'query'),
       authMiddleware,
       this.controller.getChannelsForSelect,
     )

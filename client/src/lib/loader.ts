@@ -110,7 +110,11 @@ export const flowsLoader = async ({ request }: any) => {
 
 export const flowDetailLoader = async ({ params }: any) => {
   await Promise.all([
-    queryClient.ensureQueryData(queryChannelsForSelectOption(params.id)),
+    queryClient.ensureQueryData(
+      queryChannelsForSelectOption({
+        flowId: params.id,
+      }),
+    ),
     queryClient.ensureQueryData(queryFlowDetailOption(params.id)),
     queryClient.ensureQueryData(queryChannelForTestOption(params.id)),
   ])

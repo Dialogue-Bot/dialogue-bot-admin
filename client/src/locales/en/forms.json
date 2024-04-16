@@ -221,6 +221,20 @@
       "required": "Please select variable to assign user response."
     }
   },
+  "assign_var": {
+    "label": "Assign variable",
+    "placeholder": "Select variable",
+    "errors": {
+      "required": "Please select variable to assign."
+    }
+  },
+  "output_var": {
+    "label": "Output variable",
+    "placeholder": "Select variable",
+    "errors": {
+      "required": "Please select output variable."
+    }
+  },
   "repeat": {
     "label": "Repeat",
     "placeholder": "Select repeat",
