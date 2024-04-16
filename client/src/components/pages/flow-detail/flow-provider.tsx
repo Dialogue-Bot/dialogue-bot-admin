@@ -29,6 +29,8 @@ import {
 } from 'reactflow'
 import { useToggle } from 'usehooks-ts'
 import {
+  SOURCE_HANDLE_HTTP_REQUEST_ERROR,
+  SOURCE_HANDLE_HTTP_REQUEST_SUCCESS,
   SOURCE_HANDLE_PROMPT_NO,
   SOURCE_HANDLE_PROMPT_YES,
   SOURCE_HANDLE_VARIABLES_NO,
@@ -300,6 +302,30 @@ export const FlowProvider = ({ children, flow }: Props) => {
 
               return node
             })
+          case EActionTypes.HTTP_REQUEST:
+            return nds.map((node) => {
+              if (node.id === params.source) {
+                return {
+                  ...node,
+                  data: {
+                    ...node.data,
+                    nextActions: [
+                      ...(node.data.nextActions || []),
+                      {
+                        condition:
+                          params.sourceHandle ===
+                          SOURCE_HANDLE_HTTP_REQUEST_SUCCESS
+                            ? 'success'
+                            : 'failure',
+                        id: targetNode?.id as string,
+                      },
+                    ],
+                  },
+                }
+              }
+
+              return node
+            })
 
           default:
             return nds.map((node) => {
@@ -444,17 +470,22 @@ export const FlowProvider = ({ children, flow }: Props) => {
     ({
       connection,
       sourceHandleNo,
+      sourceHandleYes,
+      maxNo,
+      maxYes,
     }: {
       connection: Connection
       sourceHandleYes: string
       sourceHandleNo: string
+      maxYes?: number
+      maxNo?: number
     }) => {
-      // const _numberOfYes = edges.filter((edge) => {
-      //   return (
-      //     edge.source === connection.source &&
-      //     edge.sourceHandle === sourceHandleYes
-      //   )
-      // })
+      const numberOfYes = edges.filter((edge) => {
+        return (
+          edge.source === connection.source &&
+          edge.sourceHandle === sourceHandleYes
+        )
+      })
 
       const numberOfNo = edges.filter((edge) => {
         return (
@@ -463,13 +494,21 @@ export const FlowProvider = ({ children, flow }: Props) => {
         )
       })
 
-      // if (
-      //   numberOfYes.length === 1 &&
-      //   connection.sourceHandle === sourceHandleYes
-      // ) {
-      //   console.log('yes')
-      //   return false
-      // }
+      if (
+        maxYes &&
+        numberOfYes.length >= maxYes &&
+        connection.sourceHandle === sourceHandleYes
+      ) {
+        return false
+      }
+
+      if (
+        maxNo &&
+        numberOfNo.length >= maxNo &&
+        connection.sourceHandle === sourceHandleNo
+      ) {
+        return false
+      }
 
       if (
         numberOfNo.length === 1 &&
@@ -537,6 +576,16 @@ export const FlowProvider = ({ children, flow }: Props) => {
           connection,
           sourceHandleNo: SOURCE_HANDLE_VARIABLES_NO,
           sourceHandleYes: SOURCE_HANDLE_VARIABLES_YES,
+        })
+      }
+
+      if (sourceNode?.data.action === EActionTypes.HTTP_REQUEST) {
+        return handleCheckConditionNode({
+          connection,
+          sourceHandleNo: SOURCE_HANDLE_HTTP_REQUEST_ERROR,
+          sourceHandleYes: SOURCE_HANDLE_HTTP_REQUEST_SUCCESS,
+          maxYes: 1,
+          maxNo: 1,
         })
       }
 

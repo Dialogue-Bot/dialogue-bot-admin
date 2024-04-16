@@ -59,7 +59,8 @@ export const Edge = ({
     <>
       <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
       {(node?.data.action === EActionTypes.PROMPT_AND_COLLECT ||
-        node?.data.action === EActionTypes.CHECK_VARIABLES) &&
+        node?.data.action === EActionTypes.CHECK_VARIABLES ||
+        node?.data.action === EActionTypes.HTTP_REQUEST) &&
       !selected &&
       !data.hover &&
       action ? (

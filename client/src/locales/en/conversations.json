@@ -1,5 +1,7 @@
 {
   "empty_conversation": "Not have any conversation yet",
   "select_conversation": "Select a conversation to start chatting",
-  "title": "Chat"
+  "title": "Chat",
+  "filter": "Filter",
+  "filter_all": "Tất cả"
 }
