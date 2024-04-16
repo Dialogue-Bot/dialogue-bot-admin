@@ -80,7 +80,7 @@ export class SocketService {
         credentials,
       )
 
-      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: type ?? 'message', typeName: '' })
+      await webChannel.postMessageToBot({ userId, message, data: '', isTest, type: type ?? 'message', typeName: typeName ?? '' })
     }
   }
 

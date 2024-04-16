@@ -53,6 +53,12 @@ export class FlowRoute implements Routes {
       validate(TestYourBotDTO, 'body'),
       this.controller.getFlowByContactId,
     )
+    //for bot get flow by contactId
+    this.router.get(
+      ENDPOINTS.FLOW.BOT_GET_ID,
+      validate(TestYourBotDTO, 'body'),
+      this.controller.getFlowByIdForBot,
+    )
 
     this.router.get(
       `${ENDPOINTS.FLOW.GET_ONE}/:id`,

@@ -58,6 +58,8 @@ export const ENDPOINTS = {
     PUBLISH: '/flow/publish-flow',
     ADD_CHANNELS: '/flow/add-channels',
     SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
+    BOT_GET_CONTACT_ID: '/bot/flow/:contactId',
+    BOT_GET_ID: '/bot/flow/:id'
   },
   INTENT: {
     INDEX: '/intent',
