@@ -35,6 +35,7 @@ type Props = {
   onSubmit?: (data: TChannelInput) => void
   defaultValues?: TChannelInput
   channelId?: string
+  contactId?: string
 }
 
 const ChannelForm = ({
@@ -42,6 +43,7 @@ const ChannelForm = ({
   onSubmit,
   defaultValues,
   channelId,
+  contactId,
 }: Props) => {
   const { t } = useTranslation(['forms', 'common'])
   const { data: flows } = useQuery(queryFlowsForSelectOption(channelId || ''))
@@ -242,15 +244,15 @@ const ChannelForm = ({
                 )}
               </>
             )}
-          {currentType?.name === ChannelType.WEB && channelId && (
+          {currentType?.name === ChannelType.WEB && contactId && (
             <div className='space-y-2'>
               <Label>Script</Label>
-              <Input value={genScript(channelId)} readOnly disabled />
+              <Input value={genScript(contactId)} readOnly disabled />
               <div className='flex items-center justify-end'>
                 <Button
                   type='button'
                   onClick={() =>
-                    copyToClipboard(genScript(channelId)).then((success) => {
+                    copyToClipboard(genScript(contactId)).then((success) => {
                       if (success) {
                         return toast.success(t('common:copy_success'))
                       }

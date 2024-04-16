@@ -191,6 +191,6 @@ export const isEmptyObject = (obj: Record<any, any>) => {
   return Object.keys(obj).length === 0
 }
 
-export const genScript = (channelId: string) => {
-  return `<script src="http://localhost:8080/public/script/chatbot.js" channelId="${channelId}"></script>`
+export const genScript = (contactId: string) => {
+  return `<script src="http://localhost:8080/public/script/chatbox.js" channelId="${contactId}"></script>`
 }
