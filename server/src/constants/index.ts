@@ -39,6 +39,7 @@ export const ENDPOINTS = {
   SETTING: {
     INDEX: '/setting',
     MAIL: '/setting/email',
+    BY_CONTACT_ID: '/setting/by-contact-id/:contactId',
   },
   USER: {
     UPDATE_INFO: '/user/update-info',
@@ -59,7 +60,7 @@ export const ENDPOINTS = {
     ADD_CHANNELS: '/flow/add-channels',
     SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
     BOT_GET_CONTACT_ID: '/bot/flow/:contactId',
-    BOT_GET_ID: '/bot/flow/:id'
+    BOT_GET_ID: '/bot/flow/:id',
   },
   INTENT: {
     INDEX: '/intent',

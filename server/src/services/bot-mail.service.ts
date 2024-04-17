@@ -30,7 +30,7 @@ export class BotMailService {
       to,
       props: variables as any,
       subject,
-      template,
+      template: template as any,
       pass: password,
       user: email,
     })

@@ -360,5 +360,13 @@
     "errors": {
       "required": "Vui lòng chọn biến đầu ra."
     }
+  },
+  "bot_response": {
+    "label": "Bot trả lời",
+    "placeholder": "Nhập câu trả lời của bot",
+    "errors": {
+      "required": "Vui lòng nhập câu trả lời của bot."
+    },
+    "description": "Để truy cập các giá trị biến, hãy sử dụng {variable_name}, {variable_name->key}, {variable_name->0->key}, v.v. {user->name} lấy khóa 'name' của biến 'user'. Đối với mảng 'người dùng' có đối tượng ở chỉ mục 0 và khóa 'tên', hãy sử dụng {users->0->name}."
   }
 }

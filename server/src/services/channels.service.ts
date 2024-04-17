@@ -97,6 +97,7 @@ export class ChannelService {
         channelType: channelTypes.name,
         credentials: channels.credentials,
         flowId: channels.flowId,
+        userId: channels.userId,
       })
       .from(channels)
       .where(
