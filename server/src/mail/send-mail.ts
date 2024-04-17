@@ -24,11 +24,13 @@ const MAP_TEMPLATES: TMapTemplates = {
 
 export type TTemplate = keyof TemplateProps
 
-export const sendMail = async <T extends keyof TemplateProps>(opts: {
+export const sendMail = async <
+  T extends keyof TemplateProps = keyof TemplateProps & string,
+>(opts: {
   to: string
   subject: string
   template: T
-  props: TemplateProps[T]
+  props: T extends keyof TemplateProps ? TemplateProps[T] : any
   from?: string
   user?: string
   pass?: string
@@ -43,7 +45,9 @@ export const sendMail = async <T extends keyof TemplateProps>(opts: {
     from = MAIL_USER,
   } = opts
   try {
-    const html = MAP_TEMPLATES[template](props)
+    const isNotInKey = !Object.keys(MAP_TEMPLATES).includes(template)
+
+    const html = isNotInKey ? template : MAP_TEMPLATES[template](props)
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',

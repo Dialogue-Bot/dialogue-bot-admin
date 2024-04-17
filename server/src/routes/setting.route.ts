@@ -29,5 +29,10 @@ export class SettingRoute implements Routes {
       authMiddleware,
       this.controller.updateEmailSetting,
     )
+
+    this.router.get(
+      ENDPOINTS.SETTING.BY_CONTACT_ID,
+      this.controller.getByContactId,
+    )
   }
 }

@@ -113,15 +113,20 @@ export const MessageDialogContent = () => {
         </Select>
       </div>
       <div className='space-y-2'>
-        <Label required>{t('message_dialog.forms.bot_response.label')}</Label>
+        <Label required>{t('forms:bot_response.label')}</Label>
         {messageType === EMessageTypes.TEXT && (
-          <Input
-            placeholder={t('message_dialog.forms.bot_response.placeholder')}
-            value={botResponse}
-            onChange={(e) => {
-              setBotResponse(e.target.value)
-            }}
-          />
+          <>
+            <Input
+              placeholder={t('forms:bot_response.placeholder')}
+              value={botResponse}
+              onChange={(e) => {
+                setBotResponse(e.target.value)
+              }}
+            />
+            <p className='text-[0.8rem] text-muted-foreground'>
+              {t('forms:bot_response.description')}
+            </p>
+          </>
         )}
         {messageType === EMessageTypes.IMAGE && (
           <InputImage

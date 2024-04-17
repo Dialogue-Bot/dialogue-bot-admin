@@ -1,5 +1,4 @@
-import { TTemplate } from '@/mail/send-mail'
-import { IsEmail, IsNotEmpty, IsObject, IsString } from 'class-validator'
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
 
 export class BotMailDto {
   @IsString()
@@ -18,8 +17,9 @@ export class BotMailDto {
 
   @IsString()
   @IsNotEmpty()
-  template: TTemplate
+  template: string
 
-  @IsObject()
-  variables: Record<string, any>
+  @IsString()
+  @IsNotEmpty()
+  contactId: string
 }

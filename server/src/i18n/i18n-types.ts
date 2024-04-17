@@ -188,6 +188,10 @@ type RootTranslation = {
 		 * O​l​d​ ​p​a​s​s​w​o​r​d
 		 */
 		OLD_PASSWORD: string
+		/**
+		 * S​e​n​d​ ​m​a​i​l​ ​s​u​c​c​e​s​s​f​u​l​l​y
+		 */
+		SEND_MAIL_SUCCESS: string
 	}
 	CHANNEL: {
 		/**
@@ -481,6 +485,10 @@ export type TranslationFunctions = {
 		 * Old password
 		 */
 		OLD_PASSWORD: () => LocalizedString
+		/**
+		 * Send mail successfully
+		 */
+		SEND_MAIL_SUCCESS: () => LocalizedString
 	}
 	CHANNEL: {
 		/**

@@ -10,17 +10,28 @@ export class LocaleService {
     this.locale = locale
   }
 
+  /**
+   * Gets the current locale.
+   *
+   * @returns The current locale.
+   */
   getLocale() {
     return this.locale
   }
 
+  /**
+   * Sets the locale for the context.
+   * @param locale The locale to set.
+   */
   setLocale(locale: Locales) {
-    console.log('setLocale', locale)
     this.locale = locale
   }
 
+  /**
+   * Returns the localized language object based on the current locale.
+   * @returns The localized language object.
+   */
   i18n() {
-    console.log(this.locale)
     return L[this.locale]
   }
 }

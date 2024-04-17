@@ -7,8 +7,8 @@ import { StatusCodes } from 'http-status-codes'
 import Container from 'typedi'
 
 export class SettingController {
-  private settingService = Container.get(SettingService)
-  private localeService: LocaleService = Container.get(LOCALE_KEY)
+  private readonly settingService = Container.get(SettingService)
+  private readonly localeService: LocaleService = Container.get(LOCALE_KEY)
 
   public getSetting = catchAsync(async (req: RequestWithUser, res) => {
     const setting = await this.settingService.findByUserId(req.user.id)
@@ -27,6 +27,15 @@ export class SettingController {
     res.status(StatusCodes.OK).json({
       data: setting,
       message: this.localeService.i18n().SETTING.UPDATE_EMAIL_SUCCESS(),
+    })
+  })
+
+  public getByContactId = catchAsync(async (req, res) => {
+    const setting = await this.settingService.findByContactId(
+      req.params.contactId,
+    )
+    res.status(StatusCodes.OK).json({
+      data: setting,
     })
   })
 }
