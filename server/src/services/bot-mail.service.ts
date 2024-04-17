@@ -41,6 +41,7 @@ export class BotMailService {
       template: template as any,
       pass: password,
       user: email,
+      isPreventSpam: false,
     })
   }
 }
