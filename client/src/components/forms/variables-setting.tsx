@@ -120,7 +120,7 @@ export const VariablesSettingForm = ({
 
     if (
       !_.isEmpty(form.formState.errors.variables) ||
-      variablesWatch?.some((field) => !field.name || !field.value)
+      variablesWatch?.some((field) => !field.name)
     )
       return
 

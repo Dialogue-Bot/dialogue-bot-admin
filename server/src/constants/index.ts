@@ -71,6 +71,9 @@ export const ENDPOINTS = {
     INDEX: '/conversation-live-chat',
     GET_MESSAGES: '/conversation-live-chat/:userId/:contactId',
   },
+  BOT_MAIL: {
+    SEND_MAIL: '/bot-mail/send',
+  },
 }
 
 export const LOCALE_KEY = 'lang'
