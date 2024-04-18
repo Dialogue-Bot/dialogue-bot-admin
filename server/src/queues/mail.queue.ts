@@ -13,6 +13,15 @@ export class SendMailQueue extends Queue {
     })
   }
 
+  /**
+   * Adds a job to the mail queue.
+   *
+   * @param {object} options - The options for the job.
+   * @param {boolean} [options.isPreventSpam=true] - Flag indicating whether to prevent spam.
+   * @param {object} data - The data for the job.
+   * @returns {Promise<object>} - The added job.
+   * @throws {HttpException} - Throws a 429 error if the user is sending emails too frequently.
+   */
   async addJob({
     isPreventSpam = true,
     ...data
