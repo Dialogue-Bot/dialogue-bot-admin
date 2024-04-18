@@ -12,11 +12,6 @@ export class BotMailDto {
 
   @IsString()
   @IsNotEmpty()
-  @IsString()
-  from: string
-
-  @IsString()
-  @IsNotEmpty()
   template: string
 
   @IsString()

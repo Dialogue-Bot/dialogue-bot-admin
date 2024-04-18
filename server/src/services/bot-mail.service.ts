@@ -14,7 +14,7 @@ export class BotMailService {
   ) {}
 
   async sendMail(fields: BotMailDto) {
-    const { from, subject, template, to, contactId } = fields
+    const { subject, template, to, contactId } = fields
 
     const channel = await this.channelService.findOneByContactId(contactId)
 
@@ -34,7 +34,7 @@ export class BotMailService {
     const { email, password } = userSetting.email
 
     await this.sendMailQueue.addJob({
-      from,
+      from: email,
       to,
       props: {} as any,
       subject,
