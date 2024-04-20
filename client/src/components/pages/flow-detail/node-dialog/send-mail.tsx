@@ -17,12 +17,18 @@ import { useTranslation } from 'react-i18next'
 import { useFlowCtx } from '..'
 
 export const SendMailContent = () => {
+  const { handleChangeSelectedNode, selectedNode } = useFlowCtx()
+
   const schema = useBotSendMailSchema()
   const form = useForm<TBotSendMail>({
     resolver: zodResolver(schema),
     mode: 'onChange',
+    defaultValues: {
+      subject: selectedNode?.data.sendMail?.subject || '',
+      to: selectedNode?.data.sendMail?.to || '',
+      body: selectedNode?.data.sendMail?.body || '',
+    },
   })
-  const { handleChangeSelectedNode, selectedNode } = useFlowCtx()
 
   const { t } = useTranslation(['forms', 'common'])
 
@@ -48,8 +54,6 @@ export const SendMailContent = () => {
 
     handleChangeSelectedNode(clonedNode)
   }
-
-  console.log(selectedNode)
 
   return (
     <Form {...form}>
