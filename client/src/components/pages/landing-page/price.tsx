@@ -1,51 +1,6 @@
-import { Button } from '@/components/ui'
-import { ROUTES } from '@/constants'
-import { useCreateCheckoutSession } from '@/hooks/subscription/use-create-checkout-session'
+import { PricingCard } from '@/components/pricing-card'
 import { queryPlansOptions } from '@/lib/query-options/plan'
-import { TPlan } from '@/types/plan'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { CheckCircle } from 'lucide-react'
-
-const Card = ({ plan }: { plan: TPlan }) => {
-  const createCheckoutSession = useCreateCheckoutSession()
-
-  return (
-    <div className='p-4 border border-input shadow-md bg-white rounded-md flex flex-col items-center text-center gap-4'>
-      <span className='text-xl font-semibold'>{plan.name}</span>
-      <img src={plan.image} alt={plan.name} />
-      <div className='flex gap-1'>
-        <span className='self-start'>$</span>
-        <span className='text-5xl font-bold'>{plan.price}</span>
-        <span className='self-end'>/mo</span>
-      </div>
-
-      <ul className='flex flex-col gap-1'>
-        {plan.features.map((feature, index) => (
-          <li key={index} className='font-medium flex items-center gap-2'>
-            <CheckCircle className='w-4 h-4 text-green-500' />
-            <span>{feature.name}</span>
-          </li>
-        ))}
-      </ul>
-
-      <Button
-        className='w-full'
-        variant={plan.maxFlows === 6 ? 'default' : 'outline'}
-        onClick={() =>
-          createCheckoutSession.mutate({
-            priceSubscriptionId: plan.stripePriceId,
-            billingPortalReturnUrl: `${window.location.origin}${ROUTES.PRIVATE.FLOW.INDEX}`,
-            cancelUrl: `${window.location.origin}${ROUTES.PRIVATE.FLOW.INDEX}`,
-            successUrl: `${window.location.origin}${ROUTES.PUBLIC.CHECKOUT_SUCCESS}`,
-          })
-        }
-        loading={createCheckoutSession.isPending}
-      >
-        Choose Plan
-      </Button>
-    </div>
-  )
-}
 
 export const Prices = () => {
   const { data } = useSuspenseQuery(queryPlansOptions)
@@ -63,7 +18,7 @@ export const Prices = () => {
           </div>
           <div className='grid grid-cols-1 gap-5 md:grid-cols-3'>
             {data?.map((plan) => {
-              return <Card key={plan.id} plan={plan} />
+              return <PricingCard key={plan.id} plan={plan} />
             })}
           </div>
         </div>

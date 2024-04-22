@@ -219,6 +219,7 @@ export const plans = pgTable('plans', {
   stripeProductId: text('stripe_product_id').notNull(),
   stripePriceId: text('stripe_price_id').notNull(),
   image: text('image'),
+  archived: boolean('archived').default(false),
 })
 
 export const userSubscriptions = pgTable('user_subscriptions', {

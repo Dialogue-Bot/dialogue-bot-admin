@@ -2,6 +2,7 @@ import { ROUTES } from '@/constants'
 import { useCreateCheckoutSession } from '@/hooks/subscription'
 import { TPlan } from '@/types/plan'
 import { CheckCircle } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from './ui'
 
 type TProps = {
@@ -11,6 +12,7 @@ type TProps = {
 
 export const PricingCard = ({ plan, isCurrentPlan }: TProps) => {
   const createCheckoutSession = useCreateCheckoutSession()
+  const { t } = useTranslation('common')
 
   return (
     <div className='p-4 border border-input shadow-md bg-white rounded-md flex flex-col items-center text-center gap-4'>
@@ -33,7 +35,7 @@ export const PricingCard = ({ plan, isCurrentPlan }: TProps) => {
 
       <Button
         className='w-full'
-        variant={plan.maxFlows === 6 ? 'default' : 'outline'}
+        variant={plan.maxFlows === 12 ? 'default' : 'outline'}
         onClick={() =>
           createCheckoutSession.mutate({
             priceSubscriptionId: plan.stripePriceId,
@@ -45,7 +47,7 @@ export const PricingCard = ({ plan, isCurrentPlan }: TProps) => {
         loading={createCheckoutSession.isPending}
         disabled={isCurrentPlan}
       >
-        {isCurrentPlan ? 'Current Plan' : 'Choose Plan'}
+        {isCurrentPlan ? t('current_plan') : t('choose_plan')}
       </Button>
     </div>
   )

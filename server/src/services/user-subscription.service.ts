@@ -172,15 +172,17 @@ export class UserSubscriptionService {
   ) {
     const usage = await this.getUsageSubscription(userId)
 
-    console.log('usage', usage)
+    if (usage.totalChannels === 0 && forChannel) {
+      return false
+    }
 
-    console.log(usage.numberOfChannels >= usage.totalChannels && forChannel)
+    if (usage.totalFlows === 0 && forFlow) {
+      return false
+    }
 
     if (usage.numberOfChannels >= usage.totalChannels && forChannel) {
       return true
     }
-
-    console.log(usage.numberOfFlows >= usage.totalFlows && forFlow)
 
     if (usage.numberOfFlows >= usage.totalFlows && forFlow) {
       return true

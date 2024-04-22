@@ -52,5 +52,9 @@
     "desc": "You have unsaved changes. Are you sure you want to leave this page?"
   },
   "send_mail_after_time": "Resend after {{time}}s",
-  "copy_success": "Copied to clipboard"
+  "copy_success": "Copied to clipboard",
+  "choose_plan": "Choose plan",
+  "upgrade_plan": "Upgrade plan",
+  "current_plan": "Current plan",
+  "unlimited": "Unlimited"
 }
