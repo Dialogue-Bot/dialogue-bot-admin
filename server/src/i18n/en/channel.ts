@@ -7,4 +7,6 @@ export const CHANNEL = {
   UPDATE_FAILED: 'Update channel failed!',
   DELETE_CHANNEL_SUCCESS: 'Delete channel success!',
   DELETE_MULTIPLE_CHANNELS_SUCCESS: 'Delete multiple channels success!',
+  EXCEED_MAX_CHANNELS:
+    "You've reached the maximum number of channels! Please upgrade your plan to create more channels.",
 }

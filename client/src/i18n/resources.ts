@@ -17,6 +17,7 @@ import setPassEN from '@/locales/en/set_pass.json'
 import tableColEn from '@/locales/en/table-cols.json'
 import tableEn from '@/locales/en/table.json'
 import trainingEn from '@/locales/en/training.json'
+import userSubscriptionsEn from '@/locales/en/user-subscription.json'
 import verifyAccountEn from '@/locales/en/verify-account.json'
 import channelVi from '@/locales/vi/channel.json'
 import chatbotsVi from '@/locales/vi/chatbots.json'
@@ -37,6 +38,7 @@ import setPassVI from '@/locales/vi/set_pass.json'
 import tableColVi from '@/locales/vi/table-cols.json'
 import tableVi from '@/locales/vi/table.json'
 import trainingVi from '@/locales/vi/training.json'
+import userSubscriptionsVi from '@/locales/vi/user-subscription.json'
 import verifyAccountVi from '@/locales/vi/verify-account.json'
 import { ELang } from '@/types/share'
 
@@ -62,6 +64,7 @@ const resources = {
     requestVerifyAccount: requestVerifyAccountEn,
     verifyAccount: verifyAccountEn,
     conversations: conversationsEn,
+    userSubscriptions: userSubscriptionsEn,
   },
   [ELang.VI]: {
     common: commonVI,
@@ -84,6 +87,7 @@ const resources = {
     requestVerifyAccount: requestVerifyAccountVi,
     verifyAccount: verifyAccountVi,
     conversations: conversationsVi,
+    userSubscriptions: userSubscriptionsVi,
   },
 } as const
 

@@ -29,6 +29,20 @@ export const ENDPOINTS = {
     SINGLE: '/upload/single',
     MULTIPLE: '/upload/multiple',
   },
+  PLANS: {
+    INDEX: '/plans',
+  },
+  SUBSCRIPTIONS: {
+    INDEX: '/subscriptions',
+    CREATE_CHECKOUT_SESSION: '/subscriptions/create-checkout-session',
+    CREATE_BILLING_PORTAL_SESSION:
+      '/subscriptions/create-billing-portal-session',
+  },
+  USER_SUBSCRIPTIONS: {
+    INDEX: '/user-subscriptions',
+    CURRENT: '/user-subscriptions/current',
+    USAGE: '/user-subscriptions/usage',
+  },
   CHANNEL: {
     INDEX: '/channel',
     DELETE: '/channel/delete',
@@ -49,6 +63,10 @@ export const ENDPOINTS = {
     INDEX: '/webhook',
     VERIFY: '/webhook/:contactId',
     INCOMING_MSG: '/webhook/:contactId',
+  },
+  STRIPE_WEBHOOK: {
+    INDEX: '/stripe-webhook',
+    PAYMENT_INTENT: '/stripe-webhook/payment-intent',
   },
   CONVERSATION: {
     INDEX: '/v3/conversations',

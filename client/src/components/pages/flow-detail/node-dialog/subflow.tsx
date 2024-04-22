@@ -6,8 +6,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  buttonVariants,
 } from '@/components/ui'
-import { NOT_CHOOSE } from '@/constants'
+import { NOT_CHOOSE, ROUTES } from '@/constants'
 import {
   queryFlowOption,
   queryFlowsForSelectOption,
@@ -16,7 +17,7 @@ import { useQuery } from '@tanstack/react-query'
 import _ from 'lodash'
 import { X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useFlowCtx } from '..'
 
 export const SubFlowContent = () => {
@@ -40,15 +41,32 @@ export const SubFlowContent = () => {
 
             const cloneSelectedNode = _.cloneDeep(selectedNode)
 
-            cloneSelectedNode.data.subFlowId = value
+            cloneSelectedNode.data.subFlowId =
+              value === NOT_CHOOSE ? undefined : value
 
             handleChangeSelectedNode(cloneSelectedNode)
           }}
         >
-          <SelectTrigger>
-            <SelectValue placeholder={t('sub_flow.placeholder')} />
-          </SelectTrigger>
+          <div className='flex gap-3'>
+            <SelectTrigger>
+              <SelectValue placeholder={t('sub_flow.placeholder')} />
+            </SelectTrigger>
+            {selectedNode?.data?.subFlowId && (
+              <Link
+                className={buttonVariants()}
+                to={`${ROUTES.PRIVATE.FLOW.INDEX}/${selectedNode?.data?.subFlowId}`}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Go to subflow
+              </Link>
+            )}
+          </div>
           <SelectContent>
+            <SelectItem value={NOT_CHOOSE}>
+              {' '}
+              {t('sub_flow.placeholder')}
+            </SelectItem>
             {flows?.map((flow) => {
               if (flow.value === id) return null
 

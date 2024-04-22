@@ -1,6 +1,7 @@
 import {
   AddIntent,
   Channels,
+  CheckoutSuccess,
   ConversationDetail,
   Conversations,
   FlowDetail,
@@ -15,6 +16,7 @@ import {
   SetPassword,
   Training,
   UpdateIntent,
+  UserSubscriptions,
   VerifyAccount,
 } from '@/pages'
 import { createBrowserRouter, redirect } from 'react-router-dom'
@@ -41,7 +43,9 @@ import {
   flowDetailLoader,
   flowsLoader,
   intentLoader,
+  ladingPageLoader,
   settingLoader,
+  userSubscriptionLoader,
   verifyAccountLoader,
 } from './lib/loader'
 import Help from './pages/help'
@@ -108,7 +112,11 @@ export const router = createBrowserRouter([
             Component: Flows,
             loader: flowsLoader,
           },
-
+          {
+            path: ROUTES.PRIVATE.USER_SUBSCRIPTION.INDEX,
+            Component: UserSubscriptions,
+            loader: userSubscriptionLoader,
+          },
           {
             path: ROUTES.PRIVATE.TRAINING.INDEX,
             Component: Training,
@@ -182,6 +190,11 @@ export const router = createBrowserRouter([
           {
             path: ROUTES.PUBLIC.LANDING_PAGE,
             Component: LandingPage,
+            loader: ladingPageLoader,
+          },
+          {
+            path: ROUTES.PUBLIC.CHECKOUT_SUCCESS,
+            Component: CheckoutSuccess,
           },
           {
             path: ROUTES.PUBLIC.HELP,

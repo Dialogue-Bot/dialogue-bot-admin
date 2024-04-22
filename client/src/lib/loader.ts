@@ -24,6 +24,11 @@ import {
   queryConversationOption,
   queryConversationsOptions,
 } from './query-options/live-chat'
+import { queryPlansOptions } from './query-options/plan'
+import {
+  queryCurrentUserSubscription,
+  queryUsageSubscription,
+} from './query-options/user-subscription'
 
 export const authLoader = async ({ request }: any) => {
   const redirectUrl = new URL(request.url).searchParams.get('redirect')
@@ -174,6 +179,29 @@ export const conversationLoader = async ({ params }: any) => {
   await queryClient.ensureQueryData(
     queryConversationOption(params.channelId, params.userId),
   )
+
+  return null
+}
+
+export const ladingPageLoader = async () => {
+  const [, user] = await Promise.all([
+    queryClient.ensureQueryData(queryPlansOptions),
+    queryClient.ensureQueryData(currentUserQueryOptions()),
+  ])
+
+  if (user) {
+    useUserStore.getState().setUser(user)
+  }
+
+  return null
+}
+
+export const userSubscriptionLoader = async () => {
+  await Promise.all([
+    queryClient.ensureQueryData(queryCurrentUserSubscription),
+    queryClient.ensureQueryData(queryUsageSubscription),
+    queryClient.ensureQueryData(queryPlansOptions),
+  ])
 
   return null
 }

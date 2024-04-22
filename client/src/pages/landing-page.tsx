@@ -2,6 +2,7 @@ import {
   Hero,
   Integrations,
   JoinNewsletter,
+  Prices,
   Reviews,
 } from '@/components/pages/landing-page'
 
@@ -16,6 +17,7 @@ const LandingPage = () => {
     >
       <Hero />
       <Integrations />
+      <Prices />
       <Reviews />
       <JoinNewsletter />
     </div>

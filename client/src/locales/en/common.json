@@ -24,6 +24,7 @@
   "trained": "Trained",
   "not_trained": "Not trained",
   "empty_buttons": "Empty buttons",
+  "subscription": "Subscription",
   "row_actions": {
     "update": "Update",
     "delete": "Delete",
