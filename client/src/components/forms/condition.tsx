@@ -5,7 +5,6 @@ import {
 } from '@/lib/schema/compare-value'
 import { isStringBoolean } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import {
@@ -56,12 +55,6 @@ const ConditionForm = ({
     })
   })
 
-  useEffect(() => {
-    if (watchOperator === 'exist' && !form.getValues('value')) {
-      form.reset({ value: 'true' })
-    }
-  }, [watchOperator, form])
-
   return (
     <Form {...form}>
       <form className='space-y-3' onSubmit={handleSubmit} id={id}>
@@ -72,11 +65,7 @@ const ConditionForm = ({
             render={({ field }) => (
               <FormItem className='w-full'>
                 <FormLabel>{t('operator.label')}</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  value={field.value}
-                >
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={t('operator.placeholder')} />
@@ -108,10 +97,7 @@ const ConditionForm = ({
               render={({ field }) => (
                 <FormItem className='w-full'>
                   <FormLabel>{t('value.label')}</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger className='capitalize'>
                         <SelectValue placeholder={t('value.placeholder')} />

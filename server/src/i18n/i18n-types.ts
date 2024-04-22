@@ -226,6 +226,10 @@ type RootTranslation = {
 		 * D​e​l​e​t​e​ ​m​u​l​t​i​p​l​e​ ​c​h​a​n​n​e​l​s​ ​s​u​c​c​e​s​s​!
 		 */
 		DELETE_MULTIPLE_CHANNELS_SUCCESS: string
+		/**
+		 * Y​o​u​'​v​e​ ​r​e​a​c​h​e​d​ ​t​h​e​ ​m​a​x​i​m​u​m​ ​n​u​m​b​e​r​ ​o​f​ ​c​h​a​n​n​e​l​s​!​ ​P​l​e​a​s​e​ ​u​p​g​r​a​d​e​ ​y​o​u​r​ ​p​l​a​n​ ​t​o​ ​c​r​e​a​t​e​ ​m​o​r​e​ ​c​h​a​n​n​e​l​s​.
+		 */
+		EXCEED_MAX_CHANNELS: string
 	}
 	SETTING: {
 		/**
@@ -274,6 +278,10 @@ type RootTranslation = {
 		 * A​d​d​ ​m​u​l​t​i​p​l​e​ ​c​h​a​n​n​e​l​s​ ​f​o​r​ ​f​l​o​w​ ​f​a​i​l​e​d​!
 		 */
 		ADD_MULTIPLE_CHANNELS_FLOW__FAILED: string
+		/**
+		 * F​l​o​w​ ​h​a​s​ ​r​e​a​c​h​e​d​ ​t​h​e​ ​m​a​x​i​m​u​m​ ​n​u​m​b​e​r​!​ ​P​l​e​a​s​e​ ​u​p​g​r​a​d​e​ ​y​o​u​r​ ​p​l​a​n​ ​t​o​ ​c​r​e​a​t​e​ ​m​o​r​e​ ​f​l​o​w​s​.
+		 */
+		FLOW_EXCEED_USAGE: string
 	}
 	INTENT: {
 		/**
@@ -523,6 +531,10 @@ export type TranslationFunctions = {
 		 * Delete multiple channels success!
 		 */
 		DELETE_MULTIPLE_CHANNELS_SUCCESS: () => LocalizedString
+		/**
+		 * You've reached the maximum number of channels! Please upgrade your plan to create more channels.
+		 */
+		EXCEED_MAX_CHANNELS: () => LocalizedString
 	}
 	SETTING: {
 		/**
@@ -571,6 +583,10 @@ export type TranslationFunctions = {
 		 * Add multiple channels for flow failed!
 		 */
 		ADD_MULTIPLE_CHANNELS_FLOW__FAILED: () => LocalizedString
+		/**
+		 * Flow has reached the maximum number! Please upgrade your plan to create more flows.
+		 */
+		FLOW_EXCEED_USAGE: () => LocalizedString
 	}
 	INTENT: {
 		/**

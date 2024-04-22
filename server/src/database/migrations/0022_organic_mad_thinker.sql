@@ -1,0 +1,1 @@
+ALTER TABLE "user_subscriptions" ADD COLUMN "id" varchar DEFAULT 'p2rcganxsfvp70pwwqulsc2q' NOT NULL;

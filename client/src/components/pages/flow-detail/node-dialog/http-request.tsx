@@ -42,7 +42,6 @@ export const HttpRequestDialogContent = () => {
       method: selectedNode?.data?.httpRequest?.method || 'GET',
       params: selectedNode?.data?.httpRequest?.params || [],
       headers: selectedNode?.data?.httpRequest?.headers || [],
-      query: selectedNode?.data?.httpRequest?.query || [],
       body: selectedNode?.data?.httpRequest?.body || [],
       assignUserResponse: selectedNode?.data?.assignUserResponse || NOT_CHOOSE,
     },
@@ -55,11 +54,6 @@ export const HttpRequestDialogContent = () => {
 
   const headersFieldArray = useFieldArray({
     name: 'headers',
-    control: form.control,
-  })
-
-  const queryFieldArray = useFieldArray({
-    name: 'query',
     control: form.control,
   })
 

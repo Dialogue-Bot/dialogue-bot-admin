@@ -5,10 +5,12 @@ import { createId } from '@paralleldrive/cuid2'
 import { relations } from 'drizzle-orm'
 import {
   boolean,
+  integer,
   json,
   pgEnum,
   pgTable,
   primaryKey,
+  real,
   text,
   timestamp,
   uniqueIndex,
@@ -78,28 +80,6 @@ export const channels = pgTable('channels', {
     onDelete: 'set null',
   }),
 })
-
-export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
-  channels: many(channels),
-}))
-
-export const channelsRelations = relations(channels, ({ one, many }) => ({
-  channelType: one(channelTypes, {
-    fields: [channels.channelTypeId],
-    references: [channelTypes.id],
-  }),
-  user: one(users, {
-    fields: [channels.userId],
-    references: [users.id],
-  }),
-  flow: one(flows, {
-    fields: [channels.flowId],
-    references: [flows.id],
-  }),
-  conversations: many(conversations, {
-    relationName: 'channelConversations',
-  }),
-}))
 
 export const settings = pgTable('settings', {
   id: varchar('id', {
@@ -220,6 +200,60 @@ export const messages = pgTable('messages', {
     .default({}),
 })
 
+export const plans = pgTable('plans', {
+  id: varchar('id', {
+    length: MAX_ID_LENGTH,
+  })
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  expirationTime: integer('expiration_time').notNull().default(30), // in days (default 30 days)
+  maxChannels: integer('max_channels').default(3), // 0 means unlimited
+  maxFlows: integer('max_flows').default(3), // 0 means unlimited
+  features: json('features').default([]).$type<
+    Array<{
+      name: string
+    }>
+  >(),
+  name: text('name').notNull(),
+  price: real('price').notNull(),
+  stripeProductId: text('stripe_product_id').notNull(),
+  stripePriceId: text('stripe_price_id').notNull(),
+  image: text('image'),
+})
+
+export const userSubscriptions = pgTable('user_subscriptions', {
+  userId: varchar('user_id', {
+    length: MAX_ID_LENGTH,
+  })
+    .primaryKey()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  planId: varchar('plan_id', {
+    length: MAX_ID_LENGTH,
+  })
+    .notNull()
+    .references(() => plans.id, { onDelete: 'cascade' }),
+  startedAt: timestamp('started_at').defaultNow(),
+  endedAt: timestamp('ended_at'),
+})
+
+export const userSubscriptionsRelations = relations(
+  userSubscriptions,
+  ({ one }) => ({
+    user: one(users, {
+      fields: [userSubscriptions.userId],
+      references: [users.id],
+    }),
+    plan: one(plans, {
+      fields: [userSubscriptions.planId],
+      references: [plans.id],
+    }),
+  }),
+)
+
+export const subscriptionsRelations = relations(plans, ({ many }) => ({
+  users: many(userSubscriptions),
+}))
+
 export const messagesRelations = relations(messages, ({ one }) => ({
   conversation: one(conversations, {
     fields: [messages.conversationId],
@@ -259,4 +293,27 @@ export const usersRelations = relations(users, ({ one, many }) => ({
   channels: many(channels),
   flows: many(flows),
   intents: many(intents),
+  subscriptions: many(userSubscriptions),
+}))
+
+export const channelTypesRelations = relations(channelTypes, ({ many }) => ({
+  channels: many(channels),
+}))
+
+export const channelsRelations = relations(channels, ({ one, many }) => ({
+  channelType: one(channelTypes, {
+    fields: [channels.channelTypeId],
+    references: [channelTypes.id],
+  }),
+  user: one(users, {
+    fields: [channels.userId],
+    references: [users.id],
+  }),
+  flow: one(flows, {
+    fields: [channels.flowId],
+    references: [flows.id],
+  }),
+  conversations: many(conversations, {
+    relationName: 'channelConversations',
+  }),
 }))

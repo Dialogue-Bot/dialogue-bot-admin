@@ -24,6 +24,9 @@ export const ENDPOINTS = {
     UPDATE_INFO: '/user/update-info',
     CHANGE_PASS: '/user/change-password',
   },
+  PLANS: {
+    INDEX: '/plans',
+  },
   SETTING: {
     INDEX: '/setting',
     MAIL: '/setting/email',
@@ -34,6 +37,12 @@ export const ENDPOINTS = {
     DELETES: '/channel/deletes',
     TYPES: '/channel/types',
     FOR_TEST: '/channel/for-test',
+  },
+  SUBSCRIPTIONS: {
+    INDEX: '/subscriptions',
+    CREATE_CHECKOUT_SESSION: '/subscriptions/create-checkout-session',
+    CREATE_BILLING_PORTAL_SESSION:
+      '/subscriptions/create-billing-portal-session',
   },
   FLOW: {
     INDEX: '/flow',
@@ -51,6 +60,11 @@ export const ENDPOINTS = {
     INDEX: '/conversation-live-chat',
     GET_MESSAGES: '/conversation-live-chat/:id',
   },
+  USER_SUBSCRIPTIONS: {
+    INDEX: '/user-subscriptions',
+    CURRENT: '/user-subscriptions/current',
+    USAGE: '/user-subscriptions/usage',
+  },
 }
 
 export const ROUTES = {
@@ -65,7 +79,9 @@ export const ROUTES = {
   PUBLIC: {
     LANDING_PAGE: '/',
     HELP: '/help',
+    CHECKOUT_SUCCESS: '/checkout-success',
   },
+
   PRIVATE: {
     DASHBOARD: '/dashboard',
     CHANNEL: {
@@ -90,6 +106,9 @@ export const ROUTES = {
     },
     CONVERSATION: {
       INDEX: '/conversations',
+    },
+    USER_SUBSCRIPTION: {
+      INDEX: '/user-subscriptions',
     },
   },
 }

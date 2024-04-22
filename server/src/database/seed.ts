@@ -1,3 +1,4 @@
+import { PlanService } from '@/services/plan.service'
 import { UserService } from '@/services/users.service'
 import * as bcrypt from 'bcrypt'
 import Container from 'typedi'
@@ -41,9 +42,21 @@ async function seedDefaultAccount() {
   }
 }
 
+async function seedSubscription() {
+  try {
+    const planService = Container.get(PlanService)
+    await planService.seedPlans()
+    console.log('Plans created')
+  } catch (error) {
+    console.log(error)
+    console.error(`Can't create plans`)
+  }
+}
+
 async function main() {
   await seedChannelTypes()
   await seedDefaultAccount()
+  await seedSubscription()
 
   console.log('Seed data successfully')
   process.exit(0)

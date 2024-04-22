@@ -11,7 +11,7 @@ import hpp from 'hpp'
 import morgan from 'morgan'
 import 'reflect-metadata'
 import Container from 'typedi'
-import { LOCALE_KEY } from './constants'
+import { ENDPOINTS, LOCALE_KEY } from './constants'
 import { LocaleService } from './i18n/ctx'
 import { getPreferredLocale } from './i18n/get-preferred-locale'
 import { loadAllLocales } from './i18n/i18n-util.sync'
@@ -21,6 +21,7 @@ import { createServer } from 'http'
 import path from 'path'
 import { Server } from 'socket.io'
 import { SocketController } from './controllers/socket.controller'
+import { printRoute } from './utils/print-route'
 
 Container.set(LOCALE_KEY, new LocaleService('en'))
 
@@ -87,10 +88,14 @@ export class App {
       }),
     )
     this.app.use(compression())
+    this.app.use(
+      `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`,
+      express.raw({ type: '*/*' }),
+    )
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
     this.app.use(cookieParser())
-    this.app.use((req, res, next) => {
+    this.app.use((req, _res, next) => {
       const locale = getPreferredLocale(req)
 
       Container.get<LocaleService>(LOCALE_KEY).setLocale(locale)
@@ -102,8 +107,10 @@ export class App {
   private initializeRoutes(routes: Routes[]) {
     routes.forEach((route) => {
       this.app.use('/api', route.router)
+      logger.info(`Routes: ${route.constructor.name} initialized`)
+
+      printRoute(route.router)
     })
-    console.log(path.join(process.cwd(), 'public'))
     this.app.use('/public', express.static(path.join(process.cwd(), 'public')))
   }
 

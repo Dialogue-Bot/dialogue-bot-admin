@@ -7,4 +7,6 @@ export const CHANNEL = {
   UPDATE_FAILED: 'Cập nhật channel thất bại!',
   DELETE_CHANNEL_SUCCESS: 'Xóa channel thành công!',
   DELETE_MULTIPLE_CHANNELS_SUCCESS: 'Xóa nhiều channel thành công!',
+  EXCEED_MAX_CHANNELS:
+    'Bạn đã đạt đến số lượng kênh tối đa! Vui lòng nâng cấp gói của bạn để tạo thêm kênh.',
 }

@@ -1,0 +1,1 @@
+ALTER TABLE "user_subscriptions" ADD CONSTRAINT "user_subscriptions_pkey" PRIMARY KEY("user_id","subscription_id");
