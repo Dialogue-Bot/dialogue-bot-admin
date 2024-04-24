@@ -1,21 +1,78 @@
 import { WebChannel } from '@/channels/web.channel'
 import { SOCKET_EVENTS } from '@/constants'
+import { ExpectedChannel } from '@/interfaces/channels.interface'
+import { IUserChatAgent } from '@/interfaces/socket.interface'
 import { logger } from '@/utils/logger'
 import { Socket } from 'socket.io'
 import { Service } from 'typedi'
+import { App } from '../app'
 import { ChannelService } from './channels.service'
 import { ConversationLiveChatService } from './conversation-live-chat.service'
 import { MessageService } from './message.service'
+
 
 const USERS: Record<string, any> = {}
 
 @Service()
 export class SocketService {
+  usersChatWithAgent: IUserChatAgent[];
+
   constructor(
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
     private readonly messageService: MessageService,
-  ) {}
+  ) {
+    this.usersChatWithAgent = [];
+    this.setIntervalUserDisconnectAgent();
+  }
+
+  public subscribe(userId: string) {
+    this.usersChatWithAgent.push({ userId, lastMessageAt: new Date() });
+  }
+
+  public unsubscribe(userId: string) {
+    this.usersChatWithAgent = this.usersChatWithAgent.filter((uid) => uid.userId !== userId);
+  }
+
+  public update(userId: string) {
+    const userIndex = this.usersChatWithAgent.findIndex(uid => uid.userId === userId);
+    if (userIndex != -1) {
+      this.usersChatWithAgent[userIndex].lastMessageAt = new Date();
+    }
+  }
+
+  public notify({ adminId, userId, type }) {
+    if (this.find(userId) && App.io) {
+      switch (type) {
+        case SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT:
+          App.io.to(userId).emit(type || SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT, { userId, adminId });
+          logger.info(`[Socket Service] User ${userId} send notification connect Agent ${adminId}`)
+          break;
+      }
+    }
+  }
+
+  private setIntervalUserDisconnectAgent() {
+    setInterval(() => {
+      if (this.usersChatWithAgent.length) {
+        logger.info('[Socket Service] RUN FILTER USERS TIME OUT CHAT WITH AGENT');
+        this.usersChatWithAgent = this.usersChatWithAgent.filter((uid) => {
+          const timeDifference = Math.abs(new Date().getTime() - uid.lastMessageAt.getTime());
+          if (timeDifference >= 300000) {
+            logger.info(`User ${uid.userId} disconnected agent`);
+            return false;
+          }
+          // remove user after 5 minutes not send message to agent
+          return true;
+        });
+      }
+    }, 10000)
+  }
+
+  private find(userId: string) {
+    return this.usersChatWithAgent.find((u) => u.userId === userId);
+  }
+
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
       this.handleIncomingMessage(socket, data)
@@ -27,12 +84,8 @@ export class SocketService {
   }
 
   private async handleIncomingMessage(io: Socket, data: any) {
-    await this.forwardMessageToBot(io, data)
-  }
-
-  private async forwardMessageToBot(io: Socket, data: any) {
     const { address, message, isTest, type, typeName } = data
-    console.log('socket data:' + JSON.stringify(data))
+    console.log('[Socket Service] socket data:' + JSON.stringify(data))
 
     if (!address || (!message && !type)) return
 
@@ -47,59 +100,17 @@ export class SocketService {
     }
 
     if (expectedChannel?.channelType === 'WEB') {
-      const { id, contactName, channelType, credentials } = expectedChannel
-
-      // save conversation and conversation message
-      if (!type && !isTest) {
-        let convExisted =
-          await this.conversationLiveChatService.getConversation(
-            userId,
-            contactId,
-          )
-        if (!convExisted) {
-          convExisted =
-            await this.conversationLiveChatService.createConversation({
-              userId,
-              contactId,
-            })
-        }
-        await this.messageService.createMessage({
-          conversationId: convExisted.userId,
-          from: userId,
-          to: 'bot',
-          message,
-          type: 'text',
-        })
+      if (type) {
+        await this.sendEventToBot(userId, type, typeName, expectedChannel, isTest);
       }
-
-      if (typeName === 'endConversation' && !isTest) {
-        console.log('updated conversation')
-
-        await this.conversationLiveChatService.updateConversation({
-          userId,
-          contactId,
-          data: {
-            endedAt: new Date(),
-          },
-        })
+      if (this.find(userId)) {
+        // send message to admin
+        this.update(userId);
+        console.log(this.find(userId));
       }
-
-      const webChannel = new WebChannel(
-        id,
-        contactId,
-        contactName,
-        channelType,
-        credentials,
-      )
-
-      await webChannel.postMessageToBot({
-        userId,
-        message,
-        data: '',
-        isTest,
-        type: type ?? 'message',
-        typeName: typeName ?? '',
-      })
+      else {
+        await this.sendMessageToBot(userId, message, expectedChannel, isTest)
+      }
     }
   }
 
@@ -131,5 +142,89 @@ export class SocketService {
     logger.info(`[Socket Service] Users: ${Object.keys(USERS).join(', ')}`)
 
     return socket
+  }
+
+  async sendMessageToBot(userId: string, message: string, expectedChannel: ExpectedChannel, isTest: boolean) {
+    const { id, contactName, channelType, credentials, contactId } = expectedChannel
+    if (!isTest) {
+      await this.saveConversationMessage(userId, contactId, message)
+    }
+    const webChannel = new WebChannel(
+      id,
+      contactId,
+      contactName,
+      channelType,
+      credentials,
+    )
+
+    await webChannel.postMessageToBot({
+      userId,
+      message: message,
+      data: '',
+      isTest,
+      type: 'message',
+      typeName: '',
+    })
+  }
+
+  async sendEventToBot(userId: string, type: string, typeName: string, expectedChannel: ExpectedChannel, isTest: boolean) {
+    const { id, contactName, channelType, credentials, contactId } = expectedChannel
+
+    if (!isTest) {
+      await this.updateEndDateConversation(userId, contactId, typeName)
+    }
+
+    const webChannel = new WebChannel(
+      id,
+      contactId,
+      contactName,
+      channelType,
+      credentials,
+    )
+
+    await webChannel.postMessageToBot({
+      userId,
+      message: '',
+      data: '',
+      isTest,
+      type: type,
+      typeName: typeName,
+    })
+  }
+
+  async saveConversationMessage(userId: string, contactId: string, message: string) {
+    let convExisted =
+      await this.conversationLiveChatService.getConversation(
+        userId,
+        contactId,
+      )
+    if (!convExisted) {
+      convExisted =
+        await this.conversationLiveChatService.createConversation({
+          userId,
+          contactId,
+        })
+    }
+    await this.messageService.createMessage({
+      conversationId: convExisted.userId,
+      from: userId,
+      to: 'bot',
+      message,
+      type: 'text',
+    })
+  }
+
+  async updateEndDateConversation(userId: string, contactId: string, typeName: string) {
+    if (typeName === 'endConversation') {
+      console.log('Updated conversation')
+
+      await this.conversationLiveChatService.updateConversation({
+        userId,
+        contactId,
+        data: {
+          endedAt: new Date(),
+        },
+      })
+    }
   }
 }
