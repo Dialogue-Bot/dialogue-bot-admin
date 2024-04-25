@@ -47,13 +47,15 @@ export class BaseChannel {
         },
       })
       if (postMsg.data.success) {
-        logger.info(
-          `[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`,
+        logger.info(type === 'event'
+          ? `[${this.channelType}] User ${userId} send event to Bot - Event: ${typeName}`
+          : `[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`,
         )
       }
     } catch (error) {
-      logger.info(
-        `[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`,
+      logger.info(type === 'event'
+        ? `[${this.channelType}] User ${userId} can not send event to Bot - Event: ${typeName} - Error: ${error.message}`
+        : `[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`,
       )
     }
   }

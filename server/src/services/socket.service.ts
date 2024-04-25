@@ -59,7 +59,7 @@ export class SocketService {
         this.usersChatWithAgent = this.usersChatWithAgent.filter((uid) => {
           const timeDifference = Math.abs(new Date().getTime() - uid.lastMessageAt.getTime());
           if (timeDifference >= 300000) {
-            logger.info(`User ${uid.userId} disconnected agent`);
+            logger.info(`User ${uid.userId} disconnected Agent`);
             return false;
           }
           // remove user after 5 minutes not send message to agent
@@ -101,7 +101,7 @@ export class SocketService {
 
     if (expectedChannel?.channelType === 'WEB') {
       if (type) {
-        await this.sendEventToBot(userId, type, typeName, expectedChannel, isTest);
+        return await this.sendEventToBot(userId, type, typeName, expectedChannel, isTest);
       }
       if (this.find(userId)) {
         // send message to admin
