@@ -25,6 +25,9 @@ export const ENDPOINTS = {
     VERIFY_ACCOUNT: '/auth/verify-account',
     REQUEST_VERIFY_ACCOUNT: '/auth/request-verify-account',
   },
+  CUSTOM_CHATBOX: {
+    INDEX: '/custom-chatbox',
+  },
   UPLOAD: {
     SINGLE: '/upload/single',
     MULTIPLE: '/upload/multiple',

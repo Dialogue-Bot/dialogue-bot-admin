@@ -81,6 +81,31 @@ export const channels = pgTable('channels', {
   }),
 })
 
+export const chatboxSettings = pgTable('chatbox_settings', {
+  logoUrl: text('logo_url').default(
+    'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1ib3QtbWVzc2FnZS1zcXVhcmUiPjxwYXRoIGQ9Ik0xMiA2VjJIOCIvPjxwYXRoIGQ9Im04IDE4LTQgNFY4YTIgMiAwIDAgMSAyLTJoMTJhMiAyIDAgMCAxIDIgMnY4YTIgMiAwIDAgMS0yIDJaIi8+PHBhdGggZD0iTTIgMTJoMiIvPjxwYXRoIGQ9Ik05IDExdjIiLz48cGF0aCBkPSJNMTUgMTF2MiIvPjxwYXRoIGQ9Ik0yMCAxMmgyIi8+PC9zdmc+',
+  ),
+  name: text('name').default('DialogueBot'),
+  color: text('color').default('#2563eb'),
+  buttonSize: integer('button_size').default(40),
+  position: json('position').$type<{ x: number; y: number }>().default({
+    x: 24,
+    y: 24,
+  }),
+  windowSize: json('window_size')
+    .$type<{ width: number; height: number }>()
+    .default({
+      width: 320,
+      height: 500,
+    }),
+  channelId: varchar('channel_id')
+    .notNull()
+    .references(() => channels.id),
+  id: varchar('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+})
+
 export const settings = pgTable('settings', {
   id: varchar('id', {
     length: MAX_ID_LENGTH,
@@ -316,5 +341,9 @@ export const channelsRelations = relations(channels, ({ one, many }) => ({
   }),
   conversations: many(conversations, {
     relationName: 'channelConversations',
+  }),
+  chatboxSetting: one(chatboxSettings, {
+    fields: [channels.id],
+    references: [chatboxSettings.channelId],
   }),
 }))

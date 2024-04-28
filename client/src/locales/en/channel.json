@@ -8,5 +8,7 @@
   "remove_channel_title": "Remove channel?",
   "remove_channel_description": "Are you sure you want to remove this channel? This action cannot be undone.",
   "page_title": "Channels | DialogueBot",
-  "title": "Channels"
+  "title": "Channels",
+  "custom_chatbox_title": "Custom Chatbox",
+  "custom_chatbox_description": "Customize the chatbox to match your website's design"
 }

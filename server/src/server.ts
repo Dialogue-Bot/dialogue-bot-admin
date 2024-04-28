@@ -3,6 +3,7 @@ import { ValidateEnv } from '@/utils/validate-env'
 import { AuthRoute } from '@routes/auth.route'
 import { BotMailRoute } from './routes/bot-mail.route'
 import { ChannelRoute } from './routes/channels.route'
+import { ChatBoxSettingRoute } from './routes/chatbox-setting.route'
 import { ConversationLiveChatRoute } from './routes/conversation-live-chat.route'
 import { ConversationRoute } from './routes/conversation.route'
 import { FlowRoute } from './routes/flow.route'
@@ -34,6 +35,7 @@ const app = new App([
   new PlanRoute(),
   new SubscriptionRoute(),
   new UserSubscriptionRoute(),
+  new ChatBoxSettingRoute(),
 ])
 
 app.listen()

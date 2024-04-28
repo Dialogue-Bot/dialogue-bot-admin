@@ -1,6 +1,7 @@
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
 import { queryChannelTypesOption } from '@/lib/query-options/channel'
+import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
 import { queryFlowsForSelectOption } from '@/lib/query-options/flow'
 import { TChannelInput, useChannelSchema } from '@/lib/schema/channel'
 import { ChannelType } from '@/types/channel'
@@ -47,9 +48,11 @@ const ChannelForm = ({
 }: Props) => {
   const { t } = useTranslation(['forms', 'common'])
   const { data: flows } = useQuery(queryFlowsForSelectOption(channelId || ''))
-
   const { data: types } = useQuery(queryChannelTypesOption)
-
+  const { data: customChatBoxOptions } = useQuery({
+    ...queryCustomChatBoxOptions(contactId as string),
+    enabled: !!contactId,
+  })
   const schema = useChannelSchema()
   const form = useForm<TChannelInput>({
     resolver: zodResolver(schema),
@@ -247,12 +250,18 @@ const ChannelForm = ({
           {currentType?.name === ChannelType.WEB && contactId && (
             <div className='space-y-2'>
               <Label>Script</Label>
-              <Input value={genScript(contactId)} readOnly disabled />
+              <Input
+                value={genScript(contactId, customChatBoxOptions)}
+                readOnly
+                disabled
+              />
               <div className='flex items-center justify-end'>
                 <Button
                   type='button'
                   onClick={() =>
-                    copyToClipboard(genScript(contactId)).then((success) => {
+                    copyToClipboard(
+                      genScript(contactId, customChatBoxOptions),
+                    ).then((success) => {
                       if (success) {
                         return toast.success(t('common:copy_success'))
                       }

@@ -389,5 +389,59 @@
     "errors": {
       "required": "Please enter repeat message."
     }
+  },
+  "logo_url": {
+    "label": "Logo URL",
+    "placeholder": "Enter logo URL",
+    "errors": {
+      "required": "Please enter logo URL."
+    }
+  },
+  "color": {
+    "label": "Color",
+    "placeholder": "Enter color",
+    "errors": {
+      "required": "Please enter color.",
+      "invalid": "Please enter a valid color. (e.g. #000000)"
+    }
+  },
+  "bot_name": {
+    "label": "Bot name",
+    "placeholder": "Enter bot name",
+    "errors": {
+      "required": "Please enter bot name."
+    }
+  },
+  "button_size": {
+    "label": "Button size",
+    "placeholder": "Select button size",
+    "errors": {
+      "required": "Please enter button size.",
+      "min": "Button size must be at least {{min}}px"
+    }
+  },
+  "chat_window_size": {
+    "label": "Chat window size",
+    "placeholder": "Select chat window size",
+    "placeholder_width": "Enter width",
+    "placeholder_height": "Enter height",
+    "errors": {
+      "required": "Please select chat window size.",
+      "required_width": "Please enter width.",
+      "required_height": "Please enter height.",
+      "min_width": "Width must be at least {{min}}px",
+      "min_height": "Height must be at least {{min}}px"
+    }
+  },
+  "chat_window_position": {
+    "label": "Chat window position",
+    "placeholder": "Select chat window position",
+    "placeholder_x": "Enter x position",
+    "placeholder_y": "Enter y position",
+    "errors": {
+      "required": "Please select chat window position.",
+      "required_x": "Please enter x position.",
+      "required_y": "Please enter y position."
+    }
   }
 }

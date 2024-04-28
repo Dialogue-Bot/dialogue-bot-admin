@@ -30,7 +30,8 @@
     "delete": "Delete",
     "view": "View",
     "add": "Add",
-    "rename": "Rename"
+    "rename": "Rename",
+    "custom_chatbox": "Custom chatbox"
   },
   "remove": "Remove",
   "cancel": "Cancel",

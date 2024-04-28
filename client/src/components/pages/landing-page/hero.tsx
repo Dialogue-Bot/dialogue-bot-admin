@@ -2,8 +2,6 @@ import flows from '@/assets/flows.png'
 import { Badge, buttonVariants } from '@/components/ui'
 import { ROUTES } from '@/constants'
 import { cn } from '@/lib/utils'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -84,35 +82,35 @@ export const Hero = () => {
   const textRef = useRef<HTMLParagraphElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
 
-  useGSAP(() => {
-    const tl = gsap.timeline()
+  // useGSAP(() => {
+  //   const tl = gsap.timeline()
 
-    tl.from(badgeRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-    })
-      .from(h1Ref.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
-      })
-      .from(textRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
-      })
-      .from(buttonRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
-      })
-      .from(imageRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
-      })
-  }, [])
+  //   tl.from(badgeRef.current, {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 0.5,
+  //   })
+  //     .from(h1Ref.current, {
+  //       opacity: 0,
+  //       y: 50,
+  //       duration: 0.5,
+  //     })
+  //     .from(textRef.current, {
+  //       opacity: 0,
+  //       y: 50,
+  //       duration: 0.5,
+  //     })
+  //     .from(buttonRef.current, {
+  //       opacity: 0,
+  //       y: 50,
+  //       duration: 0.5,
+  //     })
+  //     .from(imageRef.current, {
+  //       opacity: 0,
+  //       y: 50,
+  //       duration: 0.5,
+  //     })
+  // }, [])
 
   return (
     <div className='pt-header bg-no-repeat bg-center overflow-hidden'>

@@ -15,10 +15,21 @@ export const Layout = () => {
           <script
             src={`http://localhost:8080/public/script/chatbox.js`}
             // @ts-ignore
-            channelId='tzb87ljlsf6lhuqtfzhtxgev'
-            id='tzb87ljlsf6lhuqtfzhtxgev'
+            channelId='Test'
+            id='Test'
             async
             type='text/javascript'
+            custom={JSON.stringify({
+              logoUrl:
+                'https://cdn.chatbot.com/widget/61f28451fdd7c5000728b4f9/1SjqcDI0.png',
+              name: 'Hoang Huy',
+              color: '#e84a7a',
+              buttonSize: 50,
+              position: { x: 16, y: 16 },
+              windowSize: { width: 320, height: 500 },
+              channelId: 'ukdh5avg2euau67n6uxjgt1j',
+              id: 'mof3drfre3gb8od0nqufezz8',
+            })}
           />
         )}
       </Helmet>
