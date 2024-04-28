@@ -368,5 +368,59 @@
       "required": "Vui lòng nhập câu trả lời của bot."
     },
     "description": "Để truy cập các giá trị biến, hãy sử dụng {variable_name}, {variable_name->key}, {variable_name->0->key}, v.v. {user->name} lấy khóa 'name' của biến 'user'. Đối với mảng 'người dùng' có đối tượng ở chỉ mục 0 và khóa 'tên', hãy sử dụng {users->0->name}."
+  },
+  "logo_url": {
+    "label": "Logo URL",
+    "placeholder": "Nhập logo URL",
+    "errors": {
+      "required": "Vui lòng nhập logo URL."
+    }
+  },
+  "color": {
+    "label": "Màu sắc",
+    "placeholder": "Nhập màu sắc",
+    "errors": {
+      "required": "Vui lòng nhập màu sắc.",
+      "invalid": "Màu sắc không hợp lệ."
+    }
+  },
+  "bot_name": {
+    "label": "Tên bot",
+    "placeholder": "Nhập tên bot",
+    "errors": {
+      "required": "Vui lòng nhập tên bot."
+    }
+  },
+  "button_size": {
+    "label": "Kích thước nút",
+    "placeholder": "Nhập kích thước nút",
+    "errors": {
+      "required": "Vui lòng nhập kích thước nút.",
+      "min": "Kích thước nút phải ít nhất {{min}}px"
+    }
+  },
+  "chat_window_size": {
+    "label": "Kích thước cửa sổ chat",
+    "placeholder": "Nhập kích thước cửa sổ chat",
+    "placeholder_width": "Nhập chiều rộng",
+    "placeholder_height": "Nhập chiều cao",
+    "errors": {
+      "required": "Vui lòng nhập kích thước cửa sổ chat.",
+      "required_width": "Vui lòng nhập chiều rộng.",
+      "required_height": "Vui lòng nhập chiều cao.",
+      "min_width": "Chiều rộng phải ít nhất {{min}}px",
+      "min_height": "Chiều cao phải ít nhất {{min}}px"
+    }
+  },
+  "chat_window_position": {
+    "label": "Vị trí cửa sổ chat",
+    "placeholder": "Nhập vị trí cửa sổ chat",
+    "placeholder_x": "Nhập vị trí x",
+    "placeholder_y": "Nhập vị trí y",
+    "errors": {
+      "required": "Vui lòng nhập vị trí cửa sổ chat.",
+      "required_x": "Vui lòng nhập vị trí x.",
+      "required_y": "Vui lòng nhập vị trí y."
+    }
   }
 }
