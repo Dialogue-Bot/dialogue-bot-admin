@@ -1,0 +1,1 @@
+ALTER TABLE "chatbox_settings" ADD COLUMN "id" varchar NOT NULL;

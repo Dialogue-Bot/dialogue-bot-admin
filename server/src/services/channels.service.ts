@@ -302,6 +302,26 @@ export class ChannelService {
     if (channelTypes) this.channelTypes = getChannelTypes
   }
 
+  async getChannelById(id: string) {
+    const [expectedChannel] = await db
+      .select({
+        id: channels.id,
+        contactId: channels.contactId,
+        contactName: channels.contactName,
+        channelType: channelTypes.name,
+        credentials: channels.credentials,
+        flowId: channels.flowId,
+        userId: channels.userId,
+      })
+      .from(channels)
+      .where(and(eq(channels.id, id), eq(channels.deleted, false)))
+      .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
+
+    if (!expectedChannel) return null
+
+    return expectedChannel
+  }
+
   async getTypes() {
     const types = await db
       .select({

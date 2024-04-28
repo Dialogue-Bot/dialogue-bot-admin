@@ -230,6 +230,10 @@ type RootTranslation = {
 		 * Y​o​u​'​v​e​ ​r​e​a​c​h​e​d​ ​t​h​e​ ​m​a​x​i​m​u​m​ ​n​u​m​b​e​r​ ​o​f​ ​c​h​a​n​n​e​l​s​!​ ​P​l​e​a​s​e​ ​u​p​g​r​a​d​e​ ​y​o​u​r​ ​p​l​a​n​ ​t​o​ ​c​r​e​a​t​e​ ​m​o​r​e​ ​c​h​a​n​n​e​l​s​.
 		 */
 		EXCEED_MAX_CHANNELS: string
+		/**
+		 * U​p​d​a​t​e​d​ ​c​u​s​t​o​m​ ​c​h​a​t​b​o​t​ ​s​u​c​c​e​s​s​!
+		 */
+		UPDATE_CHATBOT_SETTING_SUCCESS: string
 	}
 	SETTING: {
 		/**
@@ -535,6 +539,10 @@ export type TranslationFunctions = {
 		 * You've reached the maximum number of channels! Please upgrade your plan to create more channels.
 		 */
 		EXCEED_MAX_CHANNELS: () => LocalizedString
+		/**
+		 * Updated custom chatbot success!
+		 */
+		UPDATE_CHATBOT_SETTING_SUCCESS: () => LocalizedString
 	}
 	SETTING: {
 		/**

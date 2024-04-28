@@ -20,6 +20,7 @@ import {
   queryIntentsOption,
   settingQueryOption,
 } from './query-options'
+import { queryCustomChatBoxOptions } from './query-options/custom-chatbox'
 import {
   queryConversationOption,
   queryConversationsOptions,
@@ -202,6 +203,18 @@ export const userSubscriptionLoader = async () => {
     queryClient.ensureQueryData(queryUsageSubscription),
     queryClient.ensureQueryData(queryPlansOptions),
   ])
+
+  return null
+}
+
+export const previewChatBoxLoader = async ({ request }: any) => {
+  const query = queryStringToObject(request.url)
+
+  if (!query.contactId) {
+    return redirect(ROUTES.PRIVATE.CHANNEL.INDEX)
+  }
+
+  await queryClient.ensureQueryData(queryCustomChatBoxOptions(query.contactId))
 
   return null
 }

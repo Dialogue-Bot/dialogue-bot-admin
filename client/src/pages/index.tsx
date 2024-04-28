@@ -23,3 +23,4 @@ export { default as LandingPage } from './landing-page'
 export const Conversations = lazy(() => import('./conversations'))
 export const ConversationDetail = lazy(() => import('./conversation-detail'))
 export const UserSubscriptions = lazy(() => import('./user-subscription'))
+export const PreviewChatBox = lazy(() => import('./preivew-chatbox'))

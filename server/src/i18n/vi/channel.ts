@@ -9,4 +9,5 @@ export const CHANNEL = {
   DELETE_MULTIPLE_CHANNELS_SUCCESS: 'Xóa nhiều channel thành công!',
   EXCEED_MAX_CHANNELS:
     'Bạn đã đạt đến số lượng kênh tối đa! Vui lòng nâng cấp gói của bạn để tạo thêm kênh.',
+  UPDATE_CHATBOT_SETTING_SUCCESS: 'Cập nhật tuỳ chỉnh chatbox thành công!',
 }

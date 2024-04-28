@@ -54,7 +54,13 @@ http_client.interceptors.response.use(
         return http_client(originalRequest)
       } catch (error) {
         const prevHref = window.location.href
-        window.location.href = `/login?redirect=${encodeURIComponent(prevHref)}`
+        if (
+          !Object.values(ROUTES.PUBLIC).some((route) =>
+            window.location.pathname.includes(route),
+          )
+        ) {
+          window.location.href = `${ROUTES.AUTH.LOGIN}?redirect=${encodeURIComponent(prevHref)}`
+        }
         return Promise.reject(error)
       }
     }

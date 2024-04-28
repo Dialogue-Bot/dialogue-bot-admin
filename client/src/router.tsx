@@ -1,4 +1,11 @@
 import {
+  AppLayout,
+  AuthLayout,
+  LiveChatLayout,
+  PublishLayout,
+  SettingLayout,
+} from '@/components/layouts'
+import {
   AddIntent,
   Channels,
   CheckoutSuccess,
@@ -10,6 +17,7 @@ import {
   LandingPage,
   Login,
   Mail,
+  PreviewChatBox,
   Profiles,
   Register,
   RequestVerifyAccount,
@@ -19,16 +27,8 @@ import {
   UserSubscriptions,
   VerifyAccount,
 } from '@/pages'
-import { createBrowserRouter, redirect } from 'react-router-dom'
-
-import {
-  AppLayout,
-  AuthLayout,
-  LiveChatLayout,
-  PublishLayout,
-  SettingLayout,
-} from '@/components/layouts'
 import { Suspense } from 'react'
+import { createBrowserRouter, redirect } from 'react-router-dom'
 import App from './app'
 import PageLoading from './components/page-loading'
 import { ROUTES } from './constants'
@@ -44,6 +44,7 @@ import {
   flowsLoader,
   intentLoader,
   ladingPageLoader,
+  previewChatBoxLoader,
   settingLoader,
   userSubscriptionLoader,
   verifyAccountLoader,
@@ -222,6 +223,11 @@ export const router = createBrowserRouter([
             loader: flowDetailLoader,
           },
         ],
+      },
+      {
+        path: ROUTES.PRIVATE.PREVIEW_CHATBOX,
+        loader: previewChatBoxLoader,
+        Component: PreviewChatBox,
       },
     ],
   },

@@ -65,6 +65,9 @@ export const ENDPOINTS = {
     CURRENT: '/user-subscriptions/current',
     USAGE: '/user-subscriptions/usage',
   },
+  CUSTOM_CHATBOX: {
+    INDEX: '/custom-chatbox/:channelId',
+  },
 }
 
 export const ROUTES = {
@@ -110,6 +113,7 @@ export const ROUTES = {
     USER_SUBSCRIPTION: {
       INDEX: '/user-subscriptions',
     },
+    PREVIEW_CHATBOX: '/preview-chatbox',
   },
 }
 

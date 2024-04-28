@@ -1,5 +1,7 @@
 export * from './card'
 export * from './change-pass'
+export * from './channel'
+export * from './custom-chatbox'
 export * from './general-setting'
 export * from './login'
 export * from './mail'

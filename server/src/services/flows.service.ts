@@ -21,9 +21,11 @@ export class FlowService {
   @Inject((type) => UserSubscriptionService)
   private readonly userSubscriptionService: UserSubscriptionService
 
+  @Inject((type) => ChannelService)
+  private readonly chanelService: ChannelService
+
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-    private readonly chanelService: ChannelService,
   ) {}
 
   public async create(fields: TNewFlow) {
@@ -120,6 +122,8 @@ export class FlowService {
         this.localeService.i18n().FLOW.FLOW_NAME_EXISTED(),
       )
     }
+
+    console.log(this.chanelService)
 
     await this.chanelService.updateFlowId({
       flowId: id,

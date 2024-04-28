@@ -74,4 +74,26 @@ export class PlanService {
 
     return plan
   }
+
+  async createPlan(plan: typeof plans.$inferInsert) {
+    return db.insert(plans).values(plan).returning()
+  }
+
+  async updatePlan(
+    stripeProductId: string,
+    plan: Partial<typeof plans.$inferInsert>,
+  ) {
+    return db
+      .update(plans)
+      .set(plan)
+      .where(eq(plans.stripeProductId, stripeProductId))
+      .returning()
+  }
+
+  async deletePlan(stripeProductId: string) {
+    return db
+      .delete(plans)
+      .where(eq(plans.stripeProductId, stripeProductId))
+      .returning()
+  }
 }

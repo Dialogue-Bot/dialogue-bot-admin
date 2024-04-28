@@ -128,10 +128,33 @@ export class StripeService {
     const products = prices.data.map((p) => {
       const product = p.product as Stripe.Product
 
-      return product
+      return {
+        ...product,
+        priceId: p.id,
+      }
     })
 
     const product = products.find((p) => p.metadata.plan === plan)
+
+    return product
+  }
+
+  public async getProductById(productId: string) {
+    const prices = await _stripe.prices.list({
+      active: true,
+      expand: ['data.product'],
+    })
+
+    const products = prices.data.map((p) => {
+      const product = p.product as Stripe.Product
+
+      return {
+        ...product,
+        price: p,
+      }
+    })
+
+    const product = products.find((p) => p.id === productId)
 
     return product
   }

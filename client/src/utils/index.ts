@@ -1,3 +1,4 @@
+import { TCustomChatBox } from '@/types/custom-chatbox'
 import crypto from 'crypto-js'
 import dayjs from 'dayjs'
 import _ from 'lodash'
@@ -191,6 +192,6 @@ export const isEmptyObject = (obj: Record<any, any>) => {
   return Object.keys(obj).length === 0
 }
 
-export const genScript = (contactId: string) => {
-  return `<script src="http://localhost:8080/public/script/chatbox.js" channelId="${contactId}" id="${contactId}" async type="text/javascript"></script>`
+export const genScript = (contactId: string, custom?: TCustomChatBox) => {
+  return `<script src="http://localhost:8080/public/script/chatbox.js" channelId="${contactId}" id="${contactId}" async type="text/javascript" custom="${JSON.stringify(custom)}"></script>`
 }

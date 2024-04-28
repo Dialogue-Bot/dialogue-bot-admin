@@ -1,3 +1,6 @@
 {
-  "title": "Your Subscription"
+  "title": "Your Subscription",
+  "usage": "Usage",
+  "channels": "Channels {{used}} / {{max}}",
+  "flows": "Flows {{used}} / {{max}}"
 }

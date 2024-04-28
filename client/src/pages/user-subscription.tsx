@@ -15,7 +15,7 @@ const calcPercentage = (value: number, max: number) => {
 }
 
 const UserSubscriptions = () => {
-  const { t } = useTranslation('userSubscriptions')
+  const { t } = useTranslation(['userSubscriptions', 'common'])
   const { data: userSubscription } = useSuspenseQuery(
     queryCurrentUserSubscription,
   )
@@ -39,16 +39,20 @@ const UserSubscriptions = () => {
           })}
         </div>
         <div className='flex flex-col gap-4'>
-          <div>Usage</div>
-          <div>
+          <div className='text-lg font-semibold'>{t('usage')}</div>
+          <div className='flex space-y-2 flex-col gap-2'>
             <span>
-              Channels {usage.numberOfChannels}/{usage.totalChannels}
+              {t('channels', {
+                used: usage.numberOfChannels,
+                max: usage.totalChannels === 0 ? '∞' : usage.totalChannels,
+              })}
             </span>
             <Progress
-              value={calcPercentage(
-                usage.numberOfChannels,
-                usage.totalChannels,
-              )}
+              value={
+                usage.totalChannels === 0
+                  ? 0
+                  : calcPercentage(usage.numberOfChannels, usage.totalChannels)
+              }
               innerClassName={cn({
                 'bg-destructive':
                   calcPercentage(usage.numberOfChannels, usage.totalChannels) >
@@ -56,12 +60,19 @@ const UserSubscriptions = () => {
               })}
             />
           </div>
-          <div>
+          <div className='flex space-y-2 flex-col gap-2'>
             <span>
-              Flows {usage.numberOfFlows}/{usage.totalFlows}
+              {t('flows', {
+                used: usage.numberOfFlows,
+                max: usage.totalFlows === 0 ? '∞' : usage.totalFlows,
+              })}
             </span>
             <Progress
-              value={calcPercentage(usage.numberOfFlows, usage.totalFlows)}
+              value={
+                usage.totalFlows === 0
+                  ? 0
+                  : calcPercentage(usage.numberOfFlows, usage.totalFlows)
+              }
               innerClassName={cn({
                 'bg-destructive':
                   calcPercentage(usage.numberOfFlows, usage.totalFlows) > 70,

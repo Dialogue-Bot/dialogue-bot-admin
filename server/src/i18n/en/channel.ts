@@ -9,4 +9,5 @@ export const CHANNEL = {
   DELETE_MULTIPLE_CHANNELS_SUCCESS: 'Delete multiple channels success!',
   EXCEED_MAX_CHANNELS:
     "You've reached the maximum number of channels! Please upgrade your plan to create more channels.",
+  UPDATE_CHATBOT_SETTING_SUCCESS: 'Updated custom chatbot success!',
 }

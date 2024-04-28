@@ -5,6 +5,7 @@ import { StatusCodes } from 'http-status-codes'
 import Stripe from 'stripe'
 import { Service } from 'typedi'
 import { PlanService } from './plan.service'
+import { StripeService } from './stripe.service'
 import { UserSubscriptionService } from './user-subscription.service'
 
 const ENDPOINT_SECRET = 'whsec_GX2Faw79vKcK1xeTXhEqWyQCAez0rS0V' // REPLACE WHEN DEPLOYING TO PRODUCTION
@@ -13,13 +14,16 @@ const ENDPOINT_SECRET = 'whsec_GX2Faw79vKcK1xeTXhEqWyQCAez0rS0V' // REPLACE WHEN
 export class StripeWebhookService {
   constructor(
     private readonly userSubscriptionService: UserSubscriptionService,
-
+    private readonly stripeService: StripeService,
     private readonly planService: PlanService,
   ) {
     this._handleInvoicePaymentSucceeded =
       this._handleInvoicePaymentSucceeded.bind(this)
     this._handleCustomerSubscriptionDeleted =
       this._handleCustomerSubscriptionDeleted.bind(this)
+    this._handleProductCreated = this._handleProductCreated.bind(this)
+    this._handleProductUpdated = this._handleProductUpdated.bind(this)
+    this._handleProductDeleted = this._handleProductDeleted.bind(this)
   }
 
   async handleStripeWebhook({ body, sig }: { sig: string; body: any }) {
@@ -40,9 +44,9 @@ export class StripeWebhookService {
       Record<Stripe.Event.Type, (event: Stripe.Event) => Promise<void>>
     > = {
       'invoice.payment_succeeded': this._handleInvoicePaymentSucceeded,
-      'product.created': async () => {},
-      'product.updated': async () => {},
-      'product.deleted': async () => {},
+      'product.created': this._handleProductCreated,
+      'product.updated': this._handleProductUpdated,
+      'product.deleted': this._handleProductDeleted,
       'customer.subscription.deleted': this._handleCustomerSubscriptionDeleted,
     }
 
@@ -106,21 +110,13 @@ export class StripeWebhookService {
       .retrieve(subscription.customer as string)
       .then((c) => c as Stripe.Customer)
 
-    const products = await stripe.products.list({
-      active: true,
-    })
-
-    const stripePlanFree = products.data.find((p) => p.metadata.plan === 'free')
-
-    const planFree = await this.planService.getPlanByStripeProductId(
-      stripePlanFree?.id as string,
-    )
+    const planFree = await this.stripeService.getProductByPlan('free')
 
     await stripe.subscriptions.create({
       customer: customer.id,
       items: [
         {
-          price: planFree.stripePriceId,
+          price: planFree.priceId,
           quantity: 1,
         },
       ],
@@ -128,6 +124,81 @@ export class StripeWebhookService {
 
     logger.info(
       `[StripeWebhookService] User ${customer.email} subscription backed to free plan successfully`,
+    )
+  }
+
+  private async _handleProductCreated(event: Stripe.Event) {
+    const product = await this.stripeService.getProductById(
+      (event.data.object as Stripe.Product).id,
+    )
+
+    await this.planService.createPlan({
+      name: product.name,
+      stripePriceId: product.price.id,
+      stripeProductId: product.id,
+      price: product.price.unit_amount / 100,
+      image: product.images[0],
+      expirationTime: 30,
+      features: product.marketing_features.map((f) => {
+        return {
+          name: f.name,
+        }
+      }),
+      maxChannels:
+        product.metadata.max_channels === 'unlimited'
+          ? 0
+          : parseInt(product.metadata.max_channels),
+      maxFlows:
+        product.metadata.max_flows === 'unlimited'
+          ? 0
+          : parseInt(product.metadata.max_flows),
+    })
+
+    logger.info(
+      `[StripeWebhookService] Created plan for product ${product.name}`,
+    )
+  }
+
+  private async _handleProductUpdated(event: Stripe.Event) {
+    const product = await this.stripeService.getProductById(
+      (event.data.object as Stripe.Product).id,
+    )
+
+    await this.planService.updatePlan(product.id, {
+      name: product.name,
+      stripePriceId: product.price.id,
+      stripeProductId: product.id,
+      price: product.price.unit_amount / 100,
+      image: product.images[0],
+      expirationTime: 30,
+      features: product.marketing_features.map((f) => {
+        return {
+          name: f.name,
+        }
+      }),
+      maxChannels:
+        product.metadata.max_channels === 'unlimited'
+          ? 0
+          : parseInt(product.metadata.max_channels),
+      maxFlows:
+        product.metadata.max_flows === 'unlimited'
+          ? 0
+          : parseInt(product.metadata.max_flows),
+      archived: product.active,
+    })
+
+    logger.info(
+      `[StripeWebhookService] Updated plan for product ${product.name}`,
+    )
+  }
+
+  private async _handleProductDeleted(event: Stripe.Event) {
+    const product = event.data.object as Stripe.Product
+
+    await this.planService.deletePlan(product.id)
+
+    logger.info(
+      `[StripeWebhookService] Deleted plan for product ${product.name}`,
     )
   }
 }

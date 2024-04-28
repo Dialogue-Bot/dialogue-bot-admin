@@ -1,3 +1,4 @@
+import { CustomChatBoxForm } from '@/components/forms'
 import ChannelForm from '@/components/forms/channel'
 import {
   Button,
@@ -14,9 +15,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui'
+import { ROUTES } from '@/constants'
 import { useDeleteChannel, useUpdateChannel } from '@/hooks/channel'
+import { useCustomChatBox } from '@/hooks/custom-chatbox/use-custom-chatbox'
 import { useBodyOverflow } from '@/hooks/use-body-overflow'
+import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
 import { TChannelWithChannelType } from '@/types/channel'
+import { useQuery } from '@tanstack/react-query'
 import { Row } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { useState } from 'react'
@@ -29,12 +34,17 @@ type Props = {
 
 const RowActions = ({ row }: Props) => {
   const { t } = useTranslation(['common', 'channel'])
-  const [open, setOpen] = useState(false)
+  const [openSheetUpdate, setOpenSheetUpdate] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(false)
+  const [openSheetCustomChatBox, setOpenSheetCustomChatBox] = useState(false)
   const updateChannelMutation = useUpdateChannel()
   const deleteChannelMutation = useDeleteChannel()
+  const { data: customChatBoxOptions } = useQuery(
+    queryCustomChatBoxOptions(row.original.contactId),
+  )
+  const customChatBoxMutation = useCustomChatBox()
 
-  useBodyOverflow(open)
+  useBodyOverflow(openSheetUpdate || openSheetCustomChatBox)
 
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
@@ -45,9 +55,9 @@ const RowActions = ({ row }: Props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align='start' className='max-h-svh scroll-auto'>
         <Sheet
-          open={open}
+          open={openSheetUpdate}
           onOpenChange={(value) => {
-            setOpen(value)
+            setOpenSheetUpdate(value)
 
             if (!value) {
               setOpenDropdown(false)
@@ -92,7 +102,7 @@ const RowActions = ({ row }: Props) => {
                   data,
                   id: row.original.id,
                 })
-                setOpen(false)
+                setOpenSheetUpdate(false)
                 setOpenDropdown(false)
               }}
               channelId={row.original.id}
@@ -105,6 +115,60 @@ const RowActions = ({ row }: Props) => {
             </SheetFooter>
           </SheetContent>
         </Sheet>
+        {row.original.channelType === 'Web' && (
+          <Sheet
+            open={openSheetCustomChatBox}
+            onOpenChange={(value) => {
+              setOpenSheetCustomChatBox(value)
+
+              if (!value) {
+                setOpenDropdown(false)
+              }
+            }}
+            modal
+          >
+            <SheetTrigger asChild>
+              <DropdownMenuItem
+                onSelect={(e) => {
+                  e.preventDefault()
+                }}
+              >
+                {t('common:row_actions.custom_chatbox')}
+              </DropdownMenuItem>
+            </SheetTrigger>
+            <SheetContent className='flex flex-col'>
+              <SheetHeader>
+                <SheetTitle>{t('channel:custom_chatbox_title')}</SheetTitle>
+              </SheetHeader>
+              <SheetDescription>
+                <Link
+                  to={`${ROUTES.PRIVATE.PREVIEW_CHATBOX}?contactId=${row.original.contactId}`}
+                  className='link'
+                >
+                  Preview
+                </Link>
+              </SheetDescription>
+              <CustomChatBoxForm
+                channelId={row.original.id}
+                onSubmit={(data) => {
+                  customChatBoxMutation.mutate({
+                    ...data,
+                    channelId: row.original.id,
+                  })
+                  setOpenDropdown(false)
+                  setOpenSheetCustomChatBox(false)
+                }}
+                defaultValues={customChatBoxOptions}
+                id='custom-chatbox-form'
+              />
+              <SheetFooter className='mt-auto'>
+                <Button type='submit' form='custom-chatbox-form'>
+                  {t('common:row_actions.custom_chatbox')}
+                </Button>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+        )}
         <Confirm
           title={t('channel:remove_channel_title')}
           description={t('channel:remove_channel_description')}

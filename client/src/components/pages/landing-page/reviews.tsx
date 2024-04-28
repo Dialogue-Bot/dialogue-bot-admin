@@ -1,5 +1,4 @@
 import { Avatar, AvatarImage } from '@/components/ui'
-import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useRef } from 'react'
@@ -48,45 +47,45 @@ export const Reviews = () => {
   const pinRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation('landingPage')
 
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: '-10% center',
-        end: 'bottom bottom',
-        scrub: 1,
-      },
-    })
+  // useGSAP(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: containerRef.current,
+  //       start: '-10% center',
+  //       end: 'bottom bottom',
+  //       scrub: 1,
+  //     },
+  //   })
 
-    tl.from(h2Ref.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-      ease: 'power3.out',
-    }).from(pRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-      ease: 'power3.out',
-    })
+  //   tl.from(h2Ref.current, {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 0.5,
+  //     ease: 'power3.out',
+  //   }).from(pRef.current, {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 0.5,
+  //     ease: 'power3.out',
+  //   })
 
-    const reviews = reviewItemsRef.current.map((review) => review)
+  //   const reviews = reviewItemsRef.current.map((review) => review)
 
-    if (!reviewsRef.current) return
+  //   if (!reviewsRef.current) return
 
-    tl.to(reviews, {
-      xPercent: -100 * (REVIEWS.length - 1),
-      scrollTrigger: {
-        trigger: reviewsRef.current,
-        start: 'center center',
-        pin: reviewsRef.current,
-        scrub: 1,
-        snap: 1 / (reviews.length - 1),
-        end: () => `+=${reviewsRef.current?.scrollWidth}`,
-        pinSpacer: pinRef.current,
-      },
-    })
-  }, [])
+  //   tl.to(reviews, {
+  //     xPercent: -100 * (REVIEWS.length - 1),
+  //     scrollTrigger: {
+  //       trigger: reviewsRef.current,
+  //       start: 'center center',
+  //       pin: reviewsRef.current,
+  //       scrub: 1,
+  //       snap: 1 / (reviews.length - 1),
+  //       end: () => `+=${reviewsRef.current?.scrollWidth}`,
+  //       pinSpacer: pinRef.current,
+  //     },
+  //   })
+  // }, [])
 
   return (
     <div>
