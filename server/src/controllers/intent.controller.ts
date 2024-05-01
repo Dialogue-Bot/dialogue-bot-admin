@@ -26,7 +26,7 @@ export class IntentController {
   // for bot
   public predictIntent = catchAsync(async (req: RequestWithUser, res) => {
     req.body.userId = req.user?.id
-    const data = await this.intentService.PredictTrainIntent(req.body)
+    const data = await this.intentService.predictTrainIntent(req.body)
     res.status(StatusCodes.OK).json({
       message: this.localeService.i18n().INTENT.PREDICT_SUCCESS(),
       data,

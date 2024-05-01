@@ -47,18 +47,57 @@ export class BaseChannel {
         },
       })
       if (postMsg.data.success) {
-        logger.info(
-          `[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`,
+        logger.info(type === 'event'
+          ? `[${this.channelType}] User ${userId} send event to Bot - Event: ${typeName}`
+          : `[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`,
         )
       }
     } catch (error) {
-      logger.info(
-        `[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`,
+      logger.info(type === 'event'
+        ? `[${this.channelType}] User ${userId} can not send event to Bot - Event: ${typeName} - Error: ${error.message}`
+        : `[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`,
       )
     }
   }
 
   initConversationId(userId: string) {
     return this.contactId + '-' + userId
+  }
+
+  public async sendEndConversation({ userId, isTest, type, typeName }) {
+    const uid = this.initConversationId(userId)
+    try {
+      const postEventEndConversation = await axios({
+        method: 'POST',
+        url: BOT_ENDPOINT,
+        data: {
+          id: uid,
+          type: type || 'event',
+          typeName: typeName || 'endConversation',
+          conversation: {
+            id: uid,
+          },
+          from: {
+            id: userId,
+          },
+          recipient: {
+            id: this.contactId,
+          },
+          testBot: isTest || false,
+          text: '',
+          channelId: this.channelType,
+          serviceUrl: PUBLIC_DOMAIN,
+        },
+      })
+      if (postEventEndConversation.data.success) {
+        logger.info(
+          `[${this.channelType}] User ${userId} send event end conversation Bot`,
+        )
+      }
+    } catch (error) {
+      logger.info(
+        `[${this.channelType}] User ${userId} can not send event end conversation Bot - Error: ${error.message}`,
+      )
+    }
   }
 }

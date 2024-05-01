@@ -1,0 +1,453 @@
+{
+  "settings": {
+    "languages": ["en"],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": ["en"],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "can,custom,how,i,speak,support,to": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "are,contact,support,team,the,to,way,what,your": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "a,assist,call,can,for,i,is,number,phone,there": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "a,agent,do,how,i,live,reach": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "can,chat,custom,from,i,servic,someon,with": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "best,get,help,is,issu,my,the,to,way,what,with": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "address,an,can,contact,email,i,is,support,there,to,use": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "agent,connect,i,to,want": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "a,do,have,hotlin,support,you": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "can,get,helpdesk,how,i,in,touch,with,your": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          },
+          "can,contact,custom,find,i,inform,servic,where,your": {
+            "intent": "greeting.connect-agent",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "greeting.connect-agent": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "How can I speak to customer support?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "What are the ways to contact your support team?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "Is there a phone number I can call for assistance?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "How do I reach a live agent?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "Can I chat with someone from customer service?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "What's the best way to get help with my issue?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "Is there an email address I can use to contact support?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "I want to connect agent?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "Do you have a support hotline?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "How can I get in touch with your helpdesk?",
+            "intent": "greeting.connect-agent"
+          },
+          {
+            "domain": "default",
+            "utterance": "Where can I find your customer service contact information?",
+            "intent": "greeting.connect-agent"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "how": 1,
+              "can": 1,
+              "i": 1,
+              "speak": 1,
+              "to": 1,
+              "custom": 1,
+              "support": 1,
+              "what": 1,
+              "are": 1,
+              "the": 1,
+              "way": 1,
+              "contact": 1,
+              "your": 1,
+              "team": 1,
+              "is": 1,
+              "there": 1,
+              "a": 1,
+              "phone": 1,
+              "number": 1,
+              "call": 1,
+              "for": 1,
+              "assist": 1,
+              "do": 1,
+              "reach": 1,
+              "live": 1,
+              "agent": 1,
+              "chat": 1,
+              "with": 1,
+              "someon": 1,
+              "from": 1,
+              "servic": 1,
+              "best": 1,
+              "get": 1,
+              "help": 1,
+              "my": 1,
+              "issu": 1,
+              "an": 1,
+              "email": 1,
+              "address": 1,
+              "use": 1,
+              "want": 1,
+              "connect": 1,
+              "you": 1,
+              "have": 1,
+              "hotlin": 1,
+              "in": 1,
+              "touch": 1,
+              "helpdesk": 1,
+              "where": 1,
+              "find": 1,
+              "inform": 1
+            },
+            "intents": {
+              "greeting.connect-agent": 1
+            },
+            "intentFeatures": {
+              "greeting.connect-agent": {
+                "how": 1,
+                "can": 1,
+                "i": 1,
+                "speak": 1,
+                "to": 1,
+                "custom": 1,
+                "support": 1,
+                "what": 1,
+                "are": 1,
+                "the": 1,
+                "way": 1,
+                "contact": 1,
+                "your": 1,
+                "team": 1,
+                "is": 1,
+                "there": 1,
+                "a": 1,
+                "phone": 1,
+                "number": 1,
+                "call": 1,
+                "for": 1,
+                "assist": 1,
+                "do": 1,
+                "reach": 1,
+                "live": 1,
+                "agent": 1,
+                "chat": 1,
+                "with": 1,
+                "someon": 1,
+                "from": 1,
+                "servic": 1,
+                "best": 1,
+                "get": 1,
+                "help": 1,
+                "my": 1,
+                "issu": 1,
+                "an": 1,
+                "email": 1,
+                "address": 1,
+                "use": 1,
+                "want": 1,
+                "connect": 1,
+                "you": 1,
+                "have": 1,
+                "hotlin": 1,
+                "in": 1,
+                "touch": 1,
+                "helpdesk": 1,
+                "where": 1,
+                "find": 1,
+                "inform": 1
+              }
+            },
+            "featuresToIntent": {
+              "how": ["greeting.connect-agent"],
+              "can": ["greeting.connect-agent"],
+              "i": ["greeting.connect-agent"],
+              "speak": ["greeting.connect-agent"],
+              "to": ["greeting.connect-agent"],
+              "custom": ["greeting.connect-agent"],
+              "support": ["greeting.connect-agent"],
+              "what": ["greeting.connect-agent"],
+              "are": ["greeting.connect-agent"],
+              "the": ["greeting.connect-agent"],
+              "way": ["greeting.connect-agent"],
+              "contact": ["greeting.connect-agent"],
+              "your": ["greeting.connect-agent"],
+              "team": ["greeting.connect-agent"],
+              "is": ["greeting.connect-agent"],
+              "there": ["greeting.connect-agent"],
+              "a": ["greeting.connect-agent"],
+              "phone": ["greeting.connect-agent"],
+              "number": ["greeting.connect-agent"],
+              "call": ["greeting.connect-agent"],
+              "for": ["greeting.connect-agent"],
+              "assist": ["greeting.connect-agent"],
+              "do": ["greeting.connect-agent"],
+              "reach": ["greeting.connect-agent"],
+              "live": ["greeting.connect-agent"],
+              "agent": ["greeting.connect-agent"],
+              "chat": ["greeting.connect-agent"],
+              "with": ["greeting.connect-agent"],
+              "someon": ["greeting.connect-agent"],
+              "from": ["greeting.connect-agent"],
+              "servic": ["greeting.connect-agent"],
+              "best": ["greeting.connect-agent"],
+              "get": ["greeting.connect-agent"],
+              "help": ["greeting.connect-agent"],
+              "my": ["greeting.connect-agent"],
+              "issu": ["greeting.connect-agent"],
+              "an": ["greeting.connect-agent"],
+              "email": ["greeting.connect-agent"],
+              "address": ["greeting.connect-agent"],
+              "use": ["greeting.connect-agent"],
+              "want": ["greeting.connect-agent"],
+              "connect": ["greeting.connect-agent"],
+              "you": ["greeting.connect-agent"],
+              "have": ["greeting.connect-agent"],
+              "hotlin": ["greeting.connect-agent"],
+              "in": ["greeting.connect-agent"],
+              "touch": ["greeting.connect-agent"],
+              "helpdesk": ["greeting.connect-agent"],
+              "where": ["greeting.connect-agent"],
+              "find": ["greeting.connect-agent"],
+              "inform": ["greeting.connect-agent"]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "how",
+                "can",
+                "i",
+                "speak",
+                "to",
+                "custom",
+                "support",
+                "what",
+                "are",
+                "the",
+                "way",
+                "contact",
+                "your",
+                "team",
+                "is",
+                "there",
+                "a",
+                "phone",
+                "number",
+                "call",
+                "for",
+                "assist",
+                "do",
+                "reach",
+                "live",
+                "agent",
+                "chat",
+                "with",
+                "someon",
+                "from",
+                "servic",
+                "best",
+                "get",
+                "help",
+                "my",
+                "issu",
+                "an",
+                "email",
+                "address",
+                "use",
+                "want",
+                "connect",
+                "you",
+                "have",
+                "hotlin",
+                "in",
+                "touch",
+                "helpdesk",
+                "where",
+                "find",
+                "inform"
+              ],
+              "intents": ["greeting.connect-agent"],
+              "perceptrons": [
+                [
+                  0.579511821269989, 1.7035232782363892, 3.616508960723877,
+                  -0.1645951271057129, 2.3942155838012695, 0.975595235824585,
+                  1.9118059873580933, 1.0910075902938843, 0.5796045660972595,
+                  1.0910075902938843, 1.0910075902938843, 0.8901508450508118,
+                  1.4475115537643433, 0.5796045660972595, 0.8292790055274963,
+                  0.3125918209552765, 2.397104501724243, 0.4389636814594269,
+                  0.4389636814594269, 0.4389636814594269, 0.4389636814594269,
+                  0.4389636814594269, 1.9485766887664795, 0.3352408707141876,
+                  0.3352408707141876, 1.9132773876190186, 0.6898665428161621,
+                  1.6110141277313232, 0.6898665428161621, 0.6898665428161621,
+                  1.13181734085083, 0.515972375869751, 0.9347687363624573,
+                  0.515972375869751, 0.515972375869751, 0.515972375869751,
+                  -0.1297464817762375, -0.1297464817762375, -0.1297464817762375,
+                  -0.1297464817762375, 1.5852253437042236, 1.5852253437042236,
+                  1.6248764991760254, 1.6248764991760254, 1.6248764991760254,
+                  0.4156278669834137, 0.4156278669834137, 0.4156278669834137,
+                  0.4495275020599365, 0.4495275020599365, 0.4495275020599365,
+                  3.169404967512081
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      ["en", "How can I speak to customer support?"],
+      ["en", "What are the ways to contact your support team?"],
+      ["en", "Is there a phone number I can call for assistance?"],
+      ["en", "How do I reach a live agent?"],
+      ["en", "Can I chat with someone from customer service?"],
+      ["en", "What's the best way to get help with my issue?"],
+      ["en", "Is there an email address I can use to contact support?"],
+      ["en", "I want to connect agent?"],
+      ["en", "Do you have a support hotline?"],
+      ["en", "How can I get in touch with your helpdesk?"],
+      ["en", "Where can I find your customer service contact information?"]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "greeting.connect-agent": [
+          {
+            "answer": "Sure, please wait a few minutes"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

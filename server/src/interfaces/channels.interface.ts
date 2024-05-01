@@ -35,3 +35,13 @@ export interface MessengerButton {
   url: string;
   title: string;
 }
+
+export interface ExpectedChannel {
+  id: string
+  contactId: string
+  contactName: string
+  channelType: string
+  credentials: string
+  flowId: string
+  userId: string
+}

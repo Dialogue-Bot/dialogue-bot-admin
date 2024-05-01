@@ -1,4 +1,4 @@
-import { API_KEY } from '@/config'
+import { API_KEY, REFERENCE_ID_CONNECT_AGENT } from '@/config'
 import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
 import { intents } from '@/database/schema'
@@ -10,7 +10,7 @@ import { IIntentExtend, IIntents } from '@/interfaces/intents.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { logger } from '@/utils/logger'
 import axios from 'axios'
-import { and, asc, desc, eq, like, sql } from 'drizzle-orm'
+import { and, asc, desc, eq, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
@@ -115,7 +115,7 @@ export class IntentService {
     return newTrain
   }
 
-  public async PredictTrainIntent(fields: PredictIntentDTO) {
+  public async predictTrainIntent(fields: PredictIntentDTO) {
     const { referenceId, text } = fields
 
     const existedIntent = await db.query.intents.findFirst({
@@ -249,6 +249,7 @@ export class IntentService {
 
     const where = and(
       like(intents.name, `%${paging.q || ''}%`),
+      ne(intents.referenceId, REFERENCE_ID_CONNECT_AGENT),
       eq(intents.deleted, false),
       eq(intents.userId, userId),
     )

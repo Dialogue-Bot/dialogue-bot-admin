@@ -27,7 +27,6 @@ export class NlpService {
         manager.addAnswer('en', intent, answer)
       })
     })
-
     await manager.train()
     await manager.save(
       path.join(process.cwd(), `\/train_data\/${referenceId}.json`),
@@ -53,7 +52,7 @@ export class NlpService {
 
     let result = await manager.process('en', text)
 
-    if (!result) return {}
+    if (result.intent === 'None') return null;
 
     return {
       intent: result.intent,
