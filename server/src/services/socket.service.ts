@@ -1,7 +1,7 @@
 import { WebChannel } from '@/channels/web.channel'
 import { SOCKET_EVENTS } from '@/constants'
 import { ExpectedChannel } from '@/interfaces/channels.interface'
-import { IUserChatAgent } from '@/interfaces/socket.interface'
+import { IMessageData, IUserChatAgent } from '@/interfaces/socket.interface'
 import { logger } from '@/utils/logger'
 import { Socket } from 'socket.io'
 import { Service } from 'typedi'
@@ -9,6 +9,7 @@ import { App } from '../app'
 import { ChannelService } from './channels.service'
 import { ConversationLiveChatService } from './conversation-live-chat.service'
 import { MessageService } from './message.service'
+import { SocketLiveChatService } from './socket-live-chat.service'
 
 
 const USERS: Record<string, any> = {}
@@ -21,6 +22,7 @@ export class SocketService {
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
     private readonly messageService: MessageService,
+    private readonly socketLiveChatMessage: SocketLiveChatService,
   ) {
     this.usersChatWithAgent = [];
     this.setIntervalUserDisconnectAgent();
@@ -78,12 +80,16 @@ export class SocketService {
       this.handleIncomingMessage(socket, data)
     })
 
+    // socket.on(SOCKET_EVENTS.AGENT_MESSAGE, (data) => {
+    //   this.handleIncomingMessage(socket, data)
+    // })
+
     socket.on(SOCKET_EVENTS.DISCONNECT, () => {
       this.handleLeaveRoom(socket)
     })
   }
 
-  private async handleIncomingMessage(io: Socket, data: any) {
+  private async handleIncomingMessage(io: Socket, data: IMessageData) {
     const { address, message, isTest, type, typeName } = data
     console.log('[Socket Service] socket data:' + JSON.stringify(data))
 
@@ -106,7 +112,6 @@ export class SocketService {
       if (this.find(userId)) {
         // send message to admin
         this.update(userId);
-        console.log(this.find(userId));
       }
       else {
         await this.sendMessageToBot(userId, message, expectedChannel, isTest)
@@ -116,7 +121,7 @@ export class SocketService {
 
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
-    const userId = query.userId
+    const [userId] = typeof query.userId === 'string' && query.userId.split('_');
     socket.join(userId)
 
     USERS[userId as string] = socket
