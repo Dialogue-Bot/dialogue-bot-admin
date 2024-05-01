@@ -1,0 +1,1 @@
+ALTER TABLE "user_subscriptions" ALTER COLUMN "id" SET DEFAULT 'uyxh0eygl5mq95s9kqsbvfk9';

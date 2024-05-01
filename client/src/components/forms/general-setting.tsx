@@ -37,7 +37,9 @@ export const GeneralSettingForm = ({
 }: Props) => {
   const { id: flowId } = useParams()
   const { data } = useSuspenseQuery(
-    queryChannelsForSelectOption(flowId as string),
+    queryChannelsForSelectOption({
+      flowId,
+    }),
   )
   const { t } = useTranslation('forms')
   const schema = useFlowInputSchema()

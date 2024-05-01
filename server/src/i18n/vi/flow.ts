@@ -9,4 +9,6 @@ export const FLOW = {
   PUBLISH_FLOW_SUCCESS: 'Phát hành luồng thành công!',
   ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS: 'Thêm nhiều kênh cho luồng thành công!',
   ADD_MULTIPLE_CHANNELS_FLOW__FAILED: 'Thêm nhiều kênh cho luồng thất bại!',
+  FLOW_EXCEED_USAGE:
+    'Luồng đã đạt đến số lượng tối đa! Vui lòng nâng cấp gói của bạn để tạo thêm luồng.',
 }

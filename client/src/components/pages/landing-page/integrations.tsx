@@ -4,7 +4,6 @@ import google from '@/assets/google.svg'
 import line from '@/assets/line.svg'
 import messenger from '@/assets/messenger.png'
 import { Badge } from '@/components/ui'
-import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useRef } from 'react'
@@ -20,38 +19,38 @@ export const Integrations = () => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation('landingPage')
 
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: '-10% 70%',
-        end: 'bottom center',
-        scrub: 1,
-      },
-    })
+  // useGSAP(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: containerRef.current,
+  //       start: '-10% 70%',
+  //       end: 'bottom center',
+  //       scrub: 1,
+  //     },
+  //   })
 
-    tl.from(badgeRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-      ease: 'power3.out',
-    }).from(h2Ref.current, {
-      opacity: 0,
-      y: 100,
-      duration: 1,
-      ease: 'power3.out',
-    })
+  //   tl.from(badgeRef.current, {
+  //     opacity: 0,
+  //     y: 50,
+  //     duration: 0.5,
+  //     ease: 'power3.out',
+  //   }).from(h2Ref.current, {
+  //     opacity: 0,
+  //     y: 100,
+  //     duration: 1,
+  //     ease: 'power3.out',
+  //   })
 
-    imagesRef.current.forEach((image) => {
-      tl.from(image, {
-        opacity: 0,
-        y: 50,
-        duration: 2,
-        stagger: 0.5,
-        ease: 'power3.out',
-      })
-    })
-  }, [])
+  //   imagesRef.current.forEach((image) => {
+  //     tl.from(image, {
+  //       opacity: 0,
+  //       y: 50,
+  //       duration: 2,
+  //       stagger: 0.5,
+  //       ease: 'power3.out',
+  //     })
+  //   })
+  // }, [])
 
   return (
     <div className='py-10 md:py-20 bg-white' ref={containerRef}>

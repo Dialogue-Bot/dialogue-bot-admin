@@ -24,12 +24,14 @@
   "trained": "Trained",
   "not_trained": "Not trained",
   "empty_buttons": "Empty buttons",
+  "subscription": "Subscription",
   "row_actions": {
     "update": "Update",
     "delete": "Delete",
     "view": "View",
     "add": "Add",
-    "rename": "Rename"
+    "rename": "Rename",
+    "custom_chatbox": "Custom chatbox"
   },
   "remove": "Remove",
   "cancel": "Cancel",
@@ -51,5 +53,9 @@
     "desc": "You have unsaved changes. Are you sure you want to leave this page?"
   },
   "send_mail_after_time": "Resend after {{time}}s",
-  "copy_success": "Copied to clipboard"
+  "copy_success": "Copied to clipboard",
+  "choose_plan": "Choose plan",
+  "upgrade_plan": "Upgrade plan",
+  "current_plan": "Current plan",
+  "unlimited": "Unlimited"
 }

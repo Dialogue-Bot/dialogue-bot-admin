@@ -1,5 +1,6 @@
 import { REFERENCE_ID_CONNECT_AGENT } from '@/config'
 import { NlpService } from '@/services/nlp.service'
+import { PlanService } from '@/services/plan.service'
 import { UserService } from '@/services/users.service'
 import * as bcrypt from 'bcrypt'
 import Container from 'typedi'
@@ -96,11 +97,23 @@ async function detectConnectAgent() {
     console.log(`Can't create default intent connect agent created ${error.message}`)
   }
 }
+async function seedSubscription() {
+  try {
+    const planService = Container.get(PlanService)
+    await planService.seedPlans()
+    console.log('Plans created')
+  } catch (error) {
+    console.log(error)
+    console.error(`Can't create plans`)
+  }
+}
 
 async function main() {
   await seedChannelTypes()
   await seedDefaultAccount()
   await detectConnectAgent()
+  await seedSubscription()
+
 
   console.log('Seed data successfully')
   process.exit(0)

@@ -12,13 +12,16 @@ import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
 import { FirebaseService } from './firebase.service'
+import { UserSubscriptionService } from './user-subscription.service'
 
 @Service()
 export class UserService {
+  @Inject((type) => UserSubscriptionService)
+  private readonly userSubscriptionService: UserSubscriptionService
+
   constructor(
     private readonly firebaseService: FirebaseService,
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-
     private readonly channelService: ChannelService,
   ) {}
 
@@ -49,7 +52,10 @@ export class UserService {
       })
       .returning()
 
-    await this.channelService.createDefaultChannel(user.id)
+    await Promise.all([
+      this.channelService.createDefaultChannel(user.id),
+      this.userSubscriptionService.initFreeSubscription(user.email),
+    ])
 
     return user
   }
@@ -139,5 +145,13 @@ export class UserService {
       .returning()
 
     return userUpdated
+  }
+
+  public async getUserByEmail(email: string) {
+    const user = await db.query.users.findFirst({
+      where: eq(users.email, email),
+    })
+
+    return user
   }
 }

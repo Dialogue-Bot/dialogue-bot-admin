@@ -134,6 +134,118 @@
       "when": 1713195617027,
       "tag": "0018_overconfident_the_santerians",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "5",
+      "when": 1713643116293,
+      "tag": "0019_gray_chameleon",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "5",
+      "when": 1713644885841,
+      "tag": "0020_puzzling_christian_walker",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "5",
+      "when": 1713715221049,
+      "tag": "0021_cooing_lionheart",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "5",
+      "when": 1713715310920,
+      "tag": "0022_organic_mad_thinker",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "5",
+      "when": 1713715395939,
+      "tag": "0023_confused_firebrand",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "5",
+      "when": 1713717355794,
+      "tag": "0024_cute_zombie",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "5",
+      "when": 1713717378510,
+      "tag": "0025_small_shaman",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "5",
+      "when": 1713717871414,
+      "tag": "0026_messy_unus",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "5",
+      "when": 1713718192395,
+      "tag": "0027_moaning_azazel",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "5",
+      "when": 1713718234181,
+      "tag": "0028_workable_penance",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "5",
+      "when": 1713808183318,
+      "tag": "0029_tense_prima",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "5",
+      "when": 1713973858216,
+      "tag": "0030_hot_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "5",
+      "when": 1713973928730,
+      "tag": "0031_friendly_jocasta",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "5",
+      "when": 1713974281440,
+      "tag": "0032_dark_doctor_doom",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "5",
+      "when": 1713974559645,
+      "tag": "0033_elite_prodigy",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "5",
+      "when": 1713977659887,
+      "tag": "0034_elite_mephisto",
+      "breakpoints": true
     }
   ]
 }

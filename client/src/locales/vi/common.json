@@ -22,12 +22,14 @@
   "not_trained": "Chưa đào tạo",
   "conversations": "Cuộc trò chuyện",
   "users": "Người dùng",
+  "subscription": "Gói dịch vụ",
   "row_actions": {
     "update": "Cập nhật",
     "delete": "Xóa",
     "view": "Xem",
     "add": "Thêm",
-    "rename": "Đổi tên"
+    "rename": "Đổi tên",
+    "custom_chatbox": "Tuỳ chỉnh chatbox"
   },
   "remove": "Xóa",
   "cancel": "Hủy",
@@ -49,5 +51,9 @@
     "desc": "Bạn có chắc chắn muốn rời khỏi trang này không? Mọi thay đổi chưa lưu sẽ bị mất."
   },
   "send_mail_after_time": "Gởi lại sau {{time}}s",
-  "copy_success": "Đã sao chép vào clipboard"
+  "copy_success": "Đã sao chép vào clipboard",
+  "choose_plan": "Chọn gói dịch vụ",
+  "upgrade_plan": "Nâng cấp gói",
+  "current_plan": "Gói hiện tại",
+  "unlimited": "Không giới hạn"
 }

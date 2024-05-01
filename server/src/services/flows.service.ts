@@ -14,15 +14,32 @@ import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
+import { UserSubscriptionService } from './user-subscription.service'
 
 @Service()
 export class FlowService {
+  @Inject((type) => UserSubscriptionService)
+  private readonly userSubscriptionService: UserSubscriptionService
+
+  @Inject((type) => ChannelService)
+  private readonly chanelService: ChannelService
+
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-    private readonly chanelService: ChannelService,
-  ) { }
+  ) {}
 
   public async create(fields: TNewFlow) {
+    if (
+      await this.userSubscriptionService.checkIsUsageExceed(fields.userId, {
+        forFlow: true,
+      })
+    ) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.FLOW_EXCEED_USAGE(),
+      )
+    }
+
     const flowExisted = await db.query.flows.findFirst({
       where: and(
         eq(flows.name, fields.name),
@@ -106,6 +123,8 @@ export class FlowService {
       )
     }
 
+    console.log(this.chanelService)
+
     await this.chanelService.updateFlowId({
       flowId: id,
       ids: fields.channelIds,
@@ -185,6 +204,13 @@ export class FlowService {
     userId: string,
   ): Promise<Paging<FlowExtend>> {
     const offset = (paging.page && (paging.page - 1) * paging.limit) || 0
+
+    const where = and(
+      like(flows.name, `%${paging.q || ''}%`),
+      eq(flows.deleted, false),
+      eq(flows.userId, userId),
+    )
+
     const result: FlowExtend[] = await db
       .select({
         id: flows.id,
@@ -192,26 +218,14 @@ export class FlowService {
         publishAt: flows.publishAt,
       })
       .from(flows)
-      .where(
-        and(
-          like(flows.name, `%${paging.q || ''}%`),
-          eq(flows.deleted, false),
-          eq(flows.userId, userId),
-        ),
-      )
+      .where(where)
       .orderBy(this.makeOrderBy(paging.sortType, 'name', paging.orderBy))
       .offset(offset)
       .limit(paging.limit)
     const [{ count }] = await db
       .select({ count: sql<number>`cast(count(${flows.id}) as integer)` })
       .from(flows)
-      .where(
-        and(
-          like(flows.name, `%${paging.q || ''}%`),
-          eq(flows.deleted, false),
-          eq(flows.userId, userId),
-        ),
-      )
+      .where(where)
 
     return { items: result, totalItems: count }
   }
@@ -316,5 +330,14 @@ export class FlowService {
     }
 
     return flow
+  }
+
+  public async countTotalFlows(userId: string) {
+    const [{ count }] = await db
+      .select({ count: sql<number>`cast(count(${flows.id}) as integer)` })
+      .from(flows)
+      .where(and(eq(flows.deleted, false), eq(flows.userId, userId)))
+
+    return count
   }
 }

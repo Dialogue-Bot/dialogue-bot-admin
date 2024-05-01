@@ -20,11 +20,16 @@ import { logger } from '@/utils/logger'
 import { and, asc, desc, eq, inArray, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
+import { UserSubscriptionService } from './user-subscription.service'
 
 @Service()
 export class ChannelService {
   channelTypes: ChannelType[] = []
   channels: ChannelInfo[] = []
+
+  @Inject((type) => UserSubscriptionService)
+  private readonly userSubscriptionService: UserSubscriptionService
+
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
   ) {
@@ -33,6 +38,17 @@ export class ChannelService {
   }
 
   public async create(fields: TNewChannel) {
+    if (
+      await this.userSubscriptionService.checkIsUsageExceed(fields.userId, {
+        forChannel: true,
+      })
+    ) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().CHANNEL.EXCEED_MAX_CHANNELS(),
+      )
+    }
+
     const channelExisted = await db.query.channels.findFirst({
       where: and(
         eq(channels.contactId, fields.contactId),
@@ -196,6 +212,13 @@ export class ChannelService {
   ): Promise<Paging<ChannelExtend>> {
     const offset = (paging.page && (paging.page - 1) * paging.limit) || 0
 
+    const where = and(
+      like(channels.contactId, `%${paging.q || ''}%`),
+      eq(channels.deleted, false),
+      eq(channels.userId, userId),
+      ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+    )
+
     const result: ChannelExtend[] = await db
       .select({
         id: channels.id,
@@ -211,14 +234,7 @@ export class ChannelService {
         flowId: channels.flowId,
       })
       .from(channels)
-      .where(
-        and(
-          like(channels.contactId, `%${paging.q || ''}%`),
-          eq(channels.deleted, false),
-          eq(channels.userId, userId),
-          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
-        ),
-      )
+      .where(where)
       .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
       .orderBy(this.makeOrderBy(paging.sortType, 'contactId', paging.orderBy))
       .offset(offset)
@@ -227,13 +243,7 @@ export class ChannelService {
     const [count] = await db
       .select({ count: sql<number>`cast(count(${channels.id}) as integer)` })
       .from(channels)
-      .where(
-        and(
-          like(channels.contactId, `%${paging.q || ''}%`),
-          eq(channels.deleted, false),
-          eq(channels.userId, userId),
-        ),
-      )
+      .where(where)
 
     return { items: result, totalItems: count.count }
   }
@@ -290,6 +300,26 @@ export class ChannelService {
       .from(channelTypes)
       .where(eq(channelTypes.deleted, false))
     if (channelTypes) this.channelTypes = getChannelTypes
+  }
+
+  async getChannelById(id: string) {
+    const [expectedChannel] = await db
+      .select({
+        id: channels.id,
+        contactId: channels.contactId,
+        contactName: channels.contactName,
+        channelType: channelTypes.name,
+        credentials: channels.credentials,
+        flowId: channels.flowId,
+        userId: channels.userId,
+      })
+      .from(channels)
+      .where(and(eq(channels.id, id), eq(channels.deleted, false)))
+      .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
+
+    if (!expectedChannel) return null
+
+    return expectedChannel
   }
 
   async getTypes() {
@@ -435,5 +465,20 @@ export class ChannelService {
     return db.query.channels.findMany({
       where: and(eq(channels.userId, userId), eq(channels.deleted, false)),
     })
+  }
+
+  public async countTotalChannels(userId: string) {
+    const [{ count }] = await db
+      .select({ count: sql<number>`cast(count(${channels.id}) as integer)` })
+      .from(channels)
+      .where(
+        and(
+          eq(channels.deleted, false),
+          eq(channels.userId, userId),
+          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+        ),
+      )
+
+    return count
   }
 }

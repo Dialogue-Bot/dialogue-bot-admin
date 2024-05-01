@@ -10,4 +10,6 @@ export const FLOW = {
   ADD_MULTIPLE_CHANNELS_FLOW__SUCCESS:
     'Add multiple channels for flow success!',
   ADD_MULTIPLE_CHANNELS_FLOW__FAILED: 'Add multiple channels for flow failed!',
+  FLOW_EXCEED_USAGE:
+    'Flow has reached the maximum number! Please upgrade your plan to create more flows.',
 }
