@@ -31,9 +31,9 @@ export interface ChannelType {
 }
 
 export interface MessengerButton {
-  type: string;
-  url: string;
-  title: string;
+  type: string
+  url: string
+  title: string
 }
 
 export interface ExpectedChannel {

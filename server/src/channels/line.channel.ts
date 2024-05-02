@@ -91,14 +91,19 @@ export class LineChannel extends BaseChannel {
           isTest: false,
         })
       }
-    } catch (e) { }
+    } catch (e) {}
   }
 
   public async sendMessageToUser({ userId, text, channelData }) {
-    const lineUserId = await this.getLineUserID();
+    const lineUserId = await this.getLineUserID()
     try {
       if (channelData && channelData.extendData.length) {
-        return this.detectTemple({ userId, type: channelData.type, extendData: channelData.extendData, text });
+        return this.detectTemple({
+          userId,
+          type: channelData.type,
+          extendData: channelData.extendData,
+          text,
+        })
       }
       if (!text) return
 
@@ -127,15 +132,13 @@ export class LineChannel extends BaseChannel {
   async detectTemple({ userId, type, extendData, text }) {
     switch (type) {
       case 'list-card':
-        return await this.sendGenericTemplate({ userId, extendData });
-        break;
+        return await this.sendGenericTemplate({ userId, extendData })
+        break
       case 'list-button':
-        return await this.sendButtons({ userId, buttons: extendData, text });
+        return await this.sendButtons({ userId, buttons: extendData, text })
       default:
-        logger.info(
-          `[LIN] Line does not support template type ${type}`
-        );
-        break;
+        logger.info(`[LIN] Line does not support template type ${type}`)
+        break
     }
   }
 
@@ -148,24 +151,24 @@ export class LineChannel extends BaseChannel {
           to: userId,
           messages: [
             {
-              type: "template",
-              altText: "buttons template",
+              type: 'template',
+              altText: 'buttons template',
               template: {
-                type: "confirm",
+                type: 'confirm',
                 text: text,
                 actions: buttons,
-              }
-            }
+              },
+            },
           ],
         },
         headers: {
           Authorization: 'Bearer ' + this.pageToken,
         },
-      };
+      }
 
-      await axios(option);
+      await axios(option)
     } catch (e) {
-      console.log('[LIN] send message to User failed: ' + e.message);
+      console.log('[LIN] send message to User failed: ' + e.message)
     }
   }
 
@@ -178,23 +181,23 @@ export class LineChannel extends BaseChannel {
           to: userId,
           messages: [
             {
-              type: "template",
-              altText: "generic template",
+              type: 'template',
+              altText: 'generic template',
               template: {
-                type: "carousel",
+                type: 'carousel',
                 columns: extendData,
-              }
-            }
+              },
+            },
           ],
         },
         headers: {
           Authorization: 'Bearer ' + this.pageToken,
         },
-      };
+      }
 
-      await axios(option);
+      await axios(option)
     } catch (e) {
-      console.log('LNE send message to User failed');
+      console.log('LNE send message to User failed')
     }
   }
 }

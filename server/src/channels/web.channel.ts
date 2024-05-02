@@ -26,7 +26,7 @@ export class WebChannel extends BaseChannel {
     this.credentials = credentials
   }
 
-  async prepareMessage(req: Request, res: Response) { }
+  async prepareMessage(req: Request, res: Response) {}
 
   public async sendMessageToUser({
     userId,
@@ -59,7 +59,11 @@ export class WebChannel extends BaseChannel {
         userId,
         this.contactId,
       )
-      if (convExisted && type === 'message' && !this.contactId.includes(TEST_YOUR_BOT_CHANNEL)) {
+      if (
+        convExisted &&
+        type === 'message' &&
+        !this.contactId.includes(TEST_YOUR_BOT_CHANNEL)
+      ) {
         await this.messageService.createMessage({
           conversationId: convExisted.userId,
           from: 'bot',

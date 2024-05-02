@@ -46,23 +46,18 @@ async function seedDefaultAccount() {
 
 async function detectConnectAgent() {
   try {
-    const userService = Container.get(UserService);
-    const nlpService = Container.get(NlpService);
+    const userService = Container.get(UserService)
+    const nlpService = Container.get(NlpService)
 
-    const user = await userService.findOneByEmail('admin@gmail.com');
+    const user = await userService.findOneByEmail('admin@gmail.com')
 
     const prompts = [
-      'How can I speak to customer support?',
       'What are the ways to contact your support team?',
       'Is there a phone number I can call for assistance?',
       'How do I reach a live agent?',
-      'Can I chat with someone from customer service?',
       `What's the best way to get help with my issue?`,
-      'Is there an email address I can use to contact support?',
       'I want to connect agent?',
-      'Do you have a support hotline?',
       'How can I get in touch with your helpdesk?',
-      'Where can I find your customer service contact information?'
     ]
     const answers = ['Sure, please wait a few minutes']
 
@@ -73,8 +68,8 @@ async function detectConnectAgent() {
         {
           intent: 'greeting.connect-agent',
           prompts,
-          answers
-        }
+          answers,
+        },
       ],
       entities: [],
     }
@@ -94,7 +89,9 @@ async function detectConnectAgent() {
 
     console.log('Default intent connect agent created')
   } catch (error) {
-    console.log(`Can't create default intent connect agent created ${error.message}`)
+    console.log(
+      `Can't create default intent connect agent created ${error.message}`,
+    )
   }
 }
 async function seedSubscription() {
@@ -113,7 +110,6 @@ async function main() {
   await seedDefaultAccount()
   await detectConnectAgent()
   await seedSubscription()
-
 
   console.log('Seed data successfully')
   process.exit(0)

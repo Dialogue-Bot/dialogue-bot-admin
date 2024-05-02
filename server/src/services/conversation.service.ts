@@ -8,18 +8,17 @@ import { Service } from 'typedi'
 import { ChannelService } from './channels.service'
 import { SocketService } from './socket.service'
 
-
 @Service()
 export class ConversationService {
   constructor(
     private readonly chanelService: ChannelService,
     private readonly socketService: SocketService,
-  ) { }
+  ) {}
 
   public async handleIncomingMessage(req: Request) {
-    const { from, recipient, text, type, channelData } = req.body;
+    const { from, recipient, text, type, channelData } = req.body
 
-    console.log('[ConversationService] Incoming message:', req.body);
+    console.log('[ConversationService] Incoming message:', req.body)
 
     const expectedChannel = await this.chanelService.findOneByContactId(from.id)
 
@@ -77,11 +76,11 @@ export class ConversationService {
           credentials,
         )
         if (type == BOT_EVENT.CONNECT_AGENT) {
-          this.socketService.subscribe(recipient.id);
+          this.socketService.subscribe(recipient.id)
           this.socketService.notify({
             userId: recipient.id,
             adminId: expectedChannel.userId,
-            type: SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT
+            type: SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT,
           })
           return await webChannel.sendMessageToUser({
             userId: recipient.id,

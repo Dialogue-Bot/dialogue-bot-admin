@@ -1,7 +1,11 @@
 import { WebChannel } from '@/channels/web.channel'
 import { SOCKET_EVENTS } from '@/constants'
 import { ExpectedChannel } from '@/interfaces/channels.interface'
-import { IMessageData, IUserChatAgent } from '@/interfaces/socket.interface'
+import {
+  IAgentMessageData,
+  IMessageData,
+  IUserChatAgent,
+} from '@/interfaces/socket.interface'
 import { logger } from '@/utils/logger'
 import { Socket } from 'socket.io'
 import { Service } from 'typedi'
@@ -9,37 +13,38 @@ import { App } from '../app'
 import { ChannelService } from './channels.service'
 import { ConversationLiveChatService } from './conversation-live-chat.service'
 import { MessageService } from './message.service'
-import { SocketLiveChatService } from './socket-live-chat.service'
-
 
 const USERS: Record<string, any> = {}
 
 @Service()
 export class SocketService {
-  usersChatWithAgent: IUserChatAgent[];
+  usersChatWithAgent: IUserChatAgent[]
 
   constructor(
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
     private readonly messageService: MessageService,
-    private readonly socketLiveChatMessage: SocketLiveChatService,
   ) {
-    this.usersChatWithAgent = [];
-    this.setIntervalUserDisconnectAgent();
+    this.usersChatWithAgent = []
+    this.setIntervalUserDisconnectAgent()
   }
 
   public subscribe(userId: string) {
-    this.usersChatWithAgent.push({ userId, lastMessageAt: new Date() });
+    this.usersChatWithAgent.push({ userId, lastMessageAt: new Date() })
   }
 
   public unsubscribe(userId: string) {
-    this.usersChatWithAgent = this.usersChatWithAgent.filter((uid) => uid.userId !== userId);
+    this.usersChatWithAgent = this.usersChatWithAgent.filter(
+      (uid) => uid.userId !== userId,
+    )
   }
 
   public update(userId: string) {
-    const userIndex = this.usersChatWithAgent.findIndex(uid => uid.userId === userId);
+    const userIndex = this.usersChatWithAgent.findIndex(
+      (uid) => uid.userId === userId,
+    )
     if (userIndex != -1) {
-      this.usersChatWithAgent[userIndex].lastMessageAt = new Date();
+      this.usersChatWithAgent[userIndex].lastMessageAt = new Date()
     }
   }
 
@@ -47,9 +52,16 @@ export class SocketService {
     if (this.find(userId) && App.io) {
       switch (type) {
         case SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT:
-          App.io.to(userId).emit(type || SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT, { userId, adminId });
-          logger.info(`[Socket Service] User ${userId} send notification connect Agent ${adminId}`)
-          break;
+          App.io
+            .to(userId)
+            .emit(type || SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT, {
+              userId,
+              adminId,
+            })
+          logger.info(
+            `[Socket Service] User ${userId} send notification connect Agent ${adminId}`,
+          )
+          break
       }
     }
   }
@@ -57,22 +69,26 @@ export class SocketService {
   private setIntervalUserDisconnectAgent() {
     setInterval(() => {
       if (this.usersChatWithAgent.length) {
-        logger.info('[Socket Service] RUN FILTER USERS TIME OUT CHAT WITH AGENT');
+        logger.info(
+          '[Socket Service] RUN FILTER USERS TIME OUT CHAT WITH AGENT',
+        )
         this.usersChatWithAgent = this.usersChatWithAgent.filter((uid) => {
-          const timeDifference = Math.abs(new Date().getTime() - uid.lastMessageAt.getTime());
+          const timeDifference = Math.abs(
+            new Date().getTime() - uid.lastMessageAt.getTime(),
+          )
           if (timeDifference >= 300000) {
-            logger.info(`User ${uid.userId} disconnected Agent`);
-            return false;
+            logger.info(`User ${uid.userId} disconnected Agent`)
+            return false
           }
           // remove user after 5 minutes not send message to agent
-          return true;
-        });
+          return true
+        })
       }
     }, 10000)
   }
 
   private find(userId: string) {
-    return this.usersChatWithAgent.find((u) => u.userId === userId);
+    return this.usersChatWithAgent.find((u) => u.userId === userId)
   }
 
   public handleSocketEvents(socket: Socket) {
@@ -80,9 +96,9 @@ export class SocketService {
       this.handleIncomingMessage(socket, data)
     })
 
-    // socket.on(SOCKET_EVENTS.AGENT_MESSAGE, (data) => {
-    //   this.handleIncomingMessage(socket, data)
-    // })
+    socket.on(SOCKET_EVENTS.AGENT_MESSAGE, (data) => {
+      this.handleIncomingAgentMessage(socket, data)
+    })
 
     socket.on(SOCKET_EVENTS.DISCONNECT, () => {
       this.handleLeaveRoom(socket)
@@ -90,38 +106,47 @@ export class SocketService {
   }
 
   private async handleIncomingMessage(io: Socket, data: IMessageData) {
-    const { address, message, isTest, type, typeName } = data
-    console.log('[Socket Service] socket data:' + JSON.stringify(data))
+    try {
+      const { address, message, isTest, type, typeName } = data
+      console.log('[Socket Service] socket data:' + JSON.stringify(data))
 
-    if (!address || (!message && !type)) return
+      if (!address || (!message && !type)) return
 
-    const [contactId, userId] = address.split('_')
+      const [contactId, userId] = address.split('_')
 
-    const expectedChannel = await this.chanelService.findOneByContactId(
-      contactId,
-    )
+      const expectedChannel = await this.chanelService.findOneByContactId(
+        contactId,
+      )
 
-    if (!expectedChannel) {
-      logger.info(`[Socket Service] Can not find channel!`)
-    }
-
-    if (expectedChannel?.channelType === 'WEB') {
-      if (type) {
-        return await this.sendEventToBot(userId, type, typeName, expectedChannel, isTest);
+      if (!expectedChannel) {
+        throw new Error(`[Socket Service] Can not find channel!`)
       }
-      if (this.find(userId)) {
-        // send message to admin
-        this.update(userId);
+
+      if (expectedChannel.channelType === 'WEB') {
+        if (type) {
+          return await this.sendEventToBot(
+            userId,
+            type,
+            typeName,
+            expectedChannel,
+            isTest,
+          )
+        }
+        return await this.sendMessageToBot(
+          userId,
+          message,
+          expectedChannel,
+          isTest,
+        )
       }
-      else {
-        await this.sendMessageToBot(userId, message, expectedChannel, isTest)
-      }
+    } catch (error) {
+      logger.info(error.message)
     }
   }
 
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
-    const [userId] = typeof query.userId === 'string' && query.userId.split('_');
+    const [userId] = typeof query.userId === 'string' && query.userId.split('_')
     socket.join(userId)
 
     USERS[userId as string] = socket
@@ -149,8 +174,14 @@ export class SocketService {
     return socket
   }
 
-  async sendMessageToBot(userId: string, message: string, expectedChannel: ExpectedChannel, isTest: boolean) {
-    const { id, contactName, channelType, credentials, contactId } = expectedChannel
+  private async sendMessageToBot(
+    userId: string,
+    message: string,
+    expectedChannel: ExpectedChannel,
+    isTest: boolean,
+  ) {
+    const { id, contactName, channelType, credentials, contactId } =
+      expectedChannel
     if (!isTest) {
       await this.saveConversationMessage(userId, contactId, message)
     }
@@ -172,8 +203,15 @@ export class SocketService {
     })
   }
 
-  async sendEventToBot(userId: string, type: string, typeName: string, expectedChannel: ExpectedChannel, isTest: boolean) {
-    const { id, contactName, channelType, credentials, contactId } = expectedChannel
+  private async sendEventToBot(
+    userId: string,
+    type: string,
+    typeName: string,
+    expectedChannel: ExpectedChannel,
+    isTest: boolean,
+  ) {
+    const { id, contactName, channelType, credentials, contactId } =
+      expectedChannel
 
     if (!isTest) {
       await this.updateEndDateConversation(userId, contactId, typeName)
@@ -197,18 +235,20 @@ export class SocketService {
     })
   }
 
-  async saveConversationMessage(userId: string, contactId: string, message: string) {
-    let convExisted =
-      await this.conversationLiveChatService.getConversation(
+  private async saveConversationMessage(
+    userId: string,
+    contactId: string,
+    message: string,
+  ) {
+    let convExisted = await this.conversationLiveChatService.getConversation(
+      userId,
+      contactId,
+    )
+    if (!convExisted) {
+      convExisted = await this.conversationLiveChatService.createConversation({
         userId,
         contactId,
-      )
-    if (!convExisted) {
-      convExisted =
-        await this.conversationLiveChatService.createConversation({
-          userId,
-          contactId,
-        })
+      })
     }
     await this.messageService.createMessage({
       conversationId: convExisted.userId,
@@ -219,7 +259,11 @@ export class SocketService {
     })
   }
 
-  async updateEndDateConversation(userId: string, contactId: string, typeName: string) {
+  private async updateEndDateConversation(
+    userId: string,
+    contactId: string,
+    typeName: string,
+  ) {
     if (typeName === 'endConversation') {
       console.log('Updated conversation')
 
@@ -230,6 +274,60 @@ export class SocketService {
           endedAt: new Date(),
         },
       })
+    }
+  }
+
+  private async handleIncomingAgentMessage(
+    socket: Socket,
+    data: IAgentMessageData,
+  ) {
+    try {
+      const query = socket.handshake.query
+      const [userId, agentId] =
+        typeof query.userId === 'string' && query.userId.split('_')
+
+      const { contactId, message, type } = data
+
+      const expectedChannel =
+        await this.chanelService.findOneByContactIdAndAdminId(
+          contactId,
+          agentId,
+        )
+
+      if (!expectedChannel) {
+        throw new Error(
+          `[Socket Service] handleIncomingAgentMessage can not find channel with ContactId ${contactId} and AdminId ${agentId}`,
+        )
+      }
+
+      const { id, contactName, channelType, credentials } = expectedChannel
+
+      if (channelType !== 'WEB') {
+        throw new Error(
+          `[Socket Service] handleIncomingAgentMessage chat with agent does not support for channel ${channelType}`,
+        )
+      }
+
+      const webChannel = new WebChannel(
+        id,
+        contactId,
+        contactName,
+        channelType,
+        credentials,
+      )
+      if (!this.find(userId)) {
+        this.subscribe(userId)
+        await webChannel.sendEndConversation(userId)
+      }
+
+      return await webChannel.sendMessageToUser({
+        userId,
+        text: message || '',
+        type: type || 'message',
+        channelData: null,
+      })
+    } catch (error) {
+      logger.info(error.message)
     }
   }
 }

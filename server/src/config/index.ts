@@ -37,5 +37,4 @@ export const {
   VERIFY_EMAIL_TOKEN_SECRET,
   REFERENCE_ID_CONNECT_AGENT,
   STRIPE_SECRET_KEY,
-
 } = process.env

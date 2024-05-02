@@ -481,4 +481,33 @@ export class ChannelService {
 
     return count
   }
+
+  public async findOneByContactIdAndAdminId(
+    contactId: string,
+    adminId: string,
+  ) {
+    const expectedChannel = await db
+      .select({
+        id: channels.id,
+        contactId: channels.contactId,
+        contactName: channels.contactName,
+        channelType: channelTypes.name,
+        credentials: channels.credentials,
+        flowId: channels.flowId,
+        userId: channels.userId,
+      })
+      .from(channels)
+      .where(
+        and(
+          eq(channels.contactId, contactId),
+          eq(channels.deleted, false),
+          eq(channels.userId, adminId),
+        ),
+      )
+      .innerJoin(channelTypes, eq(channels.channelTypeId, channelTypes.id))
+
+    if (!expectedChannel) return null
+
+    return expectedChannel[0]
+  }
 }
