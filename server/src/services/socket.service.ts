@@ -320,7 +320,7 @@ export class SocketService {
         await webChannel.sendEndConversation(userId)
       }
 
-      return await webChannel.sendMessageToUser({
+      await webChannel.sendMessageToUser({
         userId,
         text: message || '',
         type: type || 'message',
