@@ -132,7 +132,7 @@ export class SocketService {
             isTest,
           )
         }
-        return await this.sendMessageToBot(
+        await this.sendMessageToBot(
           userId,
           message,
           expectedChannel,
