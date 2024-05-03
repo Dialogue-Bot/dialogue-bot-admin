@@ -183,7 +183,7 @@ export class SocketService {
     const { id, contactName, channelType, credentials, contactId } =
       expectedChannel
     if (!isTest) {
-      await this.saveConversationMessage(userId, contactId, message)
+      await this.saveConversationMessage({ from: userId, to: 'bot', contactId, message })
     }
     const webChannel = new WebChannel(
       id,
@@ -236,25 +236,38 @@ export class SocketService {
   }
 
   private async saveConversationMessage(
-    userId: string,
-    contactId: string,
-    message: string,
+    {
+      from,
+      contactId,
+      to,
+      message
+    }: {
+      from: string,
+      contactId: string,
+      to: string,
+      message: string,
+    }
   ) {
+    from = from ?? 'user'
+    to = to ?? 'bot'
+
     let convExisted = await this.conversationLiveChatService.getConversation(
-      userId,
+      from,
       contactId,
     )
+
     if (!convExisted) {
       convExisted = await this.conversationLiveChatService.createConversation({
-        userId,
+        userId: from,
         contactId,
       })
     }
+
     await this.messageService.createMessage({
       conversationId: convExisted.userId,
-      from: userId,
-      to: 'bot',
-      message,
+      from,
+      to,
+      message: message || '',
       type: 'text',
     })
   }
@@ -319,6 +332,9 @@ export class SocketService {
         this.subscribe(userId)
         await webChannel.sendEndConversation(userId)
       }
+
+      // save conversation message
+      await this.saveConversationMessage({ from: `agent-${agentId}`, to: userId, contactId, message })
 
       await webChannel.sendMessageToUser({
         userId,
