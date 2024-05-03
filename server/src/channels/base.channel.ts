@@ -20,7 +20,14 @@ export class BaseChannel {
     this.channelType = channelType
   }
 
-  public async postMessageToBot({ userId, message = '', data, isTest, type = 'message', typeName = '' }) {
+  public async postMessageToBot({
+    userId,
+    message = '',
+    data,
+    isTest,
+    type = 'message',
+    typeName = '',
+  }) {
     const uid = this.initConversationId(userId)
     try {
       const postMsg = await axios({
@@ -47,15 +54,17 @@ export class BaseChannel {
         },
       })
       if (postMsg.data.success) {
-        logger.info(type === 'event'
-          ? `[${this.channelType}] User ${userId} send event to Bot - Event: ${typeName}`
-          : `[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`,
+        logger.info(
+          type === 'event'
+            ? `[${this.channelType}] User ${userId} send event to Bot - Event: ${typeName}`
+            : `[${this.channelType}] User ${userId} send message to Bot - Message: ${message} - Data: ${data}`,
         )
       }
     } catch (error) {
-      logger.info(type === 'event'
-        ? `[${this.channelType}] User ${userId} can not send event to Bot - Event: ${typeName} - Error: ${error.message}`
-        : `[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`,
+      logger.info(
+        type === 'event'
+          ? `[${this.channelType}] User ${userId} can not send event to Bot - Event: ${typeName} - Error: ${error.message}`
+          : `[${this.channelType}] User ${userId} can not send message to Bot - Message: ${message} - Error: ${error.message}`,
       )
     }
   }
@@ -64,7 +73,7 @@ export class BaseChannel {
     return this.contactId + '-' + userId
   }
 
-  public async sendEndConversation({ userId, isTest, type, typeName }) {
+  public async sendEndConversation(userId: string) {
     const uid = this.initConversationId(userId)
     try {
       const postEventEndConversation = await axios({
@@ -72,8 +81,8 @@ export class BaseChannel {
         url: BOT_ENDPOINT,
         data: {
           id: uid,
-          type: type || 'event',
-          typeName: typeName || 'endConversation',
+          type: 'event',
+          typeName: 'endConversation',
           conversation: {
             id: uid,
           },
@@ -83,7 +92,6 @@ export class BaseChannel {
           recipient: {
             id: this.contactId,
           },
-          testBot: isTest || false,
           text: '',
           channelId: this.channelType,
           serviceUrl: PUBLIC_DOMAIN,

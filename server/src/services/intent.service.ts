@@ -21,7 +21,7 @@ export class IntentService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly nlpService: NlpService,
-  ) { }
+  ) {}
 
   public async create({
     fields,
@@ -60,22 +60,20 @@ export class IntentService {
         organic?.forEach((o) => {
           const { title, snippet } = o
           prompts.push(title)
-
         })
 
         for (const o of organic) {
-          const { snippet } = o;
-          if (snippet.includes('...')) continue;
+          const { snippet } = o
+          if (snippet.includes('...')) continue
           else {
-            answers.push(snippet);
-            break;
+            answers.push(snippet)
+            break
           }
         }
 
         relatedSearches?.forEach((r) => {
           prompts.push(r.query)
         })
-
 
         // peopleAlsoAsk?.forEach((p) => {
         //   const { question, snippet } = p

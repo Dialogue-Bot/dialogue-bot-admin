@@ -103,9 +103,14 @@ export class MessengerChannel extends BaseChannel {
 
   public async sendMessageToUser({ userId, text, channelData }) {
     if (channelData && channelData.extendData.length) {
-      return this.detectTemple({ userId, type: channelData.type, extendData: channelData.extendData, text });
+      return this.detectTemple({
+        userId,
+        type: channelData.type,
+        extendData: channelData.extendData,
+        text,
+      })
     }
-    if (!text) return;
+    if (!text) return
 
     try {
       await axios({
@@ -174,9 +179,9 @@ export class MessengerChannel extends BaseChannel {
             },
           },
         },
-      });
+      })
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
   }
 
@@ -199,25 +204,22 @@ export class MessengerChannel extends BaseChannel {
             },
           },
         },
-      });
+      })
     } catch (error) {
-      console.error('sendGenericTemplate error: ' + error.message);
-      console.error(error);
+      console.error('sendGenericTemplate error: ' + error.message)
+      console.error(error)
     }
   }
 
   async detectTemple({ userId, type, extendData, text }) {
     switch (type) {
       case 'list-card':
-        return await this.sendGenericTemplate({ userId, extendData });
-        break;
+        return await this.sendGenericTemplate({ userId, extendData })
       case 'list-button':
-        return await this.sendButtons({ userId, buttons: extendData, text });
+        return await this.sendButtons({ userId, buttons: extendData, text })
       default:
-        logger.info(
-          `[MSG] Messenger does not support template type ${type}`
-        );
-        break;
+        logger.info(`[MSG] Messenger does not support template type ${type}`)
+        break
     }
   }
 }

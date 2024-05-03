@@ -52,7 +52,7 @@ export class NlpService {
 
     let result = await manager.process('en', text)
 
-    if (result.intent === 'None') return null;
+    if (result.intent === 'None') return null
 
     return {
       intent: result.intent,

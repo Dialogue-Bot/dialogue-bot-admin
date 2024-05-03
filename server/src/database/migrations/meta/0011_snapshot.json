@@ -41,16 +41,12 @@
         "channel_types_name_unique": {
           "name": "channel_types_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         },
         "channel_types_description_unique": {
           "name": "channel_types_description_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "description"
-          ]
+          "columns": ["description"]
         }
       }
     },
@@ -133,12 +129,8 @@
           "name": "channels_channel_type_id_channel_types_id_fk",
           "tableFrom": "channels",
           "tableTo": "channel_types",
-          "columnsFrom": [
-            "channel_type_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["channel_type_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -146,12 +138,8 @@
           "name": "channels_user_id_users_id_fk",
           "tableFrom": "channels",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -159,12 +147,8 @@
           "name": "channels_flow_id_flows_id_fk",
           "tableFrom": "channels",
           "tableTo": "flows",
-          "columnsFrom": [
-            "flow_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["flow_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -174,9 +158,7 @@
         "channels_contact_id_unique": {
           "name": "channels_contact_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "contact_id"
-          ]
+          "columns": ["contact_id"]
         }
       }
     },
@@ -224,12 +206,8 @@
           "name": "conversations_channel_id_channels_id_fk",
           "tableFrom": "conversations",
           "tableTo": "channels",
-          "columnsFrom": [
-            "channel_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["channel_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -239,9 +217,7 @@
         "user_id": {
           "name": "user_id",
           "nullsNotDistinct": false,
-          "columns": [
-            "user_id"
-          ]
+          "columns": ["user_id"]
         }
       }
     },
@@ -335,12 +311,8 @@
           "name": "flows_user_id_users_id_fk",
           "tableFrom": "flows",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -418,12 +390,8 @@
           "name": "intents_user_id_users_id_fk",
           "tableFrom": "intents",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -487,12 +455,8 @@
           "name": "messages_conversation_id_conversations_user_id_fk",
           "tableFrom": "messages",
           "tableTo": "conversations",
-          "columnsFrom": [
-            "conversation_id"
-          ],
-          "columnsTo": [
-            "user_id"
-          ],
+          "columnsFrom": ["conversation_id"],
+          "columnsTo": ["user_id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -530,12 +494,8 @@
           "name": "settings_user_id_users_id_fk",
           "tableFrom": "settings",
           "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -601,9 +561,7 @@
       "indexes": {
         "email_idx": {
           "name": "email_idx",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },
@@ -613,9 +571,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       }
     }
