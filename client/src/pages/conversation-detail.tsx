@@ -4,9 +4,6 @@ import { useParams } from 'react-router-dom'
 const ConversationDetail = () => {
   const { userId, channelId } = useParams()
 
-  console.log('userId:', userId)
-  console.log('channelId:', channelId)
-
   return (
     <div>
       <ChatBox
@@ -14,6 +11,7 @@ const ConversationDetail = () => {
         userId={userId}
         isShowClose={false}
         className='shadow-none'
+        isForManager
       />
     </div>
   )

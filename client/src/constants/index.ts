@@ -137,3 +137,12 @@ export const CONDITIONAL_OPERATOR = [
 ]
 
 export const NOT_CHOOSE = 'NOT_CHOOSE'
+
+export const SOCKET_EVENTS = {
+  MESSAGE: 'message',
+  RECEIVED: 'received',
+  DISCONNECT: 'disconnect',
+  DISABLED_BOT: 'disabled-bot',
+  NOTIFICATION_CONNECT_AGENT: 'notification-connect-agent',
+  AGENT_MESSAGE: 'agent-message',
+}

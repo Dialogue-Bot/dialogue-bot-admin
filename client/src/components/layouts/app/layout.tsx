@@ -1,3 +1,4 @@
+import { SocketProvider } from '@/contexts/socket.ctx'
 import { cn } from '@/lib/utils'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './sidebar'
@@ -8,12 +9,14 @@ type Props = {
 
 export const Layout = (_props: Props) => {
   return (
-    <div className='flex min-h-svh '>
-      <Sidebar />
-      <div className={cn('ml-sidebar w-full')}>
-        <Outlet />
+    <SocketProvider>
+      <div className='flex min-h-svh '>
+        <Sidebar />
+        <div className={cn('ml-sidebar w-full')}>
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </SocketProvider>
   )
 }
 

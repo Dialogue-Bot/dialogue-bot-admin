@@ -23,8 +23,6 @@ export class ConversationLiveChatService {
 
     const conversation = await this.getConversation(userId, channel?.contactId)
 
-    console.log('conversation:', conversation)
-
     if (conversation) return conversation
 
     await db

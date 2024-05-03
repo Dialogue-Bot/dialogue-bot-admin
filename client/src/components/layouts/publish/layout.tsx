@@ -26,7 +26,7 @@ export const Layout = () => {
               color: '#e84a7a',
               buttonSize: 50,
               position: { x: 16, y: 16 },
-              windowSize: { width: 320, height: 500 },
+              windowSize: { width: 400, height: 500 },
               channelId: 'ukdh5avg2euau67n6uxjgt1j',
               id: 'mof3drfre3gb8od0nqufezz8',
             })}

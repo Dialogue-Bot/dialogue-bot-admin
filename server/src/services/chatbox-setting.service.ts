@@ -12,7 +12,7 @@ export class ChatboxSettingService {
   async getChatboxSetting(contactId: string) {
     const channel = await this.channelService.findOneByContactId(contactId)
 
-    if (channel.channelType !== 'WEB') return null
+    if (channel?.channelType !== 'WEB') return null
     const chatboxSetting = await db.query.chatboxSettings.findFirst({
       where: eq(chatboxSettings.channelId, channel.id),
     })

@@ -83,6 +83,12 @@ export class PlanService {
     stripeProductId: string,
     plan: Partial<typeof plans.$inferInsert>,
   ) {
+    const existingPlan = await this.getPlanByStripeProductId(stripeProductId)
+
+    if (!existingPlan) {
+      return this.createPlan(plan as typeof plans.$inferInsert)
+    }
+
     return db
       .update(plans)
       .set(plan)

@@ -57,5 +57,7 @@
   "choose_plan": "Choose plan",
   "upgrade_plan": "Upgrade plan",
   "current_plan": "Current plan",
-  "unlimited": "Unlimited"
+  "unlimited": "Unlimited",
+  "agent_notify": "You have new request support from customer",
+  "view": "View"
 }

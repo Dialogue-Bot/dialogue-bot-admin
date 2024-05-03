@@ -1,6 +1,5 @@
 import { REFERENCE_ID_CONNECT_AGENT } from '@/config'
 import { NlpService } from '@/services/nlp.service'
-import { PlanService } from '@/services/plan.service'
 import { UserService } from '@/services/users.service'
 import * as bcrypt from 'bcrypt'
 import Container from 'typedi'
@@ -46,10 +45,10 @@ async function seedDefaultAccount() {
 
 async function detectConnectAgent() {
   try {
-    const userService = Container.get(UserService);
-    const nlpService = Container.get(NlpService);
+    const userService = Container.get(UserService)
+    const nlpService = Container.get(NlpService)
 
-    const user = await userService.findOneByEmail('admin@gmail.com');
+    const user = await userService.findOneByEmail('admin@gmail.com')
 
     const prompts = [
       'How can I speak to customer support?',
@@ -62,7 +61,7 @@ async function detectConnectAgent() {
       'I want to connect agent?',
       'Do you have a support hotline?',
       'How can I get in touch with your helpdesk?',
-      'Where can I find your customer service contact information?'
+      'Where can I find your customer service contact information?',
     ]
     const answers = ['Sure, please wait a few minutes']
 
@@ -73,8 +72,8 @@ async function detectConnectAgent() {
         {
           intent: 'greeting.connect-agent',
           prompts,
-          answers
-        }
+          answers,
+        },
       ],
       entities: [],
     }
@@ -94,17 +93,9 @@ async function detectConnectAgent() {
 
     console.log('Default intent connect agent created')
   } catch (error) {
-    console.log(`Can't create default intent connect agent created ${error.message}`)
-  }
-}
-async function seedSubscription() {
-  try {
-    const planService = Container.get(PlanService)
-    await planService.seedPlans()
-    console.log('Plans created')
-  } catch (error) {
-    console.log(error)
-    console.error(`Can't create plans`)
+    console.log(
+      `Can't create default intent connect agent created ${error.message}`,
+    )
   }
 }
 
@@ -112,8 +103,6 @@ async function main() {
   await seedChannelTypes()
   await seedDefaultAccount()
   await detectConnectAgent()
-  await seedSubscription()
-
 
   console.log('Seed data successfully')
   process.exit(0)
