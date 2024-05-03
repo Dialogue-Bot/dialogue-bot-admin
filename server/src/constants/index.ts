@@ -104,6 +104,15 @@ export const SOCKET_EVENTS = {
   RECEIVED: 'received',
   DISCONNECT: 'disconnect',
   DISABLED_BOT: 'disabled-bot',
+  NOTIFICATION_CONNECT_AGENT: 'notification-connect-agent',
+  AGENT_MESSAGE: 'agent-message',
 }
 
 export const TEST_YOUR_BOT_CHANNEL = 'TESTYOURBOT'
+
+export const BOT_EVENT = {
+  MESSAGE: 'message',
+  TYPING: 'typing',
+  STOP_TYPING: 'stop-typing',
+  CONNECT_AGENT: 'connect-agent',
+}
