@@ -114,6 +114,8 @@ export class SocketService {
 
       const [contactId, userId] = address.split('_')
 
+      if (this.find(userId)) return
+
       const expectedChannel = await this.chanelService.findOneByContactId(
         contactId,
       )
@@ -183,7 +185,7 @@ export class SocketService {
     const { id, contactName, channelType, credentials, contactId } =
       expectedChannel
     if (!isTest) {
-      await this.saveConversationMessage({ from: userId, to: 'bot', contactId, message })
+      await this.saveConversationMessage({ convId: userId, from: userId, to: 'bot', contactId, message })
     }
     const webChannel = new WebChannel(
       id,
@@ -237,11 +239,13 @@ export class SocketService {
 
   private async saveConversationMessage(
     {
+      convId,
       from,
       contactId,
       to,
       message
     }: {
+      convId: string,
       from: string,
       contactId: string,
       to: string,
@@ -252,13 +256,13 @@ export class SocketService {
     to = to ?? 'bot'
 
     let convExisted = await this.conversationLiveChatService.getConversation(
-      from,
+      convId,
       contactId,
     )
 
     if (!convExisted) {
       convExisted = await this.conversationLiveChatService.createConversation({
-        userId: from,
+        userId: convId,
         contactId,
       })
     }
@@ -334,7 +338,9 @@ export class SocketService {
       }
 
       // save conversation message
-      await this.saveConversationMessage({ from: `agent-${agentId}`, to: userId, contactId, message })
+      if (type === SOCKET_EVENTS.MESSAGE) {
+        await this.saveConversationMessage({ convId: userId, from: `agent-${agentId}`, to: userId, contactId, message })
+      }
 
       await webChannel.sendMessageToUser({
         userId,
