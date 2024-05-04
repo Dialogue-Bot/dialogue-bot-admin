@@ -53,7 +53,7 @@ export class SocketService {
       switch (type) {
         case SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT:
           App.io
-            .to(userId)
+            .to(adminId)
             .emit(type || SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT, {
               userId,
               adminId,
@@ -114,6 +114,11 @@ export class SocketService {
 
       const [contactId, userId] = address.split('_')
 
+      const [, agentId] = (io.handshake.query.userId as string).split('_')
+
+      // if agentId is not null, only handle message from agent
+      if (agentId && agentId !== userId) return
+
       const expectedChannel = await this.chanelService.findOneByContactId(
         contactId,
       )
@@ -141,7 +146,9 @@ export class SocketService {
 
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
-    const [userId] = typeof query.userId === 'string' && query.userId.split('_')
+    const [userId, adminId] =
+      typeof query.userId === 'string' && query.userId.split('_')
+
     socket.join(userId)
 
     USERS[userId as string] = socket
@@ -296,6 +303,14 @@ export class SocketService {
       const query = socket.handshake.query
       const [userId, agentId] =
         typeof query.userId === 'string' && query.userId.split('_')
+
+      console.log(
+        '[Socket Service] handleIncomingAgentMessage data: ' +
+          JSON.stringify({
+            userId,
+            agentId,
+          }),
+      )
 
       const { contactId, message, type } = data
 
