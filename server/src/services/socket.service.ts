@@ -53,7 +53,7 @@ export class SocketService {
       switch (type) {
         case SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT:
           App.io
-            .to(userId)
+            .to(adminId)
             .emit(type || SOCKET_EVENTS.NOTIFICATION_CONNECT_AGENT, {
               userId,
               adminId,
@@ -134,12 +134,7 @@ export class SocketService {
             isTest,
           )
         }
-        await this.sendMessageToBot(
-          userId,
-          message,
-          expectedChannel,
-          isTest,
-        )
+        await this.sendMessageToBot(userId, message, expectedChannel, isTest)
       }
     } catch (error) {
       logger.info(error.message)
@@ -148,7 +143,9 @@ export class SocketService {
 
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
-    const [userId] = typeof query.userId === 'string' && query.userId.split('_')
+    const [userId, adminId] =
+      typeof query.userId === 'string' && query.userId.split('_')
+
     socket.join(userId)
 
     USERS[userId as string] = socket
@@ -187,6 +184,7 @@ export class SocketService {
     if (!isTest) {
       await this.saveConversationMessage({ convId: userId, from: userId, to: 'bot', contactId, message })
     }
+
     const webChannel = new WebChannel(
       id,
       contactId,
@@ -302,6 +300,14 @@ export class SocketService {
       const query = socket.handshake.query
       const [userId, agentId] =
         typeof query.userId === 'string' && query.userId.split('_')
+
+      console.log(
+        '[Socket Service] handleIncomingAgentMessage data: ' +
+        JSON.stringify({
+          userId,
+          agentId,
+        }),
+      )
 
       const { contactId, message, type } = data
 

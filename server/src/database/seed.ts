@@ -1,6 +1,5 @@
 import { REFERENCE_ID_CONNECT_AGENT } from '@/config'
 import { NlpService } from '@/services/nlp.service'
-import { PlanService } from '@/services/plan.service'
 import { UserService } from '@/services/users.service'
 import * as bcrypt from 'bcrypt'
 import Container from 'typedi'
@@ -58,6 +57,7 @@ async function detectConnectAgent() {
       `What's the best way to get help with my issue?`,
       'I want to connect agent?',
       'How can I get in touch with your helpdesk?',
+      'Where can I find your customer service contact information?',
     ]
     const answers = ['Sure, please wait a few minutes']
 
@@ -94,22 +94,11 @@ async function detectConnectAgent() {
     )
   }
 }
-async function seedSubscription() {
-  try {
-    const planService = Container.get(PlanService)
-    await planService.seedPlans()
-    console.log('Plans created')
-  } catch (error) {
-    console.log(error)
-    console.error(`Can't create plans`)
-  }
-}
 
 async function main() {
   await seedChannelTypes()
   await seedDefaultAccount()
   await detectConnectAgent()
-  await seedSubscription()
 
   console.log('Seed data successfully')
   process.exit(0)

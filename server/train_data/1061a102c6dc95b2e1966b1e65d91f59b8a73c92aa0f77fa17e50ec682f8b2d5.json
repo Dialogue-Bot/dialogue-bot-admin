@@ -1,8 +1,6 @@
 {
   "settings": {
-    "languages": [
-      "en"
-    ],
+    "languages": ["en"],
     "forceNER": true,
     "tag": "nlp",
     "threshold": 0.5,
@@ -16,9 +14,7 @@
     "settings": {
       "tag": "nlu-manager"
     },
-    "locales": [
-      "en"
-    ],
+    "locales": ["en"],
     "languageNames": {},
     "domainManagers": {
       "en": {
@@ -188,111 +184,41 @@
               }
             },
             "featuresToIntent": {
-              "what": [
-                "greeting.connect-agent"
-              ],
-              "are": [
-                "greeting.connect-agent"
-              ],
-              "the": [
-                "greeting.connect-agent"
-              ],
-              "way": [
-                "greeting.connect-agent"
-              ],
-              "to": [
-                "greeting.connect-agent"
-              ],
-              "contact": [
-                "greeting.connect-agent"
-              ],
-              "your": [
-                "greeting.connect-agent"
-              ],
-              "support": [
-                "greeting.connect-agent"
-              ],
-              "team": [
-                "greeting.connect-agent"
-              ],
-              "is": [
-                "greeting.connect-agent"
-              ],
-              "there": [
-                "greeting.connect-agent"
-              ],
-              "a": [
-                "greeting.connect-agent"
-              ],
-              "phone": [
-                "greeting.connect-agent"
-              ],
-              "number": [
-                "greeting.connect-agent"
-              ],
-              "i": [
-                "greeting.connect-agent"
-              ],
-              "can": [
-                "greeting.connect-agent"
-              ],
-              "call": [
-                "greeting.connect-agent"
-              ],
-              "for": [
-                "greeting.connect-agent"
-              ],
-              "assist": [
-                "greeting.connect-agent"
-              ],
-              "how": [
-                "greeting.connect-agent"
-              ],
-              "do": [
-                "greeting.connect-agent"
-              ],
-              "reach": [
-                "greeting.connect-agent"
-              ],
-              "live": [
-                "greeting.connect-agent"
-              ],
-              "agent": [
-                "greeting.connect-agent"
-              ],
-              "best": [
-                "greeting.connect-agent"
-              ],
-              "get": [
-                "greeting.connect-agent"
-              ],
-              "help": [
-                "greeting.connect-agent"
-              ],
-              "with": [
-                "greeting.connect-agent"
-              ],
-              "my": [
-                "greeting.connect-agent"
-              ],
-              "issu": [
-                "greeting.connect-agent"
-              ],
-              "want": [
-                "greeting.connect-agent"
-              ],
-              "connect": [
-                "greeting.connect-agent"
-              ],
-              "in": [
-                "greeting.connect-agent"
-              ],
-              "touch": [
-                "greeting.connect-agent"
-              ],
-              "helpdesk": [
-                "greeting.connect-agent"
-              ]
+              "what": ["greeting.connect-agent"],
+              "are": ["greeting.connect-agent"],
+              "the": ["greeting.connect-agent"],
+              "way": ["greeting.connect-agent"],
+              "to": ["greeting.connect-agent"],
+              "contact": ["greeting.connect-agent"],
+              "your": ["greeting.connect-agent"],
+              "support": ["greeting.connect-agent"],
+              "team": ["greeting.connect-agent"],
+              "is": ["greeting.connect-agent"],
+              "there": ["greeting.connect-agent"],
+              "a": ["greeting.connect-agent"],
+              "phone": ["greeting.connect-agent"],
+              "number": ["greeting.connect-agent"],
+              "i": ["greeting.connect-agent"],
+              "can": ["greeting.connect-agent"],
+              "call": ["greeting.connect-agent"],
+              "for": ["greeting.connect-agent"],
+              "assist": ["greeting.connect-agent"],
+              "how": ["greeting.connect-agent"],
+              "do": ["greeting.connect-agent"],
+              "reach": ["greeting.connect-agent"],
+              "live": ["greeting.connect-agent"],
+              "agent": ["greeting.connect-agent"],
+              "best": ["greeting.connect-agent"],
+              "get": ["greeting.connect-agent"],
+              "help": ["greeting.connect-agent"],
+              "with": ["greeting.connect-agent"],
+              "my": ["greeting.connect-agent"],
+              "issu": ["greeting.connect-agent"],
+              "want": ["greeting.connect-agent"],
+              "connect": ["greeting.connect-agent"],
+              "in": ["greeting.connect-agent"],
+              "touch": ["greeting.connect-agent"],
+              "helpdesk": ["greeting.connect-agent"]
             },
             "neuralNetwork": {
               "settings": {
@@ -343,47 +269,21 @@
                 "touch",
                 "helpdesk"
               ],
-              "intents": [
-                "greeting.connect-agent"
-              ],
+              "intents": ["greeting.connect-agent"],
               "perceptrons": [
                 [
-                  1.325102686882019,
-                  0.8906048536300659,
-                  1.325102686882019,
-                  1.325102686882019,
-                  2.8078792095184326,
-                  0.8906048536300659,
-                  1.4842677116394043,
-                  0.8906048536300659,
-                  0.8906048536300659,
-                  1.1380733251571655,
-                  0.6884142160415649,
-                  1.5832470655441284,
-                  0.6884142160415649,
-                  0.6884142160415649,
-                  3.663034677505493,
-                  1.2972382307052612,
-                  0.6884142160415649,
-                  0.6884142160415649,
-                  0.6884142160415649,
-                  1.4821252822875977,
-                  0.8953972458839417,
-                  0.8953972458839417,
-                  0.8953972458839417,
-                  2.3647689819335938,
-                  0.4398305118083954,
-                  1.0420701503753662,
-                  0.4398305118083954,
-                  1.0420701503753662,
-                  0.4398305118083954,
-                  0.4398305118083954,
-                  1.4756247997283936,
-                  1.4756247997283936,
-                  0.599037766456604,
-                  0.599037766456604,
-                  0.599037766456604,
-                  2.493346538872206
+                  1.325102686882019, 0.8906048536300659, 1.325102686882019,
+                  1.325102686882019, 2.8078792095184326, 0.8906048536300659,
+                  1.4842677116394043, 0.8906048536300659, 0.8906048536300659,
+                  1.1380733251571655, 0.6884142160415649, 1.5832470655441284,
+                  0.6884142160415649, 0.6884142160415649, 3.663034677505493,
+                  1.2972382307052612, 0.6884142160415649, 0.6884142160415649,
+                  0.6884142160415649, 1.4821252822875977, 0.8953972458839417,
+                  0.8953972458839417, 0.8953972458839417, 2.3647689819335938,
+                  0.4398305118083954, 1.0420701503753662, 0.4398305118083954,
+                  1.0420701503753662, 0.4398305118083954, 0.4398305118083954,
+                  1.4756247997283936, 1.4756247997283936, 0.599037766456604,
+                  0.599037766456604, 0.599037766456604, 2.493346538872206
                 ]
               ]
             }
@@ -393,30 +293,12 @@
     },
     "intentDomains": {},
     "extraSentences": [
-      [
-        "en",
-        "What are the ways to contact your support team?"
-      ],
-      [
-        "en",
-        "Is there a phone number I can call for assistance?"
-      ],
-      [
-        "en",
-        "How do I reach a live agent?"
-      ],
-      [
-        "en",
-        "What's the best way to get help with my issue?"
-      ],
-      [
-        "en",
-        "I want to connect agent?"
-      ],
-      [
-        "en",
-        "How can I get in touch with your helpdesk?"
-      ]
+      ["en", "What are the ways to contact your support team?"],
+      ["en", "Is there a phone number I can call for assistance?"],
+      ["en", "How do I reach a live agent?"],
+      ["en", "What's the best way to get help with my issue?"],
+      ["en", "I want to connect agent?"],
+      ["en", "How can I get in touch with your helpdesk?"]
     ]
   },
   "ner": {

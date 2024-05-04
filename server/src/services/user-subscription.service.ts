@@ -155,8 +155,8 @@ export class UserSubscriptionService {
     return {
       numberOfChannels: totalChannels,
       numberOfFlows: totalFlows,
-      totalChannels: plan.maxChannels,
-      totalFlows: plan.maxFlows,
+      totalChannels: plan?.maxChannels,
+      totalFlows: plan?.maxFlows,
     }
   }
 

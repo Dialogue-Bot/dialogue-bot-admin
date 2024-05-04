@@ -1,11 +1,10 @@
+import { useUserStore } from '@/store'
 import { ChatBox } from 'dialogue-chatbox'
 import { useParams } from 'react-router-dom'
 
 const ConversationDetail = () => {
   const { userId, channelId } = useParams()
-
-  console.log('userId:', userId)
-  console.log('channelId:', channelId)
+  const { user } = useUserStore()
 
   return (
     <div>
@@ -14,6 +13,8 @@ const ConversationDetail = () => {
         userId={userId}
         isShowClose={false}
         className='shadow-none'
+        isForManager
+        adminId={user?.id as string}
       />
     </div>
   )
