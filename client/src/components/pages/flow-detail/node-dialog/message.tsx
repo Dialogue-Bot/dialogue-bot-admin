@@ -113,20 +113,17 @@ export const MessageDialogContent = () => {
         </Select>
       </div>
       <div className='space-y-2'>
-        <Label required>{t('forms:bot_response.label')}</Label>
+        <Label required help={t('forms:bot_response.description')}>
+          {t('forms:bot_response.label')}
+        </Label>
         {messageType === EMessageTypes.TEXT && (
-          <>
-            <Input
-              placeholder={t('forms:bot_response.placeholder')}
-              value={botResponse}
-              onChange={(e) => {
-                setBotResponse(e.target.value)
-              }}
-            />
-            <p className='text-[0.8rem] text-muted-foreground'>
-              {t('forms:bot_response.description')}
-            </p>
-          </>
+          <Input
+            placeholder={t('forms:bot_response.placeholder')}
+            value={botResponse}
+            onChange={(e) => {
+              setBotResponse(e.target.value)
+            }}
+          />
         )}
         {messageType === EMessageTypes.IMAGE && (
           <InputImage
@@ -156,6 +153,10 @@ export const MessageDialogContent = () => {
           }}
           onChange={({ buttons }) => {
             if (!selectedNode) return
+
+            if (buttons.some((button) => button.label === '')) {
+              return
+            }
 
             const clonedNode = _.cloneDeep(selectedNode)
 
