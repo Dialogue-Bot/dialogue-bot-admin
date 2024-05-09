@@ -26,7 +26,7 @@ export class WebChannel extends BaseChannel {
     this.credentials = credentials
   }
 
-  async prepareMessage(req: Request, res: Response) {}
+  async prepareMessage(req: Request, res: Response) { }
 
   public async sendMessageToUser({
     userId,
@@ -79,19 +79,130 @@ export class WebChannel extends BaseChannel {
 
       console.log(
         '[WEB] Bot send message to User - userId: ' +
-          userId +
-          ' - message: ' +
-          result.message +
-          ' - type: ' +
-          type +
-          ' - channelData: ' +
-          JSON.stringify(channelData),
+        userId +
+        ' - message: ' +
+        result.message +
+        ' - type: ' +
+        type +
+        ' - channelData: ' +
+        JSON.stringify(channelData),
       )
       if (App.io) {
         App.io.to(userId).emit(type || SOCKET_EVENTS.MESSAGE, result)
       }
     } catch (e) {
       logger.info(`[WEB] Bot send message to User failed - Error: ${e.message}`)
+    }
+  }
+
+  public async sendAgentMessageToUser({
+    userId,
+    adminId,
+    text,
+    type,
+    channelData,
+  }: {
+    type?: string
+    userId: string
+    adminId: string
+    text: string
+    channelData: any
+  }) {
+    try {
+      let result = {
+        userId,
+        message: text || '',
+        template: {},
+        isBot: true,
+        createdAt: new Date(),
+      }
+
+      let convExisted = await this.conversationLiveChatService.getConversation(
+        userId,
+        this.contactId,
+      )
+      if (
+        convExisted &&
+        type === 'message' &&
+        !this.contactId.includes(TEST_YOUR_BOT_CHANNEL)
+      ) {
+        await this.messageService.createMessage({
+          conversationId: convExisted.userId,
+          from: `agent-${adminId}`,
+          to: convExisted.userId,
+          message: result.message,
+          type: 'text',
+          template: result.template,
+        })
+      }
+
+      console.log(
+        '[WEB] Agent send message to User - userId: ' +
+        userId +
+        ' - message: ' +
+        result.message +
+        ' - type: ' +
+        type +
+        ' - channelData: ' +
+        JSON.stringify(channelData),
+      )
+      if (App.io) {
+        App.io.to(userId).emit(type || SOCKET_EVENTS.MESSAGE, result)
+      }
+    } catch (e) {
+      logger.info(`[WEB] Agent send message to User failed - Error: ${e.message}`)
+    }
+  }
+
+  public async sendMessageToAgent({
+    userId,
+    adminId,
+    text,
+    type,
+  }: {
+    type?: string
+    userId: string
+    adminId: string
+    text: string
+  }) {
+    try {
+      let result = {
+        userId,
+        adminId,
+        message: text || '',
+        template: {},
+        isBot: false,
+        createdAt: new Date(),
+      }
+
+      // let convExisted = await this.conversationLiveChatService.getConversation(
+      //   userId,
+      //   this.contactId,
+      // )
+
+      // if (
+      //   convExisted &&
+      //   type === 'message' &&
+      //   !this.contactId.includes(TEST_YOUR_BOT_CHANNEL)
+      // ) {
+      //   await this.messageService.createMessage({
+      //     conversationId: convExisted.userId,
+      //     from: convExisted.userId,
+      //     to: `agent-${adminId}`,
+      //     message: result.message,
+      //     type: 'text',
+      //     template: result.template,
+      //   })
+      // }
+
+      console.log(
+        '[WEB] Send message to Agent - data: ' + JSON.stringify(result),
+      )
+      if (App.io) {
+        App.io.to(userId).emit(type || SOCKET_EVENTS.MESSAGE, result)
+      }
+    } catch (e) {
+      logger.info(`[WEB] Send message to agent failed - Error: ${e.message}`)
     }
   }
 }

@@ -114,7 +114,6 @@ export class SocketService {
 
       const [contactId, userId] = address.split('_')
 
-      if (this.find(userId)) return
 
       const expectedChannel = await this.chanelService.findOneByContactId(
         contactId,
@@ -134,6 +133,27 @@ export class SocketService {
             isTest,
           )
         }
+
+        // send message to agent if user connected agent
+        if (this.find(userId)) {
+          const { id, contactName, channelType, credentials, contactId } =
+            expectedChannel
+          const webChannel = new WebChannel(
+            id,
+            contactId,
+            contactName,
+            channelType,
+            credentials,
+          )
+
+          return await webChannel.sendMessageToAgent({
+            userId,
+            adminId: expectedChannel.userId,
+            text: message,
+            type: 'message'
+          })
+        }
+
         await this.sendMessageToBot(userId, message, expectedChannel, isTest)
       }
     } catch (error) {
@@ -143,8 +163,7 @@ export class SocketService {
 
   public handleJoinRoom(socket: Socket) {
     const query = socket.handshake.query
-    const [userId, adminId] =
-      typeof query.userId === 'string' && query.userId.split('_')
+    const [userId] = typeof query.userId === 'string' && query.userId.split('_')
 
     socket.join(userId)
 
@@ -181,6 +200,8 @@ export class SocketService {
   ) {
     const { id, contactName, channelType, credentials, contactId } =
       expectedChannel
+
+    // Save conversation message
     if (!isTest) {
       await this.saveConversationMessage({ convId: userId, from: userId, to: 'bot', contactId, message })
     }
@@ -213,9 +234,9 @@ export class SocketService {
     const { id, contactName, channelType, credentials, contactId } =
       expectedChannel
 
-    if (!isTest) {
-      await this.updateEndDateConversation(userId, contactId, typeName)
-    }
+    // if (!isTest) {
+    //   await this.updateEndDateConversation(userId, contactId, typeName)
+    // }
 
     const webChannel = new WebChannel(
       id,
@@ -298,14 +319,14 @@ export class SocketService {
   ) {
     try {
       const query = socket.handshake.query
-      const [userId, agentId] =
+      const [userId, adminId] =
         typeof query.userId === 'string' && query.userId.split('_')
 
       console.log(
         '[Socket Service] handleIncomingAgentMessage data: ' +
         JSON.stringify({
           userId,
-          agentId,
+          adminId,
         }),
       )
 
@@ -314,12 +335,12 @@ export class SocketService {
       const expectedChannel =
         await this.chanelService.findOneByContactIdAndAdminId(
           contactId,
-          agentId,
+          adminId,
         )
 
       if (!expectedChannel) {
         throw new Error(
-          `[Socket Service] handleIncomingAgentMessage can not find channel with ContactId ${contactId} and AdminId ${agentId}`,
+          `[Socket Service] handleIncomingAgentMessage can not find channel with ContactId ${contactId} and AdminId ${adminId}`,
         )
       }
 
@@ -344,12 +365,13 @@ export class SocketService {
       }
 
       // save conversation message
-      if (type === SOCKET_EVENTS.MESSAGE) {
-        await this.saveConversationMessage({ convId: userId, from: `agent-${agentId}`, to: userId, contactId, message })
-      }
+      // if (type === SOCKET_EVENTS.MESSAGE) {
+      //   await this.saveConversationMessage({ convId: userId, from: `agent-${adminId}`, to: userId, contactId, message })
+      // }
 
-      await webChannel.sendMessageToUser({
+      await webChannel.sendAgentMessageToUser({
         userId,
+        adminId,
         text: message || '',
         type: type || 'message',
         channelData: null,
