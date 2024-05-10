@@ -1,10 +1,13 @@
-import type { Table } from '@tanstack/react-table'
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from '@radix-ui/react-icons'
+import type { Table } from '@tanstack/react-table'
+import { useTranslation } from 'react-i18next'
+import { Button } from '../button'
+import { Confirm } from '../confirm'
 import {
   Select,
   SelectContent,
@@ -12,9 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../select'
-import { Button } from '../button'
-import { Confirm } from '../confirm'
-import { useTranslation } from 'react-i18next'
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>
@@ -29,7 +29,7 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
   const { t } = useTranslation('dataTable')
   return (
-    <div className='flex items-center justify-between px-2'>
+    <div className='flex items-center justify-between px-2 sm:flex-row flex-col gap-2'>
       <div className='flex items-center gap-2'>
         <div className='flex-1 text-sm text-muted-foreground whitespace-nowrap'>
           {t('row_selected', {
@@ -52,7 +52,7 @@ export function DataTablePagination<TData>({
           </Confirm>
         ) : null}
       </div>
-      <div className='flex items-center space-x-6 lg:space-x-8'>
+      <div className='flex items-center sm:space-x-6 lg:space-x-8 sm:flex-row flex-col space-y-2'>
         <div className='flex items-center space-x-2'>
           <p className='text-sm font-medium'>{t('row_per_page')}:</p>
           <Select
