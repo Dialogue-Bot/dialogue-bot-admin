@@ -13,7 +13,7 @@ export class ConversationService {
   constructor(
     private readonly chanelService: ChannelService,
     private readonly socketService: SocketService,
-  ) {}
+  ) { }
 
   public async handleIncomingMessage(req: Request) {
     const { from, recipient, text, type, channelData } = req.body
