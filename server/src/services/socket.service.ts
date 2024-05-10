@@ -114,7 +114,6 @@ export class SocketService {
 
       const [contactId, userId] = address.split('_')
 
-
       const expectedChannel = await this.chanelService.findOneByContactId(
         contactId,
       )
@@ -150,7 +149,7 @@ export class SocketService {
             userId,
             adminId: expectedChannel.userId,
             text: message,
-            type: 'message'
+            type: 'message',
           })
         }
 
@@ -179,7 +178,7 @@ export class SocketService {
 
   public handleLeaveRoom(socket: Socket) {
     const query = socket.handshake.query
-    const userId = query.userId
+    const [userId] = typeof query.userId === 'string' && query.userId.split('_')
     socket.leave(userId as string)
 
     delete USERS[userId as string]
@@ -188,6 +187,8 @@ export class SocketService {
     logger.info(`[Socket Service] Total users: ${Object.keys(USERS).length}`)
 
     logger.info(`[Socket Service] Users: ${Object.keys(USERS).join(', ')}`)
+
+    this.unsubscribe(userId as string)
 
     return socket
   }
@@ -203,7 +204,13 @@ export class SocketService {
 
     // Save conversation message
     if (!isTest) {
-      await this.saveConversationMessage({ convId: userId, from: userId, to: 'bot', contactId, message })
+      await this.saveConversationMessage({
+        convId: userId,
+        from: userId,
+        to: 'bot',
+        contactId,
+        message,
+      })
     }
 
     const webChannel = new WebChannel(
@@ -256,21 +263,19 @@ export class SocketService {
     })
   }
 
-  private async saveConversationMessage(
-    {
-      convId,
-      from,
-      contactId,
-      to,
-      message
-    }: {
-      convId: string,
-      from: string,
-      contactId: string,
-      to: string,
-      message: string,
-    }
-  ) {
+  private async saveConversationMessage({
+    convId,
+    from,
+    contactId,
+    to,
+    message,
+  }: {
+    convId: string
+    from: string
+    contactId: string
+    to: string
+    message: string
+  }) {
     from = from ?? 'user'
     to = to ?? 'bot'
 
@@ -324,10 +329,10 @@ export class SocketService {
 
       console.log(
         '[Socket Service] handleIncomingAgentMessage data: ' +
-        JSON.stringify({
-          userId,
-          adminId,
-        }),
+          JSON.stringify({
+            userId,
+            adminId,
+          }),
       )
 
       const { contactId, message, type } = data
