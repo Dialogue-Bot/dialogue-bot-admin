@@ -1,10 +1,8 @@
-import { REFERENCE_ID_CONNECT_AGENT } from '@/config'
-import { NlpService } from '@/services/nlp.service'
 import { UserService } from '@/services/users.service'
 import * as bcrypt from 'bcrypt'
 import Container from 'typedi'
 import { db } from './db'
-import { channelTypes, intents } from './schema'
+import { channelTypes } from './schema'
 
 async function seedChannelTypes() {
   try {
@@ -43,62 +41,9 @@ async function seedDefaultAccount() {
   }
 }
 
-async function detectConnectAgent() {
-  try {
-    const userService = Container.get(UserService)
-    const nlpService = Container.get(NlpService)
-
-    const user = await userService.findOneByEmail('admin@gmail.com')
-
-    const prompts = [
-      'What are the ways to contact your support team?',
-      'Is there a phone number I can call for assistance?',
-      'How do I reach a live agent?',
-      `What's the best way to get help with my issue?`,
-      'I want to connect agent?',
-      'How can I get in touch with your helpdesk?',
-      'Where can I find your customer service contact information?',
-    ]
-    const answers = ['Sure, please wait a few minutes']
-
-    const intentData = {
-      name: 'connect-agent',
-      referenceId: REFERENCE_ID_CONNECT_AGENT,
-      intents: [
-        {
-          intent: 'greeting.connect-agent',
-          prompts,
-          answers,
-        },
-      ],
-      entities: [],
-    }
-
-    await nlpService.train({
-      intents: intentData.intents,
-      referenceId: intentData.referenceId,
-    })
-
-    await db
-      .insert(intents)
-      .values({
-        ...intentData,
-        userId: user.id,
-      })
-      .returning()
-
-    console.log('Default intent connect agent created')
-  } catch (error) {
-    console.log(
-      `Can't create default intent connect agent created ${error.message}`,
-    )
-  }
-}
-
 async function main() {
   await seedChannelTypes()
   await seedDefaultAccount()
-  await detectConnectAgent()
 
   console.log('Seed data successfully')
   process.exit(0)
