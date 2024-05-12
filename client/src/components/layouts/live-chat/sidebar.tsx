@@ -48,7 +48,7 @@ const Sidebar = () => {
   )
 
   return (
-    <aside className='border-r border-input'>
+    <aside className='border-r border-input min-h-svh'>
       <div className='h-header flex items-center px-4 border-b border-input'>
         <PageTitle>{t('title')}</PageTitle>
       </div>
