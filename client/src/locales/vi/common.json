@@ -55,5 +55,6 @@
   "choose_plan": "Chọn gói dịch vụ",
   "upgrade_plan": "Nâng cấp gói",
   "current_plan": "Gói hiện tại",
-  "unlimited": "Không giới hạn"
+  "unlimited": "Không giới hạn",
+  "agent_notify": "Bạn có một yêu cầu hỗ trợ từ khách hàng."
 }
