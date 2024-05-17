@@ -40,6 +40,7 @@ export class StripeWebhookService {
 
     logger.info(`[StripeWebhookService] Received event: ${event.type}`)
 
+    // strategy pattern
     const MAP_EVENT_TO_HANDLER: Partial<
       Record<Stripe.Event.Type, (event: Stripe.Event) => Promise<void>>
     > = {

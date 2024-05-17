@@ -1,10 +1,7 @@
 import { WebChannel } from '@/channels/web.channel'
 import { SOCKET_EVENTS } from '@/constants'
 import { ExpectedChannel } from '@/interfaces/channels.interface'
-import {
-  IMessageData,
-  IUserChatAgent
-} from '@/interfaces/socket.interface'
+import { IMessageData, IUserChatAgent } from '@/interfaces/socket.interface'
 import { logger } from '@/utils/logger'
 import { Socket } from 'socket.io'
 import { Service } from 'typedi'
@@ -22,7 +19,7 @@ export class SocketService {
     private readonly chanelService: ChannelService,
     private readonly conversationLiveChatService: ConversationLiveChatService,
     private readonly messageService: MessageService,
-  ) { }
+  ) {}
 
   public handleSocketEvents(socket: Socket) {
     socket.on(SOCKET_EVENTS.MESSAGE, (data) => {
@@ -42,7 +39,6 @@ export class SocketService {
       if (!address || (!message && !type)) return
 
       const [contactId, userId] = address.split('_')
-
 
       const expectedChannel = await this.chanelService.findOneByContactId(
         contactId,
@@ -88,7 +84,7 @@ export class SocketService {
 
   public handleLeaveRoom(socket: Socket) {
     const query = socket.handshake.query
-    const userId = query.userId
+    const [userId] = typeof query.userId === 'string' && query.userId.split('_')
     socket.leave(userId as string)
 
     delete USERS[userId as string]
@@ -112,7 +108,13 @@ export class SocketService {
 
     // Save conversation message
     if (!isTest) {
-      await this.saveConversationMessage({ convId: userId, from: userId, to: 'bot', contactId, message })
+      await this.saveConversationMessage({
+        convId: userId,
+        from: userId,
+        to: 'bot',
+        contactId,
+        message,
+      })
     }
 
     const webChannel = new WebChannel(
@@ -161,21 +163,19 @@ export class SocketService {
     })
   }
 
-  private async saveConversationMessage(
-    {
-      convId,
-      from,
-      contactId,
-      to,
-      message
-    }: {
-      convId: string,
-      from: string,
-      contactId: string,
-      to: string,
-      message: string,
-    }
-  ) {
+  private async saveConversationMessage({
+    convId,
+    from,
+    contactId,
+    to,
+    message,
+  }: {
+    convId: string
+    from: string
+    contactId: string
+    to: string
+    message: string
+  }) {
     from = from ?? 'user'
     to = to ?? 'bot'
 

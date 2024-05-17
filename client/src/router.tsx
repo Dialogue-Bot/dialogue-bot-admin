@@ -17,6 +17,7 @@ import {
   LandingPage,
   Login,
   Mail,
+  PageError,
   PreviewChatBox,
   Profiles,
   Register,
@@ -56,6 +57,7 @@ import { useAppLayoutStore } from './store'
 export const router = createBrowserRouter([
   {
     Component: App,
+    errorElement: <PageError />,
     children: [
       {
         loader: authLoader,
@@ -187,6 +189,7 @@ export const router = createBrowserRouter([
       },
       {
         Component: PublishLayout,
+
         children: [
           {
             path: ROUTES.PUBLIC.LANDING_PAGE,
