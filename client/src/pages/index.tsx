@@ -19,6 +19,7 @@ export const RequestVerifyAccount = lazy(
 )
 export const VerifyAccount = lazy(() => import('./verify-account'))
 export { default as CheckoutSuccess } from './checkout-success'
+export { default as PageError } from './error'
 export { default as LandingPage } from './landing-page'
 export const Conversations = lazy(() => import('./conversations'))
 export const ConversationDetail = lazy(() => import('./conversation-detail'))

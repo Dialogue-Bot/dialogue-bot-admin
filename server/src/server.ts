@@ -1,4 +1,7 @@
+import 'reflect-metadata'
+
 import { App } from '@/app'
+
 import { ValidateEnv } from '@/utils/validate-env'
 import { AuthRoute } from '@routes/auth.route'
 import { BotMailRoute } from './routes/bot-mail.route'
@@ -16,6 +19,7 @@ import { UploadRoute } from './routes/upload.route'
 import { UserSubscriptionRoute } from './routes/user-subscription.route'
 import { UserRoute } from './routes/users.route'
 import { WebhookRoute } from './routes/webhook.route'
+import { runWorker } from './worker'
 
 ValidateEnv()
 
@@ -39,3 +43,5 @@ const app = new App([
 ])
 
 app.listen()
+
+runWorker()
