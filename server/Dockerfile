@@ -7,7 +7,6 @@ COPY . ./app
 # Work to Dir
 WORKDIR /app
 
-RUN curl -fsS https://dotenvx.sh/ | sh
 
 RUN npm install -g pm2
 # Install Node Package
