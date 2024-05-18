@@ -21,8 +21,8 @@ jobs:
            uses: docker/build-push-action@v5
            id: docker_build_server
            with:
-              context: '{{defaultContext:server}}'
-              file: ./server/Dockerfile
+              context: '{{github.workspace}}/server'
+              file: ./Dockerfile
               builder: ${{steps.buildx.outputs.name}}
               push: true
               tags: dialoguebot/server:latest
@@ -30,8 +30,8 @@ jobs:
            uses: docker/build-push-action@v5
            id: docker_build_client
            with:
-              context: '{{defaultContext:client}}'
-              file: ./client/Dockerfile
+              context: '{{github.workspace}}/client'
+              file: ./Dockerfile
               builder: ${{steps.buildx.outputs.name}}
               push: true
               tags: dialoguebot/client:latest
