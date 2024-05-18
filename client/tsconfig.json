@@ -38,7 +38,8 @@
     "src",
     "@types",
     "src/i18next.d.ts",
-    "src/pages/.tsx"
+    "src/pages/.tsx",
+    "dialogue-chatbox"
   ],
   "references": [
     {
