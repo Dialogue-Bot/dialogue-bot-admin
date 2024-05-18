@@ -21,7 +21,7 @@ jobs:
            uses: docker/build-push-action@v5
            id: docker_build_server
            with:
-              context: ./server
+              context: '{{defaultContext:server}}'
               file: ./Dockerfile
               builder: ${{steps.buildx.outputs.name}}
               push: true
@@ -30,7 +30,7 @@ jobs:
            uses: docker/build-push-action@v5
            id: docker_build_client
            with:
-              context: ./client
+              context: '{{defaultContext:client}}'
               file: ./Dockerfile
               builder: ${{steps.buildx.outputs.name}}
               push: true
