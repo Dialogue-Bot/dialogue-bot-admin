@@ -7,6 +7,7 @@ COPY . ./app
 # Work to Dir
 WORKDIR /app
 
+
 RUN npm install -g pm2
 # Install Node Package
 RUN npm install --legacy-peer-deps
@@ -18,14 +19,6 @@ EXPOSE 8080
 
 # Build App
 RUN npm run build
-
-# Push migration
-
-RUN npm run push:migrate
-
-# Push seed
-
-RUN npm run db:seed:prod
 
 # Cmd script
 CMD ["npm", "run", "deploy:prod"]

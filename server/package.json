@@ -12,7 +12,7 @@
     "build": "swc src -d dist --source-maps --copy-files",
     "lint": "eslint --ignore-path .gitignore --ext .ts src",
     "lint:fix": "npm run lint -- --fix",
-    "deploy:prod": "npm run build && npm run push:migrate && npm run db:seed:prod && pm2-runtime ecosystem.config.js --only prod",
+    "deploy:prod": "npm run push:migrate && npm run db:seed && pm2-runtime ecosystem.config.js --only prod",
     "gen:migrate": "drizzle-kit generate:pg",
     "push:migrate": "drizzle-kit push:pg",
     "drop:migrate": "drizzle-kit drop",

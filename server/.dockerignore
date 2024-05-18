@@ -16,3 +16,9 @@ jest.config.js
 # docker
 Dockerfile
 docker-compose.yml
+
+bot_db
+.env.keys
+redis
+pgadmin
+
