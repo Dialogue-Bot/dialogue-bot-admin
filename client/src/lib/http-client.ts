@@ -4,7 +4,11 @@ import { ELang } from '@/types/share'
 import axios from 'axios'
 
 const http_client = axios.create({
-  baseURL: `${import.meta.env.VITE_PROD_API_URL}/api`,
+  baseURL: `${
+    import.meta.env.DEV
+      ? import.meta.env.VITE_DEV_API_URL
+      : import.meta.env.VITE_PROD_API_URL
+  }/api`,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
