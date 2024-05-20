@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-console.log(process.env)
+console.log(import.meta.env)
 
 const App = () => {
   return (

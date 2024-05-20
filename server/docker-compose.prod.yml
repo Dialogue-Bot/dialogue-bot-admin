@@ -12,6 +12,39 @@ services:
     depends_on:
       - db
       - redis
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - ACCESS_TOKEN_SECRET=fm9GJEoFBE
+      - REFRESH_TOKEN_SECRET=wADZcHnrlg
+      - RESET_PASS_TOKEN_SECRET=AxLFLtdGMs
+      - LOG_FORMAT=combined
+      - LOG_DIR=../logs
+      - ORIGIN=your.domain.com
+      - CREDENTIALS=true
+      - MAIL_USER=dialoguebot.work@gmail.com
+      - MAIL_PASS=byjpeyzggaurdrdi
+      - DATABASE_URL=postgres://postgres:postgres@dialogue-bot-db:5432/dialoguebot
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - FIREBASE_TYPE=service_account
+      - FIREBASE_PROJECT_ID=dialoguebot-6674e\
+      - FIREBASE_PRIVATE_KEY_ID=a5d6413c99b274077c80e02d1dfb684a1e739a05
+      - FIREBASE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDd9/HyeqJca5tW\nv+wTp7dwpr0ByX6dM9KYMkmFY0ZJ/tw2/CbH/ZosawxoWSvxTtl8HZHl7k49YtoU\neAEhQbVOJh/iJRaPhEkQ2khE2nFpOo2NAAf37HuVCE+44RkoaHbjlDR0I/rwOmq9\na2vN4Hj4e4849KjQfWkp7zARVQ2Db3a89NxQO+GqyTQwYXPOSnimqMya/Nlnd1lf\nkETWf7pelUePgi61M1qApD72FZne2amusLDsfBrsuEmNK+5R8cO4yopZHyuDWDL+\nhMHa1DrXVsRMrhRcy527vY5D+CyCkos/0LmWWe8vPakG92NnKjy6Lsfs1ROpFv5K\nkW7xF7cdAgMBAAECggEAG+nNxcnxOAEaOEcLV49sTKDTPPHLV9aIAba1My6ATNbd\nd5avA9Ba/oH5vfeUxJQ/WlHXopwcv7B6Lz/GGJoMREccFFLIqwSeMZ3Zn7r+rxZ7\nbYNW/TECe4PfjqbUBJZaeRUOoZpSuLoH6Ukkde/oFotnP+jYf9t9iZX4K/3PpLr4\nLMoE61uBwEz7g+qdTADQ9RFpwkuDoZqd1R7TgQO9g5SoriZrOboNdcNMdNMFdDyt\nUQHAVITRqZrLYtWe+aWDbQMeulYUELZ4lmO87ELLNhA+FqykaQgU4DP2MbJxUNPQ\n8EKKfnO88iF8tbpRtD9sqJySreWWMIcs7nmV/STrAQKBgQD2qcsYY8UPf4TdtH7E\npDPNNiJfuVqF0AdFHNCMaYfCVX2cOh/5uuATbM2t+g7pwda14mFrAuFhNaLAXHku\n2OBgoSzuJz2jiTPAGN0i4ZtG0WOlt/EpGz1Aij3Zoikm9CGx4xEqD3z+UZo9Vry8\nS9U55IQSen8BUNKKha3ROUclnQKBgQDmXtsf5yuZqDktOIXZEFWaZ8z1KSl/FzR0\n/zbrC/Ab9vJa9zsOiKDtd+2rfgnBJJopd9Ft4Z3jX0G847HOc8Gxya3NOmHuJcSs\npXBZ9/km8FTuEHOz1eT3984/9QU1oemsVcp8mDRCnD0fNNFSlYrwKkIBFZNuvG6W\n6VMdiELfgQKBgQCA2O0IToWPtPL4xOI7YfLVTWPjUPViVOqXRZgC4NVTxEibJRmy\n39VREFLYgHjtzp2T4S82MQj+OIBNr4B14kBC+a54sPLXzEHGJLbPE76C3boJxO4q\npNn4Lr5kQvrwKDK5s30x1Wlbh9DkHbz1Nz+owB/lbyuMymVQisfjNOJfWQKBgBd7\nI6qkzXTkCK/rSvlNCOysF+AFSg2CN/6U5OwgU2EGUr2i5YodswmBZ+BLAIOHT49a\nfyZMEOPUGcc/DiiU8/FDNUvt331+rAVM956z/9lQNdfuJVz3OFduEr/CIb3Nuxut\nwu3gNbN0aWZ847kfNQI1zHR/1n87BaqsLaSc9vQBAoGAHrktnehaIScP009+wP8t\n68ue/0yTdElbbZ6Aq/RB+acM9LNH/MhOBboC71fqr/ArhePHwLJztbDAYpL9hXeL\nNI24wkp68DCwIwM/UbuDqS1Z92/dGDMDZtLurcCMgDE3gtRr1xolpFEixyIgGJXV\n6UCx2C3RW3ktTL8bEbZ1ikI=\n-----END PRIVATE KEY-----\n
+      - FIREBASE_CLIENT_EMAIL=firebase-adminsdk-t0zfw@dialoguebot-6674e.iam.gserviceaccount.com
+      - FIREBASE_CLIENT_ID=101953647267951486066
+      - FIREBASE_AUTH_URI=https://accounts.google.com/o/oauth2/auth
+      - FIREBASE_TOKEN_URI=https://oauth2.googleapis.com/token
+      - FIREBASE_AUTH_PROVIDER_X509_CERT_URL= https://www.googleapis.com/oauth2/v1/certs
+      - FIREBASE_CLIENT_X509_CERT_URL=https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-t0zfw%40dialoguebot-6674e.iam.gserviceaccount.com
+      - FIREBASE_DATABASE_URL=https://dialoguebot-6674e-default-rtdb.asia-southeast1.firebasedatabase.app
+      - PUBLIC_DOMAIN=https://f2ed-2405-4803-d757-e710-498-492c-617c-188.ngrok-free.app
+      - BOT_ENDPOINT=http://localhost:3978/api/messages
+      - SIGNATURE_SECRET=iR5WkkMmQwUP7AeMkYxXYjQNVaWMAhPk
+      - API_KEY=144efcab5217ccdd3a178be72562613cd15b42df
+      - AUTO_REGISTER_WEBHOOK=0
+      - STRIPE_SECRET_KEY=sk_test_51P7hh8P3qr7u2BY3zGNNcexbso7KJiUNdK5OVM8URQwkQRbS2bJGdKM46R5XBghQoONkA1Mqxgbsro1Ack68pkrO00l0MFQr35
+      - REFERENCE_ID_CONNECT_AGENT=1061a102c6dc95b2e1966b1e65d91f59b8a73c92aa0f77fa17e50ec682f8b2d5
   db:
     container_name: dialogue-bot-db
     image: postgres:latest
