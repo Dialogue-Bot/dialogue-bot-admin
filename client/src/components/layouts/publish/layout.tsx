@@ -13,7 +13,7 @@ export const Layout = () => {
           location.pathname.includes(route),
         ) && (
           <script
-            src={`http://localhost:8080/public/script/chatbox.js`}
+            src={`https://api.dialoguebot.tech/public/script/chatbox.js`}
             // @ts-ignore
             channelId='Test'
             id='Test'
