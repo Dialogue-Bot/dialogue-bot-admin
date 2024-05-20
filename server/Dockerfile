@@ -1,5 +1,5 @@
 # NodeJS Version 16
-FROM node:20.0.0
+FROM node:20
 
 # Copy Dir
 COPY . ./app

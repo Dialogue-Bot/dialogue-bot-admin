@@ -1,7 +1,9 @@
 import { config } from 'dotenv'
 import type { Config } from 'drizzle-kit'
 
-config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` })
+config({
+  path: process.env.NODE_ENV === 'development' ? '.env.development' : undefined,
+})
 
 export default {
   schema: './src/database/schema.ts',
