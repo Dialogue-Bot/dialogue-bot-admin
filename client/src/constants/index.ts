@@ -146,3 +146,11 @@ export const SOCKET_EVENTS = {
   NOTIFICATION_CONNECT_AGENT: 'notification-connect-agent',
   AGENT_MESSAGE: 'agent-message',
 }
+
+export const API_URL = import.meta.env.DEV
+  ? 'http://localhost:8080'
+  : 'https://api.dialoguebot.tech'
+
+export const SIGNATURE_SECRET = 'iR5WkkMmQwUP7AeMkYxXYjQNVaWMAhPk'
+export const STRIPE_PUBLIC_KEY =
+  'pk_test_51P7hh8P3qr7u2BY3gr9HKIsisgiWEhpuRw6mNuDFf3NVZYjXfGK5N52TId330OffJWCUE4NU1kvaOKyX7gKjojxL00curHowAO'

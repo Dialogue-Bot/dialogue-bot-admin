@@ -1,3 +1,4 @@
+import { SIGNATURE_SECRET } from '@/constants'
 import { TCustomChatBox } from '@/types/custom-chatbox'
 import crypto from 'crypto-js'
 import dayjs from 'dayjs'
@@ -40,10 +41,7 @@ export function getKeys(
  * @returns decrypted string
  */
 export const decrypt = (text: string) => {
-  return crypto.AES.decrypt(
-    text,
-    import.meta.env.VITE_SIGNATURE_SECRET,
-  ).toString(crypto.enc.Utf8)
+  return crypto.AES.decrypt(text, SIGNATURE_SECRET).toString(crypto.enc.Utf8)
 }
 /**
  * Encrypt a string
@@ -51,10 +49,7 @@ export const decrypt = (text: string) => {
  * @returns encrypted string
  */
 export const encrypt = (text: string) => {
-  return crypto.AES.encrypt(
-    text,
-    import.meta.env.VITE_SIGNATURE_SECRET,
-  ).toString()
+  return crypto.AES.encrypt(text, SIGNATURE_SECRET).toString()
 }
 
 /**
