@@ -133,3 +133,9 @@ coffeenearyou-firebase.json
 pgadmin
 redis
 bot_db
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
+
+docker-compose.prod.yml

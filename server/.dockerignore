@@ -22,3 +22,9 @@ bot_db
 redis
 pgadmin
 
+
+# .env*
+.flaskenv*
+!.env.project
+!.env.vault
+# .env*

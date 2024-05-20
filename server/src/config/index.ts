@@ -1,6 +1,8 @@
 import { config } from 'dotenv'
 
-config({ path: `.env.${process.env.NODE_ENV || 'development'}.local` })
+config({
+  path: process.env.NODE_ENV === 'development' ? '.env.development' : undefined,
+})
 
 export const CREDENTIALS = process.env.CREDENTIALS === 'true'
 export const {
@@ -38,3 +40,5 @@ export const {
   REFERENCE_ID_CONNECT_AGENT,
   STRIPE_SECRET_KEY,
 } = process.env
+
+console.log(process.env)
