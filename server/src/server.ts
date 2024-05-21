@@ -7,6 +7,7 @@ import { AuthRoute } from '@routes/auth.route'
 import { BotMailRoute } from './routes/bot-mail.route'
 import { ChannelRoute } from './routes/channels.route'
 import { ChatBoxSettingRoute } from './routes/chatbox-setting.route'
+import { CommonRoute } from './routes/common.route'
 import { ConversationLiveChatRoute } from './routes/conversation-live-chat.route'
 import { ConversationRoute } from './routes/conversation.route'
 import { FlowRoute } from './routes/flow.route'
@@ -40,6 +41,7 @@ const app = new App([
   new SubscriptionRoute(),
   new UserSubscriptionRoute(),
   new ChatBoxSettingRoute(),
+  new CommonRoute(),
 ])
 
 app.listen()
