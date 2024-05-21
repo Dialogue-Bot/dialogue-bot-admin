@@ -1,3 +1,4 @@
+import { NODE_ENV } from '@/config'
 import { LOCALE_KEY } from '@/constants'
 import { LocaleService } from '@/i18n/ctx'
 import type { RequestWithUser, TTokenData } from '@/interfaces/auth.interface'
@@ -113,14 +114,14 @@ export class AuthController {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24,
       sameSite: 'lax',
-      domain: 'localhost', // TODO: THIS WILL BE CHANGED IN PRODUCTION
+      domain: NODE_ENV === 'production' ? 'dialoguebot.tech' : 'localhost',
     })
 
     res.cookie('refresh_token', refreshToken, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 30,
       sameSite: 'lax',
-      domain: 'localhost', //TODO: THIS WILL BE CHANGED IN PRODUCTION
+      domain: NODE_ENV === 'production' ? 'dialoguebot.tech' : 'localhost',
     })
   }
 

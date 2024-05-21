@@ -1,3 +1,4 @@
+import { NODE_ENV } from '@/config'
 import { HttpException } from '@/exceptions/http-exception'
 import stripe from '@/libs/stripe'
 import { logger } from '@/utils/logger'
@@ -8,7 +9,10 @@ import { PlanService } from './plan.service'
 import { StripeService } from './stripe.service'
 import { UserSubscriptionService } from './user-subscription.service'
 
-const ENDPOINT_SECRET = 'whsec_GX2Faw79vKcK1xeTXhEqWyQCAez0rS0V' // REPLACE WHEN DEPLOYING TO PRODUCTION
+const ENDPOINT_SECRET =
+  NODE_ENV === 'production'
+    ? process.env.STRIPE_ENDPOINT_SECRET
+    : 'whsec_0Xf5Z2'
 
 @Service()
 export class StripeWebhookService {
