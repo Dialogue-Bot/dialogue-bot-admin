@@ -2,7 +2,6 @@ import { CREDENTIALS, LOG_FORMAT, NODE_ENV, PORT } from '@config'
 import type { Routes } from '@interfaces/routes.interface'
 import { ErrorMiddleware } from '@middlewares/error.middleware'
 import { logger, stream } from '@utils/logger'
-import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
@@ -16,6 +15,7 @@ import { getPreferredLocale } from './i18n/get-preferred-locale'
 import { loadAllLocales } from './i18n/i18n-util.sync'
 
 // socket.io
+import compression from 'compression'
 import { createServer } from 'http'
 import path from 'path'
 import { Server } from 'socket.io'
@@ -91,12 +91,23 @@ export class App {
       }),
     )
     this.app.use(compression())
-    this.app.use(
-      `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`,
-      express.raw({ type: '*/*' }),
-    )
-    this.app.use(express.json())
-    this.app.use(express.urlencoded({ extended: true }))
+
+    this.app.use((req, res, next) => {
+      if (req.path === `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`) {
+        next()
+      } else {
+        express.json()(req, res, next)
+      }
+    })
+
+    this.app.use((req, res, next) => {
+      if (req.path === `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`) {
+        express.raw({ type: 'application/json' })(req, res, next)
+      } else {
+        express.urlencoded({ extended: true })(req, res, next)
+      }
+    })
+
     this.app.use(cookieParser())
     this.app.use((req, _res, next) => {
       const locale = getPreferredLocale(req)
