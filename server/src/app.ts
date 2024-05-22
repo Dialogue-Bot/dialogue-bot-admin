@@ -94,19 +94,18 @@ export class App {
 
     this.app.use((req, res, next) => {
       if (req.path === `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`) {
+        console.log(req.body)
         next()
       } else {
         express.json()(req, res, next)
       }
     })
 
-    this.app.use((req, res, next) => {
-      if (req.path === `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`) {
-        express.raw({ type: 'application/json' })(req, res, next)
-      } else {
-        express.urlencoded({ extended: true })(req, res, next)
-      }
-    })
+    this.app.use(
+      express.urlencoded({
+        extended: true,
+      }),
+    )
 
     this.app.use(cookieParser())
     this.app.use((req, _res, next) => {
