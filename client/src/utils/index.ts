@@ -1,4 +1,4 @@
-import { SIGNATURE_SECRET } from '@/constants'
+import { API_URL, SIGNATURE_SECRET } from '@/constants'
 import { TCustomChatBox } from '@/types/custom-chatbox'
 import crypto from 'crypto-js'
 import dayjs from 'dayjs'
@@ -187,6 +187,12 @@ export const isEmptyObject = (obj: Record<any, any>) => {
   return Object.keys(obj).length === 0
 }
 
+/**
+ * Generates a script tag for embedding a chatbox.
+ * @param contactId - The ID of the contact.
+ * @param custom - Optional custom chatbox configuration.
+ * @returns The script tag as a string.
+ */
 export const genScript = (contactId: string, custom?: TCustomChatBox) => {
-  return `<script src="http://localhost:8080/public/script/chatbox.js" channelId="${contactId}" id="${contactId}" async type="text/javascript" custom="${JSON.stringify(custom)}"></script>`
+  return `<script src="${API_URL}/public/script/chatbox.js" channelId="${contactId}" id="${contactId}" async type="text/javascript" custom="${JSON.stringify(custom)}"></script>`
 }
