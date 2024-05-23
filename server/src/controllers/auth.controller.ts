@@ -115,6 +115,7 @@ export class AuthController {
       maxAge: 1000 * 60 * 60 * 24,
       sameSite: 'lax',
       domain: NODE_ENV === 'production' ? 'dialoguebot.tech' : 'localhost',
+      secure: NODE_ENV === 'production',
     })
 
     res.cookie('refresh_token', refreshToken, {
@@ -122,12 +123,23 @@ export class AuthController {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       sameSite: 'lax',
       domain: NODE_ENV === 'production' ? 'dialoguebot.tech' : 'localhost',
+      secure: NODE_ENV === 'production',
     })
   }
 
   private clearTokensCookie = (res: Response) => {
-    res.clearCookie('access_token')
-    res.clearCookie('refresh_token')
+    res.clearCookie('access_token', {
+      domain: NODE_ENV === 'production' ? 'dialoguebot.tech' : 'localhost',
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: NODE_ENV === 'production',
+    })
+    res.clearCookie('refresh_token', {
+      domain: NODE_ENV === 'production' ? 'dialoguebot.tech' : 'localhost',
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: NODE_ENV === 'production',
+    })
   }
 
   public verifyAccount = catchAsync(async (req, res) => {
