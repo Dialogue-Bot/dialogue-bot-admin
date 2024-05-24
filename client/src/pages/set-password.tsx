@@ -3,11 +3,14 @@ import { buttonVariants } from '@/components/ui'
 import { useSetPass } from '@/hooks/auth'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const SetPassword = () => {
   const { t } = useTranslation(['common', 'set_pass'])
 
   const setPassMutation = useSetPass()
+
+  useDocumentTitle(t('set_pass:page_title'))
 
   return (
     <div className='w-full max-w-sm space-y-3'>

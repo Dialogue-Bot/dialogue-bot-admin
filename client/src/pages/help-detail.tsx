@@ -20,11 +20,13 @@ import { Article } from '@/lib/content'
 import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import {
   Link as RLink,
   ScrollRestoration,
   useLoaderData,
 } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const HelpDetail = () => {
   const data = useLoaderData() as {
@@ -32,6 +34,14 @@ const HelpDetail = () => {
     prev?: Article
     next?: Article
   }
+
+  const { t } = useTranslation('help')
+
+  useDocumentTitle(
+    t('page_title_detail', {
+      title: data.article.title,
+    }),
+  )
 
   return (
     <div className='pt-header'>

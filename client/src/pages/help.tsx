@@ -2,6 +2,7 @@ import { Article } from '@/components/pages/helps'
 import { Article as TArticle } from '@/lib/content'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const Help = () => {
   const data = useLoaderData() as {
@@ -9,6 +10,8 @@ const Help = () => {
   }
 
   const { t } = useTranslation('help')
+
+  useDocumentTitle(t('page_title'))
 
   return (
     <div className='min-h-screen pt-header'>

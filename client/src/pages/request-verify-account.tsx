@@ -6,6 +6,7 @@ import { urlSearchParamsToObject } from '@/utils'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useSearchParams } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const TIMEOUT = 60
 
@@ -33,6 +34,8 @@ const RequestVerifyAccount = () => {
   }, [searchParams, startCountdown])
 
   const requestVerifyAccountMutation = useRequestVerifyAccount()
+
+  useDocumentTitle(t('page_title'))
 
   return (
     <div className='w-full max-w-sm space-y-3'>

@@ -5,6 +5,7 @@ import { ChatBox } from 'dialogue-chatbox'
 import { Bot, X } from 'lucide-react'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const PreviewChatBox = () => {
   const [searchParams] = useSearchParams()
@@ -12,6 +13,8 @@ const PreviewChatBox = () => {
     queryCustomChatBoxOptions(searchParams.get('contactId') as string),
   )
   const [open, setOpen] = useState(false)
+
+  useDocumentTitle('Preview Chatbox')
 
   return (
     <div className='flex items-center justify-center min-h-svh'>

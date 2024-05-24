@@ -5,8 +5,11 @@ import {
   Prices,
   Reviews,
 } from '@/components/pages/landing-page'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const LandingPage = () => {
+  useDocumentTitle('DialogueBot')
+
   return (
     <div
       style={{

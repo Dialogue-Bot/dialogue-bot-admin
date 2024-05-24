@@ -2,5 +2,6 @@
   "title": "Gói đăng ký",
   "usage": "Sử dụng",
   "channels": "Kênh {{used}} / {{max}}",
-  "flows": "Luồng {{used}} / {{max}}"
+  "flows": "Luồng {{used}} / {{max}}",
+  "page_title": "Subscriptions | DialogueBot"
 }

@@ -1,5 +1,6 @@
 import channelEn from '@/locales/en/channel.json'
 import chatbotsEn from '@/locales/en/chatbots.json'
+import checkoutEn from '@/locales/en/checkout.json'
 import commonEN from '@/locales/en/common.json'
 import conversationsEn from '@/locales/en/conversations.json'
 import errorPageEn from '@/locales/en/error-page.json'
@@ -22,6 +23,7 @@ import userSubscriptionsEn from '@/locales/en/user-subscription.json'
 import verifyAccountEn from '@/locales/en/verify-account.json'
 import channelVi from '@/locales/vi/channel.json'
 import chatbotsVi from '@/locales/vi/chatbots.json'
+import checkoutVi from '@/locales/vi/checkout.json'
 import commonVI from '@/locales/vi/common.json'
 import conversationsVi from '@/locales/vi/conversations.json'
 import errorPageVi from '@/locales/vi/error-page.json'
@@ -68,6 +70,7 @@ const resources = {
     conversations: conversationsEn,
     userSubscriptions: userSubscriptionsEn,
     errorPage: errorPageEn,
+    checkout: checkoutEn,
   },
   [ELang.VI]: {
     common: commonVI,
@@ -92,6 +95,7 @@ const resources = {
     conversations: conversationsVi,
     userSubscriptions: userSubscriptionsVi,
     errorPage: errorPageVi,
+    checkout: checkoutVi,
   },
 } as const
 

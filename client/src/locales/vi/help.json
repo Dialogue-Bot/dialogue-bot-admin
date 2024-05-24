@@ -1,4 +1,6 @@
 {
   "title": "Xin chào, Tôi có thể giúp gì cho bạn?",
-  "desc": "Khám phá cách sử dụng DialogBot và tìm câu trả lời cho câu hỏi của bạn"
+  "desc": "Khám phá cách sử dụng DialogBot và tìm câu trả lời cho câu hỏi của bạn",
+  "page_title": "Help center | DialogueBot",
+  "page_title_detail": "{{title}} | Help center | DialogueBot"
 }

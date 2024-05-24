@@ -69,7 +69,7 @@ const Profiles = () => {
         <div className='max-w-4xl  space-y-4'>
           <SectionSetting>
             <SectionSettingBody>
-              <div className='flex items-start justify-between'>
+              <div className='flex items-start justify-between sm:flex-row flex-col gap-2'>
                 <div>
                   <SectionSettingTitle title={t('sections.language.label')} />
                   <SectionSettingDescription
@@ -89,7 +89,11 @@ const Profiles = () => {
           </SectionSetting>
           <SectionSetting>
             <SectionSettingBody>
-              <div className='flex items-start justify-between'>
+              <div
+                className='flex items-start justify-between
+                sm:flex-row flex-col gap-2
+              '
+              >
                 <div>
                   <SectionSettingTitle title={t('sections.avatar.label')} />
                   <SectionSettingDescription
@@ -128,7 +132,7 @@ const Profiles = () => {
                       onClick={() => file.current?.click()}
                       className='cursor-pointer'
                     >
-                      <Avatar className='w-24 h-24 flex-shrink-0'>
+                      <Avatar className='w-20 h-20 flex-shrink-0 sm:w-24 sm:h-24'>
                         <AvatarImage src={user?.avatar as string} />
                         <AvatarFallback>{user?.name[0]}</AvatarFallback>
                       </Avatar>

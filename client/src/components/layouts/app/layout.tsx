@@ -10,7 +10,10 @@ export const Layout = (_props: Props) => {
   return (
     <div className='flex min-h-svh '>
       <Sidebar />
-      <div className={cn('ml-sidebar w-full')}>
+      <div
+        className={cn('ml-sidebar')}
+        style={{ width: 'calc(100% - 3.75rem)' }}
+      >
         <Outlet />
       </div>
     </div>

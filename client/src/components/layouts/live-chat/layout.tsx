@@ -7,12 +7,6 @@ export const Layout = () => {
   const { userId, channelId } = useParams()
   const matches = useMediaQuery('(max-width: 767px)')
 
-  console.log({
-    userId,
-    channelId,
-    matches,
-  })
-
   return (
     <div className='flex h-screen'>
       <div

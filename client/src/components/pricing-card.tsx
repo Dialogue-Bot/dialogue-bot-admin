@@ -15,7 +15,7 @@ export const PricingCard = ({ plan, isCurrentPlan }: TProps) => {
   const { t } = useTranslation('common')
 
   return (
-    <div className='p-4 border border-input shadow-md bg-white rounded-md flex flex-col items-center text-center gap-4'>
+    <div className='p-4 border border-input shadow-md bg-white rounded-md flex flex-col items-center text-center gap-4 w-full'>
       <span className='text-xl font-semibold'>{plan.name}</span>
       <img src={plan.image} alt={plan.name} />
       <div className='flex gap-1'>

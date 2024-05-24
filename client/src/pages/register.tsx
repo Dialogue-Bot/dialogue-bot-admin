@@ -2,9 +2,12 @@ import { RegisterForm } from '@/components/forms'
 import { useRegister } from '@/hooks/auth'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const Register = () => {
   const { t } = useTranslation(['common', 'register'])
+
+  useDocumentTitle(t('register:page_title'))
 
   const registerMutation = useRegister()
 

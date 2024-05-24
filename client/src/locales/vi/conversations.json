@@ -3,5 +3,6 @@
   "select_conversation": "Chọn một cuộc trò chuyện để bắt đầu trò chuyện",
   "title": "Tin nhắn",
   "filter": "Lọc",
-  "filter_all": "Tất cả"
+  "filter_all": "Tất cả",
+  "page_title": "Conversations | DialogueBot"
 }
