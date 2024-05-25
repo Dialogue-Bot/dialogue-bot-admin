@@ -1,5 +1,6 @@
 import { db } from '@/database/db'
 import { plans, userSubscriptions } from '@/database/schema'
+import { logger } from '@/utils/logger'
 import { and, eq } from 'drizzle-orm'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
@@ -104,8 +105,14 @@ export class UserSubscriptionService {
       )
 
       if (!plan) {
+        logger.error(`Can't find this plan`)
+
         return
       }
+
+      logger.info(
+        `Receive stripe plan ${stripePlanFree.name} and plan ${plan.image}`,
+      )
 
       await this.stripeService.createSubscription({
         customer_email: email,
