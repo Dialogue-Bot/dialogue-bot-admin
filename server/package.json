@@ -8,6 +8,7 @@
     "dev": "concurrently \"npm run dev:api\" \"npm run typesafe-i18n\"",
     "start": "npm run build  && cross-env NODE_ENV=production concurrently \"npm run start:api\" \"npm run typesafe-i18n\"",
     "start:api": "cross-env NODE_ENV=production node dist/server.js",
+    "start:dev:api": "cross-env NODE_ENV=development node dist/server.js",
     "dev:api": "cross-env NODE_ENV=development  nodemon  --legacy-watch ",
     "build": "swc src -d dist --source-maps --copy-files",
     "lint": "eslint --ignore-path .gitignore --ext .ts src",

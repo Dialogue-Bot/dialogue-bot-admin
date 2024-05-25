@@ -59,5 +59,7 @@
   "current_plan": "Current plan",
   "unlimited": "Unlimited",
   "agent_notify": "You have new request support from customer",
-  "view": "View"
+  "view": "View",
+  "next": "Next",
+  "previous": "Previous"
 }

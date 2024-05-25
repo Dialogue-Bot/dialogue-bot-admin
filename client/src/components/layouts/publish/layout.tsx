@@ -1,3 +1,4 @@
+import { ScrollTop } from '@/components/scroll-top'
 import { ROUTES } from '@/constants'
 import { Helmet } from 'react-helmet'
 import { Outlet, useLocation } from 'react-router-dom'
@@ -36,6 +37,7 @@ export const Layout = () => {
       <Header />
       <Outlet />
       <Footer />
+      <ScrollTop />
     </>
   )
 }
