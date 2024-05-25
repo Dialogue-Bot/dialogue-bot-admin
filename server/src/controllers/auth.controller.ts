@@ -89,8 +89,6 @@ export class AuthController {
   public getCurrentUser = catchAsync(async (req: RequestWithUser, res) => {
     const data = await this.authService.findCurrentUser(req.user?.id as string)
 
-    console.log('data', data)
-
     res.status(StatusCodes.OK).json({
       message: this.localeService.i18n().USER.GET_USER_SUCCESS(),
       data,

@@ -346,6 +346,7 @@ export class AuthService {
 
   public async findCurrentUser(userId: string) {
     logger.info('[AUTH] Try to get current user')
+
     const userInCache = await redis.get(`user:${userId}`)
 
     if (userInCache) {
