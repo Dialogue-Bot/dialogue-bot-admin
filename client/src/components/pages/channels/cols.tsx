@@ -117,10 +117,15 @@ export const useCols = () => {
         ),
       },
       {
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title={t('actions')} />
+        ),
         cell: ({ row }) => {
           return <RowActions row={row} />
         },
         id: 'actions',
+        enableSorting: false,
+        enableHiding: false,
       },
     ],
     [t],

@@ -8,5 +8,6 @@
   "channel_type": "Loại kênh",
   "id": "ID",
   "name": "Tên",
-  "trained": "Đã đào tạo"
+  "trained": "Đã đào tạo",
+  "actions": "Hành động"
 }

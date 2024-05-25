@@ -8,5 +8,6 @@
   "channel_type": "Channel Type",
   "id": "ID",
   "name": "Name",
-  "trained": "Trained"
+  "trained": "Trained",
+  "actions": "Actions"
 }
