@@ -1,0 +1,152 @@
+enum roles {
+  ADMIN
+  USER
+}
+
+table users {
+  id varchar(36) [pk, not null]
+  email text [not null, unique]
+  password text
+  name text [not null]
+  avatar text
+  role roles[] [not null]
+  provider text [not null, default: 'local']
+  is_verified boolean [default: false]
+
+  indexes {
+    email [name: 'email_idx', unique]
+  }
+}
+
+table channel_types {
+  id varchar(36) [pk, not null]
+  name text [not null, unique]
+  description text [not null, unique]
+  deleted boolean [default: false]
+}
+
+table channels {
+  id varchar(36) [pk, not null]
+  contact_id text [not null, unique]
+  contact_name text [not null]
+  credentials text
+  active boolean
+  deleted boolean [default: false]
+  channel_type_id text [not null]
+  user_id text [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp
+  flow_id text
+}
+
+table chatbox_settings {
+  logo_url text [default: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1ib3QtbWVzc2FnZS1zcXVhcmUiPjxwYXRoIGQ9Ik0xMiA2VjJIOCIvPjxwYXRoIGQ9Im04IDE4LTQgNFY4YTIgMiAwIDAgMSAyLTJoMTJhMiAyIDAgMCAxIDIgMnY4YTIgMiAwIDAgMS0yIDJaIi8+PHBhdGggZD0iTTIgMTJoMiIvPjxwYXRoIGQ9Ik05IDExdjIiLz48cGF0aCBkPSJNMTUgMTF2MiIvPjxwYXRoIGQ9Ik0yMCAxMmgyIi8+PC9zdmc+']
+  name text [default: 'DialogueBot']
+  color text [default: '#2563eb']
+  button_size integer [default: 40]
+  position json [default: `{"x":24,"y":24}`]
+  window_size json [default: `{"width":320,"height":500}`]
+  channel_id varchar [not null]
+  id varchar [pk, not null]
+}
+
+table settings {
+  id varchar(36) [pk, not null]
+  email json [not null, default: `{"email":"","password":""}`]
+  user_id varchar(36) [not null]
+}
+
+table flows {
+  id varchar(36) [pk, not null]
+  name text [not null]
+  user_id varchar(36) [not null]
+  deleted boolean [default: false]
+  updated_at timestamp
+  created_at timestamp [default: `now()`]
+  edges json [default: `[]`]
+  nodes json [default: `[]`]
+  settings json [default: `[]`]
+  variables json [default: `[]`]
+  flows json [default: `[]`]
+  publish_at timestamp
+}
+
+table intents {
+  id varchar(36) [pk, not null]
+  name text [not null]
+  reference_id text [not null]
+  intents json [default: `[]`]
+  entities json [not null, default: `[]`]
+  user_id varchar(36) [not null]
+  deleted boolean [default: false]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+table conversations {
+  user_id varchar [not null, unique]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  channel_id text [not null]
+  ended_at timestamp [default: `now()`]
+
+  indexes {
+    (channel_id, user_id) [pk]
+  }
+}
+
+table messages {
+  id varchar(36) [pk, not null]
+  conversation_id varchar(36) [not null]
+  created_at timestamp [default: `now()`]
+  from text [not null]
+  to text [not null]
+  type text [not null, default: 'text']
+  message text [default: '']
+  template json [default: `{}`]
+}
+
+table plans {
+  id varchar(36) [pk, not null]
+  expiration_time integer [not null, default: 30]
+  max_channels integer [default: 3]
+  max_flows integer [default: 3]
+  features json [default: `[]`]
+  name text [not null]
+  price real [not null]
+  stripe_product_id text [not null]
+  stripe_price_id text [not null]
+  image text
+  archived boolean [default: false]
+}
+
+table user_subscriptions {
+  user_id varchar(36) [pk, not null]
+  plan_id varchar(36) [not null]
+  started_at timestamp [default: `now()`]
+  ended_at timestamp
+}
+
+ref: flows.user_id > users.id
+
+ref: user_subscriptions.user_id > users.id
+
+ref: user_subscriptions.plan_id > plans.id
+
+ref: messages.conversation_id > conversations.user_id
+
+ref: conversations.user_id - channels.id
+
+ref: conversations.channel_id > channels.id
+
+ref: intents.user_id > users.id
+
+ref: users.id - settings.user_id
+
+ref: channels.channel_type_id > channel_types.id
+
+ref: channels.user_id > users.id
+
+ref: channels.flow_id > flows.id
+
+ref: channels.id - chatbox_settings.channel_id
