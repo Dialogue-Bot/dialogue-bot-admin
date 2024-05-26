@@ -33,7 +33,7 @@ export const DataToolbar = () => {
             {t('channel:add_channel')}
           </Button>
         </SheetTrigger>
-        <SheetContent className='flex flex-col'>
+        <SheetContent className='flex flex-col overflow-y-auto'>
           <SheetHeader>
             <SheetTitle>{t('channel:add_channel')}</SheetTitle>
             <SheetDescription>

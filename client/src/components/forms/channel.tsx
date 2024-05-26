@@ -1,3 +1,4 @@
+import { NOT_CHOOSE } from '@/constants'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
 import { queryChannelTypesOption } from '@/lib/query-options/channel'
@@ -153,7 +154,13 @@ const ChannelForm = ({
                   <Label>{t('flow.label')}</Label>
                 </FormLabel>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => {
+                    if (value === NOT_CHOOSE) {
+                      field.onChange(undefined)
+                    } else {
+                      field.onChange(value)
+                    }
+                  }}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -162,6 +169,9 @@ const ChannelForm = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
+                    <SelectItem key={NOT_CHOOSE} value={NOT_CHOOSE}>
+                      {t('flow.placeholder')}
+                    </SelectItem>
                     {flows?.map((flow) => {
                       return (
                         <SelectItem key={flow.value} value={flow.value}>
