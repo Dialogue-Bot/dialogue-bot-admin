@@ -36,4 +36,5 @@ export const {
   AUTO_REGISTER_WEBHOOK,
   VERIFY_EMAIL_TOKEN_SECRET,
   STRIPE_SECRET_KEY,
+  API_TOKEN,
 } = process.env

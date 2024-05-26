@@ -1,7 +1,7 @@
 import { HttpException } from '@/exceptions/http-exception'
 import { AuthService } from '@/services/auth.service'
 import { UserService } from '@/services/users.service'
-import { ACCESS_TOKEN_SECRET } from '@config'
+import { ACCESS_TOKEN_SECRET, API_TOKEN } from '@config'
 import type { RequestWithUser, TTokenStore } from '@interfaces/auth.interface'
 import type { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
@@ -63,4 +63,23 @@ export const authMiddleware = async (
       ),
     )
   }
+}
+
+export const authApiToken = async (
+  req: RequestWithUser,
+  res: Response,
+  next: NextFunction,
+) => {
+  const token = req.headers["authorization"];
+  if (token !== API_TOKEN) {
+    console.log(
+      "invalid token - " + req.protocol + "://" + req.headers.host + req.url
+    );
+    next(
+      new HttpException(
+        StatusCodes.UNAUTHORIZED,
+        'API token không hợp lệ',
+      ),
+    )
+  } else next();
 }
