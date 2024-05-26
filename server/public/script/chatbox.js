@@ -42,7 +42,7 @@
   let e =
     (b = document.currentScript) == null ? void 0 : b.getAttribute('custom')
   e = e ? JSON.parse(e) : {}
-  const o = 'http://localhost:5175?channelId=' + c
+  const o = 'https://chatbox.dialoguebot.tech?channelId=' + c
   let r = !1
   const t = document.createElement('button')
   ;(t.id = 'dialogue-bot-toggle-button'),

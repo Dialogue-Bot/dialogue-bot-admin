@@ -16,7 +16,7 @@ export const Prices = () => {
               Choose the plan that works best for you.
             </p>
           </div>
-          <div className='grid grid-cols-1 gap-5 md:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-5 md:grid-cols-3 sm:max-w-4xl w-full'>
             {data?.map((plan) => {
               return <PricingCard key={plan.id} plan={plan} />
             })}

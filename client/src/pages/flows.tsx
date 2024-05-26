@@ -14,7 +14,7 @@ import { useDocumentTitle } from 'usehooks-ts'
 const LIMIT = 20
 
 const Flows = () => {
-  const { t } = useTranslation('flows')
+  const { t } = useTranslation(['flows', 'common'])
   const [search, setSearch] = useSearchParams()
 
   const { data } = useSuspenseQuery(
@@ -54,14 +54,14 @@ const Flows = () => {
             onClick={handlePrevPage}
             disabled={disabledPrev}
           >
-            Previous
+            {t('common:previous')}
           </Button>
           <Button
             variant='outline'
             onClick={handleNextPage}
             disabled={disabledNext}
           >
-            Next
+            {t('common:next')}
           </Button>
         </div>
       </div>

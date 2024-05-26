@@ -1,5 +1,6 @@
 {
   "title": "Xác minh tài khoản?",
   "subtitle": "Vui lòng nhập địa chỉ email bạn đã sử dụng để đăng ký tài khoản. Chúng tôi sẽ gửi cho bạn mã xác minh đến địa chỉ email đó.",
-  "btn_submit": "Gởi"
+  "btn_submit": "Gởi",
+  "page_title": "Verification Email | DialogueBot"
 }

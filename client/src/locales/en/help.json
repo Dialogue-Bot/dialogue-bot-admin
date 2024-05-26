@@ -1,4 +1,6 @@
 {
   "title": "Hi, how can I help you?",
-  "desc": "Discover how to use DialogueBot and find answers to your questions"
+  "desc": "Discover how to use DialogueBot and find answers to your questions",
+  "page_title": "Help center | DialogueBot",
+  "page_title_detail": "{{title}} | Help center | DialogueBot"
 }

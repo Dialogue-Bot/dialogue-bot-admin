@@ -4,11 +4,14 @@ import { useForgotPass } from '@/hooks/auth'
 import { useLimitAction } from '@/hooks/use-limit-action'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const ForgotPassword = () => {
   const { t } = useTranslation(['forgot_pass', 'common'])
 
   const forgotPassMutation = useForgotPass()
+
+  useDocumentTitle(t('page_title'))
 
   const { isActionAllowed, startCountdown, counter, setLastSubmitAction } =
     useLimitAction({

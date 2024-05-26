@@ -1,5 +1,6 @@
 {
   "title": "Verify your email address?",
   "subtitle": "Please enter the email address you used to sign up for your account. We will send you a verification code to that email address.",
-  "btn_submit": "Send"
+  "btn_submit": "Send",
+  "page_title": "Verification Email | DialogueBot"
 }

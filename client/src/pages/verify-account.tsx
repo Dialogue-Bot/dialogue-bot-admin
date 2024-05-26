@@ -3,9 +3,13 @@ import { ROUTES } from '@/constants'
 import { BadgeCheck } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const VerifyAccount = () => {
   const { t } = useTranslation(['verifyAccount', 'common'])
+
+  useDocumentTitle(t('page_title'))
+
   return (
     <div className='w-full max-w-sm flex flex-col gap-3'>
       <div className='flex items-center justify-center text-green-500'>

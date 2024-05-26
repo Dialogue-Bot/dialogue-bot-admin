@@ -9,6 +9,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const calcPercentage = (value: number, max: number) => {
   return (value / max) * 100
@@ -22,6 +23,8 @@ const UserSubscriptions = () => {
   const { data: usage } = useSuspenseQuery(queryUsageSubscription)
 
   const { data: plans } = useSuspenseQuery(queryPlansOptions)
+
+  useDocumentTitle(t('page_title'))
 
   return (
     <div className='p-6 space-y-4'>

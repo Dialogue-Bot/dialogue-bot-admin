@@ -29,7 +29,7 @@ export const VerifyAccount = ({
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${baseUrl}/public/images/logo.svg`}
+            src={`https://api.dialoguebot.tech/public/images/logo.svg`}
             width='44'
             height='44'
             alt='Dialoguebot Logo'

@@ -56,5 +56,7 @@
   "upgrade_plan": "Nâng cấp gói",
   "current_plan": "Gói hiện tại",
   "unlimited": "Không giới hạn",
-  "agent_notify": "Bạn có một yêu cầu hỗ trợ từ khách hàng."
+  "agent_notify": "Bạn có một yêu cầu hỗ trợ từ khách hàng.",
+  "next": "Tiếp theo",
+  "previous": "Trước"
 }

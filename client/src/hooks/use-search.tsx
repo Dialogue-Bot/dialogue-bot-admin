@@ -1,4 +1,5 @@
 import { Input } from '@/components/ui'
+import { cn } from '@/lib/utils'
 import { useCallback, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useDebounceValue } from 'usehooks-ts'
@@ -23,10 +24,10 @@ export const useSearch = (field = 'q') => {
   }, [debounced, field, setSearchParams])
 
   const renderInput = useCallback(
-    (opts?: { placeholder?: string }) => {
+    (opts?: { placeholder?: string; className?: string }) => {
       const placeholder = opts?.placeholder || ''
       return (
-        <div className='max-w-64 w-full'>
+        <div className={cn('max-w-64 w-full', opts?.className)}>
           <Input
             className='w-full'
             defaultValue={searchParams.get(field) || query}

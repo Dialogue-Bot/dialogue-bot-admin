@@ -1,4 +1,5 @@
 import _stripe from '@/libs/stripe'
+import { logger } from '@/utils/logger'
 import Stripe from 'stripe'
 import { Service } from 'typedi'
 
@@ -105,6 +106,10 @@ export class StripeService {
       customer_email: string
     },
   ) {
+    logger.info(
+      `[StripeService] createSubscription: ${JSON.stringify(subscriptionData)}`,
+    )
+
     const { customer_email, ...rest } = subscriptionData
 
     const customer = await this.createCustomer({
@@ -115,6 +120,10 @@ export class StripeService {
       ...rest,
       customer: customer.id,
     })
+
+    logger.info(
+      `[StripeService] createSubscription: ${JSON.stringify(subscription)}`,
+    )
 
     return subscription
   }

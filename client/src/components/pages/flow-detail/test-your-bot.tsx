@@ -1,3 +1,4 @@
+import { API_URL } from '@/constants'
 import { queryChannelForTestOption } from '@/lib/query-options'
 import { cn } from '@/lib/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
@@ -25,6 +26,7 @@ const TestYourBot = () => {
           className='h-full w-full'
           isTest
           isShowClose={false}
+          API_URL={API_URL}
         />
       </div>
     )

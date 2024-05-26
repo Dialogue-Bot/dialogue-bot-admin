@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "start": "tsc && vite build && vite preview",
+    "start": "vite preview",
     "format": "prettier --write ./src"
   },
   "dependencies": {
@@ -67,7 +67,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
-    "dialogue-chatbox": "^1.0.29",
+    "dialogue-chatbox": "^1.0.45",
     "embla-carousel-react": "^8.0.0-rc23",
     "fast-glob": "^3.3.2",
     "firebase": "^10.8.0",

@@ -1,5 +1,6 @@
 {
   "title": "Forgot your password?",
   "subtitle": "No worries! We'll send you a reset instructions.",
-  "btn_submit": "Send"
+  "btn_submit": "Send",
+  "page_title": "Forgot password | DialogueBot"
 }

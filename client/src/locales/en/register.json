@@ -2,5 +2,6 @@
   "title": "Create your account",
   "subtitle": "Register now and start using our services",
   "already_have_account": "Already have an account? <a> Log in now</a>",
-  "btn_submit": "Create account"
+  "btn_submit": "Create account",
+  "page_title": "Register | DialogueBot"
 }

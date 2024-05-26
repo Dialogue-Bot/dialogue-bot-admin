@@ -2,5 +2,6 @@
   "title": "Your Subscription",
   "usage": "Usage",
   "channels": "Channels {{used}} / {{max}}",
-  "flows": "Flows {{used}} / {{max}}"
+  "flows": "Flows {{used}} / {{max}}",
+  "page_title": "Subscriptions | DialogueBot"
 }

@@ -4,7 +4,7 @@ export const Layout = () => {
   return (
     <div className='flex min-h-screen'>
       <Sidebar />
-      <div className='ml-sidebar-setting w-full'>
+      <div className='ml-[52px] md:ml-sidebar-setting w-full'>
         <Outlet />
       </div>
     </div>

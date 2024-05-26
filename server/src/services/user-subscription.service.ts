@@ -1,5 +1,6 @@
 import { db } from '@/database/db'
 import { plans, userSubscriptions } from '@/database/schema'
+import { logger } from '@/utils/logger'
 import { and, eq } from 'drizzle-orm'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
@@ -104,10 +105,22 @@ export class UserSubscriptionService {
       )
 
       if (!plan) {
+        logger.error(
+          `[UserSubscriptionService] Plan ${stripePlanFree.name} not found`,
+        )
+
         return
       }
 
-      await this.stripeService.createSubscription({
+      logger.info(
+        `Receive stripe plan ${stripePlanFree.name} and plan ${plan.image}`,
+      )
+
+      logger.info(
+        `[UserSubscriptionService] Try to init free subscription for user ${email}`,
+      )
+
+      const stripeSubscription = await this.stripeService.createSubscription({
         customer_email: email,
         items: [
           {
@@ -116,8 +129,34 @@ export class UserSubscriptionService {
           },
         ],
       })
+
+      const user = await this.userService.findOneByEmail(email)
+
+      if (!user) {
+        logger.error(
+          `[UserSubscriptionService] User with email ${email} not found`,
+        )
+
+        return
+      }
+
+      const userSubscription = await this.upsertSubscription({
+        email,
+        stripeProductId: stripePlanFree.id,
+        startedAt: new Date(),
+        endedAt: new Date(stripeSubscription.current_period_end * 1000),
+      })
+
+      logger.info(
+        `[UserSubscriptionService] Free subscription for user ${email} created successfully`,
+      )
+
+      return userSubscription
     } catch (error) {
-      console.error(error)
+      logger.error(
+        `[UserSubscriptionService] Error while init free subscription for user ${email}`,
+        error,
+      )
     }
   }
 

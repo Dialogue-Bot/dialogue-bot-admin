@@ -19,10 +19,12 @@ export class UserService {
   @Inject((type) => UserSubscriptionService)
   private readonly userSubscriptionService: UserSubscriptionService
 
+  @Inject((type) => ChannelService)
+  private readonly channelService: ChannelService
+
   constructor(
     private readonly firebaseService: FirebaseService,
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-    private readonly channelService: ChannelService,
   ) {}
 
   public async findOneById(id: string) {

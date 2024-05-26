@@ -1,10 +1,10 @@
 import { auth } from '@/apis/auth'
-import { ROUTES } from '@/constants'
+import { API_URL, ROUTES } from '@/constants'
 import { ELang } from '@/types/share'
 import axios from 'axios'
 
 const http_client = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: `${API_URL}/api`,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

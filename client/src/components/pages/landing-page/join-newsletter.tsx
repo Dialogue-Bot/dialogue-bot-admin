@@ -11,36 +11,6 @@ export const JoinNewsletter = () => {
   const inputRef = useRef<HTMLDivElement | null>(null)
   const { t } = useTranslation(['landingPage', 'forms'])
 
-  // useGSAP(() => {
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: containerRef.current,
-  //       start: '-10% center',
-  //       end: 'bottom bottom',
-  //       scrub: 1,
-  //     },
-  //   })
-
-  //   tl.from(h2Ref.current, {
-  //     opacity: 0,
-  //     y: 50,
-  //     duration: 0.5,
-  //     ease: 'power3.out',
-  //   })
-  //     .from(pRef.current, {
-  //       opacity: 0,
-  //       y: 50,
-  //       duration: 0.5,
-  //       ease: 'power3.out',
-  //     })
-  //     .from(inputRef.current, {
-  //       opacity: 0,
-  //       y: 50,
-  //       duration: 0.5,
-  //       ease: 'power3.out',
-  //     })
-  // }, [])
-
   return (
     <div className='py-10 md:py-20 bg-white' ref={containerRef}>
       <div className='container'>
@@ -60,15 +30,15 @@ export const JoinNewsletter = () => {
             </p>
           </div>
           <div
-            className='flex items-center justify-center gap-3 max-w-2xl w-full md:flex-row flex-col'
+            className='flex items-center justify-center gap-3 max-w-2xl w-full sm:flex-row flex-col h-full'
             ref={inputRef}
           >
             <Input
               placeholder={t('forms:email.placeholder')}
-              className='max-w-96 w-full flex-1 h-9'
+              className='sm:max-w-96 w-full'
               type='email'
             />
-            <Button className='w-full md:w-auto'>
+            <Button className='w-full sm:w-auto'>
               {t('join_out_newsletter_button')}
             </Button>
           </div>

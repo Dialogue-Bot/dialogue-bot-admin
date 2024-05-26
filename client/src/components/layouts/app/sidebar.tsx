@@ -11,6 +11,7 @@ import {
 import { ROUTES } from '@/constants'
 import { useLogout } from '@/hooks/auth'
 import { useCreateBillingPortalSession } from '@/hooks/subscription'
+import { cn } from '@/lib/utils'
 import { useUserStore } from '@/store/use-user'
 import {
   Bot,
@@ -22,7 +23,7 @@ import {
   Rss,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const SIDEBAR_ITEMS: Array<{
   Icon: JSX.Element
@@ -31,28 +32,26 @@ const SIDEBAR_ITEMS: Array<{
 }> = [
   {
     Icon: (
-      <MessageSquareCode className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
+      <MessageSquareCode className='w-5 h-5 group-hover:opacity-85 transition-all' />
     ),
     i18n: 'flows',
     to: ROUTES.PRIVATE.FLOW.INDEX,
   },
   {
     Icon: (
-      <BrainCircuit className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
+      <BrainCircuit className='w-5 h-5 group-hover:opacity-85 transition-all' />
     ),
     i18n: 'training',
     to: ROUTES.PRIVATE.TRAINING.INDEX,
   },
   {
-    Icon: (
-      <Cable className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
-    ),
+    Icon: <Cable className='w-5 h-5 group-hover:opacity-85 transition-all' />,
     i18n: 'channels',
     to: ROUTES.PRIVATE.CHANNEL.INDEX,
   },
   {
     Icon: (
-      <MessageCircle className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
+      <MessageCircle className='w-5 h-5 group-hover:opacity-85 transition-all' />
     ),
     i18n: 'conversations',
     to: ROUTES.PRIVATE.CONVERSATION.INDEX,
@@ -80,19 +79,26 @@ const Sidebar = () => {
           <Bot size={32} className='text-white' />
         </Link>
         <nav className='flex flex-col flex-1'>
-          <ul className='flex flex-col'>
+          <div className='flex flex-col'>
             {SIDEBAR_ITEMS.map((item, index) => (
               <TooltipProvider key={item.i18n + index}>
                 <Tooltip>
                   <TooltipTrigger>
-                    <li className='h-12 w-full flex items-center justify-center group'>
-                      <Link
+                    <div className='h-12 w-full flex items-center justify-center group'>
+                      <NavLink
                         to={item.to}
-                        className='w-full h-full flex items-center justify-center'
+                        className={({ isActive }) =>
+                          cn(
+                            'w-full h-full flex items-center justify-center text-white',
+                            {
+                              'text-primary': isActive,
+                            },
+                          )
+                        }
                       >
                         {item.Icon}
-                      </Link>
-                    </li>
+                      </NavLink>
+                    </div>
                   </TooltipTrigger>
                   <TooltipContent side='right'>
                     <p>{t(item.i18n as any)}</p>
@@ -100,17 +106,24 @@ const Sidebar = () => {
                 </Tooltip>
               </TooltipProvider>
             ))}
-          </ul>
+          </div>
           <div className='mt-auto'>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className='h-12 w-full flex items-center justify-center group'>
-                  <Link
-                    className='w-full h-full flex items-center justify-center'
+                  <NavLink
+                    className={({ isActive }) =>
+                      cn(
+                        'w-full h-full flex items-center justify-center text-white',
+                        {
+                          'text-primary': isActive,
+                        },
+                      )
+                    }
                     to={ROUTES.PRIVATE.USER_SUBSCRIPTION.INDEX}
                   >
-                    <Rss className='w-5 h-5 text-white' />
-                  </Link>
+                    <Rss className='w-5 h-5 ' />
+                  </NavLink>
                 </TooltipTrigger>
                 <TooltipContent side='right'>
                   <p>{t('subscription')}</p>

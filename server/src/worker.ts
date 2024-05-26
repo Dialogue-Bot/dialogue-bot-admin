@@ -4,7 +4,7 @@ import { redis } from './libs/redis'
 import { sendMail } from './mail/send-mail'
 import { logger } from './utils/logger'
 
-const runWorker = () => {
+export const runWorker = () => {
   try {
     const worker = new Worker(
       QUEUE_KEYS.SEND_EMAIL,
@@ -36,5 +36,3 @@ const runWorker = () => {
 
   logger.info('Worker is running...')
 }
-
-runWorker()

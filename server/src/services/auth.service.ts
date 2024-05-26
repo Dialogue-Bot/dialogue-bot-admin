@@ -15,6 +15,7 @@ import { SendMailQueue } from '@/queues/mail.queue'
 import { logger } from '@/utils/logger'
 import {
   ACCESS_TOKEN_SECRET,
+  NODE_ENV,
   REFRESH_TOKEN_SECRET,
   RESET_PASS_TOKEN_SECRET,
   VERIFY_EMAIL_TOKEN_SECRET,
@@ -238,7 +239,10 @@ export class AuthService {
     await this.sendMailQueue.addJob({
       template: 'forgot-password',
       props: {
-        baseUrl: 'http://localhost:8080',
+        baseUrl:
+          NODE_ENV === 'production'
+            ? 'http://localhost:8080'
+            : 'https://api.dialoguebot.tech',
         username: user.name,
         url: `${clientUrl}set-password?token=${token}`,
       },
@@ -342,6 +346,7 @@ export class AuthService {
 
   public async findCurrentUser(userId: string) {
     logger.info('[AUTH] Try to get current user')
+
     const userInCache = await redis.get(`user:${userId}`)
 
     if (userInCache) {
@@ -450,7 +455,10 @@ export class AuthService {
     await this.sendMailQueue.addJob({
       template: 'verify-account',
       props: {
-        baseUrl: 'http://localhost:8080',
+        baseUrl:
+          NODE_ENV === 'production'
+            ? 'http://localhost:8080'
+            : 'https://api.dialoguebot.tech',
         username: user.name,
         url: `${clientUrl}verify-account?token=${token}`,
       },

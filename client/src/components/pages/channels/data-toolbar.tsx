@@ -22,13 +22,16 @@ export const DataToolbar = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className='flex items-center justify-between gap-3'>
+    <div className='flex items-center justify-between gap-3 sm:flex-row flex-col'>
       {renderInput({
         placeholder: t('common:search'),
+        className: 'w-full sm:max-w-64 max-w-full',
       })}
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button>{t('channel:add_channel')}</Button>
+          <Button className='w-full sm:w-auto'>
+            {t('channel:add_channel')}
+          </Button>
         </SheetTrigger>
         <SheetContent className='flex flex-col'>
           <SheetHeader>

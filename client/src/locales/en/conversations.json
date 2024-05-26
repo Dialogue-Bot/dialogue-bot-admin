@@ -3,5 +3,6 @@
   "select_conversation": "Select a conversation to start chatting",
   "title": "Chat",
   "filter": "Filter",
-  "filter_all": "Tất cả"
+  "filter_all": "Tất cả",
+  "page_title": "Conversations | DialogueBot"
 }
