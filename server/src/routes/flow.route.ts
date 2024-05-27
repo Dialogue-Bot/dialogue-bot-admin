@@ -2,7 +2,7 @@ import { ENDPOINTS } from '@/constants'
 import { FlowController } from '@/controllers/flows.controller'
 import { FlowDTO, TestYourBotDTO } from '@/dtos/flows.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
-import { authMiddleware } from '@/middlewares/auth.middleware'
+import { authApiToken, authMiddleware } from '@/middlewares/auth.middleware'
 import { validate } from '@/middlewares/validation.middleware'
 import type { Routes } from '@interfaces/routes.interface'
 import { Router } from 'express'
@@ -51,12 +51,15 @@ export class FlowRoute implements Routes {
     this.router.get(
       `${ENDPOINTS.FLOW.INDEX}/:contactId`,
       validate(TestYourBotDTO, 'body'),
+      authApiToken,
       this.controller.getFlowByContactId,
     )
-    //for bot get flow by contactId
+
+    //for bot get flow by channelId
     this.router.get(
       ENDPOINTS.FLOW.BOT_GET_ID,
       validate(TestYourBotDTO, 'body'),
+      authApiToken,
       this.controller.getFlowByIdForBot,
     )
 
