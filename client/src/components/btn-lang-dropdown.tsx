@@ -1,6 +1,8 @@
+import { ROUTES } from '@/constants'
 import { lngs } from '@/i18n'
 import { ELang } from '@/types/share'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import {
   Button,
   DropdownMenu,
@@ -11,6 +13,9 @@ import {
 
 export const ButtonLangDropdown = () => {
   const { i18n } = useTranslation()
+
+  const location = useLocation()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -23,6 +28,12 @@ export const ButtonLangDropdown = () => {
           <DropdownMenuItem
             key={lang}
             onClick={() => {
+              if (
+                location.pathname.includes(ROUTES.PUBLIC.HELP) &&
+                lang !== i18n.language
+              ) {
+                window.location.reload()
+              }
               i18n.changeLanguage(lang)
             }}
           >

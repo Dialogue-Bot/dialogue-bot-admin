@@ -196,3 +196,7 @@ export const isEmptyObject = (obj: Record<any, any>) => {
 export const genScript = (contactId: string, custom?: TCustomChatBox) => {
   return `<script src="${API_URL}/public/script/chatbox.js" channelId="${contactId}" id="${contactId}" async type="text/javascript" custom="${JSON.stringify(custom)}"></script>`
 }
+
+export const genMessengerCallback = (contactId: string) => {
+  return `${API_URL}/api/webhook/${contactId}`
+}

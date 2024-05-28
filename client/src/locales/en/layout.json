@@ -8,5 +8,11 @@
     "footer_built_by": "Built with ❤️ by Hoang Huy, Van Khanh",
     "start_now": "Start now",
     "help": "Help"
+  },
+  "app_layout": {
+    "tutorial": {
+      "title": "Tutorial",
+      "description": "This is a list of tutorials that will help you get started with DialogueBot."
+    }
   }
 }

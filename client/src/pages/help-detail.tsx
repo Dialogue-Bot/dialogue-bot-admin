@@ -6,6 +6,7 @@ import {
   H4,
   Head,
   HeadCell,
+  Img,
   Link,
   OrderedList,
   Row,
@@ -84,6 +85,9 @@ const HelpDetail = () => {
                   td: (props: any) => <Cell {...props} />,
                   thead: (props: any) => <Head {...props} />,
                   ol: (props: any) => <OrderedList {...props} />,
+                  Img: (props: any) => {
+                    return <Img {...props} />
+                  },
                 },
               })}
             </div>
@@ -97,11 +101,13 @@ const HelpDetail = () => {
                       to={`${ROUTES.PUBLIC.HELP}/${data.prev.slug}`}
                       className={cn(
                         buttonVariants({ variant: 'outline' }),
-                        'min-h-16 justify-start gap-4',
+                        'min-h-16 justify-start gap-4 ',
                       )}
                     >
-                      <ArrowLeft />
-                      <span>{data.prev.title}</span>
+                      <ArrowLeft className='flex-shrink-0' />
+                      <span className='whitespace-pre break-all line-clamp-1'>
+                        {data.prev.title}
+                      </span>
                     </RLink>
                   ) : null}
                   {data.next ? (

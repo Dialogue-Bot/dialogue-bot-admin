@@ -154,3 +154,5 @@ export const API_URL = import.meta.env.DEV
 export const SIGNATURE_SECRET = 'iR5WkkMmQwUP7AeMkYxXYjQNVaWMAhPk'
 export const STRIPE_PUBLIC_KEY =
   'pk_test_51P7hh8P3qr7u2BY3gr9HKIsisgiWEhpuRw6mNuDFf3NVZYjXfGK5N52TId330OffJWCUE4NU1kvaOKyX7gKjojxL00curHowAO'
+
+export const NEW_USER_STORED = 'NEW_USER_STORED'

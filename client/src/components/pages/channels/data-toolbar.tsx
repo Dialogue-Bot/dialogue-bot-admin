@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui'
+import { ROUTES } from '@/constants'
 import { useCreateChannel } from '@/hooks/channel'
 import { useSearch } from '@/hooks/use-search'
 import { useState } from 'react'
@@ -40,7 +41,7 @@ export const DataToolbar = () => {
               <Trans
                 i18nKey='channel:add_channel_description'
                 components={{
-                  a: <Link to='/channels' className='link' />,
+                  a: <Link to={ROUTES.PUBLIC.HELP} className='link' />,
                 }}
               />
             </SheetDescription>
