@@ -3,6 +3,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  Confirm,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -59,7 +60,7 @@ const SIDEBAR_ITEMS: Array<{
 ]
 
 const Sidebar = () => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'layout'])
   const { user } = useUserStore()
 
   const logoutMutation = useLogout()
@@ -146,12 +147,20 @@ const Sidebar = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className='h-12 w-full flex items-center justify-center group'>
-                  <div
-                    className='w-full h-full flex items-center justify-center'
-                    onClick={() => logoutMutation.mutate()}
+                  <Confirm
+                    title={t('layout:app_layout.logout.title')}
+                    description={t('layout:app_layout.logout.description')}
+                    onConfirm={() => {
+                      logoutMutation.mutate()
+                    }}
                   >
-                    <LogOut className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
-                  </div>
+                    <div
+                      className='w-full h-full flex items-center justify-center'
+                      // onClick={() => logoutMutation.mutate()}
+                    >
+                      <LogOut className='w-5 h-5 text-white group-hover:opacity-85 transition-all' />
+                    </div>
+                  </Confirm>
                 </TooltipTrigger>
                 <TooltipContent side='right'>
                   <p>{t('logout')}</p>
