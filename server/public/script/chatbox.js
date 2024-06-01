@@ -3,29 +3,29 @@
   if (l && l.supports && l.supports('modulepreload')) return
   for (const o of document.querySelectorAll('link[rel="modulepreload"]')) e(o)
   new MutationObserver((o) => {
-    for (const r of o)
-      if (r.type === 'childList')
-        for (const t of r.addedNodes)
+    for (const n of o)
+      if (n.type === 'childList')
+        for (const t of n.addedNodes)
           t.tagName === 'LINK' && t.rel === 'modulepreload' && e(t)
   }).observe(document, { childList: !0, subtree: !0 })
   function c(o) {
-    const r = {}
+    const n = {}
     return (
-      o.integrity && (r.integrity = o.integrity),
-      o.referrerPolicy && (r.referrerPolicy = o.referrerPolicy),
+      o.integrity && (n.integrity = o.integrity),
+      o.referrerPolicy && (n.referrerPolicy = o.referrerPolicy),
       o.crossOrigin === 'use-credentials'
-        ? (r.credentials = 'include')
+        ? (n.credentials = 'include')
         : o.crossOrigin === 'anonymous'
-        ? (r.credentials = 'omit')
-        : (r.credentials = 'same-origin'),
-      r
+        ? (n.credentials = 'omit')
+        : (n.credentials = 'same-origin'),
+      n
     )
   }
   function e(o) {
     if (o.ep) return
     o.ep = !0
-    const r = c(o)
-    fetch(o.href, r)
+    const n = c(o)
+    fetch(o.href, n)
   }
 })()
 ;(function () {
@@ -41,9 +41,9 @@
       ((u = document.currentScript) == null ? void 0 : u.getAttribute('id'))
   let e =
     (b = document.currentScript) == null ? void 0 : b.getAttribute('custom')
-  e = e ? JSON.parse(e) : {}
+  console.log({ channelId: c, customStyle: e }), (e = e ? JSON.parse(e) : {})
   const o = 'https://chatbox.dialoguebot.tech?channelId=' + c
-  let r = !1
+  let n = !1
   const t = document.createElement('button')
   ;(t.id = 'dialogue-bot-toggle-button'),
     (t.style.position = 'fixed'),
@@ -102,7 +102,7 @@
     t.appendChild(i)
   const I = document.querySelector('#dialogue-bot-toggle-button'),
     p = () => {
-      r
+      n
         ? ((i.style.opacity = '0'),
           (i.style.visibility = 'hidden'),
           (d.src = a),
@@ -115,7 +115,7 @@
           (i.style.boxShadow =
             ' 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'),
           (d.src = l)),
-        (r = !r)
+        (n = !n)
     }
   I == null || I.addEventListener('click', p),
     window.addEventListener(
@@ -125,16 +125,16 @@
       },
       !1,
     )
-  const n = document.getElementById(c),
-    M = n == null ? void 0 : n.parentNode
-  console.log(n, n == null ? void 0 : n.parentNode)
+  const r = document.getElementById(c),
+    M = r == null ? void 0 : r.parentNode
+  console.log(r, r == null ? void 0 : r.parentNode)
   const C = new MutationObserver((y) => {
     y.forEach((v) => {
       if (v.removedNodes) {
-        if (!n) return
-        Array.from(v.removedNodes).includes(n) && (t.remove(), i.remove())
+        if (!r) return
+        Array.from(v.removedNodes).includes(r) && (t.remove(), i.remove())
       }
     })
   })
-  M && C.observe(n.parentNode, { childList: !0 })
+  M && C.observe(r.parentNode, { childList: !0 })
 })()
