@@ -9,5 +9,4 @@ export const queryCustomChatBoxOptions = (channelId: string) =>
 
       return res.data
     },
-    staleTime: Infinity,
   })

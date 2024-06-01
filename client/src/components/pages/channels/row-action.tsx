@@ -17,7 +17,7 @@ import {
 } from '@/components/ui'
 import { ROUTES } from '@/constants'
 import { useDeleteChannel, useUpdateChannel } from '@/hooks/channel'
-import { useCustomChatBox } from '@/hooks/custom-chatbox/use-custom-chatbox'
+import { useCustomChatBox } from '@/hooks/channel/use-custom-chatbox'
 import { useBodyOverflow } from '@/hooks/use-body-overflow'
 import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
 import { TChannelWithChannelType } from '@/types/channel'
