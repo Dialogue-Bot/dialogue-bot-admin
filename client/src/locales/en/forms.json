@@ -198,7 +198,8 @@
     "label": "Image",
     "placeholder": "Enter image URL",
     "errors": {
-      "required": "Please enter image URL."
+      "required": "Please enter image URL or {variable_name}. (e.g. {product_image})",
+      "invalid": "Please enter a valid image URL or {variable_name}. (e.g. {product_image})"
     }
   },
   "variable": {
@@ -442,6 +443,14 @@
       "required": "Please select chat window position.",
       "required_x": "Please enter x position.",
       "required_y": "Please enter y position."
+    }
+  },
+  "url": {
+    "label": "URL",
+    "placeholder": "Enter URL",
+    "errors": {
+      "required": "Please enter URL.",
+      "url": "Please enter a valid URL."
     }
   }
 }

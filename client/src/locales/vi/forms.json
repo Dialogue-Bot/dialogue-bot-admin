@@ -172,6 +172,14 @@
       "required": "Vui lòng nhập phụ đề."
     }
   },
+  "card_image_url": {
+    "label": "Ảnh",
+    "placeholder": "Nhập URL ảnh",
+    "errors": {
+      "required": "Vui lòng nhập URL ảnh hoặc {variable_name}. (e.g. {product_image})",
+      "invalid": "Vui lòng nhập URL ảnh hoặc {variable_name}. (e.g. {product_image})"
+    }
+  },
   "variable": {
     "label": "Biến",
     "placeholder": "Chọn biến",
@@ -421,6 +429,14 @@
       "required": "Vui lòng nhập vị trí cửa sổ chat.",
       "required_x": "Vui lòng nhập vị trí x.",
       "required_y": "Vui lòng nhập vị trí y."
+    }
+  },
+  "url": {
+    "label": "URL",
+    "placeholder": "Nhập URL",
+    "errors": {
+      "required": "Vui lòng nhập URL.",
+      "url": "URL không hợp lệ."
     }
   }
 }
