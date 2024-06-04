@@ -23,6 +23,10 @@ class SettingApi {
       encrypted: encrypt(JSON.stringify(data)),
     })
   }
+
+  sendTestMail(): Promise<TBaseResponse<null>> {
+    return http_client.get(ENDPOINTS.SETTING.TEST_SEND_MAIL)
+  }
 }
 
 export const settingApi = new SettingApi()

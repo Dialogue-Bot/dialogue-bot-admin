@@ -30,6 +30,7 @@ export const ENDPOINTS = {
   SETTING: {
     INDEX: '/setting',
     MAIL: '/setting/email',
+    TEST_SEND_MAIL: '/setting/test-send-mail',
   },
   CHANNEL: {
     INDEX: '/channel',

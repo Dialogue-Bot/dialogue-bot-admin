@@ -9,7 +9,7 @@ import {
   SectionSettingTitle,
 } from '@/components/setting-section'
 import { Button } from '@/components/ui'
-import { useUpdateSettingMail } from '@/hooks/setting'
+import { useTestSendMail, useUpdateSettingMail } from '@/hooks/setting'
 import { useSettingStore } from '@/store/use-setting'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -20,6 +20,7 @@ const Mail = () => {
   const { setting } = useSettingStore()
 
   const settingMailMutation = useUpdateSettingMail()
+  const sendTestMailMutation = useTestSendMail()
 
   return (
     <div>
@@ -51,18 +52,33 @@ const Mail = () => {
                   <Trans
                     i18nKey='mail:sections.mail.message'
                     components={{
-                      a: <Link to='/settings/mail' className='link' />,
+                      a: (
+                        <Link
+                          to='/help/instrcution-config-for-send-mail'
+                          className='link'
+                        />
+                      ),
                     }}
                   />
                 }
               />
-              <Button
-                form='setting-mail-form'
-                type='submit'
-                loading={settingMailMutation.isPending}
-              >
-                {t('common:save')}
-              </Button>
+              <div className='flex gap-4 items-center'>
+                <Button
+                  variant='outline'
+                  onClick={() => sendTestMailMutation.mutate()}
+                  loading={sendTestMailMutation.isPending}
+                  disabled={!setting?.email.email || !setting?.email.password}
+                >
+                  {t('common:test')}
+                </Button>
+                <Button
+                  form='setting-mail-form'
+                  type='submit'
+                  loading={settingMailMutation.isPending}
+                >
+                  {t('common:save')}
+                </Button>
+              </div>
             </SectionSettingBottom>
           </SectionSetting>
         </div>

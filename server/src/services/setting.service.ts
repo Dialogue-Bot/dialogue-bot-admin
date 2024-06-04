@@ -1,13 +1,23 @@
+import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
 import { settings } from '@/database/schema'
 import { UpdateEmailSettingDto } from '@/dtos/setting.dto'
+import { HttpException } from '@/exceptions/http-exception'
+import { LocaleService } from '@/i18n/ctx'
+import { SendMailQueue } from '@/queues/mail.queue'
 import { encrypt } from '@/utils/crypto'
 import { eq } from 'drizzle-orm'
-import { Service } from 'typedi'
+import { StatusCodes } from 'http-status-codes'
+import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
 @Service()
 export class SettingService {
-  constructor(private readonly channelService: ChannelService) {}
+  constructor(
+    private readonly channelService: ChannelService,
+    private readonly sendMailQueue: SendMailQueue,
+    @Inject(LOCALE_KEY)
+    private readonly localeService: LocaleService,
+  ) {}
 
   async findByUserId(userId: string, isEnCrypt = true) {
     const [setting] = await db
@@ -77,5 +87,32 @@ export class SettingService {
     const setting = await this.findByUserId(channel.userId)
 
     return setting
+  }
+
+  async testSendMail(userId: string) {
+    const setting = (await this.findByUserId(userId, false)) as {
+      email: {
+        email: string
+        password: string
+      }
+    }
+
+    if (!setting.email.email || !setting.email.password) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().SETTING.SAVE_MAIL_FIRST(),
+      )
+    }
+
+    await this.sendMailQueue.addJob({
+      from: setting.email.email,
+      to: setting.email.email,
+      props: {} as any,
+      subject: `Test your email`,
+      template: 'This is a test email.' as any,
+      pass: setting.email.password,
+      user: setting.email.email,
+      isPreventSpam: false,
+    })
   }
 }

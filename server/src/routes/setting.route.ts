@@ -34,5 +34,11 @@ export class SettingRoute implements Routes {
       ENDPOINTS.SETTING.BY_CONTACT_ID,
       this.controller.getByContactId,
     )
+
+    this.router.get(
+      ENDPOINTS.SETTING.TEST_SEND_MAIL,
+      authMiddleware,
+      this.controller.testSendMail,
+    )
   }
 }

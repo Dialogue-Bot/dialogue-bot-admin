@@ -57,6 +57,7 @@ export const ENDPOINTS = {
     INDEX: '/setting',
     MAIL: '/setting/email',
     BY_CONTACT_ID: '/setting/by-contact-id/:contactId',
+    TEST_SEND_MAIL: '/setting/test-send-mail',
   },
   USER: {
     UPDATE_INFO: '/user/update-info',
