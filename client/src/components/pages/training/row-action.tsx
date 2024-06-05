@@ -1,13 +1,21 @@
+import TestIntentForm from '@/components/forms/test-intent'
 import {
   Button,
   Confirm,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui'
 import { ROUTES } from '@/constants'
-import { useDeleteIntent } from '@/hooks/intent'
+import { useDeleteIntent, useTestIntent } from '@/hooks/intent'
 import { TIntent } from '@/types/intent'
 import { Row } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
@@ -22,7 +30,9 @@ type Props = {
 const RowActions = ({ row }: Props) => {
   const { t } = useTranslation(['common', 'training'])
   const [openDropdown, setOpenDropdown] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false)
   const deleteIntentMutation = useDeleteIntent()
+  const testIntentMutation = useTestIntent()
 
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
@@ -37,6 +47,49 @@ const RowActions = ({ row }: Props) => {
             {t('common:row_actions.update')}
           </Link>
         </DropdownMenuItem>
+        <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+          <DialogTrigger asChild>
+            <DropdownMenuItem
+              onSelect={(e) => {
+                e.preventDefault()
+              }}
+            >
+              {t('common:row_actions.test_train')}
+            </DropdownMenuItem>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{t('training:test_title')}</DialogTitle>
+              <DialogDescription>
+                {t('training:test_description')}
+              </DialogDescription>
+            </DialogHeader>
+            <TestIntentForm
+              defaultValues={{
+                text: '',
+                referenceId: row.original.referenceId,
+              }}
+              onSubmit={async (data) => {
+                await testIntentMutation.mutateAsync(data)
+                setOpenDialog(false)
+              }}
+            />
+            <DialogFooter>
+              <Button
+                variant='outline'
+                onClick={() => {
+                  setOpenDialog(false)
+                  setOpenDropdown(false)
+                }}
+              >
+                {t('common:cancel')}
+              </Button>
+              <Button form='test-intent-form' type='submit'>
+                {t('common:submit')}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         <Confirm
           title={t('training:remove_intent_title')}
           description={t('training:remove_intent_description')}

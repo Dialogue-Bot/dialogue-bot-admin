@@ -1,5 +1,6 @@
 import { ENDPOINTS } from '@/constants'
 import http_client from '@/lib/http-client'
+import { TTestIntent } from '@/lib/schema/test-intent'
 import { TIntent, TIntentInput } from '@/types/intent'
 import {
   TBaseQuery,
@@ -31,6 +32,10 @@ class IntentApi {
 
   getForSelect(): Promise<TBaseResponse<TSelectResponse<string, string>[]>> {
     return http_client.get(ENDPOINTS.INTENT.FOR_SELECT)
+  }
+
+  test(data: TTestIntent): Promise<TBaseResponse<any>> {
+    return http_client.post(ENDPOINTS.INTENT.TEST, data)
   }
 }
 

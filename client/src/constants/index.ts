@@ -56,6 +56,7 @@ export const ENDPOINTS = {
     INDEX: '/intent',
     DELETE: '/intent/delete',
     FOR_SELECT: '/intent/for-select',
+    TEST: '/intent/test',
   },
   CONVERSATION_LIVE_CHAT: {
     INDEX: '/conversation-live-chat',

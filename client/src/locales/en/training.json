@@ -8,5 +8,8 @@
   "remove_intent_title": "Remove intent?",
   "remove_intent_description": "Are you sure you want to remove this intent? This action cannot be undone.",
   "page_title": "Training | DialogueBot",
-  "title": "Intents"
+  "title": "Intents",
+  "test_title": "Test intent",
+  "test_description": "Enter a message below to test the intent.",
+  "test_btn": "Test"
 }

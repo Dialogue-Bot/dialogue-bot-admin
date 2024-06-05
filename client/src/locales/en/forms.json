@@ -452,5 +452,12 @@
       "required": "Please enter URL.",
       "url": "Please enter a valid URL."
     }
+  },
+  "text": {
+    "label": "Text",
+    "placeholder": "Enter text",
+    "errors": {
+      "required": "Please enter text."
+    }
   }
 }
