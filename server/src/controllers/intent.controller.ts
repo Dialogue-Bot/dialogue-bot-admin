@@ -74,4 +74,13 @@ export class IntentController {
     )
     res.status(StatusCodes.OK).json({ data })
   })
+
+  public testPredict = catchAsync(async (req: RequestWithUser, res) => {
+    req.body.userId = req.user?.id
+    const data = await this.intentService.predictTrainIntent(req.body)
+    res.status(StatusCodes.OK).json({
+      message: this.localeService.i18n().INTENT.PREDICT_SUCCESS(),
+      data,
+    })
+  })
 }
