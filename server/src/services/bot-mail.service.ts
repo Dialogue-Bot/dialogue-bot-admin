@@ -11,7 +11,7 @@ export class BotMailService {
   constructor(
     private readonly sendMailQueue: SendMailQueue,
     private readonly channelService: ChannelService,
-  ) {}
+  ) { }
 
   async sendMail(fields: BotMailDto) {
     const { subject, template, to, contactId } = fields

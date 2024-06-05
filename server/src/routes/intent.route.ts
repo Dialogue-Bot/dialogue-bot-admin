@@ -59,5 +59,12 @@ export class IntentRoute implements Routes {
       authMiddleware,
       this.controller.getAllIntents,
     )
+
+    this.router.post(
+      ENDPOINTS.INTENT.TEST,
+      validate(PredictIntentDTO, 'body'),
+      authMiddleware,
+      this.controller.testPredict,
+    )
   }
 }

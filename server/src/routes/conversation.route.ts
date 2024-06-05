@@ -13,7 +13,7 @@ export class ConversationRoute implements Routes {
 
   initializeRoutes() {
     this.router.post(
-      `${ENDPOINTS.CONVERSATION.INDEX}/:conversationId/activities/:activity`,
+      `${ENDPOINTS.CONVERSATION.INDEX}`,
       this.controller.handleIncomingMessage,
     )
   }

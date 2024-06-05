@@ -73,7 +73,7 @@ export const ENDPOINTS = {
     PAYMENT_INTENT: '/stripe-webhook/payment-intent',
   },
   CONVERSATION: {
-    INDEX: '/v3/conversations',
+    INDEX: '/v3/conversations/:conversationId/activities/:activity',
   },
   FLOW: {
     INDEX: '/flow',
@@ -88,6 +88,7 @@ export const ENDPOINTS = {
     INDEX: '/intent',
     PREDICT: '/intent/predict',
     FOR_SELECT: '/intent/for-select',
+    TEST: '/intent/test',
   },
   CONVERSATION_LIVE_CHAT: {
     INDEX: '/conversation-live-chat',
