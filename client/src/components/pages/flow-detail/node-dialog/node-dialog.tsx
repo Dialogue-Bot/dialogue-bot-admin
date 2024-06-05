@@ -17,7 +17,7 @@ import { LANGS } from '@/constants'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { cn } from '@/lib/utils'
 import { EActionTypes } from '@/types/flow'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDebounceValue } from 'usehooks-ts'
 import { ACTIONS_TO_RENDER_LANG, MAP_ACTION } from '../constant'
@@ -32,6 +32,7 @@ export const NodeDialog = () => {
     handleChangeLang,
   } = useFlowCtx()
   const [name, setName] = useState('')
+  const dialogContentRef = useRef<HTMLDivElement>(null)
 
   const [debounce] = useDebounceValue(name, 800)
 
@@ -69,10 +70,18 @@ export const NodeDialog = () => {
         <div className='!hidden'></div>
       </DialogTrigger>
       <DialogContent
-        className={cn('max-w-xl', {
+        className={cn('max-w-xl  overflow-y-auto max-h-screen', {
           'max-w-5xl':
             selectedNode?.data.action === EActionTypes.PROMPT_AND_COLLECT,
         })}
+        style={{
+          borderRadius:
+            // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+            window.innerHeight - dialogContentRef.current?.offsetHeight! < 3
+              ? '0'
+              : '0.5rem',
+        }}
+        ref={dialogContentRef}
       >
         <DialogHeader>
           <DialogTitle>{selectedNode?.data.label}</DialogTitle>

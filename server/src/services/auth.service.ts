@@ -306,6 +306,17 @@ export class AuthService {
 
   public async refreshToken(refreshToken: string): Promise<TTokenData> {
     logger.info('[AUTH] Try to refresh token')
+
+    const blackListToken = await redis.get(`blacklist-token:${refreshToken}`)
+
+    if (blackListToken) {
+      logger.error('[AUTH] Refresh token failed')
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().AUTH.TOKEN_INVALID_OR_EXPIRED(),
+      )
+    }
+
     const decoded = (await this.verifyToken(
       refreshToken,
       REFRESH_TOKEN_SECRET as string,
@@ -336,6 +347,13 @@ export class AuthService {
     await redis.set(
       `refresh-token:${user.id}`,
       tokenData.refreshToken,
+      'EX',
+      TIME_EXPIRED_REFRESH_TOKEN,
+    )
+
+    await redis.set(
+      `blacklist-token:${refreshToken}`,
+      'true',
       'EX',
       TIME_EXPIRED_REFRESH_TOKEN,
     )

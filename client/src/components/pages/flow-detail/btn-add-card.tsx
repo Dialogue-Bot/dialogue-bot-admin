@@ -6,10 +6,10 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from '@/components/ui'
 import { EMessageTypes } from '@/types/flow'
-import { DialogTitle } from '@radix-ui/react-dialog'
 import _ from 'lodash'
 import { Plus } from 'lucide-react'
 import { useState } from 'react'

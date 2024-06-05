@@ -1,5 +1,5 @@
 import { auth } from '@/apis/auth'
-import { ROUTES } from '@/constants'
+import { NEW_USER_STORED, ROUTES } from '@/constants'
 import { TRegister } from '@/lib/schema/register'
 import { useMutation } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
@@ -18,6 +18,8 @@ export const useRegister = () => {
       navigate(
         `${ROUTES.AUTH.REQUEST_VERIFY_ACCOUNT}?send=true&email=${variables.email}`,
       )
+
+      localStorage.setItem(NEW_USER_STORED, '1')
     },
     onError(err: any) {
       toast.error(err?.response?.data?.message || t('api_error'))

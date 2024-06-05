@@ -240,6 +240,14 @@ type RootTranslation = {
 		 * E​m​a​i​l​ ​a​n​d​ ​p​a​s​s​w​o​r​d​ ​u​p​d​a​t​e​d​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
 		 */
 		UPDATE_EMAIL_SUCCESS: string
+		/**
+		 * P​l​e​a​s​e​ ​c​h​e​c​k​ ​y​o​u​r​ ​e​m​a​i​l​ ​i​f​ ​y​o​u​r​ ​c​o​n​f​i​g​u​r​a​t​i​o​n​ ​i​s​ ​c​o​r​r​e​c​t​.​ ​Y​o​u​ ​w​i​l​l​ ​r​e​c​e​i​v​e​ ​a​n​ ​e​m​a​i​l​.
+		 */
+		TEST_SEND_MAIL_SUCCESS: string
+		/**
+		 * P​l​e​a​s​e​ ​s​a​v​e​ ​y​o​u​r​ ​e​m​a​i​l​ ​a​n​d​ ​p​a​s​s​w​o​r​d​ ​f​i​r​s​t​!​ ​Y​o​u​ ​c​a​n​ ​t​e​s​t​ ​s​e​n​d​i​n​g​ ​m​a​i​l​ ​a​f​t​e​r​ ​t​h​a​t​.
+		 */
+		SAVE_MAIL_FIRST: string
 	}
 	FLOW: {
 		/**
@@ -549,6 +557,14 @@ export type TranslationFunctions = {
 		 * Email and password updated successfully!
 		 */
 		UPDATE_EMAIL_SUCCESS: () => LocalizedString
+		/**
+		 * Please check your email if your configuration is correct. You will receive an email.
+		 */
+		TEST_SEND_MAIL_SUCCESS: () => LocalizedString
+		/**
+		 * Please save your email and password first! You can test sending mail after that.
+		 */
+		SAVE_MAIL_FIRST: () => LocalizedString
 	}
 	FLOW: {
 		/**

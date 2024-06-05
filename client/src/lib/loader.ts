@@ -20,7 +20,6 @@ import {
   queryIntentsOption,
   settingQueryOption,
 } from './query-options'
-import { queryCustomChatBoxOptions } from './query-options/custom-chatbox'
 import {
   queryConversationOption,
   queryConversationsOptions,
@@ -213,8 +212,6 @@ export const previewChatBoxLoader = async ({ request }: any) => {
   if (!query.contactId) {
     return redirect(ROUTES.PRIVATE.CHANNEL.INDEX)
   }
-
-  await queryClient.ensureQueryData(queryCustomChatBoxOptions(query.contactId))
 
   return null
 }

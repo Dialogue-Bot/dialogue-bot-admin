@@ -1,3 +1,4 @@
+import { NOT_CHOOSE } from '@/constants'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
 import { queryChannelTypesOption } from '@/lib/query-options/channel'
@@ -5,7 +6,7 @@ import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
 import { queryFlowsForSelectOption } from '@/lib/query-options/flow'
 import { TChannelInput, useChannelSchema } from '@/lib/schema/channel'
 import { ChannelType } from '@/types/channel'
-import { genScript } from '@/utils'
+import { genMessengerCallback, genScript } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
@@ -96,7 +97,7 @@ const ChannelForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('contactId.label')}</FormLabel>
+                <FormLabel required>{t('contactId.label')}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -113,7 +114,7 @@ const ChannelForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('contactName.label')}</FormLabel>
+                <FormLabel required>{t('contactName.label')}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -153,7 +154,13 @@ const ChannelForm = ({
                   <Label>{t('flow.label')}</Label>
                 </FormLabel>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => {
+                    if (value === NOT_CHOOSE) {
+                      field.onChange(undefined)
+                    } else {
+                      field.onChange(value)
+                    }
+                  }}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -162,6 +169,9 @@ const ChannelForm = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
+                    <SelectItem key={NOT_CHOOSE} value={NOT_CHOOSE}>
+                      {t('flow.placeholder')}
+                    </SelectItem>
                     {flows?.map((flow) => {
                       return (
                         <SelectItem key={flow.value} value={flow.value}>
@@ -179,7 +189,7 @@ const ChannelForm = ({
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('channelTypeId.label')}</FormLabel>
+                <FormLabel required>{t('channelTypeId.label')}</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
@@ -213,7 +223,7 @@ const ChannelForm = ({
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t('pageToken.label')}</FormLabel>
+                      <FormLabel required>{t('pageToken.label')}</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
@@ -232,7 +242,9 @@ const ChannelForm = ({
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>{t('webhookSecret.label')}</FormLabel>
+                        <FormLabel required>
+                          {t('webhookSecret.label')}
+                        </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -266,6 +278,32 @@ const ChannelForm = ({
                         return toast.success(t('common:copy_success'))
                       }
                     })
+                  }
+                >
+                  Copy
+                </Button>
+              </div>
+            </div>
+          )}
+          {currentType?.name === ChannelType.MESSENGER && contactId && (
+            <div className='space-y-2'>
+              <Label>Callback Url</Label>
+              <Input
+                value={genMessengerCallback(contactId)}
+                readOnly
+                disabled
+              />
+              <div className='flex items-center justify-end'>
+                <Button
+                  type='button'
+                  onClick={() =>
+                    copyToClipboard(genMessengerCallback(contactId)).then(
+                      (success) => {
+                        if (success) {
+                          return toast.success(t('common:copy_success'))
+                        }
+                      },
+                    )
                   }
                 >
                   Copy

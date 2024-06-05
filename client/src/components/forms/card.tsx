@@ -11,8 +11,8 @@ import {
   FormMessage,
   Input,
   InputButtons,
+  InputImageFileOrUrl,
 } from '../ui'
-import InputImage from '../ui/input-image'
 
 type Props = {
   id?: string
@@ -86,12 +86,10 @@ export const CardForm = ({
               <FormItem>
                 <FormLabel>{t('card_image_url.label')}</FormLabel>
                 <FormControl>
-                  <InputImage
-                    defaultValue={field.value}
-                    value={field.value}
+                  <InputImageFileOrUrl
                     onChange={field.onChange}
-                    toServer
-                    size={80}
+                    value={field.value as string}
+                    defaultValue={field.value}
                   />
                 </FormControl>
                 <FormMessage />

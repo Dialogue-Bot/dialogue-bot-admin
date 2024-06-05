@@ -58,5 +58,11 @@
   "unlimited": "Không giới hạn",
   "agent_notify": "Bạn có một yêu cầu hỗ trợ từ khách hàng.",
   "next": "Tiếp theo",
-  "previous": "Trước"
+  "previous": "Trước",
+  "modal_tutorial": {
+    "title": "Hướng dẫn sử dụng",
+    "wellcome": "Chào mừng bạn đến với dịch vụ của chúng tôi!",
+    "welcome_desc": "Chúng tôi đã chuẩn bị một vài hướng dẫn để giúp bạn bắt đầu. Bạn có muốn xem nó bây giờ không?"
+  },
+  "test": "Kiểm tra"
 }

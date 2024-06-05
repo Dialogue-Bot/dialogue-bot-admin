@@ -20,7 +20,22 @@ export const useCardInputSchema = () => {
       .min(1, {
         message: t('card_subtitle.errors.required'),
       }),
-    imageUrl: z.string().optional(),
+    imageUrl: z
+      .string()
+      .optional()
+      .refine((value) => {
+        if (!value) return true
+
+        let check = true
+
+        if (value?.includes('http') || value?.includes('https')) {
+          check = /^(http|https):\/\/[^ "]+$/.test(value)
+        } else {
+          check = /^\{[^\d\W]\w*\}$/.test(value as string)
+        }
+
+        return check
+      }, t('card_image_url.errors.invalid')),
     buttons: z.array(buttonSchema),
   })
 }

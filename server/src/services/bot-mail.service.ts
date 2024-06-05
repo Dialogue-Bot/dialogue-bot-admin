@@ -33,6 +33,8 @@ export class BotMailService {
 
     const { email, password } = userSetting.email
 
+    console.log(`Your password is ${password} and your email is ${email}.`)
+
     await this.sendMailQueue.addJob({
       from: email,
       to,

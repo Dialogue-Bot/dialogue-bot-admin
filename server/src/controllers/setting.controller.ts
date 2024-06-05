@@ -38,4 +38,12 @@ export class SettingController {
       data: setting,
     })
   })
+
+  public testSendMail = catchAsync(async (req: RequestWithUser, res) => {
+    await this.settingService.testSendMail(req.user.id)
+
+    res.status(StatusCodes.OK).json({
+      message: this.localeService.i18n().SETTING.TEST_SEND_MAIL_SUCCESS(),
+    })
+  })
 }

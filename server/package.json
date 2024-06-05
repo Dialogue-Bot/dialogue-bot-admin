@@ -24,7 +24,8 @@
     "typesafe-i18n": "typesafe-i18n",
     "debug": "concurrently cross-env nodemon --exec \"node --inspect=0.0.0.0:9229 --require ts-node/register -r tsconfig-paths/register src/server.ts\" ",
     "format": "prettier --write ./src",
-    "compose:prod": "docker-compose -f docker-compose.prod.yml up -d"
+    "compose:prod": "docker-compose -f docker-compose.prod.yml up -d",
+    "gen:dbml": "ts-node -r tsconfig-paths/register --transpile-only src/database/dbml.ts"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
@@ -96,6 +97,7 @@
     "@types/throng": "^5.0.7",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
+    "drizzle-dbml-generator": "^0.6.1",
     "drizzle-kit": "^0.20.17",
     "jest": "^28.1.1",
     "lint-staged": "^13.0.3",

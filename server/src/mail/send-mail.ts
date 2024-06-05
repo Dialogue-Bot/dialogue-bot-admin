@@ -49,11 +49,16 @@ export const sendMail = async <
 
     const html = isNotInKey ? template : MAP_TEMPLATES[template](props)
 
+    console.log({
+      user,
+      pass,
+    })
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
+      port: 587,
+      secure: false,
       auth: {
         user,
         pass,

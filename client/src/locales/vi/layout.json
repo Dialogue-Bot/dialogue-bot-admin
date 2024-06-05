@@ -8,5 +8,15 @@
     "footer_built_by": "Xây dựng bởi Hoang Huy, Van Khanh",
     "start_now": "Bắt đầu ngay",
     "help": "Trợ giúp"
+  },
+  "app_layout": {
+    "tutorial": {
+      "title": "Hướng dẫn sử dụng",
+      "description": "Đây là danh sách các hướng dẫn sẽ giúp bạn bắt đầu với DialogBot."
+    },
+    "logout": {
+      "title": "Đăng xuất?",
+      "description": "Bạn luôn có thể đăng nhập lại nếu muốn tiếp tục sử dụng ứng dụng."
+    }
   }
 }

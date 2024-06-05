@@ -61,5 +61,11 @@
   "agent_notify": "You have new request support from customer",
   "view": "View",
   "next": "Next",
-  "previous": "Previous"
+  "previous": "Previous",
+  "modal_tutorial": {
+    "title": "Tutorial",
+    "wellcome": "Welcome to our service!",
+    "welcome_desc": "We have prepared a tutorial to help you get started. Would you like to view it now?"
+  },
+  "test": "Test"
 }

@@ -1,0 +1,134 @@
+export const article = {
+  date: '2024-5-27',
+  title: 'Cách cấu hình kênh Messenger cho chatbot của bạn',
+  description:
+    'Bài viết này sẽ hướng dẫn bạn qua quá trình cấu hình kênh Messenger cho chatbot của bạn.',
+  author: 'Van Khanh',
+}
+
+Messenger là một trong những nền tảng nhắn tin phổ biến nhất trên thế giới, với hơn 1,3 tỷ người dùng hoạt động. Bằng cách cấu hình kênh Messenger cho chatbot của bạn, bạn có thể tiếp cận một đối tượng lớn và cung cấp cho họ một trải nghiệm trò chuyện mượt mà.
+
+Trong bài viết này, chúng tôi sẽ hướng dẫn bạn qua quá trình cấu hình kênh Messenger cho chatbot của bạn. Chúng tôi sẽ bao gồm mọi thứ từ thiết lập ứng dụng Facebook của bạn đến kết nối nó với chatbot của bạn và kiểm tra để đảm bảo rằng mọi thứ đều hoạt động đúng cách.
+
+## Thiết lập ứng dụng Facebook của bạn
+
+Bước đầu tiên trong việc cấu hình kênh Messenger cho chatbot của bạn là thiết lập một ứng dụng Facebook. Để làm điều này, bạn cần tạo một ứng dụng mới trên nền tảng Facebook Developer và cấu hình nó để hoạt động với nền tảng Messenger.
+
+Bước 1: Truy cập [nền tảng Facebook Developer](https://developers.facebook.com/) và tạo một ứng dụng mới.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/facebook-app.png'
+  alt='Facebook Developer platform'
+/>
+
+Bước 2: Nhấp vào nút "Create App" và chọn nền tảng bạn muốn sử dụng (trong trường hợp này, chọn tùy chọn other).
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture3.png'
+  alt='Create App'
+/>
+
+Bước 3: Chọn loại ứng dụng của bạn.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture4.png'
+  alt='Select type of your app'
+/>
+
+Bước 4: Điền thông tin cần thiết cho ứng dụng của bạn.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture5.png'
+  alt='Fill in the required information for your app'
+/>
+
+Bước 5: Nhấp vào nút "Create App" để tạo ứng dụng của bạn.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture6.png'
+  alt='Create App'
+/>
+
+Bước 6: Sau khi ứng dụng của bạn được tạo, bạn sẽ được chuyển đến bảng điều khiển ứng dụng. Nhấp vào nút "Settings" dưới phần Messenger.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture7.png'
+  alt='Settings'
+/>
+
+Bước 7: Đi đến "Messenger API Settings" và nhấp vào nút "Connect" để kết nối trang của bạn với ứng dụng.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture8.png'
+  alt='Messenger API Settings'
+/>
+
+Bước 8: Chọn trang bạn muốn kết nối với ứng dụng và nhấp vào "Continue".
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture9.png'
+  alt='Select the page'
+/>
+
+Bước 9: Nhấp vào nút "Generate" và sau đó nhấp vào "I understand" để tạo token. Sau đó, sao chép token đã tạo.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture11.png'
+  alt='Generate token'
+/>
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture10.png'
+  alt='Generate token'
+/>
+
+Bước 10: Đi đến [Page channel](https://www.dialoguebot.tech/channels) để điền thông tin cần thiết và nhấp vào "Add new channel".
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture12.png'
+  alt='Page channel'
+/>
+
+> **Contact Id** là ID của trang bạn muốn kết nối với ứng dụng. **Page token** là token bạn đã sao chép ở bước 9. **Webhook secret** là khóa bí mật bạn muốn sử dụng để xác minh webhook.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture13.png'
+  alt='Contact Id'
+/>
+
+Bước 11: Nhấp vào "Configure" trong phần "Messsger API Settings" để cấu hình webhook. Sau đó điền "Callback URL" và "Verify Token" của bạn và nhấp vào "Verify and Save".
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture14.png'
+  alt='Configure the webhook'
+/>
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture15.png'
+  alt='Configure the webhook'
+/>
+
+Bước 12: Sau khi xác minh webhook, nhấp vào "Mange" bên cạnh "Webhook Fileds" để đăng ký theo dõi trường webhook. Trong trường hợp này, bạn đăng ký tất cả các trường.
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture16.png'
+  alt='Subscribe'
+/>
+
+Bước 13: Thêm đăng ký webhook. Nhấp vào "Add Subscription" và chọn các trường bạn muốn đăng ký. Sau đó nhấp vào "Confirm".
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture17.png'
+  alt='Add Subscription'
+/>
+
+<Img
+  src='/articles/instrcution-config-channel-messenger/Picture18.png'
+  alt='Add Subscription'
+/>
+
+Cuối cùng, bạn đã cấu hình thành công kênh Messenger cho chatbot của mình. Bây giờ bạn có thể bắt đầu kiểm tra chatbot của mình trên nền tảng Messenger và cung cấp cho người dùng của mình một trải nghiệm trò chuyện mượt mà.
+
+## Kết luận
+
+Cấu hình kênh Messenger cho chatbot của bạn là một quy trình đơn giản có thể giúp bạn tiếp cận một đối tượng lớn và cung cấp cho họ một trải nghiệm trò chuyện mượt mà. Bằng cách tuân thủ các bước được mô tả trong bài viết này, bạn có thể thiết lập ứng dụng Facebook của mình, kết nối nó với chatbot của bạn và bắt đầu kiểm tra nó trên nền tảng Messenger.

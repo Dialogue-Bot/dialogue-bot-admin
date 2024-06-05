@@ -1,4 +1,5 @@
 import { useUploadSingle } from '@/hooks/upload/use-upload-single'
+import { cn } from '@/lib/utils'
 import { Loader2, Plus, X } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { AspectRatio } from '.'
@@ -10,6 +11,7 @@ type Props = {
   toServer?: boolean
   defaultValue?: string
   size?: number
+  disabled?: boolean
 }
 
 const InputImage = ({
@@ -18,6 +20,7 @@ const InputImage = ({
   toServer,
   defaultValue,
   size,
+  disabled,
 }: Props) => {
   const [image, setImage] = useState<string>(defaultValue || '')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -59,7 +62,11 @@ const InputImage = ({
   }
 
   return (
-    <div>
+    <div
+      className={cn({
+        'pointer-events-none': disabled,
+      })}
+    >
       <input
         type='file'
         accept='image/*'
@@ -70,6 +77,7 @@ const InputImage = ({
       {_value ? (
         <div className='relative w-40' style={{ width: size, height: size }}>
           <Button
+            disabled={disabled}
             variant='destructive'
             className='right-2 top-2 absolute z-10 p-0 w-7 h-7'
             onClick={() => {

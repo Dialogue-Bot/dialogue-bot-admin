@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui'
+import { ROUTES } from '@/constants'
 import { useCreateChannel } from '@/hooks/channel'
 import { useSearch } from '@/hooks/use-search'
 import { useState } from 'react'
@@ -33,14 +34,14 @@ export const DataToolbar = () => {
             {t('channel:add_channel')}
           </Button>
         </SheetTrigger>
-        <SheetContent className='flex flex-col'>
+        <SheetContent className='flex flex-col overflow-y-auto'>
           <SheetHeader>
             <SheetTitle>{t('channel:add_channel')}</SheetTitle>
             <SheetDescription>
               <Trans
                 i18nKey='channel:add_channel_description'
                 components={{
-                  a: <Link to='/channels' className='link' />,
+                  a: <Link to={ROUTES.PUBLIC.HELP} className='link' />,
                 }}
               />
             </SheetDescription>

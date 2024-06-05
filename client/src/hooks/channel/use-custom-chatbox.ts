@@ -11,10 +11,10 @@ export const useCustomChatBox = () => {
     mutationFn: async (data: TCustomChatBox) => {
       return customChatBoxApi.update(data.channelId, data)
     },
-    onSuccess(data, variables) {
+    onSuccess(data) {
       toast.success(data.message)
       queryClient.invalidateQueries({
-        queryKey: ['custom-chatbox', variables.channelId],
+        queryKey: ['custom-chatbox'],
       })
     },
     onError(err: any) {
