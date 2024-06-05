@@ -81,10 +81,15 @@ const RowActions = ({ row }: Props) => {
                   setOpenDialog(false)
                   setOpenDropdown(false)
                 }}
+                disabled={testIntentMutation.isPending}
               >
                 {t('common:cancel')}
               </Button>
-              <Button form='test-intent-form' type='submit'>
+              <Button
+                form='test-intent-form'
+                type='submit'
+                loading={testIntentMutation.isPending}
+              >
                 {t('common:submit')}
               </Button>
             </DialogFooter>
