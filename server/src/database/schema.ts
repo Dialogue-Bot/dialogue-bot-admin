@@ -100,7 +100,7 @@ export const chatboxSettings = pgTable('chatbox_settings', {
     }),
   channelId: varchar('channel_id')
     .notNull()
-    .references(() => channels.id),
+    .references(() => channels.id, { onDelete: 'cascade' }),
   id: varchar('id')
     .primaryKey()
     .$defaultFn(() => createId()),

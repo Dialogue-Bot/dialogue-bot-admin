@@ -46,6 +46,10 @@
           "ok": {
             "intent": "greeting.hello",
             "domain": "default"
+          },
+          "welcom": {
+            "intent": "greeting.hello",
+            "domain": "default"
           }
         },
         "intentDict": {
@@ -66,6 +70,11 @@
             "domain": "default",
             "utterance": "ok",
             "intent": "greeting.hello"
+          },
+          {
+            "domain": "default",
+            "utterance": "welcome",
+            "intent": "greeting.hello"
           }
         ],
         "domains": {
@@ -84,7 +93,8 @@
             "features": {
               "hi": 1,
               "hello": 1,
-              "ok": 1
+              "ok": 1,
+              "welcom": 1
             },
             "intents": {
               "greeting.hello": 1
@@ -93,7 +103,8 @@
               "greeting.hello": {
                 "hi": 1,
                 "hello": 1,
-                "ok": 1
+                "ok": 1,
+                "welcom": 1
               }
             },
             "featuresToIntent": {
@@ -104,6 +115,9 @@
                 "greeting.hello"
               ],
               "ok": [
+                "greeting.hello"
+              ],
+              "welcom": [
                 "greeting.hello"
               ]
             },
@@ -122,17 +136,19 @@
               "features": [
                 "hi",
                 "hello",
-                "ok"
+                "ok",
+                "welcom"
               ],
               "intents": [
                 "greeting.hello"
               ],
               "perceptrons": [
                 [
-                  5.623373985290527,
-                  5.742938041687012,
-                  5.6846818923950195,
-                  8.53914163021994
+                  4.651478290557861,
+                  4.831741809844971,
+                  4.77214241027832,
+                  4.711692810058594,
+                  9.49913253149597
                 ]
               ]
             }
@@ -153,6 +169,10 @@
       [
         "en",
         "ok"
+      ],
+      [
+        "en",
+        "welcome"
       ]
     ]
   },
