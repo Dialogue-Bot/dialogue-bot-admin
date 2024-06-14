@@ -1,13 +1,16 @@
 import { MailForm } from '@/components/forms'
 import { Button, buttonVariants } from '@/components/ui'
+import { EMAIL_TO_FILL_RESET_PASS, FIST_TIME_SET_PASS } from '@/constants'
 import { useForgotPass } from '@/hooks/auth'
 import { useLimitAction } from '@/hooks/use-limit-action'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDocumentTitle } from 'usehooks-ts'
 
 const ForgotPassword = () => {
   const { t } = useTranslation(['forgot_pass', 'common'])
+
+  const navigate = useNavigate()
 
   const forgotPassMutation = useForgotPass()
 
@@ -40,6 +43,8 @@ const ForgotPassword = () => {
           forgotPassMutation.mutate(data, {
             onSuccess: () => {
               startCountdown()
+              localStorage.setItem(EMAIL_TO_FILL_RESET_PASS, data.email)
+              localStorage.setItem(FIST_TIME_SET_PASS, '1')
             },
             onError: () => {
               setLastSubmitAction(null)
