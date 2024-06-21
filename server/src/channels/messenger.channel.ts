@@ -78,13 +78,13 @@ export class MessengerChannel extends BaseChannel {
         const payload =
           messagingEvent.postback && messagingEvent.postback.payload
         const quick_reply =
-          messagingEvent.message && messagingEvent.message.quick_reply
+          messagingEvent.message && messagingEvent.message.quick_reply && messagingEvent.message.quick_reply.payload
 
         if (senderId == this.contactId) return //Agent replied to user => skip
 
         return this.postMessageToBot({
           userId: senderId,
-          message: messageText || payload,
+          message: quick_reply || messageText || payload,
           data: null,
           isTest: false,
         })
@@ -185,6 +185,27 @@ export class MessengerChannel extends BaseChannel {
     }
   }
 
+  async sendQuickReply({ userId, buttons, text }) {
+    try {
+      await axios({
+        method: 'POST',
+        url: this.messengerPostURL + this.pageToken,
+        data: {
+          recipient: {
+            id: userId,
+          },
+          messaging_type: "RESPONSE",
+          message: {
+            text,
+            quick_replies: buttons,
+          },
+        },
+      })
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   async sendGenericTemplate({ userId, extendData }) {
     try {
       await axios({
@@ -216,7 +237,7 @@ export class MessengerChannel extends BaseChannel {
       case 'list-card':
         return await this.sendGenericTemplate({ userId, extendData })
       case 'list-button':
-        return await this.sendButtons({ userId, buttons: extendData, text })
+        return await this.sendQuickReply({ userId, buttons: extendData, text })
       default:
         logger.info(`[MSG] Messenger does not support template type ${type}`)
         break
