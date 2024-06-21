@@ -438,5 +438,12 @@
       "required": "Vui lòng nhập URL.",
       "url": "URL không hợp lệ."
     }
+  },
+  "text": {
+    "label": "Text",
+    "placeholder": "Nhập text",
+    "errors": {
+      "required": "Vui lòng nhập text."
+    }
   }
 }

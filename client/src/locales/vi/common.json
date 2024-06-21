@@ -29,7 +29,8 @@
     "view": "Xem",
     "add": "Thêm",
     "rename": "Đổi tên",
-    "custom_chatbox": "Tuỳ chỉnh chatbox"
+    "custom_chatbox": "Tuỳ chỉnh chatbox",
+    "test_train": "Kiểm tra intent"
   },
   "remove": "Xóa",
   "cancel": "Hủy",

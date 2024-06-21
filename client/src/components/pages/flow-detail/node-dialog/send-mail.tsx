@@ -32,6 +32,23 @@ export const SendMailContent = () => {
 
   const { t } = useTranslation(['forms', 'common'])
 
+  function decodeHTMLEntities(text: string) {
+    const textArea = document.createElement('textarea')
+
+    textArea.innerHTML = text
+
+    const decodedText = textArea.value
+
+    textArea.remove()
+
+    console.log({
+      'before decode': text,
+      'after decode': decodedText,
+    })
+
+    return decodedText
+  }
+
   const handleSubmit = (data: TBotSendMail) => {
     if (!selectedNode) return
 
@@ -49,7 +66,7 @@ export const SendMailContent = () => {
     clonedNode.data.sendMail = {
       subject: data.subject,
       to: data.to,
-      body: html.outerHTML,
+      body: decodeHTMLEntities(html.outerHTML),
     }
 
     handleChangeSelectedNode(clonedNode)

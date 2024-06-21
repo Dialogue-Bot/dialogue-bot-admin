@@ -56,6 +56,7 @@ export const ENDPOINTS = {
     INDEX: '/intent',
     DELETE: '/intent/delete',
     FOR_SELECT: '/intent/for-select',
+    TEST: '/intent/test',
   },
   CONVERSATION_LIVE_CHAT: {
     INDEX: '/conversation-live-chat',
@@ -157,3 +158,5 @@ export const STRIPE_PUBLIC_KEY =
   'pk_test_51P7hh8P3qr7u2BY3gr9HKIsisgiWEhpuRw6mNuDFf3NVZYjXfGK5N52TId330OffJWCUE4NU1kvaOKyX7gKjojxL00curHowAO'
 
 export const NEW_USER_STORED = 'NEW_USER_STORED'
+export const EMAIL_TO_FILL_RESET_PASS = 'EMAIL_TO_FILL_RESET_PASS'
+export const FIST_TIME_SET_PASS = 'FIST_TIME_SET_PASS'

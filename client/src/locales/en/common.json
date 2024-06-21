@@ -31,7 +31,8 @@
     "view": "View",
     "add": "Add",
     "rename": "Rename",
-    "custom_chatbox": "Custom chatbox"
+    "custom_chatbox": "Custom chatbox",
+    "test_train": "Test intent"
   },
   "remove": "Remove",
   "cancel": "Cancel",

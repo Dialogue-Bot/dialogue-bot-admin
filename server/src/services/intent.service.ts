@@ -21,7 +21,7 @@ export class IntentService {
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
     private readonly nlpService: NlpService,
-  ) { }
+  ) {}
 
   public async create({
     fields,
@@ -258,6 +258,7 @@ export class IntentService {
         trained: sql<boolean>`
         case when ${intents.intents} is null or ${intents.intents}::jsonb = jsonb '[]' then false else true end
     `,
+        referenceId: intents.referenceId,
       })
       .from(intents)
       .where(where)
