@@ -91,7 +91,7 @@ export class LineChannel extends BaseChannel {
           isTest: false,
         })
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   public async sendMessageToUser({ userId, text, channelData }) {
@@ -135,7 +135,7 @@ export class LineChannel extends BaseChannel {
         return await this.sendGenericTemplate({ userId, extendData })
         break
       case 'list-button':
-        return await this.sendButtons({ userId, buttons: extendData, text })
+        return await this.sendQuickReplies({ userId, buttons: extendData, text })
       default:
         logger.info(`[LIN] Line does not support template type ${type}`)
         break
@@ -198,6 +198,34 @@ export class LineChannel extends BaseChannel {
       await axios(option)
     } catch (e) {
       console.log('LNE send message to User failed')
+    }
+  }
+
+  async sendQuickReplies({ userId, buttons, text }) {
+    try {
+      const option = {
+        method: 'POST',
+        url: this.linePostURL + '/message/push',
+        data: {
+          to: userId,
+          messages: [
+            {
+              type: 'text',
+              text,
+              quickReply: {
+                items: buttons,
+              }
+            }
+          ],
+        },
+        headers: {
+          Authorization: 'Bearer ' + this.pageToken,
+        },
+      }
+
+      await axios(option)
+    } catch (e) {
+      console.log('[LIN] send message to User failed: ' + e.message)
     }
   }
 }

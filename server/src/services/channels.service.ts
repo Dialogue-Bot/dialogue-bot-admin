@@ -194,16 +194,11 @@ export class ChannelService {
       )
     }
 
-    channelExisted.deleted = true
-
-    await db.update(channels).set(channelExisted).where(eq(channels.id, id))
+    await db.delete(channels).where(eq(channels.id, id))
   }
 
   public async deleteByIds(ids: string[], userId: string) {
-    await db
-      .update(channels)
-      .set({ deleted: true })
-      .where(and(inArray(channels.id, ids), eq(channels.userId, userId)))
+    await db.delete(channels).where(and(inArray(channels.id, ids), eq(channels.userId, userId)))
   }
 
   public async getAllChannels(
