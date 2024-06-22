@@ -40,9 +40,9 @@ jobs:
       needs: build-push
       steps:
          - name: executing remote ssh commands using ssh key
-           uses: fifsky/ssh-action@master
+           uses: appleboy/ssh-action@v1.0.3
            with:
-              command: |
+              script: |
                  cd /home/ubuntu
                  sudo docker rmi $(sudo docker images --filter "dangling=true" -q --no-trunc)
                  sudo docker-compose pull
