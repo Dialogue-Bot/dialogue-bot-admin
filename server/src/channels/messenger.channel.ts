@@ -1,3 +1,4 @@
+import { BOT_EVENT } from '@/constants'
 import { Helper } from '@/utils/helper'
 import { logger } from '@/utils/logger'
 import axios from 'axios'
@@ -101,18 +102,31 @@ export class MessengerChannel extends BaseChannel {
     })
   }
 
-  public async sendMessageToUser({ userId, text, channelData }) {
-    if (channelData && channelData.extendData.length) {
-      return this.detectTemple({
-        userId,
-        type: channelData.type,
-        extendData: channelData.extendData,
-        text,
-      })
-    }
-    if (!text) return
-
+  public async sendMessageToUser({ userId, text, type, channelData }) {
     try {
+      if (!type) throw new Error('Type can not be empty')
+
+      if (type === BOT_EVENT.MESSAGE) return await this.sendTextMessageToUser({ userId, text, channelData })
+      else if (type === BOT_EVENT.IMAGE) return this.sendImageToUser({ userId, channelData })
+    } catch (err) {
+      console.log('[MSG] sendMessageToUser failed: ' + err.message || err)
+    }
+    return
+  }
+
+  public async sendTextMessageToUser({ userId, text, channelData }) {
+    try {
+      if (Array.isArray(channelData.extendData) && channelData.extendData.length) {
+        return this.detectTemple({
+          userId,
+          type: channelData.type,
+          extendData: channelData.extendData,
+          text,
+        })
+      }
+
+      if (!text) throw new Error('Text can not be empty')
+
       await axios({
         method: 'POST',
         url: this.messengerPostURL + this.pageToken,
@@ -130,6 +144,21 @@ export class MessengerChannel extends BaseChannel {
       logger.info(
         `[MSG] Bot Sent message to User ${userId} failed - Error: ${e.message}`,
       )
+    }
+  }
+
+  public async sendImageToUser({ userId, channelData }) {
+    try {
+      if (!channelData || !channelData.imageUrl) throw new Error('Image can not be empty')
+      const extendData = [
+        {
+          image_url: channelData.imageUrl,
+        }
+      ]
+      await this.sendGenericTemplate({ userId, extendData })
+      logger.info(`[MSG] Bot Sent image to User ${userId} - ImageUrl: ${channelData.imageUrl}`)
+    } catch (err) {
+      console.log('[MSG] Bot Sent image to User: ' + err.message || err)
     }
   }
 
@@ -187,6 +216,7 @@ export class MessengerChannel extends BaseChannel {
 
   async sendQuickReply({ userId, buttons, text }) {
     try {
+      if (!text) throw new Error('Text can not be empty')
       await axios({
         method: 'POST',
         url: this.messengerPostURL + this.pageToken,
