@@ -72,12 +72,16 @@ export const MessageDialogContent = () => {
         clonedNode.data.contents[lang] = omit(clonedNode.data.contents[lang], [
           'cards',
           'type',
+          'buttons',
+          'dynamicCards',
         ])
       })
     }
 
     handleChangeSelectedNode(clonedNode)
   }
+
+  console.log('selectedNode', selectedNode)
 
   useDidUpdate(() => {
     if (!selectedNode) return
@@ -179,7 +183,19 @@ export const MessageDialogContent = () => {
         )}
       {messageType === EMessageTypes.LIST_CARD && (
         <div>
-          <Tabs defaultValue='normal' className='w-full'>
+          <Tabs
+            defaultValue='normal'
+            className='w-full'
+            onValueChange={() => {
+              const clonedNode = _.cloneDeep(selectedNode)
+
+              delete clonedNode.data.contents[currentLang].cards
+              delete clonedNode.data.contents[currentLang].buttons
+              delete clonedNode.data.contents[currentLang].dynamicCards
+
+              handleChangeSelectedNode(clonedNode)
+            }}
+          >
             <TabsList className='grid w-full grid-cols-2'>
               <TabsTrigger value='normal'>Normal</TabsTrigger>
               <TabsTrigger value='variable'>Use variable</TabsTrigger>
@@ -214,16 +230,22 @@ export const MessageDialogContent = () => {
                 </Label>
 
                 <Select
-                  value={selectedNode?.data?.dynamicCards || NOT_CHOOSE}
+                  value={
+                    selectedNode?.data?.contents?.[currentLang]?.dynamicCards ||
+                    NOT_CHOOSE
+                  }
                   onValueChange={(value) => {
                     if (!selectedNode) return
 
                     const cloneSelectedNode = _.cloneDeep(selectedNode)
 
                     if (value === NOT_CHOOSE) {
-                      delete cloneSelectedNode.data.dynamicCards
+                      delete cloneSelectedNode.data.contents[currentLang]
+                        .dynamicCards
                     } else {
-                      cloneSelectedNode.data.dynamicCards = value
+                      cloneSelectedNode.data.contents[
+                        currentLang
+                      ].dynamicCards = value
                     }
 
                     handleChangeSelectedNode(cloneSelectedNode)
