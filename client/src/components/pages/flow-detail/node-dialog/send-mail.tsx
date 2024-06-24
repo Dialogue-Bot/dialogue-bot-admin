@@ -41,11 +41,6 @@ export const SendMailContent = () => {
 
     textArea.remove()
 
-    console.log({
-      'before decode': text,
-      'after decode': decodedText,
-    })
-
     return decodedText
   }
 

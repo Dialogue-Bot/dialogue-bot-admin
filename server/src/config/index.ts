@@ -41,5 +41,3 @@ export const {
   API_TOKEN,
   STRIPE_ENDPOINT_SECRET,
 } = process.env
-
-console.log(process.env)

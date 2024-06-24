@@ -94,7 +94,6 @@ export class App {
 
     this.app.use((req, res, next) => {
       if (req.path === `/api${ENDPOINTS.STRIPE_WEBHOOK.INDEX}`) {
-        console.log('stripe-next')
         next()
       } else {
         express.json()(req, res, next)

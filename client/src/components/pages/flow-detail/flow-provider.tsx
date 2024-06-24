@@ -148,14 +148,6 @@ export const FlowProvider = ({ children, flow }: Props) => {
     isShowToastSuccess: false,
   })
 
-  console.log({
-    selectedEdge,
-    selectedNode,
-    flows: nodes.map((node) => node.data),
-    nodes,
-    edges,
-  })
-
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<
     any,
     any

@@ -42,11 +42,11 @@ jobs:
          - name: executing remote ssh commands using ssh key
            uses: fifsky/ssh-action@master
            with:
-              command: |
+              script: |
                  cd /home/ubuntu
                  sudo docker rmi $(sudo docker images --filter "dangling=true" -q --no-trunc)
-                 sudo docker-compose pull
-                 sudo docker-compose up -d
+                 sudo docker compose pull
+                 sudo docker compose up -d
               host: ${{ secrets.HOST }}
               user: ${{ secrets.USERNAME }}
               pass: ${{ secrets.PASSWORD }}

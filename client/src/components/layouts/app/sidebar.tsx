@@ -18,6 +18,7 @@ import {
   Bot,
   BrainCircuit,
   Cable,
+  HelpCircle,
   LogOut,
   MessageCircle,
   MessageSquareCode,
@@ -109,6 +110,29 @@ const Sidebar = () => {
             ))}
           </div>
           <div className='mt-auto'>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className='h-12 w-full flex items-center justify-center group'>
+                  <NavLink
+                    className={({ isActive }) =>
+                      cn(
+                        'w-full h-full flex items-center justify-center text-white',
+                        {
+                          'text-primary': isActive,
+                        },
+                      )
+                    }
+                    to={ROUTES.PUBLIC.HELP}
+                    target='_blank'
+                  >
+                    <HelpCircle className='w-5 h-5 ' />
+                  </NavLink>
+                </TooltipTrigger>
+                <TooltipContent side='right'>
+                  <p>{t('help')}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger className='h-12 w-full flex items-center justify-center group'>
