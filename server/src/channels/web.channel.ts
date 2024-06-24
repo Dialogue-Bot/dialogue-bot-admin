@@ -26,7 +26,8 @@ export class WebChannel extends BaseChannel {
     this.credentials = credentials
   }
 
-  async prepareMessage(req: Request, res: Response) { }
+  async prepareMessage(req: Request, res: Response) {
+  }
 
   public async sendMessageToUser({
     userId,
@@ -42,7 +43,9 @@ export class WebChannel extends BaseChannel {
     try {
       let result = {
         userId,
+        type: type,
         message: text || '',
+        url: channelData.imageUrl || '',
         template: {},
         isBot: true,
         createdAt: new Date(),
@@ -61,14 +64,14 @@ export class WebChannel extends BaseChannel {
       )
       if (
         convExisted &&
-        type === 'message' &&
+        (type === 'message' || type === 'image') &&
         !this.contactId.includes(TEST_YOUR_BOT_CHANNEL)
       ) {
         await this.messageService.createMessage({
           conversationId: convExisted.userId,
           from: 'bot',
           to: result.userId,
-          message: result.message,
+          message: result.message || result.url,
           type:
             channelData && channelData.type === 'list-card'
               ? 'template'
@@ -80,10 +83,10 @@ export class WebChannel extends BaseChannel {
       console.log(
         '[WEB] Bot send message to User - userId: ' +
         userId +
-        ' - message: ' +
-        result.message +
         ' - type: ' +
         type +
+        ' - message: ' +
+        result.message +
         ' - channelData: ' +
         JSON.stringify(channelData),
       )
@@ -94,5 +97,4 @@ export class WebChannel extends BaseChannel {
       logger.info(`[WEB] Bot send message to User failed - Error: ${e.message}`)
     }
   }
-
 }
