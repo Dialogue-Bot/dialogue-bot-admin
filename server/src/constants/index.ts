@@ -113,6 +113,7 @@ export const TEST_YOUR_BOT_CHANNEL = 'TESTYOURBOT'
 
 export const BOT_EVENT = {
   MESSAGE: 'message',
+  IMAGE: 'image',
   TYPING: 'typing',
   STOP_TYPING: 'stop-typing',
 }

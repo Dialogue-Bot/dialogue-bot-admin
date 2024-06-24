@@ -1,4 +1,5 @@
 import { PUBLIC_DOMAIN } from '@/config'
+import { BOT_EVENT } from '@/constants'
 import { logger } from '@/utils/logger'
 import axios from 'axios'
 import { Request, Response } from 'express'
@@ -94,10 +95,21 @@ export class LineChannel extends BaseChannel {
     } catch (e) { }
   }
 
-  public async sendMessageToUser({ userId, text, channelData }) {
-    const lineUserId = await this.getLineUserID()
+  public async sendMessageToUser({ userId, text, type, channelData }) {
     try {
-      if (channelData && channelData.extendData.length) {
+      if (!type) throw new Error('Type can not be empty')
+
+      if (type === BOT_EVENT.MESSAGE) return await this.sendTextMessageToUser({ userId, text, channelData })
+      else if (type === BOT_EVENT.IMAGE) return this.sendImageToUser({ userId, channelData })
+    } catch (err) {
+      console.log('[LIN] sendMessageToUser failed: ' + err.message || err)
+    }
+    return
+  }
+
+  async sendTextMessageToUser({ userId, text, channelData }) {
+    try {
+      if (Array.isArray(channelData.extendData) && channelData.extendData.length) {
         return this.detectTemple({
           userId,
           type: channelData.type,
@@ -105,7 +117,8 @@ export class LineChannel extends BaseChannel {
           text,
         })
       }
-      if (!text) return
+
+      if (!text) throw new Error('Text can not be empty')
 
       await axios({
         method: 'POST',
@@ -120,11 +133,36 @@ export class LineChannel extends BaseChannel {
       })
 
       logger.info(
-        `[LIN] Bot send message to User ${lineUserId} - Message: ${text}`,
+        `[LIN] Bot send message to User ${userId} - Message: ${text}`,
       )
     } catch (e) {
       logger.info(
-        `[LIN] Bot send message to User ${lineUserId} failed - Error: ${e.message}`,
+        `[LIN] Bot send message to User ${userId} failed - Error: ${e.message}`,
+      )
+    }
+  }
+
+  async sendImageToUser({ userId, channelData }) {
+    try {
+      if (!channelData || !channelData.imageUrl) throw new Error('Image can not be empty')
+      await axios({
+        method: 'POST',
+        url: this.linePostURL + '/message/push',
+        data: {
+          to: userId,
+          messages: [{ type: 'image', originalContentUrl: channelData.imageUrl, previewImageUrl: channelData.imageUrl }],
+        },
+        headers: {
+          Authorization: 'Bearer ' + this.pageToken,
+        },
+      })
+
+      logger.info(
+        `[LIN] Bot send image to User ${userId} - imageUrl: ${channelData.imageUrl}`,
+      )
+    } catch (e) {
+      logger.info(
+        `[LIN] Bot send image to User ${userId} failed - Error: ${e.message}`,
       )
     }
   }

@@ -36,18 +36,18 @@ export class ConversationService {
           credentials,
         )
 
-        if (type == BOT_EVENT.MESSAGE)
-          return await messengerChannel.sendMessageToUser({
-            userId: recipient.id,
-            text,
-            channelData,
-          })
-
         if ([BOT_EVENT.TYPING, BOT_EVENT.STOP_TYPING].includes(type))
           return await messengerChannel.sendActionToUser({
             userId: recipient.id,
             type,
           })
+
+        return await messengerChannel.sendMessageToUser({
+          userId: recipient.id,
+          text,
+          type,
+          channelData,
+        })
 
         break
       case 'LIN':
@@ -59,10 +59,11 @@ export class ConversationService {
           credentials,
         )
 
-        if (type == BOT_EVENT.MESSAGE)
+        if ([BOT_EVENT.MESSAGE, BOT_EVENT.IMAGE].includes(type))
           return await lineChannel.sendMessageToUser({
             userId: recipient.id,
             text,
+            type,
             channelData,
           })
 
