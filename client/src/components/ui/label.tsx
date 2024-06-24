@@ -38,7 +38,7 @@ const Label = React.forwardRef<
             <HelpCircle className='w-3 h-3 text-muted-foreground' />
           </TooltipTrigger>
           <TooltipContent className='max-w-80' side='right'>
-            <p className='text-xs'>{props.help}</p>
+            <p className='text-xs whitespace-pre-line'>{props.help}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

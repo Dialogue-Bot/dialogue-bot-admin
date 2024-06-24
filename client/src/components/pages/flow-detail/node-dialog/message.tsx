@@ -9,9 +9,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
   Textarea,
 } from '@/components/ui'
 import InputImage from '@/components/ui/input-image'
+import { NOT_CHOOSE } from '@/constants'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { EMessageTypes } from '@/types/flow'
 import _, { omit } from 'lodash'
@@ -24,7 +29,8 @@ import Card from '../card'
 import { MAP_MESSAGE_TYPE } from '../constant'
 
 export const MessageDialogContent = () => {
-  const { selectedNode, handleChangeSelectedNode, currentLang } = useFlowCtx()
+  const { selectedNode, handleChangeSelectedNode, currentLang, flow } =
+    useFlowCtx()
   const { t } = useTranslation(['flowDetail', 'forms', 'common'])
   const [messageType, setMessageType] = useState<EMessageTypes>(
     selectedNode?.data.contents[currentLang]?.type || EMessageTypes.TEXT,
@@ -172,24 +178,81 @@ export const MessageDialogContent = () => {
           />
         )}
       {messageType === EMessageTypes.LIST_CARD && (
-        <div className='flex gap-3'>
-          {selectedNode?.data?.contents?.[currentLang]?.cards &&
-            selectedNode?.data?.contents?.[currentLang]?.cards.length > 0 && (
-              <Carousel className='max-w-72 w-full'>
-                <CarouselContent>
-                  {(
-                    selectedNode?.data?.contents?.[currentLang]?.cards || []
-                  ).map((card: any, index: number) => {
-                    return (
-                      <CarouselItem key={index}>
-                        <Card card={card} index={index} />
-                      </CarouselItem>
-                    )
-                  })}
-                </CarouselContent>
-              </Carousel>
-            )}
-          <BtnAddCard />
+        <div>
+          <Tabs defaultValue='normal' className='w-full'>
+            <TabsList className='grid w-full grid-cols-2'>
+              <TabsTrigger value='normal'>Normal</TabsTrigger>
+              <TabsTrigger value='variable'>Use variable</TabsTrigger>
+            </TabsList>
+            <TabsContent value='normal'>
+              <div className='flex gap-3'>
+                {selectedNode?.data?.contents?.[currentLang]?.cards &&
+                  selectedNode?.data?.contents?.[currentLang]?.cards.length >
+                    0 && (
+                    <Carousel className='max-w-72 w-full'>
+                      <CarouselContent>
+                        {(
+                          selectedNode?.data?.contents?.[currentLang]?.cards ||
+                          []
+                        ).map((card: any, index: number) => {
+                          return (
+                            <CarouselItem key={index}>
+                              <Card card={card} index={index} />
+                            </CarouselItem>
+                          )
+                        })}
+                      </CarouselContent>
+                    </Carousel>
+                  )}
+                <BtnAddCard />
+              </div>
+            </TabsContent>
+            <TabsContent value='variable'>
+              <div className='space-y-2 w-full'>
+                <Label required help={t('forms:variable.description.card')}>
+                  {t('forms:variable.label')}
+                </Label>
+
+                <Select
+                  value={selectedNode?.data?.dynamicCards || NOT_CHOOSE}
+                  onValueChange={(value) => {
+                    if (!selectedNode) return
+
+                    const cloneSelectedNode = _.cloneDeep(selectedNode)
+
+                    if (value === NOT_CHOOSE) {
+                      delete cloneSelectedNode.data.dynamicCards
+                    } else {
+                      cloneSelectedNode.data.dynamicCards = value
+                    }
+
+                    handleChangeSelectedNode(cloneSelectedNode)
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue
+                      placeholder={t('forms:variable.placeholder')}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={NOT_CHOOSE}>
+                      {t('forms:variable.placeholder')}
+                    </SelectItem>
+                    {flow.variables?.map((variable, index) => {
+                      return (
+                        <SelectItem
+                          key={`${variable.name}-${index}`}
+                          value={variable.name}
+                        >
+                          {variable.name}
+                        </SelectItem>
+                      )
+                    })}
+                  </SelectContent>
+                </Select>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       )}
     </div>

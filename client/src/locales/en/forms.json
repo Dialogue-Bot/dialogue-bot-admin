@@ -207,6 +207,9 @@
     "placeholder": "Select variable",
     "errors": {
       "required": "Please select variable."
+    },
+    "description": {
+      "card": "Variable of card must be formatted as \n\t{\"title\": \"áo\", \n\t\"subtitle\": \"Size: 1, Color: Red\", \n\t\"image_url\": \"https://image.png\", \n\t\"buttons\": [\n\t\t{\"label\": \"pay\", \"value\": \"pay\", \"type\": \"postback\"}, \n\t\t{\"label\": \"view\", \"value\": \"https://www.url.com/\", \"type\": \"url\"}\n\t]}"
     }
   },
   "grammar_type": {

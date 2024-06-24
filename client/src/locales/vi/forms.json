@@ -185,6 +185,9 @@
     "placeholder": "Chọn biến",
     "errors": {
       "required": "Vui lòng chọn biến."
+    },
+    "description": {
+      "card": "Biến của thẻ phải được định dạng như \n{\"title\": \"T-shirt\", \"subtitle\": \"Size: M, Color: Red\", \"image_url\": \"https://example.com/image.jpg\", \"buttons\": [{\"label\": \"Buy\", \"url\": \"https://example.com/buy\", \"value\": \"buy\"}]}"
     }
   },
   "grammar_type": {
