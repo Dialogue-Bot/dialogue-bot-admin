@@ -68,5 +68,6 @@
     "wellcome": "Welcome to our service!",
     "welcome_desc": "We have prepared a tutorial to help you get started. Would you like to view it now?"
   },
-  "test": "Test"
+  "test": "Test",
+  "help": "Help"
 }

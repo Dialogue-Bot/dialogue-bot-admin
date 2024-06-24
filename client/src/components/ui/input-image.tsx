@@ -39,7 +39,6 @@ const InputImage = ({
       const reader = new FileReader()
       reader.onload = () => {
         if (!isControlled) {
-          console.log(reader.result as string)
           setImage(reader.result as string)
         }
         onChange?.(reader.result as string)

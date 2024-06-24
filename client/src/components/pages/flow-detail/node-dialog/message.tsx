@@ -2,7 +2,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  Input,
   InputButtons,
   Label,
   Select,
@@ -10,6 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Textarea,
 } from '@/components/ui'
 import InputImage from '@/components/ui/input-image'
 import { useDidUpdate } from '@/hooks/use-did-update'
@@ -117,7 +117,7 @@ export const MessageDialogContent = () => {
           {t('forms:bot_response.label')}
         </Label>
         {messageType === EMessageTypes.TEXT && (
-          <Input
+          <Textarea
             placeholder={t('forms:bot_response.placeholder')}
             value={botResponse}
             onChange={(e) => {
@@ -146,29 +146,31 @@ export const MessageDialogContent = () => {
           />
         )}
       </div>
-      {messageType !== EMessageTypes.LIST_CARD && (
-        <InputButtons
-          defaultValue={{
-            buttons: selectedNode?.data?.contents?.[currentLang]?.buttons || [],
-          }}
-          onChange={({ buttons }) => {
-            if (!selectedNode) return
+      {messageType !== EMessageTypes.LIST_CARD &&
+        messageType !== EMessageTypes.IMAGE && (
+          <InputButtons
+            defaultValue={{
+              buttons:
+                selectedNode?.data?.contents?.[currentLang]?.buttons || [],
+            }}
+            onChange={({ buttons }) => {
+              if (!selectedNode) return
 
-            if (buttons.some((button) => button.label === '')) {
-              return
-            }
+              if (buttons.some((button) => button.label === '')) {
+                return
+              }
 
-            const clonedNode = _.cloneDeep(selectedNode)
+              const clonedNode = _.cloneDeep(selectedNode)
 
-            clonedNode.data.contents[currentLang] = {
-              ...clonedNode.data.contents[currentLang],
-              buttons,
-            }
+              clonedNode.data.contents[currentLang] = {
+                ...clonedNode.data.contents[currentLang],
+                buttons,
+              }
 
-            handleChangeSelectedNode(clonedNode)
-          }}
-        />
-      )}
+              handleChangeSelectedNode(clonedNode)
+            }}
+          />
+        )}
       {messageType === EMessageTypes.LIST_CARD && (
         <div className='flex gap-3'>
           {selectedNode?.data?.contents?.[currentLang]?.cards &&

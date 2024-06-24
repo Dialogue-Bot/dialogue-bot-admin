@@ -17,7 +17,6 @@ export const useLogin = () => {
       window.location.href = search.get('redirect') || '/flows'
     },
     onError(err: any) {
-      console.log(err)
       toast.error(err?.response?.data?.message || t('api_error'))
 
       if (err?.response?.data?.errorKey === 'EMAIL_NOT_VERIFIED') {

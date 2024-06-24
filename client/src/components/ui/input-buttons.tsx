@@ -32,7 +32,6 @@ export const InputButtons = ({
   defaultValue,
   types = ['url', 'postback'],
 }: Props) => {
-  console.log(defaultValue?.buttons)
   const { t } = useTranslation(['forms', 'common'])
   const schema = useButtonsSchema()
   const form = useForm<TButtons>({

@@ -21,8 +21,6 @@ export const useCreateIntent = () => {
 
       toast.success(data.message)
 
-      console.log(data)
-
       navigate(ROUTES.PRIVATE.TRAINING.INDEX)
     },
 
