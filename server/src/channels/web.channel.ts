@@ -91,7 +91,7 @@ export class WebChannel extends BaseChannel {
         JSON.stringify(channelData),
       )
       if (App.io) {
-        App.io.to(userId).emit(type || SOCKET_EVENTS.MESSAGE, result)
+        App.io.to(userId).emit(SOCKET_EVENTS.MESSAGE || SOCKET_EVENTS.MESSAGE, result)
       }
     } catch (e) {
       logger.info(`[WEB] Bot send message to User failed - Error: ${e.message}`)
