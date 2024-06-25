@@ -53,7 +53,6 @@ export const MessageDialogContent = () => {
       langs.forEach((lang) => {
         clonedNode.data.contents[lang] = omit(clonedNode.data.contents[lang], [
           'message',
-          'type',
         ])
       })
     }
@@ -62,7 +61,6 @@ export const MessageDialogContent = () => {
       langs.forEach((lang) => {
         clonedNode.data.contents[lang] = omit(clonedNode.data.contents[lang], [
           'url',
-          'type',
         ])
       })
     }
@@ -71,17 +69,17 @@ export const MessageDialogContent = () => {
       langs.forEach((lang) => {
         clonedNode.data.contents[lang] = omit(clonedNode.data.contents[lang], [
           'cards',
-          'type',
           'buttons',
           'dynamicCards',
+          'tab_type',
         ])
       })
     }
 
+    clonedNode.data.contents[currentLang].type = value
+
     handleChangeSelectedNode(clonedNode)
   }
-
-  console.log('selectedNode', selectedNode)
 
   useDidUpdate(() => {
     if (!selectedNode) return
@@ -184,14 +182,18 @@ export const MessageDialogContent = () => {
       {messageType === EMessageTypes.LIST_CARD && (
         <div>
           <Tabs
-            defaultValue='normal'
+            value={
+              selectedNode?.data?.contents?.[currentLang]?.tab_type || 'normal'
+            }
             className='w-full'
-            onValueChange={() => {
+            onValueChange={(value) => {
               const clonedNode = _.cloneDeep(selectedNode)
 
               delete clonedNode.data.contents[currentLang].cards
               delete clonedNode.data.contents[currentLang].buttons
               delete clonedNode.data.contents[currentLang].dynamicCards
+
+              clonedNode.data.contents[currentLang].tab_type = value
 
               handleChangeSelectedNode(clonedNode)
             }}
