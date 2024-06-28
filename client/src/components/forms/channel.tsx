@@ -1,5 +1,4 @@
 import { NOT_CHOOSE } from '@/constants'
-import { useDidUpdate } from '@/hooks/use-did-update'
 import { useErrorsLngChange } from '@/hooks/use-errors-lng-change'
 import { queryChannelTypesOption } from '@/lib/query-options/channel'
 import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
@@ -9,6 +8,7 @@ import { ChannelType } from '@/types/channel'
 import { genMessengerCallback, genScript } from '@/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
+import { omit } from 'lodash'
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -61,8 +61,12 @@ const ChannelForm = ({
     defaultValues: {
       active: true,
       ...defaultValues,
+      credentials: {
+        ...defaultValues?.credentials,
+      },
     },
   })
+
   const [, copyToClipboard] = useCopyToClipboard()
 
   const channelTypeId = form.watch('channelTypeId')
@@ -75,14 +79,19 @@ const ChannelForm = ({
   useErrorsLngChange(form)
 
   const handleSubmit = (data: TChannelInput) => {
-    if (onSubmit) {
-      onSubmit(data)
-    }
-  }
+    if (!onSubmit) return
 
-  useDidUpdate(() => {
-    form.setValue('credentials', {})
-  }, [currentType, form])
+    switch (currentType?.name) {
+      case ChannelType.LINE:
+        data = omit(data, ['credentials.webhookSecret']) as TChannelInput
+        break
+      case ChannelType.WEB:
+        data = omit(data, ['credentials']) as TChannelInput
+        break
+    }
+
+    onSubmit(data)
+  }
 
   return (
     <>

@@ -42,6 +42,8 @@ export const useChannelSchema = () => {
           return
         }
 
+        console.log(data.credentials, type.name)
+
         switch (type.name) {
           case ChannelType.MESSENGER:
             if (!data.credentials.pageToken) {
