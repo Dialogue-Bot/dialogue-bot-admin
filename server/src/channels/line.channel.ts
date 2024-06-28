@@ -78,21 +78,28 @@ export class LineChannel extends BaseChannel {
     try {
       const { destination, events } = req.body
 
-      if (!(events && events[0] && events[0].type == 'message')) return
+      if (!(events && events[0] && (events[0].type == 'message' || events[0].type == 'postback'))) return
 
       const lineUserId = await this.getLineUserID()
 
-      if (destination == lineUserId) {
-        const { message, source } = events[0]
+      if (destination != lineUserId) throw new Error('destination not match user Id')
 
-        await this.postMessageToBot({
-          userId: source.userId,
-          message: message.text,
-          data: null,
-          isTest: false,
-        })
-      }
-    } catch (e) { }
+      const { message, source, postback } = events[0]
+
+      const userInput = message ? message.text : (postback ? postback.data : '');
+
+      if (!userInput) throw new Error('User input can not empty')
+
+      await this.postMessageToBot({
+        userId: source.userId,
+        message: userInput,
+        data: null,
+        isTest: false,
+      })
+    } catch (err) {
+      logger.info('[LIN] prepareMessage failed: ' + err.message || err)
+      return;
+    }
   }
 
   public async sendMessageToUser({ userId, text, type, channelData }) {
@@ -102,7 +109,7 @@ export class LineChannel extends BaseChannel {
       if (type === BOT_EVENT.MESSAGE) return await this.sendTextMessageToUser({ userId, text, channelData })
       else if (type === BOT_EVENT.IMAGE) return this.sendImageToUser({ userId, channelData })
     } catch (err) {
-      console.log('[LIN] sendMessageToUser failed: ' + err.message || err)
+      logger.info('[LIN] sendMessageToUser failed: ' + err.message || err)
     }
     return
   }
