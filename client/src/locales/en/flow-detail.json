@@ -38,7 +38,11 @@
     "empty_list": "Not have any variables yet, create one by clicking the button below."
   },
   "node_dialog": {
-    "desc": "Configure your action node."
+    "desc": "Configure your action node.",
+    "toast": {
+      "success": "Node has been saved successfully.",
+      "error": "Failed to save node."
+    }
   },
   "message_dialog": {
     "message_types": {

@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 import { useFlowCtx } from '..'
 
 export const HttpRequestDialogContent = () => {
-  const { t } = useTranslation(['forms', 'common'])
+  const { t } = useTranslation(['forms', 'common', 'flowDetail'])
   const { selectedNode, handleChangeSelectedNode, flow } = useFlowCtx()
   const schema = useRequestOptionsSchema()
   const form = useForm<TRequestOptions>({
@@ -79,7 +79,7 @@ export const HttpRequestDialogContent = () => {
     fieldArray.append({ key: '', value: '' })
   }
 
-  const handleSubmit = (data: TRequestOptions) => {
+  const handleSubmit = async (data: TRequestOptions) => {
     if (!selectedNode) return
 
     const clonedNode = _.cloneDeep(selectedNode)
@@ -95,6 +95,13 @@ export const HttpRequestDialogContent = () => {
     }
 
     handleChangeSelectedNode(clonedNode)
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        handleChangeSelectedNode(null)
+        resolve('hi')
+      }, 100)
+    })
   }
 
   return (
@@ -119,9 +126,7 @@ export const HttpRequestDialogContent = () => {
             name='assignUserResponse'
             render={({ field }) => (
               <FormItem>
-                <FormLabel required>
-                  {t('assign_user_response.label')}
-                </FormLabel>
+                <FormLabel>{t('assign_user_response.label')}</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   value={field.value}

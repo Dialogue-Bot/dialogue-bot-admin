@@ -44,7 +44,7 @@ export const SendMailContent = () => {
     return decodedText
   }
 
-  const handleSubmit = (data: TBotSendMail) => {
+  const handleSubmit = async (data: TBotSendMail) => {
     if (!selectedNode) return
 
     const html = document.createElement('div')
@@ -65,6 +65,13 @@ export const SendMailContent = () => {
     }
 
     handleChangeSelectedNode(clonedNode)
+
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        handleChangeSelectedNode(null)
+        resolve('hi')
+      }, 100)
+    })
   }
 
   return (
