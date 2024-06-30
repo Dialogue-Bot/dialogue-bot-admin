@@ -74,7 +74,7 @@ export const StartNode = (props?: CustomNodeProps) => {
         <Bolt className='w-4 h-4' />
         <span className='leading-none'>{data?.label}</span>
       </div>
-      <HandleCustom type='source' position={Position.Right} />
+      <HandleCustom type='source' position={Position.Bottom} />
     </div>
   )
 }

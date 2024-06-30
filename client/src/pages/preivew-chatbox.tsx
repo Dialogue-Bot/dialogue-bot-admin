@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui'
 import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { ChatBox } from 'dialogue-chatbox'
 import { Bot, X } from 'lucide-react'
 import { useState } from 'react'
@@ -9,7 +9,7 @@ import { useDocumentTitle } from 'usehooks-ts'
 
 const PreviewChatBox = () => {
   const [searchParams] = useSearchParams()
-  const { data: customs } = useQuery(
+  const { data: customs } = useSuspenseQuery(
     queryCustomChatBoxOptions(searchParams.get('contactId') as string),
   )
   const [open, setOpen] = useState(false)

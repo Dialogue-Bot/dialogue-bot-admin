@@ -17,8 +17,13 @@ import { useFlowCtx } from '.'
 import Setting from './setting'
 
 export const Toolbar = () => {
-  const { toggleActions, openActions, setShowTestBot, showTestBot } =
-    useFlowCtx()
+  const {
+    toggleActions,
+    openActions,
+    setShowTestBot,
+    showTestBot,
+    handleAutoLayout,
+  } = useFlowCtx()
   const { t } = useTranslation('flowDetail')
   const { flow, edges, nodes, getCompleteFlows } = useFlowCtx()
   const { id } = useParams()
@@ -107,6 +112,9 @@ export const Toolbar = () => {
             }}
           >
             {t(!showTestBot ? 'toolbar.test_your_bot' : 'toolbar.close_test')}
+          </Button>
+          <Button variant='secondary' onClick={handleAutoLayout}>
+            {t('toolbar.auto_layout')}
           </Button>
           <Button
             variant='secondary'

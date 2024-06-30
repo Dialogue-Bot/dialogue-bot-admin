@@ -294,7 +294,7 @@ const ChannelForm = ({
               </div>
             </div>
           )}
-          {currentType?.name === ChannelType.MESSENGER && contactId && (
+          {currentType?.name !== ChannelType.WEB && contactId && (
             <div className='space-y-2'>
               <Label>Callback Url</Label>
               <Input

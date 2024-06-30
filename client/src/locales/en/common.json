@@ -32,7 +32,8 @@
     "add": "Add",
     "rename": "Rename",
     "custom_chatbox": "Custom chatbox",
-    "test_train": "Test intent"
+    "test_train": "Test intent",
+    "copy_script": "Copy script"
   },
   "remove": "Remove",
   "cancel": "Cancel",

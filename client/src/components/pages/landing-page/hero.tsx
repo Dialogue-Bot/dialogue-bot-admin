@@ -63,7 +63,7 @@ const AIChatbots = () => {
     <>
       <br className='md:hidden' />
       <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent relative'>
-        AI Chatbots{' '}
+        Script Chatbots{' '}
         {[1, 2, 3, 4, 5].map((i) => (
           <Sparkle key={i} index={i} />
         ))}

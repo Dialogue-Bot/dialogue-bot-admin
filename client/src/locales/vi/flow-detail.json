@@ -19,7 +19,8 @@
     "publish": "Xuất bản",
     "test_your_bot": "Chạy thử bot",
     "close_test": "Dừng chạy thử",
-    "save": "Lưu"
+    "save": "Lưu",
+    "auto_layout": "Sắp xếp"
   },
   "settings": {
     "title": "Cài đặt",

@@ -30,7 +30,8 @@
     "add": "Thêm",
     "rename": "Đổi tên",
     "custom_chatbox": "Tuỳ chỉnh chatbox",
-    "test_train": "Kiểm tra intent"
+    "test_train": "Kiểm tra intent",
+    "copy_script": "Sao chép script"
   },
   "remove": "Xóa",
   "cancel": "Hủy",

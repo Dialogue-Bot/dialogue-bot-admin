@@ -19,7 +19,8 @@
     "publish": "Publish",
     "test_your_bot": "Test Your Bot",
     "close_test": "Close Test",
-    "save": "Save"
+    "save": "Save",
+    "auto_layout": "Auto Layout"
   },
   "settings": {
     "title": "Settings",

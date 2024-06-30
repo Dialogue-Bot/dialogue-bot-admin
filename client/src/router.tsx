@@ -230,7 +230,11 @@ export const router = createBrowserRouter([
       {
         path: ROUTES.PRIVATE.PREVIEW_CHATBOX,
         loader: previewChatBoxLoader,
-        Component: PreviewChatBox,
+        element: (
+          <Suspense fallback={<PageLoading />}>
+            <PreviewChatBox />
+          </Suspense>
+        ),
       },
     ],
   },

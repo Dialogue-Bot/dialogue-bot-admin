@@ -2,6 +2,7 @@ import { useUpdateFlow } from '@/hooks/flow'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { EActionTypes, EMessageTypes, TFLow, TNode } from '@/types/flow'
 import { createId } from '@paralleldrive/cuid2'
+import ELK from 'elkjs/lib/elk.bundled.js'
 import _ from 'lodash'
 import {
   Dispatch,
@@ -71,6 +72,7 @@ type FlowCtx = {
   setShowTestBot: Dispatch<SetStateAction<boolean>>
   handleEdgeMouseEnter: EdgeMouseHandler
   handleEdgeMouseLeave: EdgeMouseHandler
+  handleAutoLayout: () => void
 }
 
 const FlowContext = createContext<FlowCtx | undefined>(undefined)
@@ -94,32 +96,65 @@ const INIT_NODES = [
     deletable: false,
     draggable: false,
   },
-  {
-    id: EActionTypes.FALLBACK,
-    type: EActionTypes.FALLBACK,
-    position: { x: 190, y: 280 },
-    data: {
-      label: 'Fallback',
-      id: EActionTypes.FALLBACK,
-      action: EActionTypes.FALLBACK,
-      name: 'Fallback',
-    },
-    deletable: false,
-    draggable: false,
-  },
 ]
 
-const INIT_EDGES = [
-  {
-    id: 'start-fallback',
-    source: EActionTypes.START,
-    target: EActionTypes.FALLBACK,
-    type: 'custom',
-    data: {
-      deletable: false,
-    },
-  },
-]
+const DEFAULT_WIDTH = 172
+const DEFAULT_HEIGHT = 36
+
+const elk = new ELK()
+
+const elkOptions = {
+  'elk.algorithm': 'layered',
+  'elk.direction': 'DOWN',
+  'elk.spacing.nodeNode': '100',
+  'elk.layered.spacing.nodeNodeBetweenLayers': '100',
+  'elk.layered.spacing': '100',
+  'elk.layered.mergeEdges': 'true',
+  'elk.spacing': '100',
+  'elk.spacing.individual': '100',
+  'elk.edgeRouting': 'SPLINES',
+}
+
+const getLayoutedElements = (
+  nodes: Node[],
+  edges: Edge[],
+  options: Record<string, any> = {},
+) => {
+  const isHorizontal = options?.['elk.direction'] === 'RIGHT'
+  const graph = {
+    id: 'root',
+    layoutOptions: options,
+    children: nodes.map((node) => ({
+      ...node,
+
+      targetPosition: isHorizontal ? 'left' : 'top',
+      sourcePosition: isHorizontal ? 'right' : 'bottom',
+      width: DEFAULT_WIDTH,
+      height: DEFAULT_HEIGHT,
+    })),
+    edges: edges,
+  } as any
+
+  return elk
+    .layout(graph)
+    .then((layoutedGraph) => ({
+      nodes:
+        layoutedGraph?.children?.map((node) => ({
+          ...node,
+          // React Flow expects a position property on the node instead of `x`
+          // and `y` fields.
+          position: { x: node.x, y: node.y },
+        })) || [],
+
+      edges: layoutedGraph.edges,
+    }))
+    .catch(() => {
+      return {
+        nodes: [],
+        edges: [],
+      }
+    })
+}
 
 /**
  * Provides the context for the flow editor.
@@ -134,7 +169,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
     flow.nodes?.length ? (flow.nodes as Node<any>[]) : INIT_NODES,
   )
   const [edges, setEdges, onEdgesChange] = useEdgesState(
-    flow.edges?.length ? (flow.edges as Edge<any>[]) : INIT_EDGES,
+    flow.edges?.length ? (flow.edges as Edge<any>[]) : [],
   )
   const [selectedNode, setSelectedNode] = useState<Node<any> | null>(null)
   const [selectedEdge, setSelectedEdge] = useState<Edge<any> | null>(null)
@@ -548,7 +583,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
 
       if (
         sourceNode?.data.action === EActionTypes.START &&
-        sourcesFromHandleInState < 2
+        sourcesFromHandleInState < 1
       )
         return true
 
@@ -885,6 +920,17 @@ export const FlowProvider = ({ children, flow }: Props) => {
     [setEdges],
   )
 
+  const handleAutoLayout = useCallback(async () => {
+    const opts = { ...elkOptions }
+
+    getLayoutedElements(nodes, edges, opts).then(
+      ({ nodes: layoutedNodes, edges: layoutedEdges }) => {
+        setNodes(layoutedNodes as any)
+        setEdges(layoutedEdges as any)
+      },
+    )
+  }, [edges, nodes, setEdges, setNodes])
+
   useDidUpdate(() => {
     setNodes((nds) => {
       return nds.map((node) =>
@@ -947,6 +993,7 @@ export const FlowProvider = ({ children, flow }: Props) => {
         setShowTestBot,
         handleEdgeMouseEnter,
         handleEdgeMouseLeave,
+        handleAutoLayout,
       }}
     >
       {children}

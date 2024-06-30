@@ -21,12 +21,15 @@ import { useCustomChatBox } from '@/hooks/channel/use-custom-chatbox'
 import { useBodyOverflow } from '@/hooks/use-body-overflow'
 import { queryCustomChatBoxOptions } from '@/lib/query-options/custom-chatbox'
 import { TChannelWithChannelType } from '@/types/channel'
+import { genScript } from '@/utils'
 import { useQuery } from '@tanstack/react-query'
 import { Row } from '@tanstack/react-table'
 import { MoreHorizontal } from 'lucide-react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { toast } from 'sonner'
+import { useCopyToClipboard } from 'usehooks-ts'
 
 type Props = {
   row: Row<TChannelWithChannelType>
@@ -45,6 +48,7 @@ const RowActions = ({ row }: Props) => {
   const customChatBoxMutation = useCustomChatBox()
 
   useBodyOverflow(openSheetUpdate || openSheetCustomChatBox)
+  const [, copyToClipboard] = useCopyToClipboard()
 
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
@@ -168,6 +172,21 @@ const RowActions = ({ row }: Props) => {
               </SheetFooter>
             </SheetContent>
           </Sheet>
+        )}
+        {row.original.channelType === 'Web' && (
+          <DropdownMenuItem
+            onClick={() =>
+              copyToClipboard(
+                genScript(row.original.contactId, customChatBoxOptions),
+              ).then((success) => {
+                if (success) {
+                  return toast.success(t('common:copy_success'))
+                }
+              })
+            }
+          >
+            {t('common:row_actions.copy_script')}
+          </DropdownMenuItem>
         )}
         <Confirm
           title={t('channel:remove_channel_title')}
