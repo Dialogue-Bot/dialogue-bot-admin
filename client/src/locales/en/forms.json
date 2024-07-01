@@ -148,7 +148,7 @@
     "errors": {
       "required": "Please enter bot response."
     },
-    "description": "To access variable values, use {variable_name}, {variable_name->key}, {variable_name->0->key}, etc. {user->name} retrieves the 'name' key of the 'user' variable. For an array 'users' with an object at index 0 and a 'name' key, use {users->0->name}."
+    "description": "To access variable values, use {variable_name}, {variable_name->key}, {variable_name->0->key}, etc. {user->name} retrieves the 'name' key of the 'user' variable. For an array 'users' with an object at index 0 and a 'name' key, use {users->0->name} or |\\{variable}\\| to prevent translation."
   },
   "button_url": {
     "label": "Button URL",
@@ -198,18 +198,24 @@
     "label": "Image",
     "placeholder": "Enter image URL",
     "errors": {
-      "required": "Please enter image URL or {variable_name}. (e.g. {product_image})",
-      "invalid": "Please enter a valid image URL or {variable_name}. (e.g. {product_image})"
+      "required": "Please enter image URL or {variable_name}. (e.g. {product_image}) or |\\{variable}\\| to prevent translation.",
+      "invalid": "Please enter a valid image URL or {variable_name}. (e.g. {product_image}) or |\\{variable}\\| to prevent translation."
     }
   },
   "variable": {
     "label": "Variable",
     "placeholder": "Select variable",
+    "placeholder_input": "Input variable",
+
     "errors": {
-      "required": "Please select variable."
+      "required": "Please select variable.",
+      "input": "Please enter input variable.",
+      "invalid": "Please enter a valid variable.",
+      "not_found": "Variable not found."
     },
     "description": {
-      "card": "Variable of card must be formatted as \n\t{\"title\": \"áo\", \n\t\"subtitle\": \"Size: 1, Color: Red\", \n\t\"image_url\": \"https://image.png\", \n\t\"buttons\": [\n\t\t{\"label\": \"pay\", \"value\": \"pay\", \"type\": \"postback\"}, \n\t\t{\"label\": \"view\", \"value\": \"https://www.url.com/\", \"type\": \"url\"}\n\t]}"
+      "card": "Variable of card must be formatted as \n\t{\"title\": \"áo\", \n\t\"subtitle\": \"Size: 1, Color: Red\", \n\t\"image_url\": \"https://image.png\", \n\t\"buttons\": [\n\t\t{\"label\": \"pay\", \"value\": \"pay\", \"type\": \"postback\"}, \n\t\t{\"label\": \"view\", \"value\": \"https://www.url.com/\", \"type\": \"url\"}\n\t]}",
+      "check_variable": "Variable of check variable must be formatted as {variable_name->key} or {variable_name->0->key} or |\\{variable}\\| to prevent translation."
     }
   },
   "grammar_type": {

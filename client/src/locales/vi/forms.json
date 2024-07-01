@@ -176,18 +176,23 @@
     "label": "Ảnh",
     "placeholder": "Nhập URL ảnh",
     "errors": {
-      "required": "Vui lòng nhập URL ảnh hoặc {variable_name}. (e.g. {product_image})",
-      "invalid": "Vui lòng nhập URL ảnh hoặc {variable_name}. (e.g. {product_image})"
+      "required": "Vui lòng nhập URL ảnh hoặc {variable_name}. (e.g. {product_image}) hoặc |\\{variable}\\| để ngăn chặn dịch biến sang tiếng Anh.",
+      "invalid": "Vui lòng nhập URL ảnh hoặc {variable_name}. (e.g. {product_image}) hoặc |\\{variable}\\| để ngăn chặn dịch biến sang tiếng Anh."
     }
   },
   "variable": {
     "label": "Biến",
     "placeholder": "Chọn biến",
+    "placeholder_input": "Nhập biến",
     "errors": {
-      "required": "Vui lòng chọn biến."
+      "required": "Vui lòng chọn biến.",
+      "input": "Vui lòng nhập biến.",
+      "invalid": "Biến không hợp lệ.",
+      "not_found": "Không tìm thấy biến."
     },
     "description": {
-      "card": "Biến của thẻ phải được định dạng như \n\t{\"title\": \"áo\", \n\t\"subtitle\": \"Size: 1, Color: Red\", \n\t\"image_url\": \"https://image.png\", \n\t\"buttons\": [\n\t\t{\"label\": \"pay\", \"value\": \"pay\", \"type\": \"postback\"}, \n\t\t{\"label\": \"view\", \"value\": \"https://www.url.com/\", \"type\": \"url\"}\n\t]}"
+      "card": "Biến của thẻ phải được định dạng như \n\t{\"title\": \"áo\", \n\t\"subtitle\": \"Size: 1, Color: Red\", \n\t\"image_url\": \"https://image.png\", \n\t\"buttons\": [\n\t\t{\"label\": \"pay\", \"value\": \"pay\", \"type\": \"postback\"}, \n\t\t{\"label\": \"view\", \"value\": \"https://www.url.com/\", \"type\": \"url\"}\n\t]}",
+      "check_variable": "Biến của biến kiểm tra phải được định dạng là {variable_name->key} hoặc {variable_name->0->key} hoặc |\\{variable}\\| để ngăn dịch."
     }
   },
   "grammar_type": {
@@ -378,7 +383,7 @@
     "errors": {
       "required": "Vui lòng nhập câu trả lời của bot."
     },
-    "description": "Để truy cập các giá trị biến, hãy sử dụng {variable_name}, {variable_name->key}, {variable_name->0->key}, v.v. {user->name} lấy khóa 'name' của biến 'user'. Đối với mảng 'người dùng' có đối tượng ở chỉ mục 0 và khóa 'tên', hãy sử dụng {users->0->name}."
+    "description": "Để truy cập các giá trị biến, hãy sử dụng {variable_name}, {variable_name->key}, {variable_name->0->key}, v.v. {user->name} lấy khóa 'name' của biến 'user'. Đối với mảng 'người dùng' có đối tượng ở chỉ mục 0 và khóa 'tên', hãy sử dụng {users->0->name} hoặc sử dụng |\\{variable}\\| để ngăn chặn dịch biến sang tiếng Anh."
   },
   "logo_url": {
     "label": "Logo URL",

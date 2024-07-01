@@ -3,14 +3,14 @@
     "title": "Actions",
     "desc": "Kéo và thả các hành động vào khu vực làm việc để tạo luồng làm việc của bot.",
     "items": {
-      "message": "Tin nhắn",
-      "prompt_and_collect": "Thu thập thông tin",
-      "check_variables": "Kiểm tra biến",
-      "http_request": "Yêu cầu HTTP",
+      "message": "Message",
+      "prompt_and_collect": "Prompt & Collect",
+      "check_variables": "Check Variables",
+      "http_request": "HTTP Request",
       "fallback": "Fallback",
-      "start": "Bắt đầu",
-      "sub_flow": "Luồng phụ",
-      "send_mail": "Gửi mail"
+      "start": "Start",
+      "sub_flow": "Sub Flow",
+      "send_mail": "Send Mail"
     }
   },
   "toolbar": {

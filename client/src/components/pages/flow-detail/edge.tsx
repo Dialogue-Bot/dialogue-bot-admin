@@ -72,7 +72,9 @@ export const Edge = ({
             className='edge-label nodrap nopan absolute bg-white text-xs'
           >
             {_.capitalize(action.condition).replace(/_/g, ' ')}
-            {action.value ? ` : ${action.value}` : ''}
+            {typeof action.value === 'boolean'
+              ? `: ${action.value ? 'true' : 'false'}`
+              : null}
           </span>
         </EdgeLabelRenderer>
       ) : null}
