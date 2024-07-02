@@ -144,7 +144,7 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
           id={SOURCE_HANDLE_PROMPT_NO}
           className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
           style={{
-            left: '80%',
+            left: '20%',
           }}
         >
           <X className='w-2 h-2 pointer-events-none' />
@@ -154,7 +154,7 @@ export const PromptAndCollectNode = (props?: CustomNodeProps) => {
           position={Position.Bottom}
           id={SOURCE_HANDLE_PROMPT_YES}
           style={{
-            left: '20%',
+            left: '80%',
           }}
           className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
         >
@@ -182,7 +182,7 @@ export const CheckVariablesNode = (props?: CustomNodeProps) => {
           id={SOURCE_HANDLE_VARIABLES_NO}
           className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
           style={{
-            left: '80%',
+            left: '20%',
           }}
         >
           <X className='w-2 h-2 pointer-events-none' />
@@ -192,7 +192,7 @@ export const CheckVariablesNode = (props?: CustomNodeProps) => {
           position={Position.Bottom}
           id={SOURCE_HANDLE_VARIABLES_YES}
           style={{
-            left: '20%',
+            left: '80%',
           }}
           className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
         >
@@ -220,7 +220,7 @@ export const HttpRequestNode = (props?: CustomNodeProps) => {
           id={SOURCE_HANDLE_HTTP_REQUEST_ERROR}
           className='!w-4 !h-4 flex items-center justify-center !bg-red-500 !-bottom-2 text-white'
           style={{
-            left: '80%',
+            left: '20%',
           }}
         >
           <X className='w-2 h-2 pointer-events-none' />
@@ -230,7 +230,7 @@ export const HttpRequestNode = (props?: CustomNodeProps) => {
           position={Position.Bottom}
           id={SOURCE_HANDLE_HTTP_REQUEST_SUCCESS}
           style={{
-            left: '20%',
+            left: '80%',
           }}
           className='!w-4 !h-4 flex items-center justify-center !bg-green-500 !-bottom-2 text-white'
         >

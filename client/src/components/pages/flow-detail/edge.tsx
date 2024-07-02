@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui'
+import { cn } from '@/lib/utils'
 import { EActionTypes } from '@/types/flow'
 import _ from 'lodash'
 import { X } from 'lucide-react'
@@ -57,7 +58,14 @@ export const Edge = ({
 
   return (
     <>
-      <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
+      <BaseEdge
+        path={edgePath}
+        markerEnd={markerEnd}
+        style={{
+          ...style,
+          stroke: action?.condition === 'otherwise' ? 'red' : undefined,
+        }}
+      />
       {(node?.data.action === EActionTypes.PROMPT_AND_COLLECT ||
         node?.data.action === EActionTypes.CHECK_VARIABLES ||
         node?.data.action === EActionTypes.HTTP_REQUEST) &&
@@ -81,7 +89,7 @@ export const Edge = ({
       <path
         id={id}
         style={style}
-        className='react-flow__edge-path edge-outline opacity-0'
+        className={cn('react-flow__edge-path edge-outline opacity-0')}
         d={edgePath}
         markerEnd={markerEnd}
       />
@@ -91,7 +99,7 @@ export const Edge = ({
           height={foreignObjectSize}
           x={labelX - foreignObjectSize / 2}
           y={labelY - foreignObjectSize / 2}
-          className='edgebutton flex items-center justify-center  '
+          className='edgebutton flex items-center justify-center  z-[100] '
           requiredExtensions='http://www.w3.org/1999/xhtml'
         >
           <Button

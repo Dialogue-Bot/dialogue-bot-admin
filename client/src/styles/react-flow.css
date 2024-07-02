@@ -14,6 +14,20 @@
   @apply stroke-[5px] transition-all stroke-primary/10 opacity-100;
 }
 
+.react-flow__edge.selected .edge-outline-otherwise,
+.react-flow__edge:focus .edge-outline-otherwise,
+.react-flow__edge:focus-visible .edge-outline-otherwise,
+.react-flow__edge:hover .edge-outline-otherwise {
+  @apply stroke-[5px] transition-all !stroke-destructive/10 opacity-100;
+}
+
+.react-flow__edge.selected .edge-outline-otherwise,
+.react-flow__edge:focus .edge-outline-otherwise,
+.react-flow__edge:focus-visible .edge-outline-otherwise,
+.react-flow__edge:hover .edge-outline-otherwise {
+  @apply stroke-[5px] transition-all !stroke-destructive/10 opacity-100;
+}
+
 .react-flow__edge.selected .edgebutton .btn,
 .react-flow__edge:focus .edgebutton .btn,
 .react-flow__edge:focus-visible .edgebutton .btn,
