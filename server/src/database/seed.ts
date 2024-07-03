@@ -1,8 +1,13 @@
+import { FlowService } from '@/services/flows.service'
+import { IntentService } from '@/services/intent.service'
 import { UserService } from '@/services/users.service'
+import { loadTemplates } from '@/utils/load-templates'
 import * as bcrypt from 'bcrypt'
+import { eq } from 'drizzle-orm'
+import 'reflect-metadata'
 import Container from 'typedi'
 import { db } from './db'
-import { channelTypes } from './schema'
+import { channelTypes, users } from './schema'
 
 async function seedChannelTypes() {
   try {
@@ -41,9 +46,55 @@ async function seedDefaultAccount() {
   }
 }
 
+async function seedIntents() {
+  const intentService = Container.get(IntentService)
+
+  const templates = loadTemplates()
+
+  const intents = templates
+    .map((template: any) => {
+      return template.intents
+    })
+    .flat()
+
+  try {
+    await intentService.seedIntents(intents)
+  } catch (error) {
+    console.error(`Can't seed intents`)
+  }
+}
+
+async function seedFlows() {
+  const flowService = Container.get(FlowService)
+  const templates = loadTemplates()
+
+  const mainFlows = templates.map((template: any) => {
+    return template.mainFlow
+  })
+
+  const subFlows = templates.map((template: any) => {
+    return template.subFlows
+  })
+
+  const admin = await db.query.users.findFirst({
+    where: eq(users.email, 'admin@gmail.com'),
+  })
+
+  try {
+    await flowService.seedFlows(admin.id, [
+      ...mainFlows.flat(),
+      ...subFlows.flat(),
+    ])
+  } catch (error) {
+    console.error(`Can't seed flows`)
+  }
+}
+
 async function main() {
-  await seedChannelTypes()
+  seedChannelTypes()
   await seedDefaultAccount()
+  await seedIntents()
+  await seedFlows()
 
   console.log('Seed data successfully')
   process.exit(0)

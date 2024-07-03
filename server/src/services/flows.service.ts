@@ -1,6 +1,6 @@
 import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
-import { flows } from '@/database/schema'
+import { flows, users } from '@/database/schema'
 import { TNewFlow } from '@/database/types'
 import { FlowDTO } from '@/dtos/flows.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
@@ -8,6 +8,7 @@ import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
+import { redis } from '@/libs/redis'
 import { logger } from '@/utils/logger'
 import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
@@ -339,5 +340,42 @@ export class FlowService {
       .where(and(eq(flows.deleted, false), eq(flows.userId, userId)))
 
     return count
+  }
+
+  public async seedFlows(
+    userId: string,
+    flows: TNewFlow[],
+  ): Promise<TNewFlow[]> {
+    const promises = flows.map(async (flow) => {
+      return await this.create({
+        ...flow,
+        userId,
+        publishAt: new Date(),
+      })
+    })
+
+    return await Promise.all(promises)
+  }
+
+  public async getTemplateFlows() {
+    const cached = await redis.get('templates')
+
+    if (cached) {
+      return JSON.parse(cached)
+    }
+
+    const templates = await db
+      .select({
+        id: flows.id,
+        name: flows.name,
+        publishAt: flows.publishAt,
+      })
+      .from(flows)
+      .where(eq(users.email, 'admin@gmail.com'))
+      .leftJoin(users, eq(flows.userId, users.id))
+
+    redis.set('templates', JSON.stringify(templates))
+
+    return templates
   }
 }

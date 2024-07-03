@@ -198,7 +198,9 @@ export class ChannelService {
   }
 
   public async deleteByIds(ids: string[], userId: string) {
-    await db.delete(channels).where(and(inArray(channels.id, ids), eq(channels.userId, userId)))
+    await db
+      .delete(channels)
+      .where(and(inArray(channels.id, ids), eq(channels.userId, userId)))
   }
 
   public async getAllChannels(

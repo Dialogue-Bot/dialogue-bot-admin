@@ -1,0 +1,5274 @@
+[
+  {
+    "mainFlow": [
+      {
+        "edges": [
+          {
+            "source": "start",
+            "sourceHandle": null,
+            "target": "lectsb54lo2441wgxyshn9wx",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-start-lectsb54lo2441wgxyshn9wx",
+            "sections": [
+              {
+                "id": "reactflow__edge-start-lectsb54lo2441wgxyshn9wx_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 48
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 148
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 48
+                  },
+                  {
+                    "x": 370,
+                    "y": 98
+                  }
+                ],
+                "incomingShape": "start",
+                "outgoingShape": "lectsb54lo2441wgxyshn9wx"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "lectsb54lo2441wgxyshn9wx",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "xn2o2h0zyhpbcyvj1a5g0eef",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-yes-xn2o2h0zyhpbcyvj1a5g0eef",
+            "sections": [
+              {
+                "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-yes-xn2o2h0zyhpbcyvj1a5g0eef_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 184
+                  },
+                  {
+                    "x": 492.4,
+                    "y": 234
+                  }
+                ],
+                "incomingShape": "lectsb54lo2441wgxyshn9wx",
+                "outgoingShape": "xn2o2h0zyhpbcyvj1a5g0eef"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "lectsb54lo2441wgxyshn9wx",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "lip3vw8f7lnuw3s3lrcxpct1",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-no-lip3vw8f7lnuw3s3lrcxpct1",
+            "sections": [
+              {
+                "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-no-lip3vw8f7lnuw3s3lrcxpct1_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 234,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 184
+                  },
+                  {
+                    "x": 247.60000000000002,
+                    "y": 234
+                  }
+                ],
+                "incomingShape": "lectsb54lo2441wgxyshn9wx",
+                "outgoingShape": "lip3vw8f7lnuw3s3lrcxpct1"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "xn2o2h0zyhpbcyvj1a5g0eef",
+            "sourceHandle": null,
+            "target": "npvx355o7kcc3s2wqq7ryd34",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-xn2o2h0zyhpbcyvj1a5g0eef-npvx355o7kcc3s2wqq7ryd34",
+            "sections": [
+              {
+                "id": "reactflow__edge-xn2o2h0zyhpbcyvj1a5g0eef-npvx355o7kcc3s2wqq7ryd34_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 320
+                  },
+                  {
+                    "x": 492.4,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "xn2o2h0zyhpbcyvj1a5g0eef",
+                "outgoingShape": "npvx355o7kcc3s2wqq7ryd34"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "lip3vw8f7lnuw3s3lrcxpct1",
+            "sourceHandle": null,
+            "target": "npvx355o7kcc3s2wqq7ryd34",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-lip3vw8f7lnuw3s3lrcxpct1-npvx355o7kcc3s2wqq7ryd34",
+            "sections": [
+              {
+                "id": "reactflow__edge-lip3vw8f7lnuw3s3lrcxpct1-npvx355o7kcc3s2wqq7ryd34_s0",
+                "startPoint": {
+                  "x": 234,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 234,
+                    "y": 320
+                  },
+                  {
+                    "x": 247.60000000000002,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "lip3vw8f7lnuw3s3lrcxpct1",
+                "outgoingShape": "npvx355o7kcc3s2wqq7ryd34"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "npvx355o7kcc3s2wqq7ryd34",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "papohi8u609i6f1auz6nz7j3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-papohi8u609i6f1auz6nz7j3",
+            "sections": [
+              {
+                "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-papohi8u609i6f1auz6nz7j3_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 456
+                  },
+                  {
+                    "x": 370,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "npvx355o7kcc3s2wqq7ryd34",
+                "outgoingShape": "papohi8u609i6f1auz6nz7j3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "papohi8u609i6f1auz6nz7j3",
+            "sourceHandle": null,
+            "target": "dmwyk9u967x3frq0f7gsghx5",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-papohi8u609i6f1auz6nz7j3-dmwyk9u967x3frq0f7gsghx5",
+            "sections": [
+              {
+                "id": "reactflow__edge-papohi8u609i6f1auz6nz7j3-dmwyk9u967x3frq0f7gsghx5_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 592
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 592
+                  },
+                  {
+                    "x": 413.65,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "papohi8u609i6f1auz6nz7j3",
+                "outgoingShape": "dmwyk9u967x3frq0f7gsghx5"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "dmwyk9u967x3frq0f7gsghx5",
+            "sourceHandle": "check-variables-yes",
+            "target": "k8opjysl9gvwa90v25758wfu",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-k8opjysl9gvwa90v25758wfu",
+            "sections": [
+              {
+                "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-k8opjysl9gvwa90v25758wfu_s0",
+                "startPoint": {
+                  "x": 418.5,
+                  "y": 728
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 828
+                },
+                "bendPoints": [
+                  {
+                    "x": 418.5,
+                    "y": 728
+                  },
+                  {
+                    "x": 418.5,
+                    "y": 778
+                  }
+                ],
+                "incomingShape": "dmwyk9u967x3frq0f7gsghx5",
+                "outgoingShape": "k8opjysl9gvwa90v25758wfu"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "k8opjysl9gvwa90v25758wfu",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "rjhonwtt2gqr3hdo34t9payd",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd",
+            "sections": [
+              {
+                "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd_s0",
+                "startPoint": {
+                  "x": 418.5,
+                  "y": 864
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 964
+                },
+                "bendPoints": [
+                  {
+                    "x": 418.5,
+                    "y": 864
+                  },
+                  {
+                    "x": 418.5,
+                    "y": 914
+                  }
+                ],
+                "incomingShape": "k8opjysl9gvwa90v25758wfu",
+                "outgoingShape": "rjhonwtt2gqr3hdo34t9payd"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "npvx355o7kcc3s2wqq7ryd34",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "v9s7cfdm4pxwuqsdkz5ddwti",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-no-v9s7cfdm4pxwuqsdkz5ddwti",
+            "sections": [
+              {
+                "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-no-v9s7cfdm4pxwuqsdkz5ddwti_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 98,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 456
+                  },
+                  {
+                    "x": 125.19999999999999,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "npvx355o7kcc3s2wqq7ryd34",
+                "outgoingShape": "v9s7cfdm4pxwuqsdkz5ddwti"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "k8opjysl9gvwa90v25758wfu",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "papohi8u609i6f1auz6nz7j3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-yes-papohi8u609i6f1auz6nz7j3",
+            "sections": [
+              {
+                "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-yes-papohi8u609i6f1auz6nz7j3_s0",
+                "startPoint": {
+                  "x": 418.5,
+                  "y": 828
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 592
+                },
+                "bendPoints": [
+                  {
+                    "x": 321.5,
+                    "y": 778
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 753
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 737.5
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 722
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 716
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 710
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 704
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 698
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 682.5
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 667
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "k8opjysl9gvwa90v25758wfu",
+                "outgoingShape": "papohi8u609i6f1auz6nz7j3"
+              }
+            ],
+            "container": "root",
+            "selected": false
+          },
+          {
+            "source": "npvx355o7kcc3s2wqq7ryd34",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "n9vpm0mbwt00d25498t38hfz",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-n9vpm0mbwt00d25498t38hfz",
+            "sections": [
+              {
+                "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-n9vpm0mbwt00d25498t38hfz_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 690.5,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 690.5,
+                    "y": 506
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 531
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 550.6666666666666
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 570.3333333333334
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 584.6666666666666
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 602.5833333333331
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 620.4999999999999
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "npvx355o7kcc3s2wqq7ryd34",
+                "outgoingShape": "n9vpm0mbwt00d25498t38hfz"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "n9vpm0mbwt00d25498t38hfz",
+            "sourceHandle": null,
+            "target": "k8opjysl9gvwa90v25758wfu",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-k8opjysl9gvwa90v25758wfu",
+            "sections": [
+              {
+                "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-k8opjysl9gvwa90v25758wfu_s0",
+                "startPoint": {
+                  "x": 690.5,
+                  "y": 728
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 828
+                },
+                "bendPoints": [
+                  {
+                    "x": 690.5,
+                    "y": 728
+                  },
+                  {
+                    "x": 663.3,
+                    "y": 778
+                  }
+                ],
+                "incomingShape": "n9vpm0mbwt00d25498t38hfz",
+                "outgoingShape": "k8opjysl9gvwa90v25758wfu"
+              }
+            ],
+            "container": "root"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "start",
+            "type": "start",
+            "position": {
+              "x": 284,
+              "y": 12
+            },
+            "data": {
+              "label": "Start",
+              "action": "start",
+              "id": "start",
+              "name": "Start",
+              "nextAction": "lectsb54lo2441wgxyshn9wx"
+            },
+            "deletable": false,
+            "draggable": false,
+            "width": 70,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 277,
+            "x": 284,
+            "y": 12
+          },
+          {
+            "id": "lectsb54lo2441wgxyshn9wx",
+            "position": {
+              "x": 284,
+              "y": 148
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "lectsb54lo2441wgxyshn9wx",
+              "name": "Set Language",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "English",
+                      "value": "en",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Vietnamese",
+                      "value": "vi",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Please choose your language",
+                  "type": "text"
+                }
+              },
+              "grammarType": "text",
+              "assignUserResponse": "language",
+              "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+                  "value": "vi"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "lip3vw8f7lnuw3s3lrcxpct1"
+                }
+              ]
+            },
+            "width": 136,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 284,
+              "y": 148
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 279,
+            "x": 284,
+            "y": 148
+          },
+          {
+            "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+            "position": {
+              "x": 420,
+              "y": 284
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "🤖 Chào mừng bạn đến với cửa hàng Dialogue Bot",
+                  "type": "text"
+                }
+              },
+              "nextAction": "npvx355o7kcc3s2wqq7ryd34"
+            },
+            "width": 102,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 483,
+            "x": 420,
+            "y": 284,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 420,
+              "y": 284
+            },
+            "dragging": false
+          },
+          {
+            "id": "lip3vw8f7lnuw3s3lrcxpct1",
+            "position": {
+              "x": 148,
+              "y": 284
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "lip3vw8f7lnuw3s3lrcxpct1",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "🤖 Welcome to Dialogue Bot shop",
+                  "type": "text"
+                }
+              },
+              "nextAction": "npvx355o7kcc3s2wqq7ryd34"
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 244,
+              "y": 291.2
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 280,
+            "x": 148,
+            "y": 284
+          },
+          {
+            "id": "npvx355o7kcc3s2wqq7ryd34",
+            "position": {
+              "x": 284,
+              "y": 420
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "npvx355o7kcc3s2wqq7ryd34",
+              "name": "Choose Services",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "Shopping🤑",
+                      "value": "shopping",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Check order🔍",
+                      "value": "check_order",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Please choose service😍",
+                  "type": "text",
+                  "repeatMessage": "We do not support the service you want to use, sorry for the inconvenience"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "papohi8u609i6f1auz6nz7j3",
+                  "value": "shopping"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "v9s7cfdm4pxwuqsdkz5ddwti"
+                },
+                {
+                  "condition": "equal",
+                  "id": "n9vpm0mbwt00d25498t38hfz",
+                  "value": "check_order"
+                }
+              ],
+              "repeat": 4
+            },
+            "width": 154,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 196,
+              "y": 420
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 281,
+            "x": 284,
+            "y": 420
+          },
+          {
+            "id": "papohi8u609i6f1auz6nz7j3",
+            "position": {
+              "x": 816.9085796431434,
+              "y": 557.8126142164733
+            },
+            "type": "sub-flow",
+            "data": {
+              "label": "Sub Flow",
+              "action": "sub-flow",
+              "id": "papohi8u609i6f1auz6nz7j3",
+              "name": "Sub flow shopping",
+              "contents": {},
+              "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+              "assignVars": [
+                {
+                  "assignTo": "product_id",
+                  "outputVar": "product_id"
+                }
+              ],
+              "nextAction": "dmwyk9u967x3frq0f7gsghx5"
+            },
+            "width": 172,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 816.9085796431434,
+              "y": 557.8126142164733
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 283,
+            "x": 284,
+            "y": 556
+          },
+          {
+            "id": "dmwyk9u967x3frq0f7gsghx5",
+            "position": {
+              "x": 829.1562953136779,
+              "y": 682.9369289176336
+            },
+            "type": "check-variables",
+            "data": {
+              "label": "Check Variables",
+              "action": "check-variables",
+              "id": "dmwyk9u967x3frq0f7gsghx5",
+              "name": "Check Payment",
+              "contents": {},
+              "variable": "product_id",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "k8opjysl9gvwa90v25758wfu",
+                  "value": true
+                }
+              ]
+            },
+            "width": 148,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 829.1562953136779,
+              "y": 682.9369289176336
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 285,
+            "x": 332.5,
+            "y": 692
+          },
+          {
+            "id": "k8opjysl9gvwa90v25758wfu",
+            "position": {
+              "x": 317.787603095489,
+              "y": 823.5553966619009
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "k8opjysl9gvwa90v25758wfu",
+              "name": "Ask use service again",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "Yes",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "No",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Thank you for using our service 😊\nwould you like to continue using it?",
+                  "type": "text"
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "rjhonwtt2gqr3hdo34t9payd"
+                },
+                {
+                  "condition": "equal",
+                  "id": "papohi8u609i6f1auz6nz7j3",
+                  "value": "confirm"
+                }
+              ]
+            },
+            "width": 189,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 317.787603095489,
+              "y": 823.5553966619009
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 287,
+            "x": 332.5,
+            "y": 828
+          },
+          {
+            "id": "rjhonwtt2gqr3hdo34t9payd",
+            "position": {
+              "x": 211.24040657242955,
+              "y": 954.7134342303575
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "rjhonwtt2gqr3hdo34t9payd",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Thank you, see you again 😍",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 211.24040657242955,
+              "y": 954.7134342303575
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 289,
+            "x": 332.5,
+            "y": 964
+          },
+          {
+            "id": "v9s7cfdm4pxwuqsdkz5ddwti",
+            "position": {
+              "x": 119.26731086599597,
+              "y": 559.3521034645623
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "v9s7cfdm4pxwuqsdkz5ddwti",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Thank you for using the service, please try again",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 119.26731086599597,
+              "y": 559.3521034645623
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 513,
+            "x": 12,
+            "y": 556
+          },
+          {
+            "id": "n9vpm0mbwt00d25498t38hfz",
+            "position": {
+              "x": 312.6691111478024,
+              "y": 557.8665479809774
+            },
+            "type": "sub-flow",
+            "data": {
+              "label": "Sub Flow",
+              "action": "sub-flow",
+              "id": "n9vpm0mbwt00d25498t38hfz",
+              "name": "Sub Flow Check Order",
+              "contents": {},
+              "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+              "nextAction": "k8opjysl9gvwa90v25758wfu",
+              "assignVars": []
+            },
+            "width": 196,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 312.6691111478024,
+              "y": 557.8665479809774
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 287,
+            "x": 604.5,
+            "y": 692
+          }
+        ],
+        "flows": [
+          {
+            "label": "Start",
+            "action": "start",
+            "id": "start",
+            "name": "Start",
+            "nextAction": "lectsb54lo2441wgxyshn9wx"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "lectsb54lo2441wgxyshn9wx",
+            "name": "Set Language",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "English",
+                    "value": "en",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Vietnamese",
+                    "value": "vi",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Please choose your language",
+                "type": "text"
+              }
+            },
+            "grammarType": "text",
+            "assignUserResponse": "language",
+            "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+                "value": "vi"
+              },
+              {
+                "condition": "otherwise",
+                "id": "lip3vw8f7lnuw3s3lrcxpct1"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "🤖 Chào mừng bạn đến với cửa hàng Dialogue Bot",
+                "type": "text"
+              }
+            },
+            "nextAction": "npvx355o7kcc3s2wqq7ryd34"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "lip3vw8f7lnuw3s3lrcxpct1",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "🤖 Welcome to Dialogue Bot shop",
+                "type": "text"
+              }
+            },
+            "nextAction": "npvx355o7kcc3s2wqq7ryd34"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "npvx355o7kcc3s2wqq7ryd34",
+            "name": "Choose Services",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "Shopping🤑",
+                    "value": "shopping",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Check order🔍",
+                    "value": "check_order",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Please choose service😍",
+                "type": "text",
+                "repeatMessage": "We do not support the service you want to use, sorry for the inconvenience"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "papohi8u609i6f1auz6nz7j3",
+                "value": "shopping"
+              },
+              {
+                "condition": "otherwise",
+                "id": "v9s7cfdm4pxwuqsdkz5ddwti"
+              },
+              {
+                "condition": "equal",
+                "id": "n9vpm0mbwt00d25498t38hfz",
+                "value": "check_order"
+              }
+            ],
+            "repeat": 4
+          },
+          {
+            "label": "Sub Flow",
+            "action": "sub-flow",
+            "id": "papohi8u609i6f1auz6nz7j3",
+            "name": "Sub flow shopping",
+            "contents": {},
+            "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+            "assignVars": [
+              {
+                "assignTo": "product_id",
+                "outputVar": "product_id"
+              }
+            ],
+            "nextAction": "dmwyk9u967x3frq0f7gsghx5"
+          },
+          {
+            "label": "Check Variables",
+            "action": "check-variables",
+            "id": "dmwyk9u967x3frq0f7gsghx5",
+            "name": "Check Payment",
+            "contents": {},
+            "variable": "product_id",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "k8opjysl9gvwa90v25758wfu",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "k8opjysl9gvwa90v25758wfu",
+            "name": "Ask use service again",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "Yes",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "No",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Thank you for using our service 😊\nwould you like to continue using it?",
+                "type": "text"
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "rjhonwtt2gqr3hdo34t9payd"
+              },
+              {
+                "condition": "equal",
+                "id": "papohi8u609i6f1auz6nz7j3",
+                "value": "confirm"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "rjhonwtt2gqr3hdo34t9payd",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Thank you, see you again 😍",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "v9s7cfdm4pxwuqsdkz5ddwti",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Thank you for using the service, please try again",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Sub Flow",
+            "action": "sub-flow",
+            "id": "n9vpm0mbwt00d25498t38hfz",
+            "name": "Sub Flow Check Order",
+            "contents": {},
+            "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+            "nextAction": "k8opjysl9gvwa90v25758wfu",
+            "assignVars": []
+          }
+        ],
+        "name": "Shopping Online",
+        "userId": "v3xlkf1g9l1eaigl222mlx79"
+      }
+    ],
+    "subFlows": [
+      {
+        "edges": [
+          {
+            "source": "start",
+            "sourceHandle": null,
+            "target": "o1zjp21xspeix7zfh11eayra",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-start-o1zjp21xspeix7zfh11eayra",
+            "sections": [
+              {
+                "id": "reactflow__edge-start-o1zjp21xspeix7zfh11eayra_s0",
+                "startPoint": {
+                  "x": 627.6666666666667,
+                  "y": 48
+                },
+                "endPoint": {
+                  "x": 627.6666666666667,
+                  "y": 148
+                },
+                "bendPoints": [
+                  {
+                    "x": 627.6666666666667,
+                    "y": 48
+                  },
+                  {
+                    "x": 627.6666666666667,
+                    "y": 98
+                  }
+                ],
+                "incomingShape": "start",
+                "outgoingShape": "o1zjp21xspeix7zfh11eayra"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "o1zjp21xspeix7zfh11eayra",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "u2i029mkjr3daehn0w7nm5z3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-o1zjp21xspeix7zfh11eayraprompt-and-collect-yes-u2i029mkjr3daehn0w7nm5z3",
+            "sections": [
+              {
+                "id": "reactflow__edge-o1zjp21xspeix7zfh11eayraprompt-and-collect-yes-u2i029mkjr3daehn0w7nm5z3_s0",
+                "startPoint": {
+                  "x": 627.6666666666667,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 627.6666666666667,
+                    "y": 184
+                  },
+                  {
+                    "x": 627.6666666666667,
+                    "y": 206.5
+                  },
+                  {
+                    "x": 628.8611111111112,
+                    "y": 217.75
+                  },
+                  {
+                    "x": 630.0555555555557,
+                    "y": 229
+                  },
+                  {
+                    "x": 632.4444444444446,
+                    "y": 229
+                  },
+                  {
+                    "x": 634.8333333333334,
+                    "y": 229
+                  },
+                  {
+                    "x": 637.2222222222222,
+                    "y": 229
+                  },
+                  {
+                    "x": 639.6111111111111,
+                    "y": 229
+                  },
+                  {
+                    "x": 640.8055555555555,
+                    "y": 242.75
+                  },
+                  {
+                    "x": 642,
+                    "y": 256.5
+                  },
+                  {
+                    "x": 642,
+                    "y": 284
+                  }
+                ],
+                "incomingShape": "o1zjp21xspeix7zfh11eayra",
+                "outgoingShape": "u2i029mkjr3daehn0w7nm5z3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "o1zjp21xspeix7zfh11eayra",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "madir0a2nzmsghnreskxvbeh",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-o1zjp21xspeix7zfh11eayraprompt-and-collect-yes-madir0a2nzmsghnreskxvbeh",
+            "sections": [
+              {
+                "id": "reactflow__edge-o1zjp21xspeix7zfh11eayraprompt-and-collect-yes-madir0a2nzmsghnreskxvbeh_s0",
+                "startPoint": {
+                  "x": 627.6666666666667,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 98,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 627.6666666666667,
+                    "y": 184
+                  },
+                  {
+                    "x": 150.96666666666667,
+                    "y": 234
+                  }
+                ],
+                "incomingShape": "o1zjp21xspeix7zfh11eayra",
+                "outgoingShape": "madir0a2nzmsghnreskxvbeh"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "u2i029mkjr3daehn0w7nm5z3",
+            "sourceHandle": "http-request-error",
+            "target": "qjc6gz91ntxrd5h1u87u3v1l",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-u2i029mkjr3daehn0w7nm5z3http-request-error-qjc6gz91ntxrd5h1u87u3v1l",
+            "sections": [
+              {
+                "id": "reactflow__edge-u2i029mkjr3daehn0w7nm5z3http-request-error-qjc6gz91ntxrd5h1u87u3v1l_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 341.3333333333333,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 320
+                  },
+                  {
+                    "x": 611.9333333333333,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "u2i029mkjr3daehn0w7nm5z3",
+                "outgoingShape": "qjc6gz91ntxrd5h1u87u3v1l"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "madir0a2nzmsghnreskxvbeh",
+            "sourceHandle": "http-request-error",
+            "target": "qjc6gz91ntxrd5h1u87u3v1l",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-madir0a2nzmsghnreskxvbehhttp-request-error-qjc6gz91ntxrd5h1u87u3v1l",
+            "sections": [
+              {
+                "id": "reactflow__edge-madir0a2nzmsghnreskxvbehhttp-request-error-qjc6gz91ntxrd5h1u87u3v1l_s0",
+                "startPoint": {
+                  "x": 98,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 341.3333333333333,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 98,
+                    "y": 320
+                  },
+                  {
+                    "x": 122.33333333333333,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "madir0a2nzmsghnreskxvbeh",
+                "outgoingShape": "qjc6gz91ntxrd5h1u87u3v1l"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "qjc6gz91ntxrd5h1u87u3v1l",
+            "sourceHandle": null,
+            "target": "o1zjp21xspeix7zfh11eayra",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-qjc6gz91ntxrd5h1u87u3v1l-o1zjp21xspeix7zfh11eayra",
+            "sections": [
+              {
+                "id": "reactflow__edge-qjc6gz91ntxrd5h1u87u3v1l-o1zjp21xspeix7zfh11eayra_s0",
+                "startPoint": {
+                  "x": 341.3333333333333,
+                  "y": 420
+                },
+                "endPoint": {
+                  "x": 627.6666666666667,
+                  "y": 184
+                },
+                "bendPoints": [
+                  {
+                    "x": 341.3333333333333,
+                    "y": 370
+                  },
+                  {
+                    "x": 341.33333333333326,
+                    "y": 348.49999999999994
+                  },
+                  {
+                    "x": 341.33333333333326,
+                    "y": 330.58333333333326
+                  },
+                  {
+                    "x": 341.3333333333333,
+                    "y": 312.66666666666663
+                  },
+                  {
+                    "x": 341.33333333333337,
+                    "y": 298.33333333333337
+                  },
+                  {
+                    "x": 341.3333333333333,
+                    "y": 278.66666666666663
+                  },
+                  {
+                    "x": 341.3333333333333,
+                    "y": 259
+                  },
+                  {
+                    "x": 341.3333333333333,
+                    "y": 234
+                  }
+                ],
+                "incomingShape": "qjc6gz91ntxrd5h1u87u3v1l",
+                "outgoingShape": "o1zjp21xspeix7zfh11eayra"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "vil87ezf7cc6uxxfz13a1mqw",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "nb42vwwg6ril49ylafxvk2v4",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-vil87ezf7cc6uxxfz13a1mqwprompt-and-collect-yes-nb42vwwg6ril49ylafxvk2v4",
+            "sections": [
+              {
+                "id": "reactflow__edge-vil87ezf7cc6uxxfz13a1mqwprompt-and-collect-yes-nb42vwwg6ril49ylafxvk2v4_s0",
+                "startPoint": {
+                  "x": 554.5,
+                  "y": 1136
+                },
+                "endPoint": {
+                  "x": 506.5,
+                  "y": 1236
+                },
+                "bendPoints": [
+                  {
+                    "x": 554.5,
+                    "y": 1136
+                  },
+                  {
+                    "x": 511.3,
+                    "y": 1186
+                  }
+                ],
+                "incomingShape": "vil87ezf7cc6uxxfz13a1mqw",
+                "outgoingShape": "nb42vwwg6ril49ylafxvk2v4"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "slliul1x527xj9nh7ozmsfjh",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "omciq239cvzxi4l8uuqnecme",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-slliul1x527xj9nh7ozmsfjhprompt-and-collect-yes-omciq239cvzxi4l8uuqnecme",
+            "sections": [
+              {
+                "id": "reactflow__edge-slliul1x527xj9nh7ozmsfjhprompt-and-collect-yes-omciq239cvzxi4l8uuqnecme_s0",
+                "startPoint": {
+                  "x": 186.5,
+                  "y": 1544
+                },
+                "endPoint": {
+                  "x": 178,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 186.5,
+                    "y": 1544
+                  },
+                  {
+                    "x": 178.85,
+                    "y": 1594
+                  }
+                ],
+                "incomingShape": "slliul1x527xj9nh7ozmsfjh",
+                "outgoingShape": "omciq239cvzxi4l8uuqnecme"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "omciq239cvzxi4l8uuqnecme",
+            "sourceHandle": null,
+            "target": "hb8yxvmrunvmzbvldtjjtd8x",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-omciq239cvzxi4l8uuqnecme-hb8yxvmrunvmzbvldtjjtd8x",
+            "sections": [
+              {
+                "id": "reactflow__edge-omciq239cvzxi4l8uuqnecme-hb8yxvmrunvmzbvldtjjtd8x_s0",
+                "startPoint": {
+                  "x": 178,
+                  "y": 1680
+                },
+                "endPoint": {
+                  "x": 178,
+                  "y": 1780
+                },
+                "bendPoints": [
+                  {
+                    "x": 178,
+                    "y": 1680
+                  },
+                  {
+                    "x": 178,
+                    "y": 1730
+                  }
+                ],
+                "incomingShape": "omciq239cvzxi4l8uuqnecme",
+                "outgoingShape": "hb8yxvmrunvmzbvldtjjtd8x"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "vil87ezf7cc6uxxfz13a1mqw",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-vil87ezf7cc6uxxfz13a1mqwprompt-and-collect-no-cfe3vdszoy47ifunv47q4w48",
+            "sections": [
+              {
+                "id": "reactflow__edge-vil87ezf7cc6uxxfz13a1mqwprompt-and-collect-no-cfe3vdszoy47ifunv47q4w48_s0",
+                "startPoint": {
+                  "x": 554.5,
+                  "y": 1136
+                },
+                "endPoint": {
+                  "x": 554.5,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 1186
+                  },
+                  {
+                    "x": 642,
+                    "y": 1211
+                  },
+                  {
+                    "x": 642,
+                    "y": 1230.6666666666667
+                  },
+                  {
+                    "x": 642,
+                    "y": 1250.3333333333335
+                  },
+                  {
+                    "x": 642,
+                    "y": 1264.6666666666667
+                  },
+                  {
+                    "x": 642,
+                    "y": 1279
+                  },
+                  {
+                    "x": 642,
+                    "y": 1293.3333333333333
+                  },
+                  {
+                    "x": 642,
+                    "y": 1307.6666666666665
+                  },
+                  {
+                    "x": 642,
+                    "y": 1337.4999999999998
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1367.3333333333333
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1412.6666666666667
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1442.5
+                  },
+                  {
+                    "x": 642,
+                    "y": 1472.3333333333333
+                  },
+                  {
+                    "x": 642,
+                    "y": 1486.6666666666665
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1500.9999999999995
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1515.3333333333333
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1529.6666666666665
+                  },
+                  {
+                    "x": 641.9999999999999,
+                    "y": 1549.333333333333
+                  },
+                  {
+                    "x": 642,
+                    "y": 1568.9999999999998
+                  },
+                  {
+                    "x": 642,
+                    "y": 1594
+                  }
+                ],
+                "incomingShape": "vil87ezf7cc6uxxfz13a1mqw",
+                "outgoingShape": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "slliul1x527xj9nh7ozmsfjh",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-slliul1x527xj9nh7ozmsfjhprompt-and-collect-no-cfe3vdszoy47ifunv47q4w48",
+            "sections": [
+              {
+                "id": "reactflow__edge-slliul1x527xj9nh7ozmsfjhprompt-and-collect-no-cfe3vdszoy47ifunv47q4w48_s0",
+                "startPoint": {
+                  "x": 186.5,
+                  "y": 1544
+                },
+                "endPoint": {
+                  "x": 554.5,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 186.5,
+                    "y": 1544
+                  },
+                  {
+                    "x": 186.5,
+                    "y": 1569
+                  },
+                  {
+                    "x": 217.16666666666666,
+                    "y": 1581.5
+                  },
+                  {
+                    "x": 247.83333333333331,
+                    "y": 1594
+                  },
+                  {
+                    "x": 309.16666666666663,
+                    "y": 1594
+                  },
+                  {
+                    "x": 370.5,
+                    "y": 1594
+                  },
+                  {
+                    "x": 431.8333333333333,
+                    "y": 1594
+                  },
+                  {
+                    "x": 493.16666666666663,
+                    "y": 1594
+                  },
+                  {
+                    "x": 523.8333333333333,
+                    "y": 1606.5
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1619
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1644
+                  }
+                ],
+                "incomingShape": "slliul1x527xj9nh7ozmsfjh",
+                "outgoingShape": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "nb42vwwg6ril49ylafxvk2v4",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-nb42vwwg6ril49ylafxvk2v4prompt-and-collect-no-cfe3vdszoy47ifunv47q4w48",
+            "sections": [
+              {
+                "id": "reactflow__edge-nb42vwwg6ril49ylafxvk2v4prompt-and-collect-no-cfe3vdszoy47ifunv47q4w48_s0",
+                "startPoint": {
+                  "x": 506.5,
+                  "y": 1272
+                },
+                "endPoint": {
+                  "x": 554.5,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 554.5,
+                    "y": 1322
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1347
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1366.6666666666665
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1386.3333333333333
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1400.6666666666665
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1415
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1429.3333333333333
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1443.6666666666665
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1484.8333333333333
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1526
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1594
+                  }
+                ],
+                "incomingShape": "nb42vwwg6ril49ylafxvk2v4",
+                "outgoingShape": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "o1zjp21xspeix7zfh11eayra",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "k4mf5eti3gp7vynkvj1v96mg",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-o1zjp21xspeix7zfh11eayraprompt-and-collect-no-k4mf5eti3gp7vynkvj1v96mg",
+            "sections": [
+              {
+                "id": "reactflow__edge-o1zjp21xspeix7zfh11eayraprompt-and-collect-no-k4mf5eti3gp7vynkvj1v96mg_s0",
+                "startPoint": {
+                  "x": 627.6666666666667,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 914,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 627.6666666666667,
+                    "y": 184
+                  },
+                  {
+                    "x": 627.6666666666667,
+                    "y": 206.5
+                  },
+                  {
+                    "x": 628.8611111111112,
+                    "y": 217.75
+                  },
+                  {
+                    "x": 630.0555555555557,
+                    "y": 229
+                  },
+                  {
+                    "x": 632.4444444444446,
+                    "y": 229
+                  },
+                  {
+                    "x": 680.1666666666667,
+                    "y": 229
+                  },
+                  {
+                    "x": 727.8888888888889,
+                    "y": 229
+                  },
+                  {
+                    "x": 820.9444444444445,
+                    "y": 229
+                  },
+                  {
+                    "x": 867.4722222222222,
+                    "y": 242.75
+                  },
+                  {
+                    "x": 914,
+                    "y": 256.5
+                  },
+                  {
+                    "x": 914,
+                    "y": 284
+                  }
+                ],
+                "incomingShape": "o1zjp21xspeix7zfh11eayra",
+                "outgoingShape": "k4mf5eti3gp7vynkvj1v96mg"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "hb8yxvmrunvmzbvldtjjtd8x",
+            "sourceHandle": null,
+            "target": "ovu5mmshipsqc8dx2wzw091u",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-hb8yxvmrunvmzbvldtjjtd8x-ovu5mmshipsqc8dx2wzw091u",
+            "sections": [
+              {
+                "id": "reactflow__edge-hb8yxvmrunvmzbvldtjjtd8x-ovu5mmshipsqc8dx2wzw091u_s0",
+                "startPoint": {
+                  "x": 178,
+                  "y": 1816
+                },
+                "endPoint": {
+                  "x": 178,
+                  "y": 1916
+                },
+                "bendPoints": [
+                  {
+                    "x": 178,
+                    "y": 1816
+                  },
+                  {
+                    "x": 178,
+                    "y": 1866
+                  }
+                ],
+                "incomingShape": "hb8yxvmrunvmzbvldtjjtd8x",
+                "outgoingShape": "ovu5mmshipsqc8dx2wzw091u"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ovu5mmshipsqc8dx2wzw091u",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "bp444h1qb0kfgik8uxdlppu1",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-no-bp444h1qb0kfgik8uxdlppu1",
+            "sections": [
+              {
+                "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-no-bp444h1qb0kfgik8uxdlppu1_s0",
+                "startPoint": {
+                  "x": 178,
+                  "y": 1952
+                },
+                "endPoint": {
+                  "x": 178,
+                  "y": 2052
+                },
+                "bendPoints": [
+                  {
+                    "x": 178,
+                    "y": 1952
+                  },
+                  {
+                    "x": 178,
+                    "y": 2002
+                  }
+                ],
+                "incomingShape": "ovu5mmshipsqc8dx2wzw091u",
+                "outgoingShape": "bp444h1qb0kfgik8uxdlppu1"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ej6lb09z25duh8embtiofbqu",
+            "sourceHandle": "http-request-success",
+            "target": "slliul1x527xj9nh7ozmsfjh",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ej6lb09z25duh8embtiofbquhttp-request-success-slliul1x527xj9nh7ozmsfjh",
+            "sections": [
+              {
+                "id": "reactflow__edge-ej6lb09z25duh8embtiofbquhttp-request-success-slliul1x527xj9nh7ozmsfjh_s0",
+                "startPoint": {
+                  "x": 450,
+                  "y": 1408
+                },
+                "endPoint": {
+                  "x": 186.5,
+                  "y": 1508
+                },
+                "bendPoints": [
+                  {
+                    "x": 450,
+                    "y": 1408
+                  },
+                  {
+                    "x": 212.85,
+                    "y": 1458
+                  }
+                ],
+                "incomingShape": "ej6lb09z25duh8embtiofbqu",
+                "outgoingShape": "slliul1x527xj9nh7ozmsfjh"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ej6lb09z25duh8embtiofbqu",
+            "sourceHandle": "http-request-error",
+            "target": "c2t82sfa78zi9tsj98us1bzc",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ej6lb09z25duh8embtiofbquhttp-request-error-c2t82sfa78zi9tsj98us1bzc",
+            "sections": [
+              {
+                "id": "reactflow__edge-ej6lb09z25duh8embtiofbquhttp-request-error-c2t82sfa78zi9tsj98us1bzc_s0",
+                "startPoint": {
+                  "x": 450,
+                  "y": 1408
+                },
+                "endPoint": {
+                  "x": 458.5,
+                  "y": 1508
+                },
+                "bendPoints": [
+                  {
+                    "x": 450,
+                    "y": 1408
+                  },
+                  {
+                    "x": 457.65,
+                    "y": 1458
+                  }
+                ],
+                "incomingShape": "ej6lb09z25duh8embtiofbqu",
+                "outgoingShape": "c2t82sfa78zi9tsj98us1bzc"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "t172o11g04ocjcbnja7lfpxt",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "vil87ezf7cc6uxxfz13a1mqw",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-t172o11g04ocjcbnja7lfpxtprompt-and-collect-yes-vil87ezf7cc6uxxfz13a1mqw",
+            "sections": [
+              {
+                "id": "reactflow__edge-t172o11g04ocjcbnja7lfpxtprompt-and-collect-yes-vil87ezf7cc6uxxfz13a1mqw_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 1000
+                },
+                "endPoint": {
+                  "x": 554.5,
+                  "y": 1100
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 1000
+                  },
+                  {
+                    "x": 549.65,
+                    "y": 1050
+                  }
+                ],
+                "incomingShape": "t172o11g04ocjcbnja7lfpxt",
+                "outgoingShape": "vil87ezf7cc6uxxfz13a1mqw"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "t172o11g04ocjcbnja7lfpxt",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-t172o11g04ocjcbnja7lfpxtprompt-and-collect-no-cfe3vdszoy47ifunv47q4w48",
+            "sections": [
+              {
+                "id": "reactflow__edge-t172o11g04ocjcbnja7lfpxtprompt-and-collect-no-cfe3vdszoy47ifunv47q4w48_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 1000
+                },
+                "endPoint": {
+                  "x": 554.5,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 89.5,
+                    "y": 1050
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1075
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1094.6666666666667
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1114.3333333333335
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1128.6666666666667
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1143.0000000000002
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1157.3333333333335
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1171.6666666666667
+                  },
+                  {
+                    "x": 89.50000000000001,
+                    "y": 1201.5
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1231.3333333333333
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1276.6666666666667
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1310.6666666666667
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1344.6666666666665
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1367.3333333333333
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1390
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1412.6666666666667
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1435.3333333333335
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1461.0000000000002
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1486.6666666666667
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1515.3333333333333
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1538
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1560.6666666666667
+                  },
+                  {
+                    "x": 89.5,
+                    "y": 1577.3333333333335
+                  },
+                  {
+                    "x": 136.33333333333334,
+                    "y": 1585.6666666666667
+                  },
+                  {
+                    "x": 183.16666666666669,
+                    "y": 1594
+                  },
+                  {
+                    "x": 276.8333333333334,
+                    "y": 1594.0000000000002
+                  },
+                  {
+                    "x": 354.3333333333335,
+                    "y": 1594.0000000000002
+                  },
+                  {
+                    "x": 431.83333333333337,
+                    "y": 1594
+                  },
+                  {
+                    "x": 493.16666666666674,
+                    "y": 1594.0000000000002
+                  },
+                  {
+                    "x": 523.8333333333334,
+                    "y": 1606.5000000000005
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1619.0000000000002
+                  },
+                  {
+                    "x": 554.5,
+                    "y": 1644
+                  }
+                ],
+                "incomingShape": "t172o11g04ocjcbnja7lfpxt",
+                "outgoingShape": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "nb42vwwg6ril49ylafxvk2v4",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "ej6lb09z25duh8embtiofbqu",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-nb42vwwg6ril49ylafxvk2v4prompt-and-collect-yes-ej6lb09z25duh8embtiofbqu",
+            "sections": [
+              {
+                "id": "reactflow__edge-nb42vwwg6ril49ylafxvk2v4prompt-and-collect-yes-ej6lb09z25duh8embtiofbqu_s0",
+                "startPoint": {
+                  "x": 506.5,
+                  "y": 1272
+                },
+                "endPoint": {
+                  "x": 450,
+                  "y": 1372
+                },
+                "bendPoints": [
+                  {
+                    "x": 506.5,
+                    "y": 1272
+                  },
+                  {
+                    "x": 455.65,
+                    "y": 1322
+                  }
+                ],
+                "incomingShape": "nb42vwwg6ril49ylafxvk2v4",
+                "outgoingShape": "ej6lb09z25duh8embtiofbqu"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "f14giuz3sov8eomcakrs8z72",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "t172o11g04ocjcbnja7lfpxt",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-t172o11g04ocjcbnja7lfpxt",
+            "sections": [
+              {
+                "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-t172o11g04ocjcbnja7lfpxt_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 864
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 964
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 864
+                  },
+                  {
+                    "x": 506,
+                    "y": 914
+                  }
+                ],
+                "incomingShape": "f14giuz3sov8eomcakrs8z72",
+                "outgoingShape": "t172o11g04ocjcbnja7lfpxt"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ed4rdxstft1e9ercdsd0wkbf",
+            "sourceHandle": "http-request-success",
+            "target": "mt4o69e5ssuayw360cqssfym",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ed4rdxstft1e9ercdsd0wkbfhttp-request-success-mt4o69e5ssuayw360cqssfym",
+            "sections": [
+              {
+                "id": "reactflow__edge-ed4rdxstft1e9ercdsd0wkbfhttp-request-success-mt4o69e5ssuayw360cqssfym_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 592
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 592
+                  },
+                  {
+                    "x": 628.4,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "ed4rdxstft1e9ercdsd0wkbf",
+                "outgoingShape": "mt4o69e5ssuayw360cqssfym"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "il896t65k6t2c0can9oclsuq",
+            "sourceHandle": "http-request-success",
+            "target": "mt4o69e5ssuayw360cqssfym",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-il896t65k6t2c0can9oclsuqhttp-request-success-mt4o69e5ssuayw360cqssfym",
+            "sections": [
+              {
+                "id": "reactflow__edge-il896t65k6t2c0can9oclsuqhttp-request-success-mt4o69e5ssuayw360cqssfym_s0",
+                "startPoint": {
+                  "x": 98,
+                  "y": 592
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 98,
+                    "y": 592
+                  },
+                  {
+                    "x": 138.79999999999998,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "il896t65k6t2c0can9oclsuq",
+                "outgoingShape": "mt4o69e5ssuayw360cqssfym"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "mt4o69e5ssuayw360cqssfym",
+            "sourceHandle": null,
+            "target": "f14giuz3sov8eomcakrs8z72",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-mt4o69e5ssuayw360cqssfym-f14giuz3sov8eomcakrs8z72",
+            "sections": [
+              {
+                "id": "reactflow__edge-mt4o69e5ssuayw360cqssfym-f14giuz3sov8eomcakrs8z72_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 728
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 828
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 728
+                  },
+                  {
+                    "x": 506,
+                    "y": 778
+                  }
+                ],
+                "incomingShape": "mt4o69e5ssuayw360cqssfym",
+                "outgoingShape": "f14giuz3sov8eomcakrs8z72"
+              }
+            ],
+            "container": "root",
+            "selected": false
+          },
+          {
+            "source": "u2i029mkjr3daehn0w7nm5z3",
+            "sourceHandle": "http-request-success",
+            "target": "bie4kb3xlrvof0qt3cpm24su",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-u2i029mkjr3daehn0w7nm5z3http-request-success-bie4kb3xlrvof0qt3cpm24su",
+            "sections": [
+              {
+                "id": "reactflow__edge-u2i029mkjr3daehn0w7nm5z3http-request-success-bie4kb3xlrvof0qt3cpm24su_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 320
+                  },
+                  {
+                    "x": 642,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "u2i029mkjr3daehn0w7nm5z3",
+                "outgoingShape": "bie4kb3xlrvof0qt3cpm24su"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "madir0a2nzmsghnreskxvbeh",
+            "sourceHandle": "http-request-success",
+            "target": "le3zw66378s0e3my1hn0x7wq",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-madir0a2nzmsghnreskxvbehhttp-request-success-le3zw66378s0e3my1hn0x7wq",
+            "sections": [
+              {
+                "id": "reactflow__edge-madir0a2nzmsghnreskxvbehhttp-request-success-le3zw66378s0e3my1hn0x7wq_s0",
+                "startPoint": {
+                  "x": 98,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 98,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 98,
+                    "y": 320
+                  },
+                  {
+                    "x": 98,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "madir0a2nzmsghnreskxvbeh",
+                "outgoingShape": "le3zw66378s0e3my1hn0x7wq"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "le3zw66378s0e3my1hn0x7wq",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "il896t65k6t2c0can9oclsuq",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-le3zw66378s0e3my1hn0x7wqprompt-and-collect-yes-il896t65k6t2c0can9oclsuq",
+            "sections": [
+              {
+                "id": "reactflow__edge-le3zw66378s0e3my1hn0x7wqprompt-and-collect-yes-il896t65k6t2c0can9oclsuq_s0",
+                "startPoint": {
+                  "x": 98,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 98,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 98,
+                    "y": 456
+                  },
+                  {
+                    "x": 98,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "le3zw66378s0e3my1hn0x7wq",
+                "outgoingShape": "il896t65k6t2c0can9oclsuq"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "bie4kb3xlrvof0qt3cpm24su",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "ed4rdxstft1e9ercdsd0wkbf",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-bie4kb3xlrvof0qt3cpm24suprompt-and-collect-yes-ed4rdxstft1e9ercdsd0wkbf",
+            "sections": [
+              {
+                "id": "reactflow__edge-bie4kb3xlrvof0qt3cpm24suprompt-and-collect-yes-ed4rdxstft1e9ercdsd0wkbf_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 456
+                  },
+                  {
+                    "x": 642,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "bie4kb3xlrvof0qt3cpm24su",
+                "outgoingShape": "ed4rdxstft1e9ercdsd0wkbf"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "f14giuz3sov8eomcakrs8z72",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-no-cfe3vdszoy47ifunv47q4w48"
+          },
+          {
+            "source": "il896t65k6t2c0can9oclsuq",
+            "sourceHandle": "http-request-error",
+            "target": "qjc6gz91ntxrd5h1u87u3v1l",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-il896t65k6t2c0can9oclsuqhttp-request-error-qjc6gz91ntxrd5h1u87u3v1l"
+          },
+          {
+            "source": "ed4rdxstft1e9ercdsd0wkbf",
+            "sourceHandle": "http-request-error",
+            "target": "qjc6gz91ntxrd5h1u87u3v1l",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ed4rdxstft1e9ercdsd0wkbfhttp-request-error-qjc6gz91ntxrd5h1u87u3v1l"
+          },
+          {
+            "source": "ovu5mmshipsqc8dx2wzw091u",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "o1zjp21xspeix7zfh11eayra",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-o1zjp21xspeix7zfh11eayra"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "start",
+            "type": "start",
+            "position": {
+              "x": 541.6666666666667,
+              "y": 12
+            },
+            "data": {
+              "label": "Start",
+              "action": "start",
+              "id": "start",
+              "name": "Start",
+              "nextAction": "o1zjp21xspeix7zfh11eayra"
+            },
+            "deletable": false,
+            "draggable": false,
+            "width": 70,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 359,
+            "x": 541.6666666666667,
+            "y": 12
+          },
+          {
+            "id": "o1zjp21xspeix7zfh11eayra",
+            "position": {
+              "x": 541.6666666666667,
+              "y": 148
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "o1zjp21xspeix7zfh11eayra",
+              "name": "Choose type products",
+              "contents": {
+                "en": {
+                  "message": "What do you want to buy?",
+                  "type": "text",
+                  "buttons": [
+                    {
+                      "label": "👕T-Shirt",
+                      "value": "t-shirt",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "👖Pants",
+                      "value": "pants",
+                      "type": "postback"
+                    }
+                  ]
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "u2i029mkjr3daehn0w7nm5z3",
+                  "value": "t-shirt"
+                },
+                {
+                  "condition": "equal",
+                  "id": "madir0a2nzmsghnreskxvbeh",
+                  "value": "pants"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "k4mf5eti3gp7vynkvj1v96mg"
+                }
+              ]
+            },
+            "width": 195,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 519.9507574022824,
+              "y": 1831.5917406247313
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 361,
+            "x": 541.6666666666667,
+            "y": 148
+          },
+          {
+            "id": "u2i029mkjr3daehn0w7nm5z3",
+            "position": {
+              "x": 786.2106548144378,
+              "y": 244.21050410614652
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "u2i029mkjr3daehn0w7nm5z3",
+              "name": "Get t-shirts",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6679c95d18a459f639516ffa.mockapi.io/TShirt",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "products",
+              "nextActions": [
+                {
+                  "condition": "failure",
+                  "id": "qjc6gz91ntxrd5h1u87u3v1l"
+                },
+                {
+                  "condition": "success",
+                  "id": "bie4kb3xlrvof0qt3cpm24su"
+                }
+              ]
+            },
+            "width": 118,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 786.2106548144378,
+              "y": 244.21050410614652
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 363,
+            "x": 556,
+            "y": 284
+          },
+          {
+            "id": "madir0a2nzmsghnreskxvbeh",
+            "position": {
+              "x": 597.4740110095581,
+              "y": 244.21050410614657
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "madir0a2nzmsghnreskxvbeh",
+              "name": "Get pants",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6679c95d18a459f639516ffa.mockapi.io/Pant",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "products",
+              "nextActions": [
+                {
+                  "condition": "failure",
+                  "id": "qjc6gz91ntxrd5h1u87u3v1l"
+                },
+                {
+                  "condition": "success",
+                  "id": "le3zw66378s0e3my1hn0x7wq"
+                }
+              ]
+            },
+            "width": 108,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 597.4740110095581,
+              "y": 244.21050410614657
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 365,
+            "x": 12,
+            "y": 284
+          },
+          {
+            "id": "qjc6gz91ntxrd5h1u87u3v1l",
+            "position": {
+              "x": 134.1356952558072,
+              "y": 563.4774420968652
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "qjc6gz91ntxrd5h1u87u3v1l",
+              "name": "Failed process",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Our system is having problems😭. Please try again later",
+                  "type": "text"
+                },
+                "vi": {
+                  "buttons": []
+                }
+              },
+              "nextAction": "o1zjp21xspeix7zfh11eayra"
+            },
+            "width": 139,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 134.1356952558072,
+              "y": 563.4774420968652
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 369,
+            "x": 284,
+            "y": 420
+          },
+          {
+            "id": "il896t65k6t2c0can9oclsuq",
+            "position": {
+              "x": 809.2109713018496,
+              "y": 467.8946876636102
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "il896t65k6t2c0can9oclsuq",
+              "name": "get pant detail",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6679c95d18a459f639516ffa.mockapi.io/Pant/{product_id}",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "product_detail",
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "mt4o69e5ssuayw360cqssfym"
+                },
+                {
+                  "condition": "failure",
+                  "id": "qjc6gz91ntxrd5h1u87u3v1l"
+                }
+              ]
+            },
+            "width": 143,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 809.2109713018496,
+              "y": 467.8946876636102
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 583,
+            "x": 12,
+            "y": 556
+          },
+          {
+            "id": "ed4rdxstft1e9ercdsd0wkbf",
+            "position": {
+              "x": 1199.737201425558,
+              "y": 463.63152738926874
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "ed4rdxstft1e9ercdsd0wkbf",
+              "name": "Get t-shirt detail",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6679c95d18a459f639516ffa.mockapi.io/TShirt/{product_id}",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "product_detail",
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "mt4o69e5ssuayw360cqssfym"
+                },
+                {
+                  "condition": "failure",
+                  "id": "qjc6gz91ntxrd5h1u87u3v1l"
+                }
+              ]
+            },
+            "width": 155,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 1199.737201425558,
+              "y": 463.63152738926874
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 585,
+            "x": 556,
+            "y": 556
+          },
+          {
+            "id": "f14giuz3sov8eomcakrs8z72",
+            "position": {
+              "x": 1043.842453478631,
+              "y": 692.9999246458543
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "f14giuz3sov8eomcakrs8z72",
+              "name": "Choose size",
+              "contents": {
+                "en": {
+                  "message": "Please choose your size. I have size {product_detail->size}",
+                  "type": "text",
+                  "buttons": [
+                    {
+                      "label": "S",
+                      "value": "S",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "M",
+                      "value": "M",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "L",
+                      "value": "L",
+                      "type": "postback"
+                    }
+                  ]
+                }
+              },
+              "assignUserResponse": "choose_size",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "t172o11g04ocjcbnja7lfpxt",
+                  "value": true
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                }
+              ]
+            },
+            "width": 124,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1043.842453478631,
+              "y": 692.9999246458543
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 681,
+            "x": 420,
+            "y": 828
+          },
+          {
+            "id": "vil87ezf7cc6uxxfz13a1mqw",
+            "position": {
+              "x": 1224.032756217391,
+              "y": 934.435723174584
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "vil87ezf7cc6uxxfz13a1mqw",
+              "name": "Ask phonenumber",
+              "contents": {
+                "en": {
+                  "message": "Give me your phone number 📞",
+                  "type": "text",
+                  "repeatMessage": "Wrong format phone number❌, please try again ",
+                  "buttons": []
+                }
+              },
+              "repeat": 3,
+              "grammarType": "phone-number",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "nb42vwwg6ril49ylafxvk2v4",
+                  "value": true
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                }
+              ],
+              "assignUserResponse": "phone_number"
+            },
+            "width": 170,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 1224.032756217391,
+              "y": 934.435723174584
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 683,
+            "x": 468.5,
+            "y": 1100
+          },
+          {
+            "id": "nb42vwwg6ril49ylafxvk2v4",
+            "position": {
+              "x": 1469.851050301932,
+              "y": 1059.9422126715647
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "nb42vwwg6ril49ylafxvk2v4",
+              "name": "Ask Confirm",
+              "contents": {
+                "en": {
+                  "message": "Please confirm if you want to buy our product:\nProduct: \\|{product_detail->title}\\|\nSize: {choose_size}\nName: {username}\nPhone number: {phone_number}\nTotal price: {product_detail->price}$ and 1$ for delivery. \nYour order id: \\|{product_detail->id}-{product_detail->title}-{phone_number}\\|",
+                  "type": "text",
+                  "buttons": [
+                    {
+                      "label": "Yes, i want to buy \\|{product_detail->title}\\|",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "👌🏻",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "No❌",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ]
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                },
+                {
+                  "condition": "equal",
+                  "id": "ej6lb09z25duh8embtiofbqu",
+                  "value": "confirm"
+                }
+              ]
+            },
+            "width": 126,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 1469.851050301932,
+              "y": 1059.9422126715647
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 685,
+            "x": 420.5,
+            "y": 1236
+          },
+          {
+            "id": "slliul1x527xj9nh7ozmsfjh",
+            "position": {
+              "x": 1949.2237600262815,
+              "y": 1319.1168109456523
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "slliul1x527xj9nh7ozmsfjh",
+              "name": "Ask email",
+              "contents": {
+                "en": {
+                  "message": "You have successfully made a purchase, please give me your email to confirm your order 📥",
+                  "type": "text",
+                  "repeatMessage": "You typing email wrong 😓"
+                }
+              },
+              "repeat": 3,
+              "assignUserResponse": "email",
+              "grammarType": "email",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "omciq239cvzxi4l8uuqnecme",
+                  "value": true
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                }
+              ]
+            },
+            "width": 107,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 1949.2237600262815,
+              "y": 1319.1168109456523
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 687,
+            "x": 100.5,
+            "y": 1508
+          },
+          {
+            "id": "omciq239cvzxi4l8uuqnecme",
+            "position": {
+              "x": 2109.0241697981837,
+              "y": 1470.423418057208
+            },
+            "type": "send-mail",
+            "data": {
+              "label": "Send Mail",
+              "action": "send-mail",
+              "id": "omciq239cvzxi4l8uuqnecme",
+              "name": "Send Mail",
+              "contents": {},
+              "nextAction": "hb8yxvmrunvmzbvldtjjtd8x",
+              "sendMail": {
+                "subject": "Confirm Payment",
+                "to": "{email}",
+                "body": "<div class=\"prose\"><div contenteditable=\"true\" translate=\"no\" class=\"tiptap ProseMirror\" tabindex=\"0\" spellcheck=\"false\"><p>Your order id: \\|{product_detail->id}-{product_detail->title}-{phone_number}\\|</p><p>You have successfully ordered the product: {product_detail->title}, size: {choose_size}, total price: {product_detail->price} and 1$ for delivery.</p><p>Your order will be delivered to you within 3-5 days.</p></div></div>"
+              }
+            },
+            "width": 110,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 2109.0241697981837,
+              "y": 1470.423418057208
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 689,
+            "x": 92,
+            "y": 1644
+          },
+          {
+            "id": "hb8yxvmrunvmzbvldtjjtd8x",
+            "position": {
+              "x": 2084.9163111950184,
+              "y": 1598.3874651894862
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "hb8yxvmrunvmzbvldtjjtd8x",
+              "name": "Confirm send mail",
+              "contents": {
+                "en": {
+                  "message": "Please check your email😁",
+                  "type": "text",
+                  "buttons": []
+                }
+              },
+              "nextAction": "ovu5mmshipsqc8dx2wzw091u"
+            },
+            "width": 169,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 2084.9163111950184,
+              "y": 1598.3874651894862
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 691,
+            "x": 92,
+            "y": 1780
+          },
+          {
+            "id": "cfe3vdszoy47ifunv47q4w48",
+            "position": {
+              "x": 772.2590183998858,
+              "y": 1483.280942645563
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "cfe3vdszoy47ifunv47q4w48",
+              "name": "Failed message information",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Order process failed 😭",
+                  "type": "text"
+                },
+                "vi": {
+                  "buttons": [],
+                  "message": "The payment process failed❌",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 234,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 772.2590183998858,
+              "y": 1483.280942645563
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 292,
+            "x": 468.5,
+            "y": 1644
+          },
+          {
+            "id": "k4mf5eti3gp7vynkvj1v96mg",
+            "position": {
+              "x": 340.5786753002951,
+              "y": 251.31577123004894
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "k4mf5eti3gp7vynkvj1v96mg",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "message": "Sorry, we do not support this category.",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 340.5786753002951,
+              "y": 251.31577123004894
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 294,
+            "x": 828,
+            "y": 284
+          },
+          {
+            "id": "ovu5mmshipsqc8dx2wzw091u",
+            "position": {
+              "x": 2097.773835783373,
+              "y": 1745.637799204297
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "ovu5mmshipsqc8dx2wzw091u",
+              "name": "Ask buy again",
+              "contents": {
+                "en": {
+                  "message": "Do you want to buy other products?",
+                  "type": "text",
+                  "buttons": [
+                    {
+                      "label": "Yes, i want to buy other product",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Ok👌🏻",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "No❌",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ]
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "bp444h1qb0kfgik8uxdlppu1"
+                },
+                {
+                  "condition": "equal",
+                  "id": "o1zjp21xspeix7zfh11eayra",
+                  "value": "confirm"
+                }
+              ]
+            },
+            "width": 139,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 2097.773835783373,
+              "y": 1745.637799204297
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 296,
+            "x": 92,
+            "y": 1916
+          },
+          {
+            "id": "bp444h1qb0kfgik8uxdlppu1",
+            "position": {
+              "x": 2059.201262018308,
+              "y": 1945.9254221460717
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "bp444h1qb0kfgik8uxdlppu1",
+              "name": "Thank you",
+              "contents": {
+                "en": {
+                  "message": "",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 113,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 2059.201262018308,
+              "y": 1945.9254221460717
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 298,
+            "x": 92,
+            "y": 2052
+          },
+          {
+            "id": "ej6lb09z25duh8embtiofbqu",
+            "position": {
+              "x": 1686.1823233804344,
+              "y": 1186.614647779992
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "ej6lb09z25duh8embtiofbqu",
+              "name": "Save order",
+              "contents": {},
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "slliul1x527xj9nh7ozmsfjh"
+                },
+                {
+                  "condition": "failure",
+                  "id": "c2t82sfa78zi9tsj98us1bzc"
+                }
+              ],
+              "httpRequest": {
+                "method": "POST",
+                "url": "https://6679c91718a459f639516f41.mockapi.io/order",
+                "headers": [],
+                "params": [],
+                "body": [
+                  {
+                    "key": "order_id",
+                    "value": "{product_detail->id}-{product_detail->title}-{phone_number}"
+                  },
+                  {
+                    "key": "name",
+                    "value": "{product_detail}"
+                  },
+                  {
+                    "key": "status",
+                    "value": "delivering"
+                  },
+                  {
+                    "key": "phone_number",
+                    "value": "{phone_number}"
+                  },
+                  {
+                    "key": "username",
+                    "value": "{username}"
+                  }
+                ]
+              },
+              "assignUserResponse": "save_order"
+            },
+            "width": 115,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1686.1823233804344,
+              "y": 1186.614647779992
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 300,
+            "x": 364,
+            "y": 1372
+          },
+          {
+            "id": "c2t82sfa78zi9tsj98us1bzc",
+            "position": {
+              "x": 1513.7443686812123,
+              "y": 1332.225668358816
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "c2t82sfa78zi9tsj98us1bzc",
+              "name": "Message save order failed",
+              "contents": {
+                "en": {
+                  "message": "",
+                  "type": "text",
+                  "buttons": []
+                }
+              }
+            },
+            "width": 223,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 1513.7443686812123,
+              "y": 1332.225668358816
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 302,
+            "x": 372.5,
+            "y": 1508
+          },
+          {
+            "id": "t172o11g04ocjcbnja7lfpxt",
+            "position": {
+              "x": 1089.252780970343,
+              "y": 808.9292336776034
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "t172o11g04ocjcbnja7lfpxt",
+              "name": "Ask name",
+              "contents": {
+                "en": {
+                  "message": "Give me your name or fullname",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "vil87ezf7cc6uxxfz13a1mqw",
+                  "value": true
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                }
+              ],
+              "assignUserResponse": "username"
+            },
+            "width": 109,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1089.252780970343,
+              "y": 808.9292336776034
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 901,
+            "x": 420,
+            "y": 964
+          },
+          {
+            "id": "mt4o69e5ssuayw360cqssfym",
+            "position": {
+              "x": 999.789797310436,
+              "y": 588.263099991025
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "mt4o69e5ssuayw360cqssfym",
+              "name": "Message ask infomation",
+              "contents": {
+                "en": {
+                  "message": "Please give me some information to create an order for you 😁",
+                  "type": "text",
+                  "buttons": []
+                }
+              },
+              "nextAction": "f14giuz3sov8eomcakrs8z72"
+            },
+            "width": 211,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 999.789797310436,
+              "y": 588.263099991025
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 4815,
+            "x": 420,
+            "y": 692
+          },
+          {
+            "id": "bie4kb3xlrvof0qt3cpm24su",
+            "position": {
+              "x": 962.4212794872176,
+              "y": 347.52627533619545
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "bie4kb3xlrvof0qt3cpm24su",
+              "name": "View t-shirts",
+              "contents": {
+                "en": {
+                  "type": "list-card",
+                  "tab_type": "variable",
+                  "dynamicCards": "products"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "ed4rdxstft1e9ercdsd0wkbf",
+                  "value": true
+                }
+              ],
+              "assignUserResponse": "product_id"
+            },
+            "width": 127,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 962.4212794872176,
+              "y": 347.52627533619545
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 603,
+            "x": 556,
+            "y": 420
+          },
+          {
+            "id": "le3zw66378s0e3my1hn0x7wq",
+            "position": {
+              "x": 706.895124717655,
+              "y": 353.21048903531744
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "le3zw66378s0e3my1hn0x7wq",
+              "name": "View pants",
+              "contents": {
+                "en": {
+                  "type": "list-card",
+                  "tab_type": "variable",
+                  "dynamicCards": "products"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "il896t65k6t2c0can9oclsuq",
+                  "value": true
+                }
+              ],
+              "assignUserResponse": "product_id"
+            },
+            "width": 117,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 706.895124717655,
+              "y": 353.21048903531744
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 605,
+            "x": 12,
+            "y": 420
+          }
+        ],
+        "flows": [
+          {
+            "label": "Start",
+            "action": "start",
+            "id": "start",
+            "name": "Start",
+            "nextAction": "o1zjp21xspeix7zfh11eayra"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "o1zjp21xspeix7zfh11eayra",
+            "name": "Choose type products",
+            "contents": {
+              "en": {
+                "message": "What do you want to buy?",
+                "type": "text",
+                "buttons": [
+                  {
+                    "label": "👕T-Shirt",
+                    "value": "t-shirt",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "👖Pants",
+                    "value": "pants",
+                    "type": "postback"
+                  }
+                ]
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "u2i029mkjr3daehn0w7nm5z3",
+                "value": "t-shirt"
+              },
+              {
+                "condition": "equal",
+                "id": "madir0a2nzmsghnreskxvbeh",
+                "value": "pants"
+              },
+              {
+                "condition": "otherwise",
+                "id": "k4mf5eti3gp7vynkvj1v96mg"
+              }
+            ]
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "u2i029mkjr3daehn0w7nm5z3",
+            "name": "Get t-shirts",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6679c95d18a459f639516ffa.mockapi.io/TShirt",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "products",
+            "nextActions": [
+              {
+                "condition": "failure",
+                "id": "qjc6gz91ntxrd5h1u87u3v1l"
+              },
+              {
+                "condition": "success",
+                "id": "bie4kb3xlrvof0qt3cpm24su"
+              }
+            ]
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "madir0a2nzmsghnreskxvbeh",
+            "name": "Get pants",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6679c95d18a459f639516ffa.mockapi.io/Pant",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "products",
+            "nextActions": [
+              {
+                "condition": "failure",
+                "id": "qjc6gz91ntxrd5h1u87u3v1l"
+              },
+              {
+                "condition": "success",
+                "id": "le3zw66378s0e3my1hn0x7wq"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "qjc6gz91ntxrd5h1u87u3v1l",
+            "name": "Failed process",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Our system is having problems😭. Please try again later",
+                "type": "text"
+              },
+              "vi": {
+                "buttons": []
+              }
+            },
+            "nextAction": "o1zjp21xspeix7zfh11eayra"
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "il896t65k6t2c0can9oclsuq",
+            "name": "get pant detail",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6679c95d18a459f639516ffa.mockapi.io/Pant/{product_id}",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "product_detail",
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "mt4o69e5ssuayw360cqssfym"
+              },
+              {
+                "condition": "failure",
+                "id": "qjc6gz91ntxrd5h1u87u3v1l"
+              }
+            ]
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "ed4rdxstft1e9ercdsd0wkbf",
+            "name": "Get t-shirt detail",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6679c95d18a459f639516ffa.mockapi.io/TShirt/{product_id}",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "product_detail",
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "mt4o69e5ssuayw360cqssfym"
+              },
+              {
+                "condition": "failure",
+                "id": "qjc6gz91ntxrd5h1u87u3v1l"
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "f14giuz3sov8eomcakrs8z72",
+            "name": "Choose size",
+            "contents": {
+              "en": {
+                "message": "Please choose your size. I have size {product_detail->size}",
+                "type": "text",
+                "buttons": [
+                  {
+                    "label": "S",
+                    "value": "S",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "M",
+                    "value": "M",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "L",
+                    "value": "L",
+                    "type": "postback"
+                  }
+                ]
+              }
+            },
+            "assignUserResponse": "choose_size",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "t172o11g04ocjcbnja7lfpxt",
+                "value": true
+              },
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "vil87ezf7cc6uxxfz13a1mqw",
+            "name": "Ask phonenumber",
+            "contents": {
+              "en": {
+                "message": "Give me your phone number 📞",
+                "type": "text",
+                "repeatMessage": "Wrong format phone number❌, please try again ",
+                "buttons": []
+              }
+            },
+            "repeat": 3,
+            "grammarType": "phone-number",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "nb42vwwg6ril49ylafxvk2v4",
+                "value": true
+              },
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ],
+            "assignUserResponse": "phone_number"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "nb42vwwg6ril49ylafxvk2v4",
+            "name": "Ask Confirm",
+            "contents": {
+              "en": {
+                "message": "Please confirm if you want to buy our product:\nProduct: \\|{product_detail->title}\\|\nSize: {choose_size}\nName: {username}\nPhone number: {phone_number}\nTotal price: {product_detail->price}$ and 1$ for delivery. \nYour order id: \\|{product_detail->id}-{product_detail->title}-{phone_number}\\|",
+                "type": "text",
+                "buttons": [
+                  {
+                    "label": "Yes, i want to buy \\|{product_detail->title}\\|",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "👌🏻",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "No❌",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ]
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              },
+              {
+                "condition": "equal",
+                "id": "ej6lb09z25duh8embtiofbqu",
+                "value": "confirm"
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "slliul1x527xj9nh7ozmsfjh",
+            "name": "Ask email",
+            "contents": {
+              "en": {
+                "message": "You have successfully made a purchase, please give me your email to confirm your order 📥",
+                "type": "text",
+                "repeatMessage": "You typing email wrong 😓"
+              }
+            },
+            "repeat": 3,
+            "assignUserResponse": "email",
+            "grammarType": "email",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "omciq239cvzxi4l8uuqnecme",
+                "value": true
+              },
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ]
+          },
+          {
+            "label": "Send Mail",
+            "action": "send-mail",
+            "id": "omciq239cvzxi4l8uuqnecme",
+            "name": "Send Mail",
+            "contents": {},
+            "nextAction": "hb8yxvmrunvmzbvldtjjtd8x",
+            "sendMail": {
+              "subject": "Confirm Payment",
+              "to": "{email}",
+              "body": "<div class=\"prose\"><div contenteditable=\"true\" translate=\"no\" class=\"tiptap ProseMirror\" tabindex=\"0\" spellcheck=\"false\"><p>Your order id: \\|{product_detail->id}-{product_detail->title}-{phone_number}\\|</p><p>You have successfully ordered the product: {product_detail->title}, size: {choose_size}, total price: {product_detail->price} and 1$ for delivery.</p><p>Your order will be delivered to you within 3-5 days.</p></div></div>"
+            }
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "hb8yxvmrunvmzbvldtjjtd8x",
+            "name": "Confirm send mail",
+            "contents": {
+              "en": {
+                "message": "Please check your email😁",
+                "type": "text",
+                "buttons": []
+              }
+            },
+            "nextAction": "ovu5mmshipsqc8dx2wzw091u"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "cfe3vdszoy47ifunv47q4w48",
+            "name": "Failed message information",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Order process failed 😭",
+                "type": "text"
+              },
+              "vi": {
+                "buttons": [],
+                "message": "The payment process failed❌",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "k4mf5eti3gp7vynkvj1v96mg",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "message": "Sorry, we do not support this category.",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "ovu5mmshipsqc8dx2wzw091u",
+            "name": "Ask buy again",
+            "contents": {
+              "en": {
+                "message": "Do you want to buy other products?",
+                "type": "text",
+                "buttons": [
+                  {
+                    "label": "Yes, i want to buy other product",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Ok👌🏻",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "No❌",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ]
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "bp444h1qb0kfgik8uxdlppu1"
+              },
+              {
+                "condition": "equal",
+                "id": "o1zjp21xspeix7zfh11eayra",
+                "value": "confirm"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "bp444h1qb0kfgik8uxdlppu1",
+            "name": "Thank you",
+            "contents": {
+              "en": {
+                "message": "",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "ej6lb09z25duh8embtiofbqu",
+            "name": "Save order",
+            "contents": {},
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "slliul1x527xj9nh7ozmsfjh"
+              },
+              {
+                "condition": "failure",
+                "id": "c2t82sfa78zi9tsj98us1bzc"
+              }
+            ],
+            "httpRequest": {
+              "method": "POST",
+              "url": "https://6679c91718a459f639516f41.mockapi.io/order",
+              "headers": [],
+              "params": [],
+              "body": [
+                {
+                  "key": "order_id",
+                  "value": "{product_detail->id}-{product_detail->title}-{phone_number}"
+                },
+                {
+                  "key": "name",
+                  "value": "{product_detail}"
+                },
+                {
+                  "key": "status",
+                  "value": "delivering"
+                },
+                {
+                  "key": "phone_number",
+                  "value": "{phone_number}"
+                },
+                {
+                  "key": "username",
+                  "value": "{username}"
+                }
+              ]
+            },
+            "assignUserResponse": "save_order"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "c2t82sfa78zi9tsj98us1bzc",
+            "name": "Message save order failed",
+            "contents": {
+              "en": {
+                "message": "",
+                "type": "text",
+                "buttons": []
+              }
+            }
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "t172o11g04ocjcbnja7lfpxt",
+            "name": "Ask name",
+            "contents": {
+              "en": {
+                "message": "Give me your name or fullname",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "vil87ezf7cc6uxxfz13a1mqw",
+                "value": true
+              },
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              }
+            ],
+            "assignUserResponse": "username"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "mt4o69e5ssuayw360cqssfym",
+            "name": "Message ask infomation",
+            "contents": {
+              "en": {
+                "message": "Please give me some information to create an order for you 😁",
+                "type": "text",
+                "buttons": []
+              }
+            },
+            "nextAction": "f14giuz3sov8eomcakrs8z72"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "bie4kb3xlrvof0qt3cpm24su",
+            "name": "View t-shirts",
+            "contents": {
+              "en": {
+                "type": "list-card",
+                "tab_type": "variable",
+                "dynamicCards": "products"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "ed4rdxstft1e9ercdsd0wkbf",
+                "value": true
+              }
+            ],
+            "assignUserResponse": "product_id"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "le3zw66378s0e3my1hn0x7wq",
+            "name": "View pants",
+            "contents": {
+              "en": {
+                "type": "list-card",
+                "tab_type": "variable",
+                "dynamicCards": "products"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "il896t65k6t2c0can9oclsuq",
+                "value": true
+              }
+            ],
+            "assignUserResponse": "product_id"
+          }
+        ],
+        "name": "Shopping",
+        "userId": "v3xlkf1g9l1eaigl222mlx79"
+      },
+      {
+        "edges": [
+          {
+            "source": "start",
+            "sourceHandle": null,
+            "target": "nl88f30whfhqorcktby54vm3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-start-nl88f30whfhqorcktby54vm3",
+            "sections": [
+              {
+                "id": "reactflow__edge-start-nl88f30whfhqorcktby54vm3_s0",
+                "startPoint": {
+                  "x": 206,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 171.83333333333334,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 206,
+                    "y": 320
+                  },
+                  {
+                    "x": 206,
+                    "y": 342.5
+                  },
+                  {
+                    "x": 203.1527777777778,
+                    "y": 353.75
+                  },
+                  {
+                    "x": 200.3055555555556,
+                    "y": 365
+                  },
+                  {
+                    "x": 194.61111111111114,
+                    "y": 365
+                  },
+                  {
+                    "x": 188.91666666666669,
+                    "y": 365
+                  },
+                  {
+                    "x": 183.22222222222226,
+                    "y": 365
+                  },
+                  {
+                    "x": 177.5277777777778,
+                    "y": 365
+                  },
+                  {
+                    "x": 174.68055555555557,
+                    "y": 378.75
+                  },
+                  {
+                    "x": 171.83333333333334,
+                    "y": 392.5
+                  },
+                  {
+                    "x": 171.83333333333334,
+                    "y": 420
+                  }
+                ],
+                "incomingShape": "start",
+                "outgoingShape": "nl88f30whfhqorcktby54vm3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "nl88f30whfhqorcktby54vm3",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "swf8d4vtduggep7g0qalnsor",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-nl88f30whfhqorcktby54vm3prompt-and-collect-yes-swf8d4vtduggep7g0qalnsor",
+            "sections": [
+              {
+                "id": "reactflow__edge-nl88f30whfhqorcktby54vm3prompt-and-collect-yes-swf8d4vtduggep7g0qalnsor_s0",
+                "startPoint": {
+                  "x": 171.83333333333334,
+                  "y": 420
+                },
+                "endPoint": {
+                  "x": 109,
+                  "y": 48
+                },
+                "bendPoints": [
+                  {
+                    "x": 12,
+                    "y": 370
+                  },
+                  {
+                    "x": 12,
+                    "y": 345.00000000000006
+                  },
+                  {
+                    "x": 12,
+                    "y": 318.16666666666674
+                  },
+                  {
+                    "x": 12,
+                    "y": 291.33333333333337
+                  },
+                  {
+                    "x": 12,
+                    "y": 262.6666666666667
+                  },
+                  {
+                    "x": 12,
+                    "y": 241.16666666666669
+                  },
+                  {
+                    "x": 12,
+                    "y": 219.66666666666666
+                  },
+                  {
+                    "x": 12.000000000000057,
+                    "y": 205.33333333333334
+                  },
+                  {
+                    "x": 12.000000000000057,
+                    "y": 191
+                  },
+                  {
+                    "x": 12,
+                    "y": 176.66666666666669
+                  },
+                  {
+                    "x": 12,
+                    "y": 162.33333333333334
+                  },
+                  {
+                    "x": 12,
+                    "y": 142.66666666666669
+                  },
+                  {
+                    "x": 12,
+                    "y": 123.00000000000001
+                  },
+                  {
+                    "x": 12,
+                    "y": 98
+                  }
+                ],
+                "incomingShape": "nl88f30whfhqorcktby54vm3",
+                "outgoingShape": "swf8d4vtduggep7g0qalnsor"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "swf8d4vtduggep7g0qalnsor",
+            "sourceHandle": "http-request-success",
+            "target": "wyqpm2di3176f9pbttq1f394",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-success-wyqpm2di3176f9pbttq1f394",
+            "sections": [
+              {
+                "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-success-wyqpm2di3176f9pbttq1f394_s0",
+                "startPoint": {
+                  "x": 109,
+                  "y": 48
+                },
+                "endPoint": {
+                  "x": 492.33333333333337,
+                  "y": 148
+                },
+                "bendPoints": [
+                  {
+                    "x": 109,
+                    "y": 48
+                  },
+                  {
+                    "x": 454,
+                    "y": 98
+                  }
+                ],
+                "incomingShape": "swf8d4vtduggep7g0qalnsor",
+                "outgoingShape": "wyqpm2di3176f9pbttq1f394"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "swf8d4vtduggep7g0qalnsor",
+            "sourceHandle": "http-request-error",
+            "target": "tpb8o12vu4lbjzsjvp4136mc",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-error-tpb8o12vu4lbjzsjvp4136mc",
+            "sections": [
+              {
+                "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-error-tpb8o12vu4lbjzsjvp4136mc_s0",
+                "startPoint": {
+                  "x": 109,
+                  "y": 48
+                },
+                "endPoint": {
+                  "x": 109,
+                  "y": 148
+                },
+                "bendPoints": [
+                  {
+                    "x": 109,
+                    "y": 48
+                  },
+                  {
+                    "x": 109,
+                    "y": 98
+                  }
+                ],
+                "incomingShape": "swf8d4vtduggep7g0qalnsor",
+                "outgoingShape": "tpb8o12vu4lbjzsjvp4136mc"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "wyqpm2di3176f9pbttq1f394",
+            "sourceHandle": null,
+            "target": "guozu9v1jdm9a083xifkbwxa",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-wyqpm2di3176f9pbttq1f394-guozu9v1jdm9a083xifkbwxa",
+            "sections": [
+              {
+                "id": "reactflow__edge-wyqpm2di3176f9pbttq1f394-guozu9v1jdm9a083xifkbwxa_s0",
+                "startPoint": {
+                  "x": 492.33333333333337,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 492.33333333333337,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 492.33333333333337,
+                    "y": 184
+                  },
+                  {
+                    "x": 492.33333333333337,
+                    "y": 234
+                  }
+                ],
+                "incomingShape": "wyqpm2di3176f9pbttq1f394",
+                "outgoingShape": "guozu9v1jdm9a083xifkbwxa"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "guozu9v1jdm9a083xifkbwxa",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "nl88f30whfhqorcktby54vm3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-yes-nl88f30whfhqorcktby54vm3",
+            "sections": [
+              {
+                "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-yes-nl88f30whfhqorcktby54vm3_s0",
+                "startPoint": {
+                  "x": 492.33333333333337,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 171.83333333333334,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 492.33333333333337,
+                    "y": 320
+                  },
+                  {
+                    "x": 492.33333333333337,
+                    "y": 342.5
+                  },
+                  {
+                    "x": 441.7638888888889,
+                    "y": 353.75
+                  },
+                  {
+                    "x": 391.19444444444446,
+                    "y": 365
+                  },
+                  {
+                    "x": 290.05555555555554,
+                    "y": 365
+                  },
+                  {
+                    "x": 236.6388888888889,
+                    "y": 365
+                  },
+                  {
+                    "x": 183.22222222222226,
+                    "y": 365
+                  },
+                  {
+                    "x": 177.5277777777778,
+                    "y": 365
+                  },
+                  {
+                    "x": 174.68055555555557,
+                    "y": 378.75
+                  },
+                  {
+                    "x": 171.83333333333334,
+                    "y": 392.5
+                  },
+                  {
+                    "x": 171.83333333333334,
+                    "y": 420
+                  }
+                ],
+                "incomingShape": "guozu9v1jdm9a083xifkbwxa",
+                "outgoingShape": "nl88f30whfhqorcktby54vm3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "guozu9v1jdm9a083xifkbwxa",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "mzap00awupftiknhbqlsmve8",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-no-mzap00awupftiknhbqlsmve8",
+            "sections": [
+              {
+                "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-no-mzap00awupftiknhbqlsmve8_s0",
+                "startPoint": {
+                  "x": 492.33333333333337,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 492.33333333333337,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 492.33333333333337,
+                    "y": 320
+                  },
+                  {
+                    "x": 492.33333333333337,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "guozu9v1jdm9a083xifkbwxa",
+                "outgoingShape": "mzap00awupftiknhbqlsmve8"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "tpb8o12vu4lbjzsjvp4136mc",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "nl88f30whfhqorcktby54vm3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-tpb8o12vu4lbjzsjvp4136mcprompt-and-collect-yes-nl88f30whfhqorcktby54vm3",
+            "sections": [
+              {
+                "id": "reactflow__edge-tpb8o12vu4lbjzsjvp4136mcprompt-and-collect-yes-nl88f30whfhqorcktby54vm3_s0",
+                "startPoint": {
+                  "x": 109,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 171.83333333333334,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 109,
+                    "y": 234
+                  },
+                  {
+                    "x": 109,
+                    "y": 255.49999999999997
+                  },
+                  {
+                    "x": 109,
+                    "y": 273.41666666666663
+                  },
+                  {
+                    "x": 109,
+                    "y": 291.33333333333337
+                  },
+                  {
+                    "x": 109,
+                    "y": 305.66666666666663
+                  },
+                  {
+                    "x": 109,
+                    "y": 325.33333333333326
+                  },
+                  {
+                    "x": 109,
+                    "y": 344.99999999999994
+                  },
+                  {
+                    "x": 109,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "tpb8o12vu4lbjzsjvp4136mc",
+                "outgoingShape": "nl88f30whfhqorcktby54vm3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "tpb8o12vu4lbjzsjvp4136mc",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "mzap00awupftiknhbqlsmve8",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-tpb8o12vu4lbjzsjvp4136mcprompt-and-collect-no-mzap00awupftiknhbqlsmve8"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "start",
+            "type": "start",
+            "position": {
+              "x": 120,
+              "y": 284
+            },
+            "data": {
+              "label": "Start",
+              "action": "start",
+              "id": "start",
+              "name": "Start",
+              "nextAction": "nl88f30whfhqorcktby54vm3"
+            },
+            "deletable": false,
+            "draggable": false,
+            "width": 70,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 277,
+            "x": 120,
+            "y": 284
+          },
+          {
+            "id": "nl88f30whfhqorcktby54vm3",
+            "position": {
+              "x": 114.5,
+              "y": 420
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "nl88f30whfhqorcktby54vm3",
+              "name": "Ask order id",
+              "contents": {
+                "en": {
+                  "message": "Please give me your order ID",
+                  "type": "text",
+                  "buttons": []
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "swf8d4vtduggep7g0qalnsor",
+                  "value": true
+                }
+              ],
+              "assignUserResponse": "order_id"
+            },
+            "width": 125,
+            "height": 32,
+            "selected": true,
+            "positionAbsolute": {
+              "x": 114.5,
+              "y": 420
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 279,
+            "x": 114.5,
+            "y": 420
+          },
+          {
+            "id": "swf8d4vtduggep7g0qalnsor",
+            "position": {
+              "x": 224.60000000000002,
+              "y": 555.2
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "swf8d4vtduggep7g0qalnsor",
+              "name": "Get order detail",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6679c91718a459f639516f41.mockapi.io/order",
+                "headers": [],
+                "params": [
+                  {
+                    "key": "order_id",
+                    "value": "{order_id}"
+                  }
+                ],
+                "body": []
+              },
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "wyqpm2di3176f9pbttq1f394"
+                },
+                {
+                  "condition": "failure",
+                  "id": "tpb8o12vu4lbjzsjvp4136mc"
+                }
+              ],
+              "assignUserResponse": "order_detail"
+            },
+            "width": 151,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 224.60000000000002,
+              "y": 555.2
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 281,
+            "x": 23,
+            "y": 12
+          },
+          {
+            "id": "wyqpm2di3176f9pbttq1f394",
+            "position": {
+              "x": 373.96006835424066,
+              "y": 655.9005572275439
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "wyqpm2di3176f9pbttq1f394",
+              "name": "Get status",
+              "contents": {
+                "en": {
+                  "message": "You order is status {order_detail->0->status}",
+                  "type": "text",
+                  "buttons": []
+                }
+              },
+              "nextAction": "guozu9v1jdm9a083xifkbwxa"
+            },
+            "width": 111,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 373.96006835424066,
+              "y": 655.9005572275439
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 283,
+            "x": 406.33333333333337,
+            "y": 148
+          },
+          {
+            "id": "tpb8o12vu4lbjzsjvp4136mc",
+            "position": {
+              "x": -105.62814643923753,
+              "y": 639.7759996783991
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "tpb8o12vu4lbjzsjvp4136mc",
+              "name": "Prompt & Collect",
+              "contents": {
+                "en": {
+                  "message": "Oop!!!\nYour order does not exist😓 \nDo you want to try again?",
+                  "type": "text",
+                  "buttons": [
+                    {
+                      "label": "Yes",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "No",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ]
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "nl88f30whfhqorcktby54vm3",
+                  "value": "confirm"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "mzap00awupftiknhbqlsmve8"
+                }
+              ]
+            },
+            "width": 162,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": -105.62814643923753,
+              "y": 639.7759996783991
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 285,
+            "x": 23,
+            "y": 148
+          },
+          {
+            "id": "guozu9v1jdm9a083xifkbwxa",
+            "position": {
+              "x": 305.73655306022266,
+              "y": 745.2292440957103
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "guozu9v1jdm9a083xifkbwxa",
+              "name": "Ask check other order",
+              "contents": {
+                "en": {
+                  "message": "Do you want to check other orders?",
+                  "type": "text",
+                  "buttons": [
+                    {
+                      "label": "Yes",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "I'm sure",
+                      "value": "sure",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "No❌",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ]
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "nl88f30whfhqorcktby54vm3",
+                  "value": "confirm"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "mzap00awupftiknhbqlsmve8"
+                }
+              ]
+            },
+            "width": 194,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 305.73655306022266,
+              "y": 745.2292440957103
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 287,
+            "x": 406.33333333333337,
+            "y": 284
+          },
+          {
+            "id": "mzap00awupftiknhbqlsmve8",
+            "position": {
+              "x": 182.93431737426653,
+              "y": 858.6435927547185
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "mzap00awupftiknhbqlsmve8",
+              "name": "Thank you",
+              "contents": {
+                "en": {
+                  "message": "Thank you💝",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 113,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 182.93431737426653,
+              "y": 858.6435927547185
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 289,
+            "x": 406.33333333333337,
+            "y": 420
+          }
+        ],
+        "flows": [
+          {
+            "label": "Start",
+            "action": "start",
+            "id": "start",
+            "name": "Start",
+            "nextAction": "nl88f30whfhqorcktby54vm3"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "nl88f30whfhqorcktby54vm3",
+            "name": "Ask order id",
+            "contents": {
+              "en": {
+                "message": "Please give me your order ID",
+                "type": "text",
+                "buttons": []
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "swf8d4vtduggep7g0qalnsor",
+                "value": true
+              }
+            ],
+            "assignUserResponse": "order_id"
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "swf8d4vtduggep7g0qalnsor",
+            "name": "Get order detail",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6679c91718a459f639516f41.mockapi.io/order",
+              "headers": [],
+              "params": [
+                {
+                  "key": "order_id",
+                  "value": "{order_id}"
+                }
+              ],
+              "body": []
+            },
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "wyqpm2di3176f9pbttq1f394"
+              },
+              {
+                "condition": "failure",
+                "id": "tpb8o12vu4lbjzsjvp4136mc"
+              }
+            ],
+            "assignUserResponse": "order_detail"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "wyqpm2di3176f9pbttq1f394",
+            "name": "Get status",
+            "contents": {
+              "en": {
+                "message": "You order is status {order_detail->0->status}",
+                "type": "text",
+                "buttons": []
+              }
+            },
+            "nextAction": "guozu9v1jdm9a083xifkbwxa"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "tpb8o12vu4lbjzsjvp4136mc",
+            "name": "Prompt & Collect",
+            "contents": {
+              "en": {
+                "message": "Oop!!!\nYour order does not exist😓 \nDo you want to try again?",
+                "type": "text",
+                "buttons": [
+                  {
+                    "label": "Yes",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "No",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ]
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "nl88f30whfhqorcktby54vm3",
+                "value": "confirm"
+              },
+              {
+                "condition": "otherwise",
+                "id": "mzap00awupftiknhbqlsmve8"
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "guozu9v1jdm9a083xifkbwxa",
+            "name": "Ask check other order",
+            "contents": {
+              "en": {
+                "message": "Do you want to check other orders?",
+                "type": "text",
+                "buttons": [
+                  {
+                    "label": "Yes",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "I'm sure",
+                    "value": "sure",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "No❌",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ]
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "nl88f30whfhqorcktby54vm3",
+                "value": "confirm"
+              },
+              {
+                "condition": "otherwise",
+                "id": "mzap00awupftiknhbqlsmve8"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "mzap00awupftiknhbqlsmve8",
+            "name": "Thank you",
+            "contents": {
+              "en": {
+                "message": "Thank you💝",
+                "type": "text"
+              }
+            }
+          }
+        ],
+        "name": "Check Order",
+        "userId": "v3xlkf1g9l1eaigl222mlx79"
+      }
+    ],
+    "intents": [
+      {
+        "name": "confirm",
+        "referenceId": "qbiavyp3jx06rge1w2gu4laq",
+        "trainType": "manual",
+        "trainDescription": [],
+        "intents": [
+          {
+            "intent": "confirm",
+            "prompts": [
+              "<span style=\"color: rgb(2",
+              "8",
+              "23);\">Yes",
+              "I agree",
+              "I am sure",
+              "I confirm",
+              "please proceed",
+              "true",
+              "yes",
+              "sure",
+              "Sure",
+              "yes please",
+              "ok",
+              "i'm sure",
+              "I have",
+              "Ok",
+              "have",
+              "Yup</span>"
+            ],
+            "answers": ["Thank you"]
+          }
+        ],
+        "entities": []
+      }
+    ]
+  }
+]

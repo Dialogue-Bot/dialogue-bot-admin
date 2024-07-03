@@ -43,6 +43,20 @@ export class UserService {
     return user
   }
 
+  public async isAdminAccount(userId: string) {
+    const user = await this.findOneById(userId)
+
+    return user.email === 'admin@gmail.com'
+  }
+
+  public async findOneByIdAndEmail(id: string, email: string) {
+    const user = await db.query.users.findFirst({
+      where: and(eq(users.id, id), eq(users.email, email)),
+    })
+
+    return user
+  }
+
   public async create(fields: TNewUser) {
     const [user] = await db
       .insert(users)

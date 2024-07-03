@@ -1,7 +1,7 @@
 import { API_KEY } from '@/config'
 import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
-import { intents } from '@/database/schema'
+import { intents, users } from '@/database/schema'
 import { IntentDTO, PredictIntentDTO } from '@/dtos/intent.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { HttpException } from '@/exceptions/http-exception'
@@ -18,10 +18,10 @@ import { NlpService } from './nlp.service'
 
 @Service()
 export class IntentService {
-  constructor(
-    @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-    private readonly nlpService: NlpService,
-  ) {}
+  @Inject(() => NlpService)
+  private readonly nlpService: NlpService
+
+  @Inject(LOCALE_KEY) private readonly localeService: LocaleService
 
   public async create({
     fields,
@@ -292,5 +292,17 @@ export class IntentService {
       .orderBy(asc(intents.name))
 
     return rows
+  }
+
+  public async seedIntents(intents: IntentDTO[]) {
+    const admin = await db.query.users.findFirst({
+      where: eq(users.email, 'admin@gmail.com'),
+    })
+
+    if (!admin) return
+
+    for (const intent of intents) {
+      await this.create({ fields: intent, userId: admin.id })
+    }
   }
 }

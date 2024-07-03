@@ -209,6 +209,12 @@ export class UserSubscriptionService {
       forFlow?: boolean
     },
   ) {
+    const isAdmin = await this.userService.isAdminAccount(userId)
+
+    if (isAdmin) {
+      return false
+    }
+
     const usage = await this.getUsageSubscription(userId)
 
     if (usage.totalChannels === 0 && forChannel) {
