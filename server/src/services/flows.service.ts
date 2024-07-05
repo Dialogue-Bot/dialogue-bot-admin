@@ -347,7 +347,7 @@ export class FlowService {
     flows: TNewFlow[],
   ): Promise<TNewFlow[]> {
     const promises = flows.map(async (flow) => {
-      return await this.create({
+      return this.create({
         ...flow,
         userId,
         publishAt: new Date(),
@@ -374,8 +374,43 @@ export class FlowService {
       .where(eq(users.email, 'admin@gmail.com'))
       .leftJoin(users, eq(flows.userId, users.id))
 
-    redis.set('templates', JSON.stringify(templates))
+    redis.set('templates', JSON.stringify(templates), 'EX', 60 * 60 * 24)
 
     return templates
+  }
+
+  public async getSubFlowsByFlow(rootFlow: any) {
+    const _flows = [rootFlow]
+
+    for (const flow of rootFlow.flows) {
+      if (flow.action === 'sub-flow') {
+        const subFlow = await db.query.flows.findFirst({
+          where: eq(flows.id, flow.subFlowId),
+        })
+
+        if (subFlow) {
+          _flows.push(subFlow)
+
+          _flows.push(await this.getSubFlowsByFlow(subFlow))
+        }
+      }
+    }
+
+    return _flows
+  }
+
+  public async duplicateFlow(id: string, userId: string) {
+    const flowExisted = await db.query.flows.findFirst({
+      where: and(eq(flows.id, id), eq(flows.userId, userId)),
+    })
+
+    if (!flowExisted) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.NOT_FOUND(),
+      )
+    }
+
+    return this.getSubFlowsByFlow(flowExisted)
   }
 }

@@ -16,6 +16,12 @@ export class FlowRoute implements Routes {
   }
   initializeRoutes() {
     this.router.post(
+      `${ENDPOINTS.FLOW.DUPLICATE_TEMPLATE}/:id`,
+      authMiddleware,
+      this.controller.duplicateTemplate,
+    )
+    this.router.get(ENDPOINTS.FLOW.TEMPLATES, this.controller.getTemplates)
+    this.router.post(
       ENDPOINTS.FLOW.INDEX,
       validate(FlowDTO, 'body'),
       authMiddleware,

@@ -294,6 +294,10 @@ type RootTranslation = {
 		 * F​l​o​w​ ​h​a​s​ ​r​e​a​c​h​e​d​ ​t​h​e​ ​m​a​x​i​m​u​m​ ​n​u​m​b​e​r​!​ ​P​l​e​a​s​e​ ​u​p​g​r​a​d​e​ ​y​o​u​r​ ​p​l​a​n​ ​t​o​ ​c​r​e​a​t​e​ ​m​o​r​e​ ​f​l​o​w​s​.
 		 */
 		FLOW_EXCEED_USAGE: string
+		/**
+		 * D​u​p​l​i​c​a​t​e​d​ ​t​e​m​p​l​a​t​e​ ​s​u​c​c​e​s​s​f​u​l​l​y​!
+		 */
+		DUPLICATE_TEMPLATE: string
 	}
 	INTENT: {
 		/**
@@ -611,6 +615,10 @@ export type TranslationFunctions = {
 		 * Flow has reached the maximum number! Please upgrade your plan to create more flows.
 		 */
 		FLOW_EXCEED_USAGE: () => LocalizedString
+		/**
+		 * Duplicated template successfully!
+		 */
+		DUPLICATE_TEMPLATE: () => LocalizedString
 	}
 	INTENT: {
 		/**

@@ -136,7 +136,7 @@ export const flows = pgTable('flows', {
     length: MAX_ID_LENGTH,
   })
     .primaryKey()
-    .$defaultFn(() => createId()),
+    .$default(() => createId()),
   name: text('name').notNull(),
   userId: varchar('user_id', {
     length: MAX_ID_LENGTH,

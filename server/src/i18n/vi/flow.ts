@@ -11,4 +11,5 @@ export const FLOW = {
   ADD_MULTIPLE_CHANNELS_FLOW__FAILED: 'Thêm nhiều kênh cho luồng thất bại!',
   FLOW_EXCEED_USAGE:
     'Luồng đã đạt đến số lượng tối đa! Vui lòng nâng cấp gói của bạn để tạo thêm luồng.',
+  DUPLICATE_TEMPLATE: 'Tạo mới luồng từ mẫu thành công!',
 }
