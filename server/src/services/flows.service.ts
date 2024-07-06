@@ -354,7 +354,8 @@ export class FlowService {
   }
 
   public async seedFlows(email: string) {
-    const getAdminAccount = await this.userService.findOneByEmail(email)
+    const getAdminAccount = await this.userService.findOneByEmail(email);
+
     if (!getAdminAccount) throw new Error('Admin account does not exists!');
 
     const userId = getAdminAccount.id;
@@ -368,25 +369,24 @@ export class FlowService {
         let { mainFlow, subFlows, intents } = flow;
         const intentsData = await this.intentService.seedIntents(intents, userId);
 
-        if (intentsData.length) {
-          subFlows.forEach((subFlow: FlowDTO) => {
-            let { nodes, flows } = subFlow;
-            nodes = this.intentService.mapIntentData(nodes, intentsData);
-            flows = this.intentService.mapIntentData(flows, intentsData);
-          })
-        }
+        subFlows.forEach((subFlow: FlowDTO) => {
+          let { nodes, flows } = subFlow;
+          nodes = this.intentService.mapIntentData(nodes, intentsData);
+          flows = this.intentService.mapIntentData(flows, intentsData);
+        })
 
         const newSubFlows = await this.createFlows(subFlows, userId);
 
-        mainFlow = this.mapFlowData(mainFlow, newSubFlows);
+        let { nodes, flows } = mainFlow[0];
+        nodes = this.mapFlowData(nodes, newSubFlows);
+        flows = this.mapFlowData(flows, newSubFlows);
 
-        await this.create({ ...mainFlow, userId, publishAt: new Date() });
+        await this.create({ ...mainFlow[0], userId, publishAt: new Date() });
       } catch (err) {
         logger.info('Init flow failed: ' + err.message)
       }
     }
   }
-
 
   public async getTemplateFlows() {
     const cached = await redis.get('templates')
