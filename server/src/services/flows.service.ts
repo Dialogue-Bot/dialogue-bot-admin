@@ -9,13 +9,16 @@ import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { redis } from '@/libs/redis'
+import { loadTemplates } from '@/utils/load-templates'
 import { logger } from '@/utils/logger'
 import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
 import { ChannelService } from './channels.service'
+import { IntentService } from './intent.service'
 import { UserSubscriptionService } from './user-subscription.service'
+import { UserService } from './users.service'
 
 @Service()
 export class FlowService {
@@ -25,9 +28,15 @@ export class FlowService {
   @Inject((type) => ChannelService)
   private readonly chanelService: ChannelService
 
+  @Inject((type) => IntentService)
+  private readonly intentService: IntentService
+
+  @Inject((type) => UserService)
+  private readonly userService: UserService
+
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     if (
@@ -287,6 +296,7 @@ export class FlowService {
 
     return result
   }
+
   public async getFlowByContactId(contactId: string, isTest: boolean) {
     const channel = await this.chanelService.findOneByContactId(contactId)
     let flow = null
@@ -310,6 +320,7 @@ export class FlowService {
 
     return flow
   }
+
   public async getFlowByIdForBot(id: string, isTest: boolean) {
     let flow = null
 
@@ -342,20 +353,40 @@ export class FlowService {
     return count
   }
 
-  public async seedFlows(
-    userId: string,
-    flows: TNewFlow[],
-  ): Promise<TNewFlow[]> {
-    const promises = flows.map(async (flow) => {
-      return this.create({
-        ...flow,
-        userId,
-        publishAt: new Date(),
-      })
-    })
+  public async seedFlows(email: string) {
+    const getAdminAccount = await this.userService.findOneByEmail(email)
+    if (!getAdminAccount) throw new Error('Admin account does not exists!');
 
-    return await Promise.all(promises)
+    const userId = getAdminAccount.id;
+
+    const getFlows = await loadTemplates();
+
+    if (!Array.isArray(getFlows) || !getFlows.length) return;
+
+    for (let flow of getFlows) {
+      try {
+        let { mainFlow, subFlows, intents } = flow;
+        const intentsData = await this.intentService.seedIntents(intents, userId);
+
+        if (intentsData.length) {
+          subFlows.forEach((subFlow: FlowDTO) => {
+            let { nodes, flows } = subFlow;
+            nodes = this.intentService.mapIntentData(nodes, intentsData);
+            flows = this.intentService.mapIntentData(flows, intentsData);
+          })
+        }
+
+        const newSubFlows = await this.createFlows(subFlows, userId);
+
+        mainFlow = this.mapFlowData(mainFlow, newSubFlows);
+
+        await this.create({ ...mainFlow, userId, publishAt: new Date() });
+      } catch (err) {
+        logger.info('Init flow failed: ' + err.message)
+      }
+    }
   }
+
 
   public async getTemplateFlows() {
     const cached = await redis.get('templates')
@@ -412,5 +443,33 @@ export class FlowService {
     }
 
     return this.getSubFlowsByFlow(flowExisted)
+  }
+
+  public async createFlows(flows: FlowDTO[], userId: string) {
+    let flowsData = [];
+    for (let flow of flows) {
+      try {
+        const newFlow = await this.create({ ...flow, userId, publishAt: new Date() })
+        flowsData.push({ name: newFlow.name, id: newFlow.id });
+      } catch (err) {
+        logger.info('Create flow failed: ' + err.message);
+      }
+    }
+    return flowsData;
+  }
+
+  public mapFlowData(oldData: any, newData: any) {
+    const newDataMap = new Map();
+
+    newData.forEach(item => {
+      newDataMap.set(item.name, item.id);
+    });
+
+    return oldData.map(data => {
+      return {
+        ...data,
+        subFlowId: newDataMap.get(data.subFlowName) || data.trainedName,
+      }
+    })
   }
 }

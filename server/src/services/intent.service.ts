@@ -1,7 +1,7 @@
 import { API_KEY } from '@/config'
 import { LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
-import { intents, users } from '@/database/schema'
+import { intents } from '@/database/schema'
 import { IntentDTO, PredictIntentDTO } from '@/dtos/intent.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { HttpException } from '@/exceptions/http-exception'
@@ -294,15 +294,35 @@ export class IntentService {
     return rows
   }
 
-  public async seedIntents(intents: IntentDTO[]) {
-    const admin = await db.query.users.findFirst({
-      where: eq(users.email, 'admin@gmail.com'),
-    })
-
-    if (!admin) return
+  public async seedIntents(intents: IntentDTO[], userId: string) {
+    let intentsData = [];
 
     for (const intent of intents) {
-      await this.create({ fields: intent, userId: admin.id })
+      try {
+        const newIntent = await this.create({ fields: intent, userId });
+
+        if (!newIntent) throw new Error('Train failed');
+
+        intentsData.push({ id: newIntent.id, referenceId: newIntent.referenceId });
+      } catch (err) {
+        logger.info('Init intent failed: ' + err.message);
+      }
     }
+    return intentsData;
+  }
+
+  public mapIntentData(oldData: any, newData: any) {
+    const newDataMap = new Map();
+
+    newData.forEach(item => {
+      newDataMap.set(item.name, item.id);
+    });
+
+    return oldData.map(data => {
+      return {
+        ...data,
+        trainedData: newDataMap.get(data.trainedName) || data.trainedName,
+      }
+    })
   }
 }

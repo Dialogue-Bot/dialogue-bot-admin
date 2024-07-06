@@ -2,6 +2,7 @@
   {
     "mainFlow": [
       {
+        "name": "Shopping Online",
         "edges": [
           {
             "source": "start",
@@ -617,6 +618,7 @@
               "grammarType": "text",
               "assignUserResponse": "language",
               "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+              "trainedName": "Shopping Online - Set Language Vietnam",
               "nextActions": [
                 {
                   "condition": "equal",
@@ -790,6 +792,7 @@
               "name": "Sub flow shopping",
               "contents": {},
               "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+              "subFlowName": "Shopping Online - Shopping",
               "assignVars": [
                 {
                   "assignTo": "product_id",
@@ -880,6 +883,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -988,12 +992,13 @@
               "name": "Sub Flow Check Order",
               "contents": {},
               "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+              "subFlowName": "Shopping Online - Check Order",
               "nextAction": "k8opjysl9gvwa90v25758wfu",
               "assignVars": []
             },
             "width": 196,
             "height": 32,
-            "selected": false,
+            "selected": true,
             "positionAbsolute": {
               "x": 312.6691111478024,
               "y": 557.8665479809774
@@ -1004,6 +1009,31 @@
             "$H": 287,
             "x": 604.5,
             "y": 692
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "back",
+            "value": "",
+            "type": "string"
           }
         ],
         "flows": [
@@ -1040,6 +1070,7 @@
             "grammarType": "text",
             "assignUserResponse": "language",
             "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+            "trainedName": "Shopping Online - Set Language Vietnam",
             "nextActions": [
               {
                 "condition": "equal",
@@ -1129,6 +1160,7 @@
             "name": "Sub flow shopping",
             "contents": {},
             "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+            "subFlowName": "Shopping Online - Shopping",
             "assignVars": [
               {
                 "assignTo": "product_id",
@@ -1177,6 +1209,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "otherwise",
@@ -1222,17 +1255,18 @@
             "name": "Sub Flow Check Order",
             "contents": {},
             "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+            "subFlowName": "Shopping Online - Check Order",
             "nextAction": "k8opjysl9gvwa90v25758wfu",
             "assignVars": []
           }
         ],
-        "name": "Shopping Online",
-        "userId": "v3xlkf1g9l1eaigl222mlx79",
-        "id": "vfzrbcaad85ry521f0nhg51t"
+        "channelIds": [],
+        "userId": "v3xlkf1g9l1eaigl222mlx79"
       }
     ],
     "subFlows": [
       {
+        "name": "Shopping Online - Shopping",
         "edges": [
           {
             "source": "start",
@@ -1344,7 +1378,8 @@
                 "outgoingShape": "u2i029mkjr3daehn0w7nm5z3"
               }
             ],
-            "container": "root"
+            "container": "root",
+            "selected": false
           },
           {
             "source": "o1zjp21xspeix7zfh11eayra",
@@ -2352,45 +2387,8 @@
                 "outgoingShape": "ej6lb09z25duh8embtiofbqu"
               }
             ],
-            "container": "root"
-          },
-          {
-            "source": "f14giuz3sov8eomcakrs8z72",
-            "sourceHandle": "prompt-and-collect-yes",
-            "target": "t172o11g04ocjcbnja7lfpxt",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-t172o11g04ocjcbnja7lfpxt",
-            "sections": [
-              {
-                "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-t172o11g04ocjcbnja7lfpxt_s0",
-                "startPoint": {
-                  "x": 506,
-                  "y": 864
-                },
-                "endPoint": {
-                  "x": 506,
-                  "y": 964
-                },
-                "bendPoints": [
-                  {
-                    "x": 506,
-                    "y": 864
-                  },
-                  {
-                    "x": 506,
-                    "y": 914
-                  }
-                ],
-                "incomingShape": "f14giuz3sov8eomcakrs8z72",
-                "outgoingShape": "t172o11g04ocjcbnja7lfpxt"
-              }
-            ],
-            "container": "root"
+            "container": "root",
+            "selected": false
           },
           {
             "source": "ed4rdxstft1e9ercdsd0wkbf",
@@ -2702,9 +2700,48 @@
             "targetHandle": null,
             "type": "custom",
             "data": {
-              "deletable": true
+              "deletable": true,
+              "hover": false
             },
-            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-o1zjp21xspeix7zfh11eayra"
+            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-o1zjp21xspeix7zfh11eayra",
+            "selected": true
+          },
+          {
+            "source": "f14giuz3sov8eomcakrs8z72",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "y3w6mlm3johvl2b9cylf6fwn",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-y3w6mlm3johvl2b9cylf6fwn"
+          },
+          {
+            "source": "y3w6mlm3johvl2b9cylf6fwn",
+            "sourceHandle": "check-variables-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-y3w6mlm3johvl2b9cylf6fwncheck-variables-no-cfe3vdszoy47ifunv47q4w48"
+          },
+          {
+            "source": "y3w6mlm3johvl2b9cylf6fwn",
+            "sourceHandle": "check-variables-yes",
+            "target": "t172o11g04ocjcbnja7lfpxt",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-y3w6mlm3johvl2b9cylf6fwncheck-variables-yes-t172o11g04ocjcbnja7lfpxt",
+            "selected": false
           }
         ],
         "nodes": [
@@ -3019,7 +3056,7 @@
             "id": "f14giuz3sov8eomcakrs8z72",
             "position": {
               "x": 1043.842453478631,
-              "y": 692.9999246458543
+              "y": 675.3999246458543
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3053,13 +3090,13 @@
               "assignUserResponse": "choose_size",
               "nextActions": [
                 {
-                  "condition": "exist",
-                  "id": "t172o11g04ocjcbnja7lfpxt",
-                  "value": true
-                },
-                {
                   "condition": "otherwise",
                   "id": "cfe3vdszoy47ifunv47q4w48"
+                },
+                {
+                  "condition": "exist",
+                  "id": "y3w6mlm3johvl2b9cylf6fwn",
+                  "value": true
                 }
               ]
             },
@@ -3068,7 +3105,7 @@
             "selected": false,
             "positionAbsolute": {
               "x": 1043.842453478631,
-              "y": 692.9999246458543
+              "y": 675.3999246458543
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3080,8 +3117,8 @@
           {
             "id": "vil87ezf7cc6uxxfz13a1mqw",
             "position": {
-              "x": 1224.032756217391,
-              "y": 934.435723174584
+              "x": 1307.232756217391,
+              "y": 944.835723174584
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3117,8 +3154,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1224.032756217391,
-              "y": 934.435723174584
+              "x": 1307.232756217391,
+              "y": 944.835723174584
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3129,8 +3166,8 @@
           {
             "id": "nb42vwwg6ril49ylafxvk2v4",
             "position": {
-              "x": 1469.851050301932,
-              "y": 1059.9422126715647
+              "x": 1417.851050301932,
+              "y": 1030.3422126715645
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3163,6 +3200,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -3180,8 +3218,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1469.851050301932,
-              "y": 1059.9422126715647
+              "x": 1417.851050301932,
+              "y": 1030.3422126715645
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3192,8 +3230,8 @@
           {
             "id": "slliul1x527xj9nh7ozmsfjh",
             "position": {
-              "x": 1949.2237600262815,
-              "y": 1319.1168109456523
+              "x": 1778.0237600262815,
+              "y": 1250.7168109456522
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3228,8 +3266,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1949.2237600262815,
-              "y": 1319.1168109456523
+              "x": 1778.0237600262815,
+              "y": 1250.7168109456522
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3240,8 +3278,8 @@
           {
             "id": "omciq239cvzxi4l8uuqnecme",
             "position": {
-              "x": 2109.0241697981837,
-              "y": 1470.423418057208
+              "x": 1928.2241697981838,
+              "y": 1452.823418057208
             },
             "type": "send-mail",
             "data": {
@@ -3262,8 +3300,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 2109.0241697981837,
-              "y": 1470.423418057208
+              "x": 1928.2241697981838,
+              "y": 1452.823418057208
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3274,15 +3312,15 @@
           {
             "id": "hb8yxvmrunvmzbvldtjjtd8x",
             "position": {
-              "x": 2084.9163111950184,
-              "y": 1598.3874651894862
+              "x": 1898.5163111950183,
+              "y": 1578.3874651894862
             },
             "type": "message",
             "data": {
               "label": "Message",
               "action": "message",
               "id": "hb8yxvmrunvmzbvldtjjtd8x",
-              "name": "Confirm send mail",
+              "name": "Send check mail",
               "contents": {
                 "en": {
                   "message": "Please check your email😁",
@@ -3292,13 +3330,13 @@
               },
               "nextAction": "ovu5mmshipsqc8dx2wzw091u"
             },
-            "width": 169,
+            "width": 154,
             "height": 32,
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 2084.9163111950184,
-              "y": 1598.3874651894862
+              "x": 1898.5163111950183,
+              "y": 1578.3874651894862
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3381,8 +3419,8 @@
           {
             "id": "ovu5mmshipsqc8dx2wzw091u",
             "position": {
-              "x": 2097.773835783373,
-              "y": 1745.637799204297
+              "x": 1916.173835783373,
+              "y": 1694.437799204297
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3415,6 +3453,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -3431,8 +3470,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 2097.773835783373,
-              "y": 1745.637799204297
+              "x": 1916.173835783373,
+              "y": 1694.437799204297
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3444,8 +3483,8 @@
           {
             "id": "bp444h1qb0kfgik8uxdlppu1",
             "position": {
-              "x": 2059.201262018308,
-              "y": 1945.9254221460717
+              "x": 1778.4012620183084,
+              "y": 1833.5254221460718
             },
             "type": "message",
             "data": {
@@ -3465,8 +3504,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 2059.201262018308,
-              "y": 1945.9254221460717
+              "x": 1778.4012620183084,
+              "y": 1833.5254221460718
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3477,8 +3516,8 @@
           {
             "id": "ej6lb09z25duh8embtiofbqu",
             "position": {
-              "x": 1686.1823233804344,
-              "y": 1186.614647779992
+              "x": 1597.3823233804344,
+              "y": 1130.614647779992
             },
             "type": "http-request",
             "data": {
@@ -3531,8 +3570,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 1686.1823233804344,
-              "y": 1186.614647779992
+              "x": 1597.3823233804344,
+              "y": 1130.614647779992
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3544,8 +3583,8 @@
           {
             "id": "c2t82sfa78zi9tsj98us1bzc",
             "position": {
-              "x": 1513.7443686812123,
-              "y": 1332.225668358816
+              "x": 1455.3443686812125,
+              "y": 1301.825668358816
             },
             "type": "message",
             "data": {
@@ -3566,8 +3605,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1513.7443686812123,
-              "y": 1332.225668358816
+              "x": 1455.3443686812125,
+              "y": 1301.825668358816
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3578,8 +3617,8 @@
           {
             "id": "t172o11g04ocjcbnja7lfpxt",
             "position": {
-              "x": 1089.252780970343,
-              "y": 808.9292336776034
+              "x": 1250.852780970343,
+              "y": 846.5292336776035
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3590,7 +3629,8 @@
               "contents": {
                 "en": {
                   "message": "Give me your name or fullname",
-                  "type": "text"
+                  "type": "text",
+                  "buttons": []
                 }
               },
               "nextActions": [
@@ -3610,8 +3650,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 1089.252780970343,
-              "y": 808.9292336776034
+              "x": 1250.852780970343,
+              "y": 846.5292336776035
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3738,6 +3778,97 @@
             "$H": 605,
             "x": 12,
             "y": 420
+          },
+          {
+            "id": "y3w6mlm3johvl2b9cylf6fwn",
+            "position": {
+              "x": 1147.199996948242,
+              "y": 753.5999999999999
+            },
+            "type": "check-variables",
+            "data": {
+              "label": "Check Variables",
+              "action": "check-variables",
+              "id": "y3w6mlm3johvl2b9cylf6fwn",
+              "name": "Check size exists",
+              "contents": {},
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                },
+                {
+                  "condition": "contains",
+                  "id": "t172o11g04ocjcbnja7lfpxt",
+                  "value": "{choose_size}"
+                }
+              ],
+              "variable_type": "input",
+              "variableInput": "{product_detail->size}"
+            },
+            "width": 156,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1147.199996948242,
+              "y": 753.5999999999999
+            },
+            "dragging": false
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "products",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "product_detail",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "choose_size",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "save_order",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "value": "",
+            "type": "string"
           }
         ],
         "flows": [
@@ -3936,13 +4067,13 @@
             "assignUserResponse": "choose_size",
             "nextActions": [
               {
-                "condition": "exist",
-                "id": "t172o11g04ocjcbnja7lfpxt",
-                "value": true
-              },
-              {
                 "condition": "otherwise",
                 "id": "cfe3vdszoy47ifunv47q4w48"
+              },
+              {
+                "condition": "exist",
+                "id": "y3w6mlm3johvl2b9cylf6fwn",
+                "value": true
               }
             ]
           },
@@ -4004,6 +4135,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "otherwise",
@@ -4060,7 +4192,7 @@
             "label": "Message",
             "action": "message",
             "id": "hb8yxvmrunvmzbvldtjjtd8x",
-            "name": "Confirm send mail",
+            "name": "Send check mail",
             "contents": {
               "en": {
                 "message": "Please check your email😁",
@@ -4130,6 +4262,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "otherwise",
@@ -4221,7 +4354,8 @@
             "contents": {
               "en": {
                 "message": "Give me your name or fullname",
-                "type": "text"
+                "type": "text",
+                "buttons": []
               }
             },
             "nextActions": [
@@ -4292,472 +4426,588 @@
               }
             ],
             "assignUserResponse": "product_id"
+          },
+          {
+            "label": "Check Variables",
+            "action": "check-variables",
+            "id": "y3w6mlm3johvl2b9cylf6fwn",
+            "name": "Check size exists",
+            "contents": {},
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              },
+              {
+                "condition": "contains",
+                "id": "t172o11g04ocjcbnja7lfpxt",
+                "value": "{choose_size}"
+              }
+            ],
+            "variable_type": "input",
+            "variableInput": "{product_detail->size}"
           }
         ],
-        "name": "Shopping",
-        "userId": "v3xlkf1g9l1eaigl222mlx79",
-        "id": "tw1gm7wo9gnbqxjadtr90sxz"
+        "channelIds": [],
+        "userId": "v3xlkf1g9l1eaigl222mlx79"
       },
       {
+        "name": "Shopping Online",
         "edges": [
           {
             "source": "start",
             "sourceHandle": null,
-            "target": "nl88f30whfhqorcktby54vm3",
+            "target": "lectsb54lo2441wgxyshn9wx",
             "targetHandle": null,
             "type": "custom",
             "data": {
               "deletable": true,
               "hover": false
             },
-            "id": "reactflow__edge-start-nl88f30whfhqorcktby54vm3",
+            "id": "reactflow__edge-start-lectsb54lo2441wgxyshn9wx",
             "sections": [
               {
-                "id": "reactflow__edge-start-nl88f30whfhqorcktby54vm3_s0",
+                "id": "reactflow__edge-start-lectsb54lo2441wgxyshn9wx_s0",
                 "startPoint": {
-                  "x": 206,
-                  "y": 320
+                  "x": 370,
+                  "y": 48
                 },
                 "endPoint": {
-                  "x": 171.83333333333334,
-                  "y": 420
+                  "x": 370,
+                  "y": 148
                 },
                 "bendPoints": [
                   {
-                    "x": 206,
-                    "y": 320
+                    "x": 370,
+                    "y": 48
                   },
                   {
-                    "x": 206,
-                    "y": 342.5
-                  },
-                  {
-                    "x": 203.1527777777778,
-                    "y": 353.75
-                  },
-                  {
-                    "x": 200.3055555555556,
-                    "y": 365
-                  },
-                  {
-                    "x": 194.61111111111114,
-                    "y": 365
-                  },
-                  {
-                    "x": 188.91666666666669,
-                    "y": 365
-                  },
-                  {
-                    "x": 183.22222222222226,
-                    "y": 365
-                  },
-                  {
-                    "x": 177.5277777777778,
-                    "y": 365
-                  },
-                  {
-                    "x": 174.68055555555557,
-                    "y": 378.75
-                  },
-                  {
-                    "x": 171.83333333333334,
-                    "y": 392.5
-                  },
-                  {
-                    "x": 171.83333333333334,
-                    "y": 420
+                    "x": 370,
+                    "y": 98
                   }
                 ],
                 "incomingShape": "start",
-                "outgoingShape": "nl88f30whfhqorcktby54vm3"
+                "outgoingShape": "lectsb54lo2441wgxyshn9wx"
               }
             ],
             "container": "root"
           },
           {
-            "source": "nl88f30whfhqorcktby54vm3",
+            "source": "lectsb54lo2441wgxyshn9wx",
             "sourceHandle": "prompt-and-collect-yes",
-            "target": "swf8d4vtduggep7g0qalnsor",
+            "target": "xn2o2h0zyhpbcyvj1a5g0eef",
             "targetHandle": null,
             "type": "custom",
             "data": {
               "deletable": true,
               "hover": false
             },
-            "id": "reactflow__edge-nl88f30whfhqorcktby54vm3prompt-and-collect-yes-swf8d4vtduggep7g0qalnsor",
+            "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-yes-xn2o2h0zyhpbcyvj1a5g0eef",
             "sections": [
               {
-                "id": "reactflow__edge-nl88f30whfhqorcktby54vm3prompt-and-collect-yes-swf8d4vtduggep7g0qalnsor_s0",
+                "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-yes-xn2o2h0zyhpbcyvj1a5g0eef_s0",
                 "startPoint": {
-                  "x": 171.83333333333334,
-                  "y": 420
-                },
-                "endPoint": {
-                  "x": 109,
-                  "y": 48
-                },
-                "bendPoints": [
-                  {
-                    "x": 12,
-                    "y": 370
-                  },
-                  {
-                    "x": 12,
-                    "y": 345.00000000000006
-                  },
-                  {
-                    "x": 12,
-                    "y": 318.16666666666674
-                  },
-                  {
-                    "x": 12,
-                    "y": 291.33333333333337
-                  },
-                  {
-                    "x": 12,
-                    "y": 262.6666666666667
-                  },
-                  {
-                    "x": 12,
-                    "y": 241.16666666666669
-                  },
-                  {
-                    "x": 12,
-                    "y": 219.66666666666666
-                  },
-                  {
-                    "x": 12.000000000000057,
-                    "y": 205.33333333333334
-                  },
-                  {
-                    "x": 12.000000000000057,
-                    "y": 191
-                  },
-                  {
-                    "x": 12,
-                    "y": 176.66666666666669
-                  },
-                  {
-                    "x": 12,
-                    "y": 162.33333333333334
-                  },
-                  {
-                    "x": 12,
-                    "y": 142.66666666666669
-                  },
-                  {
-                    "x": 12,
-                    "y": 123.00000000000001
-                  },
-                  {
-                    "x": 12,
-                    "y": 98
-                  }
-                ],
-                "incomingShape": "nl88f30whfhqorcktby54vm3",
-                "outgoingShape": "swf8d4vtduggep7g0qalnsor"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "swf8d4vtduggep7g0qalnsor",
-            "sourceHandle": "http-request-success",
-            "target": "wyqpm2di3176f9pbttq1f394",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-success-wyqpm2di3176f9pbttq1f394",
-            "sections": [
-              {
-                "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-success-wyqpm2di3176f9pbttq1f394_s0",
-                "startPoint": {
-                  "x": 109,
-                  "y": 48
-                },
-                "endPoint": {
-                  "x": 492.33333333333337,
-                  "y": 148
-                },
-                "bendPoints": [
-                  {
-                    "x": 109,
-                    "y": 48
-                  },
-                  {
-                    "x": 454,
-                    "y": 98
-                  }
-                ],
-                "incomingShape": "swf8d4vtduggep7g0qalnsor",
-                "outgoingShape": "wyqpm2di3176f9pbttq1f394"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "swf8d4vtduggep7g0qalnsor",
-            "sourceHandle": "http-request-error",
-            "target": "tpb8o12vu4lbjzsjvp4136mc",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-error-tpb8o12vu4lbjzsjvp4136mc",
-            "sections": [
-              {
-                "id": "reactflow__edge-swf8d4vtduggep7g0qalnsorhttp-request-error-tpb8o12vu4lbjzsjvp4136mc_s0",
-                "startPoint": {
-                  "x": 109,
-                  "y": 48
-                },
-                "endPoint": {
-                  "x": 109,
-                  "y": 148
-                },
-                "bendPoints": [
-                  {
-                    "x": 109,
-                    "y": 48
-                  },
-                  {
-                    "x": 109,
-                    "y": 98
-                  }
-                ],
-                "incomingShape": "swf8d4vtduggep7g0qalnsor",
-                "outgoingShape": "tpb8o12vu4lbjzsjvp4136mc"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "wyqpm2di3176f9pbttq1f394",
-            "sourceHandle": null,
-            "target": "guozu9v1jdm9a083xifkbwxa",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-wyqpm2di3176f9pbttq1f394-guozu9v1jdm9a083xifkbwxa",
-            "sections": [
-              {
-                "id": "reactflow__edge-wyqpm2di3176f9pbttq1f394-guozu9v1jdm9a083xifkbwxa_s0",
-                "startPoint": {
-                  "x": 492.33333333333337,
+                  "x": 370,
                   "y": 184
                 },
                 "endPoint": {
-                  "x": 492.33333333333337,
+                  "x": 506,
                   "y": 284
                 },
                 "bendPoints": [
                   {
-                    "x": 492.33333333333337,
+                    "x": 370,
                     "y": 184
                   },
                   {
-                    "x": 492.33333333333337,
+                    "x": 492.4,
                     "y": 234
                   }
                 ],
-                "incomingShape": "wyqpm2di3176f9pbttq1f394",
-                "outgoingShape": "guozu9v1jdm9a083xifkbwxa"
+                "incomingShape": "lectsb54lo2441wgxyshn9wx",
+                "outgoingShape": "xn2o2h0zyhpbcyvj1a5g0eef"
               }
             ],
             "container": "root"
           },
           {
-            "source": "guozu9v1jdm9a083xifkbwxa",
-            "sourceHandle": "prompt-and-collect-yes",
-            "target": "nl88f30whfhqorcktby54vm3",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-yes-nl88f30whfhqorcktby54vm3",
-            "sections": [
-              {
-                "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-yes-nl88f30whfhqorcktby54vm3_s0",
-                "startPoint": {
-                  "x": 492.33333333333337,
-                  "y": 320
-                },
-                "endPoint": {
-                  "x": 171.83333333333334,
-                  "y": 420
-                },
-                "bendPoints": [
-                  {
-                    "x": 492.33333333333337,
-                    "y": 320
-                  },
-                  {
-                    "x": 492.33333333333337,
-                    "y": 342.5
-                  },
-                  {
-                    "x": 441.7638888888889,
-                    "y": 353.75
-                  },
-                  {
-                    "x": 391.19444444444446,
-                    "y": 365
-                  },
-                  {
-                    "x": 290.05555555555554,
-                    "y": 365
-                  },
-                  {
-                    "x": 236.6388888888889,
-                    "y": 365
-                  },
-                  {
-                    "x": 183.22222222222226,
-                    "y": 365
-                  },
-                  {
-                    "x": 177.5277777777778,
-                    "y": 365
-                  },
-                  {
-                    "x": 174.68055555555557,
-                    "y": 378.75
-                  },
-                  {
-                    "x": 171.83333333333334,
-                    "y": 392.5
-                  },
-                  {
-                    "x": 171.83333333333334,
-                    "y": 420
-                  }
-                ],
-                "incomingShape": "guozu9v1jdm9a083xifkbwxa",
-                "outgoingShape": "nl88f30whfhqorcktby54vm3"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "guozu9v1jdm9a083xifkbwxa",
+            "source": "lectsb54lo2441wgxyshn9wx",
             "sourceHandle": "prompt-and-collect-no",
-            "target": "mzap00awupftiknhbqlsmve8",
+            "target": "lip3vw8f7lnuw3s3lrcxpct1",
             "targetHandle": null,
             "type": "custom",
             "data": {
               "deletable": true,
               "hover": false
             },
-            "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-no-mzap00awupftiknhbqlsmve8",
+            "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-no-lip3vw8f7lnuw3s3lrcxpct1",
             "sections": [
               {
-                "id": "reactflow__edge-guozu9v1jdm9a083xifkbwxaprompt-and-collect-no-mzap00awupftiknhbqlsmve8_s0",
+                "id": "reactflow__edge-lectsb54lo2441wgxyshn9wxprompt-and-collect-no-lip3vw8f7lnuw3s3lrcxpct1_s0",
                 "startPoint": {
-                  "x": 492.33333333333337,
-                  "y": 320
-                },
-                "endPoint": {
-                  "x": 492.33333333333337,
-                  "y": 420
-                },
-                "bendPoints": [
-                  {
-                    "x": 492.33333333333337,
-                    "y": 320
-                  },
-                  {
-                    "x": 492.33333333333337,
-                    "y": 370
-                  }
-                ],
-                "incomingShape": "guozu9v1jdm9a083xifkbwxa",
-                "outgoingShape": "mzap00awupftiknhbqlsmve8"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "tpb8o12vu4lbjzsjvp4136mc",
-            "sourceHandle": "prompt-and-collect-yes",
-            "target": "nl88f30whfhqorcktby54vm3",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-tpb8o12vu4lbjzsjvp4136mcprompt-and-collect-yes-nl88f30whfhqorcktby54vm3",
-            "sections": [
-              {
-                "id": "reactflow__edge-tpb8o12vu4lbjzsjvp4136mcprompt-and-collect-yes-nl88f30whfhqorcktby54vm3_s0",
-                "startPoint": {
-                  "x": 109,
+                  "x": 370,
                   "y": 184
                 },
                 "endPoint": {
-                  "x": 171.83333333333334,
-                  "y": 420
+                  "x": 234,
+                  "y": 284
                 },
                 "bendPoints": [
                   {
-                    "x": 109,
+                    "x": 370,
+                    "y": 184
+                  },
+                  {
+                    "x": 247.60000000000002,
                     "y": 234
-                  },
-                  {
-                    "x": 109,
-                    "y": 255.49999999999997
-                  },
-                  {
-                    "x": 109,
-                    "y": 273.41666666666663
-                  },
-                  {
-                    "x": 109,
-                    "y": 291.33333333333337
-                  },
-                  {
-                    "x": 109,
-                    "y": 305.66666666666663
-                  },
-                  {
-                    "x": 109,
-                    "y": 325.33333333333326
-                  },
-                  {
-                    "x": 109,
-                    "y": 344.99999999999994
-                  },
-                  {
-                    "x": 109,
-                    "y": 370
                   }
                 ],
-                "incomingShape": "tpb8o12vu4lbjzsjvp4136mc",
-                "outgoingShape": "nl88f30whfhqorcktby54vm3"
+                "incomingShape": "lectsb54lo2441wgxyshn9wx",
+                "outgoingShape": "lip3vw8f7lnuw3s3lrcxpct1"
               }
             ],
             "container": "root"
           },
           {
-            "source": "tpb8o12vu4lbjzsjvp4136mc",
-            "sourceHandle": "prompt-and-collect-no",
-            "target": "mzap00awupftiknhbqlsmve8",
+            "source": "xn2o2h0zyhpbcyvj1a5g0eef",
+            "sourceHandle": null,
+            "target": "npvx355o7kcc3s2wqq7ryd34",
             "targetHandle": null,
             "type": "custom",
             "data": {
-              "deletable": true
+              "deletable": true,
+              "hover": false
             },
-            "id": "reactflow__edge-tpb8o12vu4lbjzsjvp4136mcprompt-and-collect-no-mzap00awupftiknhbqlsmve8"
+            "id": "reactflow__edge-xn2o2h0zyhpbcyvj1a5g0eef-npvx355o7kcc3s2wqq7ryd34",
+            "sections": [
+              {
+                "id": "reactflow__edge-xn2o2h0zyhpbcyvj1a5g0eef-npvx355o7kcc3s2wqq7ryd34_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 320
+                  },
+                  {
+                    "x": 492.4,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "xn2o2h0zyhpbcyvj1a5g0eef",
+                "outgoingShape": "npvx355o7kcc3s2wqq7ryd34"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "lip3vw8f7lnuw3s3lrcxpct1",
+            "sourceHandle": null,
+            "target": "npvx355o7kcc3s2wqq7ryd34",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-lip3vw8f7lnuw3s3lrcxpct1-npvx355o7kcc3s2wqq7ryd34",
+            "sections": [
+              {
+                "id": "reactflow__edge-lip3vw8f7lnuw3s3lrcxpct1-npvx355o7kcc3s2wqq7ryd34_s0",
+                "startPoint": {
+                  "x": 234,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 234,
+                    "y": 320
+                  },
+                  {
+                    "x": 247.60000000000002,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "lip3vw8f7lnuw3s3lrcxpct1",
+                "outgoingShape": "npvx355o7kcc3s2wqq7ryd34"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "npvx355o7kcc3s2wqq7ryd34",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "papohi8u609i6f1auz6nz7j3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-papohi8u609i6f1auz6nz7j3",
+            "sections": [
+              {
+                "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-papohi8u609i6f1auz6nz7j3_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 456
+                  },
+                  {
+                    "x": 370,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "npvx355o7kcc3s2wqq7ryd34",
+                "outgoingShape": "papohi8u609i6f1auz6nz7j3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "papohi8u609i6f1auz6nz7j3",
+            "sourceHandle": null,
+            "target": "dmwyk9u967x3frq0f7gsghx5",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-papohi8u609i6f1auz6nz7j3-dmwyk9u967x3frq0f7gsghx5",
+            "sections": [
+              {
+                "id": "reactflow__edge-papohi8u609i6f1auz6nz7j3-dmwyk9u967x3frq0f7gsghx5_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 592
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 592
+                  },
+                  {
+                    "x": 413.65,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "papohi8u609i6f1auz6nz7j3",
+                "outgoingShape": "dmwyk9u967x3frq0f7gsghx5"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "dmwyk9u967x3frq0f7gsghx5",
+            "sourceHandle": "check-variables-yes",
+            "target": "k8opjysl9gvwa90v25758wfu",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-k8opjysl9gvwa90v25758wfu",
+            "sections": [
+              {
+                "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-k8opjysl9gvwa90v25758wfu_s0",
+                "startPoint": {
+                  "x": 418.5,
+                  "y": 728
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 828
+                },
+                "bendPoints": [
+                  {
+                    "x": 418.5,
+                    "y": 728
+                  },
+                  {
+                    "x": 418.5,
+                    "y": 778
+                  }
+                ],
+                "incomingShape": "dmwyk9u967x3frq0f7gsghx5",
+                "outgoingShape": "k8opjysl9gvwa90v25758wfu"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "k8opjysl9gvwa90v25758wfu",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "rjhonwtt2gqr3hdo34t9payd",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd",
+            "sections": [
+              {
+                "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd_s0",
+                "startPoint": {
+                  "x": 418.5,
+                  "y": 864
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 964
+                },
+                "bendPoints": [
+                  {
+                    "x": 418.5,
+                    "y": 864
+                  },
+                  {
+                    "x": 418.5,
+                    "y": 914
+                  }
+                ],
+                "incomingShape": "k8opjysl9gvwa90v25758wfu",
+                "outgoingShape": "rjhonwtt2gqr3hdo34t9payd"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "npvx355o7kcc3s2wqq7ryd34",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "v9s7cfdm4pxwuqsdkz5ddwti",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-no-v9s7cfdm4pxwuqsdkz5ddwti",
+            "sections": [
+              {
+                "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-no-v9s7cfdm4pxwuqsdkz5ddwti_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 98,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 456
+                  },
+                  {
+                    "x": 125.19999999999999,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "npvx355o7kcc3s2wqq7ryd34",
+                "outgoingShape": "v9s7cfdm4pxwuqsdkz5ddwti"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "k8opjysl9gvwa90v25758wfu",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "papohi8u609i6f1auz6nz7j3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-yes-papohi8u609i6f1auz6nz7j3",
+            "sections": [
+              {
+                "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-yes-papohi8u609i6f1auz6nz7j3_s0",
+                "startPoint": {
+                  "x": 418.5,
+                  "y": 828
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 592
+                },
+                "bendPoints": [
+                  {
+                    "x": 321.5,
+                    "y": 778
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 753
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 737.5
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 722
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 716
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 710
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 704
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 698
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 682.5
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 667
+                  },
+                  {
+                    "x": 321.5,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "k8opjysl9gvwa90v25758wfu",
+                "outgoingShape": "papohi8u609i6f1auz6nz7j3"
+              }
+            ],
+            "container": "root",
+            "selected": false
+          },
+          {
+            "source": "npvx355o7kcc3s2wqq7ryd34",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "n9vpm0mbwt00d25498t38hfz",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-n9vpm0mbwt00d25498t38hfz",
+            "sections": [
+              {
+                "id": "reactflow__edge-npvx355o7kcc3s2wqq7ryd34prompt-and-collect-yes-n9vpm0mbwt00d25498t38hfz_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 690.5,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 690.5,
+                    "y": 506
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 531
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 550.6666666666666
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 570.3333333333334
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 584.6666666666666
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 602.5833333333331
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 620.4999999999999
+                  },
+                  {
+                    "x": 690.5,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "npvx355o7kcc3s2wqq7ryd34",
+                "outgoingShape": "n9vpm0mbwt00d25498t38hfz"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "n9vpm0mbwt00d25498t38hfz",
+            "sourceHandle": null,
+            "target": "k8opjysl9gvwa90v25758wfu",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-k8opjysl9gvwa90v25758wfu",
+            "sections": [
+              {
+                "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-k8opjysl9gvwa90v25758wfu_s0",
+                "startPoint": {
+                  "x": 690.5,
+                  "y": 728
+                },
+                "endPoint": {
+                  "x": 418.5,
+                  "y": 828
+                },
+                "bendPoints": [
+                  {
+                    "x": 690.5,
+                    "y": 728
+                  },
+                  {
+                    "x": 663.3,
+                    "y": 778
+                  }
+                ],
+                "incomingShape": "n9vpm0mbwt00d25498t38hfz",
+                "outgoingShape": "k8opjysl9gvwa90v25758wfu"
+              }
+            ],
+            "container": "root"
           }
         ],
         "nodes": [
@@ -4765,15 +5015,15 @@
             "id": "start",
             "type": "start",
             "position": {
-              "x": 120,
-              "y": 284
+              "x": 284,
+              "y": 12
             },
             "data": {
               "label": "Start",
               "action": "start",
               "id": "start",
               "name": "Start",
-              "nextAction": "nl88f30whfhqorcktby54vm3"
+              "nextAction": "lectsb54lo2441wgxyshn9wx"
             },
             "deletable": false,
             "draggable": false,
@@ -4782,153 +5032,289 @@
             "targetPosition": "top",
             "sourcePosition": "bottom",
             "$H": 277,
-            "x": 120,
-            "y": 284
+            "x": 284,
+            "y": 12
           },
           {
-            "id": "nl88f30whfhqorcktby54vm3",
+            "id": "lectsb54lo2441wgxyshn9wx",
             "position": {
-              "x": 114.5,
-              "y": 420
+              "x": 284,
+              "y": 148
             },
             "type": "prompt-and-collect",
             "data": {
               "label": "Prompt & Collect",
               "action": "prompt-and-collect",
-              "id": "nl88f30whfhqorcktby54vm3",
-              "name": "Ask order id",
+              "id": "lectsb54lo2441wgxyshn9wx",
+              "name": "Set Language",
               "contents": {
                 "en": {
-                  "message": "Please give me your order ID",
-                  "type": "text",
-                  "buttons": []
+                  "buttons": [
+                    {
+                      "label": "English",
+                      "value": "en",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Vietnamese",
+                      "value": "vi",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Please choose your language",
+                  "type": "text"
                 }
               },
+              "grammarType": "text",
+              "assignUserResponse": "language",
+              "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+              "trainedName": "Shopping Online - Set Language Vietnam",
               "nextActions": [
                 {
-                  "condition": "exist",
-                  "id": "swf8d4vtduggep7g0qalnsor",
-                  "value": true
-                }
-              ],
-              "assignUserResponse": "order_id"
-            },
-            "width": 125,
-            "height": 32,
-            "selected": true,
-            "positionAbsolute": {
-              "x": 114.5,
-              "y": 420
-            },
-            "dragging": false,
-            "targetPosition": "top",
-            "sourcePosition": "bottom",
-            "$H": 279,
-            "x": 114.5,
-            "y": 420
-          },
-          {
-            "id": "swf8d4vtduggep7g0qalnsor",
-            "position": {
-              "x": 224.60000000000002,
-              "y": 555.2
-            },
-            "type": "http-request",
-            "data": {
-              "label": "HTTP Request",
-              "action": "http-request",
-              "id": "swf8d4vtduggep7g0qalnsor",
-              "name": "Get order detail",
-              "contents": {},
-              "httpRequest": {
-                "method": "GET",
-                "url": "https://6679c91718a459f639516f41.mockapi.io/order",
-                "headers": [],
-                "params": [
-                  {
-                    "key": "order_id",
-                    "value": "{order_id}"
-                  }
-                ],
-                "body": []
-              },
-              "nextActions": [
-                {
-                  "condition": "success",
-                  "id": "wyqpm2di3176f9pbttq1f394"
+                  "condition": "equal",
+                  "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+                  "value": "vi"
                 },
                 {
-                  "condition": "failure",
-                  "id": "tpb8o12vu4lbjzsjvp4136mc"
+                  "condition": "otherwise",
+                  "id": "lip3vw8f7lnuw3s3lrcxpct1"
                 }
-              ],
-              "assignUserResponse": "order_detail"
+              ]
             },
-            "width": 151,
+            "width": 136,
             "height": 32,
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 224.60000000000002,
-              "y": 555.2
+              "x": 284,
+              "y": 148
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
-            "$H": 281,
-            "x": 23,
-            "y": 12
+            "$H": 279,
+            "x": 284,
+            "y": 148
           },
           {
-            "id": "wyqpm2di3176f9pbttq1f394",
+            "id": "xn2o2h0zyhpbcyvj1a5g0eef",
             "position": {
-              "x": 373.96006835424066,
-              "y": 655.9005572275439
+              "x": 420,
+              "y": 284
             },
             "type": "message",
             "data": {
               "label": "Message",
               "action": "message",
-              "id": "wyqpm2di3176f9pbttq1f394",
-              "name": "Get status",
+              "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+              "name": "Message",
               "contents": {
                 "en": {
-                  "message": "You order is status {order_detail->0->status}",
-                  "type": "text",
-                  "buttons": []
+                  "buttons": [],
+                  "message": "🤖 Chào mừng bạn đến với cửa hàng Dialogue Bot",
+                  "type": "text"
                 }
               },
-              "nextAction": "guozu9v1jdm9a083xifkbwxa"
+              "nextAction": "npvx355o7kcc3s2wqq7ryd34"
             },
-            "width": 111,
+            "width": 102,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 483,
+            "x": 420,
+            "y": 284,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 420,
+              "y": 284
+            },
+            "dragging": false
+          },
+          {
+            "id": "lip3vw8f7lnuw3s3lrcxpct1",
+            "position": {
+              "x": 148,
+              "y": 284
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "lip3vw8f7lnuw3s3lrcxpct1",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "🤖 Welcome to Dialogue Bot shop",
+                  "type": "text"
+                }
+              },
+              "nextAction": "npvx355o7kcc3s2wqq7ryd34"
+            },
+            "width": 102,
             "height": 32,
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 373.96006835424066,
-              "y": 655.9005572275439
+              "x": 244,
+              "y": 291.2
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
-            "$H": 283,
-            "x": 406.33333333333337,
-            "y": 148
+            "$H": 280,
+            "x": 148,
+            "y": 284
           },
           {
-            "id": "tpb8o12vu4lbjzsjvp4136mc",
+            "id": "npvx355o7kcc3s2wqq7ryd34",
             "position": {
-              "x": -105.62814643923753,
-              "y": 639.7759996783991
+              "x": 284,
+              "y": 420
             },
             "type": "prompt-and-collect",
             "data": {
               "label": "Prompt & Collect",
               "action": "prompt-and-collect",
-              "id": "tpb8o12vu4lbjzsjvp4136mc",
-              "name": "Prompt & Collect",
+              "id": "npvx355o7kcc3s2wqq7ryd34",
+              "name": "Choose Services",
               "contents": {
                 "en": {
-                  "message": "Oop!!!\nYour order does not exist😓 \nDo you want to try again?",
+                  "buttons": [
+                    {
+                      "label": "Shopping🤑",
+                      "value": "shopping",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Check order🔍",
+                      "value": "check_order",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Please choose service😍",
                   "type": "text",
+                  "repeatMessage": "We do not support the service you want to use, sorry for the inconvenience"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "papohi8u609i6f1auz6nz7j3",
+                  "value": "shopping"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "v9s7cfdm4pxwuqsdkz5ddwti"
+                },
+                {
+                  "condition": "equal",
+                  "id": "n9vpm0mbwt00d25498t38hfz",
+                  "value": "check_order"
+                }
+              ],
+              "repeat": 4
+            },
+            "width": 154,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 196,
+              "y": 420
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 281,
+            "x": 284,
+            "y": 420
+          },
+          {
+            "id": "papohi8u609i6f1auz6nz7j3",
+            "position": {
+              "x": 816.9085796431434,
+              "y": 557.8126142164733
+            },
+            "type": "sub-flow",
+            "data": {
+              "label": "Sub Flow",
+              "action": "sub-flow",
+              "id": "papohi8u609i6f1auz6nz7j3",
+              "name": "Sub flow shopping",
+              "contents": {},
+              "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+              "subFlowName": "Shopping Online - Shopping",
+              "assignVars": [
+                {
+                  "assignTo": "product_id",
+                  "outputVar": "product_id"
+                }
+              ],
+              "nextAction": "dmwyk9u967x3frq0f7gsghx5"
+            },
+            "width": 172,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 816.9085796431434,
+              "y": 557.8126142164733
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 283,
+            "x": 284,
+            "y": 556
+          },
+          {
+            "id": "dmwyk9u967x3frq0f7gsghx5",
+            "position": {
+              "x": 829.1562953136779,
+              "y": 682.9369289176336
+            },
+            "type": "check-variables",
+            "data": {
+              "label": "Check Variables",
+              "action": "check-variables",
+              "id": "dmwyk9u967x3frq0f7gsghx5",
+              "name": "Check Payment",
+              "contents": {},
+              "variable": "product_id",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "k8opjysl9gvwa90v25758wfu",
+                  "value": true
+                }
+              ]
+            },
+            "width": 148,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 829.1562953136779,
+              "y": 682.9369289176336
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 285,
+            "x": 332.5,
+            "y": 692
+          },
+          {
+            "id": "k8opjysl9gvwa90v25758wfu",
+            "position": {
+              "x": 317.787603095489,
+              "y": 823.5553966619009
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "k8opjysl9gvwa90v25758wfu",
+              "name": "Ask use service again",
+              "contents": {
+                "en": {
                   "buttons": [
                     {
                       "label": "Yes",
@@ -4940,132 +5326,164 @@
                       "value": "no",
                       "type": "postback"
                     }
-                  ]
+                  ],
+                  "message": "Thank you for using our service 😊\nwould you like to continue using it?",
+                  "type": "text"
                 }
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
-                  "condition": "equal",
-                  "id": "nl88f30whfhqorcktby54vm3",
-                  "value": "confirm"
+                  "condition": "otherwise",
+                  "id": "rjhonwtt2gqr3hdo34t9payd"
                 },
                 {
-                  "condition": "otherwise",
-                  "id": "mzap00awupftiknhbqlsmve8"
+                  "condition": "equal",
+                  "id": "papohi8u609i6f1auz6nz7j3",
+                  "value": "confirm"
                 }
               ]
             },
-            "width": 162,
+            "width": 189,
             "height": 32,
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": -105.62814643923753,
-              "y": 639.7759996783991
+              "x": 317.787603095489,
+              "y": 823.5553966619009
             },
-            "targetPosition": "top",
-            "sourcePosition": "bottom",
-            "$H": 285,
-            "x": 23,
-            "y": 148
-          },
-          {
-            "id": "guozu9v1jdm9a083xifkbwxa",
-            "position": {
-              "x": 305.73655306022266,
-              "y": 745.2292440957103
-            },
-            "type": "prompt-and-collect",
-            "data": {
-              "label": "Prompt & Collect",
-              "action": "prompt-and-collect",
-              "id": "guozu9v1jdm9a083xifkbwxa",
-              "name": "Ask check other order",
-              "contents": {
-                "en": {
-                  "message": "Do you want to check other orders?",
-                  "type": "text",
-                  "buttons": [
-                    {
-                      "label": "Yes",
-                      "value": "yes",
-                      "type": "postback"
-                    },
-                    {
-                      "label": "I'm sure",
-                      "value": "sure",
-                      "type": "postback"
-                    },
-                    {
-                      "label": "No❌",
-                      "value": "no",
-                      "type": "postback"
-                    }
-                  ]
-                }
-              },
-              "grammarType": "intent",
-              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
-              "nextActions": [
-                {
-                  "condition": "equal",
-                  "id": "nl88f30whfhqorcktby54vm3",
-                  "value": "confirm"
-                },
-                {
-                  "condition": "otherwise",
-                  "id": "mzap00awupftiknhbqlsmve8"
-                }
-              ]
-            },
-            "width": 194,
-            "height": 32,
-            "selected": false,
-            "positionAbsolute": {
-              "x": 305.73655306022266,
-              "y": 745.2292440957103
-            },
-            "dragging": false,
             "targetPosition": "top",
             "sourcePosition": "bottom",
             "$H": 287,
-            "x": 406.33333333333337,
-            "y": 284
+            "x": 332.5,
+            "y": 828
           },
           {
-            "id": "mzap00awupftiknhbqlsmve8",
+            "id": "rjhonwtt2gqr3hdo34t9payd",
             "position": {
-              "x": 182.93431737426653,
-              "y": 858.6435927547185
+              "x": 211.24040657242955,
+              "y": 954.7134342303575
             },
             "type": "message",
             "data": {
               "label": "Message",
               "action": "message",
-              "id": "mzap00awupftiknhbqlsmve8",
-              "name": "Thank you",
+              "id": "rjhonwtt2gqr3hdo34t9payd",
+              "name": "Message",
               "contents": {
                 "en": {
-                  "message": "Thank you💝",
+                  "buttons": [],
+                  "message": "Thank you, see you again 😍",
                   "type": "text"
                 }
               }
             },
-            "width": 113,
+            "width": 102,
             "height": 32,
             "selected": false,
+            "dragging": false,
             "positionAbsolute": {
-              "x": 182.93431737426653,
-              "y": 858.6435927547185
+              "x": 211.24040657242955,
+              "y": 954.7134342303575
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 289,
+            "x": 332.5,
+            "y": 964
+          },
+          {
+            "id": "v9s7cfdm4pxwuqsdkz5ddwti",
+            "position": {
+              "x": 119.26731086599597,
+              "y": 559.3521034645623
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "v9s7cfdm4pxwuqsdkz5ddwti",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Thank you for using the service, please try again",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 119.26731086599597,
+              "y": 559.3521034645623
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 513,
+            "x": 12,
+            "y": 556
+          },
+          {
+            "id": "n9vpm0mbwt00d25498t38hfz",
+            "position": {
+              "x": 312.6691111478024,
+              "y": 557.8665479809774
+            },
+            "type": "sub-flow",
+            "data": {
+              "label": "Sub Flow",
+              "action": "sub-flow",
+              "id": "n9vpm0mbwt00d25498t38hfz",
+              "name": "Sub Flow Check Order",
+              "contents": {},
+              "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+              "subFlowName": "Shopping Online - Check Order",
+              "nextAction": "k8opjysl9gvwa90v25758wfu",
+              "assignVars": []
+            },
+            "width": 196,
+            "height": 32,
+            "selected": true,
+            "positionAbsolute": {
+              "x": 312.6691111478024,
+              "y": 557.8665479809774
             },
             "dragging": false,
             "targetPosition": "top",
             "sourcePosition": "bottom",
-            "$H": 289,
-            "x": 406.33333333333337,
-            "y": 420
+            "$H": 287,
+            "x": 604.5,
+            "y": 692
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "back",
+            "value": "",
+            "type": "string"
           }
         ],
         "flows": [
@@ -5074,82 +5492,155 @@
             "action": "start",
             "id": "start",
             "name": "Start",
-            "nextAction": "nl88f30whfhqorcktby54vm3"
+            "nextAction": "lectsb54lo2441wgxyshn9wx"
           },
           {
             "label": "Prompt & Collect",
             "action": "prompt-and-collect",
-            "id": "nl88f30whfhqorcktby54vm3",
-            "name": "Ask order id",
+            "id": "lectsb54lo2441wgxyshn9wx",
+            "name": "Set Language",
             "contents": {
               "en": {
-                "message": "Please give me your order ID",
-                "type": "text",
-                "buttons": []
+                "buttons": [
+                  {
+                    "label": "English",
+                    "value": "en",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Vietnamese",
+                    "value": "vi",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Please choose your language",
+                "type": "text"
               }
             },
+            "grammarType": "text",
+            "assignUserResponse": "language",
+            "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+            "trainedName": "Shopping Online - Set Language Vietnam",
             "nextActions": [
               {
-                "condition": "exist",
-                "id": "swf8d4vtduggep7g0qalnsor",
-                "value": true
-              }
-            ],
-            "assignUserResponse": "order_id"
-          },
-          {
-            "label": "HTTP Request",
-            "action": "http-request",
-            "id": "swf8d4vtduggep7g0qalnsor",
-            "name": "Get order detail",
-            "contents": {},
-            "httpRequest": {
-              "method": "GET",
-              "url": "https://6679c91718a459f639516f41.mockapi.io/order",
-              "headers": [],
-              "params": [
-                {
-                  "key": "order_id",
-                  "value": "{order_id}"
-                }
-              ],
-              "body": []
-            },
-            "nextActions": [
-              {
-                "condition": "success",
-                "id": "wyqpm2di3176f9pbttq1f394"
+                "condition": "equal",
+                "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+                "value": "vi"
               },
               {
-                "condition": "failure",
-                "id": "tpb8o12vu4lbjzsjvp4136mc"
+                "condition": "otherwise",
+                "id": "lip3vw8f7lnuw3s3lrcxpct1"
               }
-            ],
-            "assignUserResponse": "order_detail"
+            ]
           },
           {
             "label": "Message",
             "action": "message",
-            "id": "wyqpm2di3176f9pbttq1f394",
-            "name": "Get status",
+            "id": "xn2o2h0zyhpbcyvj1a5g0eef",
+            "name": "Message",
             "contents": {
               "en": {
-                "message": "You order is status {order_detail->0->status}",
-                "type": "text",
-                "buttons": []
+                "buttons": [],
+                "message": "🤖 Chào mừng bạn đến với cửa hàng Dialogue Bot",
+                "type": "text"
               }
             },
-            "nextAction": "guozu9v1jdm9a083xifkbwxa"
+            "nextAction": "npvx355o7kcc3s2wqq7ryd34"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "lip3vw8f7lnuw3s3lrcxpct1",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "🤖 Welcome to Dialogue Bot shop",
+                "type": "text"
+              }
+            },
+            "nextAction": "npvx355o7kcc3s2wqq7ryd34"
           },
           {
             "label": "Prompt & Collect",
             "action": "prompt-and-collect",
-            "id": "tpb8o12vu4lbjzsjvp4136mc",
-            "name": "Prompt & Collect",
+            "id": "npvx355o7kcc3s2wqq7ryd34",
+            "name": "Choose Services",
             "contents": {
               "en": {
-                "message": "Oop!!!\nYour order does not exist😓 \nDo you want to try again?",
+                "buttons": [
+                  {
+                    "label": "Shopping🤑",
+                    "value": "shopping",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Check order🔍",
+                    "value": "check_order",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Please choose service😍",
                 "type": "text",
+                "repeatMessage": "We do not support the service you want to use, sorry for the inconvenience"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "papohi8u609i6f1auz6nz7j3",
+                "value": "shopping"
+              },
+              {
+                "condition": "otherwise",
+                "id": "v9s7cfdm4pxwuqsdkz5ddwti"
+              },
+              {
+                "condition": "equal",
+                "id": "n9vpm0mbwt00d25498t38hfz",
+                "value": "check_order"
+              }
+            ],
+            "repeat": 4
+          },
+          {
+            "label": "Sub Flow",
+            "action": "sub-flow",
+            "id": "papohi8u609i6f1auz6nz7j3",
+            "name": "Sub flow shopping",
+            "contents": {},
+            "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+            "subFlowName": "Shopping Online - Shopping",
+            "assignVars": [
+              {
+                "assignTo": "product_id",
+                "outputVar": "product_id"
+              }
+            ],
+            "nextAction": "dmwyk9u967x3frq0f7gsghx5"
+          },
+          {
+            "label": "Check Variables",
+            "action": "check-variables",
+            "id": "dmwyk9u967x3frq0f7gsghx5",
+            "name": "Check Payment",
+            "contents": {},
+            "variable": "product_id",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "k8opjysl9gvwa90v25758wfu",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "k8opjysl9gvwa90v25758wfu",
+            "name": "Ask use service again",
+            "contents": {
+              "en": {
                 "buttons": [
                   {
                     "label": "Yes",
@@ -5161,86 +5652,85 @@
                     "value": "no",
                     "type": "postback"
                   }
-                ]
+                ],
+                "message": "Thank you for using our service 😊\nwould you like to continue using it?",
+                "type": "text"
               }
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
-                "condition": "equal",
-                "id": "nl88f30whfhqorcktby54vm3",
-                "value": "confirm"
+                "condition": "otherwise",
+                "id": "rjhonwtt2gqr3hdo34t9payd"
               },
               {
-                "condition": "otherwise",
-                "id": "mzap00awupftiknhbqlsmve8"
-              }
-            ]
-          },
-          {
-            "label": "Prompt & Collect",
-            "action": "prompt-and-collect",
-            "id": "guozu9v1jdm9a083xifkbwxa",
-            "name": "Ask check other order",
-            "contents": {
-              "en": {
-                "message": "Do you want to check other orders?",
-                "type": "text",
-                "buttons": [
-                  {
-                    "label": "Yes",
-                    "value": "yes",
-                    "type": "postback"
-                  },
-                  {
-                    "label": "I'm sure",
-                    "value": "sure",
-                    "type": "postback"
-                  },
-                  {
-                    "label": "No❌",
-                    "value": "no",
-                    "type": "postback"
-                  }
-                ]
-              }
-            },
-            "grammarType": "intent",
-            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
-            "nextActions": [
-              {
                 "condition": "equal",
-                "id": "nl88f30whfhqorcktby54vm3",
+                "id": "papohi8u609i6f1auz6nz7j3",
                 "value": "confirm"
-              },
-              {
-                "condition": "otherwise",
-                "id": "mzap00awupftiknhbqlsmve8"
               }
             ]
           },
           {
             "label": "Message",
             "action": "message",
-            "id": "mzap00awupftiknhbqlsmve8",
-            "name": "Thank you",
+            "id": "rjhonwtt2gqr3hdo34t9payd",
+            "name": "Message",
             "contents": {
               "en": {
-                "message": "Thank you💝",
+                "buttons": [],
+                "message": "Thank you, see you again 😍",
                 "type": "text"
               }
             }
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "v9s7cfdm4pxwuqsdkz5ddwti",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Thank you for using the service, please try again",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Sub Flow",
+            "action": "sub-flow",
+            "id": "n9vpm0mbwt00d25498t38hfz",
+            "name": "Sub Flow Check Order",
+            "contents": {},
+            "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+            "subFlowName": "Shopping Online - Check Order",
+            "nextAction": "k8opjysl9gvwa90v25758wfu",
+            "assignVars": []
           }
         ],
-        "name": "Check Order",
-        "userId": "v3xlkf1g9l1eaigl222mlx79",
-        "id": "n07oqqhr5mjlxoyn71cjfrup"
+        "channelIds": ["fvxqyemei02iwydzmaf41s1o"],
+        "userId": "v3xlkf1g9l1eaigl222mlx79"
       }
     ],
     "intents": [
       {
-        "name": "confirm",
+        "name": "Shopping Online - Set Language Vietnam",
+        "referenceId": "wa3u1bbjhgl95122x7u2v71t",
+        "trainType": "manual",
+        "trainDescription": [],
+        "intents": [
+          {
+            "intent": "vi",
+            "prompts": ["vi", "vietnam", "viet nam", "vn", "ve", "1"],
+            "answers": ["Vietnamese"]
+          }
+        ],
+        "entities": []
+      },
+      {
+        "name": "Shopping Online - Confirm",
         "referenceId": "qbiavyp3jx06rge1w2gu4laq",
         "trainType": "manual",
         "trainDescription": [],
@@ -5267,7 +5757,7 @@
               "have",
               "Yup</span>"
             ],
-            "answers": ["Thank you"]
+            "answers": ["Thank You"]
           }
         ],
         "entities": []
