@@ -1,41 +1,31 @@
 import { IFlowTemplate } from "@/interfaces/flows.interface";
 import { generateString } from "./helper";
 
-const replaceSubFlowIdForNodes = (oldNodes: any, newData: any) => {
+const replaceSubFlowIdStep = (oldData: any[], newData: any[]) => {
     const newDataMap = new Map();
 
     newData.forEach(item => {
         newDataMap.set(item.name, item.id);
     });
 
-    return oldNodes.map(node => {
-        return {
-            ...node,
+    return oldData.map(item => {
+        if (item.type !== 'sub-flow' && item.action !== 'sub-flow') return item
+        return item.data ? {
+            ...item,
             data: {
-                ...node.data,
-                subFlowId: newDataMap.get(node.data.subFlowName) || node.data.trainedName,
+                ...item.data,
+                subFlowId: newDataMap.get(item.data.subFlowName) || item.data.trainedName,
             }
-        }
-    })
-}
-
-const replaceSubFlowIdForFlows = (oldData: any, newData: any) => {
-    const newDataMap = new Map();
-
-    newData.forEach(item => {
-        newDataMap.set(item.name, item.id);
-    });
-
-    return oldData.map(data => {
-        return {
-            ...data,
-            subFlowId: newDataMap.get(data.subFlowName) || data.trainedName,
+        } : {
+            ...item,
+            subFlowId: newDataMap.get(item.subFlowName) || item.trainedName,
         }
     })
 }
 
 const replaceFlowNameTemplate = (flow: IFlowTemplate, flowName: string) => {
     let { mainFlow, subFlows, intents } = flow;
+
     const newDataMainFlow = mainFlow.map(flow => {
         const { name, nodes, flows } = flow;
 
@@ -108,6 +98,6 @@ const replaceFlowNameTemplate = (flow: IFlowTemplate, flowName: string) => {
 }
 
 export {
-    replaceFlowNameTemplate, replaceSubFlowIdForFlows, replaceSubFlowIdForNodes
+    replaceFlowNameTemplate, replaceSubFlowIdStep
 };
 

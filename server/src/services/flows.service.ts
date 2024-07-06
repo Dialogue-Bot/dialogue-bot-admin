@@ -9,14 +9,14 @@ import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend, IFlowTemplate } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { redis } from '@/libs/redis'
-import { replaceIntentsTemplateFlows, replaceIntentsTemplateNodes } from '@/utils/intent-helper'
+import { replaceIntentStep } from '@/utils/intent-helper'
 import { loadTemplates } from '@/utils/load-templates'
 import { logger } from '@/utils/logger'
 import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
-import { replaceFlowNameTemplate, replaceSubFlowIdForFlows, replaceSubFlowIdForNodes } from '../utils/flow-helper'
+import { replaceFlowNameTemplate, replaceSubFlowIdStep } from '../utils/flow-helper'
 import { ChannelService } from './channels.service'
 import { IntentService } from './intent.service'
 import { UserSubscriptionService } from './user-subscription.service'
@@ -454,17 +454,17 @@ export class FlowService {
 
       subFlows.forEach((subFlow: FlowDTO) => {
         let { nodes, flows } = subFlow;
-        nodes = replaceIntentsTemplateNodes(nodes, intentsData);
-        flows = replaceIntentsTemplateFlows(flows, intentsData);
+        nodes = replaceIntentStep(nodes, intentsData);
+        flows = replaceIntentStep(flows, intentsData);
       })
 
       const newSubFlows = await this.createFlows(subFlows, userId);
 
       let { nodes, flows } = mainFlow[0];
-      nodes = replaceSubFlowIdForNodes(nodes, newSubFlows);
-      flows = replaceSubFlowIdForFlows(flows, newSubFlows);
-      nodes = replaceIntentsTemplateNodes(nodes, intentsData);
-      flows = replaceIntentsTemplateFlows(flows, intentsData);
+      nodes = replaceSubFlowIdStep(nodes, newSubFlows);
+      flows = replaceSubFlowIdStep(flows, newSubFlows);
+      nodes = replaceIntentStep(nodes, intentsData);
+      flows = replaceIntentStep(flows, intentsData);
 
       const newMainFlow = {
         ...mainFlow[0],

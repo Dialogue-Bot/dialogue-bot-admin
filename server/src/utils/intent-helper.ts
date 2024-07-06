@@ -1,33 +1,24 @@
-const replaceIntentsTemplateFlows = (oldFlows: any, newData: any) => {
+const replaceIntentStep = (oldData: any[], newData: any[]) => {
     const newDataMap = new Map();
 
     newData.forEach(item => {
         newDataMap.set(item.name, item.id);
     });
 
-    return oldFlows.map(flow => {
-        return flow.grammarType === 'intent' ? {
-            ...flow,
-            trainedData: newDataMap.get(flow.trainedName) || flow.trainedName,
-        } : flow
-    })
-}
+    return oldData.map(item => {
+        if ((item.data && item.data.grammarType !== 'intent') && item.grammarType !== 'intent') return item
 
-const replaceIntentsTemplateNodes = (oldNodes: any, newData: any) => {
-    const newDataMap = new Map();
-
-    newData.forEach(item => {
-        newDataMap.set(item.name, item.id);
-    });
-
-    return oldNodes.map(node => {
-        return node.data && node.data.grammarType === 'intent' ? {
-            ...node,
+        return item.data ? {
+            ...item,
             data: {
-                trainedData: newDataMap.get(node.data.trainedName) || node.data.trainedName,
+                trainedData: newDataMap.get(item.data.trainedName) || item.data.trainedName,
             }
-        } : node
+        } : {
+            ...item,
+            trainedData: newDataMap.get(item.trainedName) || item.trainedName,
+        }
     })
 }
 
-export { replaceIntentsTemplateFlows, replaceIntentsTemplateNodes };
+export { replaceIntentStep };
+

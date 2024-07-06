@@ -303,7 +303,7 @@ export class IntentService {
 
         if (!newIntent) throw new Error('Train failed');
 
-        intentsData.push({ id: newIntent.id, referenceId: newIntent.referenceId });
+        intentsData.push({ name: newIntent.name, referenceId: newIntent.referenceId });
       } catch (err) {
         logger.info('Init intent failed: ' + err.message);
       }
