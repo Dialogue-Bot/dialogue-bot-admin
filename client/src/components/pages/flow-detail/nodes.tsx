@@ -9,6 +9,7 @@ import {
   HelpCircle,
   Mail,
   MessageSquareMore,
+  Undo,
   Webhook,
   X,
 } from 'lucide-react'
@@ -275,7 +276,7 @@ export const GotoNode = (props?: CustomNodeProps) => {
         )}
       >
         <div className='flex items-center gap-2'>
-          <CornerDownRight className='w-4 h-4' />
+          <Undo className='w-4 h-4' />
           <span className='leading-none'>{data?.name || data?.label}</span>
         </div>
         <HandleCustom type='target' position={Position.Top} />
