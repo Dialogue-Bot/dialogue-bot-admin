@@ -119,3 +119,5 @@ export const BOT_EVENT = {
   TYPING: 'typing',
   STOP_TYPING: 'stop-typing',
 }
+
+export const FLOWS_TEMPLATE = ['Shopping Online']

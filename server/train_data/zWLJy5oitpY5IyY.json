@@ -1,0 +1,255 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "1": {
+            "intent": "vi",
+            "domain": "default"
+          },
+          "vi": {
+            "intent": "vi",
+            "domain": "default"
+          },
+          "vietnam": {
+            "intent": "vi",
+            "domain": "default"
+          },
+          "nam,viet": {
+            "intent": "vi",
+            "domain": "default"
+          },
+          "vn": {
+            "intent": "vi",
+            "domain": "default"
+          },
+          "ve": {
+            "intent": "vi",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "vi": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "vi",
+            "intent": "vi"
+          },
+          {
+            "domain": "default",
+            "utterance": "vietnam",
+            "intent": "vi"
+          },
+          {
+            "domain": "default",
+            "utterance": "viet nam",
+            "intent": "vi"
+          },
+          {
+            "domain": "default",
+            "utterance": "vn",
+            "intent": "vi"
+          },
+          {
+            "domain": "default",
+            "utterance": "ve",
+            "intent": "vi"
+          },
+          {
+            "domain": "default",
+            "utterance": "1",
+            "intent": "vi"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "1": 1,
+              "vi": 1,
+              "vietnam": 1,
+              "viet": 1,
+              "nam": 1,
+              "vn": 1,
+              "ve": 1
+            },
+            "intents": {
+              "vi": 1
+            },
+            "intentFeatures": {
+              "vi": {
+                "1": 1,
+                "vi": 1,
+                "vietnam": 1,
+                "viet": 1,
+                "nam": 1,
+                "vn": 1,
+                "ve": 1
+              }
+            },
+            "featuresToIntent": {
+              "1": [
+                "vi"
+              ],
+              "vi": [
+                "vi"
+              ],
+              "vietnam": [
+                "vi"
+              ],
+              "viet": [
+                "vi"
+              ],
+              "nam": [
+                "vi"
+              ],
+              "vn": [
+                "vi"
+              ],
+              "ve": [
+                "vi"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "vi",
+                "vietnam",
+                "viet",
+                "nam",
+                "vn",
+                "ve",
+                "1"
+              ],
+              "intents": [
+                "vi"
+              ],
+              "perceptrons": [
+                [
+                  3.717400550842285,
+                  3.861964225769043,
+                  1.9654890298843384,
+                  1.9654890298843384,
+                  3.8244762420654297,
+                  3.789299488067627,
+                  3.7531394958496094,
+                  10.46041295046267
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "vi"
+      ],
+      [
+        "en",
+        "vietnam"
+      ],
+      [
+        "en",
+        "viet nam"
+      ],
+      [
+        "en",
+        "vn"
+      ],
+      [
+        "en",
+        "ve"
+      ],
+      [
+        "en",
+        "1"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "vi": [
+          {
+            "answer": "Vietnamese"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

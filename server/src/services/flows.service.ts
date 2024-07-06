@@ -9,7 +9,7 @@ import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend, IFlowTemplate } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { redis } from '@/libs/redis'
-import { Helper } from '@/utils/helper'
+import { replaceIntentStep } from '@/utils/intent-helper'
 import { loadTemplates } from '@/utils/load-templates'
 import { logger } from '@/utils/logger'
 import {
@@ -26,6 +26,7 @@ import {
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
+import { replaceSubFlowIdStep } from '../utils/flow-helper'
 import { ChannelService } from './channels.service'
 import { IntentService } from './intent.service'
 import { UserSubscriptionService } from './user-subscription.service'
@@ -39,11 +40,11 @@ export class FlowService {
   @Inject((type) => ChannelService)
   private readonly chanelService: ChannelService
 
-  @Inject((type) => IntentService)
-  private readonly intentService: IntentService
-
   @Inject((type) => UserService)
   private readonly userService: UserService
+
+  @Inject((type) => IntentService)
+  private readonly intentService: IntentService
 
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
@@ -88,7 +89,7 @@ export class FlowService {
             label: 'Language',
           },
         ],
-        variables: [
+        variables: fields.variables ?? [
           {
             name: 'language',
             value: 'en',
@@ -448,7 +449,7 @@ export class FlowService {
         )
       : {}
 
-    const replaceTemplateFlowName = this.mapDuplicateFlowName(
+    const replaceTemplateFlowName = replaceFlowNameTemplate(
       flowTemplate,
       flowName,
     )
@@ -475,17 +476,17 @@ export class FlowService {
 
       subFlows.forEach((subFlow: FlowDTO) => {
         let { nodes, flows } = subFlow
-        nodes = this.intentService.mapIntentData(nodes, intentsData)
-        flows = this.intentService.mapIntentData(flows, intentsData)
+        nodes = replaceIntentStep(nodes, intentsData)
+        flows = replaceIntentStep(flows, intentsData)
       })
 
       const newSubFlows = await this.createFlows(subFlows, userId)
 
       let { nodes, flows } = mainFlow[0]
-      nodes = this.replaceSubFlowIdForNodes(nodes, newSubFlows)
-      flows = this.replaceSubFlowIdForFlows(flows, newSubFlows)
-      nodes = this.intentService.mapIntentData(nodes, intentsData)
-      flows = this.intentService.mapIntentData(flows, intentsData)
+      nodes = replaceSubFlowIdStep(nodes, newSubFlows)
+      flows = replaceSubFlowIdStep(flows, newSubFlows)
+      nodes = replaceIntentStep(nodes, intentsData)
+      flows = replaceIntentStep(flows, intentsData)
 
       const newMainFlow = {
         ...mainFlow[0],
@@ -519,127 +520,5 @@ export class FlowService {
       }
     }
     return flowsData
-  }
-
-  replaceSubFlowIdForNodes(oldNodes: any, newData: any) {
-    const newDataMap = new Map()
-
-    newData.forEach((item) => {
-      newDataMap.set(item.name, item.id)
-    })
-
-    return oldNodes.map((node) => {
-      return {
-        ...node,
-        data: {
-          ...node.data,
-          subFlowId:
-            newDataMap.get(node.data.subFlowName) || node.data.trainedName,
-        },
-      }
-    })
-  }
-
-  replaceSubFlowIdForFlows(oldData: any, newData: any) {
-    const newDataMap = new Map()
-
-    newData.forEach((item) => {
-      newDataMap.set(item.name, item.id)
-    })
-
-    return oldData.map((data) => {
-      return {
-        ...data,
-        subFlowId: newDataMap.get(data.subFlowName) || data.trainedName,
-      }
-    })
-  }
-
-  mapDuplicateFlowName(flow: IFlowTemplate, flowName: string) {
-    let { mainFlow, subFlows, intents } = flow
-    const newDataMainFlow = mainFlow.map((flow) => {
-      const { name, nodes, flows } = flow
-
-      const newNodes = nodes.map((node) => {
-        if (node.type === 'sub-flow') {
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              subFlowName: flowName
-                ? flowName + ' - ' + node.data.subFlowName
-                : node.data.subFlowName,
-            },
-          }
-        }
-        return node
-      })
-      const newFlows = flows.map((flow) => {
-        if (flow.action === 'sub-flow') {
-          return {
-            ...flow,
-            subFlowName: flowName
-              ? flowName + ' - ' + flow.subFlowName
-              : flow.subFlowName,
-          }
-        }
-        return flow
-      })
-      return {
-        ...flow,
-        name: flowName ? flowName + ' - ' + name : name,
-        nodes: newNodes,
-        flows: newFlows,
-      }
-    })
-
-    const newDataSubflows = subFlows.map((subFlow) => {
-      const { name, nodes, flows } = subFlow
-      const newSubFlowName = flowName ? flowName + ' - ' + name : name
-      const newNodes =
-        nodes.map((node) => {
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              trainedName: flowName
-                ? flowName + ' - ' + node.data.trainedName
-                : node.data.trainedName,
-            },
-          }
-        }) || nodes
-
-      const newFlows =
-        flows.map((flow) => {
-          return {
-            ...flow,
-            trainedName: flowName
-              ? flowName + ' - ' + flow.trainedName
-              : flow.trainedName,
-          }
-        }) || flows
-
-      return {
-        ...subFlow,
-        nodes: newNodes,
-        flows: newFlows,
-        name: newSubFlowName,
-      }
-    })
-
-    const newDataIntents = intents.map((intent) => {
-      return {
-        ...intent,
-        name: flowName ? flowName + ' - ' + intent.name : intent.name,
-        referenceId: Helper.generateString(10),
-      }
-    })
-
-    return {
-      ...flow,
-      mainFlow: newDataMainFlow,
-      subFlows: newDataSubflows,
-      intents: newDataIntents,
-    }
   }
 }

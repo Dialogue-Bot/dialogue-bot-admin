@@ -149,11 +149,10 @@ export const SOCKET_EVENTS = {
   AGENT_MESSAGE: 'agent-message',
 }
 
-// export const API_URL = import.meta.env.DEV
-//   ? 'http://localhost:8080'
-//   : 'https://api.dialoguebot.tech'
+export const API_URL = import.meta.env.DEV
+  ? 'http://localhost:8080'
+  : 'https://api.dialoguebot.tech'
 
-export const API_URL = 'http://localhost:8080'
 
 export const SIGNATURE_SECRET = 'iR5WkkMmQwUP7AeMkYxXYjQNVaWMAhPk'
 export const STRIPE_PUBLIC_KEY =

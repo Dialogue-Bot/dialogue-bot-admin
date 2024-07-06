@@ -303,26 +303,11 @@ export class IntentService {
 
         if (!newIntent) throw new Error('Train failed');
 
-        intentsData.push({ id: newIntent.id, referenceId: newIntent.referenceId });
+        intentsData.push({ name: newIntent.name, referenceId: newIntent.referenceId });
       } catch (err) {
         logger.info('Init intent failed: ' + err.message);
       }
     }
     return intentsData;
-  }
-
-  public mapIntentData(oldData: any, newData: any) {
-    const newDataMap = new Map();
-
-    newData.forEach(item => {
-      newDataMap.set(item.name, item.id);
-    });
-
-    return oldData.map(data => {
-      return {
-        ...data,
-        trainedData: newDataMap.get(data.trainedName) || data.trainedName,
-      }
-    })
   }
 }
