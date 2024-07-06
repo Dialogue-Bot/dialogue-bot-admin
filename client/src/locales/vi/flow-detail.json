@@ -10,7 +10,8 @@
       "fallback": "Fallback",
       "start": "Start",
       "sub_flow": "Sub Flow",
-      "send_mail": "Send Mail"
+      "send_mail": "Send Mail",
+      "goto": "Go To"
     }
   },
   "toolbar": {

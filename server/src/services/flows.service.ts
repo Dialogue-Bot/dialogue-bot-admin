@@ -26,7 +26,10 @@ import {
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
-import { replaceSubFlowIdStep } from '../utils/flow-helper'
+import {
+  replaceFlowNameTemplate,
+  replaceSubFlowIdStep,
+} from '../utils/flow-helper'
 import { ChannelService } from './channels.service'
 import { IntentService } from './intent.service'
 import { UserSubscriptionService } from './user-subscription.service'

@@ -468,5 +468,12 @@
     "errors": {
       "required": "Please enter text."
     }
+  },
+  "action": {
+    "label": "Action",
+    "placeholder": "Select action",
+    "errors": {
+      "required": "Please select action."
+    }
   }
 }

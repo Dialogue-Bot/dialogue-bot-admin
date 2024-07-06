@@ -9,6 +9,7 @@ import {
   HelpCircle,
   Mail,
   MessageSquareMore,
+  Undo,
   Webhook,
   X,
 } from 'lucide-react'
@@ -262,5 +263,24 @@ export const SubFlowNode = (props?: CustomNodeProps) => {
         <span className='leading-none'>{data?.name || data?.label}</span>
       </div>
     </NodeWrapper>
+  )
+}
+export const GotoNode = (props?: CustomNodeProps) => {
+  const { id, data } = props || {}
+  return (
+    <>
+      {id && <DeleteNodeBtn id={id} />}
+      <div
+        className={cn(
+          'bg-yellow-500 shadow rounded-md p-2 border-card relative',
+        )}
+      >
+        <div className='flex items-center gap-2'>
+          <Undo className='w-4 h-4' />
+          <span className='leading-none'>{data?.name || data?.label}</span>
+        </div>
+        <HandleCustom type='target' position={Position.Top} />
+      </div>
+    </>
   )
 }

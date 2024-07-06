@@ -63,7 +63,10 @@ export const Edge = ({
         markerEnd={markerEnd}
         style={{
           ...style,
-          stroke: action?.condition === 'otherwise' ? 'red' : undefined,
+          stroke:
+            action?.condition === 'otherwise' || action?.condition === 'failure'
+              ? 'red'
+              : undefined,
         }}
       />
       {(node?.data.action === EActionTypes.PROMPT_AND_COLLECT ||
@@ -80,9 +83,9 @@ export const Edge = ({
             className='edge-label nodrap nopan absolute bg-white text-xs'
           >
             {_.capitalize(action.condition).replace(/_/g, ' ')}
-            {typeof action.value === 'boolean'
-              ? `: ${action.value ? 'true' : 'false'}`
-              : null}
+            {action?.condition === 'otherwise' || action.value === undefined
+              ? null
+              : `: ${action?.value}`}
           </span>
         </EdgeLabelRenderer>
       ) : null}
