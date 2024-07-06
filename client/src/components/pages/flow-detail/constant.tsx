@@ -6,6 +6,7 @@ import {
   HelpCircle,
   Mail,
   MessageSquareMore,
+  Undo,
   Variable,
   Webhook,
   Workflow,
@@ -19,6 +20,7 @@ import {
   SendMailContent,
   SubFlowContent,
 } from './node-dialog'
+import { GotoDialogContent } from './node-dialog/goto'
 
 export const MAP_ACTION_TO_LABEL: Record<EActionTypes, string> = {
   [EActionTypes.MESSAGE]: i18n.t('flowDetail:actions.items.message') as string,
@@ -41,6 +43,7 @@ export const MAP_ACTION_TO_LABEL: Record<EActionTypes, string> = {
   [EActionTypes.SEND_MAIL]: i18n.t(
     'flowDetail:actions.items.send_mail',
   ) as string,
+  [EActionTypes.GOTO]: i18n.t('flowDetail:actions.items.goto') as string,
 }
 
 export const ACTIONS_TO_RENDER_LANG = [
@@ -60,6 +63,7 @@ export const useMapActionToLabel = () => {
     [EActionTypes.START]: t('actions.items.start'),
     [EActionTypes.SUB_FLOW]: t('actions.items.sub_flow'),
     [EActionTypes.SEND_MAIL]: t('actions.items.send_mail'),
+    [EActionTypes.GOTO]: t('actions.items.goto'),
   }
 }
 
@@ -117,6 +121,11 @@ export const MAP_ACTION: Record<
     icon: () => <Workflow className='w-4 h-4' />,
     label: 'Sub flow',
     dialogContent: () => <SubFlowContent />,
+  },
+  [EActionTypes.GOTO]: {
+    icon: () => <Undo className='w-4 h-4' />,
+    label: 'Go to',
+    dialogContent: () => <GotoDialogContent />,
   },
 }
 

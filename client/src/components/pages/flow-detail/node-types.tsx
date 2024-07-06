@@ -2,6 +2,7 @@ import { TNodeTypes } from '@/types/flow'
 import {
   CheckVariablesNode,
   FallBackNode,
+  GotoNode,
   HttpRequestNode,
   MessageNode,
   PromptAndCollectNode,
@@ -26,4 +27,5 @@ export const nodeTypes: TNodeTypes = {
   'http-request': HttpRequestNode,
   'send-mail': SendMailNode,
   'sub-flow': SubFlowNode,
+  goto: GotoNode,
 }
