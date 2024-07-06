@@ -83,6 +83,8 @@ export const ENDPOINTS = {
     SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
     BOT_GET_CONTACT_ID: '/bot/flow/:contactId',
     BOT_GET_ID: '/bot/flow/:id',
+    TEMPLATES: '/flow/templates',
+    DUPLICATE_TEMPLATE: '/flow/duplicate-template',
   },
   INTENT: {
     INDEX: '/intent',
@@ -117,3 +119,5 @@ export const BOT_EVENT = {
   TYPING: 'typing',
   STOP_TYPING: 'stop-typing',
 }
+
+export const FLOWS_TEMPLATE = ['Shopping Online']

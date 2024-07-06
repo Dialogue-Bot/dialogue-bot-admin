@@ -90,4 +90,21 @@ export class FlowController {
     )
     res.status(StatusCodes.OK).send(data)
   })
+
+  public getTemplates = catchAsync(async (req, res) => {
+    const data = await this.flowService.getTemplateFlows()
+    res.status(StatusCodes.OK).json({ data })
+  })
+
+  public duplicateTemplate = catchAsync(async (req: RequestWithUser, res) => {
+    const data = await this.flowService.duplicateFlow(
+      req.body.flowName,
+      req.body.templateName,
+      req.user?.id as string,
+    )
+    res.status(StatusCodes.OK).json({
+      message: this.localeService.i18n().FLOW.DUPLICATE_TEMPLATE(),
+      data,
+    })
+  })
 }

@@ -1,4 +1,4 @@
-import { LOCALE_KEY } from '@/constants'
+import { FLOWS_TEMPLATE, LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
 import { flows, users } from '@/database/schema'
 import { TNewFlow } from '@/database/types'
@@ -6,16 +6,21 @@ import { FlowDTO } from '@/dtos/flows.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
-import { FlowExtend } from '@/interfaces/flows.interface'
+import { FlowExtend, IFlowTemplate } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { redis } from '@/libs/redis'
+import { replaceIntentStep } from '@/utils/intent-helper'
+import { loadTemplates } from '@/utils/load-templates'
 import { logger } from '@/utils/logger'
 import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
+import { replaceFlowNameTemplate, replaceSubFlowIdStep } from '../utils/flow-helper'
 import { ChannelService } from './channels.service'
+import { IntentService } from './intent.service'
 import { UserSubscriptionService } from './user-subscription.service'
+import { UserService } from './users.service'
 
 @Service()
 export class FlowService {
@@ -25,9 +30,15 @@ export class FlowService {
   @Inject((type) => ChannelService)
   private readonly chanelService: ChannelService
 
+  @Inject((type) => UserService)
+  private readonly userService: UserService
+
+  @Inject((type) => IntentService)
+  private readonly intentService: IntentService
+
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     if (
@@ -68,7 +79,7 @@ export class FlowService {
             label: 'Language',
           },
         ],
-        variables: [
+        variables: fields.variables ?? [
           {
             name: 'language',
             value: 'en',
@@ -280,13 +291,15 @@ export class FlowService {
         value: flows.id,
       })
       .from(flows)
-      .where(and(eq(flows.deleted, false), eq(flows.userId, userId)))
+      .where(
+        and(eq(flows.deleted, false), eq(flows.userId, userId)))
       .orderBy(asc(flows.name))
 
     logger.info(`[FlowService] result: ${JSON.stringify(result)}`)
 
     return result
   }
+
   public async getFlowByContactId(contactId: string, isTest: boolean) {
     const channel = await this.chanelService.findOneByContactId(contactId)
     let flow = null
@@ -310,6 +323,7 @@ export class FlowService {
 
     return flow
   }
+
   public async getFlowByIdForBot(id: string, isTest: boolean) {
     let flow = null
 
@@ -342,19 +356,24 @@ export class FlowService {
     return count
   }
 
-  public async seedFlows(
-    userId: string,
-    flows: TNewFlow[],
-  ): Promise<TNewFlow[]> {
-    const promises = flows.map(async (flow) => {
-      return await this.create({
-        ...flow,
-        userId,
-        publishAt: new Date(),
-      })
-    })
+  public async seedFlows(email: string) {
+    const getAdminAccount = await this.userService.findOneByEmail(email);
 
-    return await Promise.all(promises)
+    if (!getAdminAccount) throw new Error('Admin account does not exists!');
+
+    const userId = getAdminAccount.id;
+
+    const getFlows = await loadTemplates();
+
+    if (!Array.isArray(getFlows) || !getFlows.length) return;
+
+    for (let flow of getFlows) {
+      try {
+        await this.createFlowFromTemplate(flow, userId);
+      } catch (err) {
+        logger.info('Init flow failed: ' + err.message);
+      }
+    }
   }
 
   public async getTemplateFlows() {
@@ -371,11 +390,105 @@ export class FlowService {
         publishAt: flows.publishAt,
       })
       .from(flows)
-      .where(eq(users.email, 'admin@gmail.com'))
-      .leftJoin(users, eq(flows.userId, users.id))
+      .where(
+        and(
+          eq(users.email, 'admin@gmail.com'),
+          eq(flows.deleted, false)
+        )
+      )
+      .leftJoin(users, and(eq(flows.userId, users.id)))
 
-    redis.set('templates', JSON.stringify(templates))
+    const filterFlow = templates.filter(flow => FLOWS_TEMPLATE.includes(flow.name))
 
-    return templates
+    redis.set('templates', JSON.stringify(filterFlow), 'EX', 60 * 60 * 24)
+
+    return filterFlow
+  }
+
+  public async duplicateFlow(flowName: string, templateName: string, userId: string) {
+    const newFlowDuplicate = flowName + ' - ' + templateName
+    const flowExisted = await db.query.flows.findFirst({
+      where: and(
+        eq(flows.name, newFlowDuplicate),
+        eq(flows.userId, userId),
+        eq(flows.deleted, false)
+      ),
+    })
+
+    if (flowExisted) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.FLOW_NAME_EXISTED(),
+      )
+    }
+
+    const getFlowsTemplate = await loadTemplates();
+
+    if (!Array.isArray(getFlowsTemplate) || !getFlowsTemplate.length) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.NOT_FOUND(),
+      )
+    };
+
+    const flowTemplate = Array.isArray(getFlowsTemplate) ? getFlowsTemplate.find(flow => flow.mainFlow[0] && flow.mainFlow[0].name === templateName) : {};
+
+    const replaceTemplateFlowName = replaceFlowNameTemplate(flowTemplate, flowName);
+
+    const newFlow = await this.createFlowFromTemplate(replaceTemplateFlowName, userId);
+
+    if (!newFlow) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.CREATE_FAILED(),
+      )
+    }
+
+    return newFlow;
+  }
+
+  async createFlowFromTemplate(flowTemplate: IFlowTemplate, userId: string) {
+    try {
+      let { mainFlow, subFlows, intents } = flowTemplate;
+      const intentsData = await this.intentService.seedIntents(intents, userId);
+
+      subFlows.forEach((subFlow: FlowDTO) => {
+        let { nodes, flows } = subFlow;
+        nodes = replaceIntentStep(nodes, intentsData);
+        flows = replaceIntentStep(flows, intentsData);
+      })
+
+      const newSubFlows = await this.createFlows(subFlows, userId);
+
+      let { nodes, flows } = mainFlow[0];
+      nodes = replaceSubFlowIdStep(nodes, newSubFlows);
+      flows = replaceSubFlowIdStep(flows, newSubFlows);
+      nodes = replaceIntentStep(nodes, intentsData);
+      flows = replaceIntentStep(flows, intentsData);
+
+      const newMainFlow = {
+        ...mainFlow[0],
+        nodes,
+        flows
+      }
+
+      return await this.create({ ...newMainFlow, userId, publishAt: new Date() });
+    } catch (err) {
+      logger.info('createFlowFromTemplate failed: ' + err.message);
+      return false;
+    }
+  }
+
+  async createFlows(flows: FlowDTO[], userId: string) {
+    let flowsData = [];
+    for (let flow of flows) {
+      try {
+        const newFlow = await this.create({ ...flow, userId, publishAt: new Date() })
+        flowsData.push({ name: newFlow.name, id: newFlow.id });
+      } catch (err) {
+        logger.info('Create flow failed: ' + err.message);
+      }
+    }
+    return flowsData;
   }
 }

@@ -2,6 +2,7 @@
   {
     "mainFlow": [
       {
+        "name": "Shopping Online",
         "edges": [
           {
             "source": "start",
@@ -617,6 +618,7 @@
               "grammarType": "text",
               "assignUserResponse": "language",
               "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+              "trainedName": "Shopping Online - Set Language Vietnam",
               "nextActions": [
                 {
                   "condition": "equal",
@@ -790,6 +792,7 @@
               "name": "Sub flow shopping",
               "contents": {},
               "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+              "subFlowName": "Shopping Online - Shopping",
               "assignVars": [
                 {
                   "assignTo": "product_id",
@@ -880,6 +883,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -988,12 +992,13 @@
               "name": "Sub Flow Check Order",
               "contents": {},
               "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+              "subFlowName": "Shopping Online - Check Order",
               "nextAction": "k8opjysl9gvwa90v25758wfu",
               "assignVars": []
             },
             "width": 196,
             "height": 32,
-            "selected": false,
+            "selected": true,
             "positionAbsolute": {
               "x": 312.6691111478024,
               "y": 557.8665479809774
@@ -1004,6 +1009,31 @@
             "$H": 287,
             "x": 604.5,
             "y": 692
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "back",
+            "value": "",
+            "type": "string"
           }
         ],
         "flows": [
@@ -1040,6 +1070,7 @@
             "grammarType": "text",
             "assignUserResponse": "language",
             "trainedData": "wa3u1bbjhgl95122x7u2v71t",
+            "trainedName": "Shopping Online - Set Language Vietnam",
             "nextActions": [
               {
                 "condition": "equal",
@@ -1129,6 +1160,7 @@
             "name": "Sub flow shopping",
             "contents": {},
             "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+            "subFlowName": "Shopping Online - Shopping",
             "assignVars": [
               {
                 "assignTo": "product_id",
@@ -1177,6 +1209,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "otherwise",
@@ -1222,16 +1255,18 @@
             "name": "Sub Flow Check Order",
             "contents": {},
             "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+            "subFlowName": "Shopping Online - Check Order",
             "nextAction": "k8opjysl9gvwa90v25758wfu",
             "assignVars": []
           }
         ],
-        "name": "Shopping Online",
+        "channelIds": [],
         "userId": "v3xlkf1g9l1eaigl222mlx79"
       }
     ],
     "subFlows": [
       {
+        "name": "Shopping Online - Shopping",
         "edges": [
           {
             "source": "start",
@@ -1343,7 +1378,8 @@
                 "outgoingShape": "u2i029mkjr3daehn0w7nm5z3"
               }
             ],
-            "container": "root"
+            "container": "root",
+            "selected": false
           },
           {
             "source": "o1zjp21xspeix7zfh11eayra",
@@ -2351,45 +2387,8 @@
                 "outgoingShape": "ej6lb09z25duh8embtiofbqu"
               }
             ],
-            "container": "root"
-          },
-          {
-            "source": "f14giuz3sov8eomcakrs8z72",
-            "sourceHandle": "prompt-and-collect-yes",
-            "target": "t172o11g04ocjcbnja7lfpxt",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-t172o11g04ocjcbnja7lfpxt",
-            "sections": [
-              {
-                "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-t172o11g04ocjcbnja7lfpxt_s0",
-                "startPoint": {
-                  "x": 506,
-                  "y": 864
-                },
-                "endPoint": {
-                  "x": 506,
-                  "y": 964
-                },
-                "bendPoints": [
-                  {
-                    "x": 506,
-                    "y": 864
-                  },
-                  {
-                    "x": 506,
-                    "y": 914
-                  }
-                ],
-                "incomingShape": "f14giuz3sov8eomcakrs8z72",
-                "outgoingShape": "t172o11g04ocjcbnja7lfpxt"
-              }
-            ],
-            "container": "root"
+            "container": "root",
+            "selected": false
           },
           {
             "source": "ed4rdxstft1e9ercdsd0wkbf",
@@ -2701,9 +2700,48 @@
             "targetHandle": null,
             "type": "custom",
             "data": {
-              "deletable": true
+              "deletable": true,
+              "hover": false
             },
-            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-o1zjp21xspeix7zfh11eayra"
+            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-o1zjp21xspeix7zfh11eayra",
+            "selected": true
+          },
+          {
+            "source": "f14giuz3sov8eomcakrs8z72",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "y3w6mlm3johvl2b9cylf6fwn",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-f14giuz3sov8eomcakrs8z72prompt-and-collect-yes-y3w6mlm3johvl2b9cylf6fwn"
+          },
+          {
+            "source": "y3w6mlm3johvl2b9cylf6fwn",
+            "sourceHandle": "check-variables-no",
+            "target": "cfe3vdszoy47ifunv47q4w48",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-y3w6mlm3johvl2b9cylf6fwncheck-variables-no-cfe3vdszoy47ifunv47q4w48"
+          },
+          {
+            "source": "y3w6mlm3johvl2b9cylf6fwn",
+            "sourceHandle": "check-variables-yes",
+            "target": "t172o11g04ocjcbnja7lfpxt",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-y3w6mlm3johvl2b9cylf6fwncheck-variables-yes-t172o11g04ocjcbnja7lfpxt",
+            "selected": false
           }
         ],
         "nodes": [
@@ -3018,7 +3056,7 @@
             "id": "f14giuz3sov8eomcakrs8z72",
             "position": {
               "x": 1043.842453478631,
-              "y": 692.9999246458543
+              "y": 675.3999246458543
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3052,13 +3090,13 @@
               "assignUserResponse": "choose_size",
               "nextActions": [
                 {
-                  "condition": "exist",
-                  "id": "t172o11g04ocjcbnja7lfpxt",
-                  "value": true
-                },
-                {
                   "condition": "otherwise",
                   "id": "cfe3vdszoy47ifunv47q4w48"
+                },
+                {
+                  "condition": "exist",
+                  "id": "y3w6mlm3johvl2b9cylf6fwn",
+                  "value": true
                 }
               ]
             },
@@ -3067,7 +3105,7 @@
             "selected": false,
             "positionAbsolute": {
               "x": 1043.842453478631,
-              "y": 692.9999246458543
+              "y": 675.3999246458543
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3079,8 +3117,8 @@
           {
             "id": "vil87ezf7cc6uxxfz13a1mqw",
             "position": {
-              "x": 1224.032756217391,
-              "y": 934.435723174584
+              "x": 1307.232756217391,
+              "y": 944.835723174584
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3116,8 +3154,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1224.032756217391,
-              "y": 934.435723174584
+              "x": 1307.232756217391,
+              "y": 944.835723174584
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3128,8 +3166,8 @@
           {
             "id": "nb42vwwg6ril49ylafxvk2v4",
             "position": {
-              "x": 1469.851050301932,
-              "y": 1059.9422126715647
+              "x": 1417.851050301932,
+              "y": 1030.3422126715645
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3162,6 +3200,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -3179,8 +3218,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1469.851050301932,
-              "y": 1059.9422126715647
+              "x": 1417.851050301932,
+              "y": 1030.3422126715645
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3191,8 +3230,8 @@
           {
             "id": "slliul1x527xj9nh7ozmsfjh",
             "position": {
-              "x": 1949.2237600262815,
-              "y": 1319.1168109456523
+              "x": 1778.0237600262815,
+              "y": 1250.7168109456522
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3227,8 +3266,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1949.2237600262815,
-              "y": 1319.1168109456523
+              "x": 1778.0237600262815,
+              "y": 1250.7168109456522
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3239,8 +3278,8 @@
           {
             "id": "omciq239cvzxi4l8uuqnecme",
             "position": {
-              "x": 2109.0241697981837,
-              "y": 1470.423418057208
+              "x": 1928.2241697981838,
+              "y": 1452.823418057208
             },
             "type": "send-mail",
             "data": {
@@ -3261,8 +3300,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 2109.0241697981837,
-              "y": 1470.423418057208
+              "x": 1928.2241697981838,
+              "y": 1452.823418057208
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3273,15 +3312,15 @@
           {
             "id": "hb8yxvmrunvmzbvldtjjtd8x",
             "position": {
-              "x": 2084.9163111950184,
-              "y": 1598.3874651894862
+              "x": 1898.5163111950183,
+              "y": 1578.3874651894862
             },
             "type": "message",
             "data": {
               "label": "Message",
               "action": "message",
               "id": "hb8yxvmrunvmzbvldtjjtd8x",
-              "name": "Confirm send mail",
+              "name": "Send check mail",
               "contents": {
                 "en": {
                   "message": "Please check your email😁",
@@ -3291,13 +3330,13 @@
               },
               "nextAction": "ovu5mmshipsqc8dx2wzw091u"
             },
-            "width": 169,
+            "width": 154,
             "height": 32,
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 2084.9163111950184,
-              "y": 1598.3874651894862
+              "x": 1898.5163111950183,
+              "y": 1578.3874651894862
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3380,8 +3419,8 @@
           {
             "id": "ovu5mmshipsqc8dx2wzw091u",
             "position": {
-              "x": 2097.773835783373,
-              "y": 1745.637799204297
+              "x": 1916.173835783373,
+              "y": 1694.437799204297
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3414,6 +3453,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -3430,8 +3470,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 2097.773835783373,
-              "y": 1745.637799204297
+              "x": 1916.173835783373,
+              "y": 1694.437799204297
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3443,8 +3483,8 @@
           {
             "id": "bp444h1qb0kfgik8uxdlppu1",
             "position": {
-              "x": 2059.201262018308,
-              "y": 1945.9254221460717
+              "x": 1778.4012620183084,
+              "y": 1833.5254221460718
             },
             "type": "message",
             "data": {
@@ -3464,8 +3504,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 2059.201262018308,
-              "y": 1945.9254221460717
+              "x": 1778.4012620183084,
+              "y": 1833.5254221460718
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3476,8 +3516,8 @@
           {
             "id": "ej6lb09z25duh8embtiofbqu",
             "position": {
-              "x": 1686.1823233804344,
-              "y": 1186.614647779992
+              "x": 1597.3823233804344,
+              "y": 1130.614647779992
             },
             "type": "http-request",
             "data": {
@@ -3530,8 +3570,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 1686.1823233804344,
-              "y": 1186.614647779992
+              "x": 1597.3823233804344,
+              "y": 1130.614647779992
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3543,8 +3583,8 @@
           {
             "id": "c2t82sfa78zi9tsj98us1bzc",
             "position": {
-              "x": 1513.7443686812123,
-              "y": 1332.225668358816
+              "x": 1455.3443686812125,
+              "y": 1301.825668358816
             },
             "type": "message",
             "data": {
@@ -3565,8 +3605,8 @@
             "selected": false,
             "dragging": false,
             "positionAbsolute": {
-              "x": 1513.7443686812123,
-              "y": 1332.225668358816
+              "x": 1455.3443686812125,
+              "y": 1301.825668358816
             },
             "targetPosition": "top",
             "sourcePosition": "bottom",
@@ -3577,8 +3617,8 @@
           {
             "id": "t172o11g04ocjcbnja7lfpxt",
             "position": {
-              "x": 1089.252780970343,
-              "y": 808.9292336776034
+              "x": 1250.852780970343,
+              "y": 846.5292336776035
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3589,7 +3629,8 @@
               "contents": {
                 "en": {
                   "message": "Give me your name or fullname",
-                  "type": "text"
+                  "type": "text",
+                  "buttons": []
                 }
               },
               "nextActions": [
@@ -3609,8 +3650,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 1089.252780970343,
-              "y": 808.9292336776034
+              "x": 1250.852780970343,
+              "y": 846.5292336776035
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3737,6 +3778,97 @@
             "$H": 605,
             "x": 12,
             "y": 420
+          },
+          {
+            "id": "y3w6mlm3johvl2b9cylf6fwn",
+            "position": {
+              "x": 1147.199996948242,
+              "y": 753.5999999999999
+            },
+            "type": "check-variables",
+            "data": {
+              "label": "Check Variables",
+              "action": "check-variables",
+              "id": "y3w6mlm3johvl2b9cylf6fwn",
+              "name": "Check size exists",
+              "contents": {},
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "cfe3vdszoy47ifunv47q4w48"
+                },
+                {
+                  "condition": "contains",
+                  "id": "t172o11g04ocjcbnja7lfpxt",
+                  "value": "{choose_size}"
+                }
+              ],
+              "variable_type": "input",
+              "variableInput": "{product_detail->size}"
+            },
+            "width": 156,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1147.199996948242,
+              "y": 753.5999999999999
+            },
+            "dragging": false
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "products",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "product_detail",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "choose_size",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "save_order",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "value": "",
+            "type": "string"
           }
         ],
         "flows": [
@@ -3935,13 +4067,13 @@
             "assignUserResponse": "choose_size",
             "nextActions": [
               {
-                "condition": "exist",
-                "id": "t172o11g04ocjcbnja7lfpxt",
-                "value": true
-              },
-              {
                 "condition": "otherwise",
                 "id": "cfe3vdszoy47ifunv47q4w48"
+              },
+              {
+                "condition": "exist",
+                "id": "y3w6mlm3johvl2b9cylf6fwn",
+                "value": true
               }
             ]
           },
@@ -4003,6 +4135,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "otherwise",
@@ -4059,7 +4192,7 @@
             "label": "Message",
             "action": "message",
             "id": "hb8yxvmrunvmzbvldtjjtd8x",
-            "name": "Confirm send mail",
+            "name": "Send check mail",
             "contents": {
               "en": {
                 "message": "Please check your email😁",
@@ -4129,6 +4262,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "otherwise",
@@ -4220,7 +4354,8 @@
             "contents": {
               "en": {
                 "message": "Give me your name or fullname",
-                "type": "text"
+                "type": "text",
+                "buttons": []
               }
             },
             "nextActions": [
@@ -4291,12 +4426,33 @@
               }
             ],
             "assignUserResponse": "product_id"
+          },
+          {
+            "label": "Check Variables",
+            "action": "check-variables",
+            "id": "y3w6mlm3johvl2b9cylf6fwn",
+            "name": "Check size exists",
+            "contents": {},
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "cfe3vdszoy47ifunv47q4w48"
+              },
+              {
+                "condition": "contains",
+                "id": "t172o11g04ocjcbnja7lfpxt",
+                "value": "{choose_size}"
+              }
+            ],
+            "variable_type": "input",
+            "variableInput": "{product_detail->size}"
           }
         ],
-        "name": "Shopping",
+        "channelIds": [],
         "userId": "v3xlkf1g9l1eaigl222mlx79"
       },
       {
+        "name": "Shopping Online - Check Order",
         "edges": [
           {
             "source": "start",
@@ -4644,7 +4800,8 @@
                 "outgoingShape": "nl88f30whfhqorcktby54vm3"
               }
             ],
-            "container": "root"
+            "container": "root",
+            "selected": false
           },
           {
             "source": "guozu9v1jdm9a083xifkbwxa",
@@ -4744,7 +4901,8 @@
                 "outgoingShape": "nl88f30whfhqorcktby54vm3"
               }
             ],
-            "container": "root"
+            "container": "root",
+            "selected": false
           },
           {
             "source": "tpb8o12vu4lbjzsjvp4136mc",
@@ -4813,7 +4971,7 @@
             },
             "width": 125,
             "height": 32,
-            "selected": true,
+            "selected": false,
             "positionAbsolute": {
               "x": 114.5,
               "y": 420
@@ -4957,7 +5115,7 @@
             },
             "width": 162,
             "height": 32,
-            "selected": false,
+            "selected": true,
             "dragging": false,
             "positionAbsolute": {
               "x": -105.62814643923753,
@@ -5064,6 +5222,31 @@
             "$H": 289,
             "x": 406.33333333333337,
             "y": 420
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "order_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "order_detail",
+            "value": "",
+            "type": "string"
           }
         ],
         "flows": [
@@ -5231,13 +5414,27 @@
             }
           }
         ],
-        "name": "Check Order",
+        "channelIds": [],
         "userId": "v3xlkf1g9l1eaigl222mlx79"
       }
     ],
     "intents": [
       {
-        "name": "confirm",
+        "name": "Shopping Online - Set Language Vietnam",
+        "referenceId": "wa3u1bbjhgl95122x7u2v71t",
+        "trainType": "manual",
+        "trainDescription": [],
+        "intents": [
+          {
+            "intent": "vi",
+            "prompts": ["vi", "vietnam", "viet nam", "vn", "ve", "1"],
+            "answers": ["Vietnamese"]
+          }
+        ],
+        "entities": []
+      },
+      {
+        "name": "Shopping Online - Confirm",
         "referenceId": "qbiavyp3jx06rge1w2gu4laq",
         "trainType": "manual",
         "trainDescription": [],
@@ -5264,7 +5461,7 @@
               "have",
               "Yup</span>"
             ],
-            "answers": ["Thank you"]
+            "answers": ["Thank You"]
           }
         ],
         "entities": []
