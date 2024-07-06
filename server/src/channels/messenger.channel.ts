@@ -1,5 +1,5 @@
 import { BOT_EVENT } from '@/constants'
-import { Helper } from '@/utils/helper'
+import { arrayToObj } from '@/utils/helper'
 import { logger } from '@/utils/logger'
 import axios from 'axios'
 import { Request, Response } from 'express'
@@ -97,7 +97,7 @@ export class MessengerChannel extends BaseChannel {
     return this.postMessageToBot({
       userId,
       message: 'ADDRESS',
-      data: { USER_INFORMATION: Helper.arrayToObj(address) },
+      data: { USER_INFORMATION: arrayToObj(address) },
       isTest: false,
     })
   }

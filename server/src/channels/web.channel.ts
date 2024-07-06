@@ -45,7 +45,7 @@ export class WebChannel extends BaseChannel {
         userId,
         type: type,
         message: text || '',
-        url: channelData.imageUrl || '',
+        url: channelData && channelData.imageUrl || '',
         template: {},
         isBot: true,
         createdAt: new Date(),

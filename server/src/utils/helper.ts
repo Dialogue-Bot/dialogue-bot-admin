@@ -8,5 +8,13 @@ const generateString = (length: number) => {
 
   return result;
 }
-export { generateString };
+
+const arrayToObj = (arr) => {
+  const obj = {}
+  arr.forEach((item) => {
+    obj[item.key] = item.value
+  })
+  return obj
+}
+export { arrayToObj, generateString };
 
