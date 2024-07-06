@@ -74,3 +74,19 @@ export class TestYourBotDTO {
   })
   isTest: boolean
 }
+
+export class DuplicateFlowDTO {
+  @IsString()
+  @IsNotEmpty({
+    message: () => getCurrentLocale().VALIDATE.REQUIRED({ field: 'Flow Name' }),
+  })
+  @Transform(({ value }) => value.trim())
+  flowName: string
+
+  @IsString()
+  @IsNotEmpty({
+    message: () => getCurrentLocale().VALIDATE.REQUIRED({ field: 'Template Name' }),
+  })
+  @Transform(({ value }) => value.trim())
+  templateName: string
+}

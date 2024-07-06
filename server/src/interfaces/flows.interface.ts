@@ -16,3 +16,9 @@ export interface IFlowVariable {
   value: any
   type: string
 }
+
+export interface IFlowTemplate {
+  mainFlow: any
+  subFlows: any
+  intents: any
+}

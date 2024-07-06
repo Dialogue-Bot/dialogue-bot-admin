@@ -98,7 +98,8 @@ export class FlowController {
 
   public duplicateTemplate = catchAsync(async (req: RequestWithUser, res) => {
     const data = await this.flowService.duplicateFlow(
-      req.params.id,
+      req.body.flowName,
+      req.body.templateName,
       req.user?.id as string,
     )
     res.status(StatusCodes.OK).json({

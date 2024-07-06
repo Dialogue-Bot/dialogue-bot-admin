@@ -1,4 +1,4 @@
-import { LOCALE_KEY } from '@/constants'
+import { FLOWS_TEMPLATE, LOCALE_KEY } from '@/constants'
 import { db } from '@/database/db'
 import { flows, users } from '@/database/schema'
 import { TNewFlow } from '@/database/types'
@@ -6,9 +6,10 @@ import { FlowDTO } from '@/dtos/flows.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
-import { FlowExtend } from '@/interfaces/flows.interface'
+import { FlowExtend, IFlowTemplate } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
 import { redis } from '@/libs/redis'
+import { Helper } from '@/utils/helper'
 import { loadTemplates } from '@/utils/load-templates'
 import { logger } from '@/utils/logger'
 import { and, asc, desc, eq, isNotNull, like, ne, sql } from 'drizzle-orm'
@@ -289,7 +290,8 @@ export class FlowService {
         value: flows.id,
       })
       .from(flows)
-      .where(and(eq(flows.deleted, false), eq(flows.userId, userId)))
+      .where(
+        and(eq(flows.deleted, false), eq(flows.userId, userId)))
       .orderBy(asc(flows.name))
 
     logger.info(`[FlowService] result: ${JSON.stringify(result)}`)
@@ -366,24 +368,9 @@ export class FlowService {
 
     for (let flow of getFlows) {
       try {
-        let { mainFlow, subFlows, intents } = flow;
-        const intentsData = await this.intentService.seedIntents(intents, userId);
-
-        subFlows.forEach((subFlow: FlowDTO) => {
-          let { nodes, flows } = subFlow;
-          nodes = this.intentService.mapIntentData(nodes, intentsData);
-          flows = this.intentService.mapIntentData(flows, intentsData);
-        })
-
-        const newSubFlows = await this.createFlows(subFlows, userId);
-
-        let { nodes, flows } = mainFlow[0];
-        nodes = this.mapFlowData(nodes, newSubFlows);
-        flows = this.mapFlowData(flows, newSubFlows);
-
-        await this.create({ ...mainFlow[0], userId, publishAt: new Date() });
+        await this.createFlowFromTemplate(flow, userId);
       } catch (err) {
-        logger.info('Init flow failed: ' + err.message)
+        logger.info('Init flow failed: ' + err.message);
       }
     }
   }
@@ -402,50 +389,96 @@ export class FlowService {
         publishAt: flows.publishAt,
       })
       .from(flows)
-      .where(eq(users.email, 'admin@gmail.com'))
-      .leftJoin(users, eq(flows.userId, users.id))
+      .where(
+        and(
+          eq(users.email, 'admin@gmail.com'),
+          eq(flows.deleted, false)
+        )
+      )
+      .leftJoin(users, and(eq(flows.userId, users.id)))
 
-    redis.set('templates', JSON.stringify(templates), 'EX', 60 * 60 * 24)
+    const filterFlow = templates.filter(flow => FLOWS_TEMPLATE.includes(flow.name))
 
-    return templates
+    redis.set('templates', JSON.stringify(filterFlow), 'EX', 60 * 60 * 24)
+
+    return filterFlow
   }
 
-  public async getSubFlowsByFlow(rootFlow: any) {
-    const _flows = [rootFlow]
-
-    for (const flow of rootFlow.flows) {
-      if (flow.action === 'sub-flow') {
-        const subFlow = await db.query.flows.findFirst({
-          where: eq(flows.id, flow.subFlowId),
-        })
-
-        if (subFlow) {
-          _flows.push(subFlow)
-
-          _flows.push(await this.getSubFlowsByFlow(subFlow))
-        }
-      }
-    }
-
-    return _flows
-  }
-
-  public async duplicateFlow(id: string, userId: string) {
+  public async duplicateFlow(flowName: string, templateName: string, userId: string) {
+    const newFlowDuplicate = flowName + ' - ' + templateName
     const flowExisted = await db.query.flows.findFirst({
-      where: and(eq(flows.id, id), eq(flows.userId, userId)),
+      where: and(
+        eq(flows.name, newFlowDuplicate),
+        eq(flows.userId, userId),
+        eq(flows.deleted, false)
+      ),
     })
 
-    if (!flowExisted) {
+    if (flowExisted) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.FLOW_NAME_EXISTED(),
+      )
+    }
+
+    const getFlowsTemplate = await loadTemplates();
+
+    if (!Array.isArray(getFlowsTemplate) || !getFlowsTemplate.length) {
       throw new HttpException(
         StatusCodes.BAD_REQUEST,
         this.localeService.i18n().FLOW.NOT_FOUND(),
       )
+    };
+
+    const flowTemplate = Array.isArray(getFlowsTemplate) ? getFlowsTemplate.find(flow => flow.mainFlow[0] && flow.mainFlow[0].name === templateName) : {};
+
+    const replaceTemplateFlowName = this.mapDuplicateFlowName(flowTemplate, flowName);
+
+    const newFlow = await this.createFlowFromTemplate(replaceTemplateFlowName, userId);
+
+    if (!newFlow) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.CREATE_FAILED(),
+      )
     }
 
-    return this.getSubFlowsByFlow(flowExisted)
+    return newFlow;
   }
 
-  public async createFlows(flows: FlowDTO[], userId: string) {
+  async createFlowFromTemplate(flowTemplate: IFlowTemplate, userId: string) {
+    try {
+      let { mainFlow, subFlows, intents } = flowTemplate;
+      const intentsData = await this.intentService.seedIntents(intents, userId);
+
+      subFlows.forEach((subFlow: FlowDTO) => {
+        let { nodes, flows } = subFlow;
+        nodes = this.intentService.mapIntentData(nodes, intentsData);
+        flows = this.intentService.mapIntentData(flows, intentsData);
+      })
+
+      const newSubFlows = await this.createFlows(subFlows, userId);
+
+      let { nodes, flows } = mainFlow[0];
+      nodes = this.replaceSubFlowIdForNodes(nodes, newSubFlows);
+      flows = this.replaceSubFlowIdForFlows(flows, newSubFlows);
+      nodes = this.intentService.mapIntentData(nodes, intentsData);
+      flows = this.intentService.mapIntentData(flows, intentsData);
+
+      const newMainFlow = {
+        ...mainFlow[0],
+        nodes,
+        flows
+      }
+
+      return await this.create({ ...newMainFlow, userId, publishAt: new Date() });
+    } catch (err) {
+      logger.info('createFlowFromTemplate failed: ' + err.message);
+      return false;
+    }
+  }
+
+  async createFlows(flows: FlowDTO[], userId: string) {
     let flowsData = [];
     for (let flow of flows) {
       try {
@@ -458,7 +491,25 @@ export class FlowService {
     return flowsData;
   }
 
-  public mapFlowData(oldData: any, newData: any) {
+  replaceSubFlowIdForNodes(oldNodes: any, newData: any) {
+    const newDataMap = new Map();
+
+    newData.forEach(item => {
+      newDataMap.set(item.name, item.id);
+    });
+
+    return oldNodes.map(node => {
+      return {
+        ...node,
+        data: {
+          ...node.data,
+          subFlowId: newDataMap.get(node.data.subFlowName) || node.data.trainedName,
+        }
+      }
+    })
+  }
+
+  replaceSubFlowIdForFlows(oldData: any, newData: any) {
     const newDataMap = new Map();
 
     newData.forEach(item => {
@@ -471,5 +522,83 @@ export class FlowService {
         subFlowId: newDataMap.get(data.subFlowName) || data.trainedName,
       }
     })
+  }
+
+  mapDuplicateFlowName(flow: IFlowTemplate, flowName: string) {
+    let { mainFlow, subFlows, intents } = flow;
+    const newDataMainFlow = mainFlow.map(flow => {
+      const { name, nodes, flows } = flow;
+
+      const newNodes = nodes.map(node => {
+        if (node.type === 'sub-flow') {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              subFlowName: flowName ? flowName + ' - ' + node.data.subFlowName : node.data.subFlowName
+            },
+          }
+        }
+        return node
+      })
+      const newFlows = flows.map(flow => {
+        if (flow.action === 'sub-flow') {
+          return {
+            ...flow,
+            subFlowName: flowName ? flowName + ' - ' + flow.subFlowName : flow.subFlowName,
+          }
+        }
+        return flow
+      })
+      return {
+        ...flow,
+        name: flowName ? flowName + ' - ' + name : name,
+        nodes: newNodes,
+        flows: newFlows,
+      }
+    })
+
+    const newDataSubflows = subFlows.map(subFlow => {
+      const { name, nodes, flows } = subFlow;
+      const newSubFlowName = flowName ? flowName + ' - ' + name : name;
+      const newNodes = nodes.map(node => {
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            trainedName: flowName ? flowName + ' - ' + node.data.trainedName : node.data.trainedName,
+          }
+        }
+      }) || nodes;
+
+      const newFlows = flows.map(flow => {
+        return {
+          ...flow,
+          trainedName: flowName ? flowName + ' - ' + flow.trainedName : flow.trainedName,
+        }
+      }) || flows;
+
+      return {
+        ...subFlow,
+        nodes: newNodes,
+        flows: newFlows,
+        name: newSubFlowName,
+      }
+    })
+
+    const newDataIntents = intents.map(intent => {
+      return {
+        ...intent,
+        name: flowName ? flowName + ' - ' + intent.name : intent.name,
+        referenceId: Helper.generateString(10),
+      }
+    })
+
+    return {
+      ...flow,
+      mainFlow: newDataMainFlow,
+      subFlows: newDataSubflows,
+      intents: newDataIntents,
+    }
   }
 }

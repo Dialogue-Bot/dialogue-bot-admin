@@ -1,6 +1,6 @@
 import { ENDPOINTS } from '@/constants'
 import { FlowController } from '@/controllers/flows.controller'
-import { FlowDTO, TestYourBotDTO } from '@/dtos/flows.dto'
+import { DuplicateFlowDTO, FlowDTO, TestYourBotDTO } from '@/dtos/flows.dto'
 import { PagingDTO } from '@/dtos/paging.dto'
 import { authApiToken, authMiddleware } from '@/middlewares/auth.middleware'
 import { validate } from '@/middlewares/validation.middleware'
@@ -16,7 +16,8 @@ export class FlowRoute implements Routes {
   }
   initializeRoutes() {
     this.router.post(
-      `${ENDPOINTS.FLOW.DUPLICATE_TEMPLATE}/:id`,
+      ENDPOINTS.FLOW.DUPLICATE_TEMPLATE,
+      validate(DuplicateFlowDTO, 'body'),
       authMiddleware,
       this.controller.duplicateTemplate,
     )
