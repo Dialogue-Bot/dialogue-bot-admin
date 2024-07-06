@@ -310,19 +310,4 @@ export class IntentService {
     }
     return intentsData;
   }
-
-  public mapIntentData(oldData: any, newData: any) {
-    const newDataMap = new Map();
-
-    newData.forEach(item => {
-      newDataMap.set(item.name, item.id);
-    });
-
-    return oldData.map(data => {
-      return {
-        ...data,
-        trainedData: newDataMap.get(data.trainedName) || data.trainedName,
-      }
-    })
-  }
 }
