@@ -81,17 +81,13 @@ export class WebChannel extends BaseChannel {
       }
 
       console.log(
-        '[WEB] Bot send message to User - userId: ' +
-        userId +
-        ' - type: ' +
-        type +
-        ' - message: ' +
-        result.message +
-        ' - channelData: ' +
-        JSON.stringify(channelData),
+        '[WEB] Bot send message to User - userId: ' + userId +
+        ' - type: ' + type + ' - message: ' + result.message +
+        (channelData && ' - channelData: ' + JSON.stringify(channelData))
       )
       if (App.io) {
-        App.io.to(userId).emit(SOCKET_EVENTS.MESSAGE || SOCKET_EVENTS.MESSAGE, result)
+        const socketType = type === 'image' ? SOCKET_EVENTS.MESSAGE : type
+        App.io.to(userId).emit(socketType || SOCKET_EVENTS.MESSAGE, result)
       }
     } catch (e) {
       logger.info(`[WEB] Bot send message to User failed - Error: ${e.message}`)
