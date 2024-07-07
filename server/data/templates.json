@@ -271,82 +271,6 @@
             "container": "root"
           },
           {
-            "source": "dmwyk9u967x3frq0f7gsghx5",
-            "sourceHandle": "check-variables-yes",
-            "target": "k8opjysl9gvwa90v25758wfu",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-k8opjysl9gvwa90v25758wfu",
-            "sections": [
-              {
-                "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-k8opjysl9gvwa90v25758wfu_s0",
-                "startPoint": {
-                  "x": 418.5,
-                  "y": 728
-                },
-                "endPoint": {
-                  "x": 418.5,
-                  "y": 828
-                },
-                "bendPoints": [
-                  {
-                    "x": 418.5,
-                    "y": 728
-                  },
-                  {
-                    "x": 418.5,
-                    "y": 778
-                  }
-                ],
-                "incomingShape": "dmwyk9u967x3frq0f7gsghx5",
-                "outgoingShape": "k8opjysl9gvwa90v25758wfu"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "k8opjysl9gvwa90v25758wfu",
-            "sourceHandle": "prompt-and-collect-no",
-            "target": "rjhonwtt2gqr3hdo34t9payd",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd",
-            "sections": [
-              {
-                "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd_s0",
-                "startPoint": {
-                  "x": 418.5,
-                  "y": 864
-                },
-                "endPoint": {
-                  "x": 418.5,
-                  "y": 964
-                },
-                "bendPoints": [
-                  {
-                    "x": 418.5,
-                    "y": 864
-                  },
-                  {
-                    "x": 418.5,
-                    "y": 914
-                  }
-                ],
-                "incomingShape": "k8opjysl9gvwa90v25758wfu",
-                "outgoingShape": "rjhonwtt2gqr3hdo34t9payd"
-              }
-            ],
-            "container": "root"
-          },
-          {
             "source": "npvx355o7kcc3s2wqq7ryd34",
             "sourceHandle": "prompt-and-collect-no",
             "target": "v9s7cfdm4pxwuqsdkz5ddwti",
@@ -383,81 +307,6 @@
               }
             ],
             "container": "root"
-          },
-          {
-            "source": "k8opjysl9gvwa90v25758wfu",
-            "sourceHandle": "prompt-and-collect-yes",
-            "target": "papohi8u609i6f1auz6nz7j3",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-yes-papohi8u609i6f1auz6nz7j3",
-            "sections": [
-              {
-                "id": "reactflow__edge-k8opjysl9gvwa90v25758wfuprompt-and-collect-yes-papohi8u609i6f1auz6nz7j3_s0",
-                "startPoint": {
-                  "x": 418.5,
-                  "y": 828
-                },
-                "endPoint": {
-                  "x": 370,
-                  "y": 592
-                },
-                "bendPoints": [
-                  {
-                    "x": 321.5,
-                    "y": 778
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 753
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 737.5
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 722
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 716
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 710
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 704
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 698
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 682.5
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 667
-                  },
-                  {
-                    "x": 321.5,
-                    "y": 642
-                  }
-                ],
-                "incomingShape": "k8opjysl9gvwa90v25758wfu",
-                "outgoingShape": "papohi8u609i6f1auz6nz7j3"
-              }
-            ],
-            "container": "root",
-            "selected": false
           },
           {
             "source": "npvx355o7kcc3s2wqq7ryd34",
@@ -524,40 +373,60 @@
           {
             "source": "n9vpm0mbwt00d25498t38hfz",
             "sourceHandle": null,
-            "target": "k8opjysl9gvwa90v25758wfu",
+            "target": "wacdie8ngd76il1c6mlfkur0",
             "targetHandle": null,
             "type": "custom",
             "data": {
               "deletable": true,
               "hover": false
             },
-            "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-k8opjysl9gvwa90v25758wfu",
-            "sections": [
-              {
-                "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-k8opjysl9gvwa90v25758wfu_s0",
-                "startPoint": {
-                  "x": 690.5,
-                  "y": 728
-                },
-                "endPoint": {
-                  "x": 418.5,
-                  "y": 828
-                },
-                "bendPoints": [
-                  {
-                    "x": 690.5,
-                    "y": 728
-                  },
-                  {
-                    "x": 663.3,
-                    "y": 778
-                  }
-                ],
-                "incomingShape": "n9vpm0mbwt00d25498t38hfz",
-                "outgoingShape": "k8opjysl9gvwa90v25758wfu"
-              }
-            ],
-            "container": "root"
+            "id": "reactflow__edge-n9vpm0mbwt00d25498t38hfz-wacdie8ngd76il1c6mlfkur0"
+          },
+          {
+            "source": "wacdie8ngd76il1c6mlfkur0",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "rjhonwtt2gqr3hdo34t9payd",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-wacdie8ngd76il1c6mlfkur0prompt-and-collect-no-rjhonwtt2gqr3hdo34t9payd"
+          },
+          {
+            "source": "wacdie8ngd76il1c6mlfkur0",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "asyut7iq0u0vbclrkh3kiepv",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-wacdie8ngd76il1c6mlfkur0prompt-and-collect-yes-asyut7iq0u0vbclrkh3kiepv"
+          },
+          {
+            "source": "dmwyk9u967x3frq0f7gsghx5",
+            "sourceHandle": "check-variables-yes",
+            "target": "wacdie8ngd76il1c6mlfkur0",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-yes-wacdie8ngd76il1c6mlfkur0"
+          },
+          {
+            "source": "dmwyk9u967x3frq0f7gsghx5",
+            "sourceHandle": "check-variables-no",
+            "target": "rjhonwtt2gqr3hdo34t9payd",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-dmwyk9u967x3frq0f7gsghx5check-variables-no-rjhonwtt2gqr3hdo34t9payd"
           }
         ],
         "nodes": [
@@ -791,7 +660,7 @@
               "id": "papohi8u609i6f1auz6nz7j3",
               "name": "Sub flow shopping",
               "contents": {},
-              "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+              "subFlowId": "dby02hnyffyafc26wvmwdu86",
               "subFlowName": "Shopping Online - Shopping",
               "assignVars": [
                 {
@@ -832,8 +701,12 @@
               "nextActions": [
                 {
                   "condition": "exist",
-                  "id": "k8opjysl9gvwa90v25758wfu",
+                  "id": "wacdie8ngd76il1c6mlfkur0",
                   "value": true
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "rjhonwtt2gqr3hdo34t9payd"
                 }
               ]
             },
@@ -850,65 +723,6 @@
             "$H": 285,
             "x": 332.5,
             "y": 692
-          },
-          {
-            "id": "k8opjysl9gvwa90v25758wfu",
-            "position": {
-              "x": 317.787603095489,
-              "y": 823.5553966619009
-            },
-            "type": "prompt-and-collect",
-            "data": {
-              "label": "Prompt & Collect",
-              "action": "prompt-and-collect",
-              "id": "k8opjysl9gvwa90v25758wfu",
-              "name": "Ask use service again",
-              "contents": {
-                "en": {
-                  "buttons": [
-                    {
-                      "label": "Yes",
-                      "value": "yes",
-                      "type": "postback"
-                    },
-                    {
-                      "label": "No",
-                      "value": "no",
-                      "type": "postback"
-                    }
-                  ],
-                  "message": "Thank you for using our service 😊\nwould you like to continue using it?",
-                  "type": "text"
-                }
-              },
-              "grammarType": "intent",
-              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
-              "trainedName": "Shopping Online - Confirm",
-              "nextActions": [
-                {
-                  "condition": "otherwise",
-                  "id": "rjhonwtt2gqr3hdo34t9payd"
-                },
-                {
-                  "condition": "equal",
-                  "id": "papohi8u609i6f1auz6nz7j3",
-                  "value": "confirm"
-                }
-              ]
-            },
-            "width": 189,
-            "height": 32,
-            "selected": false,
-            "dragging": false,
-            "positionAbsolute": {
-              "x": 317.787603095489,
-              "y": 823.5553966619009
-            },
-            "targetPosition": "top",
-            "sourcePosition": "bottom",
-            "$H": 287,
-            "x": 332.5,
-            "y": 828
           },
           {
             "id": "rjhonwtt2gqr3hdo34t9payd",
@@ -932,7 +746,7 @@
             },
             "width": 102,
             "height": 32,
-            "selected": false,
+            "selected": true,
             "dragging": false,
             "positionAbsolute": {
               "x": 211.24040657242955,
@@ -991,14 +805,14 @@
               "id": "n9vpm0mbwt00d25498t38hfz",
               "name": "Sub Flow Check Order",
               "contents": {},
-              "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+              "subFlowId": "vvvbbbn422qlqmv3nh0tw16q",
               "subFlowName": "Shopping Online - Check Order",
-              "nextAction": "k8opjysl9gvwa90v25758wfu",
-              "assignVars": []
+              "assignVars": [],
+              "nextAction": "wacdie8ngd76il1c6mlfkur0"
             },
             "width": 196,
             "height": 32,
-            "selected": true,
+            "selected": false,
             "positionAbsolute": {
               "x": 312.6691111478024,
               "y": 557.8665479809774
@@ -1009,31 +823,81 @@
             "$H": 287,
             "x": 604.5,
             "y": 692
-          }
-        ],
-        "settings": [
-          {
-            "type": "language",
-            "value": "en",
-            "default": true,
-            "label": "Language"
-          }
-        ],
-        "variables": [
-          {
-            "name": "language",
-            "value": "en",
-            "type": "string"
           },
           {
-            "name": "product_id",
-            "value": "",
-            "type": "string"
+            "id": "wacdie8ngd76il1c6mlfkur0",
+            "position": {
+              "x": 256,
+              "y": 858.4
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "wacdie8ngd76il1c6mlfkur0",
+              "name": "Ask use services again",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "Yes👌🏻",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Noooo",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Would you like to continue using services?",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "rjhonwtt2gqr3hdo34t9payd"
+                },
+                {
+                  "condition": "equal",
+                  "id": "asyut7iq0u0vbclrkh3kiepv",
+                  "value": "confirm"
+                }
+              ]
+            },
+            "width": 162,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 256,
+              "y": 858.4
+            },
+            "dragging": false
           },
           {
-            "name": "back",
-            "value": "",
-            "type": "string"
+            "id": "asyut7iq0u0vbclrkh3kiepv",
+            "position": {
+              "x": 452.79999999999995,
+              "y": 955.2000000000002
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "asyut7iq0u0vbclrkh3kiepv",
+              "name": "Go To",
+              "contents": {},
+              "gotoId": "npvx355o7kcc3s2wqq7ryd34"
+            },
+            "width": 81,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 452.79999999999995,
+              "y": 955.2000000000002
+            }
           }
         ],
         "flows": [
@@ -1159,7 +1023,7 @@
             "id": "papohi8u609i6f1auz6nz7j3",
             "name": "Sub flow shopping",
             "contents": {},
-            "subFlowId": "tw1gm7wo9gnbqxjadtr90sxz",
+            "subFlowId": "dby02hnyffyafc26wvmwdu86",
             "subFlowName": "Shopping Online - Shopping",
             "assignVars": [
               {
@@ -1179,46 +1043,12 @@
             "nextActions": [
               {
                 "condition": "exist",
-                "id": "k8opjysl9gvwa90v25758wfu",
+                "id": "wacdie8ngd76il1c6mlfkur0",
                 "value": true
-              }
-            ]
-          },
-          {
-            "label": "Prompt & Collect",
-            "action": "prompt-and-collect",
-            "id": "k8opjysl9gvwa90v25758wfu",
-            "name": "Ask use service again",
-            "contents": {
-              "en": {
-                "buttons": [
-                  {
-                    "label": "Yes",
-                    "value": "yes",
-                    "type": "postback"
-                  },
-                  {
-                    "label": "No",
-                    "value": "no",
-                    "type": "postback"
-                  }
-                ],
-                "message": "Thank you for using our service 😊\nwould you like to continue using it?",
-                "type": "text"
-              }
-            },
-            "grammarType": "intent",
-            "trainedData": "qbiavyp3jx06rge1w2gu4laq",
-            "trainedName": "Shopping Online - Confirm",
-            "nextActions": [
+              },
               {
                 "condition": "otherwise",
                 "id": "rjhonwtt2gqr3hdo34t9payd"
-              },
-              {
-                "condition": "equal",
-                "id": "papohi8u609i6f1auz6nz7j3",
-                "value": "confirm"
               }
             ]
           },
@@ -1254,10 +1084,78 @@
             "id": "n9vpm0mbwt00d25498t38hfz",
             "name": "Sub Flow Check Order",
             "contents": {},
-            "subFlowId": "n07oqqhr5mjlxoyn71cjfrup",
+            "subFlowId": "vvvbbbn422qlqmv3nh0tw16q",
             "subFlowName": "Shopping Online - Check Order",
-            "nextAction": "k8opjysl9gvwa90v25758wfu",
-            "assignVars": []
+            "assignVars": [],
+            "nextAction": "wacdie8ngd76il1c6mlfkur0"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "wacdie8ngd76il1c6mlfkur0",
+            "name": "Ask use services again",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "Yes👌🏻",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Noooo",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Would you like to continue using services?",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "rjhonwtt2gqr3hdo34t9payd"
+              },
+              {
+                "condition": "equal",
+                "id": "asyut7iq0u0vbclrkh3kiepv",
+                "value": "confirm"
+              }
+            ]
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "asyut7iq0u0vbclrkh3kiepv",
+            "name": "Go To",
+            "contents": {},
+            "gotoId": "npvx355o7kcc3s2wqq7ryd34"
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "back",
+            "value": "",
+            "type": "string"
           }
         ],
         "channelIds": [],
@@ -3494,7 +3392,7 @@
               "name": "Thank you",
               "contents": {
                 "en": {
-                  "message": "",
+                  "message": "Thank you for your purchase",
                   "type": "text"
                 }
               }
@@ -4282,7 +4180,7 @@
             "name": "Thank you",
             "contents": {
               "en": {
-                "message": "",
+                "message": "Thank you for your purchase",
                 "type": "text"
               }
             }
