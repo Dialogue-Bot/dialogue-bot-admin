@@ -124,14 +124,17 @@ const getLayoutedElements = (
   const graph = {
     id: 'root',
     layoutOptions: options,
-    children: nodes.map((node) => ({
-      ...node,
+    children: nodes.map((node: any) => {
+      console.log(node?.__rf?.width)
+      return {
+        ...node,
 
-      targetPosition: isHorizontal ? 'left' : 'top',
-      sourcePosition: isHorizontal ? 'right' : 'bottom',
-      width: DEFAULT_WIDTH,
-      height: DEFAULT_HEIGHT,
-    })),
+        targetPosition: isHorizontal ? 'left' : 'top',
+        sourcePosition: isHorizontal ? 'right' : 'bottom',
+        width: node?.__rf?.width || DEFAULT_WIDTH,
+        height: node?.__rf?.height || DEFAULT_HEIGHT,
+      }
+    }),
     edges: edges,
   } as any
 
@@ -236,6 +239,8 @@ export const FlowProvider = ({ children, flow }: Props) => {
       }
 
       setNodes((nds) => nds.concat(newNode))
+
+      setSelectedNode(newNode)
     },
     [reactFlowInstance, setNodes, actionToLabel],
   )

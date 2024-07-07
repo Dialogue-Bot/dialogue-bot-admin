@@ -22,15 +22,20 @@ import { EMessageTypes } from '@/types/flow'
 import _, { omit } from 'lodash'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDebounceValue } from 'usehooks-ts'
+import { useDebounceValue, useUnmount } from 'usehooks-ts'
 import { useFlowCtx } from '..'
 import BtnAddCard from '../btn-add-card'
 import Card from '../card'
 import { MAP_MESSAGE_TYPE } from '../constant'
 
 export const MessageDialogContent = () => {
-  const { selectedNode, handleChangeSelectedNode, currentLang, flow } =
-    useFlowCtx()
+  const {
+    selectedNode,
+    handleChangeSelectedNode,
+    currentLang,
+    flow,
+    handleDeleteNodeById,
+  } = useFlowCtx()
   const { t } = useTranslation(['flowDetail', 'forms', 'common'])
   const [messageType, setMessageType] = useState<EMessageTypes>(
     selectedNode?.data.contents[currentLang]?.type || EMessageTypes.TEXT,
@@ -39,7 +44,7 @@ export const MessageDialogContent = () => {
     selectedNode?.data.contents[currentLang]?.message || '',
   )
 
-  const [debounce] = useDebounceValue(botResponse, 800)
+  const [debounce] = useDebounceValue(botResponse, 500)
 
   const handleSelectChange = (value: EMessageTypes) => {
     setMessageType(value)
@@ -98,6 +103,14 @@ export const MessageDialogContent = () => {
       },
     })
   }, [debounce, currentLang])
+
+  useUnmount(() => {
+    if (!selectedNode) return
+
+    if (!selectedNode.data.contents[currentLang].message) {
+      handleDeleteNodeById(selectedNode.id)
+    }
+  })
 
   if (!selectedNode) return null
 
