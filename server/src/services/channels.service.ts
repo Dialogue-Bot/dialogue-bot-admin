@@ -16,8 +16,19 @@ import {
   ChannelType,
 } from '@/interfaces/channels.interface'
 import { Paging } from '@/interfaces/paging.interface'
+import { getTestBotContactId } from '@/utils/channel-helper'
 import { logger } from '@/utils/logger'
-import { and, asc, desc, eq, inArray, like, ne, sql } from 'drizzle-orm'
+import {
+  and,
+  asc,
+  desc,
+  eq,
+  ilike,
+  inArray,
+  like,
+  notIlike,
+  sql,
+} from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
 import { UserSubscriptionService } from './user-subscription.service'
@@ -92,15 +103,16 @@ export class ChannelService {
     return newChannel
   }
 
-  public async createDefaultChannel(userId: string) {
+  public async createDefaultChannel(userId: string, flowId: string) {
     const webChannelType = this.channelTypes.find((ct) => ct.name === 'WEB')
 
     return this.create({
       userId,
-      contactId: `${TEST_YOUR_BOT_CHANNEL}${userId}`,
-      contactName: TEST_YOUR_BOT_CHANNEL,
+      contactId: getTestBotContactId(userId, flowId),
+      contactName: getTestBotContactId(userId, flowId),
       channelTypeId: webChannelType.id,
       active: true,
+      flowId,
     })
   }
 
@@ -213,7 +225,7 @@ export class ChannelService {
       like(channels.contactId, `%${paging.q || ''}%`),
       eq(channels.deleted, false),
       eq(channels.userId, userId),
-      ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+      notIlike(channels.contactId, `%${TEST_YOUR_BOT_CHANNEL}%`),
     )
 
     const result: ChannelExtend[] = await db
@@ -364,7 +376,7 @@ export class ChannelService {
       .where(
         and(
           eq(channels.flowId, flowId),
-          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+          notIlike(channels.contactId, `%${TEST_YOUR_BOT_CHANNEL}%`),
         ),
       )
       .leftJoin(flows, eq(channels.flowId, flows.id))
@@ -414,7 +426,7 @@ export class ChannelService {
         and(
           eq(channels.userId, userId),
           eq(channels.deleted, false),
-          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+          notIlike(channels.contactId, `%${TEST_YOUR_BOT_CHANNEL}%`),
           isForConversation ? eq(channelTypes.name, 'WEB') : undefined,
         ),
       )
@@ -426,12 +438,12 @@ export class ChannelService {
     userId: string,
     { flowId }: UpdateChannelForTestDto,
   ) {
-    let channel = await this.getChannelForTest(userId)
+    let channel = await this.getChannelForTest(userId, flowId)
 
     if (channel && channel.flowId === flowId) return channel
 
     if (!channel) {
-      channel = await this.createDefaultChannel(userId)
+      channel = await this.createDefaultChannel(userId, flowId)
     }
 
     const [updated] = await db
@@ -446,11 +458,11 @@ export class ChannelService {
     return updated
   }
 
-  public async getChannelForTest(userId: string) {
+  public async getChannelForTest(userId: string, flowId: string) {
     const _channel = await db.query.channels.findFirst({
       where: and(
         eq(channels.userId, userId),
-        eq(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+        ilike(channels.contactId, `%${getTestBotContactId(userId, flowId)}%`),
         eq(channels.deleted, false),
       ),
     })
@@ -472,7 +484,7 @@ export class ChannelService {
         and(
           eq(channels.deleted, false),
           eq(channels.userId, userId),
-          ne(channels.contactId, `${TEST_YOUR_BOT_CHANNEL}${userId}`),
+          notIlike(channels.contactId, `%${TEST_YOUR_BOT_CHANNEL}%`),
         ),
       )
 

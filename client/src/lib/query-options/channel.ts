@@ -58,7 +58,7 @@ export const queryChannelForTestOption = (flowId: string) =>
   queryOptions({
     queryKey: ['channel-for-test', flowId],
     queryFn: async () => {
-      const res = await channelApi.getChannelForTest()
+      const res = await channelApi.getChannelForTest(flowId)
 
       return res.data
     },

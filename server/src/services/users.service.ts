@@ -69,7 +69,6 @@ export class UserService {
       .returning()
 
     await Promise.all([
-      this.channelService.createDefaultChannel(user.id),
       this.userSubscriptionService.initFreeSubscription(user.email),
     ])
 

@@ -55,8 +55,10 @@ class ChannelApi {
     })
   }
 
-  getChannelForTest(): Promise<TBaseResponse<TChannelWithChannelType>> {
-    return http_client.get(ENDPOINTS.CHANNEL.FOR_TEST)
+  getChannelForTest(
+    flowId: string,
+  ): Promise<TBaseResponse<TChannelWithChannelType>> {
+    return http_client.get(`${ENDPOINTS.CHANNEL.FOR_TEST}/${flowId}`)
   }
 
   updateChannelForTest(

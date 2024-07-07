@@ -109,6 +109,15 @@ export class FlowService {
       )
     }
 
+    console.log('newFlow', newFlow)
+
+    const defaultChannelTest = await this.chanelService.createDefaultChannel(
+      fields.userId,
+      newFlow.id,
+    )
+
+    console.log('defaultChannelTest', defaultChannelTest)
+
     return newFlow
   }
 
@@ -147,8 +156,6 @@ export class FlowService {
         this.localeService.i18n().FLOW.FLOW_NAME_EXISTED(),
       )
     }
-
-    console.log(this.chanelService)
 
     await this.chanelService.updateFlowId({
       flowId: id,
