@@ -45,7 +45,7 @@ export const FlowItem = ({ flow }: Props) => {
             '!p-4 !h-[unset] hover:border-primary hover:ring-primary hover:ring-1 flex-1',
         })}
       >
-        <h3>{flow.name}</h3>
+        <h3 className='whitespace-pre-line break-all'>{flow.name}</h3>
       </Link>
       <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
         <DropdownMenuTrigger asChild>

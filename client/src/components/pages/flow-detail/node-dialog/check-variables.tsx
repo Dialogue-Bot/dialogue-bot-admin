@@ -15,11 +15,12 @@ import { useDidUpdate } from '@/hooks/use-did-update'
 import _ from 'lodash'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDebounceValue } from 'usehooks-ts'
+import { useDebounceValue, useUnmount } from 'usehooks-ts'
 import { useFlowCtx } from '..'
 
 export const CheckVariablesContent = () => {
-  const { flow, selectedNode, handleChangeSelectedNode } = useFlowCtx()
+  const { flow, selectedNode, handleChangeSelectedNode, handleDeleteNodeById } =
+    useFlowCtx()
   const { t } = useTranslation(['flowDetail', 'forms'])
   const [variableInput, setVariableInput] = useState(
     selectedNode?.data?.variableInput || '',
@@ -51,6 +52,14 @@ export const CheckVariablesContent = () => {
 
     handleChangeSelectedNode(cloneSelectedNode)
   }, [debounce])
+
+  useUnmount(() => {
+    if (!selectedNode) return
+
+    if (!selectedNode.data.variableInput && !selectedNode.data.variable) {
+      handleDeleteNodeById(selectedNode.id)
+    }
+  })
 
   return (
     <Tabs

@@ -18,16 +18,26 @@ import _ from 'lodash'
 import { X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router-dom'
+import { useUnmount } from 'usehooks-ts'
 import { useFlowCtx } from '..'
 
 export const SubFlowContent = () => {
   const { id } = useParams()
   const { data: flows } = useQuery(queryFlowsForSelectOption())
   const { t } = useTranslation('forms')
-  const { handleChangeSelectedNode, selectedNode, flow } = useFlowCtx()
+  const { handleChangeSelectedNode, selectedNode, flow, handleDeleteNodeById } =
+    useFlowCtx()
   const { data: subflow } = useQuery({
     ...queryFlowOption(selectedNode?.data?.subFlowId),
     enabled: !!selectedNode?.data?.subFlowId,
+  })
+
+  useUnmount(() => {
+    if (!selectedNode) return
+
+    if (!selectedNode.data.subFlowId) {
+      handleDeleteNodeById(selectedNode.id)
+    }
   })
 
   return (
@@ -80,14 +90,12 @@ export const SubFlowContent = () => {
         </Select>
       </div>
       <div className='flex gap-3 flex-col'>
-        <div className='flex gap-3 w-full'>
-          <Label className='w-full'>{t('output_var.label')}</Label>
-          <Label className='w-full'>{t('assign_var.label')}</Label>
-        </div>
+        <div className='flex gap-3 w-full'></div>
         {selectedNode?.data?.assignVars?.map((_item: any, index: number) => {
           return (
             <div key={index} className='flex gap-3'>
               <div className='space-y-2 w-full'>
+                <Label className='w-full'>{t('output_var.label')}</Label>
                 <Select
                   value={
                     selectedNode?.data?.assignVars[index]?.assignTo ||
@@ -125,6 +133,7 @@ export const SubFlowContent = () => {
                 </Select>
               </div>
               <div className='space-y-2 w-full'>
+                <Label className='w-full'>{t('assign_var.label')}</Label>
                 <Select
                   value={
                     selectedNode?.data?.assignVars[index]?.outputVar ||
@@ -164,7 +173,7 @@ export const SubFlowContent = () => {
               <Button
                 variant='destructive'
                 size='icon'
-                className='flex-shrink-0'
+                className='flex-shrink-0 self-end'
                 onClick={() => {
                   if (!selectedNode) return
 

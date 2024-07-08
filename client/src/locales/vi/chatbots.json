@@ -17,5 +17,10 @@
     "title": "Xoá kịch bản này?",
     "description": "Bạn có chắc chắn muốn xoá kịch bản này không? Hành động này không thể hoàn tác."
   },
-  "title": "Kịch bản"
+  "title": "Kịch bản",
+  "title_template": "Mẫu",
+  "template_descriptions": {
+    "shopping": "Hỗ trợ tự động hóa cho việc mua sắm trực tuyến của khách hàng và kiểm tra đơn hàng.",
+    "job_application": "Hỗ trợ tự động hóa cho quá trình tuyển dụng."
+  }
 }

@@ -204,9 +204,11 @@ export class UserSubscriptionService {
     {
       forChannel,
       forFlow,
+      forTemplate,
     }: {
       forChannel?: boolean
       forFlow?: boolean
+      forTemplate?: number
     },
   ) {
     const isAdmin = await this.userService.isAdminAccount(userId)
@@ -230,6 +232,10 @@ export class UserSubscriptionService {
     }
 
     if (usage.numberOfFlows >= usage.totalFlows && forFlow) {
+      return true
+    }
+
+    if (forTemplate && usage.numberOfFlows + forTemplate > usage.totalFlows) {
       return true
     }
 

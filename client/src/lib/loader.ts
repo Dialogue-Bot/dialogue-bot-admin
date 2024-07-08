@@ -18,6 +18,7 @@ import {
   queryFlowsOption,
   queryIntentOption,
   queryIntentsOption,
+  queryTemplatesOption,
   settingQueryOption,
 } from './query-options'
 import {
@@ -106,7 +107,10 @@ export const articleLoader = async ({ params }: any) => {
 export const flowsLoader = async ({ request }: any) => {
   const query: TBaseQuery = queryStringToObject(request.url)
 
-  await queryClient.ensureQueryData(queryFlowsOption(query))
+  await Promise.all([
+    queryClient.ensureQueryData(queryFlowsOption(query)),
+    queryClient.ensureQueryData(queryTemplatesOption()),
+  ])
 
   useAppLayoutStore.getState().setTitle(i18n.t('common:chatbots'))
 

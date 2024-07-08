@@ -1,9 +1,13 @@
 import PageTitle from '@/components/page-title'
 import { CreateFlowBtn, FlowItem } from '@/components/pages/flows'
+import { TemplateItem } from '@/components/pages/flows/template-item'
 import { Button } from '@/components/ui'
 import { useDidUpdate } from '@/hooks/use-did-update'
 import { usePagination } from '@/hooks/use-pagination'
-import { queryFlowsOption } from '@/lib/query-options/flow'
+import {
+  queryFlowsOption,
+  queryTemplatesOption,
+} from '@/lib/query-options/flow'
 import { TBaseQuery } from '@/types/share'
 import { urlSearchParamsToObject } from '@/utils'
 import { useSuspenseQuery } from '@tanstack/react-query'
@@ -20,6 +24,8 @@ const Flows = () => {
   const { data } = useSuspenseQuery(
     queryFlowsOption(urlSearchParamsToObject(search) as TBaseQuery),
   )
+
+  const { data: templates } = useSuspenseQuery(queryTemplatesOption())
 
   const { page, handleNextPage, handlePrevPage, disabledNext, disabledPrev } =
     usePagination({
@@ -40,29 +46,39 @@ const Flows = () => {
 
   return (
     <div className='p-6 space-y-4'>
-      <PageTitle>{t('title')}</PageTitle>
       <div className='space-y-4'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
-          <CreateFlowBtn />
-          {data.items.map((item) => {
-            return <FlowItem flow={item} key={item.id} />
-          })}
+        <PageTitle>{t('title')}</PageTitle>
+        <div className='space-y-4'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
+            <CreateFlowBtn />
+            {data.items.map((item) => {
+              return <FlowItem flow={item} key={item.id} />
+            })}
+          </div>
+          <div className='flex items-center justify-center gap-4 select-none'>
+            <Button
+              variant='outline'
+              onClick={handlePrevPage}
+              disabled={disabledPrev}
+            >
+              {t('common:previous')}
+            </Button>
+            <Button
+              variant='outline'
+              onClick={handleNextPage}
+              disabled={disabledNext}
+            >
+              {t('common:next')}
+            </Button>
+          </div>
         </div>
-        <div className='flex items-center justify-center gap-4 select-none'>
-          <Button
-            variant='outline'
-            onClick={handlePrevPage}
-            disabled={disabledPrev}
-          >
-            {t('common:previous')}
-          </Button>
-          <Button
-            variant='outline'
-            onClick={handleNextPage}
-            disabled={disabledNext}
-          >
-            {t('common:next')}
-          </Button>
+      </div>
+      <div className='space-y-4'>
+        <PageTitle>{t('title_template')}</PageTitle>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
+          {templates.map((item) => {
+            return <TemplateItem flow={item} key={item.id} />
+          })}
         </div>
       </div>
     </div>

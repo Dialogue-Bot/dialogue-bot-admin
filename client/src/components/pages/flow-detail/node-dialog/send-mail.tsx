@@ -14,10 +14,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { cloneDeep } from 'lodash'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useUnmount } from 'usehooks-ts'
 import { useFlowCtx } from '..'
 
 export const SendMailContent = () => {
-  const { handleChangeSelectedNode, selectedNode } = useFlowCtx()
+  const { handleChangeSelectedNode, selectedNode, handleDeleteNodeById } =
+    useFlowCtx()
 
   const schema = useBotSendMailSchema()
   const form = useForm<TBotSendMail>({
@@ -73,6 +75,18 @@ export const SendMailContent = () => {
       }, 100)
     })
   }
+
+  useUnmount(() => {
+    if (!selectedNode) return
+
+    if (
+      !selectedNode.data?.sendMail?.subject &&
+      !selectedNode.data?.sendMail?.to &&
+      !selectedNode.data?.sendMail?.body
+    ) {
+      handleDeleteNodeById(selectedNode.id)
+    }
+  })
 
   return (
     <Form {...form}>

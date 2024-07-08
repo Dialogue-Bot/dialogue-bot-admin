@@ -28,11 +28,13 @@ import _ from 'lodash'
 import { X } from 'lucide-react'
 import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useUnmount } from 'usehooks-ts'
 import { useFlowCtx } from '..'
 
 export const HttpRequestDialogContent = () => {
   const { t } = useTranslation(['forms', 'common', 'flowDetail'])
-  const { selectedNode, handleChangeSelectedNode, flow } = useFlowCtx()
+  const { selectedNode, handleChangeSelectedNode, flow, handleDeleteNodeById } =
+    useFlowCtx()
   const schema = useRequestOptionsSchema()
   const form = useForm<TRequestOptions>({
     resolver: zodResolver(schema),
@@ -103,6 +105,14 @@ export const HttpRequestDialogContent = () => {
       }, 100)
     })
   }
+
+  useUnmount(() => {
+    if (!selectedNode) return
+
+    if (!selectedNode.data?.httpRequest?.url) {
+      handleDeleteNodeById(selectedNode.id)
+    }
+  })
 
   return (
     <Form {...form}>

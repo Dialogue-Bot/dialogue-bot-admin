@@ -72,7 +72,7 @@ export class ChannelController {
   public getChannelsForSelect = catchAsync(
     async (req: RequestWithUser, res) => {
       const data = await this.channelService.getChannelsForSelect(
-        req.user.id as string,
+        req.user?.id,
         {
           ...(req.query as any),
         },
@@ -82,9 +82,21 @@ export class ChannelController {
   )
 
   public getChannelForTest = catchAsync(async (req: RequestWithUser, res) => {
-    const data = await this.channelService.getChannelForTest(req.user.id)
+    const data = await this.channelService.getChannelForTest(
+      req.user.id,
+      req.params?.flowId,
+    )
     res.status(StatusCodes.OK).json({ data })
   })
+
+  public getChannelForTemplateTest = catchAsync(
+    async (req: RequestWithUser, res) => {
+      const data = await this.channelService.getChannelForTestInTemplate(
+        req.params?.flowId,
+      )
+      res.status(StatusCodes.OK).json({ data })
+    },
+  )
 
   public updateChannelForTest = catchAsync(
     async (req: RequestWithUser, res) => {

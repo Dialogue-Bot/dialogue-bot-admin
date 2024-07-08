@@ -46,3 +46,15 @@ export const queryFlowDetailOption = (id: string) => {
     },
   })
 }
+
+export const queryTemplatesOption = () => {
+  return queryOptions({
+    queryKey: ['templates'],
+    queryFn: async () => {
+      const res = await flowApi.getTemplates()
+
+      return res.data
+    },
+    initialData: [],
+  })
+}
