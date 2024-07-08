@@ -69,7 +69,7 @@
     "dagre": "^0.8.5",
     "date-fns": "^3.3.1",
     "dayjs": "^1.11.10",
-    "dialogue-chatbox": "^2.0.3",
+    "dialogue-chatbox": "^2.0.4",
     "elkjs": "^0.9.3",
     "embla-carousel-react": "^8.0.0-rc23",
     "fast-glob": "^3.3.2",
