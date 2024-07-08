@@ -1,4 +1,4 @@
-import { FLOWS_TEMPLATE, LOCALE_KEY } from '@/constants'
+import { FLOWS_TEMPLATE, LOCALE_KEY, NUMBER_FLOW_TEMPLATE } from '@/constants'
 import { db } from '@/database/db'
 import { flows, users } from '@/database/schema'
 import { TNewFlow } from '@/database/types'
@@ -21,7 +21,7 @@ import {
   isNotNull,
   like,
   ne,
-  sql
+  sql,
 } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
@@ -51,7 +51,7 @@ export class FlowService {
 
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-  ) { }
+  ) {}
 
   public async create(fields: TNewFlow) {
     if (
@@ -428,6 +428,17 @@ export class FlowService {
     templateName: string,
     userId: string,
   ) {
+    if (
+      await this.userSubscriptionService.checkIsUsageExceed(userId, {
+        forTemplate: NUMBER_FLOW_TEMPLATE[templateName],
+      })
+    ) {
+      throw new HttpException(
+        StatusCodes.BAD_REQUEST,
+        this.localeService.i18n().FLOW.FLOW_EXCEED_USAGE(),
+      )
+    }
+
     const newFlowDuplicate = flowName + ' - ' + templateName
     const flowExisted = await db.query.flows.findFirst({
       where: and(
@@ -455,8 +466,8 @@ export class FlowService {
 
     const flowTemplate = Array.isArray(getFlowsTemplate)
       ? getFlowsTemplate.find(
-        (flow) => flow.mainFlow[0] && flow.mainFlow[0].name === templateName,
-      )
+          (flow) => flow.mainFlow[0] && flow.mainFlow[0].name === templateName,
+        )
       : {}
 
     const replaceTemplateFlowName = replaceFlowNameTemplate(
@@ -510,8 +521,7 @@ export class FlowService {
         publishAt: new Date(),
       })
     } catch (err) {
-      logger.info('createFlowFromTemplate failed: ' + err.message)
-      return false
+      throw err
     }
   }
 

@@ -479,7 +479,7 @@ export class ChannelService {
 
     const _channel = await db.query.channels.findFirst({
       where: and(
-        ilike(channels.contactId, `%${getTestBotContactId('', flowId)}%`),
+        ilike(channels.contactId, `%${getTestBotContactId(admin.id, flowId)}%`),
         eq(channels.deleted, false),
         eq(channels.userId, admin.id),
       ),

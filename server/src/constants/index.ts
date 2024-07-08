@@ -122,3 +122,8 @@ export const BOT_EVENT = {
 }
 
 export const FLOWS_TEMPLATE = ['Shopping Online', 'Apply Job']
+
+export const NUMBER_FLOW_TEMPLATE = {
+  'Shopping Online': 3,
+  'Apply Job': 1,
+}

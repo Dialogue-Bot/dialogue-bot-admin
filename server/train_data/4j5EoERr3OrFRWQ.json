@@ -1,0 +1,228 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "no": {
+            "intent": "not_have_link",
+            "domain": "default"
+          },
+          "not": {
+            "intent": "not_have_link",
+            "domain": "default"
+          },
+          "have,not": {
+            "intent": "not_have_link",
+            "domain": "default"
+          },
+          "do,not": {
+            "intent": "not_have_link",
+            "domain": "default"
+          },
+          "dont": {
+            "intent": "not_have_link",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "not_have_link": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "no",
+            "intent": "not_have_link"
+          },
+          {
+            "domain": "default",
+            "utterance": "not",
+            "intent": "not_have_link"
+          },
+          {
+            "domain": "default",
+            "utterance": "not have",
+            "intent": "not_have_link"
+          },
+          {
+            "domain": "default",
+            "utterance": "don't",
+            "intent": "not_have_link"
+          },
+          {
+            "domain": "default",
+            "utterance": "dont",
+            "intent": "not_have_link"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "no": 1,
+              "not": 1,
+              "have": 1,
+              "do": 1,
+              "dont": 1
+            },
+            "intents": {
+              "not_have_link": 1
+            },
+            "intentFeatures": {
+              "not_have_link": {
+                "no": 1,
+                "not": 1,
+                "have": 1,
+                "do": 1,
+                "dont": 1
+              }
+            },
+            "featuresToIntent": {
+              "no": [
+                "not_have_link"
+              ],
+              "not": [
+                "not_have_link"
+              ],
+              "have": [
+                "not_have_link"
+              ],
+              "do": [
+                "not_have_link"
+              ],
+              "dont": [
+                "not_have_link"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "no",
+                "not",
+                "have",
+                "do",
+                "dont"
+              ],
+              "intents": [
+                "not_have_link"
+              ],
+              "perceptrons": [
+                [
+                  5.761517524719238,
+                  5.5579705238342285,
+                  0.24866661429405212,
+                  0.25233644247055054,
+                  5.760389804840088,
+                  8.537449838453117
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "no"
+      ],
+      [
+        "en",
+        "not"
+      ],
+      [
+        "en",
+        "not have"
+      ],
+      [
+        "en",
+        "don't"
+      ],
+      [
+        "en",
+        "dont"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "not_have_link": [
+          {
+            "answer": "thanks"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}
