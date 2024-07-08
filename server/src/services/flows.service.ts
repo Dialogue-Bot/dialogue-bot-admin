@@ -8,7 +8,6 @@ import { HttpException } from '@/exceptions/http-exception'
 import { LocaleService } from '@/i18n/ctx'
 import { FlowExtend, IFlowTemplate } from '@/interfaces/flows.interface'
 import { Paging } from '@/interfaces/paging.interface'
-import { redis } from '@/libs/redis'
 import { replaceIntentStep } from '@/utils/intent-helper'
 import { loadTemplates } from '@/utils/load-templates'
 import { logger } from '@/utils/logger'
@@ -396,12 +395,6 @@ export class FlowService {
   }
 
   public async getTemplateFlows() {
-    const cached = await redis.get('templates')
-
-    if (cached) {
-      return JSON.parse(cached)
-    }
-
     const templates = await db
       .select({
         id: flows.id,
@@ -417,8 +410,6 @@ export class FlowService {
         ),
       )
       .leftJoin(users, and(eq(flows.userId, users.id)))
-
-    redis.set('templates', JSON.stringify(templates), 'EX', 60 * 60 * 24)
 
     return templates
   }

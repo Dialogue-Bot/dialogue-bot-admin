@@ -227,6 +227,10 @@ export class UserSubscriptionService {
       return false
     }
 
+    if (usage.totalFlows === 0 && forTemplate) {
+      return false
+    }
+
     if (usage.numberOfChannels >= usage.totalChannels && forChannel) {
       return true
     }
