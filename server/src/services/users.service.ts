@@ -10,7 +10,6 @@ import * as bcrypt from 'bcrypt'
 import { and, eq } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
-import { ChannelService } from './channels.service'
 import { FirebaseService } from './firebase.service'
 import { UserSubscriptionService } from './user-subscription.service'
 
@@ -18,9 +17,6 @@ import { UserSubscriptionService } from './user-subscription.service'
 export class UserService {
   @Inject((type) => UserSubscriptionService)
   private readonly userSubscriptionService: UserSubscriptionService
-
-  @Inject((type) => ChannelService)
-  private readonly channelService: ChannelService
 
   constructor(
     private readonly firebaseService: FirebaseService,

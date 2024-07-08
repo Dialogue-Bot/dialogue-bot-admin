@@ -1,0 +1,168 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "a": {
+            "intent": "a",
+            "domain": "default"
+          },
+          "b": {
+            "intent": "a",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "a": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "a",
+            "intent": "a"
+          },
+          {
+            "domain": "default",
+            "utterance": "b",
+            "intent": "a"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "a": 1,
+              "b": 1
+            },
+            "intents": {
+              "a": 1
+            },
+            "intentFeatures": {
+              "a": {
+                "a": 1,
+                "b": 1
+              }
+            },
+            "featuresToIntent": {
+              "a": [
+                "a"
+              ],
+              "b": [
+                "a"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "a",
+                "b"
+              ],
+              "intents": [
+                "a"
+              ],
+              "perceptrons": [
+                [
+                  7.071227073669434,
+                  7.127616882324219,
+                  7.109124642023429
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "a"
+      ],
+      [
+        "en",
+        "b"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "a": [
+          {
+            "answer": "asdf"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

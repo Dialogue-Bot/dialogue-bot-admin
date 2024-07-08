@@ -38,6 +38,7 @@ export const ENDPOINTS = {
     DELETES: '/channel/deletes',
     TYPES: '/channel/types',
     FOR_TEST: '/channel/for-test',
+    FOR_TEST_TEMPLATE: '/channel/for-test-template',
   },
   SUBSCRIPTIONS: {
     INDEX: '/subscriptions',
@@ -51,6 +52,8 @@ export const ENDPOINTS = {
     PUBLISH: '/flow/publish-flow',
     ADD_CHANNELS: '/flow/add-channels',
     SELECT_FLOWS_FOR_CHANNEL: '/flow/select',
+    TEMPLATES: '/flow/templates',
+    DUPLICATE_TEMPLATE: '/flow/duplicate-template',
   },
   INTENT: {
     INDEX: '/intent',
@@ -152,7 +155,6 @@ export const SOCKET_EVENTS = {
 export const API_URL = import.meta.env.DEV
   ? 'http://localhost:8080'
   : 'https://api.dialoguebot.tech'
-
 
 export const SIGNATURE_SECRET = 'iR5WkkMmQwUP7AeMkYxXYjQNVaWMAhPk'
 export const STRIPE_PUBLIC_KEY =

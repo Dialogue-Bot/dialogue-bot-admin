@@ -17,5 +17,10 @@
     "title": "Remove this flow?",
     "description": "Are you sure you want to remove the flow? This action cannot be undone."
   },
-  "title": "Flows"
+  "title": "Flows",
+  "title_template": "Templates",
+  "template_descriptions": {
+    "shopping": "Automation support for customer shopping online and check order.",
+    "job_application": "Automation support for job application process."
+  }
 }

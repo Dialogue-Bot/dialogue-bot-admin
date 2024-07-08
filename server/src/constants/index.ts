@@ -52,6 +52,7 @@ export const ENDPOINTS = {
     DELETES: '/channel/deletes',
     TYPES: '/channel/types',
     FOR_TEST: '/channel/for-test',
+    FOR_TEST_TEMPLATE: '/channel/for-test-template',
   },
   SETTING: {
     INDEX: '/setting',

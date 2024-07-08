@@ -43,6 +43,23 @@ export class FlowApi {
       params: { channelId },
     })
   }
+
+  getTemplates(): Promise<TBaseResponse<Array<TFLow>>> {
+    return http_client.get(`${ENDPOINTS.FLOW.TEMPLATES}`)
+  }
+
+  duplicateTemplate({
+    flowName,
+    templateName,
+  }: {
+    flowName: string
+    templateName: string
+  }): Promise<TBaseResponse<TFLow>> {
+    return http_client.post(`${ENDPOINTS.FLOW.DUPLICATE_TEMPLATE}`, {
+      flowName,
+      templateName,
+    })
+  }
 }
 
 export const flowApi = new FlowApi()

@@ -32,6 +32,7 @@ import {
 import { StatusCodes } from 'http-status-codes'
 import { Inject, Service } from 'typedi'
 import { UserSubscriptionService } from './user-subscription.service'
+import { UserService } from './users.service'
 
 @Service()
 export class ChannelService {
@@ -40,6 +41,9 @@ export class ChannelService {
 
   @Inject((type) => UserSubscriptionService)
   private readonly userSubscriptionService: UserSubscriptionService
+
+  @Inject((type) => UserService)
+  private readonly userService: UserService
 
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
@@ -464,6 +468,20 @@ export class ChannelService {
         eq(channels.userId, userId),
         ilike(channels.contactId, `%${getTestBotContactId(userId, flowId)}%`),
         eq(channels.deleted, false),
+      ),
+    })
+
+    return _channel
+  }
+
+  public async getChannelForTestInTemplate(flowId: string) {
+    const admin = await this.userService.getUserByEmail('admin@gmail.com')
+
+    const _channel = await db.query.channels.findFirst({
+      where: and(
+        ilike(channels.contactId, `%${getTestBotContactId('', flowId)}%`),
+        eq(channels.deleted, false),
+        eq(channels.userId, admin.id),
       ),
     })
 

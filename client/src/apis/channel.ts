@@ -66,6 +66,12 @@ class ChannelApi {
   ): Promise<TBaseResponse<TChannelWithChannelType>> {
     return http_client.put(ENDPOINTS.CHANNEL.FOR_TEST, { flowId })
   }
+
+  getChannelForTestTemplate(
+    flowId: string,
+  ): Promise<TBaseResponse<TChannelWithChannelType>> {
+    return http_client.get(`${ENDPOINTS.CHANNEL.FOR_TEST_TEMPLATE}/${flowId}`)
+  }
 }
 
 export const channelApi = new ChannelApi()

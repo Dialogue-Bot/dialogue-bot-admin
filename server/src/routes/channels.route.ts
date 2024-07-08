@@ -21,6 +21,10 @@ export class ChannelRoute implements Routes {
   }
   initializeRoutes() {
     this.router.get(
+      `${ENDPOINTS.CHANNEL.FOR_TEST_TEMPLATE}/:flowId`,
+      this.controller.getChannelForTemplateTest,
+    )
+    this.router.get(
       `${ENDPOINTS.CHANNEL.FOR_TEST}/:flowId`,
       authMiddleware,
       this.controller.getChannelForTest,

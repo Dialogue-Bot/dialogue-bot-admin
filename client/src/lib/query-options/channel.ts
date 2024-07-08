@@ -64,3 +64,15 @@ export const queryChannelForTestOption = (flowId: string) =>
     },
     staleTime: Infinity,
   })
+
+export const queryChannelForTestTemplateOption = (flowId: string) => {
+  return queryOptions({
+    queryKey: ['channel-for-test-template', flowId],
+    queryFn: async () => {
+      const res = await channelApi.getChannelForTestTemplate(flowId)
+
+      return res.data
+    },
+    staleTime: Infinity,
+  })
+}
