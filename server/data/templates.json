@@ -1158,8 +1158,7 @@
             "type": "string"
           }
         ],
-        "channelIds": [],
-        "userId": "v3xlkf1g9l1eaigl222mlx79"
+        "channelIds": []
       }
     ],
     "subFlows": [
@@ -1389,68 +1388,6 @@
                 ],
                 "incomingShape": "madir0a2nzmsghnreskxvbeh",
                 "outgoingShape": "qjc6gz91ntxrd5h1u87u3v1l"
-              }
-            ],
-            "container": "root"
-          },
-          {
-            "source": "qjc6gz91ntxrd5h1u87u3v1l",
-            "sourceHandle": null,
-            "target": "o1zjp21xspeix7zfh11eayra",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-qjc6gz91ntxrd5h1u87u3v1l-o1zjp21xspeix7zfh11eayra",
-            "sections": [
-              {
-                "id": "reactflow__edge-qjc6gz91ntxrd5h1u87u3v1l-o1zjp21xspeix7zfh11eayra_s0",
-                "startPoint": {
-                  "x": 341.3333333333333,
-                  "y": 420
-                },
-                "endPoint": {
-                  "x": 627.6666666666667,
-                  "y": 184
-                },
-                "bendPoints": [
-                  {
-                    "x": 341.3333333333333,
-                    "y": 370
-                  },
-                  {
-                    "x": 341.33333333333326,
-                    "y": 348.49999999999994
-                  },
-                  {
-                    "x": 341.33333333333326,
-                    "y": 330.58333333333326
-                  },
-                  {
-                    "x": 341.3333333333333,
-                    "y": 312.66666666666663
-                  },
-                  {
-                    "x": 341.33333333333337,
-                    "y": 298.33333333333337
-                  },
-                  {
-                    "x": 341.3333333333333,
-                    "y": 278.66666666666663
-                  },
-                  {
-                    "x": 341.3333333333333,
-                    "y": 259
-                  },
-                  {
-                    "x": 341.3333333333333,
-                    "y": 234
-                  }
-                ],
-                "incomingShape": "qjc6gz91ntxrd5h1u87u3v1l",
-                "outgoingShape": "o1zjp21xspeix7zfh11eayra"
               }
             ],
             "container": "root"
@@ -2592,19 +2529,6 @@
             "id": "reactflow__edge-ed4rdxstft1e9ercdsd0wkbfhttp-request-error-qjc6gz91ntxrd5h1u87u3v1l"
           },
           {
-            "source": "ovu5mmshipsqc8dx2wzw091u",
-            "sourceHandle": "prompt-and-collect-yes",
-            "target": "o1zjp21xspeix7zfh11eayra",
-            "targetHandle": null,
-            "type": "custom",
-            "data": {
-              "deletable": true,
-              "hover": false
-            },
-            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-o1zjp21xspeix7zfh11eayra",
-            "selected": true
-          },
-          {
             "source": "f14giuz3sov8eomcakrs8z72",
             "sourceHandle": "prompt-and-collect-yes",
             "target": "y3w6mlm3johvl2b9cylf6fwn",
@@ -2640,6 +2564,40 @@
             },
             "id": "reactflow__edge-y3w6mlm3johvl2b9cylf6fwncheck-variables-yes-t172o11g04ocjcbnja7lfpxt",
             "selected": false
+          },
+          {
+            "source": "ovu5mmshipsqc8dx2wzw091u",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "lvfxoa67yiuve0hgszllzy56",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-ovu5mmshipsqc8dx2wzw091uprompt-and-collect-yes-lvfxoa67yiuve0hgszllzy56"
+          },
+          {
+            "source": "qjc6gz91ntxrd5h1u87u3v1l",
+            "sourceHandle": null,
+            "target": "px4q1er1ticp4c95zcerhjhl",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-qjc6gz91ntxrd5h1u87u3v1l-px4q1er1ticp4c95zcerhjhl"
+          },
+          {
+            "source": "cfe3vdszoy47ifunv47q4w48",
+            "sourceHandle": null,
+            "target": "pmy6tlazoxr1pbyrk40q26vk",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-cfe3vdszoy47ifunv47q4w48-pmy6tlazoxr1pbyrk40q26vk"
           }
         ],
         "nodes": [
@@ -2842,7 +2800,7 @@
                   "buttons": []
                 }
               },
-              "nextAction": "o1zjp21xspeix7zfh11eayra"
+              "nextAction": "px4q1er1ticp4c95zcerhjhl"
             },
             "width": 139,
             "height": 32,
@@ -2998,7 +2956,7 @@
                 }
               ]
             },
-            "width": 124,
+            "width": 123,
             "height": 32,
             "selected": false,
             "positionAbsolute": {
@@ -3265,7 +3223,8 @@
                   "message": "The payment process failed❌",
                   "type": "text"
                 }
-              }
+              },
+              "nextAction": "pmy6tlazoxr1pbyrk40q26vk"
             },
             "width": 234,
             "height": 32,
@@ -3317,8 +3276,8 @@
           {
             "id": "ovu5mmshipsqc8dx2wzw091u",
             "position": {
-              "x": 1916.173835783373,
-              "y": 1694.437799204297
+              "x": 1905.8040388365011,
+              "y": 1684.0680022574247
             },
             "type": "prompt-and-collect",
             "data": {
@@ -3359,7 +3318,7 @@
                 },
                 {
                   "condition": "equal",
-                  "id": "o1zjp21xspeix7zfh11eayra",
+                  "id": "lvfxoa67yiuve0hgszllzy56",
                   "value": "confirm"
                 }
               ]
@@ -3368,8 +3327,8 @@
             "height": 32,
             "selected": false,
             "positionAbsolute": {
-              "x": 1916.173835783373,
-              "y": 1694.437799204297
+              "x": 1905.8040388365011,
+              "y": 1684.0680022574247
             },
             "dragging": false,
             "targetPosition": "top",
@@ -3712,61 +3671,78 @@
               "y": 753.5999999999999
             },
             "dragging": false
-          }
-        ],
-        "settings": [
-          {
-            "type": "language",
-            "value": "en",
-            "default": true,
-            "label": "Language"
-          }
-        ],
-        "variables": [
-          {
-            "name": "language",
-            "value": "en",
-            "type": "string"
           },
           {
-            "name": "products",
-            "value": "",
-            "type": "string"
+            "id": "lvfxoa67yiuve0hgszllzy56",
+            "position": {
+              "x": 2102.1339856485524,
+              "y": 1829.8324872129413
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "lvfxoa67yiuve0hgszllzy56",
+              "name": "Go Back choose type products",
+              "contents": {},
+              "gotoId": "o1zjp21xspeix7zfh11eayra"
+            },
+            "width": 81,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 2102.1339856485524,
+              "y": 1829.8324872129413
+            },
+            "dragging": false
           },
           {
-            "name": "product_id",
-            "value": "",
-            "type": "string"
+            "id": "px4q1er1ticp4c95zcerhjhl",
+            "position": {
+              "x": 75.57938231692356,
+              "y": 659.526831780202
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "px4q1er1ticp4c95zcerhjhl",
+              "name": "Go back choose type products",
+              "contents": {},
+              "gotoId": "o1zjp21xspeix7zfh11eayra"
+            },
+            "width": 254,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 75.57938231692356,
+              "y": 659.526831780202
+            },
+            "dragging": false
           },
           {
-            "name": "product_detail",
-            "value": "",
-            "type": "string"
-          },
-          {
-            "name": "choose_size",
-            "value": "",
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "value": "",
-            "type": "string"
-          },
-          {
-            "name": "phone_number",
-            "value": "",
-            "type": "string"
-          },
-          {
-            "name": "save_order",
-            "value": "",
-            "type": "string"
-          },
-          {
-            "name": "username",
-            "value": "",
-            "type": "string"
+            "id": "pmy6tlazoxr1pbyrk40q26vk",
+            "position": {
+              "x": 798.5023694703117,
+              "y": 1580.9573604880038
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "pmy6tlazoxr1pbyrk40q26vk",
+              "name": "Go to ask buy again",
+              "contents": {},
+              "gotoId": "ovu5mmshipsqc8dx2wzw091u"
+            },
+            "width": 81,
+            "height": 32,
+            "selected": true,
+            "positionAbsolute": {
+              "x": 798.5023694703117,
+              "y": 1580.9573604880038
+            },
+            "dragging": false
           }
         ],
         "flows": [
@@ -3882,7 +3858,7 @@
                 "buttons": []
               }
             },
-            "nextAction": "o1zjp21xspeix7zfh11eayra"
+            "nextAction": "px4q1er1ticp4c95zcerhjhl"
           },
           {
             "label": "HTTP Request",
@@ -4116,7 +4092,8 @@
                 "message": "The payment process failed❌",
                 "type": "text"
               }
-            }
+            },
+            "nextAction": "pmy6tlazoxr1pbyrk40q26vk"
           },
           {
             "label": "Message",
@@ -4168,7 +4145,7 @@
               },
               {
                 "condition": "equal",
-                "id": "o1zjp21xspeix7zfh11eayra",
+                "id": "lvfxoa67yiuve0hgszllzy56",
                 "value": "confirm"
               }
             ]
@@ -4344,10 +4321,88 @@
             ],
             "variable_type": "input",
             "variableInput": "{product_detail->size}"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "lvfxoa67yiuve0hgszllzy56",
+            "name": "Go Back choose type products",
+            "contents": {},
+            "gotoId": "o1zjp21xspeix7zfh11eayra"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "px4q1er1ticp4c95zcerhjhl",
+            "name": "Go back choose type products",
+            "contents": {},
+            "gotoId": "o1zjp21xspeix7zfh11eayra"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "pmy6tlazoxr1pbyrk40q26vk",
+            "name": "Go to ask buy again",
+            "contents": {},
+            "gotoId": "ovu5mmshipsqc8dx2wzw091u"
           }
         ],
-        "channelIds": [],
-        "userId": "v3xlkf1g9l1eaigl222mlx79"
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "products",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "product_detail",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "choose_size",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "save_order",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "value": "",
+            "type": "string"
+          }
+        ],
+        "channelIds": []
       },
       {
         "name": "Shopping Online - Check Order",
@@ -5312,8 +5367,7 @@
             }
           }
         ],
-        "channelIds": [],
-        "userId": "v3xlkf1g9l1eaigl222mlx79"
+        "channelIds": []
       }
     ],
     "intents": [
@@ -5360,6 +5414,3102 @@
               "Yup</span>"
             ],
             "answers": ["Thank You"]
+          }
+        ],
+        "entities": []
+      }
+    ]
+  },
+  {
+    "mainFlow": [
+      {
+        "name": "Apply Job",
+        "edges": [
+          {
+            "source": "start",
+            "sourceHandle": null,
+            "target": "ue4z2vsrifygzp5f1kz6468v",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-start-ue4z2vsrifygzp5f1kz6468v",
+            "sections": [
+              {
+                "id": "reactflow__edge-start-ue4z2vsrifygzp5f1kz6468v_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 48
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 148
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 48
+                  },
+                  {
+                    "x": 370,
+                    "y": 98
+                  }
+                ],
+                "incomingShape": "start",
+                "outgoingShape": "ue4z2vsrifygzp5f1kz6468v"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ue4z2vsrifygzp5f1kz6468v",
+            "sourceHandle": null,
+            "target": "cfidts4oy6q8ymbtepido5g3",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ue4z2vsrifygzp5f1kz6468v-cfidts4oy6q8ymbtepido5g3",
+            "sections": [
+              {
+                "id": "reactflow__edge-ue4z2vsrifygzp5f1kz6468v-cfidts4oy6q8ymbtepido5g3_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 184
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 284
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 184
+                  },
+                  {
+                    "x": 370,
+                    "y": 234
+                  }
+                ],
+                "incomingShape": "ue4z2vsrifygzp5f1kz6468v",
+                "outgoingShape": "cfidts4oy6q8ymbtepido5g3"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "bspoyhskludwt2ty5zht6mj5",
+            "sourceHandle": "http-request-success",
+            "target": "ee0y4u16eiv4l8ik21p07ysl",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-bspoyhskludwt2ty5zht6mj5http-request-success-ee0y4u16eiv4l8ik21p07ysl",
+            "sections": [
+              {
+                "id": "reactflow__edge-bspoyhskludwt2ty5zht6mj5http-request-success-ee0y4u16eiv4l8ik21p07ysl_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 592
+                },
+                "endPoint": {
+                  "x": 234,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 592
+                  },
+                  {
+                    "x": 247.60000000000002,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "bspoyhskludwt2ty5zht6mj5",
+                "outgoingShape": "ee0y4u16eiv4l8ik21p07ysl"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "bspoyhskludwt2ty5zht6mj5",
+            "sourceHandle": "http-request-error",
+            "target": "p1cz666q23uw74hdhujrxfd2",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-bspoyhskludwt2ty5zht6mj5http-request-error-p1cz666q23uw74hdhujrxfd2",
+            "sections": [
+              {
+                "id": "reactflow__edge-bspoyhskludwt2ty5zht6mj5http-request-error-p1cz666q23uw74hdhujrxfd2_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 592
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 692
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 592
+                  },
+                  {
+                    "x": 492.4,
+                    "y": 642
+                  }
+                ],
+                "incomingShape": "bspoyhskludwt2ty5zht6mj5",
+                "outgoingShape": "p1cz666q23uw74hdhujrxfd2"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "cfidts4oy6q8ymbtepido5g3",
+            "sourceHandle": null,
+            "target": "t5fnf9edwd12b93atjr53a4o",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-cfidts4oy6q8ymbtepido5g3-t5fnf9edwd12b93atjr53a4o",
+            "sections": [
+              {
+                "id": "reactflow__edge-cfidts4oy6q8ymbtepido5g3-t5fnf9edwd12b93atjr53a4o_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 320
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 420
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 320
+                  },
+                  {
+                    "x": 370,
+                    "y": 370
+                  }
+                ],
+                "incomingShape": "cfidts4oy6q8ymbtepido5g3",
+                "outgoingShape": "t5fnf9edwd12b93atjr53a4o"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ee0y4u16eiv4l8ik21p07ysl",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "jcnk8niu48odtz63lcwd7lde",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ee0y4u16eiv4l8ik21p07yslprompt-and-collect-yes-jcnk8niu48odtz63lcwd7lde",
+            "selected": false,
+            "sections": [
+              {
+                "id": "reactflow__edge-ee0y4u16eiv4l8ik21p07yslprompt-and-collect-yes-jcnk8niu48odtz63lcwd7lde_s0",
+                "startPoint": {
+                  "x": 234,
+                  "y": 728
+                },
+                "endPoint": {
+                  "x": 234,
+                  "y": 828
+                },
+                "bendPoints": [
+                  {
+                    "x": 234,
+                    "y": 728
+                  },
+                  {
+                    "x": 234,
+                    "y": 778
+                  }
+                ],
+                "incomingShape": "ee0y4u16eiv4l8ik21p07ysl",
+                "outgoingShape": "jcnk8niu48odtz63lcwd7lde"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "jcnk8niu48odtz63lcwd7lde",
+            "sourceHandle": "http-request-success",
+            "target": "o0zyyik75ki87npgqt7rz46r",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-jcnk8niu48odtz63lcwd7ldehttp-request-success-o0zyyik75ki87npgqt7rz46r",
+            "sections": [
+              {
+                "id": "reactflow__edge-jcnk8niu48odtz63lcwd7ldehttp-request-success-o0zyyik75ki87npgqt7rz46r_s0",
+                "startPoint": {
+                  "x": 234,
+                  "y": 864
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 964
+                },
+                "bendPoints": [
+                  {
+                    "x": 234,
+                    "y": 864
+                  },
+                  {
+                    "x": 356.4,
+                    "y": 914
+                  }
+                ],
+                "incomingShape": "jcnk8niu48odtz63lcwd7lde",
+                "outgoingShape": "o0zyyik75ki87npgqt7rz46r"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "jcnk8niu48odtz63lcwd7lde",
+            "sourceHandle": "http-request-error",
+            "target": "rvobnw70lmlidzg07qh31q24",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-jcnk8niu48odtz63lcwd7ldehttp-request-error-rvobnw70lmlidzg07qh31q24",
+            "sections": [
+              {
+                "id": "reactflow__edge-jcnk8niu48odtz63lcwd7ldehttp-request-error-rvobnw70lmlidzg07qh31q24_s0",
+                "startPoint": {
+                  "x": 234,
+                  "y": 864
+                },
+                "endPoint": {
+                  "x": 98,
+                  "y": 964
+                },
+                "bendPoints": [
+                  {
+                    "x": 234,
+                    "y": 864
+                  },
+                  {
+                    "x": 111.60000000000002,
+                    "y": 914
+                  }
+                ],
+                "incomingShape": "jcnk8niu48odtz63lcwd7lde",
+                "outgoingShape": "rvobnw70lmlidzg07qh31q24"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "o0zyyik75ki87npgqt7rz46r",
+            "sourceHandle": null,
+            "target": "c76z7q8yz09u3oo9eujhgr7e",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-o0zyyik75ki87npgqt7rz46r-c76z7q8yz09u3oo9eujhgr7e",
+            "sections": [
+              {
+                "id": "reactflow__edge-o0zyyik75ki87npgqt7rz46r-c76z7q8yz09u3oo9eujhgr7e_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 1000
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 1100
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 1000
+                  },
+                  {
+                    "x": 370,
+                    "y": 1050
+                  }
+                ],
+                "incomingShape": "o0zyyik75ki87npgqt7rz46r",
+                "outgoingShape": "c76z7q8yz09u3oo9eujhgr7e"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "c76z7q8yz09u3oo9eujhgr7e",
+            "sourceHandle": null,
+            "target": "m3v6dzs9uwq16qf7knvyk574",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-c76z7q8yz09u3oo9eujhgr7e-m3v6dzs9uwq16qf7knvyk574",
+            "sections": [
+              {
+                "id": "reactflow__edge-c76z7q8yz09u3oo9eujhgr7e-m3v6dzs9uwq16qf7knvyk574_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 1136
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 1236
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 1136
+                  },
+                  {
+                    "x": 370,
+                    "y": 1186
+                  }
+                ],
+                "incomingShape": "c76z7q8yz09u3oo9eujhgr7e",
+                "outgoingShape": "m3v6dzs9uwq16qf7knvyk574"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "m3v6dzs9uwq16qf7knvyk574",
+            "sourceHandle": null,
+            "target": "int8k1mdtj8520bivxl1c2r1",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-m3v6dzs9uwq16qf7knvyk574-int8k1mdtj8520bivxl1c2r1",
+            "sections": [
+              {
+                "id": "reactflow__edge-m3v6dzs9uwq16qf7knvyk574-int8k1mdtj8520bivxl1c2r1_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 1272
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 1372
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 1272
+                  },
+                  {
+                    "x": 370,
+                    "y": 1322
+                  }
+                ],
+                "incomingShape": "m3v6dzs9uwq16qf7knvyk574",
+                "outgoingShape": "int8k1mdtj8520bivxl1c2r1"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "int8k1mdtj8520bivxl1c2r1",
+            "sourceHandle": null,
+            "target": "qo2iznbk1zi5zlotcejwjib6",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-int8k1mdtj8520bivxl1c2r1-qo2iznbk1zi5zlotcejwjib6",
+            "sections": [
+              {
+                "id": "reactflow__edge-int8k1mdtj8520bivxl1c2r1-qo2iznbk1zi5zlotcejwjib6_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 1408
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 1508
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 1408
+                  },
+                  {
+                    "x": 370,
+                    "y": 1458
+                  }
+                ],
+                "incomingShape": "int8k1mdtj8520bivxl1c2r1",
+                "outgoingShape": "qo2iznbk1zi5zlotcejwjib6"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "qo2iznbk1zi5zlotcejwjib6",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "y2yxueiwoc98ofyqvc6z7co1",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-qo2iznbk1zi5zlotcejwjib6prompt-and-collect-yes-y2yxueiwoc98ofyqvc6z7co1",
+            "sections": [
+              {
+                "id": "reactflow__edge-qo2iznbk1zi5zlotcejwjib6prompt-and-collect-yes-y2yxueiwoc98ofyqvc6z7co1_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 1544
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 1544
+                  },
+                  {
+                    "x": 492.4,
+                    "y": 1594
+                  }
+                ],
+                "incomingShape": "qo2iznbk1zi5zlotcejwjib6",
+                "outgoingShape": "y2yxueiwoc98ofyqvc6z7co1"
+              }
+            ],
+            "container": "root",
+            "selected": false
+          },
+          {
+            "source": "y2yxueiwoc98ofyqvc6z7co1",
+            "sourceHandle": null,
+            "target": "wi6v7lrf2pkfmv0yop31okkh",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-y2yxueiwoc98ofyqvc6z7co1-wi6v7lrf2pkfmv0yop31okkh",
+            "sections": [
+              {
+                "id": "reactflow__edge-y2yxueiwoc98ofyqvc6z7co1-wi6v7lrf2pkfmv0yop31okkh_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 1680
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 1780
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 1680
+                  },
+                  {
+                    "x": 506,
+                    "y": 1730
+                  }
+                ],
+                "incomingShape": "y2yxueiwoc98ofyqvc6z7co1",
+                "outgoingShape": "wi6v7lrf2pkfmv0yop31okkh"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "wi6v7lrf2pkfmv0yop31okkh",
+            "sourceHandle": null,
+            "target": "gs7ziiesqtvcklq5l7txe9l8",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-wi6v7lrf2pkfmv0yop31okkh-gs7ziiesqtvcklq5l7txe9l8",
+            "sections": [
+              {
+                "id": "reactflow__edge-wi6v7lrf2pkfmv0yop31okkh-gs7ziiesqtvcklq5l7txe9l8_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 1816
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 1916
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 1816
+                  },
+                  {
+                    "x": 506,
+                    "y": 1866
+                  }
+                ],
+                "incomingShape": "wi6v7lrf2pkfmv0yop31okkh",
+                "outgoingShape": "gs7ziiesqtvcklq5l7txe9l8"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "t5fnf9edwd12b93atjr53a4o",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "bspoyhskludwt2ty5zht6mj5",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-t5fnf9edwd12b93atjr53a4oprompt-and-collect-yes-bspoyhskludwt2ty5zht6mj5",
+            "sections": [
+              {
+                "id": "reactflow__edge-t5fnf9edwd12b93atjr53a4oprompt-and-collect-yes-bspoyhskludwt2ty5zht6mj5_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 456
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 556
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 456
+                  },
+                  {
+                    "x": 370,
+                    "y": 506
+                  }
+                ],
+                "incomingShape": "t5fnf9edwd12b93atjr53a4o",
+                "outgoingShape": "bspoyhskludwt2ty5zht6mj5"
+              }
+            ],
+            "container": "root",
+            "selected": false
+          },
+          {
+            "source": "gs7ziiesqtvcklq5l7txe9l8",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "qglhsfzl4q9n5d6wdpef5mk9",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-gs7ziiesqtvcklq5l7txe9l8prompt-and-collect-yes-qglhsfzl4q9n5d6wdpef5mk9",
+            "sections": [
+              {
+                "id": "reactflow__edge-gs7ziiesqtvcklq5l7txe9l8prompt-and-collect-yes-qglhsfzl4q9n5d6wdpef5mk9_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 1952
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 2052
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 1952
+                  },
+                  {
+                    "x": 628.4,
+                    "y": 2002
+                  }
+                ],
+                "incomingShape": "gs7ziiesqtvcklq5l7txe9l8",
+                "outgoingShape": "qglhsfzl4q9n5d6wdpef5mk9"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "qglhsfzl4q9n5d6wdpef5mk9",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "fbhbgkbdwacilv15af8gkjpf",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-qglhsfzl4q9n5d6wdpef5mk9prompt-and-collect-yes-fbhbgkbdwacilv15af8gkjpf",
+            "sections": [
+              {
+                "id": "reactflow__edge-qglhsfzl4q9n5d6wdpef5mk9prompt-and-collect-yes-fbhbgkbdwacilv15af8gkjpf_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 2088
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 2188
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 2088
+                  },
+                  {
+                    "x": 642,
+                    "y": 2138
+                  }
+                ],
+                "incomingShape": "qglhsfzl4q9n5d6wdpef5mk9",
+                "outgoingShape": "fbhbgkbdwacilv15af8gkjpf"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "fbhbgkbdwacilv15af8gkjpf",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "zncl12cjdt65e1910utsf4qq",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-fbhbgkbdwacilv15af8gkjpfprompt-and-collect-yes-zncl12cjdt65e1910utsf4qq",
+            "sections": [
+              {
+                "id": "reactflow__edge-fbhbgkbdwacilv15af8gkjpfprompt-and-collect-yes-zncl12cjdt65e1910utsf4qq_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 2224
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 2324
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 2224
+                  },
+                  {
+                    "x": 642,
+                    "y": 2274
+                  }
+                ],
+                "incomingShape": "fbhbgkbdwacilv15af8gkjpf",
+                "outgoingShape": "zncl12cjdt65e1910utsf4qq"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "rlpzzks5j6sqxst89h6u60zo",
+            "sourceHandle": null,
+            "target": "se8z66phrha9s6gw2c6rdphw",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-rlpzzks5j6sqxst89h6u60zo-se8z66phrha9s6gw2c6rdphw",
+            "sections": [
+              {
+                "id": "reactflow__edge-rlpzzks5j6sqxst89h6u60zo-se8z66phrha9s6gw2c6rdphw_s0",
+                "startPoint": {
+                  "x": 778,
+                  "y": 2768
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 2868
+                },
+                "bendPoints": [
+                  {
+                    "x": 778,
+                    "y": 2768
+                  },
+                  {
+                    "x": 764.4,
+                    "y": 2818
+                  }
+                ],
+                "incomingShape": "rlpzzks5j6sqxst89h6u60zo",
+                "outgoingShape": "se8z66phrha9s6gw2c6rdphw"
+              }
+            ],
+            "container": "root",
+            "selected": false
+          },
+          {
+            "source": "a1awakqfkt61v1lcfinz7f2i",
+            "sourceHandle": null,
+            "target": "se8z66phrha9s6gw2c6rdphw",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-a1awakqfkt61v1lcfinz7f2i-se8z66phrha9s6gw2c6rdphw",
+            "sections": [
+              {
+                "id": "reactflow__edge-a1awakqfkt61v1lcfinz7f2i-se8z66phrha9s6gw2c6rdphw_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 2768
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 2868
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 2768
+                  },
+                  {
+                    "x": 519.6,
+                    "y": 2818
+                  }
+                ],
+                "incomingShape": "a1awakqfkt61v1lcfinz7f2i",
+                "outgoingShape": "se8z66phrha9s6gw2c6rdphw"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "se8z66phrha9s6gw2c6rdphw",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "itg00adqfw5th7fayn0kt5ul",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-se8z66phrha9s6gw2c6rdphwprompt-and-collect-yes-itg00adqfw5th7fayn0kt5ul",
+            "sections": [
+              {
+                "id": "reactflow__edge-se8z66phrha9s6gw2c6rdphwprompt-and-collect-yes-itg00adqfw5th7fayn0kt5ul_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 2904
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 3004
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 2904
+                  },
+                  {
+                    "x": 642,
+                    "y": 2954
+                  }
+                ],
+                "incomingShape": "se8z66phrha9s6gw2c6rdphw",
+                "outgoingShape": "itg00adqfw5th7fayn0kt5ul"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "itg00adqfw5th7fayn0kt5ul",
+            "sourceHandle": null,
+            "target": "ot8gbn7tyesfaucw4yhbwatw",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-itg00adqfw5th7fayn0kt5ul-ot8gbn7tyesfaucw4yhbwatw",
+            "sections": [
+              {
+                "id": "reactflow__edge-itg00adqfw5th7fayn0kt5ul-ot8gbn7tyesfaucw4yhbwatw_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 3040
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 3140
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 3040
+                  },
+                  {
+                    "x": 642,
+                    "y": 3090
+                  }
+                ],
+                "incomingShape": "itg00adqfw5th7fayn0kt5ul",
+                "outgoingShape": "ot8gbn7tyesfaucw4yhbwatw"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "ot8gbn7tyesfaucw4yhbwatw",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "enmw3suyfsy4qurbky95kxjc",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-ot8gbn7tyesfaucw4yhbwatwprompt-and-collect-yes-enmw3suyfsy4qurbky95kxjc",
+            "sections": [
+              {
+                "id": "reactflow__edge-ot8gbn7tyesfaucw4yhbwatwprompt-and-collect-yes-enmw3suyfsy4qurbky95kxjc_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 3176
+                },
+                "endPoint": {
+                  "x": 642,
+                  "y": 3276
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 3176
+                  },
+                  {
+                    "x": 642,
+                    "y": 3226
+                  }
+                ],
+                "incomingShape": "ot8gbn7tyesfaucw4yhbwatw",
+                "outgoingShape": "enmw3suyfsy4qurbky95kxjc"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "enmw3suyfsy4qurbky95kxjc",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "hezveihfchu6avpk478pxebz",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-enmw3suyfsy4qurbky95kxjcprompt-and-collect-yes-hezveihfchu6avpk478pxebz",
+            "sections": [
+              {
+                "id": "reactflow__edge-enmw3suyfsy4qurbky95kxjcprompt-and-collect-yes-hezveihfchu6avpk478pxebz_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 3312
+                },
+                "endPoint": {
+                  "x": 778,
+                  "y": 3412
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 3312
+                  },
+                  {
+                    "x": 764.4,
+                    "y": 3362
+                  }
+                ],
+                "incomingShape": "enmw3suyfsy4qurbky95kxjc",
+                "outgoingShape": "hezveihfchu6avpk478pxebz"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "hezveihfchu6avpk478pxebz",
+            "sourceHandle": null,
+            "target": "zu8l8azku5ktmj3tuaraifwv",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-hezveihfchu6avpk478pxebz-zu8l8azku5ktmj3tuaraifwv",
+            "sections": [
+              {
+                "id": "reactflow__edge-hezveihfchu6avpk478pxebz-zu8l8azku5ktmj3tuaraifwv_s0",
+                "startPoint": {
+                  "x": 778,
+                  "y": 3448
+                },
+                "endPoint": {
+                  "x": 778,
+                  "y": 3548
+                },
+                "bendPoints": [
+                  {
+                    "x": 778,
+                    "y": 3448
+                  },
+                  {
+                    "x": 778,
+                    "y": 3498
+                  }
+                ],
+                "incomingShape": "hezveihfchu6avpk478pxebz",
+                "outgoingShape": "zu8l8azku5ktmj3tuaraifwv"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "qo2iznbk1zi5zlotcejwjib6",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "ul3kx8kgpejmgzs7kk1g56y9",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-qo2iznbk1zi5zlotcejwjib6prompt-and-collect-no-ul3kx8kgpejmgzs7kk1g56y9",
+            "sections": [
+              {
+                "id": "reactflow__edge-qo2iznbk1zi5zlotcejwjib6prompt-and-collect-no-ul3kx8kgpejmgzs7kk1g56y9_s0",
+                "startPoint": {
+                  "x": 370,
+                  "y": 1544
+                },
+                "endPoint": {
+                  "x": 234,
+                  "y": 1644
+                },
+                "bendPoints": [
+                  {
+                    "x": 370,
+                    "y": 1544
+                  },
+                  {
+                    "x": 247.60000000000002,
+                    "y": 1594
+                  }
+                ],
+                "incomingShape": "qo2iznbk1zi5zlotcejwjib6",
+                "outgoingShape": "ul3kx8kgpejmgzs7kk1g56y9"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "gs7ziiesqtvcklq5l7txe9l8",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "v3segbiqh8i3zlasseagaztx",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-gs7ziiesqtvcklq5l7txe9l8prompt-and-collect-no-v3segbiqh8i3zlasseagaztx",
+            "sections": [
+              {
+                "id": "reactflow__edge-gs7ziiesqtvcklq5l7txe9l8prompt-and-collect-no-v3segbiqh8i3zlasseagaztx_s0",
+                "startPoint": {
+                  "x": 506,
+                  "y": 1952
+                },
+                "endPoint": {
+                  "x": 370,
+                  "y": 2052
+                },
+                "bendPoints": [
+                  {
+                    "x": 506,
+                    "y": 1952
+                  },
+                  {
+                    "x": 383.6,
+                    "y": 2002
+                  }
+                ],
+                "incomingShape": "gs7ziiesqtvcklq5l7txe9l8",
+                "outgoingShape": "v3segbiqh8i3zlasseagaztx"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "enmw3suyfsy4qurbky95kxjc",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "hvkx9cyaos8b4tbm594bk9z5",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-enmw3suyfsy4qurbky95kxjcprompt-and-collect-no-hvkx9cyaos8b4tbm594bk9z5",
+            "sections": [
+              {
+                "id": "reactflow__edge-enmw3suyfsy4qurbky95kxjcprompt-and-collect-no-hvkx9cyaos8b4tbm594bk9z5_s0",
+                "startPoint": {
+                  "x": 642,
+                  "y": 3312
+                },
+                "endPoint": {
+                  "x": 506,
+                  "y": 3412
+                },
+                "bendPoints": [
+                  {
+                    "x": 642,
+                    "y": 3312
+                  },
+                  {
+                    "x": 519.6,
+                    "y": 3362
+                  }
+                ],
+                "incomingShape": "enmw3suyfsy4qurbky95kxjc",
+                "outgoingShape": "hvkx9cyaos8b4tbm594bk9z5"
+              }
+            ],
+            "container": "root"
+          },
+          {
+            "source": "zncl12cjdt65e1910utsf4qq",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "svzu1ki6sawao849b5xut1ve",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-zncl12cjdt65e1910utsf4qqprompt-and-collect-yes-svzu1ki6sawao849b5xut1ve"
+          },
+          {
+            "source": "svzu1ki6sawao849b5xut1ve",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "on94c9m01kvtdk973ryt4zb1",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-svzu1ki6sawao849b5xut1veprompt-and-collect-yes-on94c9m01kvtdk973ryt4zb1"
+          },
+          {
+            "source": "on94c9m01kvtdk973ryt4zb1",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "a1awakqfkt61v1lcfinz7f2i",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-on94c9m01kvtdk973ryt4zb1prompt-and-collect-yes-a1awakqfkt61v1lcfinz7f2i"
+          },
+          {
+            "source": "on94c9m01kvtdk973ryt4zb1",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "rlpzzks5j6sqxst89h6u60zo",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-on94c9m01kvtdk973ryt4zb1prompt-and-collect-no-rlpzzks5j6sqxst89h6u60zo"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "start",
+            "type": "start",
+            "position": {
+              "x": 284,
+              "y": 12
+            },
+            "data": {
+              "label": "Start",
+              "action": "start",
+              "id": "start",
+              "name": "Start",
+              "nextAction": "ue4z2vsrifygzp5f1kz6468v"
+            },
+            "deletable": false,
+            "draggable": false,
+            "width": 70,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 277,
+            "x": 284,
+            "y": 12
+          },
+          {
+            "id": "ue4z2vsrifygzp5f1kz6468v",
+            "position": {
+              "x": 284,
+              "y": 148
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "ue4z2vsrifygzp5f1kz6468v",
+              "name": "Message 1",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "👉 You’re looking for a creative job that will give you the opportunity to grow and learn.",
+                  "type": "text"
+                }
+              },
+              "nextAction": "cfidts4oy6q8ymbtepido5g3"
+            },
+            "width": 115,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 148,
+              "y": 148
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 279,
+            "x": 284,
+            "y": 148
+          },
+          {
+            "id": "cfidts4oy6q8ymbtepido5g3",
+            "position": {
+              "x": 284,
+              "y": 284
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "cfidts4oy6q8ymbtepido5g3",
+              "name": "Message 2",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "👈 We’re looking for a talented and passionate person who wants to put their ideas into action.",
+                  "type": "text"
+                }
+              },
+              "nextAction": "t5fnf9edwd12b93atjr53a4o"
+            },
+            "width": 115,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 148,
+              "y": 284
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 281,
+            "x": 284,
+            "y": 284
+          },
+          {
+            "id": "t5fnf9edwd12b93atjr53a4o",
+            "position": {
+              "x": 284,
+              "y": 420
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "t5fnf9edwd12b93atjr53a4o",
+              "name": "Prompt & Collect",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "🔍 Find your role",
+                      "value": "block_role",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Could this be love?",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "bspoyhskludwt2ty5zht6mj5",
+                  "value": true
+                }
+              ]
+            },
+            "width": 162,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 386.49999999999994,
+              "y": 1703.0000000000002
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 282,
+            "x": 284,
+            "y": 420
+          },
+          {
+            "id": "bspoyhskludwt2ty5zht6mj5",
+            "position": {
+              "x": 284,
+              "y": 556
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "bspoyhskludwt2ty5zht6mj5",
+              "name": "Request hiring jobs",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6689650e0ea28ca88b87dad6.mockapi.io/api/v1/positions",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "hiring_jobs",
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "ee0y4u16eiv4l8ik21p07ysl"
+                },
+                {
+                  "condition": "failure",
+                  "id": "p1cz666q23uw74hdhujrxfd2"
+                }
+              ]
+            },
+            "width": 176,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": -81.6666666666666,
+              "y": 717.9999999999997
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 284,
+            "x": 284,
+            "y": 556
+          },
+          {
+            "id": "ee0y4u16eiv4l8ik21p07ysl",
+            "position": {
+              "x": 148,
+              "y": 692
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "ee0y4u16eiv4l8ik21p07ysl",
+              "name": "Render list card jobs",
+              "contents": {
+                "en": {
+                  "type": "list-card",
+                  "tab_type": "variable",
+                  "dynamicCards": "hiring_jobs"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "jcnk8niu48odtz63lcwd7lde",
+                  "value": true
+                }
+              ],
+              "assignUserResponse": "job_id"
+            },
+            "width": 183,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 21.182738541459315,
+              "y": 672.5988279486669
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 286,
+            "x": 148,
+            "y": 692
+          },
+          {
+            "id": "p1cz666q23uw74hdhujrxfd2",
+            "position": {
+              "x": 420,
+              "y": 692
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "p1cz666q23uw74hdhujrxfd2",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Sorry! We not have any jobs",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 12,
+              "y": 148
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 288,
+            "x": 420,
+            "y": 692
+          },
+          {
+            "id": "jcnk8niu48odtz63lcwd7lde",
+            "position": {
+              "x": 148,
+              "y": 828
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "jcnk8niu48odtz63lcwd7lde",
+              "name": "HTTP Request",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6689650e0ea28ca88b87dad6.mockapi.io/api/v1/job_detail/{job_id}",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "job_detail",
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "o0zyyik75ki87npgqt7rz46r"
+                },
+                {
+                  "condition": "failure",
+                  "id": "rvobnw70lmlidzg07qh31q24"
+                }
+              ]
+            },
+            "width": 138,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 455.2839631900373,
+              "y": 778.2844966184589
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 401,
+            "x": 148,
+            "y": 828
+          },
+          {
+            "id": "o0zyyik75ki87npgqt7rz46r",
+            "position": {
+              "x": 284,
+              "y": 964
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "o0zyyik75ki87npgqt7rz46r",
+              "name": "Job title",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "{job_detail->title}",
+                  "type": "text"
+                }
+              },
+              "nextAction": "c76z7q8yz09u3oo9eujhgr7e"
+            },
+            "width": 96,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 556,
+              "y": 965.0556063286183
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 403,
+            "x": 284,
+            "y": 964
+          },
+          {
+            "id": "rvobnw70lmlidzg07qh31q24",
+            "position": {
+              "x": 12,
+              "y": 964
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "rvobnw70lmlidzg07qh31q24",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Something went wrong while get job description. Please try again!",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 640.1213811706214,
+              "y": 953.0868407211252
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 405,
+            "x": 12,
+            "y": 964
+          },
+          {
+            "id": "c76z7q8yz09u3oo9eujhgr7e",
+            "position": {
+              "x": 284,
+              "y": 1100
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "c76z7q8yz09u3oo9eujhgr7e",
+              "name": "Job summary",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Summary:\n{job_detail->descriptions->summary}",
+                  "type": "text"
+                }
+              },
+              "nextAction": "m3v6dzs9uwq16qf7knvyk574"
+            },
+            "width": 134,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 556,
+              "y": 1100
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 407,
+            "x": 284,
+            "y": 1100
+          },
+          {
+            "id": "m3v6dzs9uwq16qf7knvyk574",
+            "position": {
+              "x": 284,
+              "y": 1236
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "m3v6dzs9uwq16qf7knvyk574",
+              "name": "Job required",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Require:\n{job_detail->descriptions->required}",
+                  "type": "text"
+                }
+              },
+              "nextAction": "int8k1mdtj8520bivxl1c2r1"
+            },
+            "width": 129,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 556,
+              "y": 1236
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 409,
+            "x": 284,
+            "y": 1236
+          },
+          {
+            "id": "int8k1mdtj8520bivxl1c2r1",
+            "position": {
+              "x": 284,
+              "y": 1372
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "int8k1mdtj8520bivxl1c2r1",
+              "name": "Job benefit",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Benefit:\n{job_detail->descriptions->benefit}",
+                  "type": "text"
+                }
+              },
+              "nextAction": "qo2iznbk1zi5zlotcejwjib6"
+            },
+            "width": 118,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 556,
+              "y": 1372
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 518,
+            "x": 284,
+            "y": 1372
+          },
+          {
+            "id": "qo2iznbk1zi5zlotcejwjib6",
+            "position": {
+              "x": 284,
+              "y": 1508
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "qo2iznbk1zi5zlotcejwjib6",
+              "name": "Ask user Interested",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "🔥 Apply Now",
+                      "value": "apply_job",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "❌ Cancel",
+                      "value": "cancel",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Interested?",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "y2yxueiwoc98ofyqvc6z7co1",
+                  "value": "apply_job"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "ul3kx8kgpejmgzs7kk1g56y9"
+                }
+              ]
+            },
+            "width": 175,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 420,
+              "y": 1508
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 636,
+            "x": 284,
+            "y": 1508
+          },
+          {
+            "id": "y2yxueiwoc98ofyqvc6z7co1",
+            "position": {
+              "x": 420,
+              "y": 1644
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "y2yxueiwoc98ofyqvc6z7co1",
+              "name": "Current job user select",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "You’re applying for the position of {job_detail->title}",
+                  "type": "text"
+                }
+              },
+              "nextAction": "wi6v7lrf2pkfmv0yop31okkh"
+            },
+            "width": 199,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 284,
+              "y": 1644
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 642,
+            "x": 420,
+            "y": 1644
+          },
+          {
+            "id": "wi6v7lrf2pkfmv0yop31okkh",
+            "position": {
+              "x": 420,
+              "y": 1780
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "wi6v7lrf2pkfmv0yop31okkh",
+              "name": "Response because user interseting",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "We’re happy to hear that you’re interested in joining our company! I’ll ask you a couple of questions now. Let me know when you’re ready.",
+                  "type": "text"
+                }
+              },
+              "nextAction": "gs7ziiesqtvcklq5l7txe9l8"
+            },
+            "width": 283,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": -209.6773290098463,
+              "y": 1776.0414762676812
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 484,
+            "x": 420,
+            "y": 1780
+          },
+          {
+            "id": "gs7ziiesqtvcklq5l7txe9l8",
+            "position": {
+              "x": 420,
+              "y": 1916
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "gs7ziiesqtvcklq5l7txe9l8",
+              "name": "Ask ready to proceed",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "👌 Yes",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "🙄 No",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Ready to proceed?",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "qglhsfzl4q9n5d6wdpef5mk9",
+                  "value": "yes"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "v3segbiqh8i3zlasseagaztx"
+                }
+              ]
+            },
+            "width": 190,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 556,
+              "y": 1916
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 639,
+            "x": 420,
+            "y": 1916
+          },
+          {
+            "id": "qglhsfzl4q9n5d6wdpef5mk9",
+            "position": {
+              "x": 556,
+              "y": 2052
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "qglhsfzl4q9n5d6wdpef5mk9",
+              "name": "First name",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "What’s your first name?",
+                  "type": "text"
+                }
+              },
+              "assignUserResponse": "user_first_name",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "fbhbgkbdwacilv15af8gkjpf",
+                  "value": true
+                }
+              ]
+            },
+            "width": 113,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 1723,
+            "x": 556,
+            "y": 2052,
+            "positionAbsolute": {
+              "x": 284,
+              "y": 2052
+            }
+          },
+          {
+            "id": "zncl12cjdt65e1910utsf4qq",
+            "position": {
+              "x": 556,
+              "y": 2324
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "zncl12cjdt65e1910utsf4qq",
+              "name": "Email",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Got it! Let’s move forward. What’s your email address?",
+                  "type": "text",
+                  "repeatMessage": "Hmmm! It seem your email incorrect. Please enter agian."
+                }
+              },
+              "assignUserResponse": "user_email",
+              "grammarType": "email",
+              "repeat": 2,
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "svzu1ki6sawao849b5xut1ve",
+                  "value": true
+                }
+              ]
+            },
+            "width": 78,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 457.7788551467033,
+              "y": 2296.8787563237634
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 1896,
+            "x": 556,
+            "y": 2324
+          },
+          {
+            "id": "fbhbgkbdwacilv15af8gkjpf",
+            "position": {
+              "x": 556,
+              "y": 2188
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "fbhbgkbdwacilv15af8gkjpf",
+              "name": "Last name",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Nice to meet you, {user_first_name}! What’s your last name?",
+                  "type": "text"
+                }
+              },
+              "assignUserResponse": "user_last_name",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "zncl12cjdt65e1910utsf4qq",
+                  "value": true
+                }
+              ]
+            },
+            "width": 112,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 372.5546969902416,
+              "y": 2178.5957866579192
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 1898,
+            "x": 556,
+            "y": 2188
+          },
+          {
+            "id": "rlpzzks5j6sqxst89h6u60zo",
+            "position": {
+              "x": 389.2389641404227,
+              "y": 2725.5188769082047
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "rlpzzks5j6sqxst89h6u60zo",
+              "name": "Reivew again 2",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "🙌 Great! We’ve got all the information we need for now. Let’s review it. ⬇",
+                  "type": "text"
+                }
+              },
+              "nextAction": "se8z66phrha9s6gw2c6rdphw"
+            },
+            "width": 145,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 389.2389641404227,
+              "y": 2725.5188769082047
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2093,
+            "x": 692,
+            "y": 2732
+          },
+          {
+            "id": "a1awakqfkt61v1lcfinz7f2i",
+            "position": {
+              "x": 720.9092864047788,
+              "y": 2726.444751635604
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "a1awakqfkt61v1lcfinz7f2i",
+              "name": "Reivew again",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "🙌 Great! We’ve got all the information we need for now. Let’s review it. ⬇",
+                  "type": "text"
+                }
+              },
+              "nextAction": "se8z66phrha9s6gw2c6rdphw"
+            },
+            "width": 132,
+            "height": 32,
+            "selected": true,
+            "positionAbsolute": {
+              "x": 720.9092864047788,
+              "y": 2726.444751635604
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2095,
+            "x": 420,
+            "y": 2732
+          },
+          {
+            "id": "se8z66phrha9s6gw2c6rdphw",
+            "position": {
+              "x": 556,
+              "y": 2868
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "se8z66phrha9s6gw2c6rdphw",
+              "name": "Reivew information",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "👍 Yes, proceed",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "👎 No, start again",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "The position you’re applying for: {job_detail->title}\n\nYour name: {user_first_name} {user_last_name}\nEmail address: {user_email}\nPhone number: {user_phone}\nLinkedIn: {linkedin}\n\nIs everything correct?",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "itg00adqfw5th7fayn0kt5ul",
+                  "value": "yes"
+                }
+              ]
+            },
+            "width": 176,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 765.7110726224985,
+              "y": 2100.7311075082052
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2097,
+            "x": 556,
+            "y": 2868
+          },
+          {
+            "id": "itg00adqfw5th7fayn0kt5ul",
+            "position": {
+              "x": 556,
+              "y": 3004
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "itg00adqfw5th7fayn0kt5ul",
+              "name": "Message share resume",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Please share your résumé with us.",
+                  "type": "text"
+                }
+              },
+              "nextAction": "ot8gbn7tyesfaucw4yhbwatw"
+            },
+            "width": 201,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 915.6874035821623,
+              "y": 2218.65759364953
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2753,
+            "x": 556,
+            "y": 3004
+          },
+          {
+            "id": "ot8gbn7tyesfaucw4yhbwatw",
+            "position": {
+              "x": 556,
+              "y": 3140
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "ot8gbn7tyesfaucw4yhbwatw",
+              "name": "Ask user upload link",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Please upload your résumé on cloud end send this link on this chat.",
+                  "type": "text"
+                }
+              },
+              "assignUserResponse": "user_resume",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "enmw3suyfsy4qurbky95kxjc",
+                  "value": true
+                }
+              ]
+            },
+            "width": 182,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 703.4999999999999,
+              "y": 3130
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2755,
+            "x": 556,
+            "y": 3140
+          },
+          {
+            "id": "enmw3suyfsy4qurbky95kxjc",
+            "position": {
+              "x": 556,
+              "y": 3276
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "enmw3suyfsy4qurbky95kxjc",
+              "name": "Check link again",
+              "contents": {
+                "en": {
+                  "buttons": [
+                    {
+                      "label": "✅ Submit",
+                      "value": "submit",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "❌ Make corrections",
+                      "value": "make_corrections",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Check link for accuracy before clicking the ✅ Submit button.\n\nRésumé: {user_resume}\n",
+                  "type": "text"
+                }
+              },
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "hezveihfchu6avpk478pxebz",
+                  "value": "submit"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "hvkx9cyaos8b4tbm594bk9z5"
+                }
+              ]
+            },
+            "width": 155,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 553,
+              "y": 3245
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2757,
+            "x": 556,
+            "y": 3276
+          },
+          {
+            "id": "hezveihfchu6avpk478pxebz",
+            "position": {
+              "x": 692,
+              "y": 3412
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "hezveihfchu6avpk478pxebz",
+              "name": "Send mail alert",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Great! We will send mail to confirm this.",
+                  "type": "text"
+                }
+              },
+              "nextAction": "zu8l8azku5ktmj3tuaraifwv"
+            },
+            "width": 145,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 649.9999999999999,
+              "y": 3408
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2759,
+            "x": 692,
+            "y": 3412
+          },
+          {
+            "id": "zu8l8azku5ktmj3tuaraifwv",
+            "position": {
+              "x": 692,
+              "y": 3548
+            },
+            "type": "send-mail",
+            "data": {
+              "label": "Send Mail",
+              "action": "send-mail",
+              "id": "zu8l8azku5ktmj3tuaraifwv",
+              "name": "Send Mail",
+              "contents": {},
+              "sendMail": {
+                "subject": "[DialogueBot] - Confirm apply job",
+                "to": "{user_email}",
+                "body": "<div class=\"prose\"><div contenteditable=\"true\" translate=\"no\" class=\"tiptap ProseMirror\" tabindex=\"0\"><p>Dear {user_first_name},</p><p>We send this mail confirm your applied postion {job_detail->title}. HR team will connect your soon though your email provided.</p><p>Thanks.</p></div></div>"
+              }
+            },
+            "width": 110,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 692,
+              "y": 3548
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 2761,
+            "x": 692,
+            "y": 3548
+          },
+          {
+            "id": "ul3kx8kgpejmgzs7kk1g56y9",
+            "position": {
+              "x": 148,
+              "y": 1644
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "ul3kx8kgpejmgzs7kk1g56y9",
+              "name": "Go To",
+              "contents": {},
+              "gotoId": "ue4z2vsrifygzp5f1kz6468v"
+            },
+            "width": 81,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 367.39825449096304,
+              "y": 1653.7068423346066
+            },
+            "dragging": false,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 1013,
+            "x": 148,
+            "y": 1644
+          },
+          {
+            "id": "v3segbiqh8i3zlasseagaztx",
+            "position": {
+              "x": 284,
+              "y": 2052
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "v3segbiqh8i3zlasseagaztx",
+              "name": "Message",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "Thanks",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 102,
+            "height": 32,
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 1015,
+            "x": 284,
+            "y": 2052
+          },
+          {
+            "id": "hvkx9cyaos8b4tbm594bk9z5",
+            "position": {
+              "x": 420,
+              "y": 3412
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "hvkx9cyaos8b4tbm594bk9z5",
+              "name": "Go To",
+              "contents": {},
+              "gotoId": "enmw3suyfsy4qurbky95kxjc"
+            },
+            "width": 81,
+            "height": 32,
+            "selected": false,
+            "dragging": false,
+            "positionAbsolute": {
+              "x": 423.86217301571645,
+              "y": 3361.065526877197
+            },
+            "targetPosition": "top",
+            "sourcePosition": "bottom",
+            "$H": 1017,
+            "x": 420,
+            "y": 3412
+          },
+          {
+            "id": "svzu1ki6sawao849b5xut1ve",
+            "position": {
+              "x": 534.5604419138465,
+              "y": 2449.0050225965765
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "svzu1ki6sawao849b5xut1ve",
+              "name": "Ask Phone Number",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "What is your phone number?",
+                  "type": "text",
+                  "repeatMessage": "Wrong format phone number, please try again"
+                }
+              },
+              "grammarType": "phone-number",
+              "repeat": 2,
+              "assignUserResponse": "user_phone",
+              "nextActions": [
+                {
+                  "condition": "exist",
+                  "id": "on94c9m01kvtdk973ryt4zb1",
+                  "value": true
+                }
+              ]
+            },
+            "width": 177,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 534.5604419138465,
+              "y": 2449.0050225965765
+            },
+            "dragging": false
+          },
+          {
+            "id": "on94c9m01kvtdk973ryt4zb1",
+            "position": {
+              "x": 529.9310682768498,
+              "y": 2604.551976799662
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "on94c9m01kvtdk973ryt4zb1",
+              "name": "Ask LinkedIn",
+              "contents": {
+                "en": {
+                  "buttons": [],
+                  "message": "What’s your LinkedIn Profile link? (optional — if you don’t have one, just type “no”)",
+                  "type": "text"
+                }
+              },
+              "assignUserResponse": "linkedin",
+              "trainedData": "dqk7hzkwxwnbt53bco83q2xe",
+              "nextActions": [
+                {
+                  "condition": "equal",
+                  "id": "a1awakqfkt61v1lcfinz7f2i",
+                  "value": "not_have_link"
+                },
+                {
+                  "condition": "otherwise",
+                  "id": "rlpzzks5j6sqxst89h6u60zo"
+                }
+              ]
+            },
+            "width": 162,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 529.9310682768498,
+              "y": 2604.551976799662
+            },
+            "dragging": false
+          }
+        ],
+        "flows": [
+          {
+            "label": "Start",
+            "action": "start",
+            "id": "start",
+            "name": "Start",
+            "nextAction": "ue4z2vsrifygzp5f1kz6468v"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "ue4z2vsrifygzp5f1kz6468v",
+            "name": "Message 1",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "👉 You’re looking for a creative job that will give you the opportunity to grow and learn.",
+                "type": "text"
+              }
+            },
+            "nextAction": "cfidts4oy6q8ymbtepido5g3"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "cfidts4oy6q8ymbtepido5g3",
+            "name": "Message 2",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "👈 We’re looking for a talented and passionate person who wants to put their ideas into action.",
+                "type": "text"
+              }
+            },
+            "nextAction": "t5fnf9edwd12b93atjr53a4o"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "t5fnf9edwd12b93atjr53a4o",
+            "name": "Prompt & Collect",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "🔍 Find your role",
+                    "value": "block_role",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Could this be love?",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "bspoyhskludwt2ty5zht6mj5",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "bspoyhskludwt2ty5zht6mj5",
+            "name": "Request hiring jobs",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6689650e0ea28ca88b87dad6.mockapi.io/api/v1/positions",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "hiring_jobs",
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "ee0y4u16eiv4l8ik21p07ysl"
+              },
+              {
+                "condition": "failure",
+                "id": "p1cz666q23uw74hdhujrxfd2"
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "ee0y4u16eiv4l8ik21p07ysl",
+            "name": "Render list card jobs",
+            "contents": {
+              "en": {
+                "type": "list-card",
+                "tab_type": "variable",
+                "dynamicCards": "hiring_jobs"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "jcnk8niu48odtz63lcwd7lde",
+                "value": true
+              }
+            ],
+            "assignUserResponse": "job_id"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "p1cz666q23uw74hdhujrxfd2",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Sorry! We not have any jobs",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "jcnk8niu48odtz63lcwd7lde",
+            "name": "HTTP Request",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6689650e0ea28ca88b87dad6.mockapi.io/api/v1/job_detail/{job_id}",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "job_detail",
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "o0zyyik75ki87npgqt7rz46r"
+              },
+              {
+                "condition": "failure",
+                "id": "rvobnw70lmlidzg07qh31q24"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "o0zyyik75ki87npgqt7rz46r",
+            "name": "Job title",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "{job_detail->title}",
+                "type": "text"
+              }
+            },
+            "nextAction": "c76z7q8yz09u3oo9eujhgr7e"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "rvobnw70lmlidzg07qh31q24",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Something went wrong while get job description. Please try again!",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "c76z7q8yz09u3oo9eujhgr7e",
+            "name": "Job summary",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Summary:\n{job_detail->descriptions->summary}",
+                "type": "text"
+              }
+            },
+            "nextAction": "m3v6dzs9uwq16qf7knvyk574"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "m3v6dzs9uwq16qf7knvyk574",
+            "name": "Job required",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Require:\n{job_detail->descriptions->required}",
+                "type": "text"
+              }
+            },
+            "nextAction": "int8k1mdtj8520bivxl1c2r1"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "int8k1mdtj8520bivxl1c2r1",
+            "name": "Job benefit",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Benefit:\n{job_detail->descriptions->benefit}",
+                "type": "text"
+              }
+            },
+            "nextAction": "qo2iznbk1zi5zlotcejwjib6"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "qo2iznbk1zi5zlotcejwjib6",
+            "name": "Ask user Interested",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "🔥 Apply Now",
+                    "value": "apply_job",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "❌ Cancel",
+                    "value": "cancel",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Interested?",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "y2yxueiwoc98ofyqvc6z7co1",
+                "value": "apply_job"
+              },
+              {
+                "condition": "otherwise",
+                "id": "ul3kx8kgpejmgzs7kk1g56y9"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "y2yxueiwoc98ofyqvc6z7co1",
+            "name": "Current job user select",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "You’re applying for the position of {job_detail->title}",
+                "type": "text"
+              }
+            },
+            "nextAction": "wi6v7lrf2pkfmv0yop31okkh"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "wi6v7lrf2pkfmv0yop31okkh",
+            "name": "Response because user interseting",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "We’re happy to hear that you’re interested in joining our company! I’ll ask you a couple of questions now. Let me know when you’re ready.",
+                "type": "text"
+              }
+            },
+            "nextAction": "gs7ziiesqtvcklq5l7txe9l8"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "gs7ziiesqtvcklq5l7txe9l8",
+            "name": "Ask ready to proceed",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "👌 Yes",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "🙄 No",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Ready to proceed?",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "qglhsfzl4q9n5d6wdpef5mk9",
+                "value": "yes"
+              },
+              {
+                "condition": "otherwise",
+                "id": "v3segbiqh8i3zlasseagaztx"
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "qglhsfzl4q9n5d6wdpef5mk9",
+            "name": "First name",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "What’s your first name?",
+                "type": "text"
+              }
+            },
+            "assignUserResponse": "user_first_name",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "fbhbgkbdwacilv15af8gkjpf",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "zncl12cjdt65e1910utsf4qq",
+            "name": "Email",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Got it! Let’s move forward. What’s your email address?",
+                "type": "text",
+                "repeatMessage": "Hmmm! It seem your email incorrect. Please enter agian."
+              }
+            },
+            "assignUserResponse": "user_email",
+            "grammarType": "email",
+            "repeat": 2,
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "svzu1ki6sawao849b5xut1ve",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "fbhbgkbdwacilv15af8gkjpf",
+            "name": "Last name",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Nice to meet you, {user_first_name}! What’s your last name?",
+                "type": "text"
+              }
+            },
+            "assignUserResponse": "user_last_name",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "zncl12cjdt65e1910utsf4qq",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "rlpzzks5j6sqxst89h6u60zo",
+            "name": "Reivew again 2",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "🙌 Great! We’ve got all the information we need for now. Let’s review it. ⬇",
+                "type": "text"
+              }
+            },
+            "nextAction": "se8z66phrha9s6gw2c6rdphw"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "a1awakqfkt61v1lcfinz7f2i",
+            "name": "Reivew again",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "🙌 Great! We’ve got all the information we need for now. Let’s review it. ⬇",
+                "type": "text"
+              }
+            },
+            "nextAction": "se8z66phrha9s6gw2c6rdphw"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "se8z66phrha9s6gw2c6rdphw",
+            "name": "Reivew information",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "👍 Yes, proceed",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "👎 No, start again",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ],
+                "message": "The position you’re applying for: {job_detail->title}\n\nYour name: {user_first_name} {user_last_name}\nEmail address: {user_email}\nPhone number: {user_phone}\nLinkedIn: {linkedin}\n\nIs everything correct?",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "itg00adqfw5th7fayn0kt5ul",
+                "value": "yes"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "itg00adqfw5th7fayn0kt5ul",
+            "name": "Message share resume",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Please share your résumé with us.",
+                "type": "text"
+              }
+            },
+            "nextAction": "ot8gbn7tyesfaucw4yhbwatw"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "ot8gbn7tyesfaucw4yhbwatw",
+            "name": "Ask user upload link",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Please upload your résumé on cloud end send this link on this chat.",
+                "type": "text"
+              }
+            },
+            "assignUserResponse": "user_resume",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "enmw3suyfsy4qurbky95kxjc",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "enmw3suyfsy4qurbky95kxjc",
+            "name": "Check link again",
+            "contents": {
+              "en": {
+                "buttons": [
+                  {
+                    "label": "✅ Submit",
+                    "value": "submit",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "❌ Make corrections",
+                    "value": "make_corrections",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Check link for accuracy before clicking the ✅ Submit button.\n\nRésumé: {user_resume}\n",
+                "type": "text"
+              }
+            },
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "hezveihfchu6avpk478pxebz",
+                "value": "submit"
+              },
+              {
+                "condition": "otherwise",
+                "id": "hvkx9cyaos8b4tbm594bk9z5"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "hezveihfchu6avpk478pxebz",
+            "name": "Send mail alert",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Great! We will send mail to confirm this.",
+                "type": "text"
+              }
+            },
+            "nextAction": "zu8l8azku5ktmj3tuaraifwv"
+          },
+          {
+            "label": "Send Mail",
+            "action": "send-mail",
+            "id": "zu8l8azku5ktmj3tuaraifwv",
+            "name": "Send Mail",
+            "contents": {},
+            "sendMail": {
+              "subject": "[DialogueBot] - Confirm apply job",
+              "to": "{user_email}",
+              "body": "<div class=\"prose\"><div contenteditable=\"true\" translate=\"no\" class=\"tiptap ProseMirror\" tabindex=\"0\"><p>Dear {user_first_name},</p><p>We send this mail confirm your applied postion {job_detail->title}. HR team will connect your soon though your email provided.</p><p>Thanks.</p></div></div>"
+            }
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "ul3kx8kgpejmgzs7kk1g56y9",
+            "name": "Go To",
+            "contents": {},
+            "gotoId": "ue4z2vsrifygzp5f1kz6468v"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "v3segbiqh8i3zlasseagaztx",
+            "name": "Message",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "Thanks",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "hvkx9cyaos8b4tbm594bk9z5",
+            "name": "Go To",
+            "contents": {},
+            "gotoId": "enmw3suyfsy4qurbky95kxjc"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "svzu1ki6sawao849b5xut1ve",
+            "name": "Ask Phone Number",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "What is your phone number?",
+                "type": "text",
+                "repeatMessage": "Wrong format phone number, please try again"
+              }
+            },
+            "grammarType": "phone-number",
+            "repeat": 2,
+            "assignUserResponse": "user_phone",
+            "nextActions": [
+              {
+                "condition": "exist",
+                "id": "on94c9m01kvtdk973ryt4zb1",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "on94c9m01kvtdk973ryt4zb1",
+            "name": "Ask LinkedIn",
+            "contents": {
+              "en": {
+                "buttons": [],
+                "message": "What’s your LinkedIn Profile link? (optional — if you don’t have one, just type “no”)",
+                "type": "text"
+              }
+            },
+            "assignUserResponse": "linkedin",
+            "trainedData": "dqk7hzkwxwnbt53bco83q2xe",
+            "nextActions": [
+              {
+                "condition": "equal",
+                "id": "a1awakqfkt61v1lcfinz7f2i",
+                "value": "not_have_link"
+              },
+              {
+                "condition": "otherwise",
+                "id": "rlpzzks5j6sqxst89h6u60zo"
+              }
+            ]
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "en",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          { "name": "language", "value": "en", "type": "string" },
+          { "name": "hiring_jobs", "value": "", "type": "string" },
+          { "name": "job_id", "value": "", "type": "string" },
+          { "name": "job_detail", "value": "", "type": "string" },
+          { "name": "user_first_name", "value": "", "type": "string" },
+          { "name": "user_last_name", "value": "", "type": "string" },
+          { "name": "user_phone", "value": "", "type": "string" },
+          { "name": "user_email", "value": "", "type": "string" },
+          { "name": "linkedin", "value": "", "type": "string" },
+          { "name": "user_resume", "value": "", "type": "string" }
+        ]
+      }
+    ],
+    "subFlows": [],
+    "intents": [
+      {
+        "name": "Train For Job Application",
+        "referenceId": "dqk7hzkwxwnbt53bco83q2xe",
+        "trainType": "manual",
+        "trainDescription": [],
+        "intents": [
+          {
+            "intent": "not_have_link",
+            "prompts": ["no", "not", "not have", "don't", "dont"],
+            "answers": ["thanks"]
           }
         ],
         "entities": []

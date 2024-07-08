@@ -120,4 +120,4 @@ export const BOT_EVENT = {
   STOP_TYPING: 'stop-typing',
 }
 
-export const FLOWS_TEMPLATE = ['Shopping Online']
+export const FLOWS_TEMPLATE = ['Shopping Online', 'Apply Job']

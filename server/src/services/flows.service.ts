@@ -17,11 +17,11 @@ import {
   asc,
   desc,
   eq,
+  inArray,
   isNotNull,
   like,
   ne,
-  notInArray,
-  sql,
+  sql
 } from 'drizzle-orm'
 import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
@@ -51,7 +51,7 @@ export class FlowService {
 
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     if (
@@ -406,7 +406,7 @@ export class FlowService {
         and(
           eq(users.email, 'admin@gmail.com'),
           eq(flows.deleted, false),
-          notInArray(flows.name, FLOWS_TEMPLATE),
+          inArray(flows.name, FLOWS_TEMPLATE),
         ),
       )
       .leftJoin(users, and(eq(flows.userId, users.id)))
@@ -448,8 +448,8 @@ export class FlowService {
 
     const flowTemplate = Array.isArray(getFlowsTemplate)
       ? getFlowsTemplate.find(
-          (flow) => flow.mainFlow[0] && flow.mainFlow[0].name === templateName,
-        )
+        (flow) => flow.mainFlow[0] && flow.mainFlow[0].name === templateName,
+      )
       : {}
 
     const replaceTemplateFlowName = replaceFlowNameTemplate(
