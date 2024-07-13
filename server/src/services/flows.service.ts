@@ -26,7 +26,7 @@ import { StatusCodes } from 'http-status-codes'
 import { omit } from 'lodash'
 import { Inject, Service } from 'typedi'
 import {
-  replaceFlowNameTemplate,
+  addPrefixFlowName,
   replaceSubFlowIdStep,
 } from '../utils/flow-helper'
 import { ChannelService } from './channels.service'
@@ -387,7 +387,7 @@ export class FlowService {
 
     for (let flow of getFlows) {
       try {
-        await this.createFlowFromTemplate(flow, userId)
+        await this.createFlowFromTemplate(flow, userId, null)
       } catch (err) {
         logger.info('Init flow failed: ' + err.message)
       }
@@ -461,7 +461,7 @@ export class FlowService {
       )
       : {}
 
-    const replaceTemplateFlowName = replaceFlowNameTemplate(
+    const replaceTemplateFlowName = addPrefixFlowName(
       flowTemplate,
       flowName,
     )
@@ -469,6 +469,7 @@ export class FlowService {
     const newFlow = await this.createFlowFromTemplate(
       replaceTemplateFlowName,
       userId,
+      flowName,
     )
 
     if (!newFlow) {
@@ -481,7 +482,7 @@ export class FlowService {
     return newFlow
   }
 
-  async createFlowFromTemplate(flowTemplate: IFlowTemplate, userId: string) {
+  async createFlowFromTemplate(flowTemplate: IFlowTemplate, userId: string, flowName: string) {
     try {
       let { mainFlow, subFlows, intents } = flowTemplate
       const intentsData = await this.intentService.seedIntents(intents, userId)
