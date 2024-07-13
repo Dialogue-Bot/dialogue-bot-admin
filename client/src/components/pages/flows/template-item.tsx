@@ -34,6 +34,12 @@ const MAP_TEMPLATE_IMAGE: Record<string, any> = {
     description: 'template_descriptions.job_application',
     icon: '👩‍💼',
   },
+  University: {
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/dialoguebot-6674e.appspot.com/o/templates%2Fz5629324334269_9345c11fb592a16c6d93dd5885680711.jpg?alt=media&token=79cd0547-4e0a-4bd7-862a-e08fe0e6323e',
+    description: 'template_descriptions.university',
+    icon: '🎓',
+  },
 }
 
 type Props = {

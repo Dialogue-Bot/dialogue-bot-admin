@@ -21,6 +21,7 @@
   "title_template": "Templates",
   "template_descriptions": {
     "shopping": "Automation support for customer shopping online and check order.",
-    "job_application": "Automation support for job application process."
+    "job_application": "Automation support for job application process.",
+    "university": "Support for check admissions, information of university and score of subject for student."
   }
 }

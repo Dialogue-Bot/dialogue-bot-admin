@@ -21,6 +21,7 @@
   "title_template": "Mẫu",
   "template_descriptions": {
     "shopping": "Hỗ trợ tự động hóa cho việc mua sắm trực tuyến của khách hàng và kiểm tra đơn hàng.",
-    "job_application": "Hỗ trợ tự động hóa cho quá trình tuyển dụng."
+    "job_application": "Hỗ trợ tự động hóa cho quá trình tuyển dụng.",
+    "university": "Hỗ trợ kiểm tra tuyển sinh, thông tin trường và điểm các môn học cho sinh viên."
   }
 }
