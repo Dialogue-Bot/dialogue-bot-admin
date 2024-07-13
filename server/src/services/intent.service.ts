@@ -294,16 +294,24 @@ export class IntentService {
     return rows
   }
 
-  public async seedIntents(intents: IntentDTO[], userId: string) {
+  public async seedIntents(listIntents: IntentDTO[], userId: string) {
     let intentsData = [];
 
-    for (const intent of intents) {
+    for (const intent of listIntents) {
       try {
-        const newIntent = await this.create({ fields: intent, userId });
+        const existedIntent = await db.query.intents.findFirst({
+          where: and(eq(intents.referenceId, intent.referenceId), eq(intents.deleted, false)),
+        })
 
-        if (!newIntent) throw new Error('Train failed');
+        if (!existedIntent) {
+          const newIntent = await this.create({ fields: intent, userId });
 
-        intentsData.push({ name: newIntent.name, referenceId: newIntent.referenceId });
+          if (!newIntent) throw new Error('Train failed');
+
+          intentsData.push({ name: newIntent.name, referenceId: newIntent.referenceId });
+        } else {
+          intentsData.push({ name: existedIntent.name, referenceId: existedIntent.referenceId });
+        }
       } catch (err) {
         logger.info('Init intent failed: ' + err.message);
       }

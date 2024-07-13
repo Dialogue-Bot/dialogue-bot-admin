@@ -2,7 +2,7 @@ const replaceIntentStep = (oldData: any[], newData: any[]) => {
     const newDataMap = new Map();
 
     newData.forEach(item => {
-        newDataMap.set(item.name, item.id);
+        newDataMap.set(item.name, item.referenceId);
     });
 
     return oldData.map(item => {
@@ -11,6 +11,7 @@ const replaceIntentStep = (oldData: any[], newData: any[]) => {
         return item.data ? {
             ...item,
             data: {
+                ...item.data,
                 trainedData: newDataMap.get(item.data.trainedName) || item.data.trainedName,
             }
         } : {

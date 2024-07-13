@@ -484,7 +484,7 @@
                   "type": "text"
                 }
               },
-              "grammarType": "text",
+              "grammarType": "intent",
               "assignUserResponse": "language",
               "trainedData": "wa3u1bbjhgl95122x7u2v71t",
               "trainedName": "Shopping Online - Set Language Vietnam",
@@ -854,6 +854,10 @@
                   "type": "text"
                 }
               },
+              "grammarType": "intent",
+              "assignUserResponse": "language",
+              "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "otherwise",
@@ -931,7 +935,7 @@
                 "type": "text"
               }
             },
-            "grammarType": "text",
+            "grammarType": "intent",
             "assignUserResponse": "language",
             "trainedData": "wa3u1bbjhgl95122x7u2v71t",
             "trainedName": "Shopping Online - Set Language Vietnam",
@@ -1109,7 +1113,9 @@
                   }
                 ],
                 "message": "Would you like to continue using services?",
-                "type": "text"
+                "type": "intent",
+                "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+                "trainedName": "Shopping Online - Confirm"
               }
             },
             "nextActions": [
@@ -5054,6 +5060,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "equal",
@@ -5117,6 +5124,7 @@
               },
               "grammarType": "intent",
               "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+              "trainedName": "Shopping Online - Confirm",
               "nextActions": [
                 {
                   "condition": "equal",
@@ -5300,6 +5308,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "equal",
@@ -5342,6 +5351,7 @@
             },
             "grammarType": "intent",
             "trainedData": "qbiavyp3jx06rge1w2gu4laq",
+            "trainedName": "Shopping Online - Confirm",
             "nextActions": [
               {
                 "condition": "equal",
@@ -7840,6 +7850,7 @@
               },
               "assignUserResponse": "linkedin",
               "trainedData": "dqk7hzkwxwnbt53bco83q2xe",
+              "trainedName": "Train For Job Application",
               "nextActions": [
                 {
                   "condition": "equal",
@@ -8463,6 +8474,7 @@
             },
             "assignUserResponse": "linkedin",
             "trainedData": "dqk7hzkwxwnbt53bco83q2xe",
+            "trainedName": "Train For Job Application",
             "nextActions": [
               {
                 "condition": "equal",
@@ -8510,6 +8522,1387 @@
             "intent": "not_have_link",
             "prompts": ["no", "not", "not have", "don't", "dont"],
             "answers": ["thanks"]
+          }
+        ],
+        "entities": []
+      }
+    ]
+  },
+  {
+    "mainFlow": [
+      {
+        "name": "University",
+        "edges": [
+          {
+            "source": "start",
+            "sourceHandle": null,
+            "target": "frxddn46an0zkdlj4gifhq2b",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-start-frxddn46an0zkdlj4gifhq2b"
+          },
+          {
+            "source": "frxddn46an0zkdlj4gifhq2b",
+            "sourceHandle": null,
+            "target": "hx6lcc5ysguoazls4z764ihu",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-frxddn46an0zkdlj4gifhq2b-hx6lcc5ysguoazls4z764ihu"
+          },
+          {
+            "source": "hx6lcc5ysguoazls4z764ihu",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "ysnwf8ygj23pii4xip11mmxn",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-hx6lcc5ysguoazls4z764ihuprompt-and-collect-no-ysnwf8ygj23pii4xip11mmxn"
+          },
+          {
+            "source": "ysnwf8ygj23pii4xip11mmxn",
+            "sourceHandle": null,
+            "target": "g05h1xpkcwc9rq58ybudd6im",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-ysnwf8ygj23pii4xip11mmxn-g05h1xpkcwc9rq58ybudd6im"
+          },
+          {
+            "source": "hx6lcc5ysguoazls4z764ihu",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "o9aoy056s7zerf8idc0vqgit",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-hx6lcc5ysguoazls4z764ihuprompt-and-collect-yes-o9aoy056s7zerf8idc0vqgit"
+          },
+          {
+            "source": "o9aoy056s7zerf8idc0vqgit",
+            "sourceHandle": null,
+            "target": "s2l52mvhb4k69wgg7x878pvt",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-o9aoy056s7zerf8idc0vqgit-s2l52mvhb4k69wgg7x878pvt"
+          },
+          {
+            "source": "hx6lcc5ysguoazls4z764ihu",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "gnowgv10dfugda4abzvivltc",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-hx6lcc5ysguoazls4z764ihuprompt-and-collect-yes-gnowgv10dfugda4abzvivltc"
+          },
+          {
+            "source": "gnowgv10dfugda4abzvivltc",
+            "sourceHandle": null,
+            "target": "wpcd6riuaaprj40m58fmxxwp",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-gnowgv10dfugda4abzvivltc-wpcd6riuaaprj40m58fmxxwp"
+          },
+          {
+            "source": "hx6lcc5ysguoazls4z764ihu",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "fil3ihr5ueea64pjigcd6ce6",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-hx6lcc5ysguoazls4z764ihuprompt-and-collect-yes-fil3ihr5ueea64pjigcd6ce6"
+          },
+          {
+            "source": "fil3ihr5ueea64pjigcd6ce6",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "kdaiyjct94i9qceetqm2ogxa",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-fil3ihr5ueea64pjigcd6ce6prompt-and-collect-no-kdaiyjct94i9qceetqm2ogxa"
+          },
+          {
+            "source": "kdaiyjct94i9qceetqm2ogxa",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "cd6585s8vhp0tr3nkwesdx4o",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-kdaiyjct94i9qceetqm2ogxaprompt-and-collect-no-cd6585s8vhp0tr3nkwesdx4o"
+          },
+          {
+            "source": "kdaiyjct94i9qceetqm2ogxa",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "dt29fh0qwqhpo8i24krjwpav",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-kdaiyjct94i9qceetqm2ogxaprompt-and-collect-yes-dt29fh0qwqhpo8i24krjwpav"
+          },
+          {
+            "source": "fil3ihr5ueea64pjigcd6ce6",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "q1b750pelhnq5zaimydyzdnm",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-fil3ihr5ueea64pjigcd6ce6prompt-and-collect-yes-q1b750pelhnq5zaimydyzdnm"
+          },
+          {
+            "source": "q1b750pelhnq5zaimydyzdnm",
+            "sourceHandle": "http-request-success",
+            "target": "i9e8t103hggrp32tkatyde0s",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-q1b750pelhnq5zaimydyzdnmhttp-request-success-i9e8t103hggrp32tkatyde0s"
+          },
+          {
+            "source": "q1b750pelhnq5zaimydyzdnm",
+            "sourceHandle": "http-request-error",
+            "target": "hm55xfa16qxcof91y543znf7",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-q1b750pelhnq5zaimydyzdnmhttp-request-error-hm55xfa16qxcof91y543znf7"
+          },
+          {
+            "source": "i9e8t103hggrp32tkatyde0s",
+            "sourceHandle": "check-variables-no",
+            "target": "hm55xfa16qxcof91y543znf7",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-i9e8t103hggrp32tkatyde0scheck-variables-no-hm55xfa16qxcof91y543znf7"
+          },
+          {
+            "source": "hm55xfa16qxcof91y543znf7",
+            "sourceHandle": "prompt-and-collect-no",
+            "target": "rdtup1zqy2zmbgw103sxk6jz",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true,
+              "hover": false
+            },
+            "id": "reactflow__edge-hm55xfa16qxcof91y543znf7prompt-and-collect-no-rdtup1zqy2zmbgw103sxk6jz"
+          },
+          {
+            "source": "hm55xfa16qxcof91y543znf7",
+            "sourceHandle": "prompt-and-collect-yes",
+            "target": "z11q0o6ut5gch63sn8bur9ib",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-hm55xfa16qxcof91y543znf7prompt-and-collect-yes-z11q0o6ut5gch63sn8bur9ib"
+          },
+          {
+            "source": "i9e8t103hggrp32tkatyde0s",
+            "sourceHandle": "check-variables-yes",
+            "target": "v0xrt36jf9o7dmc3348ezjzr",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-i9e8t103hggrp32tkatyde0scheck-variables-yes-v0xrt36jf9o7dmc3348ezjzr"
+          },
+          {
+            "source": "v0xrt36jf9o7dmc3348ezjzr",
+            "sourceHandle": null,
+            "target": "m3zsvy0f8cmg53npgk2wneoo",
+            "targetHandle": null,
+            "type": "custom",
+            "data": {
+              "deletable": true
+            },
+            "id": "reactflow__edge-v0xrt36jf9o7dmc3348ezjzr-m3zsvy0f8cmg53npgk2wneoo"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "start",
+            "type": "start",
+            "position": {
+              "x": 100,
+              "y": 100
+            },
+            "data": {
+              "label": "Start",
+              "action": "start",
+              "id": "start",
+              "name": "Start",
+              "nextAction": "frxddn46an0zkdlj4gifhq2b"
+            },
+            "deletable": false,
+            "draggable": false,
+            "width": 70,
+            "height": 32
+          },
+          {
+            "id": "frxddn46an0zkdlj4gifhq2b",
+            "position": {
+              "x": 84.79999999999998,
+              "y": 204.8
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "frxddn46an0zkdlj4gifhq2b",
+              "name": "Xin chào",
+              "contents": {
+                "vi": {
+                  "message": "Xin chào, tôi là Dialogue Bot của trường Đại học Giao Thông Vận Tải thành phố Hồ Chí Minh",
+                  "type": "text"
+                }
+              },
+              "nextAction": "hx6lcc5ysguoazls4z764ihu"
+            },
+            "width": 101,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 84.79999999999998,
+              "y": 204.8
+            },
+            "dragging": false
+          },
+          {
+            "id": "hx6lcc5ysguoazls4z764ihu",
+            "position": {
+              "x": 75.2,
+              "y": 312.8
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "hx6lcc5ysguoazls4z764ihu",
+              "name": "Hỏi dịch vụ",
+              "contents": {
+                "vi": {
+                  "buttons": [
+                    {
+                      "label": "Thông tin tuyển sinh",
+                      "value": "admissions",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Thông tin trường",
+                      "value": "What's UTH",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Xem điểm học phần",
+                      "value": "score of subject",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Tôi có thể giúp được gì cho bạn?",
+                  "type": "text"
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "rzw3hk4spsyq2m0zfmx15aec",
+              "trainedName": "University - Services",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "ysnwf8ygj23pii4xip11mmxn"
+                },
+                {
+                  "condition": "equal",
+                  "id": "o9aoy056s7zerf8idc0vqgit",
+                  "value": "admissions"
+                },
+                {
+                  "condition": "equal",
+                  "id": "gnowgv10dfugda4abzvivltc",
+                  "value": "information_university"
+                },
+                {
+                  "condition": "equal",
+                  "id": "fil3ihr5ueea64pjigcd6ce6",
+                  "value": "check_score"
+                }
+              ]
+            },
+            "width": 120,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 75.2,
+              "y": 312.8
+            },
+            "dragging": false
+          },
+          {
+            "id": "ysnwf8ygj23pii4xip11mmxn",
+            "position": {
+              "x": -507.2,
+              "y": 465.6
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "ysnwf8ygj23pii4xip11mmxn",
+              "name": "Không hỗ trợ dịch vụ",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Rất tiếc, tôi không hỗ trợ dịch vụ này, vui lòng thử lại",
+                  "type": "text"
+                }
+              },
+              "nextAction": "g05h1xpkcwc9rq58ybudd6im"
+            },
+            "width": 189,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": -507.2,
+              "y": 465.6
+            },
+            "dragging": false
+          },
+          {
+            "id": "g05h1xpkcwc9rq58ybudd6im",
+            "position": {
+              "x": -495.2,
+              "y": 583.2
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "g05h1xpkcwc9rq58ybudd6im",
+              "name": "Trở về hỏi dịch vụ",
+              "contents": {},
+              "gotoId": "hx6lcc5ysguoazls4z764ihu"
+            },
+            "width": 164,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": -495.2,
+              "y": 583.2
+            },
+            "dragging": false
+          },
+          {
+            "id": "o9aoy056s7zerf8idc0vqgit",
+            "position": {
+              "x": 76.79999999999998,
+              "y": 570.4
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "o9aoy056s7zerf8idc0vqgit",
+              "name": "Thông tin tuyển sinh",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Trường đã có thông tin tuyển sinh khóa 2024😁.\nĐể biết thêm thông tin chi tiết bạn vui lòng truy cập: https://tuyensinh.ut.edu.vn",
+                  "type": "text"
+                }
+              },
+              "nextAction": "s2l52mvhb4k69wgg7x878pvt"
+            },
+            "width": 185,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 76.79999999999998,
+              "y": 570.4
+            },
+            "dragging": false
+          },
+          {
+            "id": "s2l52mvhb4k69wgg7x878pvt",
+            "position": {
+              "x": 87.19999999999999,
+              "y": 682.4
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "s2l52mvhb4k69wgg7x878pvt",
+              "name": "Trở về hỏi dịch vụ",
+              "contents": {},
+              "gotoId": "hx6lcc5ysguoazls4z764ihu"
+            },
+            "width": 164,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 87.19999999999999,
+              "y": 682.4
+            },
+            "dragging": false
+          },
+          {
+            "id": "gnowgv10dfugda4abzvivltc",
+            "position": {
+              "x": 496,
+              "y": 573.6
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "gnowgv10dfugda4abzvivltc",
+              "name": "Thông tin trường",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Trường Đại học Giao thông vận tải Thành phố Hồ Chí Minh (tiếng Anh: University of Transport Ho Chi Minh City – UTH) là một là một đơn vị giáo dục công lập trực thuộc Bộ Giao thông Vận tải. Trường Đại học Giao thông Vận tải Thành phố Hồ Chí Minh là trường đại học đa ngành thuộc lĩnh vực giao thông vận tải lớn nhất phía Nam Việt Nam. Trường có nhiệm vụ đào tạo nguồn nhân lực chất lượng cao cho lĩnh vực giao thông vận tải như hàng hải, hàng không, đường bộ, đường sông, đường sắt.\n\nNăm 2023, Trường là một trong số các trường đứng đầu khu vực phía Nam và Việt Nam về đào tạo các ngành kỹ thuật ô tô, cơ khí, xây dựng, CNTT và logistics. Trường đã được hệ thống Đại học Quốc gia kiểm định và chứng nhận về chất lượng đào tạo của mình.",
+                  "type": "text"
+                }
+              },
+              "nextAction": "wpcd6riuaaprj40m58fmxxwp"
+            },
+            "width": 161,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 496,
+              "y": 573.6
+            },
+            "dragging": false
+          },
+          {
+            "id": "wpcd6riuaaprj40m58fmxxwp",
+            "position": {
+              "x": 494.4,
+              "y": 680.8000000000001
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "wpcd6riuaaprj40m58fmxxwp",
+              "name": "Trở về hỏi dịch vụ",
+              "contents": {},
+              "gotoId": "hx6lcc5ysguoazls4z764ihu"
+            },
+            "width": 164,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 494.4,
+              "y": 680.8000000000001
+            },
+            "dragging": false
+          },
+          {
+            "id": "fil3ihr5ueea64pjigcd6ce6",
+            "position": {
+              "x": 1216.8,
+              "y": 574.4
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "fil3ihr5ueea64pjigcd6ce6",
+              "name": "Xem điểm",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Cho tôi xin mã sinh viên của bạn",
+                  "type": "text",
+                  "repeatMessage": "Mã sinh viên không hợp lệ, vui lòng thử lại"
+                }
+              },
+              "grammarType": "number",
+              "assignUserResponse": "student_id",
+              "repeat": 2,
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "kdaiyjct94i9qceetqm2ogxa"
+                },
+                {
+                  "condition": "exist",
+                  "id": "q1b750pelhnq5zaimydyzdnm",
+                  "value": true
+                }
+              ]
+            },
+            "width": 111,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1216.8,
+              "y": 574.4
+            },
+            "dragging": false
+          },
+          {
+            "id": "kdaiyjct94i9qceetqm2ogxa",
+            "position": {
+              "x": 892.8000000000001,
+              "y": 693.5999999999999
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "kdaiyjct94i9qceetqm2ogxa",
+              "name": "Sai mã sinh viên",
+              "contents": {
+                "vi": {
+                  "buttons": [
+                    {
+                      "label": "Tôi có",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Không",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Rất tiếc, quá trình nhập mã sinh viên của bạn không đúng, bạn có muốn thử lại không?",
+                  "type": "text"
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "uf8q3ffe6emj2nkqcr45lk39",
+              "trainedName": "University - Confirm",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "cd6585s8vhp0tr3nkwesdx4o"
+                },
+                {
+                  "condition": "equal",
+                  "id": "dt29fh0qwqhpo8i24krjwpav",
+                  "value": "confirm"
+                }
+              ]
+            },
+            "width": 153,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 892.8000000000001,
+              "y": 693.5999999999999
+            },
+            "dragging": false
+          },
+          {
+            "id": "cd6585s8vhp0tr3nkwesdx4o",
+            "position": {
+              "x": 748.8,
+              "y": 836.3999999999999
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "cd6585s8vhp0tr3nkwesdx4o",
+              "name": "Cảm ơn",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Cảm ơn bạn đã sử dụng dịch vụ. 💝",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 95,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 748.8,
+              "y": 836.3999999999999
+            },
+            "dragging": false
+          },
+          {
+            "id": "dt29fh0qwqhpo8i24krjwpav",
+            "position": {
+              "x": 1069.2,
+              "y": 832.8
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "dt29fh0qwqhpo8i24krjwpav",
+              "name": "Trở về xem điểm",
+              "contents": {},
+              "gotoId": "fil3ihr5ueea64pjigcd6ce6"
+            },
+            "width": 156,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1069.2,
+              "y": 832.8
+            },
+            "dragging": false
+          },
+          {
+            "id": "q1b750pelhnq5zaimydyzdnm",
+            "position": {
+              "x": 2060.134256202871,
+              "y": 678.3748534935833
+            },
+            "type": "http-request",
+            "data": {
+              "label": "HTTP Request",
+              "action": "http-request",
+              "id": "q1b750pelhnq5zaimydyzdnm",
+              "name": "Lấy điểm sinh viên",
+              "contents": {},
+              "httpRequest": {
+                "method": "GET",
+                "url": "https://6679c91718a459f639516f41.mockapi.io/Score/{student_id}",
+                "headers": [],
+                "params": [],
+                "body": []
+              },
+              "assignUserResponse": "student_scores",
+              "nextActions": [
+                {
+                  "condition": "success",
+                  "id": "i9e8t103hggrp32tkatyde0s"
+                },
+                {
+                  "condition": "failure",
+                  "id": "hm55xfa16qxcof91y543znf7"
+                }
+              ]
+            },
+            "width": 170,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 2060.134256202871,
+              "y": 678.3748534935833
+            },
+            "dragging": false
+          },
+          {
+            "id": "i9e8t103hggrp32tkatyde0s",
+            "position": {
+              "x": 2290.805326828244,
+              "y": 840.2868407211251
+            },
+            "type": "check-variables",
+            "data": {
+              "label": "Check Variables",
+              "action": "check-variables",
+              "id": "i9e8t103hggrp32tkatyde0s",
+              "name": "Kiểm tra tồn tại điểm",
+              "contents": {},
+              "variable_type": "input",
+              "variableInput": "{student_scores->scores}",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "hm55xfa16qxcof91y543znf7"
+                },
+                {
+                  "condition": "exist",
+                  "id": "v0xrt36jf9o7dmc3348ezjzr",
+                  "value": true
+                }
+              ]
+            },
+            "width": 189,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 2290.805326828244,
+              "y": 840.2868407211251
+            },
+            "dragging": false
+          },
+          {
+            "id": "hm55xfa16qxcof91y543znf7",
+            "position": {
+              "x": 1621.306791532973,
+              "y": 1051.6102291505422
+            },
+            "type": "prompt-and-collect",
+            "data": {
+              "label": "Prompt & Collect",
+              "action": "prompt-and-collect",
+              "id": "hm55xfa16qxcof91y543znf7",
+              "name": "Điểm không tồn tại",
+              "contents": {
+                "vi": {
+                  "buttons": [
+                    {
+                      "label": "Tôi có",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Tôi muốn thử lại",
+                      "value": "yes",
+                      "type": "postback"
+                    },
+                    {
+                      "label": "Không",
+                      "value": "no",
+                      "type": "postback"
+                    }
+                  ],
+                  "message": "Rất tiếc, chúng tôi không tìm thấy điểm môn học với mã sinh viên của bạn, bạn có muốn thử lại không?",
+                  "type": "text"
+                }
+              },
+              "grammarType": "intent",
+              "trainedData": "uf8q3ffe6emj2nkqcr45lk39",
+              "trainedName": "University - Confirm",
+              "nextActions": [
+                {
+                  "condition": "otherwise",
+                  "id": "rdtup1zqy2zmbgw103sxk6jz"
+                },
+                {
+                  "condition": "equal",
+                  "id": "z11q0o6ut5gch63sn8bur9ib",
+                  "value": "confirm"
+                }
+              ]
+            },
+            "width": 177,
+            "height": 32,
+            "selected": true,
+            "positionAbsolute": {
+              "x": 1621.306791532973,
+              "y": 1051.6102291505422
+            },
+            "dragging": false
+          },
+          {
+            "id": "rdtup1zqy2zmbgw103sxk6jz",
+            "position": {
+              "x": 1435.306791532973,
+              "y": 1207.6102291505422
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "rdtup1zqy2zmbgw103sxk6jz",
+              "name": "Cảm ơn",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Cảm ơn bạn đã sử dụng dịch vụ. 💝",
+                  "type": "text"
+                }
+              }
+            },
+            "width": 95,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1435.306791532973,
+              "y": 1207.6102291505422
+            },
+            "dragging": false
+          },
+          {
+            "id": "z11q0o6ut5gch63sn8bur9ib",
+            "position": {
+              "x": 1831.306791532973,
+              "y": 1193.6102291505422
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "z11q0o6ut5gch63sn8bur9ib",
+              "name": "Trở về xem điểm",
+              "contents": {},
+              "gotoId": "fil3ihr5ueea64pjigcd6ce6"
+            },
+            "width": 156,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 1831.306791532973,
+              "y": 1193.6102291505422
+            },
+            "dragging": false
+          },
+          {
+            "id": "v0xrt36jf9o7dmc3348ezjzr",
+            "position": {
+              "x": 2735.306791532973,
+              "y": 1041.6102291505422
+            },
+            "type": "message",
+            "data": {
+              "label": "Message",
+              "action": "message",
+              "id": "v0xrt36jf9o7dmc3348ezjzr",
+              "name": "Hiển thị điểm",
+              "contents": {
+                "vi": {
+                  "buttons": [],
+                  "message": "Điểm môn học đến hiện tại của bạn là:\n{student_scores->scores}",
+                  "type": "text"
+                }
+              },
+              "nextAction": "m3zsvy0f8cmg53npgk2wneoo"
+            },
+            "width": 135,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 2735.306791532973,
+              "y": 1041.6102291505422
+            },
+            "dragging": false
+          },
+          {
+            "id": "m3zsvy0f8cmg53npgk2wneoo",
+            "position": {
+              "x": 2721.306791532973,
+              "y": 1187.6102291505422
+            },
+            "type": "goto",
+            "data": {
+              "label": "Go To",
+              "action": "goto",
+              "id": "m3zsvy0f8cmg53npgk2wneoo",
+              "name": "Trở về hỏi dịch vụ",
+              "contents": {},
+              "gotoId": "hx6lcc5ysguoazls4z764ihu"
+            },
+            "width": 164,
+            "height": 32,
+            "selected": false,
+            "positionAbsolute": {
+              "x": 2721.306791532973,
+              "y": 1187.6102291505422
+            },
+            "dragging": false
+          }
+        ],
+        "settings": [
+          {
+            "type": "language",
+            "value": "vi",
+            "default": true,
+            "label": "Language"
+          }
+        ],
+        "variables": [
+          {
+            "name": "language",
+            "value": "en",
+            "type": "string"
+          },
+          {
+            "name": "student_id",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "name": "student_scores",
+            "value": "",
+            "type": "string"
+          }
+        ],
+        "flows": [
+          {
+            "label": "Start",
+            "action": "start",
+            "id": "start",
+            "name": "Start",
+            "nextAction": "frxddn46an0zkdlj4gifhq2b"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "frxddn46an0zkdlj4gifhq2b",
+            "name": "Xin chào",
+            "contents": {
+              "vi": {
+                "message": "Xin chào, tôi là Dialogue Bot của trường Đại học Giao Thông Vận Tải thành phố Hồ Chí Minh",
+                "type": "text"
+              }
+            },
+            "nextAction": "hx6lcc5ysguoazls4z764ihu"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "hx6lcc5ysguoazls4z764ihu",
+            "name": "Hỏi dịch vụ",
+            "contents": {
+              "vi": {
+                "buttons": [
+                  {
+                    "label": "Thông tin tuyển sinh",
+                    "value": "admissions",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Thông tin trường",
+                    "value": "What's UTH",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Xem điểm học phần",
+                    "value": "score of subject",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Tôi có thể giúp được gì cho bạn?",
+                "type": "text"
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "rzw3hk4spsyq2m0zfmx15aec",
+            "trainedName": "University - Service",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "ysnwf8ygj23pii4xip11mmxn"
+              },
+              {
+                "condition": "equal",
+                "id": "o9aoy056s7zerf8idc0vqgit",
+                "value": "admissions"
+              },
+              {
+                "condition": "equal",
+                "id": "gnowgv10dfugda4abzvivltc",
+                "value": "information_university"
+              },
+              {
+                "condition": "equal",
+                "id": "fil3ihr5ueea64pjigcd6ce6",
+                "value": "check_score"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "ysnwf8ygj23pii4xip11mmxn",
+            "name": "Không hỗ trợ dịch vụ",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Rất tiếc, tôi không hỗ trợ dịch vụ này, vui lòng thử lại",
+                "type": "text"
+              }
+            },
+            "nextAction": "g05h1xpkcwc9rq58ybudd6im"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "g05h1xpkcwc9rq58ybudd6im",
+            "name": "Trở về hỏi dịch vụ",
+            "contents": {},
+            "gotoId": "hx6lcc5ysguoazls4z764ihu"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "o9aoy056s7zerf8idc0vqgit",
+            "name": "Thông tin tuyển sinh",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Trường đã có thông tin tuyển sinh khóa 2024😁.\nĐể biết thêm thông tin chi tiết bạn vui lòng truy cập: https://tuyensinh.ut.edu.vn",
+                "type": "text"
+              }
+            },
+            "nextAction": "s2l52mvhb4k69wgg7x878pvt"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "s2l52mvhb4k69wgg7x878pvt",
+            "name": "Trở về hỏi dịch vụ",
+            "contents": {},
+            "gotoId": "hx6lcc5ysguoazls4z764ihu"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "gnowgv10dfugda4abzvivltc",
+            "name": "Thông tin trường",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Trường Đại học Giao thông vận tải Thành phố Hồ Chí Minh (tiếng Anh: University of Transport Ho Chi Minh City – UTH) là một là một đơn vị giáo dục công lập trực thuộc Bộ Giao thông Vận tải. Trường Đại học Giao thông Vận tải Thành phố Hồ Chí Minh là trường đại học đa ngành thuộc lĩnh vực giao thông vận tải lớn nhất phía Nam Việt Nam. Trường có nhiệm vụ đào tạo nguồn nhân lực chất lượng cao cho lĩnh vực giao thông vận tải như hàng hải, hàng không, đường bộ, đường sông, đường sắt.\n\nNăm 2023, Trường là một trong số các trường đứng đầu khu vực phía Nam và Việt Nam về đào tạo các ngành kỹ thuật ô tô, cơ khí, xây dựng, CNTT và logistics. Trường đã được hệ thống Đại học Quốc gia kiểm định và chứng nhận về chất lượng đào tạo của mình.",
+                "type": "text"
+              }
+            },
+            "nextAction": "wpcd6riuaaprj40m58fmxxwp"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "wpcd6riuaaprj40m58fmxxwp",
+            "name": "Trở về hỏi dịch vụ",
+            "contents": {},
+            "gotoId": "hx6lcc5ysguoazls4z764ihu"
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "fil3ihr5ueea64pjigcd6ce6",
+            "name": "Xem điểm",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Cho tôi xin mã sinh viên của bạn",
+                "type": "text",
+                "repeatMessage": "Mã sinh viên không hợp lệ, vui lòng thử lại"
+              }
+            },
+            "grammarType": "number",
+            "assignUserResponse": "student_id",
+            "repeat": 2,
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "kdaiyjct94i9qceetqm2ogxa"
+              },
+              {
+                "condition": "exist",
+                "id": "q1b750pelhnq5zaimydyzdnm",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "kdaiyjct94i9qceetqm2ogxa",
+            "name": "Sai mã sinh viên",
+            "contents": {
+              "vi": {
+                "buttons": [
+                  {
+                    "label": "Tôi có",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Không",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Rất tiếc, quá trình nhập mã sinh viên của bạn không đúng, bạn có muốn thử lại không?",
+                "type": "text"
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "uf8q3ffe6emj2nkqcr45lk39",
+            "trainedName": "University - Confirm",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "cd6585s8vhp0tr3nkwesdx4o"
+              },
+              {
+                "condition": "equal",
+                "id": "dt29fh0qwqhpo8i24krjwpav",
+                "value": "confirm"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "cd6585s8vhp0tr3nkwesdx4o",
+            "name": "Cảm ơn",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Cảm ơn bạn đã sử dụng dịch vụ. 💝",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "dt29fh0qwqhpo8i24krjwpav",
+            "name": "Trở về xem điểm",
+            "contents": {},
+            "gotoId": "fil3ihr5ueea64pjigcd6ce6"
+          },
+          {
+            "label": "HTTP Request",
+            "action": "http-request",
+            "id": "q1b750pelhnq5zaimydyzdnm",
+            "name": "Lấy điểm sinh viên",
+            "contents": {},
+            "httpRequest": {
+              "method": "GET",
+              "url": "https://6679c91718a459f639516f41.mockapi.io/Score/{student_id}",
+              "headers": [],
+              "params": [],
+              "body": []
+            },
+            "assignUserResponse": "student_scores",
+            "nextActions": [
+              {
+                "condition": "success",
+                "id": "i9e8t103hggrp32tkatyde0s"
+              },
+              {
+                "condition": "failure",
+                "id": "hm55xfa16qxcof91y543znf7"
+              }
+            ]
+          },
+          {
+            "label": "Check Variables",
+            "action": "check-variables",
+            "id": "i9e8t103hggrp32tkatyde0s",
+            "name": "Kiểm tra tồn tại điểm",
+            "contents": {},
+            "variable_type": "input",
+            "variableInput": "{student_scores->scores}",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "hm55xfa16qxcof91y543znf7"
+              },
+              {
+                "condition": "exist",
+                "id": "v0xrt36jf9o7dmc3348ezjzr",
+                "value": true
+              }
+            ]
+          },
+          {
+            "label": "Prompt & Collect",
+            "action": "prompt-and-collect",
+            "id": "hm55xfa16qxcof91y543znf7",
+            "name": "Điểm không tồn tại",
+            "contents": {
+              "vi": {
+                "buttons": [
+                  {
+                    "label": "Tôi có",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Tôi muốn thử lại",
+                    "value": "yes",
+                    "type": "postback"
+                  },
+                  {
+                    "label": "Không",
+                    "value": "no",
+                    "type": "postback"
+                  }
+                ],
+                "message": "Rất tiếc, chúng tôi không tìm thấy điểm môn học với mã sinh viên của bạn, bạn có muốn thử lại không?",
+                "type": "text"
+              }
+            },
+            "grammarType": "intent",
+            "trainedData": "uf8q3ffe6emj2nkqcr45lk39",
+            "trainedName": "University - Confirm",
+            "nextActions": [
+              {
+                "condition": "otherwise",
+                "id": "rdtup1zqy2zmbgw103sxk6jz"
+              },
+              {
+                "condition": "equal",
+                "id": "z11q0o6ut5gch63sn8bur9ib",
+                "value": "confirm"
+              }
+            ]
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "rdtup1zqy2zmbgw103sxk6jz",
+            "name": "Cảm ơn",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Cảm ơn bạn đã sử dụng dịch vụ. 💝",
+                "type": "text"
+              }
+            }
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "z11q0o6ut5gch63sn8bur9ib",
+            "name": "Trở về xem điểm",
+            "contents": {},
+            "gotoId": "fil3ihr5ueea64pjigcd6ce6"
+          },
+          {
+            "label": "Message",
+            "action": "message",
+            "id": "v0xrt36jf9o7dmc3348ezjzr",
+            "name": "Hiển thị điểm",
+            "contents": {
+              "vi": {
+                "buttons": [],
+                "message": "Điểm môn học đến hiện tại của bạn là:\n{student_scores->scores}",
+                "type": "text"
+              }
+            },
+            "nextAction": "m3zsvy0f8cmg53npgk2wneoo"
+          },
+          {
+            "label": "Go To",
+            "action": "goto",
+            "id": "m3zsvy0f8cmg53npgk2wneoo",
+            "name": "Trở về hỏi dịch vụ",
+            "contents": {},
+            "gotoId": "hx6lcc5ysguoazls4z764ihu"
+          }
+        ],
+        "channelIds": []
+      }
+    ],
+    "subFlows": [],
+    "intents": [
+      {
+        "name": "University - Services",
+        "referenceId": "rzw3hk4spsyq2m0zfmx15aec",
+        "trainType": "manual",
+        "trainDescription": [],
+        "intents": [
+          {
+            "intent": "admissions",
+            "prompts": [
+              "Please provide admissions information",
+              "Can I get details on admissions?",
+              "I'd like to know more about admissions?",
+              "Could you give me the admission details",
+              "I'd appreciate information on admissions"
+            ],
+            "answers": ["admissions"]
+          },
+          {
+            "intent": "information_university",
+            "prompts": [
+              "What is UTH?",
+              "Could you provide information about UTH?",
+              "I'd like to know more about UTH's programs",
+              "Can you tell me about UTH's admissions process?",
+              "What are the requirements for enrolling at UTH?",
+              "I'd appreciate details on UTH's campus facilities",
+              "Can you give me an overview of UTH's academic offerings?"
+            ],
+            "answers": ["information university"]
+          },
+          {
+            "intent": "check_score",
+            "prompts": [
+              "I want to check my score",
+              "Can you tell me my score for subjects",
+              "score",
+              "What is my score",
+              "What's my grade in a subject",
+              "my mask for the subject",
+              "could you give me my score in the subject",
+              "Score of subject"
+            ],
+            "answers": ["Check Score"]
+          }
+        ],
+        "entities": []
+      },
+      {
+        "name": "Univesity - Confirm",
+        "referenceId": "uf8q3ffe6emj2nkqcr45lk39",
+        "trainType": "manual",
+        "trainDescription": [],
+        "intents": [
+          {
+            "intent": "confirm",
+            "prompts": [
+              "Yes",
+              "I agree",
+              "I am sure",
+              "I confirm",
+              "please proceed",
+              "true",
+              "yes",
+              "sure",
+              "Sure",
+              "yes please",
+              "ok",
+              "i'm sure",
+              "I have",
+              "Ok",
+              "have",
+              "Yup"
+            ],
+            "answers": ["Confirm"]
           }
         ],
         "entities": []

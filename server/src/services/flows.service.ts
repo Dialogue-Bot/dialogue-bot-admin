@@ -50,7 +50,7 @@ export class FlowService {
 
   constructor(
     @Inject(LOCALE_KEY) private readonly localeService: LocaleService,
-  ) {}
+  ) { }
 
   public async create(fields: TNewFlow) {
     if (
@@ -83,7 +83,7 @@ export class FlowService {
       .insert(flows)
       .values({
         ...fields,
-        settings: [
+        settings: fields.settings ?? [
           {
             type: 'language',
             value: 'en',
@@ -457,8 +457,8 @@ export class FlowService {
 
     const flowTemplate = Array.isArray(getFlowsTemplate)
       ? getFlowsTemplate.find(
-          (flow) => flow.mainFlow[0] && flow.mainFlow[0].name === templateName,
-        )
+        (flow) => flow.mainFlow[0] && flow.mainFlow[0].name === templateName,
+      )
       : {}
 
     const replaceTemplateFlowName = replaceFlowNameTemplate(

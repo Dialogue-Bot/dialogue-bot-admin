@@ -82,7 +82,8 @@ export class WebChannel extends BaseChannel {
 
       console.log(
         '[WEB] Bot send message to User - userId: ' + userId +
-        ' - type: ' + type + ' - message: ' + result.message +
+        ' - type: ' + type +
+        (result.message && ' - message: ' + result.message) +
         (channelData && ' - channelData: ' + JSON.stringify(channelData))
       )
       if (App.io) {
