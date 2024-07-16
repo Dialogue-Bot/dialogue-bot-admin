@@ -168,7 +168,8 @@ export const MessageDialogContent = () => {
         )}
       </div>
       {messageType !== EMessageTypes.LIST_CARD &&
-        messageType !== EMessageTypes.IMAGE && (
+        messageType !== EMessageTypes.IMAGE &&
+        messageType !== EMessageTypes.TEXT && (
           <InputButtons
             defaultValue={{
               buttons:
