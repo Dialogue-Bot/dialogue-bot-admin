@@ -487,13 +487,20 @@ export class FlowService {
       let { mainFlow, subFlows, intents } = flowTemplate
       const intentsData = await this.intentService.seedIntents(intents, userId)
 
+      let renewSubFlows = [];
+
       subFlows.forEach((subFlow: FlowDTO) => {
         let { nodes, flows } = subFlow
         nodes = replaceIntentStep(nodes, intentsData)
         flows = replaceIntentStep(flows, intentsData)
+        renewSubFlows.push({
+          ...subFlow,
+          nodes,
+          flows
+        })
       })
 
-      const newSubFlows = await this.createFlows(subFlows, userId)
+      const newSubFlows = await this.createFlows(renewSubFlows, userId)
 
       let { nodes, flows } = mainFlow[0]
       nodes = replaceSubFlowIdStep(nodes, newSubFlows)
