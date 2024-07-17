@@ -78,15 +78,23 @@ export class LineChannel extends BaseChannel {
     try {
       const { destination, events } = req.body
 
-      if (!(events && events[0] && (events[0].type == 'message' || events[0].type == 'postback'))) return
+      if (
+        !(
+          events &&
+          events[0] &&
+          (events[0].type == 'message' || events[0].type == 'postback')
+        )
+      )
+        return
 
       const lineUserId = await this.getLineUserID()
 
-      if (destination != lineUserId) throw new Error('destination not match user Id')
+      if (destination != lineUserId)
+        throw new Error('destination not match user Id')
 
       const { message, source, postback } = events[0]
 
-      const userInput = message ? message.text : (postback ? postback.data : '');
+      const userInput = message ? message.text : postback ? postback.data : ''
 
       if (!userInput) throw new Error('User input can not empty')
 
@@ -98,7 +106,7 @@ export class LineChannel extends BaseChannel {
       })
     } catch (err) {
       logger.info('[LIN] prepareMessage failed: ' + err.message || err)
-      return;
+      return
     }
   }
 
@@ -106,8 +114,10 @@ export class LineChannel extends BaseChannel {
     try {
       if (!type) throw new Error('Type can not be empty')
 
-      if (type === BOT_EVENT.MESSAGE) return await this.sendTextMessageToUser({ userId, text, channelData })
-      else if (type === BOT_EVENT.IMAGE) return this.sendImageToUser({ userId, channelData })
+      if (type === BOT_EVENT.MESSAGE)
+        return await this.sendTextMessageToUser({ userId, text, channelData })
+      else if (type === BOT_EVENT.IMAGE)
+        return await this.sendImageToUser({ userId, channelData })
     } catch (err) {
       logger.info('[LIN] sendMessageToUser failed: ' + err.message || err)
     }
@@ -116,8 +126,11 @@ export class LineChannel extends BaseChannel {
 
   async sendTextMessageToUser({ userId, text, channelData }) {
     try {
-      if (Array.isArray(channelData.extendData) && channelData.extendData.length) {
-        return this.detectTemple({
+      if (
+        Array.isArray(channelData.extendData) &&
+        channelData.extendData.length
+      ) {
+        return await this.detectTemple({
           userId,
           type: channelData.type,
           extendData: channelData.extendData,
@@ -139,9 +152,7 @@ export class LineChannel extends BaseChannel {
         },
       })
 
-      logger.info(
-        `[LIN] Bot send message to User ${userId} - Message: ${text}`,
-      )
+      logger.info(`[LIN] Bot send message to User ${userId} - Message: ${text}`)
     } catch (e) {
       logger.info(
         `[LIN] Bot send message to User ${userId} failed - Error: ${e.message}`,
@@ -151,13 +162,20 @@ export class LineChannel extends BaseChannel {
 
   async sendImageToUser({ userId, channelData }) {
     try {
-      if (!channelData || !channelData.imageUrl) throw new Error('Image can not be empty')
+      if (!channelData || !channelData.imageUrl)
+        throw new Error('Image can not be empty')
       await axios({
         method: 'POST',
         url: this.linePostURL + '/message/push',
         data: {
           to: userId,
-          messages: [{ type: 'image', originalContentUrl: channelData.imageUrl, previewImageUrl: channelData.imageUrl }],
+          messages: [
+            {
+              type: 'image',
+              originalContentUrl: channelData.imageUrl,
+              previewImageUrl: channelData.imageUrl,
+            },
+          ],
         },
         headers: {
           Authorization: 'Bearer ' + this.pageToken,
@@ -180,7 +198,11 @@ export class LineChannel extends BaseChannel {
         return await this.sendGenericTemplate({ userId, extendData })
         break
       case 'list-button':
-        return await this.sendQuickReplies({ userId, buttons: extendData, text })
+        return await this.sendQuickReplies({
+          userId,
+          buttons: extendData,
+          text,
+        })
       default:
         logger.info(`[LIN] Line does not support template type ${type}`)
         break
@@ -259,8 +281,8 @@ export class LineChannel extends BaseChannel {
               text,
               quickReply: {
                 items: buttons,
-              }
-            }
+              },
+            },
           ],
         },
         headers: {
