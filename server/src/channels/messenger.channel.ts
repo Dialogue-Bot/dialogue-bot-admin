@@ -64,7 +64,7 @@ export class MessengerChannel extends BaseChannel {
 
       pageEntry.messaging.forEach(async (messagingEvent) => {
         if (messagingEvent.messaging_customer_information)
-          return this.sendAddressToBot({
+          return await this.sendAddressToBot({
             userId: messagingEvent.sender.id,
             address:
               messagingEvent.messaging_customer_information.screens[0]
@@ -79,11 +79,13 @@ export class MessengerChannel extends BaseChannel {
         const payload =
           messagingEvent.postback && messagingEvent.postback.payload
         const quick_reply =
-          messagingEvent.message && messagingEvent.message.quick_reply && messagingEvent.message.quick_reply.payload
+          messagingEvent.message &&
+          messagingEvent.message.quick_reply &&
+          messagingEvent.message.quick_reply.payload
 
         if (senderId == this.contactId) return //Agent replied to user => skip
 
-        return this.postMessageToBot({
+        return await this.postMessageToBot({
           userId: senderId,
           message: quick_reply || messageText || payload,
           data: null,
@@ -93,8 +95,8 @@ export class MessengerChannel extends BaseChannel {
     })
   }
 
-  sendAddressToBot({ userId, address }) {
-    return this.postMessageToBot({
+  async sendAddressToBot({ userId, address }) {
+    return await this.postMessageToBot({
       userId,
       message: 'ADDRESS',
       data: { USER_INFORMATION: arrayToObj(address) },
@@ -106,8 +108,10 @@ export class MessengerChannel extends BaseChannel {
     try {
       if (!type) throw new Error('Type can not be empty')
 
-      if (type === BOT_EVENT.MESSAGE) return await this.sendTextMessageToUser({ userId, text, channelData })
-      else if (type === BOT_EVENT.IMAGE) return this.sendImageToUser({ userId, channelData })
+      if (type === BOT_EVENT.MESSAGE)
+        return await this.sendTextMessageToUser({ userId, text, channelData })
+      else if (type === BOT_EVENT.IMAGE)
+        return await this.sendImageToUser({ userId, channelData })
     } catch (err) {
       console.log('[MSG] sendMessageToUser failed: ' + err.message || err)
     }
@@ -116,8 +120,11 @@ export class MessengerChannel extends BaseChannel {
 
   public async sendTextMessageToUser({ userId, text, channelData }) {
     try {
-      if (Array.isArray(channelData.extendData) && channelData.extendData.length) {
-        return this.detectTemple({
+      if (
+        Array.isArray(channelData.extendData) &&
+        channelData.extendData.length
+      ) {
+        return await this.detectTemple({
           userId,
           type: channelData.type,
           extendData: channelData.extendData,
@@ -149,14 +156,17 @@ export class MessengerChannel extends BaseChannel {
 
   public async sendImageToUser({ userId, channelData }) {
     try {
-      if (!channelData || !channelData.imageUrl) throw new Error('Image can not be empty')
+      if (!channelData || !channelData.imageUrl)
+        throw new Error('Image can not be empty')
       const extendData = [
         {
           image_url: channelData.imageUrl,
-        }
+        },
       ]
       await this.sendGenericTemplate({ userId, extendData })
-      logger.info(`[MSG] Bot Sent image to User ${userId} - ImageUrl: ${channelData.imageUrl}`)
+      logger.info(
+        `[MSG] Bot Sent image to User ${userId} - ImageUrl: ${channelData.imageUrl}`,
+      )
     } catch (err) {
       console.log('[MSG] Bot Sent image to User: ' + err.message || err)
     }
@@ -224,7 +234,7 @@ export class MessengerChannel extends BaseChannel {
           recipient: {
             id: userId,
           },
-          messaging_type: "RESPONSE",
+          messaging_type: 'RESPONSE',
           message: {
             text,
             quick_replies: buttons,
